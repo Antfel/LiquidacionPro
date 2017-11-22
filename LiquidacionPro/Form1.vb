@@ -1,4 +1,15 @@
 ﻿Public Class Form1
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim clienteDao As New ClienteDAO
+        Dim num As Integer
+
+        num = clienteDao.GetCliente().Rows.Count
+
+
+        MsgBox("DEBE INGRESAR R.U.C., RAZON SOCIAL Y DIRECCION" + CStr(num))
+
+    End Sub
+
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
 
     End Sub
