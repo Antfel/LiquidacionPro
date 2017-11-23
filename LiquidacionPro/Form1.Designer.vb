@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class frmLiquidacion
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -22,156 +22,113 @@ Partial Class Form1
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabControlModulo = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.dgvLiquidacion = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox14 = New System.Windows.Forms.TextBox()
+        Me.CombustibleVirtual = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
-        Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
+        Me.dtpLlegada = New System.Windows.Forms.DateTimePicker()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.dtpSalida = New System.Windows.Forms.DateTimePicker()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox13 = New System.Windows.Forms.TextBox()
+        Me.txtDestino = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.TextBox12 = New System.Windows.Forms.TextBox()
+        Me.txtCombustibleFisico = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.TextBox11 = New System.Windows.Forms.TextBox()
+        Me.txtOtros = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
+        Me.txtBalanza = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.txtHospedaje = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.txtGuardiania = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.TextBox7 = New System.Windows.Forms.TextBox()
+        Me.txtViaticos = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.txtPeajes = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.txtOrigen = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.txtCamabaja = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.txtTracto = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtGuiaRemision = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtChofer = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TabControl1.SuspendLayout()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.TabControlModulo.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'TabControl1
+        'TabControlModulo
         '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Location = New System.Drawing.Point(154, 12)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1155, 533)
-        Me.TabControl1.TabIndex = 0
+        Me.TabControlModulo.Controls.Add(Me.TabPage1)
+        Me.TabControlModulo.Controls.Add(Me.TabPage2)
+        Me.TabControlModulo.Location = New System.Drawing.Point(154, 12)
+        Me.TabControlModulo.Name = "TabControlModulo"
+        Me.TabControlModulo.SelectedIndex = 0
+        Me.TabControlModulo.Size = New System.Drawing.Size(1155, 533)
+        Me.TabControlModulo.TabIndex = 0
         '
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.dgvLiquidacion)
         Me.TabPage1.Controls.Add(Me.Button1)
-        Me.TabPage1.Controls.Add(Me.TextBox14)
+        Me.TabPage1.Controls.Add(Me.CombustibleVirtual)
         Me.TabPage1.Controls.Add(Me.Label16)
-        Me.TabPage1.Controls.Add(Me.DateTimePicker2)
+        Me.TabPage1.Controls.Add(Me.dtpLlegada)
         Me.TabPage1.Controls.Add(Me.Label15)
-        Me.TabPage1.Controls.Add(Me.DateTimePicker1)
+        Me.TabPage1.Controls.Add(Me.dtpSalida)
         Me.TabPage1.Controls.Add(Me.Label6)
-        Me.TabPage1.Controls.Add(Me.TextBox13)
+        Me.TabPage1.Controls.Add(Me.txtDestino)
         Me.TabPage1.Controls.Add(Me.Label14)
-        Me.TabPage1.Controls.Add(Me.TextBox12)
+        Me.TabPage1.Controls.Add(Me.txtCombustibleFisico)
         Me.TabPage1.Controls.Add(Me.Label13)
-        Me.TabPage1.Controls.Add(Me.TextBox11)
+        Me.TabPage1.Controls.Add(Me.txtOtros)
         Me.TabPage1.Controls.Add(Me.Label12)
-        Me.TabPage1.Controls.Add(Me.TextBox10)
+        Me.TabPage1.Controls.Add(Me.txtBalanza)
         Me.TabPage1.Controls.Add(Me.Label11)
-        Me.TabPage1.Controls.Add(Me.TextBox9)
+        Me.TabPage1.Controls.Add(Me.txtHospedaje)
         Me.TabPage1.Controls.Add(Me.Label10)
-        Me.TabPage1.Controls.Add(Me.TextBox8)
+        Me.TabPage1.Controls.Add(Me.txtGuardiania)
         Me.TabPage1.Controls.Add(Me.Label9)
-        Me.TabPage1.Controls.Add(Me.TextBox7)
+        Me.TabPage1.Controls.Add(Me.txtViaticos)
         Me.TabPage1.Controls.Add(Me.Label8)
-        Me.TabPage1.Controls.Add(Me.TextBox6)
+        Me.TabPage1.Controls.Add(Me.txtPeajes)
         Me.TabPage1.Controls.Add(Me.Label7)
-        Me.TabPage1.Controls.Add(Me.TextBox5)
+        Me.TabPage1.Controls.Add(Me.txtOrigen)
         Me.TabPage1.Controls.Add(Me.Label5)
-        Me.TabPage1.Controls.Add(Me.TextBox4)
+        Me.TabPage1.Controls.Add(Me.txtCamabaja)
         Me.TabPage1.Controls.Add(Me.Label4)
-        Me.TabPage1.Controls.Add(Me.TextBox3)
+        Me.TabPage1.Controls.Add(Me.txtTracto)
         Me.TabPage1.Controls.Add(Me.Label3)
-        Me.TabPage1.Controls.Add(Me.TextBox2)
+        Me.TabPage1.Controls.Add(Me.txtGuiaRemision)
         Me.TabPage1.Controls.Add(Me.Label2)
-        Me.TabPage1.Controls.Add(Me.TextBox1)
+        Me.TabPage1.Controls.Add(Me.txtChofer)
         Me.TabPage1.Controls.Add(Me.Label1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(1147, 507)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "TabPage1"
+        Me.TabPage1.Text = "Liquidación"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'dgvLiquidacion
         '
+        Me.dgvLiquidacion.AllowUserToAddRows = False
+        Me.dgvLiquidacion.AllowUserToDeleteRows = False
+        Me.dgvLiquidacion.AllowUserToOrderColumns = True
         Me.dgvLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvLiquidacion.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8})
         Me.dgvLiquidacion.Location = New System.Drawing.Point(30, 189)
         Me.dgvLiquidacion.Name = "dgvLiquidacion"
+        Me.dgvLiquidacion.ReadOnly = True
         Me.dgvLiquidacion.Size = New System.Drawing.Size(977, 293)
         Me.dgvLiquidacion.TabIndex = 36
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Numero Liquidacion"
-        Me.Column1.Name = "Column1"
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Trabajador"
-        Me.Column2.Name = "Column2"
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Guia"
-        Me.Column3.Name = "Column3"
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "Tracto"
-        Me.Column4.Name = "Column4"
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "Camabaja"
-        Me.Column5.Name = "Column5"
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "Origen"
-        Me.Column6.Name = "Column6"
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "Destino"
-        Me.Column7.Name = "Column7"
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "Dinero"
-        Me.Column8.Name = "Column8"
         '
         'Button1
         '
@@ -182,12 +139,12 @@ Partial Class Form1
         Me.Button1.Text = "Agregar Liquidacion"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'TextBox14
+        'CombustibleVirtual
         '
-        Me.TextBox14.Location = New System.Drawing.Point(728, 130)
-        Me.TextBox14.Name = "TextBox14"
-        Me.TextBox14.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox14.TabIndex = 33
+        Me.CombustibleVirtual.Location = New System.Drawing.Point(728, 130)
+        Me.CombustibleVirtual.Name = "CombustibleVirtual"
+        Me.CombustibleVirtual.Size = New System.Drawing.Size(107, 20)
+        Me.CombustibleVirtual.TabIndex = 33
         '
         'Label16
         '
@@ -198,13 +155,13 @@ Partial Class Form1
         Me.Label16.TabIndex = 32
         Me.Label16.Text = "Comb. Vistual"
         '
-        'DateTimePicker2
+        'dtpLlegada
         '
-        Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DateTimePicker2.Location = New System.Drawing.Point(728, 58)
-        Me.DateTimePicker2.Name = "DateTimePicker2"
-        Me.DateTimePicker2.Size = New System.Drawing.Size(107, 20)
-        Me.DateTimePicker2.TabIndex = 31
+        Me.dtpLlegada.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpLlegada.Location = New System.Drawing.Point(728, 58)
+        Me.dtpLlegada.Name = "dtpLlegada"
+        Me.dtpLlegada.Size = New System.Drawing.Size(107, 20)
+        Me.dtpLlegada.TabIndex = 31
         '
         'Label15
         '
@@ -215,13 +172,13 @@ Partial Class Form1
         Me.Label15.TabIndex = 30
         Me.Label15.Text = "Fecha Llegada"
         '
-        'DateTimePicker1
+        'dtpSalida
         '
-        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DateTimePicker1.Location = New System.Drawing.Point(728, 20)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(107, 20)
-        Me.DateTimePicker1.TabIndex = 29
+        Me.dtpSalida.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.dtpSalida.Location = New System.Drawing.Point(728, 20)
+        Me.dtpSalida.Name = "dtpSalida"
+        Me.dtpSalida.Size = New System.Drawing.Size(107, 20)
+        Me.dtpSalida.TabIndex = 29
         '
         'Label6
         '
@@ -232,12 +189,12 @@ Partial Class Form1
         Me.Label6.TabIndex = 28
         Me.Label6.Text = "Fecha Salida"
         '
-        'TextBox13
+        'txtDestino
         '
-        Me.TextBox13.Location = New System.Drawing.Point(523, 58)
-        Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox13.TabIndex = 27
+        Me.txtDestino.Location = New System.Drawing.Point(523, 58)
+        Me.txtDestino.Name = "txtDestino"
+        Me.txtDestino.Size = New System.Drawing.Size(107, 20)
+        Me.txtDestino.TabIndex = 27
         '
         'Label14
         '
@@ -248,12 +205,12 @@ Partial Class Form1
         Me.Label14.TabIndex = 26
         Me.Label14.Text = "Destino"
         '
-        'TextBox12
+        'txtCombustibleFisico
         '
-        Me.TextBox12.Location = New System.Drawing.Point(523, 127)
-        Me.TextBox12.Name = "TextBox12"
-        Me.TextBox12.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox12.TabIndex = 25
+        Me.txtCombustibleFisico.Location = New System.Drawing.Point(523, 127)
+        Me.txtCombustibleFisico.Name = "txtCombustibleFisico"
+        Me.txtCombustibleFisico.Size = New System.Drawing.Size(107, 20)
+        Me.txtCombustibleFisico.TabIndex = 25
         '
         'Label13
         '
@@ -264,12 +221,12 @@ Partial Class Form1
         Me.Label13.TabIndex = 24
         Me.Label13.Text = "Comb. Fisico"
         '
-        'TextBox11
+        'txtOtros
         '
-        Me.TextBox11.Location = New System.Drawing.Point(336, 130)
-        Me.TextBox11.Name = "TextBox11"
-        Me.TextBox11.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox11.TabIndex = 23
+        Me.txtOtros.Location = New System.Drawing.Point(336, 130)
+        Me.txtOtros.Name = "txtOtros"
+        Me.txtOtros.Size = New System.Drawing.Size(107, 20)
+        Me.txtOtros.TabIndex = 23
         '
         'Label12
         '
@@ -280,12 +237,12 @@ Partial Class Form1
         Me.Label12.TabIndex = 22
         Me.Label12.Text = "Otros"
         '
-        'TextBox10
+        'txtBalanza
         '
-        Me.TextBox10.Location = New System.Drawing.Point(105, 127)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox10.TabIndex = 21
+        Me.txtBalanza.Location = New System.Drawing.Point(105, 127)
+        Me.txtBalanza.Name = "txtBalanza"
+        Me.txtBalanza.Size = New System.Drawing.Size(107, 20)
+        Me.txtBalanza.TabIndex = 21
         '
         'Label11
         '
@@ -296,12 +253,12 @@ Partial Class Form1
         Me.Label11.TabIndex = 20
         Me.Label11.Text = "Balanza"
         '
-        'TextBox9
+        'txtHospedaje
         '
-        Me.TextBox9.Location = New System.Drawing.Point(336, 91)
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox9.TabIndex = 19
+        Me.txtHospedaje.Location = New System.Drawing.Point(336, 91)
+        Me.txtHospedaje.Name = "txtHospedaje"
+        Me.txtHospedaje.Size = New System.Drawing.Size(107, 20)
+        Me.txtHospedaje.TabIndex = 19
         '
         'Label10
         '
@@ -312,12 +269,12 @@ Partial Class Form1
         Me.Label10.TabIndex = 18
         Me.Label10.Text = "Hospedaje"
         '
-        'TextBox8
+        'txtGuardiania
         '
-        Me.TextBox8.Location = New System.Drawing.Point(105, 91)
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox8.TabIndex = 17
+        Me.txtGuardiania.Location = New System.Drawing.Point(105, 91)
+        Me.txtGuardiania.Name = "txtGuardiania"
+        Me.txtGuardiania.Size = New System.Drawing.Size(107, 20)
+        Me.txtGuardiania.TabIndex = 17
         '
         'Label9
         '
@@ -328,12 +285,12 @@ Partial Class Form1
         Me.Label9.TabIndex = 16
         Me.Label9.Text = "Guardiania"
         '
-        'TextBox7
+        'txtViaticos
         '
-        Me.TextBox7.Location = New System.Drawing.Point(728, 95)
-        Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox7.TabIndex = 15
+        Me.txtViaticos.Location = New System.Drawing.Point(728, 95)
+        Me.txtViaticos.Name = "txtViaticos"
+        Me.txtViaticos.Size = New System.Drawing.Size(107, 20)
+        Me.txtViaticos.TabIndex = 15
         '
         'Label8
         '
@@ -344,12 +301,12 @@ Partial Class Form1
         Me.Label8.TabIndex = 14
         Me.Label8.Text = "Viaticos"
         '
-        'TextBox6
+        'txtPeajes
         '
-        Me.TextBox6.Location = New System.Drawing.Point(523, 94)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox6.TabIndex = 13
+        Me.txtPeajes.Location = New System.Drawing.Point(523, 94)
+        Me.txtPeajes.Name = "txtPeajes"
+        Me.txtPeajes.Size = New System.Drawing.Size(107, 20)
+        Me.txtPeajes.TabIndex = 13
         '
         'Label7
         '
@@ -360,12 +317,12 @@ Partial Class Form1
         Me.Label7.TabIndex = 12
         Me.Label7.Text = "Peajes"
         '
-        'TextBox5
+        'txtOrigen
         '
-        Me.TextBox5.Location = New System.Drawing.Point(523, 20)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox5.TabIndex = 9
+        Me.txtOrigen.Location = New System.Drawing.Point(523, 20)
+        Me.txtOrigen.Name = "txtOrigen"
+        Me.txtOrigen.Size = New System.Drawing.Size(107, 20)
+        Me.txtOrigen.TabIndex = 9
         '
         'Label5
         '
@@ -376,12 +333,12 @@ Partial Class Form1
         Me.Label5.TabIndex = 8
         Me.Label5.Text = "Origen"
         '
-        'TextBox4
+        'txtCamabaja
         '
-        Me.TextBox4.Location = New System.Drawing.Point(336, 55)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox4.TabIndex = 7
+        Me.txtCamabaja.Location = New System.Drawing.Point(336, 55)
+        Me.txtCamabaja.Name = "txtCamabaja"
+        Me.txtCamabaja.Size = New System.Drawing.Size(107, 20)
+        Me.txtCamabaja.TabIndex = 7
         '
         'Label4
         '
@@ -392,12 +349,12 @@ Partial Class Form1
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Placa Camabaja"
         '
-        'TextBox3
+        'txtTracto
         '
-        Me.TextBox3.Location = New System.Drawing.Point(336, 20)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(107, 20)
-        Me.TextBox3.TabIndex = 5
+        Me.txtTracto.Location = New System.Drawing.Point(336, 20)
+        Me.txtTracto.Name = "txtTracto"
+        Me.txtTracto.Size = New System.Drawing.Size(107, 20)
+        Me.txtTracto.TabIndex = 5
         '
         'Label3
         '
@@ -408,12 +365,12 @@ Partial Class Form1
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Placa Tracto"
         '
-        'TextBox2
+        'txtGuiaRemision
         '
-        Me.TextBox2.Location = New System.Drawing.Point(145, 54)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(87, 20)
-        Me.TextBox2.TabIndex = 3
+        Me.txtGuiaRemision.Location = New System.Drawing.Point(145, 54)
+        Me.txtGuiaRemision.Name = "txtGuiaRemision"
+        Me.txtGuiaRemision.Size = New System.Drawing.Size(87, 20)
+        Me.txtGuiaRemision.TabIndex = 3
         '
         'Label2
         '
@@ -424,12 +381,12 @@ Partial Class Form1
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Guias de Rem. Transp."
         '
-        'TextBox1
+        'txtChofer
         '
-        Me.TextBox1.Location = New System.Drawing.Point(105, 20)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(132, 20)
-        Me.TextBox1.TabIndex = 1
+        Me.txtChofer.Location = New System.Drawing.Point(105, 20)
+        Me.txtChofer.Name = "txtChofer"
+        Me.txtChofer.Size = New System.Drawing.Size(132, 20)
+        Me.txtChofer.TabIndex = 1
         '
         'Label1
         '
@@ -440,15 +397,24 @@ Partial Class Form1
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Nombre de Chofer"
         '
-        'Form1
+        'TabPage2
+        '
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Size = New System.Drawing.Size(1147, 507)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "TabPage2"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'frmLiquidacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 557)
-        Me.Controls.Add(Me.TabControl1)
-        Me.Name = "Form1"
-        Me.Text = "Form1"
-        Me.TabControl1.ResumeLayout(False)
+        Me.Controls.Add(Me.TabControlModulo)
+        Me.Name = "frmLiquidacion"
+        Me.Text = "Liquidación de Viajes"
+        Me.TabControlModulo.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).EndInit()
@@ -456,48 +422,41 @@ Partial Class Form1
 
     End Sub
 
-    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TabControlModulo As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtGuiaRemision As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents txtChofer As TextBox
+    Friend WithEvents txtOrigen As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents txtCamabaja As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents txtTracto As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents TextBox14 As TextBox
+    Friend WithEvents CombustibleVirtual As TextBox
     Friend WithEvents Label16 As Label
-    Friend WithEvents DateTimePicker2 As DateTimePicker
+    Friend WithEvents dtpLlegada As DateTimePicker
     Friend WithEvents Label15 As Label
-    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents dtpSalida As DateTimePicker
     Friend WithEvents Label6 As Label
-    Friend WithEvents TextBox13 As TextBox
+    Friend WithEvents txtDestino As TextBox
     Friend WithEvents Label14 As Label
-    Friend WithEvents TextBox12 As TextBox
+    Friend WithEvents txtCombustibleFisico As TextBox
     Friend WithEvents Label13 As Label
-    Friend WithEvents TextBox11 As TextBox
+    Friend WithEvents txtOtros As TextBox
     Friend WithEvents Label12 As Label
-    Friend WithEvents TextBox10 As TextBox
+    Friend WithEvents txtBalanza As TextBox
     Friend WithEvents Label11 As Label
-    Friend WithEvents TextBox9 As TextBox
+    Friend WithEvents txtHospedaje As TextBox
     Friend WithEvents Label10 As Label
-    Friend WithEvents TextBox8 As TextBox
+    Friend WithEvents txtGuardiania As TextBox
     Friend WithEvents Label9 As Label
-    Friend WithEvents TextBox7 As TextBox
+    Friend WithEvents txtViaticos As TextBox
     Friend WithEvents Label8 As Label
-    Friend WithEvents TextBox6 As TextBox
+    Friend WithEvents txtPeajes As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents dgvLiquidacion As DataGridView
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As DataGridViewTextBoxColumn
-    Friend WithEvents Column6 As DataGridViewTextBoxColumn
-    Friend WithEvents Column7 As DataGridViewTextBoxColumn
-    Friend WithEvents Column8 As DataGridViewTextBoxColumn
     Friend WithEvents Button1 As Button
+    Friend WithEvents TabPage2 As TabPage
 End Class

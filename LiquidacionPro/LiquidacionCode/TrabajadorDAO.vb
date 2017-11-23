@@ -1,7 +1,7 @@
-﻿Public Class PersonalDAO
+﻿Public Class TrabajadorDAO
     Public SQL As New SQLControl
 
-    Public Function getPersonal() As DataTable
+    Public Function getTrabajador() As DataTable
         SQL.ExecQuery("SELECT CODIGO_TRABAJADOR,
                               APELLIDO_PATERNO_TRABAJADOR,
                               APELLIDO_MATERNO_TRABAJADOR,

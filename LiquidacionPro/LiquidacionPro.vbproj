@@ -80,11 +80,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LiquidacionCode\GuiaDAO.vb" />
-    <Compile Include="LiquidacionCode\PersonalDAO.vb" />
+    <Compile Include="LiquidacionCode\TrabajadorDAO.vb" />
     <Compile Include="LiquidacionCode\ClienteDAO.vb" />
     <Compile Include="LiquidacionCode\LiquidacionDAO.vb" />
     <Compile Include="LiquidacionCode\SQLControl.vb" />
-    <Compile Include="LiquidacionCode\VehiculoDAO.vb" />
+    <Compile Include="LiquidacionCode\UnidadDAO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
