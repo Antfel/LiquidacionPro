@@ -1,13 +1,10 @@
 ﻿Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim clienteDao As New ClienteDAO
-        Dim num As Integer
+        Dim liquidacionDao As New LiquidacionDAO
+        Dim dt As DataTable
 
-        num = clienteDao.GetCliente().Rows.Count
-
-
-        MsgBox("DEBE INGRESAR R.U.C., RAZON SOCIAL Y DIRECCION" + CStr(num))
-
+        dt = liquidacionDao.GetAllLiquidacion()
+        dgvLiquidacion.DataSource = dt
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
