@@ -24,6 +24,10 @@ Partial Class frmLiquidacion
     Private Sub InitializeComponent()
         Me.TabControlModulo = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.cbGuia = New System.Windows.Forms.ComboBox()
+        Me.cbCamabaja = New System.Windows.Forms.ComboBox()
+        Me.cbTracto = New System.Windows.Forms.ComboBox()
+        Me.cbTrabajador = New System.Windows.Forms.ComboBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.cbEstado = New System.Windows.Forms.ComboBox()
         Me.Label19 = New System.Windows.Forms.Label()
@@ -63,10 +67,7 @@ Partial Class frmLiquidacion
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.cbTrabajador = New System.Windows.Forms.ComboBox()
-        Me.cbTracto = New System.Windows.Forms.ComboBox()
-        Me.cbCamabaja = New System.Windows.Forms.ComboBox()
-        Me.cbGuia = New System.Windows.Forms.ComboBox()
+        Me.btnNuevo = New System.Windows.Forms.Button()
         Me.TabControlModulo.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,6 +85,7 @@ Partial Class frmLiquidacion
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.btnNuevo)
         Me.TabPage1.Controls.Add(Me.cbGuia)
         Me.TabPage1.Controls.Add(Me.cbCamabaja)
         Me.TabPage1.Controls.Add(Me.cbTracto)
@@ -134,6 +136,38 @@ Partial Class frmLiquidacion
         Me.TabPage1.Text = "Liquidación"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'cbGuia
+        '
+        Me.cbGuia.FormattingEnabled = True
+        Me.cbGuia.Location = New System.Drawing.Point(131, 58)
+        Me.cbGuia.Name = "cbGuia"
+        Me.cbGuia.Size = New System.Drawing.Size(81, 21)
+        Me.cbGuia.TabIndex = 4
+        '
+        'cbCamabaja
+        '
+        Me.cbCamabaja.FormattingEnabled = True
+        Me.cbCamabaja.Location = New System.Drawing.Point(342, 90)
+        Me.cbCamabaja.Name = "cbCamabaja"
+        Me.cbCamabaja.Size = New System.Drawing.Size(100, 21)
+        Me.cbCamabaja.TabIndex = 9
+        '
+        'cbTracto
+        '
+        Me.cbTracto.FormattingEnabled = True
+        Me.cbTracto.Location = New System.Drawing.Point(342, 55)
+        Me.cbTracto.Name = "cbTracto"
+        Me.cbTracto.Size = New System.Drawing.Size(100, 21)
+        Me.cbTracto.TabIndex = 5
+        '
+        'cbTrabajador
+        '
+        Me.cbTrabajador.FormattingEnabled = True
+        Me.cbTrabajador.Location = New System.Drawing.Point(566, 17)
+        Me.cbTrabajador.Name = "cbTrabajador"
+        Me.cbTrabajador.Size = New System.Drawing.Size(269, 21)
+        Me.cbTrabajador.TabIndex = 3
+        '
         'Label20
         '
         Me.Label20.AutoSize = True
@@ -146,11 +180,12 @@ Partial Class frmLiquidacion
         'cbEstado
         '
         Me.cbEstado.FormattingEnabled = True
+        Me.cbEstado.ItemHeight = 13
         Me.cbEstado.Items.AddRange(New Object() {"1", "2"})
         Me.cbEstado.Location = New System.Drawing.Point(105, 196)
         Me.cbEstado.Name = "cbEstado"
         Me.cbEstado.Size = New System.Drawing.Size(107, 21)
-        Me.cbEstado.TabIndex = 43
+        Me.cbEstado.TabIndex = 20
         '
         'Label19
         '
@@ -166,7 +201,7 @@ Partial Class frmLiquidacion
         Me.txtDinero.Location = New System.Drawing.Point(105, 93)
         Me.txtDinero.Name = "txtDinero"
         Me.txtDinero.Size = New System.Drawing.Size(107, 20)
-        Me.txtDinero.TabIndex = 41
+        Me.txtDinero.TabIndex = 8
         '
         'Label18
         '
@@ -191,14 +226,15 @@ Partial Class frmLiquidacion
         Me.txtNroLiquidacion.Location = New System.Drawing.Point(342, 18)
         Me.txtNroLiquidacion.Name = "txtNroLiquidacion"
         Me.txtNroLiquidacion.Size = New System.Drawing.Size(100, 20)
-        Me.txtNroLiquidacion.TabIndex = 38
+        Me.txtNroLiquidacion.TabIndex = 2
         '
         'txtCodigoLiquidacion
         '
         Me.txtCodigoLiquidacion.Location = New System.Drawing.Point(112, 18)
         Me.txtCodigoLiquidacion.Name = "txtCodigoLiquidacion"
+        Me.txtCodigoLiquidacion.ReadOnly = True
         Me.txtCodigoLiquidacion.Size = New System.Drawing.Size(99, 20)
-        Me.txtCodigoLiquidacion.TabIndex = 37
+        Me.txtCodigoLiquidacion.TabIndex = 1
         '
         'dgvLiquidacion
         '
@@ -215,11 +251,11 @@ Partial Class frmLiquidacion
         '
         'btnAgregarLiquidacion
         '
-        Me.btnAgregarLiquidacion.Location = New System.Drawing.Point(875, 58)
+        Me.btnAgregarLiquidacion.Location = New System.Drawing.Point(875, 76)
         Me.btnAgregarLiquidacion.Name = "btnAgregarLiquidacion"
-        Me.btnAgregarLiquidacion.Size = New System.Drawing.Size(132, 70)
+        Me.btnAgregarLiquidacion.Size = New System.Drawing.Size(132, 52)
         Me.btnAgregarLiquidacion.TabIndex = 34
-        Me.btnAgregarLiquidacion.Text = "Agregar Liquidacion"
+        Me.btnAgregarLiquidacion.Text = "Grabar"
         Me.btnAgregarLiquidacion.UseVisualStyleBackColor = True
         '
         'txtCombustibleVirtual
@@ -227,7 +263,7 @@ Partial Class frmLiquidacion
         Me.txtCombustibleVirtual.Location = New System.Drawing.Point(728, 165)
         Me.txtCombustibleVirtual.Name = "txtCombustibleVirtual"
         Me.txtCombustibleVirtual.Size = New System.Drawing.Size(107, 20)
-        Me.txtCombustibleVirtual.TabIndex = 33
+        Me.txtCombustibleVirtual.TabIndex = 19
         '
         'Label16
         '
@@ -244,7 +280,7 @@ Partial Class frmLiquidacion
         Me.dtpLlegada.Location = New System.Drawing.Point(728, 93)
         Me.dtpLlegada.Name = "dtpLlegada"
         Me.dtpLlegada.Size = New System.Drawing.Size(107, 20)
-        Me.dtpLlegada.TabIndex = 31
+        Me.dtpLlegada.TabIndex = 11
         '
         'Label15
         '
@@ -261,7 +297,7 @@ Partial Class frmLiquidacion
         Me.dtpSalida.Location = New System.Drawing.Point(728, 55)
         Me.dtpSalida.Name = "dtpSalida"
         Me.dtpSalida.Size = New System.Drawing.Size(107, 20)
-        Me.dtpSalida.TabIndex = 29
+        Me.dtpSalida.TabIndex = 7
         '
         'Label6
         '
@@ -277,7 +313,7 @@ Partial Class frmLiquidacion
         Me.txtDestino.Location = New System.Drawing.Point(523, 93)
         Me.txtDestino.Name = "txtDestino"
         Me.txtDestino.Size = New System.Drawing.Size(107, 20)
-        Me.txtDestino.TabIndex = 27
+        Me.txtDestino.TabIndex = 10
         '
         'Label14
         '
@@ -293,7 +329,7 @@ Partial Class frmLiquidacion
         Me.txtCombustibleFisico.Location = New System.Drawing.Point(523, 162)
         Me.txtCombustibleFisico.Name = "txtCombustibleFisico"
         Me.txtCombustibleFisico.Size = New System.Drawing.Size(107, 20)
-        Me.txtCombustibleFisico.TabIndex = 25
+        Me.txtCombustibleFisico.TabIndex = 18
         '
         'Label13
         '
@@ -309,7 +345,7 @@ Partial Class frmLiquidacion
         Me.txtOtros.Location = New System.Drawing.Point(336, 165)
         Me.txtOtros.Name = "txtOtros"
         Me.txtOtros.Size = New System.Drawing.Size(107, 20)
-        Me.txtOtros.TabIndex = 23
+        Me.txtOtros.TabIndex = 17
         '
         'Label12
         '
@@ -325,7 +361,7 @@ Partial Class frmLiquidacion
         Me.txtBalanza.Location = New System.Drawing.Point(105, 162)
         Me.txtBalanza.Name = "txtBalanza"
         Me.txtBalanza.Size = New System.Drawing.Size(107, 20)
-        Me.txtBalanza.TabIndex = 21
+        Me.txtBalanza.TabIndex = 16
         '
         'Label11
         '
@@ -341,7 +377,7 @@ Partial Class frmLiquidacion
         Me.txtHospedaje.Location = New System.Drawing.Point(336, 126)
         Me.txtHospedaje.Name = "txtHospedaje"
         Me.txtHospedaje.Size = New System.Drawing.Size(107, 20)
-        Me.txtHospedaje.TabIndex = 19
+        Me.txtHospedaje.TabIndex = 13
         '
         'Label10
         '
@@ -357,7 +393,7 @@ Partial Class frmLiquidacion
         Me.txtGuardiania.Location = New System.Drawing.Point(105, 126)
         Me.txtGuardiania.Name = "txtGuardiania"
         Me.txtGuardiania.Size = New System.Drawing.Size(107, 20)
-        Me.txtGuardiania.TabIndex = 17
+        Me.txtGuardiania.TabIndex = 12
         '
         'Label9
         '
@@ -389,7 +425,7 @@ Partial Class frmLiquidacion
         Me.txtPeajes.Location = New System.Drawing.Point(523, 129)
         Me.txtPeajes.Name = "txtPeajes"
         Me.txtPeajes.Size = New System.Drawing.Size(107, 20)
-        Me.txtPeajes.TabIndex = 13
+        Me.txtPeajes.TabIndex = 14
         '
         'Label7
         '
@@ -405,7 +441,7 @@ Partial Class frmLiquidacion
         Me.txtOrigen.Location = New System.Drawing.Point(523, 55)
         Me.txtOrigen.Name = "txtOrigen"
         Me.txtOrigen.Size = New System.Drawing.Size(107, 20)
-        Me.txtOrigen.TabIndex = 9
+        Me.txtOrigen.TabIndex = 6
         '
         'Label5
         '
@@ -461,37 +497,14 @@ Partial Class frmLiquidacion
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'cbTrabajador
+        'btnNuevo
         '
-        Me.cbTrabajador.FormattingEnabled = True
-        Me.cbTrabajador.Location = New System.Drawing.Point(566, 17)
-        Me.cbTrabajador.Name = "cbTrabajador"
-        Me.cbTrabajador.Size = New System.Drawing.Size(269, 21)
-        Me.cbTrabajador.TabIndex = 45
-        '
-        'cbTracto
-        '
-        Me.cbTracto.FormattingEnabled = True
-        Me.cbTracto.Location = New System.Drawing.Point(342, 55)
-        Me.cbTracto.Name = "cbTracto"
-        Me.cbTracto.Size = New System.Drawing.Size(100, 21)
-        Me.cbTracto.TabIndex = 46
-        '
-        'cbCamabaja
-        '
-        Me.cbCamabaja.FormattingEnabled = True
-        Me.cbCamabaja.Location = New System.Drawing.Point(342, 90)
-        Me.cbCamabaja.Name = "cbCamabaja"
-        Me.cbCamabaja.Size = New System.Drawing.Size(100, 21)
-        Me.cbCamabaja.TabIndex = 47
-        '
-        'cbGuia
-        '
-        Me.cbGuia.FormattingEnabled = True
-        Me.cbGuia.Location = New System.Drawing.Point(131, 58)
-        Me.cbGuia.Name = "cbGuia"
-        Me.cbGuia.Size = New System.Drawing.Size(81, 21)
-        Me.cbGuia.TabIndex = 48
+        Me.btnNuevo.Location = New System.Drawing.Point(875, 134)
+        Me.btnNuevo.Name = "btnNuevo"
+        Me.btnNuevo.Size = New System.Drawing.Size(132, 51)
+        Me.btnNuevo.TabIndex = 45
+        Me.btnNuevo.Text = "Nuevo"
+        Me.btnNuevo.UseVisualStyleBackColor = True
         '
         'frmLiquidacion
         '
@@ -554,4 +567,5 @@ Partial Class frmLiquidacion
     Friend WithEvents cbGuia As ComboBox
     Friend WithEvents cbCamabaja As ComboBox
     Friend WithEvents cbTracto As ComboBox
+    Friend WithEvents btnNuevo As Button
 End Class

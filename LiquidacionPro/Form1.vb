@@ -1,12 +1,7 @@
 ﻿Public Class frmLiquidacion
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim liquidacionDao As New LiquidacionDAO
 
-        Dim dt As DataTable
-
-        dt = liquidacionDao.GetAllLiquidacion()
-        dgvLiquidacion.DataSource = dt
-
+        actualizarListaLiquidacion()
         actualizarDatosTrabajador()
         actualizarDatosGuia()
         actualizarDatosTracto()
@@ -16,49 +11,39 @@
     End Sub
 
     Private Sub btnAgregarLiquidacion_Click(sender As Object, e As EventArgs) Handles btnAgregarLiquidacion.Click
-        Dim liquidacionDao As New LiquidacionDAO
-        liquidacionDao.SQL.AddParam("@NUMERO_LIQUIDACION", txtNroLiquidacion.Text)
-        liquidacionDao.SQL.AddParam("@CODIGO_TRABAJADOR", cbTrabajador.ValueMember)
-        liquidacionDao.SQL.AddParam("@CODIGO_GUIA", cbGuia.ValueMember)
-        liquidacionDao.SQL.AddParam("@CODIGO_UNIDAD_TRACTO", cbTracto.ValueMember)
-        liquidacionDao.SQL.AddParam("@CODIGO_UNIDAD_SEMITRAILER", cbCamabaja.ValueMember)
-        liquidacionDao.SQL.AddParam("@ORIGEN_LIQUIDACION", txtOrigen.Text)
-        liquidacionDao.SQL.AddParam("@DESTINO_LIQUIDACION", txtDestino.Text)
-        liquidacionDao.SQL.AddParam("@FECHA_SALIDA", dtpSalida.Value)
-        liquidacionDao.SQL.AddParam("@FECHA_LLEGADA", dtpLlegada.Value)
-        liquidacionDao.SQL.AddParam("@DINERO_LIQUIDACION", txtDinero.Text)
-        liquidacionDao.SQL.AddParam("@PEAJES_LIQUIDACION", txtPeajes.Text)
-        liquidacionDao.SQL.AddParam("@VIATICOS_LIQUIDACION", txtViaticos.Text)
-        liquidacionDao.SQL.AddParam("@GUARDIANIA_LIQUIDACION", txtGuardiania.Text)
-        liquidacionDao.SQL.AddParam("@HOSPEDAJE_LIQUIDACION", txtHospedaje.Text)
-        liquidacionDao.SQL.AddParam("@BALANZA_LIQUIDACION", txtBalanza.Text)
-        liquidacionDao.SQL.AddParam("@OTROS_LIQUIDACION", txtOtros.Text)
-        liquidacionDao.SQL.AddParam("@CONSUMO_FISICO_LIQUIDACION", txtCombustibleFisico.Text)
-        liquidacionDao.SQL.AddParam("@CONSUMO_VIRTUAL_LIQUIDACION", txtCombustibleVirtual.Text)
-        liquidacionDao.SQL.AddParam("@CODIGO_ESTADO", cbEstado.SelectedItem)
 
-        liquidacionDao.SQL.ExecQuery("EXECUTE insertLiquidacion 
-                                        @NUMERO_LIQUIDACION,
-                                        @CODIGO_TRABAJADOR,
-                                        @CODIGO_GUIA,
-                                        @CODIGO_UNIDAD_TRACTO,
-                                        @CODIGO_UNIDAD_SEMITRAILER,
-                                        @ORIGEN_LIQUIDACION,
-                                        @DESTINO_LIQUIDACION,
-                                        @FECHA_SALIDA,
-                                        @FECHA_LLEGADA,
-                                        @DINERO_LIQUIDACION,
-                                        @PEAJES_LIQUIDACION,
-                                        @VIATICOS_LIQUIDACION,
-                                        @GUARDIANIA_LIQUIDACION,
-                                        @HOSPEDAJE_LIQUIDACION,
-                                        @BALANZA_LIQUIDACION,
-                                        @OTROS_LIQUIDACION,
-                                        @CONSUMO_FISICO_LIQUIDACION,
-                                        @CONSUMO_VIRTUAL_LIQUIDACION,
-                                        @CODIGO_ESTADO")
+        Dim proceso As String
+        proceso = ""
+
+        Dim liquidacionDao As New LiquidacionDAO
+
+
+        If txtCodigoLiquidacion.Text = Nothing Then
+            liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
+                                         cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
+                                         txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
+                                         CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
+                                         CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
+                                         CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
+                                         cbEstado.SelectedValue)
+        Else
+            liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
+                                         cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
+                                         txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
+                                         CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
+                                         CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
+                                         CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
+                                         cbEstado.SelectedValue)
+        End If
+
+
+
         If liquidacionDao.SQL.HasException(True) Then Exit Sub
-        MsgBox("Liquidación ingresada correctamente")
+
+        actualizarListaLiquidacion()
+
+        MsgBox("Liquidación " + proceso + " correctamente")
+
     End Sub
 
     Private Sub dgvLiquidacion_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvLiquidacion.CellMouseClick
@@ -72,18 +57,25 @@
         dt = liquidacionDao.GetLiquidacionById(codigo)
 
         txtCodigoLiquidacion.Text = dt.Rows(0)(0)
-        txtCodigoLiquidacion.Text = dt.Rows(0)(0)
-        txtCodigoLiquidacion.Text = dt.Rows(0)(0)
-        txtCodigoLiquidacion.Text = dt.Rows(0)(0)
-        txtCodigoLiquidacion.Text = dt.Rows(0)(0)
-        txtCodigoLiquidacion.Text = dt.Rows(0)(0)
-        txtCodigoLiquidacion.Text = dt.Rows(0)(0)
-        txtCodigoLiquidacion.Text = dt.Rows(0)(0)
-        txtCodigoLiquidacion.Text = dt.Rows(0)(0)
-        txtCodigoLiquidacion.Text = dt.Rows(0)(0)
-        txtCodigoLiquidacion.Text = dt.Rows(0)(0)
-        txtCodigoLiquidacion.Text = dt.Rows(0)(0)
-
+        txtNroLiquidacion.Text = dt.Rows(0)(1)
+        cbTrabajador.SelectedValue = dt.Rows(0)(2)
+        cbGuia.SelectedValue = dt.Rows(0)(4)
+        cbTracto.SelectedValue = dt.Rows(0)(6)
+        txtOrigen.Text = dt.Rows(0)(10)
+        dtpLlegada.Value = dt.Rows(0)(13)
+        cbCamabaja.SelectedValue = dt.Rows(0)(8)
+        txtDestino.Text = dt.Rows(0)(11)
+        dtpSalida.Value = dt.Rows(0)(12)
+        txtDinero.Text = dt.Rows(0)(14)
+        txtGuardiania.Text = dt.Rows(0)(17)
+        txtHospedaje.Text = dt.Rows(0)(18)
+        txtPeajes.Text = dt.Rows(0)(15)
+        txtViaticos.Text = dt.Rows(0)(16)
+        txtBalanza.Text = dt.Rows(0)(19)
+        txtOtros.Text = dt.Rows(0)(20)
+        txtCombustibleFisico.Text = dt.Rows(0)(21)
+        txtCombustibleVirtual.Text = dt.Rows(0)(22)
+        cbEstado.SelectedValue = dt.Rows(0)(23)
 
     End Sub
 
@@ -91,6 +83,20 @@
 
     End Sub
 
+    Private Sub actualizarListaLiquidacion()
+        Dim liquidacionDao As New LiquidacionDAO
+
+        Dim dt As DataTable
+
+        dt = liquidacionDao.GetAllLiquidacion()
+        dgvLiquidacion.DataSource = dt
+
+        dgvLiquidacion.Columns(2).Visible = False
+        dgvLiquidacion.Columns(4).Visible = False
+        dgvLiquidacion.Columns(6).Visible = False
+        dgvLiquidacion.Columns(8).Visible = False
+        dgvLiquidacion.Columns(23).Visible = False
+    End Sub
     Private Sub actualizarDatosTrabajador()
         Dim trabajadorDao As New TrabajadorDAO
         Dim dtTrabajador As DataTable
@@ -104,6 +110,7 @@
             .DropDownStyle = ComboBoxStyle.Simple
             .AutoCompleteMode = AutoCompleteMode.Suggest
             .AutoCompleteSource = AutoCompleteSource.ListItems
+            .SelectedIndex = -1
         End With
 
     End Sub
@@ -121,6 +128,7 @@
             .DropDownStyle = ComboBoxStyle.Simple
             .AutoCompleteMode = AutoCompleteMode.Suggest
             .AutoCompleteSource = AutoCompleteSource.ListItems
+            .SelectedIndex = -1
         End With
 
     End Sub
@@ -138,6 +146,7 @@
             .DropDownStyle = ComboBoxStyle.Simple
             .AutoCompleteMode = AutoCompleteMode.Suggest
             .AutoCompleteSource = AutoCompleteSource.ListItems
+            .SelectedIndex = -1
         End With
 
     End Sub
@@ -155,6 +164,7 @@
             .DropDownStyle = ComboBoxStyle.Simple
             .AutoCompleteMode = AutoCompleteMode.Suggest
             .AutoCompleteSource = AutoCompleteSource.ListItems
+            .SelectedIndex = -1
         End With
 
     End Sub
@@ -172,8 +182,31 @@
             .DropDownStyle = ComboBoxStyle.DropDown
             .AutoCompleteMode = AutoCompleteMode.Suggest
             .AutoCompleteSource = AutoCompleteSource.ListItems
+            .SelectedIndex = -1
         End With
 
     End Sub
 
+    Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
+        txtCodigoLiquidacion.Text = ""
+        txtNroLiquidacion.Text = ""
+        cbTrabajador.SelectedIndex = -1
+        cbGuia.SelectedIndex = -1
+        cbTracto.SelectedIndex = -1
+        txtOrigen.Text = ""
+        dtpLlegada.Value = DateTime.Now
+        cbCamabaja.SelectedIndex = -1
+        txtDestino.Text = ""
+        dtpSalida.Value = DateTime.Now
+        txtDinero.Text = ""
+        txtGuardiania.Text = ""
+        txtHospedaje.Text = ""
+        txtPeajes.Text = ""
+        txtViaticos.Text = ""
+        txtBalanza.Text = ""
+        txtOtros.Text = ""
+        txtCombustibleFisico.Text = ""
+        txtCombustibleVirtual.Text = ""
+        cbEstado.SelectedIndex = -1
+    End Sub
 End Class
