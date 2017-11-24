@@ -24,6 +24,7 @@ Partial Class frmLiquidacion
     Private Sub InitializeComponent()
         Me.TabControlModulo = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.cbTrabajador = New System.Windows.Forms.ComboBox()
         Me.dgvLiquidacion = New System.Windows.Forms.DataGridView()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.CombustibleVirtual = New System.Windows.Forms.TextBox()
@@ -56,7 +57,6 @@ Partial Class frmLiquidacion
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtGuiaRemision = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtChofer = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabControlModulo.SuspendLayout()
@@ -76,6 +76,7 @@ Partial Class frmLiquidacion
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.cbTrabajador)
         Me.TabPage1.Controls.Add(Me.dgvLiquidacion)
         Me.TabPage1.Controls.Add(Me.Button1)
         Me.TabPage1.Controls.Add(Me.CombustibleVirtual)
@@ -108,7 +109,6 @@ Partial Class frmLiquidacion
         Me.TabPage1.Controls.Add(Me.Label3)
         Me.TabPage1.Controls.Add(Me.txtGuiaRemision)
         Me.TabPage1.Controls.Add(Me.Label2)
-        Me.TabPage1.Controls.Add(Me.txtChofer)
         Me.TabPage1.Controls.Add(Me.Label1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
@@ -117,6 +117,15 @@ Partial Class frmLiquidacion
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Liquidación"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'cbTrabajador
+        '
+        Me.cbTrabajador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple
+        Me.cbTrabajador.FormattingEnabled = True
+        Me.cbTrabajador.Location = New System.Drawing.Point(111, 19)
+        Me.cbTrabajador.Name = "cbTrabajador"
+        Me.cbTrabajador.Size = New System.Drawing.Size(121, 21)
+        Me.cbTrabajador.TabIndex = 37
         '
         'dgvLiquidacion
         '
@@ -381,13 +390,6 @@ Partial Class frmLiquidacion
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Guias de Rem. Transp."
         '
-        'txtChofer
-        '
-        Me.txtChofer.Location = New System.Drawing.Point(105, 20)
-        Me.txtChofer.Name = "txtChofer"
-        Me.txtChofer.Size = New System.Drawing.Size(132, 20)
-        Me.txtChofer.TabIndex = 1
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -427,7 +429,6 @@ Partial Class frmLiquidacion
     Friend WithEvents Label1 As Label
     Friend WithEvents txtGuiaRemision As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents txtChofer As TextBox
     Friend WithEvents txtOrigen As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents txtCamabaja As TextBox
@@ -459,4 +460,5 @@ Partial Class frmLiquidacion
     Friend WithEvents dgvLiquidacion As DataGridView
     Friend WithEvents Button1 As Button
     Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents cbTrabajador As ComboBox
 End Class

@@ -1,19 +1,12 @@
 ﻿Public Class TrabajadorDAO
     Public SQL As New SQLControl
 
-    Public Function getTrabajador() As DataTable
+    Public Function GetTrabajador() As DataTable
         SQL.ExecQuery("SELECT CODIGO_TRABAJADOR,
-                              APELLIDO_PATERNO_TRABAJADOR,
-                              APELLIDO_MATERNO_TRABAJADOR,
-                              NOMBRES_TRABAJADOR,
-                              NACIMIENTO_TRABAJADOR,
-                              DIRECCION_TRABAJADOR,
-                              TELEFONO_TRABAJADOR,
-                              DNI_TRABAJADOR,
-                              BREVETE_TRABAJADOR,
-                              CODIGO_CARGO_TRABAJADOR,
-                              CODIGO_ESTADO_TRABAJADOR
-                        FROM TRABAJADOR")
+                              coalesce(APELLIDO_PATERNO_TRABAJADOR,'') + ' '+
+                              coalesce(APELLIDO_MATERNO_TRABAJADOR,'') + ', ' +
+                              coalesce(NOMBRES_TRABAJADOR,'') as NOMBRE_TRABAJADOR
+                        FROM TRABAJADOR where CODIGO_CARGO_TRABAJADOR = 1 AND CODIGO_ESTADO_TRABAJADOR = 4")
         Return SQL.DBT
     End Function
 
