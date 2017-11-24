@@ -24,9 +24,17 @@ Partial Class frmLiquidacion
     Private Sub InitializeComponent()
         Me.TabControlModulo = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.cbEstado = New System.Windows.Forms.ComboBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.txtDinero = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.txtNroLiquidacion = New System.Windows.Forms.TextBox()
+        Me.txtCodigoLiquidacion = New System.Windows.Forms.TextBox()
         Me.dgvLiquidacion = New System.Windows.Forms.DataGridView()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.CombustibleVirtual = New System.Windows.Forms.TextBox()
+        Me.btnAgregarLiquidacion = New System.Windows.Forms.Button()
+        Me.txtCombustibleVirtual = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.dtpLlegada = New System.Windows.Forms.DateTimePicker()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -76,9 +84,17 @@ Partial Class frmLiquidacion
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Label20)
+        Me.TabPage1.Controls.Add(Me.cbEstado)
+        Me.TabPage1.Controls.Add(Me.Label19)
+        Me.TabPage1.Controls.Add(Me.txtDinero)
+        Me.TabPage1.Controls.Add(Me.Label18)
+        Me.TabPage1.Controls.Add(Me.Label17)
+        Me.TabPage1.Controls.Add(Me.txtNroLiquidacion)
+        Me.TabPage1.Controls.Add(Me.txtCodigoLiquidacion)
         Me.TabPage1.Controls.Add(Me.dgvLiquidacion)
-        Me.TabPage1.Controls.Add(Me.Button1)
-        Me.TabPage1.Controls.Add(Me.CombustibleVirtual)
+        Me.TabPage1.Controls.Add(Me.btnAgregarLiquidacion)
+        Me.TabPage1.Controls.Add(Me.txtCombustibleVirtual)
         Me.TabPage1.Controls.Add(Me.Label16)
         Me.TabPage1.Controls.Add(Me.dtpLlegada)
         Me.TabPage1.Controls.Add(Me.Label15)
@@ -118,47 +134,114 @@ Partial Class frmLiquidacion
         Me.TabPage1.Text = "Liquidación"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(24, 196)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(40, 13)
+        Me.Label20.TabIndex = 44
+        Me.Label20.Text = "Estado"
+        '
+        'cbEstado
+        '
+        Me.cbEstado.FormattingEnabled = True
+        Me.cbEstado.Items.AddRange(New Object() {"1", "2"})
+        Me.cbEstado.Location = New System.Drawing.Point(105, 196)
+        Me.cbEstado.Name = "cbEstado"
+        Me.cbEstado.Size = New System.Drawing.Size(107, 21)
+        Me.cbEstado.TabIndex = 43
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(24, 93)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(38, 13)
+        Me.Label19.TabIndex = 42
+        Me.Label19.Text = "Dinero"
+        '
+        'txtDinero
+        '
+        Me.txtDinero.Location = New System.Drawing.Point(105, 93)
+        Me.txtDinero.Name = "txtDinero"
+        Me.txtDinero.Size = New System.Drawing.Size(107, 20)
+        Me.txtDinero.TabIndex = 41
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(9, 20)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(97, 13)
+        Me.Label18.TabIndex = 40
+        Me.Label18.Text = "Código Liquidación"
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(246, 21)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(84, 13)
+        Me.Label17.TabIndex = 39
+        Me.Label17.Text = "Nro. Liquidación"
+        '
+        'txtNroLiquidacion
+        '
+        Me.txtNroLiquidacion.Location = New System.Drawing.Point(342, 18)
+        Me.txtNroLiquidacion.Name = "txtNroLiquidacion"
+        Me.txtNroLiquidacion.Size = New System.Drawing.Size(100, 20)
+        Me.txtNroLiquidacion.TabIndex = 38
+        '
+        'txtCodigoLiquidacion
+        '
+        Me.txtCodigoLiquidacion.Location = New System.Drawing.Point(112, 18)
+        Me.txtCodigoLiquidacion.Name = "txtCodigoLiquidacion"
+        Me.txtCodigoLiquidacion.Size = New System.Drawing.Size(99, 20)
+        Me.txtCodigoLiquidacion.TabIndex = 37
+        '
         'dgvLiquidacion
         '
         Me.dgvLiquidacion.AllowUserToAddRows = False
         Me.dgvLiquidacion.AllowUserToDeleteRows = False
         Me.dgvLiquidacion.AllowUserToOrderColumns = True
         Me.dgvLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvLiquidacion.Location = New System.Drawing.Point(30, 189)
+        Me.dgvLiquidacion.Location = New System.Drawing.Point(30, 231)
         Me.dgvLiquidacion.Name = "dgvLiquidacion"
         Me.dgvLiquidacion.ReadOnly = True
-        Me.dgvLiquidacion.Size = New System.Drawing.Size(977, 293)
+        Me.dgvLiquidacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvLiquidacion.Size = New System.Drawing.Size(977, 251)
         Me.dgvLiquidacion.TabIndex = 36
         '
-        'Button1
+        'btnAgregarLiquidacion
         '
-        Me.Button1.Location = New System.Drawing.Point(875, 27)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(132, 101)
-        Me.Button1.TabIndex = 34
-        Me.Button1.Text = "Agregar Liquidacion"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.btnAgregarLiquidacion.Location = New System.Drawing.Point(875, 58)
+        Me.btnAgregarLiquidacion.Name = "btnAgregarLiquidacion"
+        Me.btnAgregarLiquidacion.Size = New System.Drawing.Size(132, 70)
+        Me.btnAgregarLiquidacion.TabIndex = 34
+        Me.btnAgregarLiquidacion.Text = "Agregar Liquidacion"
+        Me.btnAgregarLiquidacion.UseVisualStyleBackColor = True
         '
-        'CombustibleVirtual
+        'txtCombustibleVirtual
         '
-        Me.CombustibleVirtual.Location = New System.Drawing.Point(728, 130)
-        Me.CombustibleVirtual.Name = "CombustibleVirtual"
-        Me.CombustibleVirtual.Size = New System.Drawing.Size(107, 20)
-        Me.CombustibleVirtual.TabIndex = 33
+        Me.txtCombustibleVirtual.Location = New System.Drawing.Point(728, 165)
+        Me.txtCombustibleVirtual.Name = "txtCombustibleVirtual"
+        Me.txtCombustibleVirtual.Size = New System.Drawing.Size(107, 20)
+        Me.txtCombustibleVirtual.TabIndex = 33
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(643, 133)
+        Me.Label16.Location = New System.Drawing.Point(643, 168)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(71, 13)
+        Me.Label16.Size = New System.Drawing.Size(69, 13)
         Me.Label16.TabIndex = 32
-        Me.Label16.Text = "Comb. Vistual"
+        Me.Label16.Text = "Comb. Virtual"
         '
         'dtpLlegada
         '
-        Me.dtpLlegada.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtpLlegada.Location = New System.Drawing.Point(728, 58)
+        Me.dtpLlegada.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpLlegada.Location = New System.Drawing.Point(728, 93)
         Me.dtpLlegada.Name = "dtpLlegada"
         Me.dtpLlegada.Size = New System.Drawing.Size(107, 20)
         Me.dtpLlegada.TabIndex = 31
@@ -166,7 +249,7 @@ Partial Class frmLiquidacion
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(644, 61)
+        Me.Label15.Location = New System.Drawing.Point(644, 96)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(78, 13)
         Me.Label15.TabIndex = 30
@@ -174,8 +257,8 @@ Partial Class frmLiquidacion
         '
         'dtpSalida
         '
-        Me.dtpSalida.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.dtpSalida.Location = New System.Drawing.Point(728, 20)
+        Me.dtpSalida.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpSalida.Location = New System.Drawing.Point(728, 55)
         Me.dtpSalida.Name = "dtpSalida"
         Me.dtpSalida.Size = New System.Drawing.Size(107, 20)
         Me.dtpSalida.TabIndex = 29
@@ -183,7 +266,7 @@ Partial Class frmLiquidacion
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(643, 26)
+        Me.Label6.Location = New System.Drawing.Point(643, 61)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(69, 13)
         Me.Label6.TabIndex = 28
@@ -191,7 +274,7 @@ Partial Class frmLiquidacion
         '
         'txtDestino
         '
-        Me.txtDestino.Location = New System.Drawing.Point(523, 58)
+        Me.txtDestino.Location = New System.Drawing.Point(523, 93)
         Me.txtDestino.Name = "txtDestino"
         Me.txtDestino.Size = New System.Drawing.Size(107, 20)
         Me.txtDestino.TabIndex = 27
@@ -199,7 +282,7 @@ Partial Class frmLiquidacion
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(467, 62)
+        Me.Label14.Location = New System.Drawing.Point(467, 97)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(43, 13)
         Me.Label14.TabIndex = 26
@@ -207,7 +290,7 @@ Partial Class frmLiquidacion
         '
         'txtCombustibleFisico
         '
-        Me.txtCombustibleFisico.Location = New System.Drawing.Point(523, 127)
+        Me.txtCombustibleFisico.Location = New System.Drawing.Point(523, 162)
         Me.txtCombustibleFisico.Name = "txtCombustibleFisico"
         Me.txtCombustibleFisico.Size = New System.Drawing.Size(107, 20)
         Me.txtCombustibleFisico.TabIndex = 25
@@ -215,7 +298,7 @@ Partial Class frmLiquidacion
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(454, 133)
+        Me.Label13.Location = New System.Drawing.Point(454, 168)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(67, 13)
         Me.Label13.TabIndex = 24
@@ -223,7 +306,7 @@ Partial Class frmLiquidacion
         '
         'txtOtros
         '
-        Me.txtOtros.Location = New System.Drawing.Point(336, 130)
+        Me.txtOtros.Location = New System.Drawing.Point(336, 165)
         Me.txtOtros.Name = "txtOtros"
         Me.txtOtros.Size = New System.Drawing.Size(107, 20)
         Me.txtOtros.TabIndex = 23
@@ -231,7 +314,7 @@ Partial Class frmLiquidacion
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(237, 130)
+        Me.Label12.Location = New System.Drawing.Point(237, 165)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(32, 13)
         Me.Label12.TabIndex = 22
@@ -239,7 +322,7 @@ Partial Class frmLiquidacion
         '
         'txtBalanza
         '
-        Me.txtBalanza.Location = New System.Drawing.Point(105, 127)
+        Me.txtBalanza.Location = New System.Drawing.Point(105, 162)
         Me.txtBalanza.Name = "txtBalanza"
         Me.txtBalanza.Size = New System.Drawing.Size(107, 20)
         Me.txtBalanza.TabIndex = 21
@@ -247,7 +330,7 @@ Partial Class frmLiquidacion
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(6, 130)
+        Me.Label11.Location = New System.Drawing.Point(19, 165)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(45, 13)
         Me.Label11.TabIndex = 20
@@ -255,7 +338,7 @@ Partial Class frmLiquidacion
         '
         'txtHospedaje
         '
-        Me.txtHospedaje.Location = New System.Drawing.Point(336, 91)
+        Me.txtHospedaje.Location = New System.Drawing.Point(336, 126)
         Me.txtHospedaje.Name = "txtHospedaje"
         Me.txtHospedaje.Size = New System.Drawing.Size(107, 20)
         Me.txtHospedaje.TabIndex = 19
@@ -263,7 +346,7 @@ Partial Class frmLiquidacion
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(237, 94)
+        Me.Label10.Location = New System.Drawing.Point(237, 129)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(58, 13)
         Me.Label10.TabIndex = 18
@@ -271,7 +354,7 @@ Partial Class frmLiquidacion
         '
         'txtGuardiania
         '
-        Me.txtGuardiania.Location = New System.Drawing.Point(105, 91)
+        Me.txtGuardiania.Location = New System.Drawing.Point(105, 126)
         Me.txtGuardiania.Name = "txtGuardiania"
         Me.txtGuardiania.Size = New System.Drawing.Size(107, 20)
         Me.txtGuardiania.TabIndex = 17
@@ -279,7 +362,7 @@ Partial Class frmLiquidacion
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(6, 94)
+        Me.Label9.Location = New System.Drawing.Point(6, 129)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(58, 13)
         Me.Label9.TabIndex = 16
@@ -287,7 +370,7 @@ Partial Class frmLiquidacion
         '
         'txtViaticos
         '
-        Me.txtViaticos.Location = New System.Drawing.Point(728, 95)
+        Me.txtViaticos.Location = New System.Drawing.Point(728, 130)
         Me.txtViaticos.Name = "txtViaticos"
         Me.txtViaticos.Size = New System.Drawing.Size(107, 20)
         Me.txtViaticos.TabIndex = 15
@@ -295,7 +378,7 @@ Partial Class frmLiquidacion
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(643, 98)
+        Me.Label8.Location = New System.Drawing.Point(643, 133)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(44, 13)
         Me.Label8.TabIndex = 14
@@ -303,7 +386,7 @@ Partial Class frmLiquidacion
         '
         'txtPeajes
         '
-        Me.txtPeajes.Location = New System.Drawing.Point(523, 94)
+        Me.txtPeajes.Location = New System.Drawing.Point(523, 129)
         Me.txtPeajes.Name = "txtPeajes"
         Me.txtPeajes.Size = New System.Drawing.Size(107, 20)
         Me.txtPeajes.TabIndex = 13
@@ -311,7 +394,7 @@ Partial Class frmLiquidacion
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(467, 97)
+        Me.Label7.Location = New System.Drawing.Point(467, 132)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(39, 13)
         Me.Label7.TabIndex = 12
@@ -319,7 +402,7 @@ Partial Class frmLiquidacion
         '
         'txtOrigen
         '
-        Me.txtOrigen.Location = New System.Drawing.Point(523, 20)
+        Me.txtOrigen.Location = New System.Drawing.Point(523, 55)
         Me.txtOrigen.Name = "txtOrigen"
         Me.txtOrigen.Size = New System.Drawing.Size(107, 20)
         Me.txtOrigen.TabIndex = 9
@@ -327,7 +410,7 @@ Partial Class frmLiquidacion
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(467, 27)
+        Me.Label5.Location = New System.Drawing.Point(467, 62)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(38, 13)
         Me.Label5.TabIndex = 8
@@ -335,7 +418,7 @@ Partial Class frmLiquidacion
         '
         'txtCamabaja
         '
-        Me.txtCamabaja.Location = New System.Drawing.Point(336, 55)
+        Me.txtCamabaja.Location = New System.Drawing.Point(336, 90)
         Me.txtCamabaja.Name = "txtCamabaja"
         Me.txtCamabaja.Size = New System.Drawing.Size(107, 20)
         Me.txtCamabaja.TabIndex = 7
@@ -343,7 +426,7 @@ Partial Class frmLiquidacion
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(238, 58)
+        Me.Label4.Location = New System.Drawing.Point(238, 93)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(84, 13)
         Me.Label4.TabIndex = 6
@@ -351,7 +434,7 @@ Partial Class frmLiquidacion
         '
         'txtTracto
         '
-        Me.txtTracto.Location = New System.Drawing.Point(336, 20)
+        Me.txtTracto.Location = New System.Drawing.Point(336, 55)
         Me.txtTracto.Name = "txtTracto"
         Me.txtTracto.Size = New System.Drawing.Size(107, 20)
         Me.txtTracto.TabIndex = 5
@@ -359,7 +442,7 @@ Partial Class frmLiquidacion
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(262, 23)
+        Me.Label3.Location = New System.Drawing.Point(262, 58)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(68, 13)
         Me.Label3.TabIndex = 4
@@ -367,7 +450,7 @@ Partial Class frmLiquidacion
         '
         'txtGuiaRemision
         '
-        Me.txtGuiaRemision.Location = New System.Drawing.Point(145, 54)
+        Me.txtGuiaRemision.Location = New System.Drawing.Point(124, 58)
         Me.txtGuiaRemision.Name = "txtGuiaRemision"
         Me.txtGuiaRemision.Size = New System.Drawing.Size(87, 20)
         Me.txtGuiaRemision.TabIndex = 3
@@ -375,7 +458,7 @@ Partial Class frmLiquidacion
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 58)
+        Me.Label2.Location = New System.Drawing.Point(9, 62)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(116, 13)
         Me.Label2.TabIndex = 2
@@ -383,15 +466,15 @@ Partial Class frmLiquidacion
         '
         'txtChofer
         '
-        Me.txtChofer.Location = New System.Drawing.Point(105, 20)
+        Me.txtChofer.Location = New System.Drawing.Point(566, 17)
         Me.txtChofer.Name = "txtChofer"
-        Me.txtChofer.Size = New System.Drawing.Size(132, 20)
+        Me.txtChofer.Size = New System.Drawing.Size(269, 20)
         Me.txtChofer.TabIndex = 1
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 23)
+        Me.Label1.Location = New System.Drawing.Point(467, 20)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(93, 13)
         Me.Label1.TabIndex = 0
@@ -434,7 +517,7 @@ Partial Class frmLiquidacion
     Friend WithEvents Label4 As Label
     Friend WithEvents txtTracto As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents CombustibleVirtual As TextBox
+    Friend WithEvents txtCombustibleVirtual As TextBox
     Friend WithEvents Label16 As Label
     Friend WithEvents dtpLlegada As DateTimePicker
     Friend WithEvents Label15 As Label
@@ -457,6 +540,14 @@ Partial Class frmLiquidacion
     Friend WithEvents txtPeajes As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents dgvLiquidacion As DataGridView
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnAgregarLiquidacion As Button
     Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents txtCodigoLiquidacion As TextBox
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents txtNroLiquidacion As TextBox
+    Friend WithEvents Label19 As Label
+    Friend WithEvents txtDinero As TextBox
+    Friend WithEvents Label20 As Label
+    Friend WithEvents cbEstado As ComboBox
 End Class
