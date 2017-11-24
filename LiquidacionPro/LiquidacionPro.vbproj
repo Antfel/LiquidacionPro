@@ -79,6 +79,7 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LiquidacionCode\EstadoDAO.vb" />
     <Compile Include="LiquidacionCode\GuiaDAO.vb" />
     <Compile Include="LiquidacionCode\TrabajadorDAO.vb" />
     <Compile Include="LiquidacionCode\ClienteDAO.vb" />

@@ -58,14 +58,15 @@ Partial Class frmLiquidacion
         Me.Label7 = New System.Windows.Forms.Label()
         Me.txtOrigen = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtCamabaja = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtTracto = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtGuiaRemision = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.cbTrabajador = New System.Windows.Forms.ComboBox()
+        Me.cbTracto = New System.Windows.Forms.ComboBox()
+        Me.cbCamabaja = New System.Windows.Forms.ComboBox()
+        Me.cbGuia = New System.Windows.Forms.ComboBox()
         Me.TabControlModulo.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,6 +84,10 @@ Partial Class frmLiquidacion
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.cbGuia)
+        Me.TabPage1.Controls.Add(Me.cbCamabaja)
+        Me.TabPage1.Controls.Add(Me.cbTracto)
+        Me.TabPage1.Controls.Add(Me.cbTrabajador)
         Me.TabPage1.Controls.Add(Me.Label20)
         Me.TabPage1.Controls.Add(Me.cbEstado)
         Me.TabPage1.Controls.Add(Me.Label19)
@@ -117,11 +122,8 @@ Partial Class frmLiquidacion
         Me.TabPage1.Controls.Add(Me.Label7)
         Me.TabPage1.Controls.Add(Me.txtOrigen)
         Me.TabPage1.Controls.Add(Me.Label5)
-        Me.TabPage1.Controls.Add(Me.txtCamabaja)
         Me.TabPage1.Controls.Add(Me.Label4)
-        Me.TabPage1.Controls.Add(Me.txtTracto)
         Me.TabPage1.Controls.Add(Me.Label3)
-        Me.TabPage1.Controls.Add(Me.txtGuiaRemision)
         Me.TabPage1.Controls.Add(Me.Label2)
         Me.TabPage1.Controls.Add(Me.Label1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
@@ -414,13 +416,6 @@ Partial Class frmLiquidacion
         Me.Label5.TabIndex = 8
         Me.Label5.Text = "Origen"
         '
-        'txtCamabaja
-        '
-        Me.txtCamabaja.Location = New System.Drawing.Point(336, 90)
-        Me.txtCamabaja.Name = "txtCamabaja"
-        Me.txtCamabaja.Size = New System.Drawing.Size(107, 20)
-        Me.txtCamabaja.TabIndex = 7
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -429,13 +424,6 @@ Partial Class frmLiquidacion
         Me.Label4.Size = New System.Drawing.Size(84, 13)
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Placa Camabaja"
-        '
-        'txtTracto
-        '
-        Me.txtTracto.Location = New System.Drawing.Point(336, 55)
-        Me.txtTracto.Name = "txtTracto"
-        Me.txtTracto.Size = New System.Drawing.Size(107, 20)
-        Me.txtTracto.TabIndex = 5
         '
         'Label3
         '
@@ -446,13 +434,6 @@ Partial Class frmLiquidacion
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "Placa Tracto"
         '
-        'txtGuiaRemision
-        '
-        Me.txtGuiaRemision.Location = New System.Drawing.Point(124, 58)
-        Me.txtGuiaRemision.Name = "txtGuiaRemision"
-        Me.txtGuiaRemision.Size = New System.Drawing.Size(87, 20)
-        Me.txtGuiaRemision.TabIndex = 3
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -461,13 +442,6 @@ Partial Class frmLiquidacion
         Me.Label2.Size = New System.Drawing.Size(116, 13)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Guias de Rem. Transp."
-        '
-        'txtChofer
-        '
-        Me.txtChofer.Location = New System.Drawing.Point(566, 17)
-        Me.txtChofer.Name = "txtChofer"
-        Me.txtChofer.Size = New System.Drawing.Size(269, 20)
-        Me.txtChofer.TabIndex = 1
         '
         'Label1
         '
@@ -486,6 +460,38 @@ Partial Class frmLiquidacion
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'cbTrabajador
+        '
+        Me.cbTrabajador.FormattingEnabled = True
+        Me.cbTrabajador.Location = New System.Drawing.Point(566, 17)
+        Me.cbTrabajador.Name = "cbTrabajador"
+        Me.cbTrabajador.Size = New System.Drawing.Size(269, 21)
+        Me.cbTrabajador.TabIndex = 45
+        '
+        'cbTracto
+        '
+        Me.cbTracto.FormattingEnabled = True
+        Me.cbTracto.Location = New System.Drawing.Point(342, 55)
+        Me.cbTracto.Name = "cbTracto"
+        Me.cbTracto.Size = New System.Drawing.Size(100, 21)
+        Me.cbTracto.TabIndex = 46
+        '
+        'cbCamabaja
+        '
+        Me.cbCamabaja.FormattingEnabled = True
+        Me.cbCamabaja.Location = New System.Drawing.Point(342, 90)
+        Me.cbCamabaja.Name = "cbCamabaja"
+        Me.cbCamabaja.Size = New System.Drawing.Size(100, 21)
+        Me.cbCamabaja.TabIndex = 47
+        '
+        'cbGuia
+        '
+        Me.cbGuia.FormattingEnabled = True
+        Me.cbGuia.Location = New System.Drawing.Point(131, 58)
+        Me.cbGuia.Name = "cbGuia"
+        Me.cbGuia.Size = New System.Drawing.Size(81, 21)
+        Me.cbGuia.TabIndex = 48
         '
         'frmLiquidacion
         '
@@ -506,13 +512,10 @@ Partial Class frmLiquidacion
     Friend WithEvents TabControlModulo As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents Label1 As Label
-    Friend WithEvents txtGuiaRemision As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents txtOrigen As TextBox
     Friend WithEvents Label5 As Label
-    Friend WithEvents txtCamabaja As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents txtTracto As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents txtCombustibleVirtual As TextBox
     Friend WithEvents Label16 As Label
@@ -547,4 +550,8 @@ Partial Class frmLiquidacion
     Friend WithEvents txtDinero As TextBox
     Friend WithEvents Label20 As Label
     Friend WithEvents cbEstado As ComboBox
+    Friend WithEvents cbTrabajador As ComboBox
+    Friend WithEvents cbGuia As ComboBox
+    Friend WithEvents cbCamabaja As ComboBox
+    Friend WithEvents cbTracto As ComboBox
 End Class

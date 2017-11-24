@@ -8,16 +8,20 @@
         dgvLiquidacion.DataSource = dt
 
         actualizarDatosTrabajador()
+        actualizarDatosGuia()
+        actualizarDatosTracto()
+        actualizarDatosSemiTrailer()
+        actualizarEstados()
 
     End Sub
 
     Private Sub btnAgregarLiquidacion_Click(sender As Object, e As EventArgs) Handles btnAgregarLiquidacion.Click
         Dim liquidacionDao As New LiquidacionDAO
         liquidacionDao.SQL.AddParam("@NUMERO_LIQUIDACION", txtNroLiquidacion.Text)
-        liquidacionDao.SQL.AddParam("@CODIGO_TRABAJADOR", txtChofer.Text)
-        liquidacionDao.SQL.AddParam("@CODIGO_GUIA", txtGuiaRemision.Text)
-        liquidacionDao.SQL.AddParam("@CODIGO_UNIDAD_TRACTO", txtTracto.Text)
-        liquidacionDao.SQL.AddParam("@CODIGO_UNIDAD_SEMITRAILER", txtCamabaja.Text)
+        liquidacionDao.SQL.AddParam("@CODIGO_TRABAJADOR", cbTrabajador.ValueMember)
+        liquidacionDao.SQL.AddParam("@CODIGO_GUIA", cbGuia.ValueMember)
+        liquidacionDao.SQL.AddParam("@CODIGO_UNIDAD_TRACTO", cbTracto.ValueMember)
+        liquidacionDao.SQL.AddParam("@CODIGO_UNIDAD_SEMITRAILER", cbCamabaja.ValueMember)
         liquidacionDao.SQL.AddParam("@ORIGEN_LIQUIDACION", txtOrigen.Text)
         liquidacionDao.SQL.AddParam("@DESTINO_LIQUIDACION", txtDestino.Text)
         liquidacionDao.SQL.AddParam("@FECHA_SALIDA", dtpSalida.Value)
@@ -82,4 +86,94 @@
 
 
     End Sub
+
+    Private Sub txtCodigoLiquidacion_TextChanged(sender As Object, e As EventArgs) Handles txtCodigoLiquidacion.TextChanged
+
+    End Sub
+
+    Private Sub actualizarDatosTrabajador()
+        Dim trabajadorDao As New TrabajadorDAO
+        Dim dtTrabajador As DataTable
+
+        dtTrabajador = trabajadorDao.GetTrabajador
+
+        With cbTrabajador
+            .DataSource = dtTrabajador
+            .DisplayMember = "NOMBRE_TRABAJADOR"
+            .ValueMember = "CODIGO_TRABAJADOR"
+            .DropDownStyle = ComboBoxStyle.Simple
+            .AutoCompleteMode = AutoCompleteMode.Suggest
+            .AutoCompleteSource = AutoCompleteSource.ListItems
+        End With
+
+    End Sub
+
+    Private Sub actualizarDatosGuia()
+        Dim guiaDao As New GuiaDAO
+        Dim dtGuia As DataTable
+
+        dtGuia = guiaDao.getGuia
+
+        With cbGuia
+            .DataSource = dtGuia
+            .DisplayMember = "DETALLE_GUIA"
+            .ValueMember = "CODIGO_GUIA"
+            .DropDownStyle = ComboBoxStyle.Simple
+            .AutoCompleteMode = AutoCompleteMode.Suggest
+            .AutoCompleteSource = AutoCompleteSource.ListItems
+        End With
+
+    End Sub
+
+    Private Sub actualizarDatosTracto()
+        Dim unidadDao As New UnidadDAO
+        Dim dtUnidad As DataTable
+
+        dtUnidad = unidadDao.getUnidadTractos
+
+        With cbTracto
+            .DataSource = dtUnidad
+            .DisplayMember = "PLACA_UNIDAD"
+            .ValueMember = "CODIGO_UNIDAD"
+            .DropDownStyle = ComboBoxStyle.Simple
+            .AutoCompleteMode = AutoCompleteMode.Suggest
+            .AutoCompleteSource = AutoCompleteSource.ListItems
+        End With
+
+    End Sub
+
+    Private Sub actualizarDatosSemiTrailer()
+        Dim unidadDao As New UnidadDAO
+        Dim dtUnidad As DataTable
+
+        dtUnidad = unidadDao.getUnidadSemiTrailer
+
+        With cbCamabaja
+            .DataSource = dtUnidad
+            .DisplayMember = "PLACA_UNIDAD"
+            .ValueMember = "CODIGO_UNIDAD"
+            .DropDownStyle = ComboBoxStyle.Simple
+            .AutoCompleteMode = AutoCompleteMode.Suggest
+            .AutoCompleteSource = AutoCompleteSource.ListItems
+        End With
+
+    End Sub
+
+    Private Sub actualizarEstados()
+        Dim estadoDao As New EstadoDAO
+        Dim dtEstado As DataTable
+
+        dtEstado = estadoDao.getEstados
+
+        With cbEstado
+            .DataSource = dtEstado
+            .DisplayMember = "DETALLE_DESTADO"
+            .ValueMember = "CODIGO_ESTADO"
+            .DropDownStyle = ComboBoxStyle.DropDown
+            .AutoCompleteMode = AutoCompleteMode.Suggest
+            .AutoCompleteSource = AutoCompleteSource.ListItems
+        End With
+
+    End Sub
+
 End Class
