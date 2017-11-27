@@ -22,8 +22,11 @@ Partial Class frmLiquidacion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim ReportDataSource2 As Microsoft.Reporting.WinForms.ReportDataSource = New Microsoft.Reporting.WinForms.ReportDataSource()
         Me.TabControlModulo = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.btnNuevo = New System.Windows.Forms.Button()
         Me.cbGuia = New System.Windows.Forms.ComboBox()
         Me.cbCamabaja = New System.Windows.Forms.ComboBox()
         Me.cbTracto = New System.Windows.Forms.ComboBox()
@@ -67,16 +70,27 @@ Partial Class frmLiquidacion
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.btnNuevo = New System.Windows.Forms.Button()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.rptLiquidaciones = New LiquidacionPro.rptLiquidaciones()
+        Me.DataTable1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DataTable1TableAdapter = New LiquidacionPro.rptLiquidacionesTableAdapters.DataTable1TableAdapter()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.cbEstadoRpt = New System.Windows.Forms.ComboBox()
         Me.TabControlModulo.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage3.SuspendLayout()
+        CType(Me.rptLiquidaciones, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataTable1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControlModulo
         '
         Me.TabControlModulo.Controls.Add(Me.TabPage1)
         Me.TabControlModulo.Controls.Add(Me.TabPage2)
+        Me.TabControlModulo.Controls.Add(Me.TabPage3)
         Me.TabControlModulo.Location = New System.Drawing.Point(154, 12)
         Me.TabControlModulo.Name = "TabControlModulo"
         Me.TabControlModulo.SelectedIndex = 0
@@ -135,6 +149,15 @@ Partial Class frmLiquidacion
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Liquidación"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'btnNuevo
+        '
+        Me.btnNuevo.Location = New System.Drawing.Point(875, 134)
+        Me.btnNuevo.Name = "btnNuevo"
+        Me.btnNuevo.Size = New System.Drawing.Size(132, 51)
+        Me.btnNuevo.TabIndex = 45
+        Me.btnNuevo.Text = "Nuevo"
+        Me.btnNuevo.UseVisualStyleBackColor = True
         '
         'cbGuia
         '
@@ -497,14 +520,72 @@ Partial Class frmLiquidacion
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'btnNuevo
+        'TabPage3
         '
-        Me.btnNuevo.Location = New System.Drawing.Point(875, 134)
-        Me.btnNuevo.Name = "btnNuevo"
-        Me.btnNuevo.Size = New System.Drawing.Size(132, 51)
-        Me.btnNuevo.TabIndex = 45
-        Me.btnNuevo.Text = "Nuevo"
-        Me.btnNuevo.UseVisualStyleBackColor = True
+        Me.TabPage3.Controls.Add(Me.Label21)
+        Me.TabPage3.Controls.Add(Me.cbEstadoRpt)
+        Me.TabPage3.Controls.Add(Me.Button1)
+        Me.TabPage3.Controls.Add(Me.ReportViewer1)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(1147, 507)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "TabPage3"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'ReportViewer1
+        '
+        ReportDataSource2.Name = "DataSet1"
+        ReportDataSource2.Value = Me.DataTable1BindingSource
+        Me.ReportViewer1.LocalReport.DataSources.Add(ReportDataSource2)
+        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "LiquidacionPro.rptLiquidaciones.rdlc"
+        Me.ReportViewer1.Location = New System.Drawing.Point(6, 32)
+        Me.ReportViewer1.Name = "ReportViewer1"
+        Me.ReportViewer1.ServerReport.BearerToken = Nothing
+        Me.ReportViewer1.Size = New System.Drawing.Size(1096, 460)
+        Me.ReportViewer1.TabIndex = 0
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(359, 4)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 1
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'rptLiquidaciones
+        '
+        Me.rptLiquidaciones.DataSetName = "rptLiquidaciones"
+        Me.rptLiquidaciones.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'DataTable1BindingSource
+        '
+        Me.DataTable1BindingSource.DataMember = "DataTable1"
+        Me.DataTable1BindingSource.DataSource = Me.rptLiquidaciones
+        '
+        'DataTable1TableAdapter
+        '
+        Me.DataTable1TableAdapter.ClearBeforeFill = True
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(3, 6)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(40, 13)
+        Me.Label21.TabIndex = 46
+        Me.Label21.Text = "Estado"
+        '
+        'cbEstadoRpt
+        '
+        Me.cbEstadoRpt.FormattingEnabled = True
+        Me.cbEstadoRpt.ItemHeight = 13
+        Me.cbEstadoRpt.Location = New System.Drawing.Point(84, 6)
+        Me.cbEstadoRpt.Name = "cbEstadoRpt"
+        Me.cbEstadoRpt.Size = New System.Drawing.Size(107, 21)
+        Me.cbEstadoRpt.TabIndex = 45
         '
         'frmLiquidacion
         '
@@ -518,6 +599,10 @@ Partial Class frmLiquidacion
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
+        CType(Me.rptLiquidaciones, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataTable1BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -568,4 +653,12 @@ Partial Class frmLiquidacion
     Friend WithEvents cbCamabaja As ComboBox
     Friend WithEvents cbTracto As ComboBox
     Friend WithEvents btnNuevo As Button
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
+    Friend WithEvents Button1 As Button
+    Friend WithEvents DataTable1BindingSource As BindingSource
+    Friend WithEvents rptLiquidaciones As rptLiquidaciones
+    Friend WithEvents DataTable1TableAdapter As rptLiquidacionesTableAdapters.DataTable1TableAdapter
+    Friend WithEvents Label21 As Label
+    Friend WithEvents cbEstadoRpt As ComboBox
 End Class

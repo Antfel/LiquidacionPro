@@ -1,5 +1,6 @@
 ﻿Public Class frmLiquidacion
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: esta línea de código carga datos en la tabla 'rptLiquidaciones.DataTable1' Puede moverla o quitarla según sea necesario.
 
         actualizarListaLiquidacion()
         actualizarDatosTrabajador()
@@ -8,6 +9,7 @@
         actualizarDatosSemiTrailer()
         actualizarEstados()
 
+        Me.ReportViewer1.RefreshReport
     End Sub
 
     Private Sub btnAgregarLiquidacion_Click(sender As Object, e As EventArgs) Handles btnAgregarLiquidacion.Click
@@ -96,6 +98,9 @@
         dgvLiquidacion.Columns(6).Visible = False
         dgvLiquidacion.Columns(8).Visible = False
         dgvLiquidacion.Columns(23).Visible = False
+
+        dgvLiquidacion.MultiSelect = False
+        dgvLiquidacion.RowHeadersVisible = False
     End Sub
     Private Sub actualizarDatosTrabajador()
         Dim trabajadorDao As New TrabajadorDAO
@@ -108,7 +113,7 @@
             .DisplayMember = "NOMBRE_TRABAJADOR"
             .ValueMember = "CODIGO_TRABAJADOR"
             .DropDownStyle = ComboBoxStyle.Simple
-            .AutoCompleteMode = AutoCompleteMode.Suggest
+            .AutoCompleteMode = AutoCompleteMode.SuggestAppend
             .AutoCompleteSource = AutoCompleteSource.ListItems
             .SelectedIndex = -1
         End With
@@ -185,6 +190,11 @@
             .SelectedIndex = -1
         End With
 
+        With cbEstadoRpt
+            .DataSource = dtEstado
+            .DisplayMember = "DETALLE_DESTADO"
+            .ValueMember = "CODIGO_ESTADO"
+        End With
     End Sub
 
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
@@ -208,5 +218,17 @@
         txtCombustibleFisico.Text = ""
         txtCombustibleVirtual.Text = ""
         cbEstado.SelectedIndex = -1
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim estado As Integer
+        estado = cbEstadoRpt.SelectedValue
+        MsgBox(estado)
+        Me.DataTable1TableAdapter.Fill(Me.rptLiquidaciones.DataTable1, estado)
+        Me.ReportViewer1.RefreshReport()
+
+
+
     End Sub
 End Class

@@ -6,4 +6,19 @@
 
         Return SQL.DBT
     End Function
+
+    Public Sub InsertLiquidacion(detalleGuia As String, estado As Integer)
+
+        SQL.AddParam("@DETALLE_GUIA", detalleGuia)
+        SQL.AddParam("@CODIGO_ESTADO", 7)
+
+        SQL.ExecQuery("EXECUTE insertGuia 
+                                        @DETALLE_GUIA,
+                                        @CODIGO_ESTADO")
+
+
+
+
+    End Sub
+
 End Class
