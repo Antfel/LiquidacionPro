@@ -520,72 +520,14 @@ Partial Class frmLiquidacion
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'TabPage3
+        'btnNuevo
         '
-        Me.TabPage3.Controls.Add(Me.Label21)
-        Me.TabPage3.Controls.Add(Me.cbEstadoRpt)
-        Me.TabPage3.Controls.Add(Me.Button1)
-        Me.TabPage3.Controls.Add(Me.ReportViewer1)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(1147, 507)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "TabPage3"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'ReportViewer1
-        '
-        ReportDataSource2.Name = "DataSet1"
-        ReportDataSource2.Value = Me.DataTable1BindingSource
-        Me.ReportViewer1.LocalReport.DataSources.Add(ReportDataSource2)
-        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "LiquidacionPro.rptLiquidaciones.rdlc"
-        Me.ReportViewer1.Location = New System.Drawing.Point(6, 32)
-        Me.ReportViewer1.Name = "ReportViewer1"
-        Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(1096, 460)
-        Me.ReportViewer1.TabIndex = 0
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(359, 4)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'rptLiquidaciones
-        '
-        Me.rptLiquidaciones.DataSetName = "rptLiquidaciones"
-        Me.rptLiquidaciones.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'DataTable1BindingSource
-        '
-        Me.DataTable1BindingSource.DataMember = "DataTable1"
-        Me.DataTable1BindingSource.DataSource = Me.rptLiquidaciones
-        '
-        'DataTable1TableAdapter
-        '
-        Me.DataTable1TableAdapter.ClearBeforeFill = True
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(3, 6)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(40, 13)
-        Me.Label21.TabIndex = 46
-        Me.Label21.Text = "Estado"
-        '
-        'cbEstadoRpt
-        '
-        Me.cbEstadoRpt.FormattingEnabled = True
-        Me.cbEstadoRpt.ItemHeight = 13
-        Me.cbEstadoRpt.Location = New System.Drawing.Point(84, 6)
-        Me.cbEstadoRpt.Name = "cbEstadoRpt"
-        Me.cbEstadoRpt.Size = New System.Drawing.Size(107, 21)
-        Me.cbEstadoRpt.TabIndex = 45
+        Me.btnNuevo.Location = New System.Drawing.Point(875, 134)
+        Me.btnNuevo.Name = "btnNuevo"
+        Me.btnNuevo.Size = New System.Drawing.Size(132, 51)
+        Me.btnNuevo.TabIndex = 45
+        Me.btnNuevo.Text = "Nuevo"
+        Me.btnNuevo.UseVisualStyleBackColor = True
         '
         'frmLiquidacion
         '

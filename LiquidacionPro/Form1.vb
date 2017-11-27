@@ -13,38 +13,45 @@
     End Sub
 
     Private Sub btnAgregarLiquidacion_Click(sender As Object, e As EventArgs) Handles btnAgregarLiquidacion.Click
-
-        Dim proceso As String
-        proceso = ""
-
-        Dim liquidacionDao As New LiquidacionDAO
+        Dim guiaDao As GuiaDAO
 
 
-        If txtCodigoLiquidacion.Text = Nothing Then
-            liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
-                                         cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
-                                         txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
-                                         CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
-                                         CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
-                                         CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
-                                         cbEstado.SelectedValue)
-        Else
-            liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
-                                         cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
-                                         txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
-                                         CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
-                                         CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
-                                         CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
-                                         cbEstado.SelectedValue)
+        If cbGuia.SelectedText = "" Then
+
+
         End If
 
+        'Dim proceso As String
+        'proceso = ""
+
+        'Dim liquidacionDao As New LiquidacionDAO
 
 
-        If liquidacionDao.SQL.HasException(True) Then Exit Sub
+        'If txtCodigoLiquidacion.Text = Nothing Then
+        '    liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
+        '                                 cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
+        '                                 txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
+        '                                 CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
+        '                                 CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
+        '                                 CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
+        '                                 cbEstado.SelectedValue)
+        'Else
+        '    liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
+        '                                 cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
+        '                                 txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
+        '                                 CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
+        '                                 CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
+        '                                 CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
+        '                                 cbEstado.SelectedValue)
+        'End If
 
-        actualizarListaLiquidacion()
 
-        MsgBox("Liquidación " + proceso + " correctamente")
+
+        'If liquidacionDao.SQL.HasException(True) Then Exit Sub
+
+        'actualizarListaLiquidacion()
+
+        'MsgBox("Liquidación " + proceso + " correctamente")
 
     End Sub
 
@@ -115,6 +122,7 @@
             .DropDownStyle = ComboBoxStyle.Simple
             .AutoCompleteMode = AutoCompleteMode.SuggestAppend
             .AutoCompleteSource = AutoCompleteSource.ListItems
+
             .SelectedIndex = -1
         End With
 
