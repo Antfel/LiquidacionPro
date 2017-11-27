@@ -23,7 +23,9 @@ Partial Class frmLiquidacion
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ReportDataSource2 As Microsoft.Reporting.WinForms.ReportDataSource = New Microsoft.Reporting.WinForms.ReportDataSource()
+        Dim ReportDataSource1 As Microsoft.Reporting.WinForms.ReportDataSource = New Microsoft.Reporting.WinForms.ReportDataSource()
+        Me.DataTable1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.rptLiquidaciones = New LiquidacionPro.rptLiquidaciones()
         Me.TabControlModulo = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.btnNuevo = New System.Windows.Forms.Button()
@@ -71,20 +73,28 @@ Partial Class frmLiquidacion
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.rptLiquidaciones = New LiquidacionPro.rptLiquidaciones()
-        Me.DataTable1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DataTable1TableAdapter = New LiquidacionPro.rptLiquidacionesTableAdapters.DataTable1TableAdapter()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.cbEstadoRpt = New System.Windows.Forms.ComboBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.DataTable1TableAdapter = New LiquidacionPro.rptLiquidacionesTableAdapters.DataTable1TableAdapter()
+        CType(Me.DataTable1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.rptLiquidaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControlModulo.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
-        CType(Me.rptLiquidaciones, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataTable1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'DataTable1BindingSource
+        '
+        Me.DataTable1BindingSource.DataMember = "DataTable1"
+        Me.DataTable1BindingSource.DataSource = Me.rptLiquidaciones
+        '
+        'rptLiquidaciones
+        '
+        Me.rptLiquidaciones.DataSetName = "rptLiquidaciones"
+        Me.rptLiquidaciones.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'TabControlModulo
         '
@@ -534,41 +544,6 @@ Partial Class frmLiquidacion
         Me.TabPage3.Text = "TabPage3"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
-        'ReportViewer1
-        '
-        ReportDataSource2.Name = "DataSet1"
-        ReportDataSource2.Value = Me.DataTable1BindingSource
-        Me.ReportViewer1.LocalReport.DataSources.Add(ReportDataSource2)
-        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "LiquidacionPro.rptLiquidaciones.rdlc"
-        Me.ReportViewer1.Location = New System.Drawing.Point(6, 32)
-        Me.ReportViewer1.Name = "ReportViewer1"
-        Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(1096, 460)
-        Me.ReportViewer1.TabIndex = 0
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(359, 4)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'rptLiquidaciones
-        '
-        Me.rptLiquidaciones.DataSetName = "rptLiquidaciones"
-        Me.rptLiquidaciones.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'DataTable1BindingSource
-        '
-        Me.DataTable1BindingSource.DataMember = "DataTable1"
-        Me.DataTable1BindingSource.DataSource = Me.rptLiquidaciones
-        '
-        'DataTable1TableAdapter
-        '
-        Me.DataTable1TableAdapter.ClearBeforeFill = True
-        '
         'Label21
         '
         Me.Label21.AutoSize = True
@@ -587,6 +562,31 @@ Partial Class frmLiquidacion
         Me.cbEstadoRpt.Size = New System.Drawing.Size(107, 21)
         Me.cbEstadoRpt.TabIndex = 45
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(287, 6)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 1
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'ReportViewer1
+        '
+        ReportDataSource1.Name = "DataSet1"
+        ReportDataSource1.Value = Me.DataTable1BindingSource
+        Me.ReportViewer1.LocalReport.DataSources.Add(ReportDataSource1)
+        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "LiquidacionPro.rptLiquidaciones.rdlc"
+        Me.ReportViewer1.Location = New System.Drawing.Point(6, 32)
+        Me.ReportViewer1.Name = "ReportViewer1"
+        Me.ReportViewer1.ServerReport.BearerToken = Nothing
+        Me.ReportViewer1.Size = New System.Drawing.Size(1096, 460)
+        Me.ReportViewer1.TabIndex = 0
+        '
+        'DataTable1TableAdapter
+        '
+        Me.DataTable1TableAdapter.ClearBeforeFill = True
+        '
         'frmLiquidacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -595,14 +595,14 @@ Partial Class frmLiquidacion
         Me.Controls.Add(Me.TabControlModulo)
         Me.Name = "frmLiquidacion"
         Me.Text = "Liquidación de Viajes"
+        CType(Me.DataTable1BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.rptLiquidaciones, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControlModulo.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
-        CType(Me.rptLiquidaciones, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataTable1BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
