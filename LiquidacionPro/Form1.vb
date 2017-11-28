@@ -233,7 +233,9 @@
         Dim estado As Integer
         estado = cbEstadoRpt.SelectedValue
         MsgBox(estado)
+
         Me.DataTable1TableAdapter.Fill(Me.rptLiquidaciones.DataTable1, estado)
+
         Me.ReportViewer1.RefreshReport()
 
 
