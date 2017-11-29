@@ -7,7 +7,7 @@
         Return SQL.DBT
     End Function
 
-    Public Sub InsertLiquidacion(detalleGuia As String, estado As Integer)
+    Public Sub InsertGuia(detalleGuia As String)
 
         SQL.AddParam("@DETALLE_GUIA", detalleGuia)
         SQL.AddParam("@CODIGO_ESTADO", 7)
@@ -20,5 +20,13 @@
 
 
     End Sub
+
+    Public Function getGuiaByNroGuia(nro_guia As String) As DataTable
+
+        SQL.ExecQuery("SELECT CODIGO_GUIA, DETALLE_GUIA, CODIGO_ESTADO From GUIA_TRANSPORTISTA WHERE DETALLE_GUIA = " + nro_guia)
+
+        Return SQL.DBT
+
+    End Function
 
 End Class

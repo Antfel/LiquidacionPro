@@ -76,8 +76,8 @@ Partial Class frmLiquidacion
         Me.Label21 = New System.Windows.Forms.Label()
         Me.cbEstadoRpt = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.DataTable1TableAdapter = New LiquidacionPro.rptLiquidacionesTableAdapters.DataTable1TableAdapter()
+        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         CType(Me.DataTable1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rptLiquidaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControlModulo.SuspendLayout()
@@ -530,12 +530,12 @@ Partial Class frmLiquidacion
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'btnNuevo
+        'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.ReportViewer1)
         Me.TabPage3.Controls.Add(Me.Label21)
         Me.TabPage3.Controls.Add(Me.cbEstadoRpt)
         Me.TabPage3.Controls.Add(Me.Button1)
-        Me.TabPage3.Controls.Add(Me.ReportViewer1)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
@@ -571,21 +571,21 @@ Partial Class frmLiquidacion
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'DataTable1TableAdapter
+        '
+        Me.DataTable1TableAdapter.ClearBeforeFill = True
+        '
         'ReportViewer1
         '
         ReportDataSource1.Name = "DataSet1"
         ReportDataSource1.Value = Me.DataTable1BindingSource
         Me.ReportViewer1.LocalReport.DataSources.Add(ReportDataSource1)
         Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "LiquidacionPro.rptLiquidaciones.rdlc"
-        Me.ReportViewer1.Location = New System.Drawing.Point(6, 32)
+        Me.ReportViewer1.Location = New System.Drawing.Point(6, 35)
         Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(1096, 460)
-        Me.ReportViewer1.TabIndex = 0
-        '
-        'DataTable1TableAdapter
-        '
-        Me.DataTable1TableAdapter.ClearBeforeFill = True
+        Me.ReportViewer1.Size = New System.Drawing.Size(396, 246)
+        Me.ReportViewer1.TabIndex = 47
         '
         'frmLiquidacion
         '
@@ -654,11 +654,12 @@ Partial Class frmLiquidacion
     Friend WithEvents cbTracto As ComboBox
     Friend WithEvents btnNuevo As Button
     Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
+    'Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
     Friend WithEvents Button1 As Button
     Friend WithEvents DataTable1BindingSource As BindingSource
     Friend WithEvents rptLiquidaciones As rptLiquidaciones
     Friend WithEvents DataTable1TableAdapter As rptLiquidacionesTableAdapters.DataTable1TableAdapter
     Friend WithEvents Label21 As Label
     Friend WithEvents cbEstadoRpt As ComboBox
+    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
 End Class
