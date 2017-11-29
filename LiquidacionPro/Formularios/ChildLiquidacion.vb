@@ -1,14 +1,12 @@
-﻿Public Class frmLiquidacion
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: esta línea de código carga datos en la tabla 'rptLiquidaciones.DataTable1' Puede moverla o quitarla según sea necesario.
+﻿Public Class ChildLiquidacion
 
+    Private Sub ChildLiquidacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actualizarListaLiquidacion()
         actualizarDatosTrabajador()
         actualizarDatosGuia()
         actualizarDatosTracto()
         actualizarDatosSemiTrailer()
         actualizarEstados()
-
     End Sub
 
     Private Sub btnAgregarLiquidacion_Click(sender As Object, e As EventArgs) Handles btnAgregarLiquidacion.Click
@@ -196,12 +194,6 @@
             .AutoCompleteSource = AutoCompleteSource.ListItems
             .SelectedIndex = -1
         End With
-
-        With cbEstadoRpt
-            .DataSource = dtEstado
-            .DisplayMember = "DETALLE_DESTADO"
-            .ValueMember = "CODIGO_ESTADO"
-        End With
     End Sub
 
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
@@ -227,16 +219,7 @@
         cbEstado.SelectedIndex = -1
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-        Dim estado As Integer
-        estado = cbEstadoRpt.SelectedValue
-
-        Me.dtLiquidacionEstadoTableAdapter.Fill(Me.rptLiquidaciones.dtLiquidacionEstado, estado)
-
-        Me.ReportViewer1.RefreshReport()
 
 
 
-    End Sub
 End Class

@@ -77,7 +77,7 @@ Partial Class frmLiquidacion
         Me.cbEstadoRpt = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
-        Me.DataTable1TableAdapter = New LiquidacionPro.rptLiquidacionesTableAdapters.DataTable1TableAdapter()
+        Me.dtLiquidacionEstadoTableAdapter = New LiquidacionPro.rptLiquidacionesTableAdapters.dtLiquidacionEstadoTableAdapter()
         CType(Me.DataTable1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rptLiquidaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControlModulo.SuspendLayout()
@@ -88,7 +88,7 @@ Partial Class frmLiquidacion
         '
         'DataTable1BindingSource
         '
-        Me.DataTable1BindingSource.DataMember = "DataTable1"
+        Me.DataTable1BindingSource.DataMember = "dtLiquidacionEstado"
         Me.DataTable1BindingSource.DataSource = Me.rptLiquidaciones
         '
         'rptLiquidaciones
@@ -530,7 +530,7 @@ Partial Class frmLiquidacion
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'btnNuevo
+        'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.Label21)
         Me.TabPage3.Controls.Add(Me.cbEstadoRpt)
@@ -568,7 +568,7 @@ Partial Class frmLiquidacion
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Button1"
+        Me.Button1.Text = "Ver"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'ReportViewer1
@@ -583,9 +583,9 @@ Partial Class frmLiquidacion
         Me.ReportViewer1.Size = New System.Drawing.Size(1096, 460)
         Me.ReportViewer1.TabIndex = 0
         '
-        'DataTable1TableAdapter
+        'dtLiquidacionEstadoTableAdapter
         '
-        Me.DataTable1TableAdapter.ClearBeforeFill = True
+        Me.dtLiquidacionEstadoTableAdapter.ClearBeforeFill = True
         '
         'frmLiquidacion
         '
@@ -658,7 +658,7 @@ Partial Class frmLiquidacion
     Friend WithEvents Button1 As Button
     Friend WithEvents DataTable1BindingSource As BindingSource
     Friend WithEvents rptLiquidaciones As rptLiquidaciones
-    Friend WithEvents DataTable1TableAdapter As rptLiquidacionesTableAdapters.DataTable1TableAdapter
+    Friend WithEvents dtLiquidacionEstadoTableAdapter As rptLiquidacionesTableAdapters.dtLiquidacionEstadoTableAdapter
     Friend WithEvents Label21 As Label
     Friend WithEvents cbEstadoRpt As ComboBox
 End Class

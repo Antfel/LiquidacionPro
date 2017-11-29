@@ -738,8 +738,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Height>1.09417cm</Height>
-        <Width>25.03938cm</Width>
+        <Height>1.09416cm</Height>
+        <Width>25.03937cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -903,10 +903,10 @@
       <rd:DataSetInfo>
         <rd:DataSetName>rptLiquidaciones</rd:DataSetName>
         <rd:SchemaPath>C:\Users\rasec\Source\Repos\LiquidacionPro\LiquidacionPro\Reportes\rptLiquidaciones.xsd</rd:SchemaPath>
-        <rd:TableName>DataTable1</rd:TableName>
+        <rd:TableName>dtLiquidacionEstado</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>DataTable1TableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>dtLiquidacionEstadoTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
