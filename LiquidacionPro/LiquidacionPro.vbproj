@@ -99,6 +99,36 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\ChildFacturacion.Designer.vb">
+      <DependentUpon>ChildFacturacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildFacturacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ChildGuia.Designer.vb">
+      <DependentUpon>ChildGuia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildGuia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ChildLiquidacion.Designer.vb">
+      <DependentUpon>ChildLiquidacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildLiquidacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\MDIPrincipal.Designer.vb">
+      <DependentUpon>MDIPrincipal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\MDIPrincipal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Reportes\ChildRptLiquidacionEstado.Designer.vb">
+      <DependentUpon>ChildRptLiquidacionEstado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Reportes\ChildRptLiquidacionEstado.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LiquidacionCode\EstadoDAO.vb" />
     <Compile Include="LiquidacionCode\GuiaDAO.vb" />
     <Compile Include="LiquidacionCode\TrabajadorDAO.vb" />
@@ -130,6 +160,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ChildFacturacion.resx">
+      <DependentUpon>ChildFacturacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ChildGuia.resx">
+      <DependentUpon>ChildGuia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ChildLiquidacion.resx">
+      <DependentUpon>ChildLiquidacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\MDIPrincipal.resx">
+      <DependentUpon>MDIPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Reportes\ChildRptLiquidacionEstado.resx">
+      <DependentUpon>ChildRptLiquidacionEstado.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

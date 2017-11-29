@@ -76,8 +76,8 @@ Partial Class frmLiquidacion
         Me.Label21 = New System.Windows.Forms.Label()
         Me.cbEstadoRpt = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.DataTable1TableAdapter = New LiquidacionPro.rptLiquidacionesTableAdapters.DataTable1TableAdapter()
         Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.dtLiquidacionEstadoTableAdapter = New LiquidacionPro.rptLiquidacionesTableAdapters.dtLiquidacionEstadoTableAdapter()
         CType(Me.DataTable1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rptLiquidaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControlModulo.SuspendLayout()
@@ -88,7 +88,7 @@ Partial Class frmLiquidacion
         '
         'DataTable1BindingSource
         '
-        Me.DataTable1BindingSource.DataMember = "DataTable1"
+        Me.DataTable1BindingSource.DataMember = "dtLiquidacionEstado"
         Me.DataTable1BindingSource.DataSource = Me.rptLiquidaciones
         '
         'rptLiquidaciones
@@ -568,7 +568,7 @@ Partial Class frmLiquidacion
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Button1"
+        Me.Button1.Text = "Ver"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'DataTable1TableAdapter
@@ -584,8 +584,12 @@ Partial Class frmLiquidacion
         Me.ReportViewer1.Location = New System.Drawing.Point(6, 35)
         Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(396, 246)
-        Me.ReportViewer1.TabIndex = 47
+        Me.ReportViewer1.Size = New System.Drawing.Size(1096, 460)
+        Me.ReportViewer1.TabIndex = 0
+        '
+        'dtLiquidacionEstadoTableAdapter
+        '
+        Me.dtLiquidacionEstadoTableAdapter.ClearBeforeFill = True
         '
         'frmLiquidacion
         '
@@ -658,7 +662,7 @@ Partial Class frmLiquidacion
     Friend WithEvents Button1 As Button
     Friend WithEvents DataTable1BindingSource As BindingSource
     Friend WithEvents rptLiquidaciones As rptLiquidaciones
-    Friend WithEvents DataTable1TableAdapter As rptLiquidacionesTableAdapters.DataTable1TableAdapter
+    Friend WithEvents dtLiquidacionEstadoTableAdapter As rptLiquidacionesTableAdapters.dtLiquidacionEstadoTableAdapter
     Friend WithEvents Label21 As Label
     Friend WithEvents cbEstadoRpt As ComboBox
     Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer

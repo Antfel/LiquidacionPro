@@ -1,50 +1,54 @@
-﻿Public Class frmLiquidacion
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: esta línea de código carga datos en la tabla 'rptLiquidaciones.DataTable1' Puede moverla o quitarla según sea necesario.
-        'Me.DataTable1TableAdapter.Fill(Me.rptLiquidaciones.DataTable1)
-        'TODO: esta línea de código carga datos en la tabla 'rptLiquidaciones.DataTable1' Puede moverla o quitarla según sea necesario.
+﻿Public Class ChildLiquidacion
 
+    Private Sub ChildLiquidacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actualizarListaLiquidacion()
         actualizarDatosTrabajador()
         actualizarDatosGuia()
         actualizarDatosTracto()
         actualizarDatosSemiTrailer()
         actualizarEstados()
-
     End Sub
 
     Private Sub btnAgregarLiquidacion_Click(sender As Object, e As EventArgs) Handles btnAgregarLiquidacion.Click
-        Dim proceso As String
-        proceso = ""
-
-        Dim liquidacionDao As New LiquidacionDAO
+        Dim guiaDao As GuiaDAO
 
 
-        If txtCodigoLiquidacion.Text = Nothing Then
-            liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
-                                         cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
-                                         txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
-                                         CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
-                                         CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
-                                         CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
-                                         cbEstado.SelectedValue)
-        Else
-            liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
-                                         cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
-                                         txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
-                                         CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
-                                         CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
-                                         CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
-                                         cbEstado.SelectedValue)
+        If cbGuia.SelectedText = "" Then
+
+
         End If
 
+        'Dim proceso As String
+        'proceso = ""
+
+        'Dim liquidacionDao As New LiquidacionDAO
 
 
-        If liquidacionDao.SQL.HasException(True) Then Exit Sub
+        'If txtCodigoLiquidacion.Text = Nothing Then
+        '    liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
+        '                                 cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
+        '                                 txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
+        '                                 CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
+        '                                 CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
+        '                                 CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
+        '                                 cbEstado.SelectedValue)
+        'Else
+        '    liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
+        '                                 cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
+        '                                 txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
+        '                                 CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
+        '                                 CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
+        '                                 CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
+        '                                 cbEstado.SelectedValue)
+        'End If
 
-        actualizarListaLiquidacion()
 
-        MsgBox("Liquidación " + proceso + " correctamente")
+
+        'If liquidacionDao.SQL.HasException(True) Then Exit Sub
+
+        'actualizarListaLiquidacion()
+
+        'MsgBox("Liquidación " + proceso + " correctamente")
 
     End Sub
 
@@ -190,12 +194,6 @@
             .AutoCompleteSource = AutoCompleteSource.ListItems
             .SelectedIndex = -1
         End With
-
-        With cbEstadoRpt
-            .DataSource = dtEstado
-            .DisplayMember = "DETALLE_DESTADO"
-            .ValueMember = "CODIGO_ESTADO"
-        End With
     End Sub
 
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
@@ -221,16 +219,7 @@
         cbEstado.SelectedIndex = -1
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-        Dim estado As Integer
-        estado = cbEstadoRpt.SelectedValue
-
-        Me.dtLiquidacionEstadoTableAdapter.Fill(Me.rptLiquidaciones.dtLiquidacionEstado, estado)
-
-        Me.ReportViewer1.RefreshReport()
 
 
 
-    End Sub
 End Class
