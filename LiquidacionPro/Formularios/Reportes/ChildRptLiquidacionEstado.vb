@@ -4,7 +4,12 @@
     End Sub
 
     Private Sub actualizarEstados()
-        Dim estadoDao As New EstadoDAO
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim estadoDao As New EstadoDAO(sqlControl)
+        sqlControl.openConexion()
+
         Dim dtEstado As DataTable
 
         dtEstado = estadoDao.getEstados
@@ -14,6 +19,8 @@
             .DisplayMember = "DETALLE_DESTADO"
             .ValueMember = "CODIGO_ESTADO"
         End With
+        sqlControl.closeConexion()
+
     End Sub
 
     Private Sub btnVer_Click(sender As Object, e As EventArgs) Handles btnVer.Click

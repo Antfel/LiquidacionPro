@@ -31,10 +31,10 @@ Partial Class MDIPrincipal
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacturaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GuíasDeTransportistaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesPorEstadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GuíasDeTransportistaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -82,6 +82,12 @@ Partial Class MDIPrincipal
         Me.FacturaciónToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
         Me.FacturaciónToolStripMenuItem.Text = "Facturación"
         '
+        'GuíasDeTransportistaToolStripMenuItem
+        '
+        Me.GuíasDeTransportistaToolStripMenuItem.Name = "GuíasDeTransportistaToolStripMenuItem"
+        Me.GuíasDeTransportistaToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.GuíasDeTransportistaToolStripMenuItem.Text = "Guías de Transportista"
+        '
         'ReportesToolStripMenuItem
         '
         Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem1})
@@ -102,12 +108,6 @@ Partial Class MDIPrincipal
         Me.LiquidacionesPorEstadoToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
         Me.LiquidacionesPorEstadoToolStripMenuItem.Text = "Liquidaciones por Estado"
         '
-        'GuíasDeTransportistaToolStripMenuItem
-        '
-        Me.GuíasDeTransportistaToolStripMenuItem.Name = "GuíasDeTransportistaToolStripMenuItem"
-        Me.GuíasDeTransportistaToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
-        Me.GuíasDeTransportistaToolStripMenuItem.Text = "Guías de Transportista"
-        '
         'MDIPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -117,7 +117,7 @@ Partial Class MDIPrincipal
         Me.Controls.Add(Me.MenuStrip1)
         Me.IsMdiContainer = True
         Me.Name = "MDIPrincipal"
-        Me.Text = "MDIPrincipal"
+        Me.Text = "Principal"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.StatusStrip.ResumeLayout(False)
         Me.StatusStrip.PerformLayout()

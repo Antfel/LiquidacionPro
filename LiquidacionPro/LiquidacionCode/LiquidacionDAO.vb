@@ -1,8 +1,42 @@
-﻿Public Class LiquidacionDAO
-    Public SQL As New SQLControl
+﻿Imports System.Data
+Imports System.Data.SqlClient
+Public Class LiquidacionDAO
+
+    Dim DBcon As SqlConnection
+    Dim DBcmd As SqlCommand
+    Dim sqlControl As SQLControl
+
+    Public Sub New(sqlControl As SQLControl)
+        Me.sqlControl = sqlControl
+        Me.DBcon = sqlControl.getDBcon
+    End Sub
+
+    Public Sub setDBcmd()
+        Me.DBcmd = sqlControl.getDBcmd
+    End Sub
+
+    Public Function openConexion() As Boolean
+        Return sqlControl.openConexion()
+    End Function
+
+    Public Function closeConexion() As Boolean
+        Return sqlControl.closeConexion()
+    End Function
+
+    Public Sub beginTransaction()
+        sqlControl.beginTransaction()
+    End Sub
+
+    Public Sub commitTransacction()
+        sqlControl.commitTransaction()
+    End Sub
+
+    Public Sub rollbackTransaccion()
+        sqlControl.rollbackTransaccion()
+    End Sub
 
     Public Function GetAllLiquidacion() As DataTable
-        SQL.ExecQuery("select		a.CODIGO_LIQUIDACION,
+        Return sqlControl.ExecQuery("select		a.CODIGO_LIQUIDACION,
 			                        a.NUMERO_LIQUIDACION,
 			                        a.CODIGO_TRABAJADOR,
 			                        f.APELLIDO_PATERNO_TRABAJADOR+' '+f.APELLIDO_MATERNO_TRABAJADOR+', '+f.NOMBRES_TRABAJADOR,
@@ -33,12 +67,13 @@
                         LEFT JOIN	GUIA_TRANSPORTISTA d on d.CODIGO_GUIA=a.CODIGO_GUIA
                         LEFT JOIN	ESTADO e on e.CODIGO_ESTADO=a.CODIGO_ESTADO
                         LEFT JOIN	TRABAJADOR f on f.CODIGO_TRABAJADOR=a.CODIGO_TRABAJADOR
-                        ORDER BY	CODIGO_LIQUIDACION ASC")
-        Return SQL.DBT
+                        ORDER BY	CODIGO_LIQUIDACION ASC", Nothing)
+
     End Function
 
     Public Function GetLiquidacionById(codigo As Integer) As DataTable
-        SQL.ExecQuery("select		a.CODIGO_LIQUIDACION,
+
+        Return sqlControl.ExecQuery("select		a.CODIGO_LIQUIDACION,
 			                        a.NUMERO_LIQUIDACION,
 			                        a.CODIGO_TRABAJADOR,
 			                        f.APELLIDO_PATERNO_TRABAJADOR+' '+f.APELLIDO_MATERNO_TRABAJADOR+', '+f.NOMBRES_TRABAJADOR,
@@ -70,8 +105,7 @@
                         LEFT JOIN	ESTADO e on e.CODIGO_ESTADO=a.CODIGO_ESTADO
                         LEFT JOIN	TRABAJADOR f on f.CODIGO_TRABAJADOR=a.CODIGO_TRABAJADOR 
                         where       CODIGO_LIQUIDACION=" + CStr(codigo) + " 
-                        ORDER BY	CODIGO_LIQUIDACION ASC")
-        Return SQL.DBT
+                        ORDER BY	CODIGO_LIQUIDACION ASC", Nothing)
     End Function
 
     Public Sub InsertLiquidacion(nroLiquidacion As String, trabajador As Object, guia As Object,
@@ -82,27 +116,29 @@
                                  otros As Long, fisico As Long, virtual As Long,
                                  estado As Object)
 
-        SQL.AddParam("@NUMERO_LIQUIDACION", nroLiquidacion)
-        SQL.AddParam("@CODIGO_TRABAJADOR", trabajador)
-        SQL.AddParam("@CODIGO_GUIA", guia)
-        SQL.AddParam("@CODIGO_UNIDAD_TRACTO", tracto)
-        SQL.AddParam("@CODIGO_UNIDAD_SEMITRAILER", camabaja)
-        SQL.AddParam("@ORIGEN_LIQUIDACION", origen)
-        SQL.AddParam("@DESTINO_LIQUIDACION", destino)
-        SQL.AddParam("@FECHA_SALIDA", salida)
-        SQL.AddParam("@FECHA_LLEGADA", llegada)
-        SQL.AddParam("@DINERO_LIQUIDACION", dinero)
-        SQL.AddParam("@PEAJES_LIQUIDACION", peajes)
-        SQL.AddParam("@VIATICOS_LIQUIDACION", viaticos)
-        SQL.AddParam("@GUARDIANIA_LIQUIDACION", guardiania)
-        SQL.AddParam("@HOSPEDAJE_LIQUIDACION", hospedaje)
-        SQL.AddParam("@BALANZA_LIQUIDACION", balanaza)
-        SQL.AddParam("@OTROS_LIQUIDACION", otros)
-        SQL.AddParam("@CONSUMO_FISICO_LIQUIDACION", fisico)
-        SQL.AddParam("@CONSUMO_VIRTUAL_LIQUIDACION", virtual)
-        SQL.AddParam("@CODIGO_ESTADO", estado)
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@NUMERO_LIQUIDACION", nroLiquidacion))
+        params.Add(New SqlParameter("@CODIGO_TRABAJADOR", trabajador))
+        params.Add(New SqlParameter("@CODIGO_GUIA", guia))
+        params.Add(New SqlParameter("@CODIGO_UNIDAD_TRACTO", tracto))
+        params.Add(New SqlParameter("@CODIGO_UNIDAD_SEMITRAILER", camabaja))
+        params.Add(New SqlParameter("@ORIGEN_LIQUIDACION", origen))
+        params.Add(New SqlParameter("@DESTINO_LIQUIDACION", destino))
+        params.Add(New SqlParameter("@FECHA_SALIDA", salida))
+        params.Add(New SqlParameter("@FECHA_LLEGADA", llegada))
+        params.Add(New SqlParameter("@DINERO_LIQUIDACION", dinero))
+        params.Add(New SqlParameter("@PEAJES_LIQUIDACION", peajes))
+        params.Add(New SqlParameter("@VIATICOS_LIQUIDACION", viaticos))
+        params.Add(New SqlParameter("@GUARDIANIA_LIQUIDACION", guardiania))
+        params.Add(New SqlParameter("@HOSPEDAJE_LIQUIDACION", hospedaje))
+        params.Add(New SqlParameter("@BALANZA_LIQUIDACION", balanaza))
+        params.Add(New SqlParameter("@OTROS_LIQUIDACION", otros))
+        params.Add(New SqlParameter("@CONSUMO_FISICO_LIQUIDACION", virtual))
+        params.Add(New SqlParameter("@CONSUMO_VIRTUAL_LIQUIDACION", nroLiquidacion))
+        params.Add(New SqlParameter("@CODIGO_ESTADO", estado))
 
-        SQL.ExecQuery("EXECUTE insertLiquidacion 
+
+        sqlControl.ExecQuery("EXECUTE insertLiquidacion 
                                         @NUMERO_LIQUIDACION,
                                         @CODIGO_TRABAJADOR,
                                         @CODIGO_GUIA,
@@ -121,11 +157,7 @@
                                         @OTROS_LIQUIDACION,
                                         @CONSUMO_FISICO_LIQUIDACION,
                                         @CONSUMO_VIRTUAL_LIQUIDACION,
-                                        @CODIGO_ESTADO")
-
-
-
-
+                                        @CODIGO_ESTADO", params)
     End Sub
 
     Public Sub UpdateLiquidacion(codigo As String, nroLiquidacion As String, trabajador As Object, guia As Object,
@@ -136,28 +168,29 @@
                                  otros As Long, fisico As Long, virtual As Long,
                                  estado As Object)
 
-        SQL.AddParam("@CODIGO_LIQUIDACION", codigo)
-        SQL.AddParam("@NUMERO_LIQUIDACION", nroLiquidacion)
-        SQL.AddParam("@CODIGO_TRABAJADOR", trabajador)
-        SQL.AddParam("@CODIGO_GUIA", guia)
-        SQL.AddParam("@CODIGO_UNIDAD_TRACTO", tracto)
-        SQL.AddParam("@CODIGO_UNIDAD_SEMITRAILER", camabaja)
-        SQL.AddParam("@ORIGEN_LIQUIDACION", origen)
-        SQL.AddParam("@DESTINO_LIQUIDACION", destino)
-        SQL.AddParam("@FECHA_SALIDA", salida)
-        SQL.AddParam("@FECHA_LLEGADA", llegada)
-        SQL.AddParam("@DINERO_LIQUIDACION", dinero)
-        SQL.AddParam("@PEAJES_LIQUIDACION", peajes)
-        SQL.AddParam("@VIATICOS_LIQUIDACION", viaticos)
-        SQL.AddParam("@GUARDIANIA_LIQUIDACION", guardiania)
-        SQL.AddParam("@HOSPEDAJE_LIQUIDACION", hospedaje)
-        SQL.AddParam("@BALANZA_LIQUIDACION", balanaza)
-        SQL.AddParam("@OTROS_LIQUIDACION", otros)
-        SQL.AddParam("@CONSUMO_FISICO_LIQUIDACION", fisico)
-        SQL.AddParam("@CONSUMO_VIRTUAL_LIQUIDACION", virtual)
-        SQL.AddParam("@CODIGO_ESTADO", estado)
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
+        params.Add(New SqlParameter("@NUMERO_LIQUIDACION", nroLiquidacion))
+        params.Add(New SqlParameter("@CODIGO_TRABAJADOR", trabajador))
+        params.Add(New SqlParameter("@CODIGO_GUIA", guia))
+        params.Add(New SqlParameter("@CODIGO_UNIDAD_TRACTO", tracto))
+        params.Add(New SqlParameter("@CODIGO_UNIDAD_SEMITRAILER", camabaja))
+        params.Add(New SqlParameter("@ORIGEN_LIQUIDACION", origen))
+        params.Add(New SqlParameter("@DESTINO_LIQUIDACION", destino))
+        params.Add(New SqlParameter("@FECHA_SALIDA", salida))
+        params.Add(New SqlParameter("@FECHA_LLEGADA", llegada))
+        params.Add(New SqlParameter("@DINERO_LIQUIDACION", dinero))
+        params.Add(New SqlParameter("@PEAJES_LIQUIDACION", peajes))
+        params.Add(New SqlParameter("@VIATICOS_LIQUIDACION", viaticos))
+        params.Add(New SqlParameter("@GUARDIANIA_LIQUIDACION", guardiania))
+        params.Add(New SqlParameter("@HOSPEDAJE_LIQUIDACION", hospedaje))
+        params.Add(New SqlParameter("@BALANZA_LIQUIDACION", balanaza))
+        params.Add(New SqlParameter("@OTROS_LIQUIDACION", otros))
+        params.Add(New SqlParameter("@CONSUMO_FISICO_LIQUIDACION", virtual))
+        params.Add(New SqlParameter("@CONSUMO_VIRTUAL_LIQUIDACION", nroLiquidacion))
+        params.Add(New SqlParameter("@CODIGO_ESTADO", estado))
 
-        SQL.ExecQuery("EXECUTE updateLiquidacion 
+        sqlControl.ExecQuery("EXECUTE updateLiquidacion 
                                         @CODIGO_LIQUIDACION,
                                         @NUMERO_LIQUIDACION,
                                         @CODIGO_TRABAJADOR,
@@ -177,10 +210,6 @@
                                         @OTROS_LIQUIDACION,
                                         @CONSUMO_FISICO_LIQUIDACION,
                                         @CONSUMO_VIRTUAL_LIQUIDACION,
-                                        @CODIGO_ESTADO")
-
-
-
-
+                                        @CODIGO_ESTADO", params)
     End Sub
 End Class

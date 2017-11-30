@@ -10,50 +10,46 @@
     End Sub
 
     Private Sub btnAgregarLiquidacion_Click(sender As Object, e As EventArgs) Handles btnAgregarLiquidacion.Click
-        Dim guiaDao As GuiaDAO
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
 
+        Dim proceso As String
+        proceso = ""
 
-        If cbGuia.SelectedText = "" Then
+        Dim liquidacionDao As New LiquidacionDAO(sqlControl)
+        sqlControl.openConexion()
 
-
+        If txtCodigoLiquidacion.Text = Nothing Then
+            liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
+                                         cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
+                                         txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
+                                         CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
+                                         CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
+                                         CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
+                                         cbEstado.SelectedValue)
+        Else
+            liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
+                                         cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
+                                         txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
+                                         CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
+                                         CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
+                                         CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
+                                         cbEstado.SelectedValue)
         End If
+        sqlControl.closeConexion()
 
-        'Dim proceso As String
-        'proceso = ""
+        actualizarListaLiquidacion()
 
-        'Dim liquidacionDao As New LiquidacionDAO
-
-
-        'If txtCodigoLiquidacion.Text = Nothing Then
-        '    liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
-        '                                 cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
-        '                                 txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
-        '                                 CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
-        '                                 CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
-        '                                 CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
-        '                                 cbEstado.SelectedValue)
-        'Else
-        '    liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
-        '                                 cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
-        '                                 txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
-        '                                 CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
-        '                                 CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
-        '                                 CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
-        '                                 cbEstado.SelectedValue)
-        'End If
-
-
-
-        'If liquidacionDao.SQL.HasException(True) Then Exit Sub
-
-        'actualizarListaLiquidacion()
-
-        'MsgBox("Liquidación " + proceso + " correctamente")
+        MsgBox("Liquidación " + proceso + " correctamente")
 
     End Sub
 
     Private Sub dgvLiquidacion_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvLiquidacion.CellMouseClick
-        Dim liquidacionDao As New LiquidacionDAO
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDao As New LiquidacionDAO(sqlControl)
+        sqlControl.openConexion()
 
         Dim seleccion As DataGridViewRow = dgvLiquidacion.SelectedRows(0)
         Dim codigo As Integer = seleccion.Cells(0).Value
@@ -83,6 +79,8 @@
         txtCombustibleVirtual.Text = dt.Rows(0)(22)
         cbEstado.SelectedValue = dt.Rows(0)(23)
 
+        sqlControl.closeConexion()
+
     End Sub
 
     Private Sub txtCodigoLiquidacion_TextChanged(sender As Object, e As EventArgs) Handles txtCodigoLiquidacion.TextChanged
@@ -90,7 +88,11 @@
     End Sub
 
     Private Sub actualizarListaLiquidacion()
-        Dim liquidacionDao As New LiquidacionDAO
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDao As New LiquidacionDAO(sqlControl)
+        sqlControl.openConexion()
 
         Dim dt As DataTable
 
@@ -105,9 +107,16 @@
 
         dgvLiquidacion.MultiSelect = False
         dgvLiquidacion.RowHeadersVisible = False
+        sqlControl.closeConexion()
+
     End Sub
     Private Sub actualizarDatosTrabajador()
-        Dim trabajadorDao As New TrabajadorDAO
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim trabajadorDao As New TrabajadorDAO(sqlControl)
+        sqlControl.openConexion()
+
         Dim dtTrabajador As DataTable
 
         dtTrabajador = trabajadorDao.GetTrabajador
@@ -122,11 +131,16 @@
 
             .SelectedIndex = -1
         End With
-
+        sqlControl.closeConexion()
     End Sub
 
     Private Sub actualizarDatosGuia()
-        Dim guiaDao As New GuiaDAO
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim guiaDao As New GuiaDAO(sqlControl)
+        sqlControl.openConexion()
+
         Dim dtGuia As DataTable
 
         dtGuia = guiaDao.getGuia
@@ -141,10 +155,17 @@
             .SelectedIndex = -1
         End With
 
+        sqlControl.closeConexion()
+
     End Sub
 
     Private Sub actualizarDatosTracto()
-        Dim unidadDao As New UnidadDAO
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim unidadDao As New UnidadDAO(sqlControl)
+        sqlControl.openConexion()
+
         Dim dtUnidad As DataTable
 
         dtUnidad = unidadDao.getUnidadTractos
@@ -158,11 +179,16 @@
             .AutoCompleteSource = AutoCompleteSource.ListItems
             .SelectedIndex = -1
         End With
-
+        sqlControl.closeConexion()
     End Sub
 
     Private Sub actualizarDatosSemiTrailer()
-        Dim unidadDao As New UnidadDAO
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim unidadDao As New UnidadDAO(sqlControl)
+        sqlControl.openConexion()
+
         Dim dtUnidad As DataTable
 
         dtUnidad = unidadDao.getUnidadSemiTrailer
@@ -176,11 +202,17 @@
             .AutoCompleteSource = AutoCompleteSource.ListItems
             .SelectedIndex = -1
         End With
+        sqlControl.closeConexion()
 
     End Sub
 
     Private Sub actualizarEstados()
-        Dim estadoDao As New EstadoDAO
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim estadoDao As New EstadoDAO(sqlControl)
+        sqlControl.openConexion()
+
         Dim dtEstado As DataTable
 
         dtEstado = estadoDao.getEstados
@@ -194,6 +226,8 @@
             .AutoCompleteSource = AutoCompleteSource.ListItems
             .SelectedIndex = -1
         End With
+        sqlControl.closeConexion()
+
     End Sub
 
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
