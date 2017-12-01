@@ -35,14 +35,20 @@ Public Class ClienteDAO
     End Sub
 
     Public Function GetClientes() As DataTable
-        Return sqlControl.ExecQuery("Select RUC_CLIENTE, RAZON_CLIENTE, DIRECCION_CLIENTE, TELEFONO_CLIENTE from CLIENTE", Nothing)
+        Return sqlControl.ExecQuery("Select CODIGO_CLIENTE, RUC_CLIENTE, RAZON_CLIENTE, DIRECCION_CLIENTE, TELEFONO_CLIENTE from CLIENTE", Nothing)
     End Function
 
     Public Function GetClienteByRuc(ruc_Cliente As String) As DataTable
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@RUC_CLIENTE", ruc_Cliente))
-        Return sqlControl.ExecQuery("Select RUC_CLIENTE, RAZON_CLIENTE, DIRECCION_CLIENTE, TELEFONO_CLIENTE from CLIENTE where RUC_CLIENTE=@RUC_CLIENTE", params)
+        Return sqlControl.ExecQuery("Select CODIGO_CLIENTE, RUC_CLIENTE, RAZON_CLIENTE, DIRECCION_CLIENTE, TELEFONO_CLIENTE from CLIENTE where RUC_CLIENTE=@RUC_CLIENTE", params)
 
     End Function
 
+    Public Function GetClienteByCodigo(codigo As String) As DataTable
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_CLIENTE", codigo))
+        Return sqlControl.ExecQuery("Select CODIGO_CLIENTE, RUC_CLIENTE, RAZON_CLIENTE, DIRECCION_CLIENTE, TELEFONO_CLIENTE from CLIENTE where CODIGO_CLIENTE=@CODIGO_CLIENTE", params)
+
+    End Function
 End Class

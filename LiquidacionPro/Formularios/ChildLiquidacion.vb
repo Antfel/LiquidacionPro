@@ -143,7 +143,7 @@
 
         Dim dtGuia As DataTable
 
-        dtGuia = guiaDao.getGuia
+        dtGuia = guiaDao.getGuiaPendLiquidacion
 
         With cbGuia
             .DataSource = dtGuia

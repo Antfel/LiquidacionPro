@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ChildFacturacion
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,8 @@ Partial Class ChildFacturacion
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -44,11 +43,11 @@ Partial Class ChildFacturacion
         Me.cbTipoServicio = New System.Windows.Forms.ComboBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.cbAccionGuia = New System.Windows.Forms.ComboBox()
-        Me.txtTransportista = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Panel14 = New System.Windows.Forms.Panel()
+        Me.cbGuia = New System.Windows.Forms.ComboBox()
         Me.tbTransportista = New System.Windows.Forms.DataGridView()
         Me.Panel15 = New System.Windows.Forms.Panel()
         Me.txtRemitente = New System.Windows.Forms.TextBox()
@@ -57,8 +56,8 @@ Partial Class ChildFacturacion
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.cbTracto = New System.Windows.Forms.ComboBox()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.ListBox3 = New System.Windows.Forms.ListBox()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Panel25 = New System.Windows.Forms.Panel()
@@ -86,6 +85,8 @@ Partial Class ChildFacturacion
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button10 = New System.Windows.Forms.Button()
+        Me.lbPlaca = New System.Windows.Forms.ListBox()
         Me.Panel1.SuspendLayout()
         Me.Panel14.SuspendLayout()
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,15 +101,6 @@ Partial Class ChildFacturacion
         Me.Panel24.SuspendLayout()
         Me.Panel23.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(167, 56)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(70, 13)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Razon Social"
         '
         'Label3
         '
@@ -293,13 +285,6 @@ Partial Class ChildFacturacion
         Me.cbAccionGuia.Size = New System.Drawing.Size(102, 21)
         Me.cbAccionGuia.TabIndex = 16
         '
-        'txtTransportista
-        '
-        Me.txtTransportista.Location = New System.Drawing.Point(138, 7)
-        Me.txtTransportista.Name = "txtTransportista"
-        Me.txtTransportista.Size = New System.Drawing.Size(81, 20)
-        Me.txtTransportista.TabIndex = 9
-        '
         'Label16
         '
         Me.Label16.AutoSize = True
@@ -314,7 +299,7 @@ Partial Class ChildFacturacion
         Me.Button3.Location = New System.Drawing.Point(196, 64)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(23, 23)
-        Me.Button3.TabIndex = 7
+        Me.Button3.TabIndex = 12
         Me.Button3.Text = "+"
         Me.Button3.UseVisualStyleBackColor = True
         '
@@ -329,8 +314,8 @@ Partial Class ChildFacturacion
         '
         'Panel14
         '
+        Me.Panel14.Controls.Add(Me.cbGuia)
         Me.Panel14.Controls.Add(Me.tbTransportista)
-        Me.Panel14.Controls.Add(Me.txtTransportista)
         Me.Panel14.Controls.Add(Me.Label16)
         Me.Panel14.Controls.Add(Me.Button3)
         Me.Panel14.Controls.Add(Me.Button4)
@@ -339,11 +324,23 @@ Partial Class ChildFacturacion
         Me.Panel14.Size = New System.Drawing.Size(235, 161)
         Me.Panel14.TabIndex = 21
         '
+        'cbGuia
+        '
+        Me.cbGuia.FormattingEnabled = True
+        Me.cbGuia.Location = New System.Drawing.Point(119, 7)
+        Me.cbGuia.Name = "cbGuia"
+        Me.cbGuia.Size = New System.Drawing.Size(100, 21)
+        Me.cbGuia.TabIndex = 11
+        '
         'tbTransportista
         '
-        Me.tbTransportista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.tbTransportista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.tbTransportista.ColumnHeadersVisible = False
         Me.tbTransportista.Location = New System.Drawing.Point(14, 37)
+        Me.tbTransportista.MultiSelect = False
         Me.tbTransportista.Name = "tbTransportista"
+        Me.tbTransportista.ReadOnly = True
+        Me.tbTransportista.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.tbTransportista.Size = New System.Drawing.Size(176, 108)
         Me.tbTransportista.TabIndex = 10
         '
@@ -403,14 +400,23 @@ Partial Class ChildFacturacion
         '
         'Panel16
         '
+        Me.Panel16.Controls.Add(Me.cbTracto)
         Me.Panel16.Controls.Add(Me.Label18)
-        Me.Panel16.Controls.Add(Me.ListBox3)
+        Me.Panel16.Controls.Add(Me.lbPlaca)
         Me.Panel16.Controls.Add(Me.Button7)
         Me.Panel16.Controls.Add(Me.Button8)
         Me.Panel16.Location = New System.Drawing.Point(589, 226)
         Me.Panel16.Name = "Panel16"
         Me.Panel16.Size = New System.Drawing.Size(222, 161)
         Me.Panel16.TabIndex = 23
+        '
+        'cbTracto
+        '
+        Me.cbTracto.FormattingEnabled = True
+        Me.cbTracto.Location = New System.Drawing.Point(84, 7)
+        Me.cbTracto.Name = "cbTracto"
+        Me.cbTracto.Size = New System.Drawing.Size(121, 21)
+        Me.cbTracto.TabIndex = 9
         '
         'Label18
         '
@@ -420,14 +426,6 @@ Partial Class ChildFacturacion
         Me.Label18.Size = New System.Drawing.Size(41, 13)
         Me.Label18.TabIndex = 6
         Me.Label18.Text = "PLACA"
-        '
-        'ListBox3
-        '
-        Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.Location = New System.Drawing.Point(17, 37)
-        Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.Size = New System.Drawing.Size(156, 108)
-        Me.ListBox3.TabIndex = 5
         '
         'Button7
         '
@@ -665,11 +663,29 @@ Partial Class ChildFacturacion
         Me.Button1.Text = "Razon Social"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'Button10
+        '
+        Me.Button10.Location = New System.Drawing.Point(407, 475)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(122, 37)
+        Me.Button10.TabIndex = 49
+        Me.Button10.Text = "GUARDAR"
+        Me.Button10.UseVisualStyleBackColor = True
+        '
+        'lbPlaca
+        '
+        Me.lbPlaca.FormattingEnabled = True
+        Me.lbPlaca.Location = New System.Drawing.Point(17, 37)
+        Me.lbPlaca.Name = "lbPlaca"
+        Me.lbPlaca.Size = New System.Drawing.Size(156, 108)
+        Me.lbPlaca.TabIndex = 5
+        '
         'ChildFacturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 524)
+        Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button6)
@@ -698,7 +714,6 @@ Partial Class ChildFacturacion
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
         Me.Name = "ChildFacturacion"
         Me.Text = "Facturación"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -730,7 +745,6 @@ Partial Class ChildFacturacion
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
@@ -752,20 +766,17 @@ Partial Class ChildFacturacion
     Friend WithEvents cbTipoServicio As ComboBox
     Friend WithEvents Label13 As Label
     Friend WithEvents cbAccionGuia As ComboBox
-    Friend WithEvents txtTransportista As TextBox
     Friend WithEvents Label16 As Label
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents Panel14 As Panel
     Friend WithEvents Panel15 As Panel
-    Friend WithEvents txtRemitente As TextBox
     Friend WithEvents Label17 As Label
     Friend WithEvents lbRemitente As ListBox
     Friend WithEvents Button2 As Button
     Friend WithEvents Button5 As Button
     Friend WithEvents Panel16 As Panel
     Friend WithEvents Label18 As Label
-    Friend WithEvents ListBox3 As ListBox
     Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Panel25 As Panel
@@ -794,4 +805,9 @@ Partial Class ChildFacturacion
     Friend WithEvents Button9 As Button
     Friend WithEvents tbTransportista As DataGridView
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button10 As Button
+    Friend WithEvents cbTracto As ComboBox
+    Friend WithEvents cbGuia As ComboBox
+    Friend WithEvents txtRemitente As TextBox
+    Friend WithEvents lbPlaca As ListBox
 End Class
