@@ -206,12 +206,11 @@ Public Class FacturacionDAO
     End Sub
 
     Public Function InsertFacturaDetalleUnidad(codigo_detalle_factura As Integer, codigo_factura As Integer,
-                                            codigo_unidad As Integer, placa_unidad As String) As Integer
+                                            placa_unidad As String) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
-        params.Add(New SqlParameter("@CODIGO_UNIDAD", codigo_unidad))
         params.Add(New SqlParameter("@PLACA_UNIDAD", placa_unidad))
 
         Dim dt As DataTable
@@ -219,7 +218,6 @@ Public Class FacturacionDAO
         dt = sqlControl.ExecQuery("EXECUTE insertFacturaDetalleUnidad " +
                                         "@CODIGO_DETALLE_FACTURA," +
                                         "@CODIGO_FACTURA," +
-                                        "@CODIGO_UNIDAD," +
                                         "@PLACA_UNIDAD ", params)
 
         If dt.Rows.Count > 0 Then
@@ -229,17 +227,17 @@ Public Class FacturacionDAO
         End If
     End Function
 
-    Public Sub deleteFacturaDetalleRemitente(codigo_detalle_factura As Integer, codigo_factura As Integer,
-                                            codigo_item As Integer)
+    Public Sub deleteFacturaDetalleUnidad(codigo_detalle_factura As Integer, codigo_factura As Integer,
+                                            placa_unidad As String)
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
-        params.Add(New SqlParameter("@CODIGO_ITEM", codigo_item))
+        params.Add(New SqlParameter("@PLACA_UNIDAD", placa_unidad))
 
         sqlControl.ExecQuery("EXECUTE deleteFacturaDetalleUnidad " +
                                         "@CODIGO_DETALLE_FACTURA," +
                                         "@CODIGO_FACTURA," +
-                                        "@CODIGO_ITEM ", params)
+                                        "@PLACA_UNIDAD ", params)
     End Sub
 End Class
