@@ -107,7 +107,7 @@ Public Class FacturacionDAO
                                         "@CODIGO_ESTADO", params)
     End Sub
 
-    Public Function InsertFacturaDetalle(codigo_factura As Integer, precio_factura_detalle As Long,
+    Public Function InsertFacturaDetalle(codigo_factura As Integer,
                                     tipo_servicio As Integer, descripcion As String,
                                          cantidad As Integer, conf_vehi As String,
                                          valor_ref As Long, obs As String, precio_unitario As Long,
@@ -115,7 +115,6 @@ Public Class FacturacionDAO
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
-        params.Add(New SqlParameter("@PRECIO_DETALLE_FACTURA", precio_factura_detalle))
         params.Add(New SqlParameter("@TIPO_SERVICIO", tipo_servicio))
         params.Add(New SqlParameter("@DESCRIPCION", descripcion))
         params.Add(New SqlParameter("@CANTIDAD", cantidad))
@@ -130,7 +129,6 @@ Public Class FacturacionDAO
 
         dt = sqlControl.ExecQuery("EXECUTE insertFacturaDetalle " +
                                         "@CODIGO_FACTURA," +
-                                        "@PRECIO_DETALLE_FACTURA," +
                                         "@TIPO_SERVICIO," +
                                         "@DESCRIPCION," +
                                         "@CANTIDAD," +
