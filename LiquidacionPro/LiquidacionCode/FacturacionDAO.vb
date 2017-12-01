@@ -108,21 +108,38 @@ Public Class FacturacionDAO
     End Sub
 
     Public Function InsertFacturaDetalle(codigo_factura As Integer, precio_factura_detalle As Long,
-                                    codigo_moneda As Integer, codigo_estado As Integer) As Integer
+                                    tipo_servicio As Integer, descripcion As String,
+                                         cantidad As Integer, conf_vehi As String,
+                                         valor_ref As Long, obs As String, precio_unitario As Long,
+                                         origen As String, destino As String) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
         params.Add(New SqlParameter("@PRECIO_DETALLE_FACTURA", precio_factura_detalle))
-        params.Add(New SqlParameter("@CODIGO_MONEDA", codigo_moneda))
-        params.Add(New SqlParameter("@CODIGO_ESTADO", codigo_estado))
+        params.Add(New SqlParameter("@TIPO_SERVICIO", tipo_servicio))
+        params.Add(New SqlParameter("@DESCRIPCION", descripcion))
+        params.Add(New SqlParameter("@CANTIDAD", cantidad))
+        params.Add(New SqlParameter("@CONF_VEHICULAR", conf_vehi))
+        params.Add(New SqlParameter("@VALOR_REFERENCIAL", valor_ref))
+        params.Add(New SqlParameter("@OBSERVACION", obs))
+        params.Add(New SqlParameter("@PRECIO_UNITARIO", precio_unitario))
+        params.Add(New SqlParameter("@ORIGEN", origen))
+        params.Add(New SqlParameter("@DESTINO", destino))
 
         Dim dt As DataTable
 
         dt = sqlControl.ExecQuery("EXECUTE insertFacturaDetalle " +
                                         "@CODIGO_FACTURA," +
                                         "@PRECIO_DETALLE_FACTURA," +
-                                        "@CODIGO_MONEDA," +
-                                        "@CODIGO_ESTADO", params)
+                                        "@TIPO_SERVICIO," +
+                                        "@DESCRIPCION," +
+                                        "@CANTIDAD," +
+                                        "@CONF_VEHICULAR," +
+                                        "@VALOR_REFERENCIAL," +
+                                        "@OBSERVACION," +
+                                        "@PRECIO_UNITARIO," +
+                                        "@ORIGEN," +
+                                        "@DESTINO", params)
 
         If dt.Rows.Count > 0 Then
             Return CInt(dt.Rows.Item(0).Item(0))
@@ -132,21 +149,42 @@ Public Class FacturacionDAO
     End Function
 
     Public Sub UpdateFacturaDetalle(codigo_detalle_factura As Integer, codigo_factura As Integer, precio_factura_detalle As Long,
-                                    codigo_moneda As Integer, codigo_estado As Integer)
+                                    tipo_servicio As Integer, descripcion As String,
+                                         cantidad As Integer, conf_vehi As String,
+                                         valor_ref As Long, obs As String, precio_unitario As Long,
+                                         origen As String, destino As String)
+
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
         params.Add(New SqlParameter("@PRECIO_DETALLE_FACTURA", precio_factura_detalle))
-        params.Add(New SqlParameter("@CODIGO_MONEDA", codigo_moneda))
-        params.Add(New SqlParameter("@CODIGO_ESTADO", codigo_estado))
+        params.Add(New SqlParameter("@TIPO_SERVICIO", tipo_servicio))
+        params.Add(New SqlParameter("@DESCRIPCION", descripcion))
+        params.Add(New SqlParameter("@CANTIDAD", cantidad))
+        params.Add(New SqlParameter("@CONF_VEHICULAR", conf_vehi))
+        params.Add(New SqlParameter("@VALOR_REFERENCIAL", valor_ref))
+        params.Add(New SqlParameter("@OBSERVACION", obs))
+        params.Add(New SqlParameter("@PRECIO_UNITARIO", precio_unitario))
+        params.Add(New SqlParameter("@ORIGEN", origen))
+        params.Add(New SqlParameter("@DESTINO", destino))
 
-        sqlControl.ExecQuery("EXECUTE updateFacturaDetalle " +
+        Dim dt As DataTable
+
+        dt = sqlControl.ExecQuery("EXECUTE updateFacturaDetalle " +
                                         "@CODIGO_DETALLE_FACTURA," +
                                         "@CODIGO_FACTURA," +
                                         "@PRECIO_DETALLE_FACTURA," +
-                                        "@CODIGO_MONEDA," +
-                                        "@CODIGO_ESTADO", params)
+                                        "@TIPO_SERVICIO," +
+                                        "@DESCRIPCION," +
+                                        "@CANTIDAD," +
+                                        "@CONF_VEHICULAR," +
+                                        "@VALOR_REFERENCIAL," +
+                                        "@OBSERVACION," +
+                                        "@PRECIO_UNITARIO," +
+                                        "@ORIGEN," +
+                                        "@DESTINO", params)
+
     End Sub
 
     Public Sub InsertFacturaDetalleGuia(codigo_detalle_factura As Integer, codigo_factura As Integer,
