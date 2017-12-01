@@ -173,7 +173,6 @@ Public Class FacturacionDAO
         dt = sqlControl.ExecQuery("EXECUTE updateFacturaDetalle " +
                                         "@CODIGO_DETALLE_FACTURA," +
                                         "@CODIGO_FACTURA," +
-                                        "@PRECIO_DETALLE_FACTURA," +
                                         "@TIPO_SERVICIO," +
                                         "@DESCRIPCION," +
                                         "@CANTIDAD," +
