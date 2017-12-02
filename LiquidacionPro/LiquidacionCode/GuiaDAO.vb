@@ -58,7 +58,9 @@ Public Class GuiaDAO
         params.Add(New SqlParameter("@NRO_GUIA", nro_guia))
         Return sqlControl.ExecQuery("SELECT CODIGO_GUIA, DETALLE_GUIA, CODIGO_ESTADO From GUIA_TRANSPORTISTA WHERE DETALLE_GUIA = @NRO_GUIA", params)
 
+        SQL.ExecQuery("SELECT CODIGO_GUIA, DETALLE_GUIA, CODIGO_ESTADO From GUIA_TRANSPORTISTA WHERE DETALLE_GUIA = " + nro_guia)
 
+        Return SQL.DBT
 
     End Function
 
