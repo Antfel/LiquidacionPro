@@ -1,6 +1,6 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
-Public Class GuiaDAO
+Public Class Correlativo_NumeroDAO
     Dim DBcon As SqlConnection
     Dim DBcmd As SqlCommand
     Dim sqlControl As SQLControl
@@ -34,25 +34,23 @@ Public Class GuiaDAO
         sqlControl.rollbackTransaccion()
     End Sub
 
-    Public Function getGuia() As DataTable
-        Return sqlControl.ExecQuery("SELECT CODIGO_GUIA, DETALLE_GUIA, CODIGO_ESTADO From GUIA_TRANSPORTISTA WHERE CODIGO_ESTADO = 8", Nothing)
-    End Function
-
-    Public Sub InsertLiquidacion(detalleGuia As String, estado As Integer)
+    Public Function GetSiguienteCorrelativo(codigo_correlativo As Integer, serie As String) As String
 
         Dim params As New List(Of SqlParameter)
-        params.Add(New SqlParameter("@DETALLE_GUIA", detalleGuia))
-        params.Add(New SqlParameter("@CODIGO_ESTADO", 7))
+        params.Add(New SqlParameter("@codigo_correlativo", codigo_correlativo))
+        params.Add(New SqlParameter("@serie", serie))
 
-        sqlControl.ExecQuery("EXECUTE insertGuia 
-                                        @DETALLE_GUIA,
-                                        @CODIGO_ESTADO", params)
-    End Sub
+        Dim dt As DataTable
 
-    Public Function getGuiaByNroGuia(nro_guia As String) As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE selectSiguienteCorrelativo " +
+                                        "@codigo_correlativo," +
+                                        "@serie ", params)
 
-        Return sqlControl.ExecQuery("SELECT CODIGO_GUIA, DETALLE_GUIA, CODIGO_ESTADO From GUIA_TRANSPORTISTA WHERE DETALLE_GUIA = " + nro_guia, Nothing)
-
+        If dt.Rows.Count > 0 Then
+            Return CStr(dt.Rows.Item(0).Item(0))
+        Else
+            Return "-"
+        End If
     End Function
 
 End Class
