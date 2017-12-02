@@ -39,7 +39,7 @@ Partial Class ChildFacturacion
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.txtDescripcionGuia = New System.Windows.Forms.TextBox()
+        Me.txtDescripcionDetalle = New System.Windows.Forms.TextBox()
         Me.cbTipoServicio = New System.Windows.Forms.ComboBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.cbAccionGuia = New System.Windows.Forms.ComboBox()
@@ -58,6 +58,7 @@ Partial Class ChildFacturacion
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.cbTracto = New System.Windows.Forms.ComboBox()
         Me.Label18 = New System.Windows.Forms.Label()
+        Me.lbPlaca = New System.Windows.Forms.ListBox()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Panel25 = New System.Windows.Forms.Panel()
@@ -86,7 +87,8 @@ Partial Class ChildFacturacion
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
-        Me.lbPlaca = New System.Windows.Forms.ListBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtPrecioFactura = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         Me.Panel14.SuspendLayout()
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -243,25 +245,25 @@ Partial Class ChildFacturacion
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(653, 189)
+        Me.Label15.Location = New System.Drawing.Point(643, 179)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(151, 13)
         Me.Label15.TabIndex = 20
         Me.Label15.Text = "SEGUN GUIA DE REMISION:"
         '
-        'txtDescripcionGuia
+        'txtDescripcionDetalle
         '
-        Me.txtDescripcionGuia.Location = New System.Drawing.Point(504, 186)
-        Me.txtDescripcionGuia.Name = "txtDescripcionGuia"
-        Me.txtDescripcionGuia.Size = New System.Drawing.Size(143, 20)
-        Me.txtDescripcionGuia.TabIndex = 19
+        Me.txtDescripcionDetalle.Location = New System.Drawing.Point(494, 176)
+        Me.txtDescripcionDetalle.Name = "txtDescripcionDetalle"
+        Me.txtDescripcionDetalle.Size = New System.Drawing.Size(143, 20)
+        Me.txtDescripcionDetalle.TabIndex = 19
         '
         'cbTipoServicio
         '
         Me.cbTipoServicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbTipoServicio.FormattingEnabled = True
         Me.cbTipoServicio.Items.AddRange(New Object() {"SERVICIO DE TRANSPORTE", "PLATAFORMA", "CAMABAJA", "CAMACUNA", "MODULAR", "PLATAFORMA EXTENSIBLE", "CAMACUNA EXTENSIBLE", "CAMABAJA EXTENSIBLE", "CAMACUNA ESPECIAL", "INTEGRAL", "INTEGRAL ESPECIAL", "SERVICIO DE ESCOLTA", "APOYO POLICIAL", "ADELANTO", "ESTUDIO DE PUENTE"})
-        Me.cbTipoServicio.Location = New System.Drawing.Point(305, 186)
+        Me.cbTipoServicio.Location = New System.Drawing.Point(295, 176)
         Me.cbTipoServicio.Name = "cbTipoServicio"
         Me.cbTipoServicio.Size = New System.Drawing.Size(170, 21)
         Me.cbTipoServicio.TabIndex = 18
@@ -269,7 +271,7 @@ Partial Class ChildFacturacion
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(193, 189)
+        Me.Label13.Location = New System.Drawing.Point(183, 179)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(106, 13)
         Me.Label13.TabIndex = 17
@@ -280,7 +282,7 @@ Partial Class ChildFacturacion
         Me.cbAccionGuia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbAccionGuia.FormattingEnabled = True
         Me.cbAccionGuia.Items.AddRange(New Object() {"NUEVO"})
-        Me.cbAccionGuia.Location = New System.Drawing.Point(70, 186)
+        Me.cbAccionGuia.Location = New System.Drawing.Point(60, 176)
         Me.cbAccionGuia.Name = "cbAccionGuia"
         Me.cbAccionGuia.Size = New System.Drawing.Size(102, 21)
         Me.cbAccionGuia.TabIndex = 16
@@ -319,7 +321,7 @@ Partial Class ChildFacturacion
         Me.Panel14.Controls.Add(Me.Label16)
         Me.Panel14.Controls.Add(Me.Button3)
         Me.Panel14.Controls.Add(Me.Button4)
-        Me.Panel14.Location = New System.Drawing.Point(64, 226)
+        Me.Panel14.Location = New System.Drawing.Point(64, 205)
         Me.Panel14.Name = "Panel14"
         Me.Panel14.Size = New System.Drawing.Size(235, 161)
         Me.Panel14.TabIndex = 21
@@ -351,7 +353,7 @@ Partial Class ChildFacturacion
         Me.Panel15.Controls.Add(Me.lbRemitente)
         Me.Panel15.Controls.Add(Me.Button2)
         Me.Panel15.Controls.Add(Me.Button5)
-        Me.Panel15.Location = New System.Drawing.Point(324, 226)
+        Me.Panel15.Location = New System.Drawing.Point(324, 205)
         Me.Panel15.Name = "Panel15"
         Me.Panel15.Size = New System.Drawing.Size(238, 161)
         Me.Panel15.TabIndex = 22
@@ -405,7 +407,7 @@ Partial Class ChildFacturacion
         Me.Panel16.Controls.Add(Me.lbPlaca)
         Me.Panel16.Controls.Add(Me.Button7)
         Me.Panel16.Controls.Add(Me.Button8)
-        Me.Panel16.Location = New System.Drawing.Point(589, 226)
+        Me.Panel16.Location = New System.Drawing.Point(589, 205)
         Me.Panel16.Name = "Panel16"
         Me.Panel16.Size = New System.Drawing.Size(222, 161)
         Me.Panel16.TabIndex = 23
@@ -426,6 +428,14 @@ Partial Class ChildFacturacion
         Me.Label18.Size = New System.Drawing.Size(41, 13)
         Me.Label18.TabIndex = 6
         Me.Label18.Text = "PLACA"
+        '
+        'lbPlaca
+        '
+        Me.lbPlaca.FormattingEnabled = True
+        Me.lbPlaca.Location = New System.Drawing.Point(17, 37)
+        Me.lbPlaca.Name = "lbPlaca"
+        Me.lbPlaca.Size = New System.Drawing.Size(156, 108)
+        Me.lbPlaca.TabIndex = 5
         '
         'Button7
         '
@@ -451,17 +461,19 @@ Partial Class ChildFacturacion
         Me.Panel25.Controls.Add(Me.Panel27)
         Me.Panel25.Controls.Add(Me.Panel28)
         Me.Panel25.Controls.Add(Me.Panel29)
+        Me.Panel25.Controls.Add(Me.Panel24)
         Me.Panel25.Controls.Add(Me.Panel30)
-        Me.Panel25.Location = New System.Drawing.Point(817, 233)
+        Me.Panel25.Controls.Add(Me.Panel23)
+        Me.Panel25.Location = New System.Drawing.Point(817, 205)
         Me.Panel25.Name = "Panel25"
-        Me.Panel25.Size = New System.Drawing.Size(444, 133)
+        Me.Panel25.Size = New System.Drawing.Size(465, 133)
         Me.Panel25.TabIndex = 26
         '
         'Panel26
         '
         Me.Panel26.Controls.Add(Me.txtPrecioUnitario)
         Me.Panel26.Controls.Add(Me.Label26)
-        Me.Panel26.Location = New System.Drawing.Point(336, 71)
+        Me.Panel26.Location = New System.Drawing.Point(280, 13)
         Me.Panel26.Name = "Panel26"
         Me.Panel26.Size = New System.Drawing.Size(88, 48)
         Me.Panel26.TabIndex = 29
@@ -488,7 +500,7 @@ Partial Class ChildFacturacion
         Me.Panel27.Controls.Add(Me.Label27)
         Me.Panel27.Location = New System.Drawing.Point(16, 71)
         Me.Panel27.Name = "Panel27"
-        Me.Panel27.Size = New System.Drawing.Size(298, 48)
+        Me.Panel27.Size = New System.Drawing.Size(352, 48)
         Me.Panel27.TabIndex = 28
         '
         'txtObservaciones
@@ -496,7 +508,7 @@ Partial Class ChildFacturacion
         Me.txtObservaciones.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtObservaciones.Location = New System.Drawing.Point(6, 23)
         Me.txtObservaciones.Name = "txtObservaciones"
-        Me.txtObservaciones.Size = New System.Drawing.Size(286, 20)
+        Me.txtObservaciones.Size = New System.Drawing.Size(341, 20)
         Me.txtObservaciones.TabIndex = 39
         '
         'Label27
@@ -512,7 +524,7 @@ Partial Class ChildFacturacion
         '
         Me.Panel28.Controls.Add(Me.txtValorReferencial)
         Me.Panel28.Controls.Add(Me.Label28)
-        Me.Panel28.Location = New System.Drawing.Point(336, 13)
+        Me.Panel28.Location = New System.Drawing.Point(186, 13)
         Me.Panel28.Name = "Panel28"
         Me.Panel28.Size = New System.Drawing.Size(88, 48)
         Me.Panel28.TabIndex = 27
@@ -537,7 +549,7 @@ Partial Class ChildFacturacion
         '
         Me.Panel29.Controls.Add(Me.txtConfVehicular)
         Me.Panel29.Controls.Add(Me.Label29)
-        Me.Panel29.Location = New System.Drawing.Point(164, 13)
+        Me.Panel29.Location = New System.Drawing.Point(89, 13)
         Me.Panel29.Name = "Panel29"
         Me.Panel29.Size = New System.Drawing.Size(91, 48)
         Me.Panel29.TabIndex = 26
@@ -588,23 +600,23 @@ Partial Class ChildFacturacion
         '
         Me.Panel24.Controls.Add(Me.txtDestino)
         Me.Panel24.Controls.Add(Me.Label25)
-        Me.Panel24.Location = New System.Drawing.Point(589, 406)
+        Me.Panel24.Location = New System.Drawing.Point(374, 71)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(460, 48)
+        Me.Panel24.Size = New System.Drawing.Size(88, 48)
         Me.Panel24.TabIndex = 46
         '
         'txtDestino
         '
         Me.txtDestino.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtDestino.Location = New System.Drawing.Point(14, 23)
+        Me.txtDestino.Location = New System.Drawing.Point(6, 23)
         Me.txtDestino.Name = "txtDestino"
-        Me.txtDestino.Size = New System.Drawing.Size(430, 20)
+        Me.txtDestino.Size = New System.Drawing.Size(77, 20)
         Me.txtDestino.TabIndex = 43
         '
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(14, 5)
+        Me.Label25.Location = New System.Drawing.Point(3, 7)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(55, 13)
         Me.Label25.TabIndex = 42
@@ -614,23 +626,23 @@ Partial Class ChildFacturacion
         '
         Me.Panel23.Controls.Add(Me.txtOrigen)
         Me.Panel23.Controls.Add(Me.Label24)
-        Me.Panel23.Location = New System.Drawing.Point(64, 406)
+        Me.Panel23.Location = New System.Drawing.Point(374, 13)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(498, 48)
+        Me.Panel23.Size = New System.Drawing.Size(88, 48)
         Me.Panel23.TabIndex = 45
         '
         'txtOrigen
         '
         Me.txtOrigen.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtOrigen.Location = New System.Drawing.Point(14, 23)
+        Me.txtOrigen.Location = New System.Drawing.Point(3, 23)
         Me.txtOrigen.Name = "txtOrigen"
-        Me.txtOrigen.Size = New System.Drawing.Size(451, 20)
+        Me.txtOrigen.Size = New System.Drawing.Size(80, 20)
         Me.txtOrigen.TabIndex = 43
         '
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(14, 5)
+        Me.Label24.Location = New System.Drawing.Point(3, 5)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(49, 13)
         Me.Label24.TabIndex = 42
@@ -638,16 +650,16 @@ Partial Class ChildFacturacion
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(1055, 404)
+        Me.Button6.Location = New System.Drawing.Point(906, 344)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(173, 48)
+        Me.Button6.Size = New System.Drawing.Size(173, 35)
         Me.Button6.TabIndex = 47
         Me.Button6.Text = "AGREGAR"
         Me.Button6.UseVisualStyleBackColor = True
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(590, 475)
+        Me.Button9.Location = New System.Drawing.Point(523, 405)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(143, 37)
         Me.Button9.TabIndex = 48
@@ -665,38 +677,47 @@ Partial Class ChildFacturacion
         '
         'Button10
         '
-        Me.Button10.Location = New System.Drawing.Point(407, 475)
+        Me.Button10.Location = New System.Drawing.Point(364, 405)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(122, 37)
         Me.Button10.TabIndex = 49
         Me.Button10.Text = "GUARDAR"
         Me.Button10.UseVisualStyleBackColor = True
         '
-        'lbPlaca
+        'Label2
         '
-        Me.lbPlaca.FormattingEnabled = True
-        Me.lbPlaca.Location = New System.Drawing.Point(17, 37)
-        Me.lbPlaca.Name = "lbPlaca"
-        Me.lbPlaca.Size = New System.Drawing.Size(156, 108)
-        Me.lbPlaca.TabIndex = 5
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(44, 417)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(85, 13)
+        Me.Label2.TabIndex = 50
+        Me.Label2.Text = "Total de Factura"
+        '
+        'txtPrecioFactura
+        '
+        Me.txtPrecioFactura.Location = New System.Drawing.Point(135, 414)
+        Me.txtPrecioFactura.Name = "txtPrecioFactura"
+        Me.txtPrecioFactura.ReadOnly = True
+        Me.txtPrecioFactura.Size = New System.Drawing.Size(100, 20)
+        Me.txtPrecioFactura.TabIndex = 51
         '
         'ChildFacturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 524)
+        Me.Controls.Add(Me.txtPrecioFactura)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button6)
-        Me.Controls.Add(Me.Panel24)
-        Me.Controls.Add(Me.Panel23)
         Me.Controls.Add(Me.Panel25)
         Me.Controls.Add(Me.Panel16)
         Me.Controls.Add(Me.Panel15)
         Me.Controls.Add(Me.Panel14)
         Me.Controls.Add(Me.Label15)
-        Me.Controls.Add(Me.txtDescripcionGuia)
+        Me.Controls.Add(Me.txtDescripcionDetalle)
         Me.Controls.Add(Me.cbTipoServicio)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.cbAccionGuia)
@@ -762,7 +783,7 @@ Partial Class ChildFacturacion
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label15 As Label
-    Friend WithEvents txtDescripcionGuia As TextBox
+    Friend WithEvents txtDescripcionDetalle As TextBox
     Friend WithEvents cbTipoServicio As ComboBox
     Friend WithEvents Label13 As Label
     Friend WithEvents cbAccionGuia As ComboBox
@@ -810,4 +831,6 @@ Partial Class ChildFacturacion
     Friend WithEvents cbGuia As ComboBox
     Friend WithEvents txtRemitente As TextBox
     Friend WithEvents lbPlaca As ListBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents txtPrecioFactura As TextBox
 End Class
