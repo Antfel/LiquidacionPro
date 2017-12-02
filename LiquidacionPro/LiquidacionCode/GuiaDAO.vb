@@ -34,8 +34,12 @@ Public Class GuiaDAO
         sqlControl.rollbackTransaccion()
     End Sub
 
-    Public Function getGuia() As DataTable
-        Return sqlControl.ExecQuery("SELECT CODIGO_GUIA, DETALLE_GUIA, CODIGO_ESTADO From GUIA_TRANSPORTISTA WHERE CODIGO_ESTADO = 8", Nothing)
+    Public Function getGuiaPendLiquidacion() As DataTable
+        Return sqlControl.ExecQuery("SELECT CODIGO_GUIA, DETALLE_GUIA, CODIGO_ESTADO From GUIA_TRANSPORTISTA WHERE CODIGO_ESTADO = 8 OR CODIGO_ESTADO = 17", Nothing)
+    End Function
+
+    Public Function getGuiaPendFacturacion() As DataTable
+        Return sqlControl.ExecQuery("SELECT CODIGO_GUIA, DETALLE_GUIA, CODIGO_ESTADO From GUIA_TRANSPORTISTA WHERE CODIGO_ESTADO = 7 OR CODIGO_ESTADO = 17", Nothing)
     End Function
 
     Public Sub InsertLiquidacion(detalleGuia As String, estado As Integer)
@@ -50,8 +54,13 @@ Public Class GuiaDAO
     End Sub
 
     Public Function getGuiaByNroGuia(nro_guia As String) As DataTable
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@NRO_GUIA", nro_guia))
+        Return sqlControl.ExecQuery("SELECT CODIGO_GUIA, DETALLE_GUIA, CODIGO_ESTADO From GUIA_TRANSPORTISTA WHERE DETALLE_GUIA = @NRO_GUIA", params)
 
-        Return sqlControl.ExecQuery("SELECT CODIGO_GUIA, DETALLE_GUIA, CODIGO_ESTADO From GUIA_TRANSPORTISTA WHERE DETALLE_GUIA = " + nro_guia, Nothing)
+        SQL.ExecQuery("SELECT CODIGO_GUIA, DETALLE_GUIA, CODIGO_ESTADO From GUIA_TRANSPORTISTA WHERE DETALLE_GUIA = " + nro_guia)
+
+        Return SQL.DBT
 
     End Function
 
