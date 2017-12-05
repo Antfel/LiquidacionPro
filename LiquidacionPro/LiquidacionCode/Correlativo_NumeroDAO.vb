@@ -34,6 +34,30 @@ Public Class Correlativo_NumeroDAO
         sqlControl.rollbackTransaccion()
     End Sub
 
+    Public Function GetAllCorrelativo() As DataTable
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("select		CODIGO_CORRELATIVO,
+			                                    DESCRIPCION
+                                    from		CORRELATIVO
+                                    order by	codigo_correlativo asc", Nothing)
+
+        Return dt
+    End Function
+
+    Public Function GetAllCorrelativoNumeroByCorrelativo(codigo As Integer) As DataTable
+
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("select		CODIGO_CORRELATIVO,
+                                                DETALLE_CORRELATIVO,
+			                                    SERIE,
+			                                    ULTIMO_USADO
+                                    from		CORRELATIVO_NUMERO
+                                    where		CODIGO_CORRELATIVO=" + CStr(codigo) + "
+                                    order by	codigo_correlativo asc", Nothing)
+
+        Return dt
+    End Function
+
     Public Function GetSiguienteCorrelativo(codigo_correlativo As Integer, serie As String) As String
 
         Dim params As New List(Of SqlParameter)
@@ -51,6 +75,51 @@ Public Class Correlativo_NumeroDAO
         Else
             Return "-"
         End If
+    End Function
+
+    Public Function updateCorrelativoNumero(codigo_correlativo As Integer, serie As String) As DataTable
+
+
+
+        Dim dt As DataTable
+
+        dt = sqlControl.ExecQuery("select		CODIGO_CORRELATIVO,
+			                                    SERIE,
+			                                    ULTIMO_USADO
+                                    from		CORRELATIVO_NUMERO
+                                    where		CODIGO_CORRELATIVO=" + CStr(codigo_correlativo) + "
+			                                    and SERIE='" + serie + "'
+                                    order by	codigo_correlativo asc", Nothing)
+        Return dt
+
+    End Function
+
+    Public Function GetCorrelativoNumeroByCodigoSerie(codigo_correlativo As Integer, serie As String,
+                                                      ultimo As String) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_CORRELATIVO", codigo_correlativo))
+        params.Add(New SqlParameter("@SERIE", serie))
+        params.Add(New SqlParameter("@ULTIMO_USADO", ultimo))
+
+        Dim dt As DataTable
+
+        dt = sqlControl.ExecQuery("EXECUTE updateCorrelativoNumero 
+                                        @CODIGO_CORRELATIVO,
+                                        @SERIE,
+                                        @ULTIMO_USADO", params)
+
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+
     End Function
 
 End Class

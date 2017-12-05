@@ -57,7 +57,6 @@ Public Class GuiaDAO
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@NRO_GUIA", nro_guia))
         Return sqlControl.ExecQuery("SELECT CODIGO_GUIA, DETALLE_GUIA, CODIGO_ESTADO From GUIA_TRANSPORTISTA WHERE DETALLE_GUIA = @NRO_GUIA", params)
-
     End Function
 
 End Class
