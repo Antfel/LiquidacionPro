@@ -52,13 +52,11 @@ Partial Class ChildFacturacion
         Me.Panel15 = New System.Windows.Forms.Panel()
         Me.txtRemitente = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.lbRemitente = New System.Windows.Forms.ListBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.cbTracto = New System.Windows.Forms.ComboBox()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.lbPlaca = New System.Windows.Forms.ListBox()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Panel25 = New System.Windows.Forms.Panel()
@@ -74,12 +72,12 @@ Partial Class ChildFacturacion
         Me.Panel29 = New System.Windows.Forms.Panel()
         Me.txtConfVehicular = New System.Windows.Forms.TextBox()
         Me.Label29 = New System.Windows.Forms.Label()
-        Me.Panel30 = New System.Windows.Forms.Panel()
-        Me.txtCantidad = New System.Windows.Forms.TextBox()
-        Me.Label30 = New System.Windows.Forms.Label()
         Me.Panel24 = New System.Windows.Forms.Panel()
         Me.txtDestino = New System.Windows.Forms.TextBox()
         Me.Label25 = New System.Windows.Forms.Label()
+        Me.Panel30 = New System.Windows.Forms.Panel()
+        Me.txtCantidad = New System.Windows.Forms.TextBox()
+        Me.Label30 = New System.Windows.Forms.Label()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.txtOrigen = New System.Windows.Forms.TextBox()
         Me.Label24 = New System.Windows.Forms.Label()
@@ -89,6 +87,8 @@ Partial Class ChildFacturacion
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtPrecioFactura = New System.Windows.Forms.TextBox()
+        Me.tbRemitente = New System.Windows.Forms.DataGridView()
+        Me.tbPlaca = New System.Windows.Forms.DataGridView()
         Me.Panel1.SuspendLayout()
         Me.Panel14.SuspendLayout()
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,9 +99,11 @@ Partial Class ChildFacturacion
         Me.Panel27.SuspendLayout()
         Me.Panel28.SuspendLayout()
         Me.Panel29.SuspendLayout()
-        Me.Panel30.SuspendLayout()
         Me.Panel24.SuspendLayout()
+        Me.Panel30.SuspendLayout()
         Me.Panel23.SuspendLayout()
+        CType(Me.tbRemitente, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbPlaca, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -336,21 +338,25 @@ Partial Class ChildFacturacion
         '
         'tbTransportista
         '
+        Me.tbTransportista.AllowUserToAddRows = False
+        Me.tbTransportista.AllowUserToDeleteRows = False
         Me.tbTransportista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.tbTransportista.ColumnHeadersVisible = False
-        Me.tbTransportista.Location = New System.Drawing.Point(14, 37)
+        Me.tbTransportista.Location = New System.Drawing.Point(17, 37)
         Me.tbTransportista.MultiSelect = False
         Me.tbTransportista.Name = "tbTransportista"
         Me.tbTransportista.ReadOnly = True
         Me.tbTransportista.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.tbTransportista.Size = New System.Drawing.Size(176, 108)
+        Me.tbTransportista.RowHeadersVisible = False
+        Me.tbTransportista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.tbTransportista.Size = New System.Drawing.Size(173, 108)
         Me.tbTransportista.TabIndex = 10
         '
         'Panel15
         '
+        Me.Panel15.Controls.Add(Me.tbRemitente)
         Me.Panel15.Controls.Add(Me.txtRemitente)
         Me.Panel15.Controls.Add(Me.Label17)
-        Me.Panel15.Controls.Add(Me.lbRemitente)
         Me.Panel15.Controls.Add(Me.Button2)
         Me.Panel15.Controls.Add(Me.Button5)
         Me.Panel15.Location = New System.Drawing.Point(324, 205)
@@ -374,14 +380,6 @@ Partial Class ChildFacturacion
         Me.Label17.TabIndex = 6
         Me.Label17.Text = "REMITENTE"
         '
-        'lbRemitente
-        '
-        Me.lbRemitente.FormattingEnabled = True
-        Me.lbRemitente.Location = New System.Drawing.Point(17, 37)
-        Me.lbRemitente.Name = "lbRemitente"
-        Me.lbRemitente.Size = New System.Drawing.Size(176, 108)
-        Me.lbRemitente.TabIndex = 5
-        '
         'Button2
         '
         Me.Button2.Location = New System.Drawing.Point(199, 64)
@@ -402,9 +400,9 @@ Partial Class ChildFacturacion
         '
         'Panel16
         '
+        Me.Panel16.Controls.Add(Me.tbPlaca)
         Me.Panel16.Controls.Add(Me.cbTracto)
         Me.Panel16.Controls.Add(Me.Label18)
-        Me.Panel16.Controls.Add(Me.lbPlaca)
         Me.Panel16.Controls.Add(Me.Button7)
         Me.Panel16.Controls.Add(Me.Button8)
         Me.Panel16.Location = New System.Drawing.Point(589, 205)
@@ -428,14 +426,6 @@ Partial Class ChildFacturacion
         Me.Label18.Size = New System.Drawing.Size(41, 13)
         Me.Label18.TabIndex = 6
         Me.Label18.Text = "PLACA"
-        '
-        'lbPlaca
-        '
-        Me.lbPlaca.FormattingEnabled = True
-        Me.lbPlaca.Location = New System.Drawing.Point(17, 37)
-        Me.lbPlaca.Name = "lbPlaca"
-        Me.lbPlaca.Size = New System.Drawing.Size(156, 108)
-        Me.lbPlaca.TabIndex = 5
         '
         'Button7
         '
@@ -571,31 +561,6 @@ Partial Class ChildFacturacion
         Me.Label29.TabIndex = 34
         Me.Label29.Text = "CONF. VEH."
         '
-        'Panel30
-        '
-        Me.Panel30.Controls.Add(Me.txtCantidad)
-        Me.Panel30.Controls.Add(Me.Label30)
-        Me.Panel30.Location = New System.Drawing.Point(16, 13)
-        Me.Panel30.Name = "Panel30"
-        Me.Panel30.Size = New System.Drawing.Size(67, 48)
-        Me.Panel30.TabIndex = 25
-        '
-        'txtCantidad
-        '
-        Me.txtCantidad.Location = New System.Drawing.Point(6, 23)
-        Me.txtCantidad.Name = "txtCantidad"
-        Me.txtCantidad.Size = New System.Drawing.Size(54, 20)
-        Me.txtCantidad.TabIndex = 33
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(3, 5)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(62, 13)
-        Me.Label30.TabIndex = 32
-        Me.Label30.Text = "CANTIDAD"
-        '
         'Panel24
         '
         Me.Panel24.Controls.Add(Me.txtDestino)
@@ -621,6 +586,31 @@ Partial Class ChildFacturacion
         Me.Label25.Size = New System.Drawing.Size(55, 13)
         Me.Label25.TabIndex = 42
         Me.Label25.Text = "DESTINO"
+        '
+        'Panel30
+        '
+        Me.Panel30.Controls.Add(Me.txtCantidad)
+        Me.Panel30.Controls.Add(Me.Label30)
+        Me.Panel30.Location = New System.Drawing.Point(16, 13)
+        Me.Panel30.Name = "Panel30"
+        Me.Panel30.Size = New System.Drawing.Size(67, 48)
+        Me.Panel30.TabIndex = 25
+        '
+        'txtCantidad
+        '
+        Me.txtCantidad.Location = New System.Drawing.Point(6, 23)
+        Me.txtCantidad.Name = "txtCantidad"
+        Me.txtCantidad.Size = New System.Drawing.Size(54, 20)
+        Me.txtCantidad.TabIndex = 33
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(3, 5)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(62, 13)
+        Me.Label30.TabIndex = 32
+        Me.Label30.Text = "CANTIDAD"
         '
         'Panel23
         '
@@ -701,6 +691,33 @@ Partial Class ChildFacturacion
         Me.txtPrecioFactura.Size = New System.Drawing.Size(100, 20)
         Me.txtPrecioFactura.TabIndex = 51
         '
+        'tbRemitente
+        '
+        Me.tbRemitente.AllowUserToAddRows = False
+        Me.tbRemitente.AllowUserToDeleteRows = False
+        Me.tbRemitente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.tbRemitente.ColumnHeadersVisible = False
+        Me.tbRemitente.Location = New System.Drawing.Point(17, 37)
+        Me.tbRemitente.MultiSelect = False
+        Me.tbRemitente.Name = "tbRemitente"
+        Me.tbRemitente.RowHeadersVisible = False
+        Me.tbRemitente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.tbRemitente.Size = New System.Drawing.Size(176, 108)
+        Me.tbRemitente.TabIndex = 10
+        '
+        'tbPlaca
+        '
+        Me.tbPlaca.AllowUserToAddRows = False
+        Me.tbPlaca.AllowUserToDeleteRows = False
+        Me.tbPlaca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.tbPlaca.ColumnHeadersVisible = False
+        Me.tbPlaca.Location = New System.Drawing.Point(17, 37)
+        Me.tbPlaca.MultiSelect = False
+        Me.tbPlaca.Name = "tbPlaca"
+        Me.tbPlaca.RowHeadersVisible = False
+        Me.tbPlaca.Size = New System.Drawing.Size(156, 108)
+        Me.tbPlaca.TabIndex = 10
+        '
         'ChildFacturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -756,12 +773,14 @@ Partial Class ChildFacturacion
         Me.Panel28.PerformLayout()
         Me.Panel29.ResumeLayout(False)
         Me.Panel29.PerformLayout()
-        Me.Panel30.ResumeLayout(False)
-        Me.Panel30.PerformLayout()
         Me.Panel24.ResumeLayout(False)
         Me.Panel24.PerformLayout()
+        Me.Panel30.ResumeLayout(False)
+        Me.Panel30.PerformLayout()
         Me.Panel23.ResumeLayout(False)
         Me.Panel23.PerformLayout()
+        CType(Me.tbRemitente, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbPlaca, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -830,7 +849,8 @@ Partial Class ChildFacturacion
     Friend WithEvents cbTracto As ComboBox
     Friend WithEvents cbGuia As ComboBox
     Friend WithEvents txtRemitente As TextBox
-    Friend WithEvents lbPlaca As ListBox
     Friend WithEvents Label2 As Label
     Friend WithEvents txtPrecioFactura As TextBox
+    Friend WithEvents tbRemitente As DataGridView
+    Friend WithEvents tbPlaca As DataGridView
 End Class
