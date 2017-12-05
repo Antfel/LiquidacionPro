@@ -92,6 +92,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formularios\ChildCorrelativo.Designer.vb">
+      <DependentUpon>ChildCorrelativo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildCorrelativo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\ChildFacturacion.Designer.vb">
       <DependentUpon>ChildFacturacion.vb</DependentUpon>
     </Compile>
@@ -153,6 +159,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Formularios\ChildCorrelativo.resx">
+      <DependentUpon>ChildCorrelativo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ChildFacturacion.resx">
       <DependentUpon>ChildFacturacion.vb</DependentUpon>
     </EmbeddedResource>

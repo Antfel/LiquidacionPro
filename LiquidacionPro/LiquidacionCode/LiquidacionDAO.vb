@@ -108,13 +108,13 @@ Public Class LiquidacionDAO
                         ORDER BY	CODIGO_LIQUIDACION ASC", Nothing)
     End Function
 
-    Public Sub InsertLiquidacion(nroLiquidacion As String, trabajador As Object, guia As Object,
+    Public Function InsertLiquidacion(nroLiquidacion As String, trabajador As Object, guia As Object,
                                  tracto As Object, camabaja As Object, origen As String,
                                  destino As String, salida As Date, llegada As Date,
                                  dinero As Long, peajes As Long, viaticos As Long,
                                  guardiania As Long, hospedaje As Long, balanaza As Long,
                                  otros As Long, fisico As Long, virtual As Long,
-                                 estado As Object)
+                                 estado As Object) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@NUMERO_LIQUIDACION", nroLiquidacion))
@@ -137,8 +137,8 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@CONSUMO_VIRTUAL_LIQUIDACION", nroLiquidacion))
         params.Add(New SqlParameter("@CODIGO_ESTADO", estado))
 
-
-        sqlControl.ExecQuery("EXECUTE insertLiquidacion 
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE insertLiquidacion 
                                         @NUMERO_LIQUIDACION,
                                         @CODIGO_TRABAJADOR,
                                         @CODIGO_GUIA,
@@ -158,15 +158,27 @@ Public Class LiquidacionDAO
                                         @CONSUMO_FISICO_LIQUIDACION,
                                         @CONSUMO_VIRTUAL_LIQUIDACION,
                                         @CODIGO_ESTADO", params)
-    End Sub
 
-    Public Sub UpdateLiquidacion(codigo As String, nroLiquidacion As String, trabajador As Object, guia As Object,
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+
+    End Function
+
+    Public Function UpdateLiquidacion(codigo As String, nroLiquidacion As String, trabajador As Object, guia As Object,
                                  tracto As Object, camabaja As Object, origen As String,
                                  destino As String, salida As Date, llegada As Date,
                                  dinero As Long, peajes As Long, viaticos As Long,
                                  guardiania As Long, hospedaje As Long, balanaza As Long,
                                  otros As Long, fisico As Long, virtual As Long,
-                                 estado As Object)
+                                 estado As Object) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
@@ -190,7 +202,8 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@CONSUMO_VIRTUAL_LIQUIDACION", nroLiquidacion))
         params.Add(New SqlParameter("@CODIGO_ESTADO", estado))
 
-        sqlControl.ExecQuery("EXECUTE updateLiquidacion 
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE updateLiquidacion 
                                         @CODIGO_LIQUIDACION,
                                         @NUMERO_LIQUIDACION,
                                         @CODIGO_TRABAJADOR,
@@ -211,5 +224,15 @@ Public Class LiquidacionDAO
                                         @CONSUMO_FISICO_LIQUIDACION,
                                         @CONSUMO_VIRTUAL_LIQUIDACION,
                                         @CODIGO_ESTADO", params)
-    End Sub
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+    End Function
 End Class

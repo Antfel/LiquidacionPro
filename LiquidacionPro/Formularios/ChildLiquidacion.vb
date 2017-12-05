@@ -20,27 +20,50 @@
         sqlControl.openConexion()
 
         If txtCodigoLiquidacion.Text = Nothing Then
-            liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
-                                         cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
-                                         txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
-                                         CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
-                                         CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
-                                         CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
-                                         cbEstado.SelectedValue)
+            Try
+                Dim correla As Integer
+
+                correla = liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue,
+                                                           cbGuia.SelectedValue,
+                                             cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
+                                             txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
+                                             CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
+                                             CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
+                                             CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text),
+                                                           CLng(txtCombustibleVirtual.Text),
+                                             cbEstado.SelectedValue)
+                If correla >= 0 Then
+                    txtCodigoLiquidacion.Text = CStr(correla)
+                    MsgBox("Liquidación " + proceso + " correctamente")
+                End If
+            Catch excep As Exception
+                MsgBox("Error. Verifique")
+            Finally
+
+            End Try
         Else
-            liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
+            Try
+                liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
                                          cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
                                          txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
                                          CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
                                          CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
                                          CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
                                          cbEstado.SelectedValue)
+                MsgBox("Liquidación " + proceso + " correctamente")
+            Catch excep As Exception
+                MsgBox("Error. Verifique")
+            Finally
+
+            End Try
+
+
         End If
         sqlControl.closeConexion()
 
         actualizarListaLiquidacion()
 
-        MsgBox("Liquidación " + proceso + " correctamente")
+
 
     End Sub
 

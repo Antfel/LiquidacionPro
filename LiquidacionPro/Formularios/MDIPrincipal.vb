@@ -24,4 +24,10 @@ Public Class MDIPrincipal
         guiaChild.MdiParent = Me
         guiaChild.Show()
     End Sub
+
+    Private Sub CorrelativosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CorrelativosToolStripMenuItem.Click
+        Dim correlativoChild As New ChildCorrelativo()
+        correlativoChild.MdiParent = Me
+        correlativoChild.Show()
+    End Sub
 End Class
