@@ -110,6 +110,11 @@
 
     Private Sub ChildFacturacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+
+
         txtRUC.ReadOnly = True
         txtDireccion.ReadOnly = True
         txtTelefono.ReadOnly = True
@@ -129,9 +134,11 @@
         data.Columns.Add("pre_uni")
         data.Columns.Add("origen")
         data.Columns.Add("destino")
-        data.Columns.Add("lista_Transportista")
-        data.Columns.Add("lista_Remision")
-        data.Columns.Add("lista_Placa")
+        data.Columns.Add("lista_Transportista", GetType(DataTable))
+        data.Columns.Add("lista_Remision", GetType(DataTable))
+        data.Columns.Add("lista_Placa", GetType(DataTable))
+
+        LbNroFactura.Text = "Nro. Factura "
 
 
         'colum = New DataColumn()
@@ -245,19 +252,45 @@
     End Sub
 
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
-        lbRemitente.Items.Add(txtRemitente.Text)
+        Dim data As New DataTable
+        Dim row As DataRow
+
+        data.Columns.Add("Numero_de_Guia")
+
+        If Not tbRemitente.DataSource Is Nothing Then
+            data = tbRemitente.DataSource
+        End If
+
+        row = data.NewRow()
+        row("Numero_de_Guia") = txtRemitente.Text
+
+        data.Rows.Add(row)
+        tbRemitente.DataSource = data
     End Sub
 
     Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles Button5.Click
-        lbRemitente.Items.RemoveAt(lbRemitente.SelectedIndex)
+
     End Sub
 
     Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles Button7.Click
-        lbPlaca.Items.Add(cbTracto.Text)
+        Dim data As New DataTable
+        Dim row As DataRow
+
+        data.Columns.Add("Placa")
+
+        If Not tbPlaca.DataSource Is Nothing Then
+            data = tbPlaca.DataSource
+        End If
+
+        row = data.NewRow()
+        row("Placa") = cbTracto.Text
+
+        data.Rows.Add(row)
+        tbPlaca.DataSource = data
     End Sub
 
     Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles Button8.Click
-        lbPlaca.Items.RemoveAt(lbPlaca.SelectedIndex)
+
     End Sub
 
     Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles Button6.Click
@@ -274,15 +307,14 @@
         row("pre_uni") = txtPrecioUnitario.Text
         row("origen") = txtOrigen.Text
         row("destino") = txtDestino.Text
-        row("lista_Transportista") = tbTransportista.DataSource
-        row("lista_Remision") = lbRemitente.DataSource
-        row("lista_Placa") = lbPlaca.DataSource
+        Dim dataTempTransportista As DataTable = CType(tbTransportista.DataSource, DataTable)
+        row("lista_Transportista") = dataTempTransportista
+        Dim dataTemRemitente As DataTable = CType(tbRemitente.DataSource, DataTable)
+        row("lista_Remision") = dataTemRemitente
+        Dim dataTemPlaca As DataTable = CType(tbPlaca.DataSource, DataTable)
+        row("lista_Placa") = dataTemPlaca
 
         data.Rows.Add(row)
-        gvDetalle.DataSource = data
-        MsgBox(CStr(data.Rows.Count))
-
-
 
         txtPrecioFactura.Text = Convert.ToDouble(txtCantidad.Text) * Convert.ToDouble(txtPrecioUnitario.Text)
 
@@ -298,7 +330,6 @@
 
         Try
             sqlControl.beginTransaction()
-            'facturacionDao.InsertFactura("0001", "00154", cbRazonSocial.SelectedValue,)
 
 
         Catch ex As Exception
@@ -331,6 +362,30 @@
         txtPrecioUnitario.Text = ""
         txtOrigen.Text = ""
         txtDestino.Text = ""
+        cbTracto.SelectedIndex = -1
+        cbGuia.SelectedIndex = -1
+        txtRemitente.Text = ""
+        'Try
+        '    If tbTransportista.Rows.Count > 0 Then
+        '        tbTransportista.Rows.Clear()
+        '    End If
+
+        'Catch ex As Exception
+        '    Console.WriteLine(ex.Message)
+        'End Try
+
+        Dim dt As New DataTable
+        dt.Columns.Add("Codigo")
+        dt.Columns.Add("Numero_de_Guia")
+        tbTransportista.DataSource = dt
+
+        Dim dtGuia As New DataTable
+        dtGuia.Columns.Add("Numero_de_Guia")
+        tbRemitente.DataSource = dtGuia
+
+        Dim dtPlaca As New DataTable
+        dtPlaca.Columns.Add("Placa")
+        tbPlaca.DataSource = dtPlaca
 
     End Sub
 
@@ -349,9 +404,20 @@
             txtPrecioUnitario.Text = row.Item("pre_uni")
             txtOrigen.Text = row.Item("origen")
             txtDestino.Text = row.Item("destino")
-            tbTransportista.DataSource = row.Item("lista_Transportista")
-            lbRemitente.DataSource = row.Item("lista_Remision")
-            lbPlaca.DataSource = row.Item("lista_Placa")
+            tbTransportista.DataSource = CType(row.Item("lista_Transportista"), DataTable)
+            tbRemitente.DataSource = CType(row.Item("lista_Remision"), DataTable)
+            tbPlaca.DataSource = CType(row.Item("lista_Placa"), DataTable)
+
+
+            'lbPlaca.DataSource = CType(row.Item("lista_Placa"), ListBox.ObjectCollection)
+            'Dim dataTempRemision As ListBox.ObjectCollection
+            'dataTempRemision = row.Item("lista_Remision")
+
+            'For x As Integer = 0 To dataTempRemision.Count
+            '    lbRemitente.Items.Add(dataTempRemision.Item(x))
+            'Next
+
+            'lbPlaca.DataSource = row.Item("lista_Placa")
 
             'TextBox18.Text = IDT(P, 1)
             'If (CNTG(P, 0) <> 0) Then
@@ -402,5 +468,9 @@
 
     Private Sub Button11_Click(sender As Object, e As EventArgs)
         MsgBox(data.Rows(0)(6).ToString)
+    End Sub
+
+    Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click
+
     End Sub
 End Class

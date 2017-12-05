@@ -253,7 +253,7 @@
         cbEstado.SelectedIndex = -1
     End Sub
 
+    Private Sub dgvLiquidacion_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvLiquidacion.CellContentClick
 
-
-
+    End Sub
 End Class
