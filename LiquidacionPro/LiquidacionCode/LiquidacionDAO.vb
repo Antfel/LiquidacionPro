@@ -2,7 +2,7 @@
 Imports System.Data.SqlClient
 Public Class LiquidacionDAO
 
-    Dim DBcon As SqlConnection
+    Dim DBcon As New SqlConnection
     Dim DBcmd As SqlCommand
     Dim sqlControl As SQLControl
 

@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Public Class SQLControl
     Private DBcon As New SqlConnection
-    Private DBcmd As New SqlCommand
+    Private DBcmd As SqlCommand
     'Public DBDA As SqlDataAdapter
     'Public DBT As DataTable
     'Public Params As New List(Of SqlParameter)
@@ -68,7 +68,9 @@ Public Class SQLControl
 
         Try
             'DBcon.Open()
-            DBcmd = New SqlCommand(Query, DBcon)
+            'DBcmd = New SqlCommand(Query, DBcon)
+            DBcmd.CommandText = Query
+
             If Not params Is Nothing Then
                 params.ForEach(Sub(p) DBcmd.Parameters.Add(p))
                 'Params.Clear()

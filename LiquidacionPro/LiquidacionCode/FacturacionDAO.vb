@@ -1,7 +1,7 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
 Public Class FacturacionDAO
-    Dim DBcon As SqlConnection
+    Dim DBcon As New SqlConnection
     Dim DBcmd As SqlCommand
     Dim sqlControl As SQLControl
 
@@ -191,7 +191,7 @@ Public Class FacturacionDAO
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
         params.Add(New SqlParameter("@CODIGO_GUIA", codigo_guia))
 
-        sqlControl.ExecQuery("EXECUTE insertFacturaDetalle " +
+        sqlControl.ExecQuery("EXECUTE insertFacturaDetalleGuia " +
                                         "@CODIGO_DETALLE_FACTURA," +
                                         "@CODIGO_FACTURA," +
                                         "@CODIGO_GUIA ", params)

@@ -130,7 +130,7 @@
             serie = txtSerie.Text
             ultimo = txtUltimoUsado.Text
 
-            flag = correlativo_numero.GetCorrelativoNumeroByCodigoSerie(codigo, serie, ultimo)
+            flag = correlativo_numero.updateCorrelativoNumero(codigo, serie, ultimo)
 
             If flag > 0 Then
                 MsgBox("Grabación exitosa.")

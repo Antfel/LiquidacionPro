@@ -116,6 +116,9 @@
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         sqlControl.openConexion()
+        sqlControl.beginTransaction()
+
+        liquidacionDao.setDBcmd()
 
         Dim dt As DataTable
 

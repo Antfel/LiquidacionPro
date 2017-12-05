@@ -1,62 +1,49 @@
 ﻿Public Class ChildFacturacion
     Dim gvDetalle As New DataGridView
     Dim data As DataTable
+    Dim correlativo As String
 
-    Private Sub Label8_Click(sender As Object, e As EventArgs) Handles Label8.Click
-
-    End Sub
-
-    Private Sub Button6_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Button7_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Button8_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Button5_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs)
-
-    End Sub
     Private Sub actualizarDatosCliente()
 
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
 
         Dim clienteDao As New ClienteDAO(sqlControl)
-        Dim dtCliente As DataTable
 
-        dtCliente = clienteDao.GetClientes
+        Try
+            sqlControl.openConexion()
 
-        With cbRazonSocial
-            .DataSource = dtCliente
-            .DisplayMember = "RAZON_CLIENTE"
-            .ValueMember = "CODIGO_CLIENTE"
-            .DropDownStyle = ComboBoxStyle.Simple
-            .AutoCompleteMode = AutoCompleteMode.SuggestAppend
-            .AutoCompleteSource = AutoCompleteSource.ListItems
-            .SelectedIndex = -1
+            sqlControl.beginTransaction()
 
-        End With
+            clienteDao.setDBcmd()
+
+            Dim dtCliente As DataTable
+
+            dtCliente = clienteDao.GetClientes
+
+            sqlControl.commitTransaction()
+            sqlControl.closeConexion()
+
+
+            With cbRazonSocial
+                .DataSource = dtCliente
+                .DisplayMember = "RAZON_CLIENTE"
+                .ValueMember = "CODIGO_CLIENTE"
+                .DropDownStyle = ComboBoxStyle.Simple
+                .AutoCompleteMode = AutoCompleteMode.SuggestAppend
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+
+            End With
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+
+        Finally
+            sqlControl.closeConexion()
+        End Try
+
+
+
         '    cbRazonSocial.SelectedValue = -1
     End Sub
 
@@ -65,22 +52,59 @@
         sqlControl.setConnection()
 
         Dim unidadDao As New UnidadDAO(sqlControl)
-        sqlControl.openConexion()
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            unidadDao.setDBcmd()
 
-        Dim dtUnidad As DataTable
+            Dim dtUnidad As DataTable
 
-        dtUnidad = unidadDao.getUnidadTractos
+            dtUnidad = unidadDao.getUnidadTractos
 
-        With cbTracto
-            .DataSource = dtUnidad
-            .DisplayMember = "PLACA_UNIDAD"
-            .ValueMember = "CODIGO_UNIDAD"
-            .DropDownStyle = ComboBoxStyle.Simple
-            .AutoCompleteMode = AutoCompleteMode.Suggest
-            .AutoCompleteSource = AutoCompleteSource.ListItems
-            .SelectedIndex = -1
-        End With
-        sqlControl.closeConexion()
+            With cbTracto
+                .DataSource = dtUnidad
+                .DisplayMember = "PLACA_UNIDAD"
+                .ValueMember = "CODIGO_UNIDAD"
+                .DropDownStyle = ComboBoxStyle.Simple
+                .AutoCompleteMode = AutoCompleteMode.Suggest
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            sqlControl.closeConexion()
+        End Try
+
+    End Sub
+
+    Private Sub actualizarDatosMoneda()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim monedaDao As New MonedaDAO(sqlControl)
+
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            monedaDao.setDBcmd()
+
+            Dim dtMoneda As DataTable
+
+            dtMoneda = monedaDao.GetMonedas
+
+            With cbMoneda
+                .DataSource = dtMoneda
+                .DisplayMember = "DETALLE_MONEDA"
+                .ValueMember = "CODIGO_MONEDA"
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            sqlControl.closeConexion()
+        End Try
+
     End Sub
 
     Private Sub actualizarDatosGuia()
@@ -88,32 +112,33 @@
         sqlControl.setConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
-        sqlControl.openConexion()
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            guiaDao.setDBcmd()
 
-        Dim dtGuia As DataTable
+            Dim dtGuia As DataTable
 
-        dtGuia = guiaDao.getGuiaPendFacturacion
+            dtGuia = guiaDao.getGuiaPendFacturacion
 
-        With cbGuia
-            .DataSource = dtGuia
-            .DisplayMember = "DETALLE_GUIA"
-            .ValueMember = "CODIGO_GUIA"
-            .DropDownStyle = ComboBoxStyle.Simple
-            .AutoCompleteMode = AutoCompleteMode.Suggest
-            .AutoCompleteSource = AutoCompleteSource.ListItems
-            .SelectedIndex = -1
-        End With
-
-        sqlControl.closeConexion()
+            With cbGuia
+                .DataSource = dtGuia
+                .DisplayMember = "DETALLE_GUIA"
+                .ValueMember = "CODIGO_GUIA"
+                .DropDownStyle = ComboBoxStyle.Simple
+                .AutoCompleteMode = AutoCompleteMode.Suggest
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            sqlControl.closeConexion()
+        End Try
 
     End Sub
 
     Private Sub ChildFacturacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
-
-
 
         txtRUC.ReadOnly = True
         txtDireccion.ReadOnly = True
@@ -121,6 +146,7 @@
         actualizarDatosCliente()
         actualizarDatosGuia()
         actualizarDatosTracto()
+        actualizarDatosMoneda()
 
         data = New DataTable()
 
@@ -138,7 +164,9 @@
         data.Columns.Add("lista_Remision", GetType(DataTable))
         data.Columns.Add("lista_Placa", GetType(DataTable))
 
-        LbNroFactura.Text = "Nro. Factura "
+        lbFactura.Text = "Nro. Factura "
+
+        correlativo = ""
 
 
         'colum = New DataColumn()
@@ -219,14 +247,27 @@
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
 
+
         Dim clienteDao As New ClienteDAO(sqlControl)
-        Dim dtClente As DataTable
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            clienteDao.setDBcmd()
 
-        dtClente = clienteDao.GetClienteByCodigo(cbRazonSocial.SelectedValue.ToString)
+            Dim dtClente As DataTable
 
-        txtRUC.Text = dtClente.Rows.Item(0)(1).ToString.ToUpper
-        txtDireccion.Text = dtClente.Rows.Item(0)(3).ToString.ToUpper
-        txtTelefono.Text = dtClente.Rows.Item(0)(4).ToString
+            dtClente = clienteDao.GetClienteByCodigo(cbRazonSocial.SelectedValue.ToString)
+
+            sqlControl.commitTransaction()
+            txtRUC.Text = dtClente.Rows.Item(0)(1).ToString.ToUpper
+            txtDireccion.Text = dtClente.Rows.Item(0)(3).ToString.ToUpper
+            txtTelefono.Text = dtClente.Rows.Item(0)(4).ToString
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            sqlControl.closeConexion()
+        End Try
+
     End Sub
 
     Private Sub cbGuia_KeyDown(sender As Object, e As KeyEventArgs) Handles cbGuia.KeyDown
@@ -326,15 +367,84 @@
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
+
         Dim facturacionDao As New FacturacionDAO(sqlControl)
+        sqlControl.openConexion()
 
         Try
-            sqlControl.beginTransaction()
+            facturacionDao.beginTransaction()
+
+            facturacionDao.setDBcmd()
+            'Inicio - Ingreso de la Cabecera de la Factura
+            Dim cod_factura As Integer = facturacionDao.InsertFactura(txtNroSerie.Text,
+                                         lbNroFactura.Text,
+                                         cbRazonSocial.SelectedValue,
+                                         txtPrecioFactura.Text,
+                                         cbMoneda.SelectedValue,
+                                         16)
+            'Fin - Ingreso de la Cabecera de la Factura
+
+
+            'Inicio - Ingreso del Detalle de la Factura
+            For x As Integer = 0 To data.Rows.Count - 1
+                Dim cod_detalle As Integer = facturacionDao.InsertFacturaDetalle(cod_factura,
+                                                data.Rows.Item(x)("tipo_servicio"),
+                                                data.Rows.Item(x)("descripcion"),
+                                                CType(data.Rows.Item(x)("cantidad"), Integer),
+                                                data.Rows.Item(x)("conf_veh"),
+                                                CType(data.Rows.Item(x)("val_ref"), Long),
+                                                data.Rows.Item(x)("obs"),
+                                                CType(data.Rows.Item(x)("pre_uni"), Long),
+                                                data.Rows.Item(x)("origen"),
+                                                data.Rows.Item(x)("destino"))
+
+                'Inicio - Ingreso de las Guias Transportistas
+                Dim dataTransp As DataTable = CType(data.Rows.Item(x)("lista_Transportista"), DataTable)
+
+                For y As Integer = 0 To dataTransp.Rows.Count - 1
+                    facturacionDao.InsertFacturaDetalleGuia(cod_detalle,
+                                                            cod_factura,
+                                                            CType(dataTransp.Rows.Item(y)("Codigo"), Integer))
+                Next
+                'Fin - Ingreso de las Guias Transportistas
+
+                'Inicio - Ingreso de las Guias Remitentes
+
+                Dim dataRemitente As DataTable = CType(data.Rows.Item(x)("lista_Remision"), DataTable)
+
+                For y As Integer = 0 To dataTransp.Rows.Count - 1
+                    facturacionDao.InsertFacturaDetalleRemitente(cod_detalle,
+                                                            cod_factura,
+                                                            dataRemitente.Rows.Item(y)("Numero_de_Guia"))
+                Next
+                'Fin - Ingreso de las Guias Remitentes
+
+                'Inicio - Ingreso de las Unidades
+
+                Dim dataPlaca As DataTable = CType(data.Rows.Item(x)("lista_Placa"), DataTable)
+
+                For y As Integer = 0 To dataTransp.Rows.Count - 1
+                    facturacionDao.InsertFacturaDetalleUnidad(cod_detalle,
+                                                            cod_factura,
+                                                            dataRemitente.Rows.Item(y)("Placa"))
+                Next
+                'Fin - Ingreso de las Unidades
+            Next
+
+            'Fin - Ingreso del Detalle de la Factura
+            Dim correlativoDao As New Correlativo_NumeroDAO(sqlControl)
+
+            correlativoDao.updateCorrelativoNumero(1, txtNroSerie.Text, lbNroFactura.Text)
+            facturacionDao.commitTransacction()
 
 
         Catch ex As Exception
-
+            facturacionDao.rollbackTransaccion()
+            MsgBox(ex.Message)
+        Finally
+            sqlControl.closeConexion()
         End Try
+
 
     End Sub
 
@@ -394,7 +504,6 @@
             Dim row As DataRow = data.Rows(cbAccionGuia.SelectedIndex - 1)
             LimpiarCampos()
             Button6.Text = "ACTUALIZAR"
-            MsgBox(row.Item("tipo_servicio").ToString)
             cbTipoServicio.SelectedIndex = row.Item("tipo_servicio")
             txtDescripcionDetalle.Text = row.Item("descripcion")
             txtCantidad.Text = row.Item("cantidad")
@@ -472,5 +581,28 @@
 
     Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click
 
+    End Sub
+
+    Private Sub txtNroSerie_KeyDown(sender As Object, e As KeyEventArgs) Handles txtNroSerie.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim sqlControl As New SQLControl
+            sqlControl.setConnection()
+
+            Dim correlativoDao As New Correlativo_NumeroDAO(sqlControl)
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                correlativoDao.setDBcmd()
+
+                correlativo = correlativoDao.GetSiguienteCorrelativo(1, txtNroSerie.Text)
+
+                lbNroFactura.Text = correlativo
+            Catch ex As Exception
+                sqlControl.rollbackTransaccion()
+            Finally
+                sqlControl.closeConexion()
+            End Try
+
+        End If
     End Sub
 End Class
