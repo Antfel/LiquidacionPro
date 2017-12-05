@@ -77,24 +77,24 @@ Public Class Correlativo_NumeroDAO
         End If
     End Function
 
-    Public Function updateCorrelativoNumero(codigo_correlativo As Integer, serie As String) As DataTable
+    'Public Function updateCorrelativoNumero(codigo_correlativo As Integer, serie As String) As DataTable
 
 
 
-        Dim dt As DataTable
+    '    Dim dt As DataTable
 
-        dt = sqlControl.ExecQuery("select		CODIGO_CORRELATIVO,
-			                                    SERIE,
-			                                    ULTIMO_USADO
-                                    from		CORRELATIVO_NUMERO
-                                    where		CODIGO_CORRELATIVO=" + CStr(codigo_correlativo) + "
-			                                    and SERIE='" + serie + "'
-                                    order by	codigo_correlativo asc", Nothing)
-        Return dt
+    '    dt = sqlControl.ExecQuery("select		CODIGO_CORRELATIVO,
+    '                                   SERIE,
+    '                                   ULTIMO_USADO
+    '                                from		CORRELATIVO_NUMERO
+    '                                where		CODIGO_CORRELATIVO=" + CStr(codigo_correlativo) + "
+    '                                   and SERIE='" + serie + "'
+    '                                order by	codigo_correlativo asc", Nothing)
+    '    Return dt
 
-    End Function
+    'End Function
 
-    Public Function GetCorrelativoNumeroByCodigoSerie(codigo_correlativo As Integer, serie As String,
+    Public Function updateCorrelativoNumero(codigo_correlativo As Integer, serie As String,
                                                       ultimo As String) As Integer
 
         Dim params As New List(Of SqlParameter)

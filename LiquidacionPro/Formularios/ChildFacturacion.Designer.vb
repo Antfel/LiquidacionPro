@@ -28,7 +28,9 @@ Partial Class ChildFacturacion
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.LbNroFactura = New System.Windows.Forms.Label()
+        Me.lbNroFactura = New System.Windows.Forms.Label()
+        Me.txtNroSerie = New System.Windows.Forms.TextBox()
+        Me.lbFactura = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.cbRazonSocial = New System.Windows.Forms.ComboBox()
         Me.txtTelefono = New System.Windows.Forms.TextBox()
@@ -50,11 +52,13 @@ Partial Class ChildFacturacion
         Me.cbGuia = New System.Windows.Forms.ComboBox()
         Me.tbTransportista = New System.Windows.Forms.DataGridView()
         Me.Panel15 = New System.Windows.Forms.Panel()
+        Me.tbRemitente = New System.Windows.Forms.DataGridView()
         Me.txtRemitente = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.tbPlaca = New System.Windows.Forms.DataGridView()
         Me.cbTracto = New System.Windows.Forms.ComboBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Button7 = New System.Windows.Forms.Button()
@@ -87,13 +91,13 @@ Partial Class ChildFacturacion
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtPrecioFactura = New System.Windows.Forms.TextBox()
-        Me.tbRemitente = New System.Windows.Forms.DataGridView()
-        Me.tbPlaca = New System.Windows.Forms.DataGridView()
         Me.Panel1.SuspendLayout()
         Me.Panel14.SuspendLayout()
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel15.SuspendLayout()
+        CType(Me.tbRemitente, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel16.SuspendLayout()
+        CType(Me.tbPlaca, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel25.SuspendLayout()
         Me.Panel26.SuspendLayout()
         Me.Panel27.SuspendLayout()
@@ -102,8 +106,6 @@ Partial Class ChildFacturacion
         Me.Panel24.SuspendLayout()
         Me.Panel30.SuspendLayout()
         Me.Panel23.SuspendLayout()
-        CType(Me.tbRemitente, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tbPlaca, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -153,23 +155,42 @@ Partial Class ChildFacturacion
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.LbNroFactura)
+        Me.Panel1.Controls.Add(Me.lbNroFactura)
+        Me.Panel1.Controls.Add(Me.txtNroSerie)
+        Me.Panel1.Controls.Add(Me.lbFactura)
         Me.Panel1.Controls.Add(Me.Label8)
         Me.Panel1.Location = New System.Drawing.Point(965, 12)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(317, 146)
         Me.Panel1.TabIndex = 7
         '
-        'LbNroFactura
+        'lbNroFactura
         '
-        Me.LbNroFactura.AutoSize = True
-        Me.LbNroFactura.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbNroFactura.ForeColor = System.Drawing.Color.DarkRed
-        Me.LbNroFactura.Location = New System.Drawing.Point(48, 92)
-        Me.LbNroFactura.Name = "LbNroFactura"
-        Me.LbNroFactura.Size = New System.Drawing.Size(132, 20)
-        Me.LbNroFactura.TabIndex = 1
-        Me.LbNroFactura.Text = "NRO FACTURA: "
+        Me.lbNroFactura.AutoSize = True
+        Me.lbNroFactura.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbNroFactura.ForeColor = System.Drawing.Color.DarkRed
+        Me.lbNroFactura.Location = New System.Drawing.Point(208, 94)
+        Me.lbNroFactura.Name = "lbNroFactura"
+        Me.lbNroFactura.Size = New System.Drawing.Size(0, 20)
+        Me.lbNroFactura.TabIndex = 3
+        '
+        'txtNroSerie
+        '
+        Me.txtNroSerie.Location = New System.Drawing.Point(154, 94)
+        Me.txtNroSerie.Name = "txtNroSerie"
+        Me.txtNroSerie.Size = New System.Drawing.Size(48, 20)
+        Me.txtNroSerie.TabIndex = 2
+        '
+        'lbFactura
+        '
+        Me.lbFactura.AutoSize = True
+        Me.lbFactura.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbFactura.ForeColor = System.Drawing.Color.DarkRed
+        Me.lbFactura.Location = New System.Drawing.Point(16, 94)
+        Me.lbFactura.Name = "lbFactura"
+        Me.lbFactura.Size = New System.Drawing.Size(132, 20)
+        Me.lbFactura.TabIndex = 1
+        Me.lbFactura.Text = "NRO FACTURA: "
         '
         'Label8
         '
@@ -364,6 +385,20 @@ Partial Class ChildFacturacion
         Me.Panel15.Size = New System.Drawing.Size(238, 161)
         Me.Panel15.TabIndex = 22
         '
+        'tbRemitente
+        '
+        Me.tbRemitente.AllowUserToAddRows = False
+        Me.tbRemitente.AllowUserToDeleteRows = False
+        Me.tbRemitente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.tbRemitente.ColumnHeadersVisible = False
+        Me.tbRemitente.Location = New System.Drawing.Point(17, 37)
+        Me.tbRemitente.MultiSelect = False
+        Me.tbRemitente.Name = "tbRemitente"
+        Me.tbRemitente.RowHeadersVisible = False
+        Me.tbRemitente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.tbRemitente.Size = New System.Drawing.Size(176, 108)
+        Me.tbRemitente.TabIndex = 10
+        '
         'txtRemitente
         '
         Me.txtRemitente.Location = New System.Drawing.Point(138, 7)
@@ -409,6 +444,19 @@ Partial Class ChildFacturacion
         Me.Panel16.Name = "Panel16"
         Me.Panel16.Size = New System.Drawing.Size(222, 161)
         Me.Panel16.TabIndex = 23
+        '
+        'tbPlaca
+        '
+        Me.tbPlaca.AllowUserToAddRows = False
+        Me.tbPlaca.AllowUserToDeleteRows = False
+        Me.tbPlaca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.tbPlaca.ColumnHeadersVisible = False
+        Me.tbPlaca.Location = New System.Drawing.Point(17, 37)
+        Me.tbPlaca.MultiSelect = False
+        Me.tbPlaca.Name = "tbPlaca"
+        Me.tbPlaca.RowHeadersVisible = False
+        Me.tbPlaca.Size = New System.Drawing.Size(156, 108)
+        Me.tbPlaca.TabIndex = 10
         '
         'cbTracto
         '
@@ -691,33 +739,6 @@ Partial Class ChildFacturacion
         Me.txtPrecioFactura.Size = New System.Drawing.Size(100, 20)
         Me.txtPrecioFactura.TabIndex = 51
         '
-        'tbRemitente
-        '
-        Me.tbRemitente.AllowUserToAddRows = False
-        Me.tbRemitente.AllowUserToDeleteRows = False
-        Me.tbRemitente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.tbRemitente.ColumnHeadersVisible = False
-        Me.tbRemitente.Location = New System.Drawing.Point(17, 37)
-        Me.tbRemitente.MultiSelect = False
-        Me.tbRemitente.Name = "tbRemitente"
-        Me.tbRemitente.RowHeadersVisible = False
-        Me.tbRemitente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.tbRemitente.Size = New System.Drawing.Size(176, 108)
-        Me.tbRemitente.TabIndex = 10
-        '
-        'tbPlaca
-        '
-        Me.tbPlaca.AllowUserToAddRows = False
-        Me.tbPlaca.AllowUserToDeleteRows = False
-        Me.tbPlaca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.tbPlaca.ColumnHeadersVisible = False
-        Me.tbPlaca.Location = New System.Drawing.Point(17, 37)
-        Me.tbPlaca.MultiSelect = False
-        Me.tbPlaca.Name = "tbPlaca"
-        Me.tbPlaca.RowHeadersVisible = False
-        Me.tbPlaca.Size = New System.Drawing.Size(156, 108)
-        Me.tbPlaca.TabIndex = 10
-        '
         'ChildFacturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -762,8 +783,10 @@ Partial Class ChildFacturacion
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel15.ResumeLayout(False)
         Me.Panel15.PerformLayout()
+        CType(Me.tbRemitente, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel16.ResumeLayout(False)
         Me.Panel16.PerformLayout()
+        CType(Me.tbPlaca, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel25.ResumeLayout(False)
         Me.Panel26.ResumeLayout(False)
         Me.Panel26.PerformLayout()
@@ -779,8 +802,6 @@ Partial Class ChildFacturacion
         Me.Panel30.PerformLayout()
         Me.Panel23.ResumeLayout(False)
         Me.Panel23.PerformLayout()
-        CType(Me.tbRemitente, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tbPlaca, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -791,7 +812,7 @@ Partial Class ChildFacturacion
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents LbNroFactura As Label
+    Friend WithEvents lbFactura As Label
     Friend WithEvents cbRazonSocial As ComboBox
     Friend WithEvents txtTelefono As TextBox
     Friend WithEvents txtDireccion As TextBox
@@ -853,4 +874,6 @@ Partial Class ChildFacturacion
     Friend WithEvents txtPrecioFactura As TextBox
     Friend WithEvents tbRemitente As DataGridView
     Friend WithEvents tbPlaca As DataGridView
+    Friend WithEvents lbNroFactura As Label
+    Friend WithEvents txtNroSerie As TextBox
 End Class

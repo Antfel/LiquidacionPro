@@ -132,6 +132,7 @@
     <Compile Include="LiquidacionCode\EstadoDAO.vb" />
     <Compile Include="LiquidacionCode\FacturacionDAO.vb" />
     <Compile Include="LiquidacionCode\GuiaDAO.vb" />
+    <Compile Include="LiquidacionCode\MonedaDAO.vb" />
     <Compile Include="LiquidacionCode\TrabajadorDAO.vb" />
     <Compile Include="LiquidacionCode\ClienteDAO.vb" />
     <Compile Include="LiquidacionCode\LiquidacionDAO.vb" />

@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Public Class SQLControl
     Private DBcon As New SqlConnection
-    Private DBcmd As New SqlCommand
+    Private DBcmd As SqlCommand
     'Public DBDA As SqlDataAdapter
     'Public DBT As DataTable
     'Public Params As New List(Of SqlParameter)
