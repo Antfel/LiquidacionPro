@@ -60,7 +60,7 @@ Public Class FacturacionDAO
     End Function
 
     Public Function InsertFactura(serie_factura As String, numero_factura As String, codigo_cliente As Integer, total_factura As Long,
-                             codigo_moneda As Integer, codigo_estado As Integer) As Integer
+                             codigo_moneda As Integer, codigo_estado As Integer, fecha_factura As Date) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@SERIE_FACTURA", serie_factura))
@@ -69,6 +69,7 @@ Public Class FacturacionDAO
         params.Add(New SqlParameter("@TOTAL_FACTURA", total_factura))
         params.Add(New SqlParameter("@CODIGO_MONEDA", codigo_moneda))
         params.Add(New SqlParameter("@CODIGO_ESTADO", codigo_estado))
+        params.Add(New SqlParameter("@FECHA_FACTURA", fecha_factura))
 
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE insertFacturaCabecera " +
@@ -77,7 +78,8 @@ Public Class FacturacionDAO
                                         "@CODIGO_CLIENTE," +
                                         "@TOTAL_FACTURA," +
                                         "@CODIGO_MONEDA," +
-                                        "@CODIGO_ESTADO", params)
+                                        "@CODIGO_ESTADO," +
+                                        "@FECHA_FACTURA ", params)
         If dt.Rows.Count > 0 Then
             Return CInt(dt.Rows.Item(0).Item(0))
         Else
@@ -86,7 +88,7 @@ Public Class FacturacionDAO
     End Function
 
     Public Sub UpdateFactura(codigo_factura As Integer, serie_factura As String, numero_factura As String, codigo_cliente As Integer,
-                             total_factura As Long, codigo_moneda As Integer, codigo_estado As Integer)
+                             total_factura As Long, codigo_moneda As Integer, codigo_estado As Integer, fecha_factura As Date)
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
@@ -96,6 +98,7 @@ Public Class FacturacionDAO
         params.Add(New SqlParameter("@TOTAL_FACTURA", total_factura))
         params.Add(New SqlParameter("@CODIGO_MONEDA", codigo_moneda))
         params.Add(New SqlParameter("@CODIGO_ESTADO", codigo_estado))
+        params.Add(New SqlParameter("@FECHA_FACTURA", fecha_factura))
 
         sqlControl.ExecQuery("EXECUTE updateFacturaCabecera " +
                                         "@CODIGO_FACTURA," +
@@ -104,7 +107,8 @@ Public Class FacturacionDAO
                                         "@CODIGO_CLIENTE," +
                                         "@TOTAL_FACTURA," +
                                         "@CODIGO_MONEDA," +
-                                        "@CODIGO_ESTADO", params)
+                                        "@CODIGO_ESTADO," +
+                                        "@FECHA_FACTURA ", params)
     End Sub
 
     Public Function InsertFacturaDetalle(codigo_factura As Integer,

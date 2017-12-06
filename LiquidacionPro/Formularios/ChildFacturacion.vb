@@ -401,7 +401,8 @@
                                          cbRazonSocial.SelectedValue,
                                          txtPrecioFactura.Text,
                                          cbMoneda.SelectedValue,
-                                         16)
+                                         16,
+                                         dtFecha.Value)
             'Fin - Ingreso de la Cabecera de la Factura
 
 
