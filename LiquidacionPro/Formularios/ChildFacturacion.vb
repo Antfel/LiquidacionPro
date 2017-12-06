@@ -22,7 +22,6 @@
             dtCliente = clienteDao.GetClientes
 
             sqlControl.commitTransaction()
-            sqlControl.closeConexion()
 
 
             With cbRazonSocial
@@ -39,12 +38,13 @@
             sqlControl.rollbackTransaccion()
 
         Finally
-            sqlControl.closeConexion()
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+
+            End Try
+
         End Try
-
-
-
-        '    cbRazonSocial.SelectedValue = -1
     End Sub
 
     Private Sub actualizarDatosTracto()
@@ -60,6 +60,7 @@
             Dim dtUnidad As DataTable
 
             dtUnidad = unidadDao.getUnidadTractos
+            sqlControl.commitTransaction()
 
             With cbTracto
                 .DataSource = dtUnidad
@@ -70,10 +71,16 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
+
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
-            sqlControl.closeConexion()
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+
+            End Try
+
         End Try
 
     End Sub
@@ -93,6 +100,8 @@
 
             dtMoneda = monedaDao.GetMonedas
 
+            sqlControl.commitTransaction()
+
             With cbMoneda
                 .DataSource = dtMoneda
                 .DisplayMember = "DETALLE_MONEDA"
@@ -102,7 +111,12 @@
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
-            sqlControl.closeConexion()
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+
+            End Try
+
         End Try
 
     End Sub
@@ -120,6 +134,7 @@
             Dim dtGuia As DataTable
 
             dtGuia = guiaDao.getGuiaPendFacturacion
+            sqlControl.commitTransaction()
 
             With cbGuia
                 .DataSource = dtGuia
@@ -133,7 +148,12 @@
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
-            sqlControl.closeConexion()
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+
+            End Try
+
         End Try
 
     End Sub
@@ -150,7 +170,7 @@
 
         data = New DataTable()
 
-        Dim colum As DataColumn
+
         data.Columns.Add("tipo_servicio")
         data.Columns.Add("descripcion")
         data.Columns.Add("cantidad")

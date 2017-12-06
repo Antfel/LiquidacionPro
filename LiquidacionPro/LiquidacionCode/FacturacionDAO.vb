@@ -187,14 +187,14 @@ Public Class FacturacionDAO
                                         codigo_guia As Integer)
 
         Dim params As New List(Of SqlParameter)
-        params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
-        params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
-        params.Add(New SqlParameter("@CODIGO_GUIA", codigo_guia))
+        params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA1", codigo_detalle_factura))
+        params.Add(New SqlParameter("@CODIGO_FACTURA1", codigo_factura))
+        params.Add(New SqlParameter("@CODIGO_GUIA1", codigo_guia))
 
         sqlControl.ExecQuery("EXECUTE insertFacturaDetalleGuia " +
-                                        "@CODIGO_DETALLE_FACTURA," +
-                                        "@CODIGO_FACTURA," +
-                                        "@CODIGO_GUIA ", params)
+                                        "@CODIGO_DETALLE_FACTURA1," +
+                                        "@CODIGO_FACTURA1," +
+                                        "@CODIGO_GUIA1 ", params)
     End Sub
 
     Public Sub deleteFacturaDetalleGuia(codigo_detalle_factura As Integer, codigo_factura As Integer,
@@ -215,14 +215,14 @@ Public Class FacturacionDAO
                                             guia_remitente As String)
 
         Dim params As New List(Of SqlParameter)
-        params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
-        params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
-        params.Add(New SqlParameter("@GUIA_REMITENTE", guia_remitente))
+        params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA2", codigo_detalle_factura))
+        params.Add(New SqlParameter("@CODIGO_FACTURA2", codigo_factura))
+        params.Add(New SqlParameter("@GUIA_REMITENTE2", guia_remitente))
 
         sqlControl.ExecQuery("EXECUTE insertFacturaDetalleRemitente " +
-                                        "@CODIGO_DETALLE_FACTURA," +
-                                        "@CODIGO_FACTURA," +
-                                        "@GUIA_REMITENTE ", params)
+                                        "@CODIGO_DETALLE_FACTURA2," +
+                                        "@CODIGO_FACTURA2," +
+                                        "@GUIA_REMITENTE2 ", params)
     End Sub
 
     Public Sub deleteFacturaDetalleRemitente(codigo_detalle_factura As Integer, codigo_factura As Integer,
@@ -243,16 +243,16 @@ Public Class FacturacionDAO
                                             placa_unidad As String) As Integer
 
         Dim params As New List(Of SqlParameter)
-        params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
-        params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
-        params.Add(New SqlParameter("@PLACA_UNIDAD", placa_unidad))
+        params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA3", codigo_detalle_factura))
+        params.Add(New SqlParameter("@CODIGO_FACTURA3", codigo_factura))
+        params.Add(New SqlParameter("@PLACA_UNIDAD3", placa_unidad))
 
         Dim dt As DataTable
 
         dt = sqlControl.ExecQuery("EXECUTE insertFacturaDetalleUnidad " +
-                                        "@CODIGO_DETALLE_FACTURA," +
-                                        "@CODIGO_FACTURA," +
-                                        "@PLACA_UNIDAD ", params)
+                                        "@CODIGO_DETALLE_FACTURA3," +
+                                        "@CODIGO_FACTURA3," +
+                                        "@PLACA_UNIDAD3 ", params)
 
         If dt.Rows.Count > 0 Then
             Return CInt(dt.Rows.Item(0).Item(0))
