@@ -501,21 +501,24 @@
 
     Private Sub cbAccionGuia_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbAccionGuia.SelectedIndexChanged
         If (cbAccionGuia.SelectedIndex <> 0) Then
-            Dim row As DataRow = data.Rows(cbAccionGuia.SelectedIndex - 1)
-            LimpiarCampos()
-            Button6.Text = "ACTUALIZAR"
-            cbTipoServicio.SelectedIndex = row.Item("tipo_servicio")
-            txtDescripcionDetalle.Text = row.Item("descripcion")
-            txtCantidad.Text = row.Item("cantidad")
-            txtConfVehicular.Text = row.Item("conf_veh")
-            txtValorReferencial.Text = row.Item("val_ref")
-            txtObservaciones.Text = row.Item("obs")
-            txtPrecioUnitario.Text = row.Item("pre_uni")
-            txtOrigen.Text = row.Item("origen")
-            txtDestino.Text = row.Item("destino")
-            tbTransportista.DataSource = CType(row.Item("lista_Transportista"), DataTable)
-            tbRemitente.DataSource = CType(row.Item("lista_Remision"), DataTable)
-            tbPlaca.DataSource = CType(row.Item("lista_Placa"), DataTable)
+
+
+
+            'Dim row As DataRow = data.Rows(cbAccionGuia.SelectedIndex - 1)
+            'LimpiarCampos()
+            'Button6.Text = "ACTUALIZAR"
+            'cbTipoServicio.SelectedIndex = row.Item("tipo_servicio")
+            'txtDescripcionDetalle.Text = row.Item("descripcion")
+            'txtCantidad.Text = row.Item("cantidad")
+            'txtConfVehicular.Text = row.Item("conf_veh")
+            'txtValorReferencial.Text = row.Item("val_ref")
+            'txtObservaciones.Text = row.Item("obs")
+            'txtPrecioUnitario.Text = row.Item("pre_uni")
+            'txtOrigen.Text = row.Item("origen")
+            'txtDestino.Text = row.Item("destino")
+            'tbTransportista.DataSource = CType(row.Item("lista_Transportista"), DataTable)
+            'tbRemitente.DataSource = CType(row.Item("lista_Remision"), DataTable)
+            'tbPlaca.DataSource = CType(row.Item("lista_Placa"), DataTable)
 
 
             'lbPlaca.DataSource = CType(row.Item("lista_Placa"), ListBox.ObjectCollection)
@@ -570,8 +573,8 @@
             '    TextBox17.Text = IDS(P, 7)
             'End If
         Else
-            Button6.Text = "AGREGAR"
-            LimpiarCampos()
+            'Button6.Text = "AGREGAR"
+            'LimpiarCampos()
         End If
     End Sub
 
