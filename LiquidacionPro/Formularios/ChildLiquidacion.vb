@@ -115,25 +115,37 @@
         sqlControl.setConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
-        sqlControl.openConexion()
-        sqlControl.beginTransaction()
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDao.setDBcmd()
 
-        liquidacionDao.setDBcmd()
+            Dim dt As DataTable
 
-        Dim dt As DataTable
+            dt = liquidacionDao.GetAllLiquidacion()
+            dgvLiquidacion.DataSource = dt
 
-        dt = liquidacionDao.GetAllLiquidacion()
-        dgvLiquidacion.DataSource = dt
+            sqlControl.commitTransaction()
 
-        dgvLiquidacion.Columns(2).Visible = False
-        dgvLiquidacion.Columns(4).Visible = False
-        dgvLiquidacion.Columns(6).Visible = False
-        dgvLiquidacion.Columns(8).Visible = False
-        dgvLiquidacion.Columns(23).Visible = False
+            dgvLiquidacion.Columns(2).Visible = False
+            dgvLiquidacion.Columns(4).Visible = False
+            dgvLiquidacion.Columns(6).Visible = False
+            dgvLiquidacion.Columns(8).Visible = False
+            dgvLiquidacion.Columns(23).Visible = False
 
-        dgvLiquidacion.MultiSelect = False
-        dgvLiquidacion.RowHeadersVisible = False
-        sqlControl.closeConexion()
+            dgvLiquidacion.MultiSelect = False
+            dgvLiquidacion.RowHeadersVisible = False
+
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            Try
+            sqlControl.closeConexion()
+        Catch ex As Exception
+
+        End Try
+        End Try
+
 
     End Sub
     Private Sub actualizarDatosTrabajador()
@@ -141,23 +153,36 @@
         sqlControl.setConnection()
 
         Dim trabajadorDao As New TrabajadorDAO(sqlControl)
-        sqlControl.openConexion()
+        Try
 
-        Dim dtTrabajador As DataTable
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            trabajadorDao.setDBcmd()
 
-        dtTrabajador = trabajadorDao.GetTrabajador
+            Dim dtTrabajador As DataTable
 
-        With cbTrabajador
-            .DataSource = dtTrabajador
-            .DisplayMember = "NOMBRE_TRABAJADOR"
-            .ValueMember = "CODIGO_TRABAJADOR"
-            .DropDownStyle = ComboBoxStyle.Simple
-            .AutoCompleteMode = AutoCompleteMode.SuggestAppend
-            .AutoCompleteSource = AutoCompleteSource.ListItems
+            dtTrabajador = trabajadorDao.GetTrabajador
 
-            .SelectedIndex = -1
-        End With
-        sqlControl.closeConexion()
+            sqlControl.commitTransaction()
+
+            With cbTrabajador
+                .DataSource = dtTrabajador
+                .DisplayMember = "NOMBRE_TRABAJADOR"
+                .ValueMember = "CODIGO_TRABAJADOR"
+                .DropDownStyle = ComboBoxStyle.Simple
+                .AutoCompleteMode = AutoCompleteMode.SuggestAppend
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+
+            End Try
+        End Try
     End Sub
 
     Private Sub actualizarDatosGuia()
@@ -165,23 +190,36 @@
         sqlControl.setConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
-        sqlControl.openConexion()
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            guiaDao.setDBcmd()
+            Dim dtGuia As DataTable
 
-        Dim dtGuia As DataTable
+            dtGuia = guiaDao.getGuiaPendLiquidacion
+            sqlControl.commitTransaction()
 
-        dtGuia = guiaDao.getGuiaPendLiquidacion
+            With cbGuia
+                .DataSource = dtGuia
+                .DisplayMember = "DETALLE_GUIA"
+                .ValueMember = "CODIGO_GUIA"
+                .DropDownStyle = ComboBoxStyle.Simple
+                .AutoCompleteMode = AutoCompleteMode.Suggest
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
 
-        With cbGuia
-            .DataSource = dtGuia
-            .DisplayMember = "DETALLE_GUIA"
-            .ValueMember = "CODIGO_GUIA"
-            .DropDownStyle = ComboBoxStyle.Simple
-            .AutoCompleteMode = AutoCompleteMode.Suggest
-            .AutoCompleteSource = AutoCompleteSource.ListItems
-            .SelectedIndex = -1
-        End With
+            End Try
+        End Try
 
-        sqlControl.closeConexion()
+
+
 
     End Sub
 
@@ -190,22 +228,36 @@
         sqlControl.setConnection()
 
         Dim unidadDao As New UnidadDAO(sqlControl)
-        sqlControl.openConexion()
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            unidadDao.setDBcmd()
 
-        Dim dtUnidad As DataTable
+            Dim dtUnidad As DataTable
 
-        dtUnidad = unidadDao.getUnidadTractos
+            dtUnidad = unidadDao.getUnidadTractos()
+            sqlControl.commitTransaction()
 
-        With cbTracto
-            .DataSource = dtUnidad
-            .DisplayMember = "PLACA_UNIDAD"
-            .ValueMember = "CODIGO_UNIDAD"
-            .DropDownStyle = ComboBoxStyle.Simple
-            .AutoCompleteMode = AutoCompleteMode.Suggest
-            .AutoCompleteSource = AutoCompleteSource.ListItems
-            .SelectedIndex = -1
-        End With
-        sqlControl.closeConexion()
+            With cbTracto
+                .DataSource = dtUnidad
+                .DisplayMember = "PLACA_UNIDAD"
+                .ValueMember = "CODIGO_UNIDAD"
+                .DropDownStyle = ComboBoxStyle.Simple
+                .AutoCompleteMode = AutoCompleteMode.Suggest
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+
+            End Try
+        End Try
+
+
     End Sub
 
     Private Sub actualizarDatosSemiTrailer()
@@ -213,22 +265,35 @@
         sqlControl.setConnection()
 
         Dim unidadDao As New UnidadDAO(sqlControl)
-        sqlControl.openConexion()
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            unidadDao.setDBcmd()
 
-        Dim dtUnidad As DataTable
+            Dim dtUnidad As DataTable
 
-        dtUnidad = unidadDao.getUnidadSemiTrailer
+            dtUnidad = unidadDao.getUnidadSemiTrailer
 
-        With cbCamabaja
-            .DataSource = dtUnidad
-            .DisplayMember = "PLACA_UNIDAD"
-            .ValueMember = "CODIGO_UNIDAD"
-            .DropDownStyle = ComboBoxStyle.Simple
-            .AutoCompleteMode = AutoCompleteMode.Suggest
-            .AutoCompleteSource = AutoCompleteSource.ListItems
-            .SelectedIndex = -1
-        End With
-        sqlControl.closeConexion()
+            sqlControl.commitTransaction()
+
+            With cbCamabaja
+                .DataSource = dtUnidad
+                .DisplayMember = "PLACA_UNIDAD"
+                .ValueMember = "CODIGO_UNIDAD"
+                .DropDownStyle = ComboBoxStyle.Simple
+                .AutoCompleteMode = AutoCompleteMode.Suggest
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+
+            End Try
+        End Try
 
     End Sub
 
@@ -237,22 +302,34 @@
         sqlControl.setConnection()
 
         Dim estadoDao As New EstadoDAO(sqlControl)
-        sqlControl.openConexion()
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            estadoDao.setDBcmd()
 
-        Dim dtEstado As DataTable
+            Dim dtEstado As DataTable
 
-        dtEstado = estadoDao.getEstados
+            dtEstado = estadoDao.getEstados
+            sqlControl.commitTransaction()
 
-        With cbEstado
-            .DataSource = dtEstado
-            .DisplayMember = "DETALLE_DESTADO"
-            .ValueMember = "CODIGO_ESTADO"
-            .DropDownStyle = ComboBoxStyle.DropDown
-            .AutoCompleteMode = AutoCompleteMode.Suggest
-            .AutoCompleteSource = AutoCompleteSource.ListItems
-            .SelectedIndex = -1
-        End With
-        sqlControl.closeConexion()
+            With cbEstado
+                .DataSource = dtEstado
+                .DisplayMember = "DETALLE_DESTADO"
+                .ValueMember = "CODIGO_ESTADO"
+                .DropDownStyle = ComboBoxStyle.DropDown
+                .AutoCompleteMode = AutoCompleteMode.Suggest
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+
+            End Try
+        End Try
 
     End Sub
 

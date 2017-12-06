@@ -70,7 +70,6 @@ Public Class SQLControl
             'DBcon.Open()
             'DBcmd = New SqlCommand(Query, DBcon)
             DBcmd.CommandText = Query
-
             If Not params Is Nothing Then
                 params.ForEach(Sub(p) DBcmd.Parameters.Add(p))
                 'Params.Clear()
