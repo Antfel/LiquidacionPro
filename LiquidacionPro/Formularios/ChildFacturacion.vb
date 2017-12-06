@@ -521,8 +521,21 @@
 
     Private Sub cbAccionGuia_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbAccionGuia.SelectedIndexChanged
         If (cbAccionGuia.SelectedIndex <> 0) Then
+            Dim sqlControl As New SQLControl
+            sqlControl.setConnection()
 
+            Dim facturacionDao As New FacturacionDAO(sqlControl)
 
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                facturacionDao.setDBcmd()
+
+            Catch ex As Exception
+
+            Finally
+
+            End Try
 
             'Dim row As DataRow = data.Rows(cbAccionGuia.SelectedIndex - 1)
             'LimpiarCampos()
