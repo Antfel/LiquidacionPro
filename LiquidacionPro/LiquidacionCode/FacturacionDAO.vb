@@ -59,6 +59,17 @@ Public Class FacturacionDAO
                     "where CODIGO_FACTURA=" + CStr(codigo), Nothing)
     End Function
 
+    Public Function getDetalleFacturaByCodigoFactura(codigo_Factura As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("select CODIGO_DETALLE_FACTURA,
+                                    'ITEM '+cast(ROW_NUMBER()  OVER(ORDER BY CODIGO_DETALLE_FACTURA ASC) as varchar(10)) AS ITEM
+                                    FROM DETALLE_FACTURA 
+                                    WHERE 
+                                    CODIGO_FACTURA =" + CStr(codigo_Factura),
+                                     Nothing)
+
+    End Function
+
     Public Function InsertFactura(serie_factura As String, numero_factura As String, codigo_cliente As Integer, total_factura As Long,
                              codigo_moneda As Integer, codigo_estado As Integer, fecha_factura As Date) As Integer
 
@@ -150,7 +161,7 @@ Public Class FacturacionDAO
         End If
     End Function
 
-    Public Sub UpdateFacturaDetalle(codigo_detalle_factura As Integer, codigo_factura As Integer, precio_factura_detalle As Long,
+    Public Sub UpdateFacturaDetalle(codigo_detalle_factura As Integer, codigo_factura As Integer,
                                     tipo_servicio As Integer, descripcion As String,
                                          cantidad As Integer, conf_vehi As String,
                                          valor_ref As Long, obs As String, precio_unitario As Long,
@@ -187,6 +198,18 @@ Public Class FacturacionDAO
 
     End Sub
 
+    Public Function getGuiasByDetalle(codigoDetalle As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("select a.CODIGO_GUIA,
+	                                b.DETALLE_GUIA from DETALLE_FACTURA_GUIA a 
+                                    LEFT JOIN GUIA_TRANSPORTISTA b 
+                                    ON a.CODIGO_GUIA = b.CODIGO_GUIA
+                                    where 
+                                    CODIGO_DETALLE_FACTURA =" + CStr(codigoDetalle),
+                                    Nothing)
+
+    End Function
+
     Public Sub InsertFacturaDetalleGuia(codigo_detalle_factura As Integer, codigo_factura As Integer,
                                         codigo_guia As Integer)
 
@@ -213,6 +236,17 @@ Public Class FacturacionDAO
                                         "@CODIGO_DETALLE_FACTURA," +
                                         "@CODIGO_FACTURA," +
                                         "@CODIGO_GUIA ", params)
+    End Sub
+
+    Public Sub deleteFacturaDetalle(codigo_detalle_factura As Integer, codigo_factura As Integer)
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
+        params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
+
+        sqlControl.ExecQuery("EXECUTE deleteFacturaDetalle " +
+                                        "@CODIGO_DETALLE_FACTURA," +
+                                        "@CODIGO_FACTURA", params)
     End Sub
 
     Public Sub InsertFacturaDetalleRemitente(codigo_detalle_factura As Integer, codigo_factura As Integer,
@@ -242,6 +276,16 @@ Public Class FacturacionDAO
                                         "@CODIGO_FACTURA," +
                                         "@GUIA_REMITENTE ", params)
     End Sub
+
+    Public Function getRemitentesByDetalle(codigoDetalle As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT GUIA_REMITENTE 
+                                     FROM DETALLE_FACTURA_REMITENTE 
+                                     where 
+                                     CODIGO_DETALLE_FACTURA =" + CStr(codigoDetalle),
+                                     Nothing)
+
+    End Function
 
     Public Function InsertFacturaDetalleUnidad(codigo_detalle_factura As Integer, codigo_factura As Integer,
                                             placa_unidad As String) As Integer
@@ -278,4 +322,14 @@ Public Class FacturacionDAO
                                         "@CODIGO_FACTURA," +
                                         "@PLACA_UNIDAD ", params)
     End Sub
+
+    Public Function getPlacaByDetalle(codigoDetalle As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT PLACA_UNIDAD 
+                                     FROM DETALLE_FACTURA_UNIDAD 
+                                     where 
+                                     CODIGO_DETALLE_FACTURA =" + CStr(codigoDetalle),
+                                     Nothing)
+
+    End Function
 End Class
