@@ -783,6 +783,7 @@
             Dim sqlControl As New SQLControl
             sqlControl.setConnection()
 
+
             Dim facturacionDao As New FacturacionDAO(sqlControl)
             Try
                 sqlControl.openConexion()
