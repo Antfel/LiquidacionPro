@@ -13,10 +13,36 @@ Public Class RptPrintFactura
     Dim PUNTEROITEM As Integer = 0
     Dim PUNTERO As Integer = 0
     Dim PUNTEROIMPR As Integer = 0
+    Dim nroFactura As Integer
 
+    Public Sub setNroFactura(nroFactura As Integer)
+        Me.nroFactura = nroFactura
+    End Sub
 
     Private Sub RptPrintFactura_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        PrintPreviewControl1.Location = New Point(88, 150)
 
+        PrintDocument1.DefaultPageSettings.PaperSize = New PaperSize("Custom", 827, 1210)
+        PrintPreviewControl1.Name = "PrintPreviewControl1"
+        PrintPreviewControl1.Dock = DockStyle.Fill
+
+        ' Set the Document property to the PrintDocument 
+        ' for which the PrintPage event has been handled.
+        PrintPreviewControl1.Document = PrintDocument1
+
+        ' Set the zoom to 25 percent.
+        PrintPreviewControl1.Zoom = 1
+
+        ' Set the document name. This will show be displayed when 
+        ' the document is loading into the control.
+        'Me.PrintPreviewControl1.Document.DocumentName = "c:\athmsg.log"
+
+        ' Set the UseAntiAlias property to true so fonts are smoothed
+        ' by the operating system.
+        PrintPreviewControl1.UseAntiAlias = True
+
+        ' Add the control to the form.
+        Controls.Add(PrintPreviewControl1)
     End Sub
 
     Private Sub PrintDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
@@ -25,11 +51,11 @@ Public Class RptPrintFactura
 
         Dim dtFacturaCabeceraTableAdapter As New rptLiquidacionesTableAdapters.dtRptFacturaCabeceraTableAdapter
         Dim dtc As DataTable
-        dtc = dtFacturaCabeceraTableAdapter.GetData(45)
+        dtc = dtFacturaCabeceraTableAdapter.GetData(nroFactura)
 
         Dim dtFacturaDetalleTableAdapter As New rptLiquidacionesTableAdapters.dtRptFacturaDetalleTableAdapter
         Dim dtd As DataTable
-        dtd = dtFacturaDetalleTableAdapter.GetData(45)
+        dtd = dtFacturaDetalleTableAdapter.GetData(nroFactura)
 
         Dim dtFacturaGuiaTableAdapter As New rptLiquidacionesTableAdapters.dtRptFacturaGuiaTableAdapter
         Dim dtg As DataTable
@@ -232,28 +258,36 @@ Public Class RptPrintFactura
         'Me.PrintPreviewControl1 = New PrintPreviewControl
 
         ' Set location, name, and dock style for PrintPreviewControl1.
-        Me.PrintPreviewControl1.Location = New Point(88, 150)
+        'Me.PrintPreviewControl1.Location = New Point(88, 150)
 
-        PrintDocument1.DefaultPageSettings.PaperSize = New PaperSize("Custom", 827, 1210)
-        Me.PrintPreviewControl1.Name = "PrintPreviewControl1"
-        Me.PrintPreviewControl1.Dock = DockStyle.Fill
+        'PrintDocument1.DefaultPageSettings.PaperSize = New PaperSize("Custom", 827, 1210)
+        'Me.PrintPreviewControl1.Name = "PrintPreviewControl1"
+        'Me.PrintPreviewControl1.Dock = DockStyle.Fill
 
         ' Set the Document property to the PrintDocument 
-        ' for which the PrintPage event has been handled.
-        Me.PrintPreviewControl1.Document = PrintDocument1
+        ' For which the PrintPage event has been handled.
+        'Me.PrintPreviewControl1.Document = PrintDocument1
 
         ' Set the zoom to 25 percent.
-        Me.PrintPreviewControl1.Zoom = 1
+        'Me.PrintPreviewControl1.Zoom = 1
 
         ' Set the document name. This will show be displayed when 
-        ' the document is loading into the control.
+        ' the document Is loading into the control.
         'Me.PrintPreviewControl1.Document.DocumentName = "c:\athmsg.log"
 
         ' Set the UseAntiAlias property to true so fonts are smoothed
         ' by the operating system.
-        Me.PrintPreviewControl1.UseAntiAlias = True
+        'Me.PrintPreviewControl1.UseAntiAlias = True
 
-        ' Add the control to the form.
-        Me.Controls.Add(Me.PrintPreviewControl1)
+        '    Add the control to the form.
+        'Me.Controls.Add(Me.PrintPreviewControl1)
+    End Sub
+
+    Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
+        PrintDialog1.PrinterSettings = PrintDocument1.PrinterSettings
+        If PrintDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+            PrintDocument1.PrinterSettings = PrintDialog1.PrinterSettings
+            PrintDocument1.Print()
+        End If
     End Sub
 End Class

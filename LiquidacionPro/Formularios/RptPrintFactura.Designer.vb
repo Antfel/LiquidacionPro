@@ -28,6 +28,7 @@ Partial Class RptPrintFactura
         Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
         Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog()
         Me.PrintPreviewControl1 = New System.Windows.Forms.PrintPreviewControl()
+        Me.btnImprimir = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'PrintDocument1
@@ -41,6 +42,7 @@ Partial Class RptPrintFactura
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'PrintDialog1
         '
@@ -58,16 +60,27 @@ Partial Class RptPrintFactura
         '
         'PrintPreviewControl1
         '
-        Me.PrintPreviewControl1.Location = New System.Drawing.Point(2, 32)
+        Me.PrintPreviewControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PrintPreviewControl1.Location = New System.Drawing.Point(0, 0)
         Me.PrintPreviewControl1.Name = "PrintPreviewControl1"
-        Me.PrintPreviewControl1.Size = New System.Drawing.Size(779, 297)
+        Me.PrintPreviewControl1.Size = New System.Drawing.Size(793, 341)
         Me.PrintPreviewControl1.TabIndex = 1
+        '
+        'btnImprimir
+        '
+        Me.btnImprimir.Location = New System.Drawing.Point(0, 0)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(75, 23)
+        Me.btnImprimir.TabIndex = 2
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.UseVisualStyleBackColor = True
         '
         'RptPrintFactura
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(793, 341)
+        Me.Controls.Add(Me.btnImprimir)
         Me.Controls.Add(Me.PrintPreviewControl1)
         Me.Controls.Add(Me.Button1)
         Me.Name = "RptPrintFactura"
@@ -81,4 +94,5 @@ Partial Class RptPrintFactura
     Friend WithEvents PrintDialog1 As PrintDialog
     Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
     Friend WithEvents PrintPreviewControl1 As PrintPreviewControl
+    Friend WithEvents btnImprimir As Button
 End Class
