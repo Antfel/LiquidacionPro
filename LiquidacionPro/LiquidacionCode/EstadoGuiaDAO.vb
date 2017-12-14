@@ -1,6 +1,6 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
-Public Class TipoServicioDAO
+Public Class EstadoGuiaDAO
     Dim DBcon As SqlConnection
     Dim DBcmd As SqlCommand
     Dim sqlControl As SQLControl
@@ -35,6 +35,6 @@ Public Class TipoServicioDAO
     End Sub
 
     Public Function getEstados() As DataTable
-        Return sqlControl.ExecQuery("SELECT CODIGO_ESTADO,DETALLE_ESTADO from ESTADO where TIPO_ESTADO = 6", Nothing)
+        Return sqlControl.ExecQuery("SELECT CODIGO_ESTADO,DETALLE_ESTADO from ESTADO where TIPO_ESTADO = 3", Nothing)
     End Function
 End Class
