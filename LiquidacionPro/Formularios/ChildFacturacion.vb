@@ -211,30 +211,32 @@
     End Sub
 
     Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles btnAgregarTransportista.Click
-        Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        If CType(cbGuia.SelectedValue, Integer) <> -1 And cbGuia.Text <> "" Then
+            Dim sqlControl As New SQLControl
+            sqlControl.setConnection()
 
-        Dim facturacionDao As New FacturacionDAO(sqlControl)
-        Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
-
-            facturacionDao.InsertFacturaDetalleGuia(codigo_Detalle, codigo_Factura, cbGuia.SelectedValue)
-
-            sqlControl.commitTransaction()
-        Catch ex As Exception
-            sqlControl.rollbackTransaccion()
-        Finally
+            Dim facturacionDao As New FacturacionDAO(sqlControl)
             Try
-                sqlControl.closeConexion()
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                facturacionDao.setDBcmd()
+
+                facturacionDao.InsertFacturaDetalleGuia(codigo_Detalle, codigo_Factura, CType(cbGuia.SelectedValue, Integer))
+
+                sqlControl.commitTransaction()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+                sqlControl.rollbackTransaccion()
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MsgBox("No se pudo establecer la conexion con el servidor.")
+                End Try
             End Try
-        End Try
 
-        cargarGuiasTransportistas()
+            cargarGuiasTransportistas()
 
+        End If
 
     End Sub
 
@@ -310,11 +312,11 @@
 
             facturacionDao.UpdateFacturaDetalle(codigo_Detalle,
                                                 codigo_Factura,
-                                                cbTipoServicio.SelectedValue,
+                                                CType(cbTipoServicio.SelectedValue, Integer),
                                                 txtDescripcionDetalle.Text,
                                                 CType(txtCantidad.Text, Integer),
                                                 txtConfVehicular.Text,
-                                                txtValorReferencial.Text,
+                                                CType(txtValorReferencial.Text, Long),
                                                 txtObservaciones.Text,
                                                 CType(txtPrecioUnitario.Text, Long),
                                                 txtOrigen.Text,
@@ -481,7 +483,7 @@
     End Sub
 
     Private Sub cbAccionGuia_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbAccionGuia.SelectedIndexChanged
-        codigo_Detalle = cbAccionGuia.SelectedValue
+        codigo_Detalle = CType(cbAccionGuia.SelectedValue, Integer)
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs)
@@ -554,9 +556,9 @@
             'Inicio - Ingreso de la Cabecera de la Factura
             codigo_Factura = facturacionDao.InsertFactura(txtNroSerie.Text,
                                          lbNroFactura.Text,
-                                         cbRazonSocial.SelectedValue,
+                                         CType(cbRazonSocial.SelectedValue, Integer),
                                          CType(txtPrecioFactura.Text, Long),
-                                         cbMoneda.SelectedValue,
+                                         CType(cbMoneda.SelectedValue, Integer),
                                          16,
                                          dtFecha.Value)
             'Fin - Ingreso de la Cabecera de la Factura
@@ -628,9 +630,9 @@
                                                                  "",
                                                                  0,
                                                                  "",
-                                                                 0.00,
+                                                                 CType(0.00, Long),
                                                                  "",
-                                                                 0.00,
+                                                                 CType(0.00, Long),
                                                                  "",
                                                                  "")
 
