@@ -46,8 +46,8 @@ Partial Class ChildFacturacion
         Me.Label13 = New System.Windows.Forms.Label()
         Me.cbAccionGuia = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.btnAgregarTransportista = New System.Windows.Forms.Button()
+        Me.btnEliminarTransportista = New System.Windows.Forms.Button()
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.cbGuia = New System.Windows.Forms.ComboBox()
         Me.tbTransportista = New System.Windows.Forms.DataGridView()
@@ -55,14 +55,14 @@ Partial Class ChildFacturacion
         Me.tbRemitente = New System.Windows.Forms.DataGridView()
         Me.txtRemitente = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.btnAgregarRemitente = New System.Windows.Forms.Button()
+        Me.btnEliminarRemitente = New System.Windows.Forms.Button()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.tbPlaca = New System.Windows.Forms.DataGridView()
         Me.cbTracto = New System.Windows.Forms.ComboBox()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
+        Me.btnAgregarPlaca = New System.Windows.Forms.Button()
+        Me.btnEliminarPlaca = New System.Windows.Forms.Button()
         Me.Panel25 = New System.Windows.Forms.Panel()
         Me.Panel26 = New System.Windows.Forms.Panel()
         Me.txtPrecioUnitario = New System.Windows.Forms.TextBox()
@@ -85,12 +85,13 @@ Partial Class ChildFacturacion
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.txtOrigen = New System.Windows.Forms.TextBox()
         Me.Label24 = New System.Windows.Forms.Label()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button10 = New System.Windows.Forms.Button()
+        Me.btnActualizar = New System.Windows.Forms.Button()
+        Me.btnImprimir = New System.Windows.Forms.Button()
+        Me.btnRazonSocial = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtPrecioFactura = New System.Windows.Forms.TextBox()
+        Me.btnNuevo = New System.Windows.Forms.Button()
+        Me.btnEliminar = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel14.SuspendLayout()
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -303,7 +304,6 @@ Partial Class ChildFacturacion
         '
         Me.cbAccionGuia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbAccionGuia.FormattingEnabled = True
-        Me.cbAccionGuia.Items.AddRange(New Object() {"NUEVO"})
         Me.cbAccionGuia.Location = New System.Drawing.Point(60, 176)
         Me.cbAccionGuia.Name = "cbAccionGuia"
         Me.cbAccionGuia.Size = New System.Drawing.Size(102, 21)
@@ -318,31 +318,31 @@ Partial Class ChildFacturacion
         Me.Label16.TabIndex = 6
         Me.Label16.Text = "TRANSPORTISTA"
         '
-        'Button3
+        'btnAgregarTransportista
         '
-        Me.Button3.Location = New System.Drawing.Point(196, 64)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(23, 23)
-        Me.Button3.TabIndex = 12
-        Me.Button3.Text = "+"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.btnAgregarTransportista.Location = New System.Drawing.Point(196, 64)
+        Me.btnAgregarTransportista.Name = "btnAgregarTransportista"
+        Me.btnAgregarTransportista.Size = New System.Drawing.Size(23, 23)
+        Me.btnAgregarTransportista.TabIndex = 12
+        Me.btnAgregarTransportista.Text = "+"
+        Me.btnAgregarTransportista.UseVisualStyleBackColor = True
         '
-        'Button4
+        'btnEliminarTransportista
         '
-        Me.Button4.Location = New System.Drawing.Point(196, 93)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(23, 23)
-        Me.Button4.TabIndex = 8
-        Me.Button4.Text = "-"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.btnEliminarTransportista.Location = New System.Drawing.Point(196, 93)
+        Me.btnEliminarTransportista.Name = "btnEliminarTransportista"
+        Me.btnEliminarTransportista.Size = New System.Drawing.Size(23, 23)
+        Me.btnEliminarTransportista.TabIndex = 8
+        Me.btnEliminarTransportista.Text = "-"
+        Me.btnEliminarTransportista.UseVisualStyleBackColor = True
         '
         'Panel14
         '
         Me.Panel14.Controls.Add(Me.cbGuia)
         Me.Panel14.Controls.Add(Me.tbTransportista)
         Me.Panel14.Controls.Add(Me.Label16)
-        Me.Panel14.Controls.Add(Me.Button3)
-        Me.Panel14.Controls.Add(Me.Button4)
+        Me.Panel14.Controls.Add(Me.btnAgregarTransportista)
+        Me.Panel14.Controls.Add(Me.btnEliminarTransportista)
         Me.Panel14.Location = New System.Drawing.Point(64, 205)
         Me.Panel14.Name = "Panel14"
         Me.Panel14.Size = New System.Drawing.Size(235, 161)
@@ -377,8 +377,8 @@ Partial Class ChildFacturacion
         Me.Panel15.Controls.Add(Me.tbRemitente)
         Me.Panel15.Controls.Add(Me.txtRemitente)
         Me.Panel15.Controls.Add(Me.Label17)
-        Me.Panel15.Controls.Add(Me.Button2)
-        Me.Panel15.Controls.Add(Me.Button5)
+        Me.Panel15.Controls.Add(Me.btnAgregarRemitente)
+        Me.Panel15.Controls.Add(Me.btnEliminarRemitente)
         Me.Panel15.Location = New System.Drawing.Point(324, 205)
         Me.Panel15.Name = "Panel15"
         Me.Panel15.Size = New System.Drawing.Size(238, 161)
@@ -414,31 +414,31 @@ Partial Class ChildFacturacion
         Me.Label17.TabIndex = 6
         Me.Label17.Text = "REMITENTE"
         '
-        'Button2
+        'btnAgregarRemitente
         '
-        Me.Button2.Location = New System.Drawing.Point(199, 64)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(23, 23)
-        Me.Button2.TabIndex = 7
-        Me.Button2.Text = "+"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btnAgregarRemitente.Location = New System.Drawing.Point(199, 64)
+        Me.btnAgregarRemitente.Name = "btnAgregarRemitente"
+        Me.btnAgregarRemitente.Size = New System.Drawing.Size(23, 23)
+        Me.btnAgregarRemitente.TabIndex = 7
+        Me.btnAgregarRemitente.Text = "+"
+        Me.btnAgregarRemitente.UseVisualStyleBackColor = True
         '
-        'Button5
+        'btnEliminarRemitente
         '
-        Me.Button5.Location = New System.Drawing.Point(199, 93)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(23, 23)
-        Me.Button5.TabIndex = 8
-        Me.Button5.Text = "-"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.btnEliminarRemitente.Location = New System.Drawing.Point(199, 93)
+        Me.btnEliminarRemitente.Name = "btnEliminarRemitente"
+        Me.btnEliminarRemitente.Size = New System.Drawing.Size(23, 23)
+        Me.btnEliminarRemitente.TabIndex = 8
+        Me.btnEliminarRemitente.Text = "-"
+        Me.btnEliminarRemitente.UseVisualStyleBackColor = True
         '
         'Panel16
         '
         Me.Panel16.Controls.Add(Me.tbPlaca)
         Me.Panel16.Controls.Add(Me.cbTracto)
         Me.Panel16.Controls.Add(Me.Label18)
-        Me.Panel16.Controls.Add(Me.Button7)
-        Me.Panel16.Controls.Add(Me.Button8)
+        Me.Panel16.Controls.Add(Me.btnAgregarPlaca)
+        Me.Panel16.Controls.Add(Me.btnEliminarPlaca)
         Me.Panel16.Location = New System.Drawing.Point(589, 205)
         Me.Panel16.Name = "Panel16"
         Me.Panel16.Size = New System.Drawing.Size(222, 161)
@@ -474,23 +474,23 @@ Partial Class ChildFacturacion
         Me.Label18.TabIndex = 6
         Me.Label18.Text = "PLACA"
         '
-        'Button7
+        'btnAgregarPlaca
         '
-        Me.Button7.Location = New System.Drawing.Point(179, 64)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(23, 23)
-        Me.Button7.TabIndex = 7
-        Me.Button7.Text = "+"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.btnAgregarPlaca.Location = New System.Drawing.Point(179, 64)
+        Me.btnAgregarPlaca.Name = "btnAgregarPlaca"
+        Me.btnAgregarPlaca.Size = New System.Drawing.Size(23, 23)
+        Me.btnAgregarPlaca.TabIndex = 7
+        Me.btnAgregarPlaca.Text = "+"
+        Me.btnAgregarPlaca.UseVisualStyleBackColor = True
         '
-        'Button8
+        'btnEliminarPlaca
         '
-        Me.Button8.Location = New System.Drawing.Point(179, 93)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(23, 23)
-        Me.Button8.TabIndex = 8
-        Me.Button8.Text = "-"
-        Me.Button8.UseVisualStyleBackColor = True
+        Me.btnEliminarPlaca.Location = New System.Drawing.Point(179, 93)
+        Me.btnEliminarPlaca.Name = "btnEliminarPlaca"
+        Me.btnEliminarPlaca.Size = New System.Drawing.Size(23, 23)
+        Me.btnEliminarPlaca.TabIndex = 8
+        Me.btnEliminarPlaca.Text = "-"
+        Me.btnEliminarPlaca.UseVisualStyleBackColor = True
         '
         'Panel25
         '
@@ -685,41 +685,32 @@ Partial Class ChildFacturacion
         Me.Label24.TabIndex = 42
         Me.Label24.Text = "ORIGEN"
         '
-        'Button6
+        'btnActualizar
         '
-        Me.Button6.Location = New System.Drawing.Point(906, 344)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(173, 35)
-        Me.Button6.TabIndex = 47
-        Me.Button6.Text = "AGREGAR"
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.btnActualizar.Location = New System.Drawing.Point(849, 344)
+        Me.btnActualizar.Name = "btnActualizar"
+        Me.btnActualizar.Size = New System.Drawing.Size(119, 35)
+        Me.btnActualizar.TabIndex = 47
+        Me.btnActualizar.Text = "ACTUALIZAR"
+        Me.btnActualizar.UseVisualStyleBackColor = True
         '
-        'Button9
+        'btnImprimir
         '
-        Me.Button9.Location = New System.Drawing.Point(523, 405)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(143, 37)
-        Me.Button9.TabIndex = 48
-        Me.Button9.Text = "IMPRIMIR"
-        Me.Button9.UseVisualStyleBackColor = True
+        Me.btnImprimir.Location = New System.Drawing.Point(523, 405)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(143, 37)
+        Me.btnImprimir.TabIndex = 48
+        Me.btnImprimir.Text = "IMPRIMIR"
+        Me.btnImprimir.UseVisualStyleBackColor = True
         '
-        'Button1
+        'btnRazonSocial
         '
-        Me.Button1.Location = New System.Drawing.Point(25, 83)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(98, 21)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Razon Social"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button10
-        '
-        Me.Button10.Location = New System.Drawing.Point(364, 405)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(122, 37)
-        Me.Button10.TabIndex = 49
-        Me.Button10.Text = "GUARDAR"
-        Me.Button10.UseVisualStyleBackColor = True
+        Me.btnRazonSocial.Location = New System.Drawing.Point(25, 83)
+        Me.btnRazonSocial.Name = "btnRazonSocial"
+        Me.btnRazonSocial.Size = New System.Drawing.Size(98, 21)
+        Me.btnRazonSocial.TabIndex = 2
+        Me.btnRazonSocial.Text = "Razon Social"
+        Me.btnRazonSocial.UseVisualStyleBackColor = True
         '
         'Label2
         '
@@ -738,17 +729,36 @@ Partial Class ChildFacturacion
         Me.txtPrecioFactura.Size = New System.Drawing.Size(100, 20)
         Me.txtPrecioFactura.TabIndex = 51
         '
+        'btnNuevo
+        '
+        Me.btnNuevo.Location = New System.Drawing.Point(981, 344)
+        Me.btnNuevo.Name = "btnNuevo"
+        Me.btnNuevo.Size = New System.Drawing.Size(126, 35)
+        Me.btnNuevo.TabIndex = 52
+        Me.btnNuevo.Text = "NUEVO"
+        Me.btnNuevo.UseVisualStyleBackColor = True
+        '
+        'btnEliminar
+        '
+        Me.btnEliminar.Location = New System.Drawing.Point(1122, 344)
+        Me.btnEliminar.Name = "btnEliminar"
+        Me.btnEliminar.Size = New System.Drawing.Size(126, 35)
+        Me.btnEliminar.TabIndex = 53
+        Me.btnEliminar.Text = "ELIMINAR"
+        Me.btnEliminar.UseVisualStyleBackColor = True
+        '
         'ChildFacturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 524)
+        Me.Controls.Add(Me.btnEliminar)
+        Me.Controls.Add(Me.btnNuevo)
         Me.Controls.Add(Me.txtPrecioFactura)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Button10)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Button9)
-        Me.Controls.Add(Me.Button6)
+        Me.Controls.Add(Me.btnRazonSocial)
+        Me.Controls.Add(Me.btnImprimir)
+        Me.Controls.Add(Me.btnActualizar)
         Me.Controls.Add(Me.Panel25)
         Me.Controls.Add(Me.Panel16)
         Me.Controls.Add(Me.Panel15)
@@ -827,18 +837,18 @@ Partial Class ChildFacturacion
     Friend WithEvents Label13 As Label
     Friend WithEvents cbAccionGuia As ComboBox
     Friend WithEvents Label16 As Label
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
+    Friend WithEvents btnAgregarTransportista As Button
+    Friend WithEvents btnEliminarTransportista As Button
     Friend WithEvents Panel14 As Panel
     Friend WithEvents Panel15 As Panel
     Friend WithEvents Label17 As Label
     Friend WithEvents lbRemitente As ListBox
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button5 As Button
+    Friend WithEvents btnAgregarRemitente As Button
+    Friend WithEvents btnEliminarRemitente As Button
     Friend WithEvents Panel16 As Panel
     Friend WithEvents Label18 As Label
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button8 As Button
+    Friend WithEvents btnAgregarPlaca As Button
+    Friend WithEvents btnEliminarPlaca As Button
     Friend WithEvents Panel25 As Panel
     Friend WithEvents Panel26 As Panel
     Friend WithEvents txtPrecioUnitario As TextBox
@@ -861,11 +871,10 @@ Partial Class ChildFacturacion
     Friend WithEvents Panel23 As Panel
     Friend WithEvents txtOrigen As TextBox
     Friend WithEvents Label24 As Label
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button9 As Button
+    Friend WithEvents btnActualizar As Button
+    Friend WithEvents btnImprimir As Button
     Friend WithEvents tbTransportista As DataGridView
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button10 As Button
+    Friend WithEvents btnRazonSocial As Button
     Friend WithEvents cbTracto As ComboBox
     Friend WithEvents cbGuia As ComboBox
     Friend WithEvents txtRemitente As TextBox
@@ -875,4 +884,6 @@ Partial Class ChildFacturacion
     Friend WithEvents tbPlaca As DataGridView
     Friend WithEvents lbNroFactura As Label
     Friend WithEvents txtNroSerie As TextBox
+    Friend WithEvents btnNuevo As Button
+    Friend WithEvents btnEliminar As Button
 End Class
