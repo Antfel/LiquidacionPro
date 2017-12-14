@@ -116,6 +116,12 @@
     <Compile Include="Formularios\ChildLiquidacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\ChildBusquedaFactura.Designer.vb">
+      <DependentUpon>ChildBusquedaFactura.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildBusquedaFactura.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\MDIPrincipal.Designer.vb">
       <DependentUpon>MDIPrincipal.vb</DependentUpon>
     </Compile>
@@ -160,6 +166,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Formularios\ChildBusquedaFactura.resx">
+      <DependentUpon>ChildBusquedaFactura.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ChildCorrelativo.resx">
       <DependentUpon>ChildCorrelativo.vb</DependentUpon>
     </EmbeddedResource>

@@ -140,10 +140,10 @@
             sqlControl.rollbackTransaccion()
         Finally
             Try
-            sqlControl.closeConexion()
-        Catch ex As Exception
+                sqlControl.closeConexion()
+            Catch ex As Exception
 
-        End Try
+            End Try
         End Try
 
 
