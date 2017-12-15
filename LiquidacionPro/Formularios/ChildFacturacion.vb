@@ -29,10 +29,10 @@
 
             dtCabeceraFactura = facturacionDao.getFacturaById(codigo_Factura)
             sqlControl.commitTransaction()
-            cbRazonSocial.SelectedValue = dtCabeceraFactura.Rows(0).Item(3)
-            txtPrecioFactura.Text = dtCabeceraFactura.Rows(0).Item(4)
+            cbRazonSocial.SelectedValue = dtCabeceraFactura.Rows(0).Item(3).ToString
+            txtPrecioFactura.Text = dtCabeceraFactura.Rows(0).Item(4).ToString
             cbMoneda.SelectedValue = dtCabeceraFactura.Rows(0).Item(5)
-            dtFecha.Value = dtCabeceraFactura.Rows(0).Item(6)
+            dtFecha.Value = CType(dtCabeceraFactura.Rows(0).Item(6), Date)
             txtNroSerie.Text = dtCabeceraFactura.Rows(0).Item(1).ToString
             lbNroFactura.Text = dtCabeceraFactura.Rows(0).Item(2).ToString
 
@@ -839,14 +839,14 @@
             datDetalle = facturacionDao.getDetalleFacturaByIdDetalle(codigo_Detalle)
 
             cbTipoServicio.SelectedValue = datDetalle.Rows(0).Item(0)
-            txtDescripcionDetalle.Text = datDetalle.Rows(0).Item(1)
-            txtCantidad.Text = datDetalle.Rows(0).Item(2)
-            txtConfVehicular.Text = datDetalle.Rows(0).Item(3)
-            txtValorReferencial.Text = datDetalle.Rows(0).Item(4)
-            txtPrecioUnitario.Text = datDetalle.Rows(0).Item(5)
-            txtOrigen.Text = datDetalle.Rows(0).Item(6)
-            txtDestino.Text = datDetalle.Rows(0).Item(7)
-            txtObservaciones.Text = datDetalle.Rows(0).Item(8)
+            txtDescripcionDetalle.Text = datDetalle.Rows(0).Item(1).ToString
+            txtCantidad.Text = datDetalle.Rows(0).Item(2).ToString
+            txtConfVehicular.Text = datDetalle.Rows(0).Item(3).ToString
+            txtValorReferencial.Text = datDetalle.Rows(0).Item(4).ToString
+            txtPrecioUnitario.Text = datDetalle.Rows(0).Item(5).ToString
+            txtOrigen.Text = datDetalle.Rows(0).Item(6).ToString
+            txtDestino.Text = datDetalle.Rows(0).Item(7).ToString
+            txtObservaciones.Text = datDetalle.Rows(0).Item(8).ToString
 
         Catch ex As Exception
 
