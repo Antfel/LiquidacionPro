@@ -1,3 +1,195 @@
 ﻿Public Class ChildGuia
+    Private Sub ChildGuia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        cargarGuias()
+        cargarEstadoGuia()
+    End Sub
 
+    Sub cargarGuias()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim guiaDao As New GuiaDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            guiaDao.setDBcmd()
+
+            Dim dt As DataTable
+
+            dt = guiaDao.GetAllGuia
+            dgvGuias.DataSource = dt
+
+            sqlControl.commitTransaction()
+
+            dgvGuias.Columns(2).Visible = False
+            'dgvLiquidacion.Columns(4).Visible = False
+            'dgvLiquidacion.Columns(6).Visible = False
+            'dgvLiquidacion.Columns(8).Visible = False
+            'dgvLiquidacion.Columns(23).Visible = False
+
+            dgvGuias.MultiSelect = False
+            dgvGuias.RowHeadersVisible = False
+
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+
+            End Try
+        End Try
+
+    End Sub
+
+    Private Sub cargarEstadoGuia()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim estadoDao As New EstadoGuiaDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            estadoDao.setDBcmd()
+
+            Dim dtEstado As DataTable
+
+            dtEstado = estadoDao.getEstados
+            sqlControl.commitTransaction()
+
+            With cbEstado
+                .DataSource = dtEstado
+                .DisplayMember = "DETALLE_ESTADO"
+                .ValueMember = "CODIGO_ESTADO"
+                .DropDownStyle = ComboBoxStyle.DropDown
+                .AutoCompleteMode = AutoCompleteMode.Suggest
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+
+            End Try
+        End Try
+
+    End Sub
+
+    Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
+        txtCodigo.Text = ""
+        txtDetalle.Text = ""
+        cbEstado.SelectedIndex = -1
+        dtpLiquidacion.Value = Date.Now
+        dtpFacturacion.Value = Date.Now
+
+    End Sub
+
+    Private Sub dgvGuias_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvGuias.CellMouseClick
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim guiaDao As New GuiaDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            guiaDao.setDBcmd()
+
+            Dim seleccion As DataGridViewRow = dgvGuias.SelectedRows(0)
+            Dim codigo As Integer = seleccion.Cells(0).Value
+
+            Dim dt As DataTable
+
+            dt = guiaDao.getGuiaByCodigo(codigo)
+
+            sqlControl.commitTransaction()
+
+            txtCodigo.Text = dt.Rows(0)(0)
+            txtDetalle.Text = dt.Rows(0)(1)
+            cbEstado.SelectedValue = dt.Rows(0)(2)
+            If dt.Rows.Item(0)(3) IsNot DBNull.Value Then
+                dtpLiquidacion.Value = dt.Rows.Item(0)(3)
+            End If
+
+            If dt.Rows.Item(0)(3) IsNot DBNull.Value Then
+                dtpFacturacion.Value = dt.Rows.Item(0)(4)
+            End If
+
+
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim proceso As String
+        proceso = ""
+
+        Dim guiaDao As New GuiaDAO(sqlControl)
+
+        If txtCodigo.Text = Nothing Then
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                guiaDao.setDBcmd()
+
+                Dim correla As Integer
+                proceso = "grabada"
+                correla = guiaDao.InsertGuia(txtDetalle.Text, cbEstado.SelectedValue, CDate(dtpLiquidacion.Value), CDate(dtpFacturacion.Value))
+                If correla >= 0 Then
+                    txtCodigo.Text = CStr(correla)
+                    MsgBox("Guía " + proceso + " correctamente.")
+                End If
+                sqlControl.commitTransaction()
+            Catch excep As Exception
+                sqlControl.rollbackTransaccion()
+                MsgBox("Error. Verifique")
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+
+                End Try
+            End Try
+        Else
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                guiaDao.setDBcmd()
+
+                Dim correla As Integer
+                proceso = "actualizada"
+                correla = guiaDao.UpdatetGuia(CInt(txtCodigo.Text), txtDetalle.Text, cbEstado.SelectedValue,
+                                              CDate(dtpLiquidacion.Value), CDate(dtpFacturacion.Value))
+                If correla >= 0 Then
+                    txtCodigo.Text = CStr(correla)
+                    MsgBox("Guía " + proceso + " correctamente.")
+                End If
+                sqlControl.commitTransaction()
+            Catch excep As Exception
+                sqlControl.rollbackTransaccion()
+                MsgBox("Error. Verifique")
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+
+                End Try
+            End Try
+        End If
+
+
+        cargarGuias()
+    End Sub
 End Class

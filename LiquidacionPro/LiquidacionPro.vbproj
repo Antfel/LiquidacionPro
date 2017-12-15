@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="LiquidacionCode\Correlativo_NumeroDAO.vb" />
     <Compile Include="LiquidacionCode\EstadoDAO.vb" />
+    <Compile Include="LiquidacionCode\EstadoGuiaDAO.vb" />
     <Compile Include="LiquidacionCode\FacturacionDAO.vb" />
     <Compile Include="LiquidacionCode\GuiaDAO.vb" />
     <Compile Include="LiquidacionCode\MonedaDAO.vb" />
