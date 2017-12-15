@@ -8,9 +8,9 @@ Public Class MDIPrincipal
     End Sub
 
     Private Sub FacturaciónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaciónToolStripMenuItem.Click
-        Dim facturacionChild As New ChildFacturacion()
-        facturacionChild.MdiParent = Me
-        facturacionChild.Show()
+        Dim busquedaFacturaChild As New ChildBusquedaFactura()
+        busquedaFacturaChild.MdiParent = Me
+        busquedaFacturaChild.Show()
     End Sub
 
     Private Sub LiquidacionesPorEstadoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LiquidacionesPorEstadoToolStripMenuItem.Click

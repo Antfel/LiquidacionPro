@@ -124,6 +124,12 @@
     </Compile>
     <Compile Include="Formularios\formatDate.vb" />
     <Compile Include="Formularios\formatNUMBER.vb" />
+    <Compile Include="Formularios\ChildBusquedaFactura.Designer.vb">
+      <DependentUpon>ChildBusquedaFactura.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildBusquedaFactura.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\MDIPrincipal.Designer.vb">
       <DependentUpon>MDIPrincipal.vb</DependentUpon>
     </Compile>
@@ -176,6 +182,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Formularios\ChildBusquedaFactura.resx">
+      <DependentUpon>ChildBusquedaFactura.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ChildCorrelativo.resx">
       <DependentUpon>ChildCorrelativo.vb</DependentUpon>
     </EmbeddedResource>
@@ -203,9 +212,6 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rptFacturaCabecera.rdlc" />
-    <EmbeddedResource Include="Reportes\rptFacturaDetalle.rdlc" />
-    <EmbeddedResource Include="Reportes\rptLiquidaciones.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\Application.myapp">
