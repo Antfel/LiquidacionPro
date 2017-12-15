@@ -48,8 +48,18 @@ Public Class GuiaDAO
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@DETALLE_GUIA", detalleGuia))
         params.Add(New SqlParameter("@CODIGO_ESTADO", 7))
-        params.Add(New SqlParameter("@FECHA_LIQUIDACION", fechaLiquidacion))
-        params.Add(New SqlParameter("@FECHA_FACTURACION", fechaFacturacion))
+
+        If fechaLiquidacion = Nothing Then
+            params.Add(New SqlParameter("@FECHA_LIQUIDACION", DBNull.Value))
+        Else
+            params.Add(New SqlParameter("@FECHA_LIQUIDACION", fechaLiquidacion))
+        End If
+
+        If fechaFacturacion = Nothing Then
+            params.Add(New SqlParameter("@FECHA_FACTURACION", DBNull.Value))
+        Else
+            params.Add(New SqlParameter("@FECHA_FACTURACION", fechaFacturacion))
+        End If
 
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE insertGuia " +
