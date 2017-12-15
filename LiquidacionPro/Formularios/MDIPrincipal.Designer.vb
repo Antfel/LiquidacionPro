@@ -32,10 +32,12 @@ Partial Class MDIPrincipal
         Me.LiquidacionesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacturaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuíasDeTransportistaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CorrelativosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesPorEstadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CorrelativosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturaTestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturaBetaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -89,9 +91,15 @@ Partial Class MDIPrincipal
         Me.GuíasDeTransportistaToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
         Me.GuíasDeTransportistaToolStripMenuItem.Text = "Guías de Transportista"
         '
+        'CorrelativosToolStripMenuItem
+        '
+        Me.CorrelativosToolStripMenuItem.Name = "CorrelativosToolStripMenuItem"
+        Me.CorrelativosToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.CorrelativosToolStripMenuItem.Text = "Correlativos"
+        '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem1})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem1, Me.FacturaTestToolStripMenuItem, Me.FacturaBetaToolStripMenuItem})
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.ReportesToolStripMenuItem.Text = "Reportes"
@@ -100,7 +108,7 @@ Partial Class MDIPrincipal
         '
         Me.LiquidacionesToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesPorEstadoToolStripMenuItem})
         Me.LiquidacionesToolStripMenuItem1.Name = "LiquidacionesToolStripMenuItem1"
-        Me.LiquidacionesToolStripMenuItem1.Size = New System.Drawing.Size(147, 22)
+        Me.LiquidacionesToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.LiquidacionesToolStripMenuItem1.Text = "Liquidaciones"
         '
         'LiquidacionesPorEstadoToolStripMenuItem
@@ -109,11 +117,17 @@ Partial Class MDIPrincipal
         Me.LiquidacionesPorEstadoToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
         Me.LiquidacionesPorEstadoToolStripMenuItem.Text = "Liquidaciones por Estado"
         '
-        'CorrelativosToolStripMenuItem
+        'FacturaTestToolStripMenuItem
         '
-        Me.CorrelativosToolStripMenuItem.Name = "CorrelativosToolStripMenuItem"
-        Me.CorrelativosToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
-        Me.CorrelativosToolStripMenuItem.Text = "Correlativos"
+        Me.FacturaTestToolStripMenuItem.Name = "FacturaTestToolStripMenuItem"
+        Me.FacturaTestToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.FacturaTestToolStripMenuItem.Text = "Factura test"
+        '
+        'FacturaBetaToolStripMenuItem
+        '
+        Me.FacturaBetaToolStripMenuItem.Name = "FacturaBetaToolStripMenuItem"
+        Me.FacturaBetaToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.FacturaBetaToolStripMenuItem.Text = "Factura Beta"
         '
         'MDIPrincipal
         '
@@ -146,4 +160,6 @@ Partial Class MDIPrincipal
     Friend WithEvents LiquidacionesPorEstadoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GuíasDeTransportistaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CorrelativosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FacturaTestToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FacturaBetaToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -878,4 +878,9 @@
 
     End Sub
 
+    Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
+        Dim rpt As New RptPrintFactura
+        rpt.setNroFactura(codigo_Factura)
+        rpt.Show()
+    End Sub
 End Class

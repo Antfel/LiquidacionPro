@@ -286,7 +286,6 @@ Partial Class ChildFacturacion
         '
         Me.cbTipoServicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbTipoServicio.FormattingEnabled = True
-        Me.cbTipoServicio.Items.AddRange(New Object() {"SERVICIO DE TRANSPORTE", "PLATAFORMA", "CAMABAJA", "CAMACUNA", "MODULAR", "PLATAFORMA EXTENSIBLE", "CAMACUNA EXTENSIBLE", "CAMABAJA EXTENSIBLE", "CAMACUNA ESPECIAL", "INTEGRAL", "INTEGRAL ESPECIAL", "SERVICIO DE ESCOLTA", "APOYO POLICIAL", "ADELANTO", "ESTUDIO DE PUENTE"})
         Me.cbTipoServicio.Location = New System.Drawing.Point(295, 176)
         Me.cbTipoServicio.Name = "cbTipoServicio"
         Me.cbTipoServicio.Size = New System.Drawing.Size(170, 21)

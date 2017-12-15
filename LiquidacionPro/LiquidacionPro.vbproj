@@ -47,6 +47,11 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.1000.523\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -70,6 +75,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -116,6 +122,8 @@
     <Compile Include="Formularios\ChildLiquidacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\formatDate.vb" />
+    <Compile Include="Formularios\formatNUMBER.vb" />
     <Compile Include="Formularios\ChildBusquedaFactura.Designer.vb">
       <DependentUpon>ChildBusquedaFactura.vb</DependentUpon>
     </Compile>
@@ -134,11 +142,48 @@
     <Compile Include="Formularios\Reportes\ChildRptLiquidacionEstado.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\RptFacturaCompleta.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaCompleta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\RptFacturaDetalle.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\RptFacturaGuia.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaGuia.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\RptFacturaImpr.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFacturaImpr.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Formularios\RptImprimeFactura.Designer.vb">
+      <DependentUpon>RptImprimeFactura.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RptImprimeFactura.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\RptPrintFactura.Designer.vb">
+      <DependentUpon>RptPrintFactura.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RptPrintFactura.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LiquidacionCode\Correlativo_NumeroDAO.vb" />
     <Compile Include="LiquidacionCode\EstadoDAO.vb" />
     <Compile Include="LiquidacionCode\FacturacionDAO.vb" />
     <Compile Include="LiquidacionCode\GuiaDAO.vb" />
     <Compile Include="LiquidacionCode\MonedaDAO.vb" />
+    <Compile Include="LiquidacionCode\TipoServicioDAO.vb" />
     <Compile Include="LiquidacionCode\TrabajadorDAO.vb" />
     <Compile Include="LiquidacionCode\ClienteDAO.vb" />
     <Compile Include="LiquidacionCode\LiquidacionDAO.vb" />
@@ -158,6 +203,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Formularios\RptFactura.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptFactura.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\rptLiquidaciones.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -187,12 +238,40 @@
     <EmbeddedResource Include="Formularios\Reportes\ChildRptLiquidacionEstado.resx">
       <DependentUpon>ChildRptLiquidacionEstado.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptFacturaCompleta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaCompleta.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptFacturaDetalle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaDetalle.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptFacturaGuia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaGuia.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptFacturaImpr.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFacturaImpr.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptImprimeFactura.resx">
+      <DependentUpon>RptImprimeFactura.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptPrintFactura.resx">
+      <DependentUpon>RptPrintFactura.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptFactura.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptFactura.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptFacturaCabecera.rdlc" />
+    <EmbeddedResource Include="Reportes\rptFacturaDetalle.rdlc" />
     <EmbeddedResource Include="Reportes\rptLiquidaciones.rdlc" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +313,9 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
