@@ -47,7 +47,7 @@ Public Class GuiaDAO
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@DETALLE_GUIA", detalleGuia))
-        params.Add(New SqlParameter("@CODIGO_ESTADO", 7))
+        params.Add(New SqlParameter("@CODIGO_ESTADO", 17))
 
         If fechaLiquidacion = Nothing Then
             params.Add(New SqlParameter("@FECHA_LIQUIDACION", DBNull.Value))
@@ -86,7 +86,7 @@ Public Class GuiaDAO
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_GUIA", codigo))
         params.Add(New SqlParameter("@DETALLE_GUIA", detalleGuia))
-        params.Add(New SqlParameter("@CODIGO_ESTADO", 7))
+        params.Add(New SqlParameter("@CODIGO_ESTADO", estado))
         If fechaLiquidacion = Nothing Then
             params.Add(New SqlParameter("@FECHA_LIQUIDACION", DBNull.Value))
         Else
