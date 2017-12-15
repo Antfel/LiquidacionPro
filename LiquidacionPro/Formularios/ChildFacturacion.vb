@@ -4,6 +4,52 @@
     Dim correlativoFactura As String
     Dim codigo_Factura As Integer = -1
     Dim codigo_Detalle As Integer = -1
+    Dim cargandoDatosActualizar As Integer = -1
+
+    Public Sub setCodifoFactura(codigoFactura As Integer)
+        codigo_Factura = codigoFactura
+    End Sub
+
+    Private Sub leerCodigoFactura()
+        If codigo_Factura <> -1 Then
+
+        End If
+    End Sub
+
+    Private Sub cargarDatosFactura()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim facturacionDao As New FacturacionDAO(sqlControl)
+        Dim dtCabeceraFactura As DataTable
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            facturacionDao.setDBcmd()
+
+            dtCabeceraFactura = facturacionDao.getFacturaById(codigo_Factura)
+            sqlControl.commitTransaction()
+            cbRazonSocial.SelectedValue = dtCabeceraFactura.Rows(0).Item(3)
+            txtPrecioFactura.Text = dtCabeceraFactura.Rows(0).Item(4)
+            cbMoneda.SelectedValue = dtCabeceraFactura.Rows(0).Item(5)
+            dtFecha.Value = dtCabeceraFactura.Rows(0).Item(6)
+            txtNroSerie.Text = dtCabeceraFactura.Rows(0).Item(1).ToString
+            lbNroFactura.Text = dtCabeceraFactura.Rows(0).Item(2).ToString
+
+
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            Try
+                sqlControl.closeConexion()
+                obtenerDatosCliente()
+                cargarDetalleFactura()
+                BloquearBotones()
+            Catch ex As Exception
+
+            End Try
+        End Try
+    End Sub
 
     Private Sub actualizarDatosCliente()
 
@@ -161,14 +207,24 @@
 
     Private Sub ChildFacturacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        leerCodigoFactura()
         txtRUC.ReadOnly = True
         txtDireccion.ReadOnly = True
         txtTelefono.ReadOnly = True
         txtPrecioFactura.Text = "0.00"
         actualizarDatosCliente()
+        cargarTiposDeServicio()
+        actualizarDatosMoneda()
+        If codigo_Factura <> -1 Then
+            cargarDatosFactura()
+            cargandoDatosActualizar = 0
+        End If
         actualizarDatosGuia()
         actualizarDatosTracto()
-        actualizarDatosMoneda()
+
+        txtNroSerie.Text = "001"
+        txtNroSerie.ReadOnly = True
+        ObtenerCorrelativo()
         BloquearDetalle()
 
 
@@ -177,6 +233,12 @@
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnRazonSocial.Click
 
+        obtenerDatosCliente()
+
+
+    End Sub
+
+    Private Sub obtenerDatosCliente()
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
 
@@ -191,10 +253,10 @@
 
             dtClente = clienteDao.GetClienteByCodigo(cbRazonSocial.SelectedValue.ToString)
 
-            sqlControl.commitTransaction()
             txtRUC.Text = dtClente.Rows.Item(0)(1).ToString.ToUpper
             txtDireccion.Text = dtClente.Rows.Item(0)(3).ToString.ToUpper
             txtTelefono.Text = dtClente.Rows.Item(0)(4).ToString
+
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
@@ -204,11 +266,8 @@
                 MsgBox("No se pudo establecer la conexion con el servidor.")
             End Try
         End Try
-
     End Sub
 
-    Private Sub cbGuia_KeyDown(sender As Object, e As KeyEventArgs) Handles cbGuia.KeyDown
-    End Sub
 
     Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles btnAgregarTransportista.Click
         If CType(cbGuia.SelectedValue, Integer) <> -1 And cbGuia.Text <> "" Then
@@ -266,9 +325,6 @@
         cargarGuiasRemitente()
     End Sub
 
-    Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles btnEliminarRemitente.Click
-
-    End Sub
 
     Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles btnAgregarPlaca.Click
         Dim sqlControl As New SQLControl
@@ -294,10 +350,6 @@
         End Try
 
         cargarPlacasDetalle()
-    End Sub
-
-    Private Sub Button8_Click_1(sender As Object, e As EventArgs) Handles btnEliminarPlaca.Click
-
     End Sub
 
     Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles btnActualizar.Click
@@ -338,108 +390,8 @@
         cargarDetalleFactura()
         BloquearDetalle()
         BloquearBotones()
+        cargarDatosFactura()
 
-
-    End Sub
-
-    Private Sub Button10_Click(sender As Object, e As EventArgs)
-        'Dim sqlControl As New SQLControl
-        'sqlControl.setConnection()
-
-        'Dim facturacionDao As New FacturacionDAO(sqlControl)
-        'sqlControl.openConexion()
-
-        'Try
-        '    facturacionDao.beginTransaction()
-
-        '    facturacionDao.setDBcmd()
-        '    'Inicio - Ingreso de la Cabecera de la Factura
-        '    Dim od_factura As Integer = facturacionDao.InsertFactura(txtNroSerie.Text,
-        '                                 lbNroFactura.Text,
-        '                                 cbRazonSocial.SelectedValue,
-        '                                 txtPrecioFactura.Text,
-        '                                 cbMoneda.SelectedValue,
-        '                                 16,
-        '                                 dtFecha.Value)
-        '    'Fin - Ingreso de la Cabecera de la Factura
-
-
-        '    'Inicio - Ingreso del Detalle de la Factura
-        '    For x As Integer = 0 To data.Rows.Count - 1
-        '        Dim cod_detalle As Integer = facturacionDao.InsertFacturaDetalle(cod_factura,
-        '                                        data.Rows.Item(x)("tipo_servicio"),
-        '                                        data.Rows.Item(x)("descripcion"),
-        '                                        CType(data.Rows.Item(x)("cantidad"), Integer),
-        '                                        data.Rows.Item(x)("conf_veh"),
-        '                                        CType(data.Rows.Item(x)("val_ref"), Long),
-        '                                        data.Rows.Item(x)("obs"),
-        '                                        CType(data.Rows.Item(x)("pre_uni"), Long),
-        '                                        data.Rows.Item(x)("origen"),
-        '                                        data.Rows.Item(x)("destino"))
-
-        '        'Inicio - Ingreso de las Guias Transportistas
-        '        Dim dataTransp As DataTable = CType(data.Rows.Item(x)("lista_Transportista"), DataTable)
-
-        '        For y As Integer = 0 To dataTransp.Rows.Count - 1
-        '            facturacionDao.InsertFacturaDetalleGuia(cod_detalle,
-        '                                                    cod_factura,
-        '                                                    CType(dataTransp.Rows.Item(y)("Codigo"), Integer))
-        '        Next
-        '        'Fin - Ingreso de las Guias Transportistas
-
-        '        'Inicio - Ingreso de las Guias Remitentes
-
-        '        Dim dataRemitente As DataTable = CType(data.Rows.Item(x)("lista_Remision"), DataTable)
-
-        '        For y As Integer = 0 To dataTransp.Rows.Count - 1
-        '            facturacionDao.InsertFacturaDetalleRemitente(cod_detalle,
-        '                                                    cod_factura,
-        '                                                    dataRemitente.Rows.Item(y)("Numero_de_Guia"))
-        '        Next
-        '        'Fin - Ingreso de las Guias Remitentes
-
-        '        'Inicio - Ingreso de las Unidades
-
-        '        Dim dataPlaca As DataTable = CType(data.Rows.Item(x)("lista_Placa"), DataTable)
-
-        '        For y As Integer = 0 To dataTransp.Rows.Count - 1
-        '            facturacionDao.InsertFacturaDetalleUnidad(cod_detalle,
-        '                                                    cod_factura,
-        '                                                    dataRemitente.Rows.Item(y)("Placa"))
-        '        Next
-        '        'Fin - Ingreso de las Unidades
-        '    Next
-
-        '    'Fin - Ingreso del Detalle de la Factura
-        '    Dim correlativoDao As New Correlativo_NumeroDAO(sqlControl)
-
-        '    correlativoDao.updateCorrelativoNumero(1, txtNroSerie.Text, lbNroFactura.Text)
-        '    facturacionDao.commitTransacction()
-
-
-        'Catch ex As Exception
-        '    facturacionDao.rollbackTransaccion()
-        '    MsgBox(ex.Message)
-        'Finally
-        '    Try
-        '        sqlControl.closeConexion()
-        '    Catch ex As Exception
-        '        MsgBox("No se pudo establecer la conexion con el servidor.")
-        '    End Try
-        'End Try
-
-
-    End Sub
-
-    Private Sub Panel15_Paint(sender As Object, e As PaintEventArgs) Handles Panel15.Paint
-
-    End Sub
-
-    Private Sub Panel16_Paint(sender As Object, e As PaintEventArgs) Handles Panel16.Paint
-
-    End Sub
-
-    Private Sub Panel14_Paint(sender As Object, e As PaintEventArgs) Handles Panel14.Paint
 
     End Sub
 
@@ -458,64 +410,22 @@
         cbTracto.SelectedIndex = -1
         cbGuia.SelectedIndex = -1
         txtRemitente.Text = ""
-        'Try
-        '    If tbTransportista.Rows.Count > 0 Then
-        '        tbTransportista.Rows.Clear()
-        '    End If
-
-        'Catch ex As Exception
-        '    Console.WriteLine(ex.Message)
-        'End Try
-
-        Dim dt As New DataTable
-        dt.Columns.Add("Codigo")
-        dt.Columns.Add("Numero_de_Guia")
-        tbTransportista.DataSource = dt
-
-        Dim dtGuia As New DataTable
-        dtGuia.Columns.Add("Numero_de_Guia")
-        tbRemitente.DataSource = dtGuia
-
-        Dim dtPlaca As New DataTable
-        dtPlaca.Columns.Add("Placa")
-        tbPlaca.DataSource = dtPlaca
 
     End Sub
 
     Private Sub cbAccionGuia_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbAccionGuia.SelectedIndexChanged
-        codigo_Detalle = CType(cbAccionGuia.SelectedValue, Integer)
+        If cargandoDatosActualizar <> -1 Then
+            codigo_Detalle = CType(cbAccionGuia.SelectedValue, Integer)
+            cargarDatosDetalleFactura()
+            cargarGuiasRemitente()
+            cargarGuiasTransportistas()
+            cargarPlacasDetalle()
+        End If
+
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs)
         MsgBox(data.Rows(0)(6).ToString)
-    End Sub
-
-    Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles btnEliminarTransportista.Click
-
-        MsgBox(tbTransportista.SelectedRows(0).Cells(0).ToString)
-        'Dim sqlControl As New SQLControl
-        'sqlControl.setConnection()
-
-        'Dim facturacionDao As New FacturacionDAO(sqlControl)
-        'Try
-        '    sqlControl.openConexion()
-        '    sqlControl.beginTransaction()
-        '    facturacionDao.setDBcmd()
-
-        '    facturacionDao.deleteFacturaDetalleGuia(codigo_Detalle, codigo_Factura, tbTransportista.SelectedRows(0).Cells(0))
-
-        '    sqlControl.commitTransaction()
-        'Catch ex As Exception
-        '    sqlControl.rollbackTransaccion()
-        'Finally
-        '    Try
-        '        sqlControl.closeConexion()
-        '    Catch ex As Exception
-        '        MsgBox("No se pudo establecer la conexion con el servidor.")
-        '    End Try
-        'End Try
-
-        'cargarGuiasTransportistas()
     End Sub
 
     Private Sub txtNroSerie_KeyDown(sender As Object, e As KeyEventArgs) Handles txtNroSerie.KeyDown
@@ -595,14 +505,14 @@
             facturacionDao.setDBcmd()
 
             Dim dataDetalle As DataTable = facturacionDao.getDetalleFacturaByCodigoFactura(codigo_Factura)
-            sqlControl.commitTransaction()
 
             With cbAccionGuia
                 .DataSource = dataDetalle
                 .DisplayMember = "ITEM"
                 .ValueMember = "CODIGO_DETALLE_FACTURA"
+                .SelectedIndex = -1
             End With
-
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
@@ -682,6 +592,8 @@
         cargarDetalleFactura()
         BloquearDetalle()
         BloquearBotones()
+        cargarDatosFactura()
+        LimpiarCampos()
     End Sub
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
@@ -711,6 +623,8 @@
         cargarDetalleFactura()
         BloquearDetalle()
         BloquearBotones()
+        cargarDatosFactura()
+
 
     End Sub
 
@@ -846,6 +760,33 @@
 
     End Sub
 
+    Private Sub cargarTiposDeServicio()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim tipoServicioDao As New TipoServicioDAO(sqlControl)
+        Dim dataTipoServicio As DataTable
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            tipoServicioDao.setDBcmd()
+
+            dataTipoServicio = tipoServicioDao.getTiposDeServicio()
+
+            With cbTipoServicio
+                .DataSource = dataTipoServicio
+                .ValueMember = "CODIGO_ESTADO"
+                .DisplayMember = "DETALLE_ESTADO"
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+
+        Finally
+
+        End Try
+
+    End Sub
+
     Private Sub cargarPlacasDetalle()
         If codigo_Detalle <> -1 Then
             Dim sqlControl As New SQLControl
@@ -882,5 +823,39 @@
         Dim rpt As New RptPrintFactura
         rpt.setNroFactura(codigo_Factura)
         rpt.Show()
+    End Sub
+
+    Private Sub cargarDatosDetalleFactura()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim facturacionDao As New FacturacionDAO(sqlControl)
+        Dim datDetalle As DataTable
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            facturacionDao.setDBcmd()
+
+            datDetalle = facturacionDao.getDetalleFacturaByIdDetalle(codigo_Detalle)
+
+            cbTipoServicio.SelectedValue = datDetalle.Rows(0).Item(0)
+            txtDescripcionDetalle.Text = datDetalle.Rows(0).Item(1)
+            txtCantidad.Text = datDetalle.Rows(0).Item(2)
+            txtConfVehicular.Text = datDetalle.Rows(0).Item(3)
+            txtValorReferencial.Text = datDetalle.Rows(0).Item(4)
+            txtPrecioUnitario.Text = datDetalle.Rows(0).Item(5)
+            txtOrigen.Text = datDetalle.Rows(0).Item(6)
+            txtDestino.Text = datDetalle.Rows(0).Item(7)
+            txtObservaciones.Text = datDetalle.Rows(0).Item(8)
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btnGuardarCabecera_Click(sender As Object, e As EventArgs) Handles btnGuardarCabecera.Click
+        GuardarCabeceraFactura()
+        cargarDetalleFactura()
+        BloquearBotones()
     End Sub
 End Class

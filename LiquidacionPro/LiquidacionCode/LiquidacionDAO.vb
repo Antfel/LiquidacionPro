@@ -60,7 +60,7 @@ Public Class LiquidacionDAO
 			                        a.CONSUMO_FISICO_LIQUIDACION,
 			                        a.CONSUMO_VIRTUAL_LIQUIDACION,
 			                        a.CODIGO_ESTADO,
-			                        e.DETALLE_DESTADO
+			                        e.DETALLE_ESTADO
                         from		LIQUIDACION a
                         LEFT JOIN	UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
                         LEFT JOIN	UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD
@@ -97,7 +97,7 @@ Public Class LiquidacionDAO
 			                        a.CONSUMO_FISICO_LIQUIDACION,
 			                        a.CONSUMO_VIRTUAL_LIQUIDACION,
 			                        a.CODIGO_ESTADO,
-			                        e.DETALLE_DESTADO
+			                        e.DETALLE_ESTADO
                         from		LIQUIDACION a
                         LEFT JOIN	UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
                         LEFT JOIN	UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD

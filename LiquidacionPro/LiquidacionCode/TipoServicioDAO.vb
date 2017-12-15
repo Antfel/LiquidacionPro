@@ -34,7 +34,7 @@ Public Class TipoServicioDAO
         sqlControl.rollbackTransaccion()
     End Sub
 
-    Public Function getEstados() As DataTable
-        Return sqlControl.ExecQuery("SELECT CODIGO_ESTADO,DETALLE_DESTADO from ESTADO where TIPO_ESTADO = 6", Nothing)
+    Public Function getTiposDeServicio() As DataTable
+        Return sqlControl.ExecQuery("SELECT CODIGO_ESTADO,DETALLE_ESTADO from ESTADO where TIPO_ESTADO = 6", Nothing)
     End Function
 End Class

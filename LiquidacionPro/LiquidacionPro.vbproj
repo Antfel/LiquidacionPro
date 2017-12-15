@@ -142,36 +142,6 @@
     <Compile Include="Formularios\Reportes\ChildRptLiquidacionEstado.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\RptFacturaCompleta.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptFacturaCompleta.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Formularios\RptFacturaDetalle.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptFacturaDetalle.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Formularios\RptFacturaGuia.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptFacturaGuia.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Formularios\RptFacturaImpr.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptFacturaImpr.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Formularios\RptImprimeFactura.Designer.vb">
-      <DependentUpon>RptImprimeFactura.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\RptImprimeFactura.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Formularios\RptPrintFactura.Designer.vb">
       <DependentUpon>RptPrintFactura.vb</DependentUpon>
     </Compile>
@@ -204,12 +174,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Formularios\RptFactura.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RptFactura.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reportes\rptLiquidaciones.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -238,25 +202,6 @@
     <EmbeddedResource Include="Formularios\Reportes\ChildRptLiquidacionEstado.resx">
       <DependentUpon>ChildRptLiquidacionEstado.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\RptFacturaCompleta.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptFacturaCompleta.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\RptFacturaDetalle.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptFacturaDetalle.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\RptFacturaGuia.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptFacturaGuia.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\RptFacturaImpr.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptFacturaImpr.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\RptImprimeFactura.resx">
-      <DependentUpon>RptImprimeFactura.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\RptPrintFactura.resx">
       <DependentUpon>RptPrintFactura.vb</DependentUpon>
     </EmbeddedResource>
@@ -266,13 +211,6 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\RptFactura.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RptFactura.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\rptFacturaCabecera.rdlc" />
-    <EmbeddedResource Include="Reportes\rptFacturaDetalle.rdlc" />
-    <EmbeddedResource Include="Reportes\rptLiquidaciones.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\Application.myapp">

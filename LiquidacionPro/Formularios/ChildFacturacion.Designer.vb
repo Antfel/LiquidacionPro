@@ -92,6 +92,7 @@ Partial Class ChildFacturacion
         Me.txtPrecioFactura = New System.Windows.Forms.TextBox()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.btnEliminar = New System.Windows.Forms.Button()
+        Me.btnGuardarCabecera = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel14.SuspendLayout()
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,6 +157,7 @@ Partial Class ChildFacturacion
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.btnGuardarCabecera)
         Me.Panel1.Controls.Add(Me.lbNroFactura)
         Me.Panel1.Controls.Add(Me.txtNroSerie)
         Me.Panel1.Controls.Add(Me.lbFactura)
@@ -747,6 +749,15 @@ Partial Class ChildFacturacion
         Me.btnEliminar.Text = "ELIMINAR"
         Me.btnEliminar.UseVisualStyleBackColor = True
         '
+        'btnGuardarCabecera
+        '
+        Me.btnGuardarCabecera.Location = New System.Drawing.Point(98, 120)
+        Me.btnGuardarCabecera.Name = "btnGuardarCabecera"
+        Me.btnGuardarCabecera.Size = New System.Drawing.Size(141, 23)
+        Me.btnGuardarCabecera.TabIndex = 4
+        Me.btnGuardarCabecera.Text = "Guardar Datos"
+        Me.btnGuardarCabecera.UseVisualStyleBackColor = True
+        '
         'ChildFacturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -886,4 +897,5 @@ Partial Class ChildFacturacion
     Friend WithEvents txtNroSerie As TextBox
     Friend WithEvents btnNuevo As Button
     Friend WithEvents btnEliminar As Button
+    Friend WithEvents btnGuardarCabecera As Button
 End Class

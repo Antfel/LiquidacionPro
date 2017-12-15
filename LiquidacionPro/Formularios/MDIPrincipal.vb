@@ -32,8 +32,7 @@ Public Class MDIPrincipal
     End Sub
 
     Private Sub FacturaTestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaTestToolStripMenuItem.Click
-        Dim rpt As New RptImprimeFactura
-        rpt.Show()
+
 
     End Sub
 

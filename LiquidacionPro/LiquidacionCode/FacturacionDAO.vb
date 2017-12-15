@@ -36,14 +36,43 @@ Public Class FacturacionDAO
 
     Public Function getAllFacturas() As DataTable
 
-        Return sqlControl.ExecQuery("select CODIGO_FACTURA," +
-                    "SERIE_FACTURA," +
-                    "NUMERO_FACTURA," +
-                    "CODIGO_CLIENTE," +
-                    "TOTAL_FACTURA," +
-                    "CODIGO_MONEDA," +
-                    "CODIGO_ESTADO " +
-                    "from Factura ", Nothing)
+        Return sqlControl.ExecQuery("select a.CODIGO_FACTURA, 
+	                                 a.SERIE_FACTURA, 
+	                                 a.NUMERO_FACTURA,
+	                                 b.RUC_CLIENTE,
+	                                 b.RAZON_CLIENTE,
+	                                 CAST(a.FECHA_FACTURA as date),
+	                                 c.DETALLE_MONEDA,
+	                                 a.TOTAL_FACTURA,
+	                                 d.DETALLE_ESTADO
+                                     from FACTURA a 
+                                     LEFT JOIN CLIENTE b 
+                                     on a.CODIGO_CLIENTE=b.CODIGO_CLIENTE
+                                     LEFT JOIN MONEDA c 
+                                     on a.CODIGO_MONEDA = c.CODIGO_MONEDA
+                                     LEFT JOIN ESTADO d 
+                                     on a.CODIGO_ESTADO = d.CODIGO_ESTADO", Nothing)
+    End Function
+
+    Public Function getAllFacturasFiltro(Filtro As String) As DataTable
+
+        Return sqlControl.ExecQuery("select a.CODIGO_FACTURA, 
+	                                 a.SERIE_FACTURA, 
+	                                 a.NUMERO_FACTURA,
+	                                 b.RUC_CLIENTE,
+	                                 b.RAZON_CLIENTE,
+	                                 CAST(a.FECHA_FACTURA as date),
+	                                 c.DETALLE_MONEDA,
+	                                 a.TOTAL_FACTURA,
+	                                 d.DETALLE_ESTADO
+                                     from FACTURA a 
+                                     LEFT JOIN CLIENTE b 
+                                     on a.CODIGO_CLIENTE=b.CODIGO_CLIENTE
+                                     LEFT JOIN MONEDA c 
+                                     on a.CODIGO_MONEDA = c.CODIGO_MONEDA
+                                     LEFT JOIN ESTADO d 
+                                     on a.CODIGO_ESTADO = d.CODIGO_ESTADO
+                                     where b.RAZON_CLIENTE LIKE '%'+'" + Filtro + "'+'%'", Nothing)
     End Function
 
     Public Function getFacturaById(codigo As Integer) As DataTable
@@ -54,15 +83,34 @@ Public Class FacturacionDAO
                     "CODIGO_CLIENTE," +
                     "TOTAL_FACTURA," +
                     "CODIGO_MONEDA," +
+                    "FECHA_FACTURA," +
                     "CODIGO_ESTADO " +
                     "from factura " +
                     "where CODIGO_FACTURA=" + CStr(codigo), Nothing)
     End Function
+    Public Function getDetalleFacturaByIdDetalle(codigo_detalle As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("select TIPO_SERVICIO,
+                                    DESCRIPCION,
+                                    CANTIDAD,
+                                    CONF_VEHICULAR,
+                                    VALOR_REFERENCIAL,
+                                    PRECIO_UNITARIO,
+                                    ORIGEN,
+                                    DESTINO,
+                                    OBSERVACION
+                                    from DETALLE_FACTURA
+                                    WHERE 
+                                    CODIGO_DETALLE_FACTURA =" + CStr(codigo_detalle),
+                                     Nothing)
+
+    End Function
+
 
     Public Function getDetalleFacturaByCodigoFactura(codigo_Factura As Integer) As DataTable
 
-        Return sqlControl.ExecQuery("select CODIGO_DETALLE_FACTURA,
-                                    'ITEM '+cast(ROW_NUMBER()  OVER(ORDER BY CODIGO_DETALLE_FACTURA ASC) as varchar(10)) AS ITEM
+        Return sqlControl.ExecQuery("select CODIGO_DETALLE_FACTURA, 
+                                    'ITEM '+cast(ROW_NUMBER()  OVER(ORDER BY CODIGO_DETALLE_FACTURA ASC) as varchar(10)) AS ITEM 
                                     FROM DETALLE_FACTURA 
                                     WHERE 
                                     CODIGO_FACTURA =" + CStr(codigo_Factura),
