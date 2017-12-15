@@ -10,12 +10,15 @@
 
         Dim correlativo As New Correlativo_NumeroDAO(sqlControl)
         Try
-            correlativo.openConexion()
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            correlativo.setDBcmd()
 
             Dim dt As DataTable = correlativo.GetAllCorrelativo
             dgvCorrelativo.DataSource = dt
-
+            sqlControl.commitTransaction()
         Catch excep As Exception
+            sqlControl.rollbackTransaccion()
         Finally
             Try
                 correlativo.closeConexion()
@@ -27,6 +30,10 @@
     End Sub
 
     Private Sub dgvCorrelativo_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvCorrelativo.CellMouseClick
+        cargarCorrelativoNumero()
+    End Sub
+
+    Sub cargarCorrelativoNumero()
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
 
@@ -34,8 +41,10 @@
 
         Try
             sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            correlativoNumero.setDBcmd()
 
-            If e.RowIndex > -1 Then
+            If dgvCorrelativo.CurrentRow.Index > -1 Then
                 Dim dt As DataTable
 
                 Dim seleccion As DataGridViewRow = dgvCorrelativo.SelectedRows(0)
@@ -44,6 +53,7 @@
 
                 dt = correlativoNumero.GetAllCorrelativoNumeroByCorrelativo(codigo)
 
+                sqlControl.commitTransaction()
 
                 txtCorrealtivo.Text = CStr(codigo)
                 txtDescripcion.Text = descripcion
@@ -57,6 +67,7 @@
 
             End If
         Catch ex As Exception
+            sqlControl.rollbackTransaccion()
         Finally
             Try
                 sqlControl.closeConexion()
@@ -65,15 +76,16 @@
 
         End Try
     End Sub
-
     Private Sub dgvCorrelativoNumero_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvCorrelativoNumero.CellMouseClick
-        Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        'Dim sqlControl As New SQLControl
+        'sqlControl.setConnection()
 
-        Dim correlativoNumero As New Correlativo_NumeroDAO(sqlControl)
+        'Dim correlativoNumero As New Correlativo_NumeroDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
+            'sqlControl.openConexion()
+            'sqlControl.beginTransaction()
+            'correlativoNumero.setDBcmd()
 
             If e.RowIndex > -1 Then
                 ' Dim dt As DataTable
@@ -95,10 +107,10 @@
 
             End If
         Catch ex As Exception
-            Console.WriteLine("dasdasdasd: " + ex.Message)
+            'Console.WriteLine("dasdasdasd: " + ex.Message)
         Finally
             Try
-                sqlControl.closeConexion()
+                'sqlControl.closeConexion()
             Catch exp As Exception
 
             End Try
@@ -109,8 +121,8 @@
     Private Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
-        Dim correlativo_numero As Correlativo_NumeroDAO
-        correlativo_numero = New Correlativo_NumeroDAO(sqlControl)
+
+        Dim correlativo_numero As New Correlativo_NumeroDAO(sqlControl)
 
         If txtSerie.Text = "" Then
             MsgBox("Seleccionar un correlativo.")
@@ -119,7 +131,10 @@
 
         Try
 
-            correlativo_numero.openConexion()
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            correlativo_numero.setDBcmd()
+
             Dim flag As Integer
 
             Dim codigo As Integer
@@ -131,17 +146,18 @@
             ultimo = txtUltimoUsado.Text
 
             flag = correlativo_numero.updateCorrelativoNumero(codigo, serie, ultimo)
-
+            sqlControl.commitTransaction()
             If flag > 0 Then
                 MsgBox("Grabación exitosa.")
             Else
                 MsgBox("Verifique la numeración.")
             End If
-
         Catch ex As Exception
+            sqlControl.rollbackTransaccion()
         Finally
             Try
-                correlativo_numero.closeConexion()
+                sqlControl.closeConexion()
+                cargarCorrelativoNumero()
             Catch ex As Exception
 
             End Try

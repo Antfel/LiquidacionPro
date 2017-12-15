@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class MDIPrincipal
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -21,7 +21,7 @@ Partial Class MDIPrincipal
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
@@ -36,8 +36,6 @@ Partial Class MDIPrincipal
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesPorEstadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FacturaTestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FacturaBetaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -99,7 +97,7 @@ Partial Class MDIPrincipal
         '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem1, Me.FacturaTestToolStripMenuItem, Me.FacturaBetaToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem1})
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.ReportesToolStripMenuItem.Text = "Reportes"
@@ -116,18 +114,6 @@ Partial Class MDIPrincipal
         Me.LiquidacionesPorEstadoToolStripMenuItem.Name = "LiquidacionesPorEstadoToolStripMenuItem"
         Me.LiquidacionesPorEstadoToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
         Me.LiquidacionesPorEstadoToolStripMenuItem.Text = "Liquidaciones por Estado"
-        '
-        'FacturaTestToolStripMenuItem
-        '
-        Me.FacturaTestToolStripMenuItem.Name = "FacturaTestToolStripMenuItem"
-        Me.FacturaTestToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.FacturaTestToolStripMenuItem.Text = "Factura test"
-        '
-        'FacturaBetaToolStripMenuItem
-        '
-        Me.FacturaBetaToolStripMenuItem.Name = "FacturaBetaToolStripMenuItem"
-        Me.FacturaBetaToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.FacturaBetaToolStripMenuItem.Text = "Factura Beta"
         '
         'MDIPrincipal
         '
@@ -160,6 +146,4 @@ Partial Class MDIPrincipal
     Friend WithEvents LiquidacionesPorEstadoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GuíasDeTransportistaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CorrelativosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents FacturaTestToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents FacturaBetaToolStripMenuItem As ToolStripMenuItem
 End Class

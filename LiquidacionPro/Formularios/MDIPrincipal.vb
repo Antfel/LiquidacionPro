@@ -30,15 +30,4 @@ Public Class MDIPrincipal
         correlativoChild.MdiParent = Me
         correlativoChild.Show()
     End Sub
-
-    Private Sub FacturaTestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaTestToolStripMenuItem.Click
-        Dim rpt As New RptImprimeFactura
-        rpt.Show()
-
-    End Sub
-
-    Private Sub FacturaBetaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaBetaToolStripMenuItem.Click
-        Dim rpt As New RptPrintFactura
-        rpt.Show()
-    End Sub
 End Class

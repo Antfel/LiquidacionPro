@@ -35,6 +35,8 @@ Partial Class ChildGuia
         Me.Label5 = New System.Windows.Forms.Label()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.btnGrabar = New System.Windows.Forms.Button()
+        Me.chkbLiquidacion = New System.Windows.Forms.CheckBox()
+        Me.chkbFacturacion = New System.Windows.Forms.CheckBox()
         CType(Me.dgvGuias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -73,6 +75,7 @@ Partial Class ChildGuia
         '
         'dtpLiquidacion
         '
+        Me.dtpLiquidacion.Enabled = False
         Me.dtpLiquidacion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpLiquidacion.Location = New System.Drawing.Point(500, 13)
         Me.dtpLiquidacion.Name = "dtpLiquidacion"
@@ -81,6 +84,8 @@ Partial Class ChildGuia
         '
         'dtpFacturacion
         '
+        Me.dtpFacturacion.Checked = False
+        Me.dtpFacturacion.Enabled = False
         Me.dtpFacturacion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpFacturacion.Location = New System.Drawing.Point(500, 51)
         Me.dtpFacturacion.Name = "dtpFacturacion"
@@ -150,11 +155,31 @@ Partial Class ChildGuia
         Me.btnGrabar.Text = "Grabar"
         Me.btnGrabar.UseVisualStyleBackColor = True
         '
+        'chkbLiquidacion
+        '
+        Me.chkbLiquidacion.AutoSize = True
+        Me.chkbLiquidacion.Location = New System.Drawing.Point(603, 15)
+        Me.chkbLiquidacion.Name = "chkbLiquidacion"
+        Me.chkbLiquidacion.Size = New System.Drawing.Size(15, 14)
+        Me.chkbLiquidacion.TabIndex = 13
+        Me.chkbLiquidacion.UseVisualStyleBackColor = True
+        '
+        'chkbFacturacion
+        '
+        Me.chkbFacturacion.AutoSize = True
+        Me.chkbFacturacion.Location = New System.Drawing.Point(603, 51)
+        Me.chkbFacturacion.Name = "chkbFacturacion"
+        Me.chkbFacturacion.Size = New System.Drawing.Size(15, 14)
+        Me.chkbFacturacion.TabIndex = 14
+        Me.chkbFacturacion.UseVisualStyleBackColor = True
+        '
         'ChildGuia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(797, 297)
+        Me.Controls.Add(Me.chkbFacturacion)
+        Me.Controls.Add(Me.chkbLiquidacion)
         Me.Controls.Add(Me.btnGrabar)
         Me.Controls.Add(Me.btnNuevo)
         Me.Controls.Add(Me.Label5)
@@ -190,4 +215,6 @@ Partial Class ChildGuia
     Friend WithEvents Label5 As Label
     Friend WithEvents btnNuevo As Button
     Friend WithEvents btnGrabar As Button
+    Friend WithEvents chkbLiquidacion As CheckBox
+    Friend WithEvents chkbFacturacion As CheckBox
 End Class
