@@ -168,6 +168,7 @@
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
 
+
         Dim facturacionDao As New FacturacionDAO(sqlControl)
         Dim correlativoDao As New Correlativo_NumeroDAO(sqlControl)
 
