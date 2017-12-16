@@ -100,4 +100,10 @@
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txtRazonSocial.TextChanged
 
     End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim facturaLibreChild As New ChildFacturaLibre
+        facturaLibreChild.MdiParent = Me.MdiParent
+        facturaLibreChild.Show()
+    End Sub
 End Class

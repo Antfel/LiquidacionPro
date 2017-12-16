@@ -802,7 +802,7 @@
 
                 dataPlacas = facturacionDao.getPlacaByDetalle(codigo_Detalle)
 
-                tbRemitente.DataSource = dataPlacas
+                tbPlaca.DataSource = dataPlacas
 
                 sqlControl.commitTransaction()
 

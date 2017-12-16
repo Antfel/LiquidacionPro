@@ -110,6 +110,12 @@
     <Compile Include="Formularios\ChildFacturacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\ChildFacturaLibre.Designer.vb">
+      <DependentUpon>ChildFacturaLibre.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildFacturaLibre.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\ChildGuia.Designer.vb">
       <DependentUpon>ChildGuia.vb</DependentUpon>
     </Compile>
@@ -196,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ChildFacturacion.resx">
       <DependentUpon>ChildFacturacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ChildFacturaLibre.resx">
+      <DependentUpon>ChildFacturaLibre.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ChildGuia.resx">
       <DependentUpon>ChildGuia.vb</DependentUpon>
