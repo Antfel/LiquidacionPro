@@ -15,7 +15,7 @@
                     <CommandText>SELECT        a.CODIGO_LIQUIDACION, a.NUMERO_LIQUIDACION, f.APELLIDO_PATERNO_TRABAJADOR + ' ' + f.APELLIDO_MATERNO_TRABAJADOR + ', ' + f.NOMBRES_TRABAJADOR AS Expr1, d.DETALLE_GUIA, 
                          b.PLACA_UNIDAD, c.PLACA_UNIDAD AS Expr2, a.ORIGEN_LIQUIDACION, a.DESTINO_LIQUIDACION, a.FECHA_SALIDA, a.FECHA_LLEGADA, a.DINERO_LIQUIDACION, a.PEAJES_LIQUIDACION, 
                          a.VIATICOS_LIQUIDACION, a.GUARDIANIA_LIQUIDACION, a.HOSPEDAJE_LIQUIDACION, a.BALANZA_LIQUIDACION, a.OTROS_LIQUIDACION, a.CONSUMO_FISICO_LIQUIDACION, 
-                         a.CONSUMO_VIRTUAL_LIQUIDACION, e.DETALLE_DESTADO
+                         a.CONSUMO_VIRTUAL_LIQUIDACION, e.DETALLE_ESTADO
 FROM            dbo.LIQUIDACION AS a LEFT OUTER JOIN
                          dbo.UNIDAD AS b ON a.CODIGO_UNIDAD_TRACTO = b.CODIGO_UNIDAD LEFT OUTER JOIN
                          dbo.UNIDAD AS c ON a.CODIGO_UNIDAD_SEMITRAILER = c.CODIGO_UNIDAD LEFT OUTER JOIN
@@ -51,7 +51,7 @@ ORDER BY a.CODIGO_LIQUIDACION</CommandText>
               <Mapping SourceColumn="OTROS_LIQUIDACION" DataSetColumn="OTROS_LIQUIDACION" />
               <Mapping SourceColumn="CONSUMO_FISICO_LIQUIDACION" DataSetColumn="CONSUMO_FISICO_LIQUIDACION" />
               <Mapping SourceColumn="CONSUMO_VIRTUAL_LIQUIDACION" DataSetColumn="CONSUMO_VIRTUAL_LIQUIDACION" />
-              <Mapping SourceColumn="DETALLE_DESTADO" DataSetColumn="DETALLE_DESTADO" />
+              <Mapping SourceColumn="DETALLE_ESTADO" DataSetColumn="DETALLE_ESTADO" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -518,10 +518,10 @@ where	a.CODIGO_FACTURA=@codigo_factura</CommandText>
               <xs:element name="OTROS_LIQUIDACION" msprop:Generator_ColumnVarNameInTable="columnOTROS_LIQUIDACION" msprop:Generator_ColumnPropNameInRow="OTROS_LIQUIDACION" msprop:Generator_ColumnPropNameInTable="OTROS_LIQUIDACIONColumn" msprop:Generator_UserColumnName="OTROS_LIQUIDACION" type="xs:decimal" minOccurs="0" />
               <xs:element name="CONSUMO_FISICO_LIQUIDACION" msprop:Generator_ColumnVarNameInTable="columnCONSUMO_FISICO_LIQUIDACION" msprop:Generator_ColumnPropNameInRow="CONSUMO_FISICO_LIQUIDACION" msprop:Generator_ColumnPropNameInTable="CONSUMO_FISICO_LIQUIDACIONColumn" msprop:Generator_UserColumnName="CONSUMO_FISICO_LIQUIDACION" type="xs:decimal" minOccurs="0" />
               <xs:element name="CONSUMO_VIRTUAL_LIQUIDACION" msprop:Generator_ColumnVarNameInTable="columnCONSUMO_VIRTUAL_LIQUIDACION" msprop:Generator_ColumnPropNameInRow="CONSUMO_VIRTUAL_LIQUIDACION" msprop:Generator_ColumnPropNameInTable="CONSUMO_VIRTUAL_LIQUIDACIONColumn" msprop:Generator_UserColumnName="CONSUMO_VIRTUAL_LIQUIDACION" type="xs:decimal" minOccurs="0" />
-              <xs:element name="DETALLE_DESTADO" msprop:Generator_ColumnVarNameInTable="columnDETALLE_DESTADO" msprop:Generator_ColumnPropNameInRow="DETALLE_DESTADO" msprop:Generator_ColumnPropNameInTable="DETALLE_DESTADOColumn" msprop:Generator_UserColumnName="DETALLE_DESTADO" minOccurs="0">
+              <xs:element name="DETALLE_ESTADO" msprop:Generator_ColumnVarNameInTable="columnDETALLE_ESTADO" msprop:Generator_ColumnPropNameInRow="DETALLE_ESTADO" msprop:Generator_ColumnPropNameInTable="DETALLE_ESTADOColumn" msprop:Generator_UserColumnName="DETALLE_ESTADO" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="15" />
+                    <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -609,7 +609,7 @@ where	a.CODIGO_FACTURA=@codigo_factura</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="CODIGO_FACTURA" msprop:Generator_ColumnVarNameInTable="columnCODIGO_FACTURA" msprop:Generator_ColumnPropNameInRow="CODIGO_FACTURA" msprop:Generator_ColumnPropNameInTable="CODIGO_FACTURAColumn" msprop:Generator_UserColumnName="CODIGO_FACTURA" type="xs:int" />
-              <xs:element name="CODIGO_DETALLE_FACTURA" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCODIGO_DETALLE_FACTURA" msprop:Generator_ColumnPropNameInRow="CODIGO_DETALLE_FACTURA" msprop:Generator_ColumnPropNameInTable="CODIGO_DETALLE_FACTURAColumn" msprop:Generator_UserColumnName="CODIGO_DETALLE_FACTURA" type="xs:int" minOccurs="0" />
+              <xs:element name="CODIGO_DETALLE_FACTURA" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCODIGO_DETALLE_FACTURA" msprop:Generator_ColumnPropNameInRow="CODIGO_DETALLE_FACTURA" msprop:Generator_ColumnPropNameInTable="CODIGO_DETALLE_FACTURAColumn" msprop:Generator_UserColumnName="CODIGO_DETALLE_FACTURA" type="xs:int" />
               <xs:element name="DETALLE_ESTADO" msprop:Generator_ColumnVarNameInTable="columnDETALLE_ESTADO" msprop:Generator_ColumnPropNameInRow="DETALLE_ESTADO" msprop:Generator_ColumnPropNameInTable="DETALLE_ESTADOColumn" msprop:Generator_UserColumnName="DETALLE_ESTADO" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">

@@ -113,6 +113,7 @@ Partial Class ChildBusquedaFactura
         Me.Controls.Add(Me.dgvFacturas)
         Me.Name = "ChildBusquedaFactura"
         Me.Text = "Busqueda de Factura"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.dgvFacturas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

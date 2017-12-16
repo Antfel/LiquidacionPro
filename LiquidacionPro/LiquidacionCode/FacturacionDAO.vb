@@ -36,42 +36,50 @@ Public Class FacturacionDAO
 
     Public Function getAllFacturas() As DataTable
 
-        Return sqlControl.ExecQuery("select a.CODIGO_FACTURA, 
-	                                 a.SERIE_FACTURA, 
-	                                 a.NUMERO_FACTURA,
-	                                 b.RUC_CLIENTE,
-	                                 b.RAZON_CLIENTE,
-	                                 CAST(a.FECHA_FACTURA as date),
-	                                 c.DETALLE_MONEDA,
-	                                 a.TOTAL_FACTURA,
-	                                 d.DETALLE_ESTADO
-                                     from FACTURA a 
-                                     LEFT JOIN CLIENTE b 
-                                     on a.CODIGO_CLIENTE=b.CODIGO_CLIENTE
-                                     LEFT JOIN MONEDA c 
-                                     on a.CODIGO_MONEDA = c.CODIGO_MONEDA
-                                     LEFT JOIN ESTADO d 
-                                     on a.CODIGO_ESTADO = d.CODIGO_ESTADO", Nothing)
+        Return sqlControl.ExecQuery("select		a.CODIGO_FACTURA, 
+	                                            a.SERIE_FACTURA, 
+	                                            a.NUMERO_FACTURA,
+	                                            b.RUC_CLIENTE,
+	                                            b.RAZON_CLIENTE,
+	                                            CAST(a.FECHA_FACTURA as date) FECHA_FACTURA,
+	                                            c.DETALLE_MONEDA,
+	                                            a.TOTAL_FACTURA,
+	                                            d.DETALLE_ESTADO,
+                                                a.TIPO_FACTURA,
+                                                e.DETALLE_ESTADO TIPO_FACTURA
+                                    from FACTURA a 
+                                    LEFT JOIN CLIENTE b 
+                                    on a.CODIGO_CLIENTE=b.CODIGO_CLIENTE
+                                    LEFT JOIN MONEDA c 
+                                    on a.CODIGO_MONEDA = c.CODIGO_MONEDA
+                                    LEFT JOIN ESTADO d 
+                                    on a.CODIGO_ESTADO = d.CODIGO_ESTADO
+                                    LEFT JOIN ESTADO e
+                                    on a.TIPO_FACTURA=e.CODIGO_ESTADO and e.TIPO_ESTADO=7", Nothing)
     End Function
 
     Public Function getAllFacturasFiltro(Filtro As String) As DataTable
 
-        Return sqlControl.ExecQuery("select a.CODIGO_FACTURA, 
-	                                 a.SERIE_FACTURA, 
-	                                 a.NUMERO_FACTURA,
-	                                 b.RUC_CLIENTE,
-	                                 b.RAZON_CLIENTE,
-	                                 CAST(a.FECHA_FACTURA as date),
-	                                 c.DETALLE_MONEDA,
-	                                 a.TOTAL_FACTURA,
-	                                 d.DETALLE_ESTADO
+        Return sqlControl.ExecQuery("select  a.CODIGO_FACTURA, 
+	                                         a.SERIE_FACTURA, 
+	                                         a.NUMERO_FACTURA,
+	                                         b.RUC_CLIENTE,
+	                                         b.RAZON_CLIENTE,
+	                                         CAST(a.FECHA_FACTURA as date) FECHA_FACTURA,
+	                                         c.DETALLE_MONEDA,
+	                                         a.TOTAL_FACTURA,
+	                                         d.DETALLE_ESTADO,
+                                             a.TIPO_FACTURA,
+                                             e.DETALLE_ESTADO TIPO_FACTURA 
                                      from FACTURA a 
                                      LEFT JOIN CLIENTE b 
                                      on a.CODIGO_CLIENTE=b.CODIGO_CLIENTE
                                      LEFT JOIN MONEDA c 
                                      on a.CODIGO_MONEDA = c.CODIGO_MONEDA
                                      LEFT JOIN ESTADO d 
-                                     on a.CODIGO_ESTADO = d.CODIGO_ESTADO
+                                     on a.CODIGO_ESTADO = d.CODIGO_ESTADO 
+                                     LEFT JOIN ESTADO e 
+                                     on a.TIPO_FACTURA=e.CODIGO_ESTADO and e.TIPO_ESTADO=7 
                                      where b.RAZON_CLIENTE LIKE '%'+'" + Filtro + "'+'%'", Nothing)
     End Function
 
@@ -98,7 +106,7 @@ Public Class FacturacionDAO
                                     PRECIO_UNITARIO,
                                     ORIGEN,
                                     DESTINO,
-                                    OBSERVACION
+                                    OBSERVACION 
                                     from DETALLE_FACTURA
                                     WHERE 
                                     CODIGO_DETALLE_FACTURA =" + CStr(codigo_detalle),
@@ -118,8 +126,28 @@ Public Class FacturacionDAO
 
     End Function
 
+    Public Function getAllDetalleFacturaByCodigoFactura(codigo_Factura As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("select CODIGO_FACTURA,
+                                    CODIGO_DETALLE_FACTURA,
+                                    TIPO_SERVICIO,
+                                    CANTIDAD,
+                                    DESCRIPCION,
+                                    CONF_VEHICULAR,
+                                    VALOR_REFERENCIAL,
+                                    PRECIO_UNITARIO,
+                                    ORIGEN,
+                                    DESTINO,
+                                    OBSERVACION  
+                                    FROM DETALLE_FACTURA 
+                                    WHERE 
+                                    CODIGO_FACTURA =" + CStr(codigo_Factura),
+                                     Nothing)
+
+    End Function
+
     Public Function InsertFactura(serie_factura As String, numero_factura As String, codigo_cliente As Integer, total_factura As Long,
-                             codigo_moneda As Integer, codigo_estado As Integer, fecha_factura As Date) As Integer
+                             codigo_moneda As Integer, codigo_estado As Integer, fecha_factura As Date, tipo_factura As Integer) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@SERIE_FACTURA", serie_factura))
@@ -129,6 +157,7 @@ Public Class FacturacionDAO
         params.Add(New SqlParameter("@CODIGO_MONEDA", codigo_moneda))
         params.Add(New SqlParameter("@CODIGO_ESTADO", codigo_estado))
         params.Add(New SqlParameter("@FECHA_FACTURA", fecha_factura))
+        params.Add(New SqlParameter("@TIPO_FACTURA", tipo_factura))
 
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE insertFacturaCabecera " +
@@ -138,7 +167,8 @@ Public Class FacturacionDAO
                                         "@TOTAL_FACTURA," +
                                         "@CODIGO_MONEDA," +
                                         "@CODIGO_ESTADO," +
-                                        "@FECHA_FACTURA ", params)
+                                        "@FECHA_FACTURA, " +
+                                        "@TIPO_FACTURA ", params)
         If dt.Rows.Count > 0 Then
             Return CInt(dt.Rows.Item(0).Item(0))
         Else
@@ -178,7 +208,13 @@ Public Class FacturacionDAO
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
-        params.Add(New SqlParameter("@TIPO_SERVICIO", tipo_servicio))
+
+        If tipo_servicio < 0 Then
+            params.Add(New SqlParameter("@TIPO_SERVICIO", DBNull.Value))
+        Else
+            params.Add(New SqlParameter("@TIPO_SERVICIO", tipo_servicio))
+        End If
+
         params.Add(New SqlParameter("@DESCRIPCION", descripcion))
         params.Add(New SqlParameter("@CANTIDAD", cantidad))
         params.Add(New SqlParameter("@CONF_VEHICULAR", conf_vehi))
@@ -219,7 +255,13 @@ Public Class FacturacionDAO
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
-        params.Add(New SqlParameter("@TIPO_SERVICIO", tipo_servicio))
+        If tipo_servicio < 0 Then
+            params.Add(New SqlParameter("@TIPO_SERVICIO", DBNull.Value))
+        Else
+            params.Add(New SqlParameter("@TIPO_SERVICIO", tipo_servicio))
+        End If
+
+
         params.Add(New SqlParameter("@DESCRIPCION", descripcion))
         params.Add(New SqlParameter("@CANTIDAD", cantidad))
         params.Add(New SqlParameter("@CONF_VEHICULAR", conf_vehi))

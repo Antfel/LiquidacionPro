@@ -218,13 +218,16 @@
         If codigo_Factura <> -1 Then
             cargarDatosFactura()
             cargandoDatosActualizar = 0
+
+        Else
+            txtNroSerie.Text = "001"
+            txtNroSerie.ReadOnly = True
+            ObtenerCorrelativo()
+
         End If
+
         actualizarDatosGuia()
         actualizarDatosTracto()
-
-        txtNroSerie.Text = "001"
-        txtNroSerie.ReadOnly = True
-        ObtenerCorrelativo()
         BloquearDetalle()
 
 
@@ -470,7 +473,8 @@
                                          CType(txtPrecioFactura.Text, Long),
                                          CType(cbMoneda.SelectedValue, Integer),
                                          16,
-                                         dtFecha.Value)
+                                         dtFecha.Value,
+                                         34)
             'Fin - Ingreso de la Cabecera de la Factura
 
             sqlControl.commitTransaction()

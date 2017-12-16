@@ -130,6 +130,8 @@
             txtCombustibleFisico.Text = dt.Rows(0)(21)
             txtCombustibleVirtual.Text = dt.Rows(0)(22)
             cbEstado.SelectedValue = dt.Rows(0)(23)
+            txtTotalGasto.Text = dt.Rows(0)(25)
+            txtDiferencia.Text = dt.Rows(0)(26)
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
@@ -393,9 +395,5 @@
         txtCombustibleFisico.Text = ""
         txtCombustibleVirtual.Text = ""
         cbEstado.SelectedIndex = -1
-    End Sub
-
-    Private Sub dgvLiquidacion_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvLiquidacion.CellContentClick
-
     End Sub
 End Class

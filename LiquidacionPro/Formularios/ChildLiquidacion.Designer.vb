@@ -65,6 +65,10 @@ Partial Class ChildLiquidacion
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtTotalGasto = New System.Windows.Forms.TextBox()
+        Me.txtDiferencia = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -284,7 +288,7 @@ Partial Class ChildLiquidacion
         '
         'txtOtros
         '
-        Me.txtOtros.Location = New System.Drawing.Point(334, 157)
+        Me.txtOtros.Location = New System.Drawing.Point(333, 154)
         Me.txtOtros.Name = "txtOtros"
         Me.txtOtros.Size = New System.Drawing.Size(107, 20)
         Me.txtOtros.TabIndex = 70
@@ -430,11 +434,47 @@ Partial Class ChildLiquidacion
         Me.Label1.TabIndex = 46
         Me.Label1.Text = "Nombre de Chofer"
         '
+        'txtTotalGasto
+        '
+        Me.txtTotalGasto.Location = New System.Drawing.Point(334, 188)
+        Me.txtTotalGasto.Name = "txtTotalGasto"
+        Me.txtTotalGasto.Size = New System.Drawing.Size(107, 20)
+        Me.txtTotalGasto.TabIndex = 89
+        '
+        'txtDiferencia
+        '
+        Me.txtDiferencia.Location = New System.Drawing.Point(521, 188)
+        Me.txtDiferencia.Name = "txtDiferencia"
+        Me.txtDiferencia.Size = New System.Drawing.Size(107, 20)
+        Me.txtDiferencia.TabIndex = 90
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(239, 194)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(62, 13)
+        Me.Label21.TabIndex = 91
+        Me.Label21.Text = "Total Gasto"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(455, 193)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(55, 13)
+        Me.Label22.TabIndex = 92
+        Me.Label22.Text = "Diferencia"
+        '
         'ChildLiquidacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1047, 513)
+        Me.Controls.Add(Me.Label22)
+        Me.Controls.Add(Me.Label21)
+        Me.Controls.Add(Me.txtDiferencia)
+        Me.Controls.Add(Me.txtTotalGasto)
         Me.Controls.Add(Me.btnNuevo)
         Me.Controls.Add(Me.cbGuia)
         Me.Controls.Add(Me.cbCamabaja)
@@ -530,4 +570,8 @@ Partial Class ChildLiquidacion
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents txtTotalGasto As TextBox
+    Friend WithEvents txtDiferencia As TextBox
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Label22 As Label
 End Class

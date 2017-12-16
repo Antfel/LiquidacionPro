@@ -566,7 +566,7 @@ Partial Public Class rptLiquidaciones
         
         Private columnCONSUMO_VIRTUAL_LIQUIDACION As Global.System.Data.DataColumn
         
-        Private columnDETALLE_DESTADO As Global.System.Data.DataColumn
+        Private columnDETALLE_ESTADO As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -757,9 +757,9 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property DETALLE_DESTADOColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property DETALLE_ESTADOColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDETALLE_DESTADO
+                Return Me.columnDETALLE_ESTADO
             End Get
         End Property
         
@@ -819,9 +819,9 @@ Partial Public Class rptLiquidaciones
                     ByVal OTROS_LIQUIDACION As Decimal,  _
                     ByVal CONSUMO_FISICO_LIQUIDACION As Decimal,  _
                     ByVal CONSUMO_VIRTUAL_LIQUIDACION As Decimal,  _
-                    ByVal DETALLE_DESTADO As String) As dtLiquidacionEstadoRow
+                    ByVal DETALLE_ESTADO As String) As dtLiquidacionEstadoRow
             Dim rowdtLiquidacionEstadoRow As dtLiquidacionEstadoRow = CType(Me.NewRow,dtLiquidacionEstadoRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, NUMERO_LIQUIDACION, Expr1, DETALLE_GUIA, PLACA_UNIDAD, Expr2, ORIGEN_LIQUIDACION, DESTINO_LIQUIDACION, FECHA_SALIDA, FECHA_LLEGADA, DINERO_LIQUIDACION, PEAJES_LIQUIDACION, VIATICOS_LIQUIDACION, GUARDIANIA_LIQUIDACION, HOSPEDAJE_LIQUIDACION, BALANZA_LIQUIDACION, OTROS_LIQUIDACION, CONSUMO_FISICO_LIQUIDACION, CONSUMO_VIRTUAL_LIQUIDACION, DETALLE_DESTADO}
+            Dim columnValuesArray() As Object = New Object() {Nothing, NUMERO_LIQUIDACION, Expr1, DETALLE_GUIA, PLACA_UNIDAD, Expr2, ORIGEN_LIQUIDACION, DESTINO_LIQUIDACION, FECHA_SALIDA, FECHA_LLEGADA, DINERO_LIQUIDACION, PEAJES_LIQUIDACION, VIATICOS_LIQUIDACION, GUARDIANIA_LIQUIDACION, HOSPEDAJE_LIQUIDACION, BALANZA_LIQUIDACION, OTROS_LIQUIDACION, CONSUMO_FISICO_LIQUIDACION, CONSUMO_VIRTUAL_LIQUIDACION, DETALLE_ESTADO}
             rowdtLiquidacionEstadoRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdtLiquidacionEstadoRow)
             Return rowdtLiquidacionEstadoRow
@@ -869,7 +869,7 @@ Partial Public Class rptLiquidaciones
             Me.columnOTROS_LIQUIDACION = MyBase.Columns("OTROS_LIQUIDACION")
             Me.columnCONSUMO_FISICO_LIQUIDACION = MyBase.Columns("CONSUMO_FISICO_LIQUIDACION")
             Me.columnCONSUMO_VIRTUAL_LIQUIDACION = MyBase.Columns("CONSUMO_VIRTUAL_LIQUIDACION")
-            Me.columnDETALLE_DESTADO = MyBase.Columns("DETALLE_DESTADO")
+            Me.columnDETALLE_ESTADO = MyBase.Columns("DETALLE_ESTADO")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -913,8 +913,8 @@ Partial Public Class rptLiquidaciones
             MyBase.Columns.Add(Me.columnCONSUMO_FISICO_LIQUIDACION)
             Me.columnCONSUMO_VIRTUAL_LIQUIDACION = New Global.System.Data.DataColumn("CONSUMO_VIRTUAL_LIQUIDACION", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCONSUMO_VIRTUAL_LIQUIDACION)
-            Me.columnDETALLE_DESTADO = New Global.System.Data.DataColumn("DETALLE_DESTADO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDETALLE_DESTADO)
+            Me.columnDETALLE_ESTADO = New Global.System.Data.DataColumn("DETALLE_ESTADO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDETALLE_ESTADO)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnCODIGO_LIQUIDACION}, true))
             Me.columnCODIGO_LIQUIDACION.AutoIncrement = true
             Me.columnCODIGO_LIQUIDACION.AutoIncrementSeed = -1
@@ -930,7 +930,7 @@ Partial Public Class rptLiquidaciones
             Me.columnExpr2.MaxLength = 6
             Me.columnORIGEN_LIQUIDACION.MaxLength = 300
             Me.columnDESTINO_LIQUIDACION.MaxLength = 300
-            Me.columnDETALLE_DESTADO.MaxLength = 15
+            Me.columnDETALLE_ESTADO.MaxLength = 50
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4336,17 +4336,17 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property DETALLE_DESTADO() As String
+        Public Property DETALLE_ESTADO() As String
             Get
                 Try 
-                    Return CType(Me(Me.tabledtLiquidacionEstado.DETALLE_DESTADOColumn),String)
+                    Return CType(Me(Me.tabledtLiquidacionEstado.DETALLE_ESTADOColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'DETALLE_DESTADO' de la tabla 'dtLiquidacionEstado' es DBN"& _ 
-                            "ull.", e)
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'DETALLE_ESTADO' de la tabla 'dtLiquidacionEstado' es DBNu"& _ 
+                            "ll.", e)
                 End Try
             End Get
             Set
-                Me(Me.tabledtLiquidacionEstado.DETALLE_DESTADOColumn) = value
+                Me(Me.tabledtLiquidacionEstado.DETALLE_ESTADOColumn) = value
             End Set
         End Property
         
@@ -4568,14 +4568,14 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsDETALLE_DESTADONull() As Boolean
-            Return Me.IsNull(Me.tabledtLiquidacionEstado.DETALLE_DESTADOColumn)
+        Public Function IsDETALLE_ESTADONull() As Boolean
+            Return Me.IsNull(Me.tabledtLiquidacionEstado.DETALLE_ESTADOColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetDETALLE_DESTADONull()
-            Me(Me.tabledtLiquidacionEstado.DETALLE_DESTADOColumn) = Global.System.Convert.DBNull
+        Public Sub SetDETALLE_ESTADONull()
+            Me(Me.tabledtLiquidacionEstado.DETALLE_ESTADOColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -7260,7 +7260,7 @@ Namespace rptLiquidacionesTableAdapters
             tableMapping.ColumnMappings.Add("OTROS_LIQUIDACION", "OTROS_LIQUIDACION")
             tableMapping.ColumnMappings.Add("CONSUMO_FISICO_LIQUIDACION", "CONSUMO_FISICO_LIQUIDACION")
             tableMapping.ColumnMappings.Add("CONSUMO_VIRTUAL_LIQUIDACION", "CONSUMO_VIRTUAL_LIQUIDACION")
-            tableMapping.ColumnMappings.Add("DETALLE_DESTADO", "DETALLE_DESTADO")
+            tableMapping.ColumnMappings.Add("DETALLE_ESTADO", "DETALLE_ESTADO")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -7284,15 +7284,15 @@ Namespace rptLiquidacionesTableAdapters
                 "EGADA, a.DINERO_LIQUIDACION, a.PEAJES_LIQUIDACION, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         a."& _ 
                 "VIATICOS_LIQUIDACION, a.GUARDIANIA_LIQUIDACION, a.HOSPEDAJE_LIQUIDACION, a.BALAN"& _ 
                 "ZA_LIQUIDACION, a.OTROS_LIQUIDACION, a.CONSUMO_FISICO_LIQUIDACION, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "              a.CONSUMO_VIRTUAL_LIQUIDACION, e.DETALLE_DESTADO"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            "& _ 
-                "dbo.LIQUIDACION AS a LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         dbo.UNIDAD AS b O"& _ 
-                "N a.CODIGO_UNIDAD_TRACTO = b.CODIGO_UNIDAD LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                    "& _ 
-                "     dbo.UNIDAD AS c ON a.CODIGO_UNIDAD_SEMITRAILER = c.CODIGO_UNIDAD LEFT OUTER"& _ 
-                " JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         dbo.GUIA_TRANSPORTISTA AS d ON d.CODIGO_GUIA = a"& _ 
-                ".CODIGO_GUIA LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         dbo.ESTADO AS e ON e.CODI"& _ 
-                "GO_ESTADO = a.CODIGO_ESTADO LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         dbo.TRABAJ"& _ 
-                "ADOR AS f ON f.CODIGO_TRABAJADOR = a.CODIGO_TRABAJADOR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (a.CODIGO_E"& _ 
-                "STADO like '%'+cast(@estado as varchar(2))+'%')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY a.CODIGO_LIQUIDACION"
+                "              a.CONSUMO_VIRTUAL_LIQUIDACION, e.DETALLE_ESTADO"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            d"& _ 
+                "bo.LIQUIDACION AS a LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         dbo.UNIDAD AS b ON"& _ 
+                " a.CODIGO_UNIDAD_TRACTO = b.CODIGO_UNIDAD LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                     "& _ 
+                "    dbo.UNIDAD AS c ON a.CODIGO_UNIDAD_SEMITRAILER = c.CODIGO_UNIDAD LEFT OUTER "& _ 
+                "JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         dbo.GUIA_TRANSPORTISTA AS d ON d.CODIGO_GUIA = a."& _ 
+                "CODIGO_GUIA LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         dbo.ESTADO AS e ON e.CODIG"& _ 
+                "O_ESTADO = a.CODIGO_ESTADO LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         dbo.TRABAJA"& _ 
+                "DOR AS f ON f.CODIGO_TRABAJADOR = a.CODIGO_TRABAJADOR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (a.CODIGO_ES"& _ 
+                "TADO like '%'+cast(@estado as varchar(2))+'%')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY a.CODIGO_LIQUIDACION"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@estado", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_ESTADO", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub

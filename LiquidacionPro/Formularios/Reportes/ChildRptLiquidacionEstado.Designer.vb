@@ -67,7 +67,7 @@ Partial Class ChildRptLiquidacionEstado
         ReportDataSource1.Name = "DataSet1"
         ReportDataSource1.Value = Me.dtLiquidacionEstadoBindingSource
         Me.ReportViewer1.LocalReport.DataSources.Add(ReportDataSource1)
-        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "LiquidacionPro.rptLiquidaciones.rdlc"
+        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "LiquidacionPro.RptLiquidacionesEstado.rdlc"
         Me.ReportViewer1.Location = New System.Drawing.Point(12, 45)
         Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.ServerReport.BearerToken = Nothing

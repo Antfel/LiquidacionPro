@@ -218,6 +218,7 @@
     <EmbeddedResource Include="Formularios\Reportes\ChildRptLiquidacionEstado.resx">
       <DependentUpon>ChildRptLiquidacionEstado.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Reportes\RptLiquidacionesEstado.rdlc" />
     <EmbeddedResource Include="Formularios\RptPrintFactura.resx">
       <DependentUpon>RptPrintFactura.vb</DependentUpon>
     </EmbeddedResource>

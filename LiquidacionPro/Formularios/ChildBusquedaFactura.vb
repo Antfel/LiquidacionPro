@@ -75,17 +75,27 @@
     End Sub
 
     Private Sub btnVer_Click(sender As Object, e As EventArgs) Handles btnVer.Click
+        Dim seleccion As DataGridViewRow = dgvFacturas.SelectedRows(0)
+        Dim codigo As Integer = seleccion.Cells(9).Value
+        If codigo = 33 Then
+            Dim facturacionLibreChild As New ChildFacturaLibre
+            facturacionLibreChild.MdiParent = Me.MdiParent
+            facturacionLibreChild.setCodifoFactura(CType(dgvFacturas.SelectedRows.Item(0).Cells(0).Value.ToString, Integer))
+            facturacionLibreChild.Show()
+        Else
+            Dim facturacionChild As New ChildFacturacion
+            facturacionChild.MdiParent = Me.MdiParent
+            facturacionChild.setCodifoFactura(CType(dgvFacturas.SelectedRows.Item(0).Cells(0).Value.ToString, Integer))
+            facturacionChild.Show()
+        End If
 
-        Dim facturacionChild As New ChildFacturacion
-        facturacionChild.MdiParent = Me.MdiParent
-        facturacionChild.setCodifoFactura(CType(dgvFacturas.SelectedRows.Item(0).Cells(0).Value.ToString, Integer))
-        facturacionChild.Show()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim facturacionChild As New ChildFacturacion
         facturacionChild.MdiParent = Me.MdiParent
         facturacionChild.Show()
+        Me.Dispose()
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
@@ -105,5 +115,6 @@
         Dim facturaLibreChild As New ChildFacturaLibre
         facturaLibreChild.MdiParent = Me.MdiParent
         facturaLibreChild.Show()
+        Me.Dispose()
     End Sub
 End Class

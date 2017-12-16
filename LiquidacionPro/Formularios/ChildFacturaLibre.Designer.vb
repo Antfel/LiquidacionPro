@@ -42,7 +42,25 @@ Partial Class ChildFacturaLibre
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.dgvDetalle = New System.Windows.Forms.DataGridView()
+        Me.txtCantidad = New System.Windows.Forms.TextBox()
+        Me.txtDescripcion = New System.Windows.Forms.TextBox()
+        Me.txtPrecioUnitario = New System.Windows.Forms.TextBox()
+        Me.txtSubtotal = New System.Windows.Forms.TextBox()
+        Me.txtIGV = New System.Windows.Forms.TextBox()
+        Me.txtTotal = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.btnGrabar = New System.Windows.Forms.Button()
+        Me.btnEliminar = New System.Windows.Forms.Button()
+        Me.btnNuevo = New System.Windows.Forms.Button()
+        Me.btnImprimir = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
+        CType(Me.dgvDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnRazonSocial
@@ -50,7 +68,7 @@ Partial Class ChildFacturaLibre
         Me.btnRazonSocial.Location = New System.Drawing.Point(27, 83)
         Me.btnRazonSocial.Name = "btnRazonSocial"
         Me.btnRazonSocial.Size = New System.Drawing.Size(98, 21)
-        Me.btnRazonSocial.TabIndex = 17
+        Me.btnRazonSocial.TabIndex = 2
         Me.btnRazonSocial.Text = "Razon Social"
         Me.btnRazonSocial.UseVisualStyleBackColor = True
         '
@@ -78,7 +96,7 @@ Partial Class ChildFacturaLibre
         Me.cbMoneda.Location = New System.Drawing.Point(802, 121)
         Me.cbMoneda.Name = "cbMoneda"
         Me.cbMoneda.Size = New System.Drawing.Size(143, 21)
-        Me.cbMoneda.TabIndex = 28
+        Me.cbMoneda.TabIndex = 4
         '
         'txtRUC
         '
@@ -93,7 +111,7 @@ Partial Class ChildFacturaLibre
         Me.dtFecha.Location = New System.Drawing.Point(802, 83)
         Me.dtFecha.Name = "dtFecha"
         Me.dtFecha.Size = New System.Drawing.Size(143, 20)
-        Me.dtFecha.TabIndex = 19
+        Me.dtFecha.TabIndex = 3
         '
         'txtDireccion
         '
@@ -115,7 +133,7 @@ Partial Class ChildFacturaLibre
         Me.cbRazonSocial.Location = New System.Drawing.Point(131, 83)
         Me.cbRazonSocial.Name = "cbRazonSocial"
         Me.cbRazonSocial.Size = New System.Drawing.Size(400, 21)
-        Me.cbRazonSocial.TabIndex = 16
+        Me.cbRazonSocial.TabIndex = 1
         '
         'Panel1
         '
@@ -127,14 +145,14 @@ Partial Class ChildFacturaLibre
         Me.Panel1.Location = New System.Drawing.Point(967, 12)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(317, 146)
-        Me.Panel1.TabIndex = 24
+        Me.Panel1.TabIndex = 10
         '
         'btnGuardarCabecera
         '
         Me.btnGuardarCabecera.Location = New System.Drawing.Point(98, 120)
         Me.btnGuardarCabecera.Name = "btnGuardarCabecera"
         Me.btnGuardarCabecera.Size = New System.Drawing.Size(141, 23)
-        Me.btnGuardarCabecera.TabIndex = 4
+        Me.btnGuardarCabecera.TabIndex = 5
         Me.btnGuardarCabecera.Text = "Guardar Datos"
         Me.btnGuardarCabecera.UseVisualStyleBackColor = True
         '
@@ -221,11 +239,178 @@ Partial Class ChildFacturaLibre
         Me.Label3.TabIndex = 18
         Me.Label3.Text = "Direccion"
         '
+        'dgvDetalle
+        '
+        Me.dgvDetalle.AllowUserToAddRows = False
+        Me.dgvDetalle.AllowUserToDeleteRows = False
+        Me.dgvDetalle.AllowUserToResizeRows = False
+        Me.dgvDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvDetalle.Location = New System.Drawing.Point(214, 247)
+        Me.dgvDetalle.MultiSelect = False
+        Me.dgvDetalle.Name = "dgvDetalle"
+        Me.dgvDetalle.ReadOnly = True
+        Me.dgvDetalle.RowHeadersVisible = False
+        Me.dgvDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvDetalle.Size = New System.Drawing.Size(825, 154)
+        Me.dgvDetalle.TabIndex = 31
+        '
+        'txtCantidad
+        '
+        Me.txtCantidad.Location = New System.Drawing.Point(214, 209)
+        Me.txtCantidad.Name = "txtCantidad"
+        Me.txtCantidad.Size = New System.Drawing.Size(100, 20)
+        Me.txtCantidad.TabIndex = 6
+        '
+        'txtDescripcion
+        '
+        Me.txtDescripcion.Location = New System.Drawing.Point(337, 209)
+        Me.txtDescripcion.Name = "txtDescripcion"
+        Me.txtDescripcion.Size = New System.Drawing.Size(587, 20)
+        Me.txtDescripcion.TabIndex = 7
+        '
+        'txtPrecioUnitario
+        '
+        Me.txtPrecioUnitario.Location = New System.Drawing.Point(939, 209)
+        Me.txtPrecioUnitario.Name = "txtPrecioUnitario"
+        Me.txtPrecioUnitario.Size = New System.Drawing.Size(100, 20)
+        Me.txtPrecioUnitario.TabIndex = 8
+        '
+        'txtSubtotal
+        '
+        Me.txtSubtotal.Location = New System.Drawing.Point(939, 422)
+        Me.txtSubtotal.Name = "txtSubtotal"
+        Me.txtSubtotal.ReadOnly = True
+        Me.txtSubtotal.Size = New System.Drawing.Size(100, 20)
+        Me.txtSubtotal.TabIndex = 35
+        '
+        'txtIGV
+        '
+        Me.txtIGV.Location = New System.Drawing.Point(939, 448)
+        Me.txtIGV.Name = "txtIGV"
+        Me.txtIGV.ReadOnly = True
+        Me.txtIGV.Size = New System.Drawing.Size(100, 20)
+        Me.txtIGV.TabIndex = 36
+        '
+        'txtTotal
+        '
+        Me.txtTotal.Location = New System.Drawing.Point(939, 474)
+        Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.ReadOnly = True
+        Me.txtTotal.Size = New System.Drawing.Size(100, 20)
+        Me.txtTotal.TabIndex = 37
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(214, 190)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(49, 13)
+        Me.Label2.TabIndex = 38
+        Me.Label2.Text = "Cantidad"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(337, 189)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(63, 13)
+        Me.Label9.TabIndex = 39
+        Me.Label9.Text = "Descripción"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(939, 188)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(76, 13)
+        Me.Label10.TabIndex = 40
+        Me.Label10.Text = "Precio Unitario"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(863, 425)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(46, 13)
+        Me.Label11.TabIndex = 41
+        Me.Label11.Text = "Subtotal"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(884, 451)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(25, 13)
+        Me.Label12.TabIndex = 42
+        Me.Label12.Text = "IGV"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(878, 477)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(31, 13)
+        Me.Label13.TabIndex = 43
+        Me.Label13.Text = "Total"
+        '
+        'btnGrabar
+        '
+        Me.btnGrabar.Location = New System.Drawing.Point(1074, 209)
+        Me.btnGrabar.Name = "btnGrabar"
+        Me.btnGrabar.Size = New System.Drawing.Size(75, 23)
+        Me.btnGrabar.TabIndex = 9
+        Me.btnGrabar.Text = "Grabar"
+        Me.btnGrabar.UseVisualStyleBackColor = True
+        '
+        'btnEliminar
+        '
+        Me.btnEliminar.Location = New System.Drawing.Point(1074, 268)
+        Me.btnEliminar.Name = "btnEliminar"
+        Me.btnEliminar.Size = New System.Drawing.Size(75, 23)
+        Me.btnEliminar.TabIndex = 11
+        Me.btnEliminar.Text = "Eliminar"
+        Me.btnEliminar.UseVisualStyleBackColor = True
+        '
+        'btnNuevo
+        '
+        Me.btnNuevo.Location = New System.Drawing.Point(1074, 239)
+        Me.btnNuevo.Name = "btnNuevo"
+        Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
+        Me.btnNuevo.TabIndex = 10
+        Me.btnNuevo.Text = "Nuevo"
+        Me.btnNuevo.UseVisualStyleBackColor = True
+        '
+        'btnImprimir
+        '
+        Me.btnImprimir.Location = New System.Drawing.Point(456, 427)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(203, 61)
+        Me.btnImprimir.TabIndex = 44
+        Me.btnImprimir.Text = "Imprimir"
+        Me.btnImprimir.UseVisualStyleBackColor = True
+        '
         'ChildFacturaLibre
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 524)
+        Me.Controls.Add(Me.btnImprimir)
+        Me.Controls.Add(Me.btnNuevo)
+        Me.Controls.Add(Me.btnEliminar)
+        Me.Controls.Add(Me.btnGrabar)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.Label12)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.txtTotal)
+        Me.Controls.Add(Me.txtIGV)
+        Me.Controls.Add(Me.txtSubtotal)
+        Me.Controls.Add(Me.txtPrecioUnitario)
+        Me.Controls.Add(Me.txtDescripcion)
+        Me.Controls.Add(Me.txtCantidad)
+        Me.Controls.Add(Me.dgvDetalle)
         Me.Controls.Add(Me.btnRazonSocial)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Label1)
@@ -243,8 +428,10 @@ Partial Class ChildFacturaLibre
         Me.Controls.Add(Me.Label3)
         Me.Name = "ChildFacturaLibre"
         Me.Text = "ChildFacturaLibre"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.dgvDetalle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -270,4 +457,21 @@ Partial Class ChildFacturaLibre
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents dgvDetalle As DataGridView
+    Friend WithEvents txtCantidad As TextBox
+    Friend WithEvents txtDescripcion As TextBox
+    Friend WithEvents txtPrecioUnitario As TextBox
+    Friend WithEvents txtSubtotal As TextBox
+    Friend WithEvents txtIGV As TextBox
+    Friend WithEvents txtTotal As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents btnGrabar As Button
+    Friend WithEvents btnEliminar As Button
+    Friend WithEvents btnNuevo As Button
+    Friend WithEvents btnImprimir As Button
 End Class
