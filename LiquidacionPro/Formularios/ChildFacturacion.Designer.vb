@@ -28,6 +28,7 @@ Partial Class ChildFacturacion
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btnGuardarCabecera = New System.Windows.Forms.Button()
         Me.lbNroFactura = New System.Windows.Forms.Label()
         Me.txtNroSerie = New System.Windows.Forms.TextBox()
         Me.lbFactura = New System.Windows.Forms.Label()
@@ -92,7 +93,6 @@ Partial Class ChildFacturacion
         Me.txtPrecioFactura = New System.Windows.Forms.TextBox()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.btnEliminar = New System.Windows.Forms.Button()
-        Me.btnGuardarCabecera = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel14.SuspendLayout()
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,6 +166,15 @@ Partial Class ChildFacturacion
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(317, 146)
         Me.Panel1.TabIndex = 7
+        '
+        'btnGuardarCabecera
+        '
+        Me.btnGuardarCabecera.Location = New System.Drawing.Point(98, 120)
+        Me.btnGuardarCabecera.Name = "btnGuardarCabecera"
+        Me.btnGuardarCabecera.Size = New System.Drawing.Size(141, 23)
+        Me.btnGuardarCabecera.TabIndex = 4
+        Me.btnGuardarCabecera.Text = "Guardar Datos"
+        Me.btnGuardarCabecera.UseVisualStyleBackColor = True
         '
         'lbNroFactura
         '
@@ -748,15 +757,6 @@ Partial Class ChildFacturacion
         Me.btnEliminar.TabIndex = 53
         Me.btnEliminar.Text = "ELIMINAR"
         Me.btnEliminar.UseVisualStyleBackColor = True
-        '
-        'btnGuardarCabecera
-        '
-        Me.btnGuardarCabecera.Location = New System.Drawing.Point(98, 120)
-        Me.btnGuardarCabecera.Name = "btnGuardarCabecera"
-        Me.btnGuardarCabecera.Size = New System.Drawing.Size(141, 23)
-        Me.btnGuardarCabecera.TabIndex = 4
-        Me.btnGuardarCabecera.Text = "Guardar Datos"
-        Me.btnGuardarCabecera.UseVisualStyleBackColor = True
         '
         'ChildFacturacion
         '
