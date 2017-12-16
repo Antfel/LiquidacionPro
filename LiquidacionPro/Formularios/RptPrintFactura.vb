@@ -76,7 +76,7 @@ Public Class RptPrintFactura
         Dim TOTAL As Double = 0
         Dim MONTHF As formatDate = New formatDate()
         Dim NUMBERF As formatNUMBER = New formatNUMBER()
-        Dim text As String
+        Dim text As String = "SERVICIO DE TRANSPORTE "
         cordy = 275
 
         e.Graphics.DrawString(dtc.Rows.Item(0)(0), FONT, Brushes.Black, 85, 195)
@@ -101,15 +101,50 @@ Public Class RptPrintFactura
                 e.Graphics.DrawString(dtd.Rows.Item(i)(0), FONT, Brushes.Black, 45, cordy)
                 e.Graphics.DrawString(simbolo + Double.Parse(dtd.Rows.Item(i)(3)).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 565, cordy)
                 e.Graphics.DrawString(simbolo + (Double.Parse(dtd.Rows.Item(i)(0)) * Double.Parse(dtd.Rows.Item(i)(3))).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, cordy)
-                text = "SERVICIO DE TRANSPORTE"
-                If (dtd.Rows.Item(i)(8) <> "") Then
-                    If (dtd.Rows.Item(i)(8) <> "INTEGRAL ESPECIAL" And dtd.Rows.Item(i)(8) <> "INTEGRAL") Then
-                        text = text + " EN " + dtd.Rows.Item(i)(8)
-                    Else
+
+                'text = "SERVICIO DE TRANSPORTE"
+                'If (dtd.Rows.Item(i)(8) <> "") Then
+                '    If (dtd.Rows.Item(i)(8) <> "INTEGRAL ESPECIAL" And dtd.Rows.Item(i)(8) <> "INTEGRAL") Then
+                '        text = text + " EN " + dtd.Rows.Item(i)(8)
+                '    Else
+                '        text = text + dtd.Rows.Item(i)(8)
+                '    End If
+                'End If
+                'If (dtd.Rows.Item(i)(17) <> "NULL") Then
+                '    text = text + " DE " + dtd.Rows.Item(i)(17)
+                'End If
+
+                Select Case dtd.Rows.Item(i)(21)
+                    Case 18
+                        text = "SERVICIO DE TRANSPORTE "
+                    Case 19
+                        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    Case 20
+                        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    Case 21
+                        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    Case 22
+                        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    Case 23
+                        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    Case 24
+                        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    Case 25
+                        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    Case 26
+                        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    Case 27
                         text = text + dtd.Rows.Item(i)(8)
-                    End If
-                End If
-                If (dtd.Rows.Item(i)(17) <> "NULL") Then
+                    Case 28
+                        text = text + dtd.Rows.Item(i)(8)
+                    Case 29
+                        text = dtd.Rows.Item(i)(8)
+                    Case 30
+                        text = dtd.Rows.Item(i)(8)
+                    Case 31
+                        text = dtd.Rows.Item(i)(8)
+                End Select
+                If (dtd.Rows.Item(i)(17) <> "") Then
                     text = text + " DE " + dtd.Rows.Item(i)(17)
                 End If
 

@@ -8,9 +8,7 @@ Public Class MDIPrincipal
     End Sub
 
     Private Sub FacturaciónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaciónToolStripMenuItem.Click
-        Dim busquedaFacturaChild As New ChildBusquedaFactura()
-        busquedaFacturaChild.MdiParent = Me
-        busquedaFacturaChild.Show()
+
     End Sub
 
     Private Sub LiquidacionesPorEstadoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LiquidacionesPorEstadoToolStripMenuItem.Click
@@ -29,5 +27,11 @@ Public Class MDIPrincipal
         Dim correlativoChild As New ChildCorrelativo()
         correlativoChild.MdiParent = Me
         correlativoChild.Show()
+    End Sub
+
+    Private Sub FacturaDeServiciosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaDeServiciosToolStripMenuItem.Click
+        Dim busquedaFacturaChild As New ChildBusquedaFactura()
+        busquedaFacturaChild.MdiParent = Me
+        busquedaFacturaChild.Show()
     End Sub
 End Class
