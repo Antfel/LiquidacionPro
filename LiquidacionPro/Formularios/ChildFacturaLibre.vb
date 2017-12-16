@@ -2,6 +2,8 @@
     Dim gvDetalle As New DataGridView
     Dim data As DataTable
     Dim correlativoFactura As String
+
+
     Dim codigo_Factura As Integer = -1
     Private Sub btnRazonSocial_Click(sender As Object, e As EventArgs) Handles btnRazonSocial.Click
         obtenerDatosCliente()
