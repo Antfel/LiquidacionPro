@@ -81,6 +81,7 @@ Partial Class ChildGuia
         Me.dtpLiquidacion.Name = "dtpLiquidacion"
         Me.dtpLiquidacion.Size = New System.Drawing.Size(96, 20)
         Me.dtpLiquidacion.TabIndex = 4
+        Me.dtpLiquidacion.Visible = False
         '
         'dtpFacturacion
         '
@@ -91,6 +92,7 @@ Partial Class ChildGuia
         Me.dtpFacturacion.Name = "dtpFacturacion"
         Me.dtpFacturacion.Size = New System.Drawing.Size(96, 20)
         Me.dtpFacturacion.TabIndex = 5
+        Me.dtpFacturacion.Visible = False
         '
         'Label1
         '
@@ -118,6 +120,7 @@ Partial Class ChildGuia
         Me.Label3.Size = New System.Drawing.Size(94, 13)
         Me.Label3.TabIndex = 8
         Me.Label3.Text = "Fecha Liquidación"
+        Me.Label3.Visible = False
         '
         'Label4
         '
@@ -127,6 +130,7 @@ Partial Class ChildGuia
         Me.Label4.Size = New System.Drawing.Size(96, 13)
         Me.Label4.TabIndex = 9
         Me.Label4.Text = "Fecha Facturación"
+        Me.Label4.Visible = False
         '
         'Label5
         '
@@ -139,7 +143,7 @@ Partial Class ChildGuia
         '
         'btnNuevo
         '
-        Me.btnNuevo.Location = New System.Drawing.Point(677, 13)
+        Me.btnNuevo.Location = New System.Drawing.Point(521, 12)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
         Me.btnNuevo.TabIndex = 11
@@ -148,7 +152,7 @@ Partial Class ChildGuia
         '
         'btnGrabar
         '
-        Me.btnGrabar.Location = New System.Drawing.Point(677, 43)
+        Me.btnGrabar.Location = New System.Drawing.Point(521, 42)
         Me.btnGrabar.Name = "btnGrabar"
         Me.btnGrabar.Size = New System.Drawing.Size(75, 23)
         Me.btnGrabar.TabIndex = 12
@@ -163,6 +167,7 @@ Partial Class ChildGuia
         Me.chkbLiquidacion.Size = New System.Drawing.Size(15, 14)
         Me.chkbLiquidacion.TabIndex = 13
         Me.chkbLiquidacion.UseVisualStyleBackColor = True
+        Me.chkbLiquidacion.Visible = False
         '
         'chkbFacturacion
         '
@@ -172,6 +177,7 @@ Partial Class ChildGuia
         Me.chkbFacturacion.Size = New System.Drawing.Size(15, 14)
         Me.chkbFacturacion.TabIndex = 14
         Me.chkbFacturacion.UseVisualStyleBackColor = True
+        Me.chkbFacturacion.Visible = False
         '
         'ChildGuia
         '
