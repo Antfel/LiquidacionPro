@@ -74,25 +74,25 @@ Partial Class MDIPrincipal
         'LiquidacionesToolStripMenuItem
         '
         Me.LiquidacionesToolStripMenuItem.Name = "LiquidacionesToolStripMenuItem"
-        Me.LiquidacionesToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.LiquidacionesToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
         Me.LiquidacionesToolStripMenuItem.Text = "Liquidaciones"
         '
         'FacturaciónToolStripMenuItem
         '
         Me.FacturaciónToolStripMenuItem.Name = "FacturaciónToolStripMenuItem"
-        Me.FacturaciónToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.FacturaciónToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
         Me.FacturaciónToolStripMenuItem.Text = "Facturación"
         '
         'GuíasDeTransportistaToolStripMenuItem
         '
         Me.GuíasDeTransportistaToolStripMenuItem.Name = "GuíasDeTransportistaToolStripMenuItem"
-        Me.GuíasDeTransportistaToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.GuíasDeTransportistaToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
         Me.GuíasDeTransportistaToolStripMenuItem.Text = "Guías de Transportista"
         '
         'CorrelativosToolStripMenuItem
         '
         Me.CorrelativosToolStripMenuItem.Name = "CorrelativosToolStripMenuItem"
-        Me.CorrelativosToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.CorrelativosToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
         Me.CorrelativosToolStripMenuItem.Text = "Correlativos"
         '
         'ReportesToolStripMenuItem
