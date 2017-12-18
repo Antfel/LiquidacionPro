@@ -113,8 +113,9 @@ Public Class RptPrintFactura
                 'If (dtd.Rows.Item(i)(17) <> "NULL") Then
                 '    text = text + " DE " + dtd.Rows.Item(i)(17)
                 'End If
-
-                Select Case dtd.Rows.Item(i)(21)
+                Console.WriteLine("tipo de servicio: " + CStr(dtd.Rows.Item(i)(19)))
+                text = "SERVICIO DE TRANSPORTE "
+                Select Case CInt(dtd.Rows.Item(i)(19))
                     Case 18
                         text = "SERVICIO DE TRANSPORTE "
                     Case 19

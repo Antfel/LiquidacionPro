@@ -44,13 +44,9 @@ Public Class MDIPrincipal
 
     'se cierra ventanas
     Sub cerrarVentanas()
-
         For Each frm As Form In Me.MdiChildren
             frm.Close()
         Next
-        Dim busquedaFacturaChild As New ChildBusquedaFactura()
-        busquedaFacturaChild.MdiParent = Me
-        busquedaFacturaChild.Show()
     End Sub
 
 End Class
