@@ -44,6 +44,7 @@ Public Class MDIPrincipal
     Private Sub FacturaDeServiciosToolStripMenuItem_Click(sender As Object, e As EventArgs)
     End Sub
 
+    'se cierra ventanas
     Sub cerrarVentanas()
         For Each frm As Form In Me.MdiChildren
             frm.Close()
