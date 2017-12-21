@@ -36,7 +36,7 @@
             txtNroSerie.Text = dtCabeceraFactura.Rows(0).Item(1).ToString
             lbNroFactura.Text = dtCabeceraFactura.Rows(0).Item(2).ToString
 
-
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
@@ -69,9 +69,6 @@
 
             dtCliente = clienteDao.GetClientes
 
-            sqlControl.commitTransaction()
-
-
             With cbRazonSocial
                 .DataSource = dtCliente
                 .DisplayMember = "RAZON_CLIENTE"
@@ -82,6 +79,7 @@
                 .SelectedIndex = -1
 
             End With
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
 
@@ -108,7 +106,6 @@
             Dim dtUnidad As DataTable
 
             dtUnidad = unidadDao.getUnidadTractos
-            sqlControl.commitTransaction()
 
             With cbTracto
                 .DataSource = dtUnidad
@@ -119,7 +116,7 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
-
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
@@ -148,14 +145,13 @@
 
             dtMoneda = monedaDao.GetMonedas
 
-            sqlControl.commitTransaction()
-
             With cbMoneda
                 .DataSource = dtMoneda
                 .DisplayMember = "DETALLE_MONEDA"
                 .ValueMember = "CODIGO_MONEDA"
                 .SelectedIndex = -1
             End With
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
@@ -182,7 +178,6 @@
             Dim dtGuia As DataTable
 
             dtGuia = guiaDao.getGuiaPendFacturacion
-            sqlControl.commitTransaction()
 
             With cbGuia
                 .DataSource = dtGuia
@@ -193,6 +188,7 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
@@ -221,7 +217,6 @@
 
         Else
             txtNroSerie.Text = "001"
-            txtNroSerie.ReadOnly = True
             ObtenerCorrelativo()
 
         End If
@@ -260,6 +255,7 @@
             txtDireccion.Text = dtClente.Rows.Item(0)(3).ToString.ToUpper
             txtTelefono.Text = dtClente.Rows.Item(0)(4).ToString
 
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally

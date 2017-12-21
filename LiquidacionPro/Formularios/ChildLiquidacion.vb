@@ -202,7 +202,7 @@
 
             Dim dtTrabajador As DataTable
 
-            dtTrabajador = trabajadorDao.GetTrabajador
+            dtTrabajador = trabajadorDao.GetConductor
 
             sqlControl.commitTransaction()
 

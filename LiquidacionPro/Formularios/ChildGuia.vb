@@ -72,6 +72,7 @@
         Finally
             Try
                 sqlControl.closeConexion()
+                cbEstado.SelectedValue = 17
             Catch ex As Exception
 
             End Try
@@ -82,7 +83,7 @@
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
         txtCodigo.Text = ""
         txtDetalle.Text = ""
-        cbEstado.SelectedIndex = -1
+        cbEstado.SelectedValue = 17
         dtpLiquidacion.Value = Date.Now
         dtpFacturacion.Value = Date.Now
 
