@@ -25,18 +25,21 @@ Partial Class ChildBusquedaFactura
         Me.dgvFacturas = New System.Windows.Forms.DataGridView()
         Me.btnVer = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.txtRazonSocial = New System.Windows.Forms.TextBox()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblFiltro = New System.Windows.Forms.Label()
+        Me.txtFiltro = New System.Windows.Forms.TextBox()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.btnFiltrar = New System.Windows.Forms.Button()
+        Me.btnDeshacer = New System.Windows.Forms.Button()
         CType(Me.dgvFacturas, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'dgvFacturas
         '
         Me.dgvFacturas.AllowUserToAddRows = False
         Me.dgvFacturas.AllowUserToDeleteRows = False
-        Me.dgvFacturas.AllowUserToResizeColumns = False
         Me.dgvFacturas.AllowUserToResizeRows = False
         Me.dgvFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvFacturas.Location = New System.Drawing.Point(12, 135)
@@ -65,31 +68,6 @@ Partial Class ChildBusquedaFactura
         Me.Button1.Text = "Nueva Factura por Servicios"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(128, 89)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(70, 13)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Razon Social"
-        '
-        'txtRazonSocial
-        '
-        Me.txtRazonSocial.Location = New System.Drawing.Point(204, 86)
-        Me.txtRazonSocial.Name = "txtRazonSocial"
-        Me.txtRazonSocial.Size = New System.Drawing.Size(527, 20)
-        Me.txtRazonSocial.TabIndex = 4
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(751, 83)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(178, 23)
-        Me.Button2.TabIndex = 5
-        Me.Button2.Text = "FIltrar"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'Button3
         '
         Me.Button3.Location = New System.Drawing.Point(520, 455)
@@ -99,15 +77,70 @@ Partial Class ChildBusquedaFactura
         Me.Button3.Text = "Nueva Factura Libre"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.lblFiltro)
+        Me.GroupBox1.Controls.Add(Me.txtFiltro)
+        Me.GroupBox1.Controls.Add(Me.Label24)
+        Me.GroupBox1.Controls.Add(Me.btnFiltrar)
+        Me.GroupBox1.Controls.Add(Me.btnDeshacer)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 70)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(789, 59)
+        Me.GroupBox1.TabIndex = 101
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Filtros"
+        '
+        'lblFiltro
+        '
+        Me.lblFiltro.AutoSize = True
+        Me.lblFiltro.Location = New System.Drawing.Point(72, 26)
+        Me.lblFiltro.Name = "lblFiltro"
+        Me.lblFiltro.Size = New System.Drawing.Size(112, 13)
+        Me.lblFiltro.TabIndex = 99
+        Me.lblFiltro.Text = "(Seleccionar columna)"
+        '
+        'txtFiltro
+        '
+        Me.txtFiltro.Location = New System.Drawing.Point(250, 26)
+        Me.txtFiltro.Name = "txtFiltro"
+        Me.txtFiltro.Size = New System.Drawing.Size(365, 20)
+        Me.txtFiltro.TabIndex = 95
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(12, 26)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(53, 13)
+        Me.Label24.TabIndex = 98
+        Me.Label24.Text = "Filtrar por:"
+        '
+        'btnFiltrar
+        '
+        Me.btnFiltrar.Location = New System.Drawing.Point(622, 26)
+        Me.btnFiltrar.Name = "btnFiltrar"
+        Me.btnFiltrar.Size = New System.Drawing.Size(75, 23)
+        Me.btnFiltrar.TabIndex = 96
+        Me.btnFiltrar.Text = "Filtrar"
+        Me.btnFiltrar.UseVisualStyleBackColor = True
+        '
+        'btnDeshacer
+        '
+        Me.btnDeshacer.Location = New System.Drawing.Point(703, 26)
+        Me.btnDeshacer.Name = "btnDeshacer"
+        Me.btnDeshacer.Size = New System.Drawing.Size(75, 23)
+        Me.btnDeshacer.TabIndex = 97
+        Me.btnDeshacer.Text = "Deshacer"
+        Me.btnDeshacer.UseVisualStyleBackColor = True
+        '
         'ChildBusquedaFactura
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 524)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.txtRazonSocial)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnVer)
         Me.Controls.Add(Me.dgvFacturas)
@@ -115,16 +148,20 @@ Partial Class ChildBusquedaFactura
         Me.Text = "Busqueda de Factura"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.dgvFacturas, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents dgvFacturas As DataGridView
     Friend WithEvents btnVer As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents Label1 As Label
-    Friend WithEvents txtRazonSocial As TextBox
-    Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents lblFiltro As Label
+    Friend WithEvents txtFiltro As TextBox
+    Friend WithEvents Label24 As Label
+    Friend WithEvents btnFiltrar As Button
+    Friend WithEvents btnDeshacer As Button
 End Class

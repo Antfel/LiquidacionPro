@@ -43,10 +43,11 @@ Public Class TrabajadorDAO
     End Function
 
     Public Function GetConductor() As DataTable
+        'Se obtiene conductores y escoltas
         Return sqlControl.ExecQuery("SELECT CODIGO_TRABAJADOR,
                               coalesce(APELLIDO_PATERNO_TRABAJADOR,'') + ' '+
                               coalesce(APELLIDO_MATERNO_TRABAJADOR,'') + ', ' +
                               coalesce(NOMBRES_TRABAJADOR,'') as NOMBRE_TRABAJADOR
-                        FROM TRABAJADOR where CODIGO_CARGO_TRABAJADOR = 1", Nothing)
+                        FROM TRABAJADOR where CODIGO_CARGO_TRABAJADOR = 1 or CODIGO_CARGO_TRABAJADOR = 8", Nothing)
     End Function
 End Class

@@ -69,12 +69,21 @@ Partial Class ChildLiquidacion
         Me.txtDiferencia = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
+        Me.txtDiferenciaComb = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.txtFiltro = New System.Windows.Forms.TextBox()
+        Me.btnFiltrar = New System.Windows.Forms.Button()
+        Me.btnDeshacer = New System.Windows.Forms.Button()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.lblFiltro = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnNuevo
         '
-        Me.btnNuevo.Location = New System.Drawing.Point(873, 126)
+        Me.btnNuevo.Location = New System.Drawing.Point(903, 129)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(132, 51)
         Me.btnNuevo.TabIndex = 88
@@ -110,7 +119,7 @@ Partial Class ChildLiquidacion
         Me.cbTrabajador.FormattingEnabled = True
         Me.cbTrabajador.Location = New System.Drawing.Point(564, 9)
         Me.cbTrabajador.Name = "cbTrabajador"
-        Me.cbTrabajador.Size = New System.Drawing.Size(269, 21)
+        Me.cbTrabajador.Size = New System.Drawing.Size(305, 21)
         Me.cbTrabajador.TabIndex = 50
         '
         'Label20
@@ -188,16 +197,16 @@ Partial Class ChildLiquidacion
         Me.dgvLiquidacion.AllowUserToDeleteRows = False
         Me.dgvLiquidacion.AllowUserToOrderColumns = True
         Me.dgvLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvLiquidacion.Location = New System.Drawing.Point(28, 223)
+        Me.dgvLiquidacion.Location = New System.Drawing.Point(28, 296)
         Me.dgvLiquidacion.Name = "dgvLiquidacion"
         Me.dgvLiquidacion.ReadOnly = True
         Me.dgvLiquidacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvLiquidacion.Size = New System.Drawing.Size(977, 251)
+        Me.dgvLiquidacion.Size = New System.Drawing.Size(977, 212)
         Me.dgvLiquidacion.TabIndex = 83
         '
         'btnAgregarLiquidacion
         '
-        Me.btnAgregarLiquidacion.Location = New System.Drawing.Point(873, 68)
+        Me.btnAgregarLiquidacion.Location = New System.Drawing.Point(903, 71)
         Me.btnAgregarLiquidacion.Name = "btnAgregarLiquidacion"
         Me.btnAgregarLiquidacion.Size = New System.Drawing.Size(132, 52)
         Me.btnAgregarLiquidacion.TabIndex = 82
@@ -206,9 +215,9 @@ Partial Class ChildLiquidacion
         '
         'txtCombustibleVirtual
         '
-        Me.txtCombustibleVirtual.Location = New System.Drawing.Point(726, 157)
+        Me.txtCombustibleVirtual.Location = New System.Drawing.Point(739, 157)
         Me.txtCombustibleVirtual.Name = "txtCombustibleVirtual"
-        Me.txtCombustibleVirtual.Size = New System.Drawing.Size(107, 20)
+        Me.txtCombustibleVirtual.Size = New System.Drawing.Size(150, 20)
         Me.txtCombustibleVirtual.TabIndex = 73
         '
         'Label16
@@ -223,9 +232,9 @@ Partial Class ChildLiquidacion
         'dtpLlegada
         '
         Me.dtpLlegada.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpLlegada.Location = New System.Drawing.Point(726, 85)
+        Me.dtpLlegada.Location = New System.Drawing.Point(739, 85)
         Me.dtpLlegada.Name = "dtpLlegada"
-        Me.dtpLlegada.Size = New System.Drawing.Size(107, 20)
+        Me.dtpLlegada.Size = New System.Drawing.Size(150, 20)
         Me.dtpLlegada.TabIndex = 61
         '
         'Label15
@@ -239,10 +248,10 @@ Partial Class ChildLiquidacion
         '
         'dtpSalida
         '
-        Me.dtpSalida.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpSalida.Location = New System.Drawing.Point(726, 47)
+        Me.dtpSalida.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpSalida.Location = New System.Drawing.Point(739, 47)
         Me.dtpSalida.Name = "dtpSalida"
-        Me.dtpSalida.Size = New System.Drawing.Size(107, 20)
+        Me.dtpSalida.Size = New System.Drawing.Size(150, 20)
         Me.dtpSalida.TabIndex = 56
         '
         'Label6
@@ -352,9 +361,9 @@ Partial Class ChildLiquidacion
         '
         'txtViaticos
         '
-        Me.txtViaticos.Location = New System.Drawing.Point(726, 122)
+        Me.txtViaticos.Location = New System.Drawing.Point(739, 122)
         Me.txtViaticos.Name = "txtViaticos"
-        Me.txtViaticos.Size = New System.Drawing.Size(107, 20)
+        Me.txtViaticos.Size = New System.Drawing.Size(150, 20)
         Me.txtViaticos.TabIndex = 67
         '
         'Label8
@@ -438,6 +447,7 @@ Partial Class ChildLiquidacion
         '
         Me.txtTotalGasto.Location = New System.Drawing.Point(334, 188)
         Me.txtTotalGasto.Name = "txtTotalGasto"
+        Me.txtTotalGasto.ReadOnly = True
         Me.txtTotalGasto.Size = New System.Drawing.Size(107, 20)
         Me.txtTotalGasto.TabIndex = 89
         '
@@ -445,6 +455,7 @@ Partial Class ChildLiquidacion
         '
         Me.txtDiferencia.Location = New System.Drawing.Point(521, 188)
         Me.txtDiferencia.Name = "txtDiferencia"
+        Me.txtDiferencia.ReadOnly = True
         Me.txtDiferencia.Size = New System.Drawing.Size(107, 20)
         Me.txtDiferencia.TabIndex = 90
         '
@@ -466,11 +477,88 @@ Partial Class ChildLiquidacion
         Me.Label22.TabIndex = 92
         Me.Label22.Text = "Diferencia"
         '
+        'txtDiferenciaComb
+        '
+        Me.txtDiferenciaComb.Location = New System.Drawing.Point(739, 187)
+        Me.txtDiferenciaComb.Name = "txtDiferenciaComb"
+        Me.txtDiferenciaComb.ReadOnly = True
+        Me.txtDiferenciaComb.Size = New System.Drawing.Size(150, 20)
+        Me.txtDiferenciaComb.TabIndex = 93
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(642, 194)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(88, 13)
+        Me.Label23.TabIndex = 94
+        Me.Label23.Text = "Diferencia Comb."
+        '
+        'txtFiltro
+        '
+        Me.txtFiltro.Location = New System.Drawing.Point(250, 26)
+        Me.txtFiltro.Name = "txtFiltro"
+        Me.txtFiltro.Size = New System.Drawing.Size(365, 20)
+        Me.txtFiltro.TabIndex = 95
+        '
+        'btnFiltrar
+        '
+        Me.btnFiltrar.Location = New System.Drawing.Point(622, 26)
+        Me.btnFiltrar.Name = "btnFiltrar"
+        Me.btnFiltrar.Size = New System.Drawing.Size(75, 23)
+        Me.btnFiltrar.TabIndex = 96
+        Me.btnFiltrar.Text = "Filtrar"
+        Me.btnFiltrar.UseVisualStyleBackColor = True
+        '
+        'btnDeshacer
+        '
+        Me.btnDeshacer.Location = New System.Drawing.Point(703, 26)
+        Me.btnDeshacer.Name = "btnDeshacer"
+        Me.btnDeshacer.Size = New System.Drawing.Size(75, 23)
+        Me.btnDeshacer.TabIndex = 97
+        Me.btnDeshacer.Text = "Deshacer"
+        Me.btnDeshacer.UseVisualStyleBackColor = True
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(12, 26)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(53, 13)
+        Me.Label24.TabIndex = 98
+        Me.Label24.Text = "Filtrar por:"
+        '
+        'lblFiltro
+        '
+        Me.lblFiltro.AutoSize = True
+        Me.lblFiltro.Location = New System.Drawing.Point(72, 26)
+        Me.lblFiltro.Name = "lblFiltro"
+        Me.lblFiltro.Size = New System.Drawing.Size(112, 13)
+        Me.lblFiltro.TabIndex = 99
+        Me.lblFiltro.Text = "(Seleccionar columna)"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.lblFiltro)
+        Me.GroupBox1.Controls.Add(Me.txtFiltro)
+        Me.GroupBox1.Controls.Add(Me.Label24)
+        Me.GroupBox1.Controls.Add(Me.btnFiltrar)
+        Me.GroupBox1.Controls.Add(Me.btnDeshacer)
+        Me.GroupBox1.Location = New System.Drawing.Point(28, 231)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(789, 59)
+        Me.GroupBox1.TabIndex = 100
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Filtros"
+        '
         'ChildLiquidacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1047, 513)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.Label23)
+        Me.Controls.Add(Me.txtDiferenciaComb)
         Me.Controls.Add(Me.Label22)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.txtDiferencia)
@@ -522,6 +610,8 @@ Partial Class ChildLiquidacion
         Me.Text = "Liquidaciones"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -574,4 +664,12 @@ Partial Class ChildLiquidacion
     Friend WithEvents txtDiferencia As TextBox
     Friend WithEvents Label21 As Label
     Friend WithEvents Label22 As Label
+    Friend WithEvents txtDiferenciaComb As TextBox
+    Friend WithEvents Label23 As Label
+    Friend WithEvents txtFiltro As TextBox
+    Friend WithEvents btnFiltrar As Button
+    Friend WithEvents btnDeshacer As Button
+    Friend WithEvents Label24 As Label
+    Friend WithEvents lblFiltro As Label
+    Friend WithEvents GroupBox1 As GroupBox
 End Class

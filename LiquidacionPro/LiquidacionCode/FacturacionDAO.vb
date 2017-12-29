@@ -36,17 +36,17 @@ Public Class FacturacionDAO
 
     Public Function getAllFacturas() As DataTable
 
-        Return sqlControl.ExecQuery("select		a.CODIGO_FACTURA, 
-	                                            a.SERIE_FACTURA, 
-	                                            a.NUMERO_FACTURA,
-	                                            b.RUC_CLIENTE,
-	                                            b.RAZON_CLIENTE,
-	                                            CAST(a.FECHA_FACTURA as date) FECHA_FACTURA,
-	                                            c.DETALLE_MONEDA,
-	                                            a.TOTAL_FACTURA,
-	                                            d.DETALLE_ESTADO,
-                                                a.TIPO_FACTURA,
-                                                e.DETALLE_ESTADO TIPO_FACTURA
+        Return sqlControl.ExecQuery("select		a.CODIGO_FACTURA CODIGO, 
+	                                            a.SERIE_FACTURA SERIE,  
+	                                            a.NUMERO_FACTURA 'NRO. FACTURA',
+	                                            b.RUC_CLIENTE RUC,
+	                                            b.RAZON_CLIENTE 'RAZON SOCIAL',
+	                                            CAST(a.FECHA_FACTURA as date) 'FECHA FACTURA',
+	                                            c.DETALLE_MONEDA 'MONEDA',
+	                                            a.TOTAL_FACTURA 'TOTAL FACTURA',
+	                                            d.DETALLE_ESTADO 'ESTADO FACTURA',
+                                                a.TIPO_FACTURA 'CODIGO TIPO',
+                                                e.DETALLE_ESTADO 'TIPO FACTURA'
                                     from FACTURA a 
                                     LEFT JOIN CLIENTE b 
                                     on a.CODIGO_CLIENTE=b.CODIGO_CLIENTE
@@ -60,17 +60,17 @@ Public Class FacturacionDAO
 
     Public Function getAllFacturasFiltro(Filtro As String) As DataTable
 
-        Return sqlControl.ExecQuery("select  a.CODIGO_FACTURA, 
-	                                         a.SERIE_FACTURA, 
-	                                         a.NUMERO_FACTURA,
-	                                         b.RUC_CLIENTE,
-	                                         b.RAZON_CLIENTE,
-	                                         CAST(a.FECHA_FACTURA as date) FECHA_FACTURA,
-	                                         c.DETALLE_MONEDA,
-	                                         a.TOTAL_FACTURA,
-	                                         d.DETALLE_ESTADO,
-                                             a.TIPO_FACTURA,
-                                             e.DETALLE_ESTADO TIPO_FACTURA 
+        Return sqlControl.ExecQuery("select     a.CODIGO_FACTURA CODIGO, 
+	                                            a.SERIE_FACTURA SERIE,  
+	                                            a.NUMERO_FACTURA 'NRO. FACTURA',
+	                                            b.RUC_CLIENTE RUC,
+	                                            b.RAZON_CLIENTE 'RAZON SOCIAL',
+	                                            CAST(a.FECHA_FACTURA as date) 'FECHA FACTURA',
+	                                            c.DETALLE_MONEDA 'MONEDA',
+	                                            a.TOTAL_FACTURA 'TOTAL FACTURA',
+	                                            d.DETALLE_ESTADO 'ESTADO FACTURA',
+                                                a.TIPO_FACTURA 'CODIGO TIPO',
+                                                e.DETALLE_ESTADO 'TIPO FACTURA' 
                                      from FACTURA a 
                                      LEFT JOIN CLIENTE b 
                                      on a.CODIGO_CLIENTE=b.CODIGO_CLIENTE
@@ -135,7 +135,7 @@ Public Class FacturacionDAO
                                     DESCRIPCION,
                                     CONF_VEHICULAR,
                                     VALOR_REFERENCIAL,
-                                    PRECIO_UNITARIO,
+                                    PRECIO_UNITARIO 'PRECIO UNITARIO',
                                     ORIGEN,
                                     DESTINO,
                                     OBSERVACION  
@@ -203,7 +203,7 @@ Public Class FacturacionDAO
     Public Function InsertFacturaDetalle(codigo_factura As Integer,
                                     tipo_servicio As Integer, descripcion As String,
                                          cantidad As Integer, conf_vehi As String,
-                                         valor_ref As Long, obs As String, precio_unitario As Long,
+                                         valor_ref As Double, obs As String, precio_unitario As Double,
                                          origen As String, destino As String) As Integer
 
         Dim params As New List(Of SqlParameter)
@@ -248,7 +248,7 @@ Public Class FacturacionDAO
     Public Sub UpdateFacturaDetalle(codigo_detalle_factura As Integer, codigo_factura As Integer,
                                     tipo_servicio As Integer, descripcion As String,
                                          cantidad As Integer, conf_vehi As String,
-                                         valor_ref As Long, obs As String, precio_unitario As Long,
+                                         valor_ref As Double, obs As String, precio_unitario As Double,
                                          origen As String, destino As String)
 
 

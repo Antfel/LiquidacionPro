@@ -1,5 +1,9 @@
 ﻿Public Class ChildLiquidacion
 
+    Dim columnaFiltro As Integer = -1
+    Dim source1 As New BindingSource()
+    Dim nombreColumnaFiltro As String
+
     Private Sub ChildLiquidacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actualizarListaLiquidacion()
         actualizarDatosTrabajador()
@@ -7,14 +11,16 @@
         actualizarDatosTracto()
         actualizarDatosSemiTrailer()
         actualizarEstados()
+        dtpSalida.Format = DateTimePickerFormat.Custom
+        dtpSalida.CustomFormat = "dd/MM/yyyy hh:mm tt"
+        dtpLlegada.Format = DateTimePickerFormat.Custom
+        dtpLlegada.CustomFormat = "dd/MM/yyyy hh:mm tt"
+        limpiar()
     End Sub
 
     Private Sub btnAgregarLiquidacion_Click(sender As Object, e As EventArgs) Handles btnAgregarLiquidacion.Click
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
-
-        Dim proceso As String
-        proceso = ""
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
 
@@ -24,25 +30,29 @@
                 sqlControl.beginTransaction()
                 liquidacionDao.setDBcmd()
                 Dim correla As Integer
-                proceso = "grabada"
+
+                cbEstado.SelectedValue = 1
                 correla = liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue,
                                                            cbGuia.SelectedValue,
                                              cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
                                              txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
-                                             CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
-                                             CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
-                                             CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text),
-                                                           CLng(txtCombustibleVirtual.Text),
-                                             cbEstado.SelectedValue)
+                                             Double.Parse(txtDinero.Text), Double.Parse(txtPeajes.Text), Double.Parse(txtViaticos.Text),
+                                             Double.Parse(txtGuardiania.Text), Double.Parse(txtHospedaje.Text), Double.Parse(txtBalanza.Text),
+                                             Double.Parse(txtOtros.Text), Double.Parse(txtCombustibleFisico.Text),
+                                             Double.Parse(txtCombustibleVirtual.Text), cbEstado.SelectedValue)
                 If correla >= 0 Then
                     txtCodigoLiquidacion.Text = CStr(correla)
-                    MsgBox("Liquidación " + proceso + " correctamente")
+                    MessageBox.Show("Liquidación grabada correctamente", "Agregar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
                 End If
                 sqlControl.commitTransaction()
             Catch excep As Exception
                 sqlControl.rollbackTransaccion()
 
-                MsgBox("Error. Verifique")
+                MessageBox.Show("Error al grabar Liquidación. " + excep.Message, "Agregar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             Finally
                 Try
                     sqlControl.closeConexion()
@@ -57,30 +67,35 @@
                 liquidacionDao.setDBcmd()
 
                 Dim correla As Integer
-                proceso = "actualizada"
+
                 correla = liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
                                          cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
                                          txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
-                                         CLng(txtDinero.Text), CLng(txtPeajes.Text), CLng(txtViaticos.Text),
-                                         CLng(txtGuardiania.Text), CLng(txtHospedaje.Text), CLng(txtBalanza.Text),
-                                         CLng(txtOtros.Text), CLng(txtCombustibleFisico.Text), CLng(txtCombustibleVirtual.Text),
+                                         Double.Parse(txtDinero.Text), Double.Parse(txtPeajes.Text), Double.Parse(txtViaticos.Text),
+                                         Double.Parse(txtGuardiania.Text), Double.Parse(txtHospedaje.Text), Double.Parse(txtBalanza.Text),
+                                         Double.Parse(txtOtros.Text), Double.Parse(txtCombustibleFisico.Text), Double.Parse(txtCombustibleVirtual.Text),
                                          cbEstado.SelectedValue)
 
-                MsgBox("Liquidación " + proceso + " correctamente")
-                If correla >= 0 Then
-                    txtCodigoLiquidacion.Text = CStr(correla)
-                    MsgBox("Liquidación " + proceso + " correctamente")
-                End If
 
+                If correla >= 0 Then
+                    MessageBox.Show("Liquidación actualizada correctamente", "Agregar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
+                End If
                 sqlControl.commitTransaction()
             Catch excep As Exception
                 sqlControl.rollbackTransaccion()
-                MsgBox("Error. Verifique")
+                MessageBox.Show("Error al actualizar Liquidación. " + excep.Message, "Agregar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             Finally
                 Try
                     sqlControl.closeConexion()
                 Catch ex As Exception
-
+                    sqlControl.rollbackTransaccion()
+                    MessageBox.Show("Error al cerrar Conexión. " + ex.Message, "Agregar Liquidaciones",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Error)
                 End Try
             End Try
 
@@ -105,14 +120,13 @@
             Dim codigo As Integer = seleccion.Cells(0).Value
 
             Dim dt As DataTable
-
             dt = liquidacionDao.GetLiquidacionById(codigo)
-
             sqlControl.commitTransaction()
 
             txtCodigoLiquidacion.Text = dt.Rows(0)(0)
             txtNroLiquidacion.Text = dt.Rows(0)(1)
             cbTrabajador.SelectedValue = dt.Rows(0)(2)
+            actualizarDatosGuiaRegistrada(CInt(dt.Rows(0)(4)))
             cbGuia.SelectedValue = dt.Rows(0)(4)
             cbTracto.SelectedValue = dt.Rows(0)(6)
             txtOrigen.Text = dt.Rows(0)(10)
@@ -132,6 +146,7 @@
             cbEstado.SelectedValue = dt.Rows(0)(23)
             txtTotalGasto.Text = dt.Rows(0)(25)
             txtDiferencia.Text = dt.Rows(0)(26)
+            txtDiferenciaComb.Text = dt.Rows(0)(27)
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
@@ -259,8 +274,45 @@
             End Try
         End Try
 
+    End Sub
 
+    Private Sub actualizarDatosGuiaRegistrada(cod_guia As Integer)
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
 
+        Dim guiaDao As New GuiaDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            guiaDao.setDBcmd()
+            Dim dtGuia As DataTable
+
+            dtGuia = guiaDao.getGuiaByCodigo(cod_guia)
+            sqlControl.commitTransaction()
+
+            With cbGuia
+                .DataSource = dtGuia
+                .DisplayMember = "DETALLE_GUIA"
+                .ValueMember = "CODIGO_GUIA"
+                .DropDownStyle = ComboBoxStyle.Simple
+                .AutoCompleteMode = AutoCompleteMode.Suggest
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+            End With
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar Guía Registrada. " + ex.Message, "Cargar Guía Registrada",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Guía Registrada",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            End Try
+        End Try
 
     End Sub
 
@@ -360,7 +412,7 @@
                 .DropDownStyle = ComboBoxStyle.DropDown
                 .AutoCompleteMode = AutoCompleteMode.Suggest
                 .AutoCompleteSource = AutoCompleteSource.ListItems
-                .SelectedIndex = -1
+                .SelectedValue = 1
             End With
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
@@ -375,6 +427,10 @@
     End Sub
 
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
+        limpiar()
+    End Sub
+
+    Sub limpiar()
         txtCodigoLiquidacion.Text = ""
         txtNroLiquidacion.Text = ""
         cbTrabajador.SelectedIndex = -1
@@ -385,15 +441,61 @@
         cbCamabaja.SelectedIndex = -1
         txtDestino.Text = ""
         dtpSalida.Value = DateTime.Now
-        txtDinero.Text = ""
-        txtGuardiania.Text = ""
-        txtHospedaje.Text = ""
-        txtPeajes.Text = ""
-        txtViaticos.Text = ""
-        txtBalanza.Text = ""
-        txtOtros.Text = ""
-        txtCombustibleFisico.Text = ""
-        txtCombustibleVirtual.Text = ""
-        cbEstado.SelectedIndex = -1
+        txtDinero.Text = "0.00"
+        txtGuardiania.Text = "0.00"
+        txtHospedaje.Text = "0.00"
+        txtPeajes.Text = "0.00"
+        txtViaticos.Text = "0.00"
+        txtBalanza.Text = "0.00"
+        txtOtros.Text = "0.00"
+        txtTotalGasto.Text = "0.00"
+        txtDiferencia.Text = "0.00"
+        txtCombustibleFisico.Text = "0.00"
+        txtCombustibleVirtual.Text = "0.00"
+        txtDiferenciaComb.Text = "0.00"
+        cbEstado.SelectedValue = 1
+        actualizarDatosGuia()
+    End Sub
+    Private Sub txtTotalGasto_TextChanged(sender As Object, e As EventArgs) Handles txtTotalGasto.TextChanged
+
+    End Sub
+
+    Private Sub txtDiferencia_TextChanged(sender As Object, e As EventArgs) Handles txtDiferencia.TextChanged
+
+    End Sub
+
+    Private Sub dgvLiquidacion_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvLiquidacion.ColumnHeaderMouseClick
+        columnaFiltro = e.ColumnIndex
+        nombreColumnaFiltro = dgvLiquidacion.Columns(columnaFiltro).Name
+        lblFiltro.Text = nombreColumnaFiltro
+    End Sub
+
+    Private Sub btnFiltrar_Click(sender As Object, e As EventArgs) Handles btnFiltrar.Click
+
+        If columnaFiltro = -1 Then
+            MessageBox.Show("Debe seleccionar una columna. ", "Filtrar",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
+            Return
+        End If
+        source1.DataSource = dgvLiquidacion.DataSource
+
+        Dim tipo As Type = dgvLiquidacion.Columns(columnaFiltro).ValueType
+
+        Select Case tipo.ToString
+            Case "System.Decimal", "System.Int32"
+                source1.Filter = "[" & nombreColumnaFiltro & "] " & txtFiltro.Text & ""
+            Case "System.String"
+                source1.Filter = "[" & nombreColumnaFiltro & "] like '%" & txtFiltro.Text & "%'"
+        End Select
+
+        dgvLiquidacion.Refresh()
+    End Sub
+
+    Private Sub btnDeshacer_Click(sender As Object, e As EventArgs) Handles btnDeshacer.Click
+        source1.DataSource = dgvLiquidacion.DataSource
+        source1.RemoveFilter()
+        dgvLiquidacion.Refresh()
+        txtFiltro.Text = ""
     End Sub
 End Class

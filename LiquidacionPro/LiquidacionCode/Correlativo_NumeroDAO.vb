@@ -36,7 +36,7 @@ Public Class Correlativo_NumeroDAO
 
     Public Function GetAllCorrelativo() As DataTable
         Dim dt As DataTable
-        dt = sqlControl.ExecQuery("select		CODIGO_CORRELATIVO,
+        dt = sqlControl.ExecQuery("select		CODIGO_CORRELATIVO CODIGO,
 			                                    DESCRIPCION
                                     from		CORRELATIVO
                                     order by	codigo_correlativo asc", Nothing)
@@ -47,10 +47,10 @@ Public Class Correlativo_NumeroDAO
     Public Function GetAllCorrelativoNumeroByCorrelativo(codigo As Integer) As DataTable
 
         Dim dt As DataTable
-        dt = sqlControl.ExecQuery("select		CODIGO_CORRELATIVO,
-                                                DETALLE_CORRELATIVO,
+        dt = sqlControl.ExecQuery("select		CODIGO_CORRELATIVO CODIGO,
+                                                DETALLE_CORRELATIVO DETALLE,
 			                                    SERIE,
-			                                    ULTIMO_USADO
+			                                    ULTIMO_USADO 'ULTIMO USADO' 
                                     from		CORRELATIVO_NUMERO
                                     where		CODIGO_CORRELATIVO=" + CStr(codigo) + "
                                     order by	codigo_correlativo asc", Nothing)

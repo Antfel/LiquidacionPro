@@ -151,9 +151,6 @@
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
 
-        Dim proceso As String
-        proceso = ""
-
         Dim guiaDao As New GuiaDAO(sqlControl)
 
         If txtCodigo.Text = Nothing Then
@@ -163,7 +160,6 @@
                 guiaDao.setDBcmd()
 
                 Dim correla As Integer
-                proceso = "grabada"
 
                 Dim fliqui As Date
                 If chkbLiquidacion.Checked = True Then
@@ -181,19 +177,27 @@
 
                 correla = guiaDao.InsertGuia(txtDetalle.Text, cbEstado.SelectedValue,
                                              fliqui, ffactura)
+                sqlControl.commitTransaction()
+
                 If correla >= 0 Then
                     txtCodigo.Text = CStr(correla)
-                    MsgBox("Guía " + proceso + " correctamente.")
+                    MessageBox.Show("Guía grabada correctamente.", "Grabar Guía",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
                 End If
-                sqlControl.commitTransaction()
+
             Catch excep As Exception
                 sqlControl.rollbackTransaccion()
-                MsgBox("Error. Verifique")
+                MessageBox.Show("Error al grabar Guía. " + excep.Message, "Grabar Guía",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             Finally
                 Try
                     sqlControl.closeConexion()
                 Catch ex As Exception
-
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Grabar Guía",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
                 End Try
             End Try
         Else
@@ -203,7 +207,6 @@
                 guiaDao.setDBcmd()
 
                 Dim correla As Integer
-                proceso = "actualizada"
 
                 Dim fliqui As Date
                 If chkbLiquidacion.Checked = True Then
@@ -221,23 +224,29 @@
 
                 correla = guiaDao.UpdatetGuia(CInt(txtCodigo.Text), txtDetalle.Text, cbEstado.SelectedValue,
                                               fliqui, ffactura)
-                If correla >= 0 Then
-                    txtCodigo.Text = CStr(correla)
-                    MsgBox("Guía " + proceso + " correctamente.")
-                End If
                 sqlControl.commitTransaction()
+
+                If correla >= 0 Then
+                    MessageBox.Show("Guía actualizada correctamente.", "Grabar Guía",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
+                End If
+
             Catch excep As Exception
                 sqlControl.rollbackTransaccion()
-                MsgBox("Error. Verifique")
+                MessageBox.Show("Error al actualizar Guía. " + excep.Message, "Grabar Guía",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             Finally
                 Try
                     sqlControl.closeConexion()
                 Catch ex As Exception
-
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Grabar Guía",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
                 End Try
             End Try
         End If
-
 
         cargarGuias()
     End Sub

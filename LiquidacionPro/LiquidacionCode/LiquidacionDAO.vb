@@ -36,36 +36,37 @@ Public Class LiquidacionDAO
     End Sub
 
     Public Function GetAllLiquidacion() As DataTable
-        Return sqlControl.ExecQuery("select		a.CODIGO_LIQUIDACION,
-			                        a.NUMERO_LIQUIDACION,
+        Return sqlControl.ExecQuery("select		a.CODIGO_LIQUIDACION CODIGO,
+			                        a.NUMERO_LIQUIDACION 'NUMERO LIQUIDACION',
 			                        a.CODIGO_TRABAJADOR,
-			                        f.APELLIDO_PATERNO_TRABAJADOR+' '+f.APELLIDO_MATERNO_TRABAJADOR+', '+f.NOMBRES_TRABAJADOR,
+			                        f.APELLIDO_PATERNO_TRABAJADOR+' '+f.APELLIDO_MATERNO_TRABAJADOR+', '+f.NOMBRES_TRABAJADOR TRABAJADOR,
 			                        a.CODIGO_GUIA,
-			                        d.DETALLE_GUIA,
+			                        d.DETALLE_GUIA GUIA,
 			                        a.CODIGO_UNIDAD_TRACTO,
-			                        b.PLACA_UNIDAD,
+			                        b.PLACA_UNIDAD TRACTO,
 			                        a.CODIGO_UNIDAD_SEMITRAILER,
-			                        c.PLACA_UNIDAD,
-			                        a.ORIGEN_LIQUIDACION,
-			                        a.DESTINO_LIQUIDACION,
-			                        a.FECHA_SALIDA,
-			                        a.FECHA_LLEGADA,
-			                        a.DINERO_LIQUIDACION,
-			                        a.PEAJES_LIQUIDACION,
-			                        a.VIATICOS_LIQUIDACION,
-			                        a.GUARDIANIA_LIQUIDACION,
-                                    a.HOSPEDAJE_LIQUIDACION,
-			                        a.BALANZA_LIQUIDACION,
-			                        a.OTROS_LIQUIDACION,
-			                        a.CONSUMO_FISICO_LIQUIDACION,
-			                        a.CONSUMO_VIRTUAL_LIQUIDACION,
+			                        c.PLACA_UNIDAD SEMITRAILER,
+			                        a.ORIGEN_LIQUIDACION ORIGEN,
+			                        a.DESTINO_LIQUIDACION DESTINO,
+			                        convert(varchar(10),a.FECHA_SALIDA,103)+''+right(convert(varchar(32),a.FECHA_SALIDA,100),8) 'FECHA SALIDA',
+			                        convert(varchar(10),a.FECHA_LLEGADA,103)+''+right(convert(varchar(32),a.FECHA_LLEGADA,100),8) 'FECHA LLEGADA',
+			                        a.DINERO_LIQUIDACION 'DINERO ENTREGADO',
+			                        a.PEAJES_LIQUIDACION PEAJES,
+			                        a.VIATICOS_LIQUIDACION VIATICOS,
+			                        a.GUARDIANIA_LIQUIDACION GUARDIANIA,
+                                    a.HOSPEDAJE_LIQUIDACION HOSPEDAJE,
+			                        a.BALANZA_LIQUIDACION BALANZA,
+			                        a.OTROS_LIQUIDACION OTROS,
+			                        a.CONSUMO_FISICO_LIQUIDACION 'CONSUMO FISICO',
+			                        a.CONSUMO_VIRTUAL_LIQUIDACION 'CONSUMO VIRTUAL',
 			                        a.CODIGO_ESTADO,
-			                        e.DETALLE_ESTADO,
-                                    a.DINERO_LIQUIDACION,
+			                        e.DETALLE_ESTADO ESTADO,
+                                    a.DINERO_LIQUIDACION DINERO,
 			                        (coalesce(a.PEAJES_LIQUIDACION,0)+coalesce(a.VIATICOS_LIQUIDACION,0)+coalesce(a.GUARDIANIA_LIQUIDACION,0)+
-			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0)) TOTAL_GASTO,
+			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0)) 'TOTAL GASTO',
 			                        (coalesce(a.DINERO_LIQUIDACION,0)-(coalesce(a.PEAJES_LIQUIDACION,0)+coalesce(a.VIATICOS_LIQUIDACION,0)+coalesce(a.GUARDIANIA_LIQUIDACION,0)+
-			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0)))DIFERENCIA
+			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0))) 'DIFERENCIA GASTO',
+                                    a.CONSUMO_FISICO_LIQUIDACION-a.CONSUMO_VIRTUAL_LIQUIDACION 'DIFERENCIA CONSUMO'      
                         from		LIQUIDACION a
                         LEFT JOIN	UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
                         LEFT JOIN	UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD
@@ -106,7 +107,8 @@ Public Class LiquidacionDAO
                                     (coalesce(a.PEAJES_LIQUIDACION,0)+coalesce(a.VIATICOS_LIQUIDACION,0)+coalesce(a.GUARDIANIA_LIQUIDACION,0)+
 			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0)) TOTAL_GASTO,
 			                        (coalesce(a.DINERO_LIQUIDACION,0)-(coalesce(a.PEAJES_LIQUIDACION,0)+coalesce(a.VIATICOS_LIQUIDACION,0)+coalesce(a.GUARDIANIA_LIQUIDACION,0)+
-			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0)))DIFERENCIA
+			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0)))DIFERENCIA,
+                                    a.CONSUMO_FISICO_LIQUIDACION-a.CONSUMO_VIRTUAL_LIQUIDACION DIFERENCIA_CONSUMO
                         from		LIQUIDACION a
                         LEFT JOIN	UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
                         LEFT JOIN	UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD
@@ -120,9 +122,9 @@ Public Class LiquidacionDAO
     Public Function InsertLiquidacion(nroLiquidacion As String, trabajador As Object, guia As Object,
                                  tracto As Object, camabaja As Object, origen As String,
                                  destino As String, salida As Date, llegada As Date,
-                                 dinero As Long, peajes As Long, viaticos As Long,
-                                 guardiania As Long, hospedaje As Long, balanaza As Long,
-                                 otros As Long, fisico As Long, virtual As Long,
+                                 dinero As Double, peajes As Double, viaticos As Double,
+                                 guardiania As Double, hospedaje As Double, balanaza As Double,
+                                 otros As Double, fisico As Double, virtual As Double,
                                  estado As Object) As Integer
 
         Dim params As New List(Of SqlParameter)
@@ -184,9 +186,9 @@ Public Class LiquidacionDAO
     Public Function UpdateLiquidacion(codigo As String, nroLiquidacion As String, trabajador As Object, guia As Object,
                                  tracto As Object, camabaja As Object, origen As String,
                                  destino As String, salida As Date, llegada As Date,
-                                 dinero As Long, peajes As Long, viaticos As Long,
-                                 guardiania As Long, hospedaje As Long, balanaza As Long,
-                                 otros As Long, fisico As Long, virtual As Long,
+                                 dinero As Double, peajes As Double, viaticos As Double,
+                                 guardiania As Double, hospedaje As Double, balanaza As Double,
+                                 otros As Double, fisico As Double, virtual As Double,
                                  estado As Object) As Integer
 
         Dim params As New List(Of SqlParameter)
@@ -207,8 +209,8 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@HOSPEDAJE_LIQUIDACION", hospedaje))
         params.Add(New SqlParameter("@BALANZA_LIQUIDACION", balanaza))
         params.Add(New SqlParameter("@OTROS_LIQUIDACION", otros))
-        params.Add(New SqlParameter("@CONSUMO_FISICO_LIQUIDACION", virtual))
-        params.Add(New SqlParameter("@CONSUMO_VIRTUAL_LIQUIDACION", nroLiquidacion))
+        params.Add(New SqlParameter("@CONSUMO_FISICO_LIQUIDACION", fisico))
+        params.Add(New SqlParameter("@CONSUMO_VIRTUAL_LIQUIDACION", virtual))
         params.Add(New SqlParameter("@CODIGO_ESTADO", estado))
 
         Dim dt As DataTable

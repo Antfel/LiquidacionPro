@@ -32,6 +32,7 @@
             txtRUC.Text = dtClente.Rows.Item(0)(1).ToString.ToUpper
             txtDireccion.Text = dtClente.Rows.Item(0)(3).ToString.ToUpper
             txtTelefono.Text = dtClente.Rows.Item(0)(4).ToString
+            sqlControl.commitTransaction()
 
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
@@ -122,17 +123,12 @@
 
         Try
             sqlControl.openConexion()
-
             sqlControl.beginTransaction()
-
             clienteDao.setDBcmd()
 
             Dim dtCliente As DataTable
 
             dtCliente = clienteDao.GetClientes
-
-            sqlControl.commitTransaction()
-
 
             With cbRazonSocial
                 .DataSource = dtCliente
@@ -144,9 +140,9 @@
                 .SelectedIndex = -1
 
             End With
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
-
         Finally
             Try
                 sqlControl.closeConexion()
@@ -172,14 +168,13 @@
 
             dtMoneda = monedaDao.GetMonedas
 
-            sqlControl.commitTransaction()
-
             With cbMoneda
                 .DataSource = dtMoneda
                 .DisplayMember = "DETALLE_MONEDA"
                 .ValueMember = "CODIGO_MONEDA"
                 .SelectedIndex = -1
             End With
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
@@ -207,7 +202,6 @@
             correlativoFactura = correlativoDao.GetSiguienteCorrelativo(1, txtNroSerie.Text)
             lbNroFactura.Text = correlativoFactura
             sqlControl.commitTransaction()
-
 
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
@@ -320,7 +314,7 @@
                                                 "",
                                                 0,
                                                 "",
-                                                CType(txtPrecioUnitario.Text, Long),
+                                                CType(txtPrecioUnitario.Text, Double),
                                                 "",
                                                 ""
                                                 )
@@ -445,7 +439,7 @@
 
             facturacionDao.deleteFacturaDetalle(codigo_Detalle, codigo_Factura)
 
-            facturacionDao.commitTransacction()
+            sqlControl.commitTransaction()
 
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
@@ -479,9 +473,15 @@
             txtDescripcion.Text = datDetalle.Rows(0).Item(1).ToString
             txtCantidad.Text = datDetalle.Rows(0).Item(2).ToString
             txtPrecioUnitario.Text = datDetalle.Rows(0).Item(5).ToString
-
+            sqlControl.commitTransaction()
         Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
 
+            End Try
         End Try
     End Sub
 
@@ -504,8 +504,15 @@
     End Sub
 
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
-        Dim rpt As New RptPrintFacturaLibre
-        rpt.setNroFactura(codigo_Factura)
-        rpt.Show()
+        If dgvDetalle.Rows.Count Then
+            Dim rpt As New RptPrintFacturaLibre
+            rpt.setNroFactura(codigo_Factura)
+            rpt.Show()
+        Else
+            MessageBox.Show("Se requiere mínimo un detalle para la impresión.", "Imprimir",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
+        End If
+
     End Sub
 End Class

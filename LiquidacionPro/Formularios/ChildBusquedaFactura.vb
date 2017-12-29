@@ -1,74 +1,44 @@
 ﻿Public Class ChildBusquedaFactura
-    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvFacturas.CellContentClick
-
-    End Sub
+    Dim columnaFiltro As Integer = -1
+    Dim source1 As New BindingSource()
+    Dim nombreColumnaFiltro As String
 
     Private Sub ChildBusquedaFactura_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cargarDatosFactura("")
+        cargarDatosFactura()
     End Sub
 
-    Private Sub cargarDatosFactura(Filtro As String)
-        If Filtro.Trim <> "" Then
-            Dim sqlControl As New SQLControl
-            sqlControl.setConnection()
+    Private Sub cargarDatosFactura()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
 
-            Dim facturacionDao As New FacturacionDAO(sqlControl)
+        Dim facturacionDao As New FacturacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            facturacionDao.setDBcmd()
+
+            Dim dtFactura As DataTable
+
+            dtFactura = facturacionDao.getAllFacturas()
+            dgvFacturas.DataSource = dtFactura
+
+            sqlControl.commitTransaction()
+
+            dgvFacturas.Columns(9).Visible = False
+
+            dgvFacturas.MultiSelect = False
+            dgvFacturas.RowHeadersVisible = False
+
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
-                facturacionDao.setDBcmd()
-
-                Dim dtFactura As DataTable
-
-                dtFactura = facturacionDao.getAllFacturasFiltro(Filtro)
-
-                dgvFacturas.DataSource = dtFactura
-
-                sqlControl.commitTransaction()
-
-                dgvFacturas.MultiSelect = False
-                dgvFacturas.RowHeadersVisible = False
-
+                sqlControl.closeConexion()
             Catch ex As Exception
-                sqlControl.rollbackTransaccion()
-            Finally
-                Try
-                    sqlControl.closeConexion()
-                Catch ex As Exception
 
-                End Try
             End Try
-        Else
-            Dim sqlControl As New SQLControl
-            sqlControl.setConnection()
+        End Try
 
-            Dim facturacionDao As New FacturacionDAO(sqlControl)
-            Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
-                facturacionDao.setDBcmd()
-
-                Dim dtFactura As DataTable
-
-                dtFactura = facturacionDao.getAllFacturas()
-
-                dgvFacturas.DataSource = dtFactura
-
-                sqlControl.commitTransaction()
-
-                dgvFacturas.MultiSelect = False
-                dgvFacturas.RowHeadersVisible = False
-
-            Catch ex As Exception
-                sqlControl.rollbackTransaccion()
-            Finally
-                Try
-                    sqlControl.closeConexion()
-                Catch ex As Exception
-
-                End Try
-            End Try
-        End If
 
 
 
@@ -98,16 +68,11 @@
         Me.Dispose()
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+    Private Sub Label1_Click(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        cargarDatosFactura(txtRazonSocial.Text)
-
-    End Sub
-
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txtRazonSocial.TextChanged
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -116,5 +81,39 @@
         facturaLibreChild.MdiParent = Me.MdiParent
         facturaLibreChild.Show()
         Me.Dispose()
+    End Sub
+
+    Private Sub dgvFacturas_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvFacturas.ColumnHeaderMouseClick
+        columnaFiltro = e.ColumnIndex
+        nombreColumnaFiltro = dgvFacturas.Columns(columnaFiltro).Name
+        lblFiltro.Text = nombreColumnaFiltro
+    End Sub
+
+    Private Sub btnFiltrar_Click(sender As Object, e As EventArgs) Handles btnFiltrar.Click
+        If columnaFiltro = -1 Then
+            MessageBox.Show("Debe seleccionar una columna. ", "Filtrar",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
+            Return
+        End If
+        source1.DataSource = dgvFacturas.DataSource
+
+        Dim tipo As Type = dgvFacturas.Columns(columnaFiltro).ValueType
+
+        Select Case tipo.ToString
+            Case "System.Decimal", "System.Int32"
+                source1.Filter = "[" & nombreColumnaFiltro & "] " & txtFiltro.Text & ""
+            Case "System.String"
+                source1.Filter = "[" & nombreColumnaFiltro & "] like '%" & txtFiltro.Text & "%'"
+        End Select
+
+        dgvFacturas.Refresh()
+    End Sub
+
+    Private Sub btnDeshacer_Click(sender As Object, e As EventArgs) Handles btnDeshacer.Click
+        source1.DataSource = dgvFacturas.DataSource
+        source1.RemoveFilter()
+        dgvFacturas.Refresh()
+        txtFiltro.Text = ""
     End Sub
 End Class

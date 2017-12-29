@@ -31,12 +31,6 @@ Partial Class ChildFacturaLibre
         Me.txtDireccion = New System.Windows.Forms.TextBox()
         Me.txtTelefono = New System.Windows.Forms.TextBox()
         Me.cbRazonSocial = New System.Windows.Forms.ComboBox()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.btnGuardarCabecera = New System.Windows.Forms.Button()
-        Me.lbNroFactura = New System.Windows.Forms.Label()
-        Me.txtNroSerie = New System.Windows.Forms.TextBox()
-        Me.lbFactura = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -59,7 +53,11 @@ Partial Class ChildFacturaLibre
         Me.btnEliminar = New System.Windows.Forms.Button()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.btnImprimir = New System.Windows.Forms.Button()
-        Me.Panel1.SuspendLayout()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.lbFactura = New System.Windows.Forms.Label()
+        Me.txtNroSerie = New System.Windows.Forms.TextBox()
+        Me.lbNroFactura = New System.Windows.Forms.Label()
+        Me.btnGuardarCabecera = New System.Windows.Forms.Button()
         CType(Me.dgvDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -135,65 +133,6 @@ Partial Class ChildFacturaLibre
         Me.cbRazonSocial.Size = New System.Drawing.Size(400, 21)
         Me.cbRazonSocial.TabIndex = 1
         '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.btnGuardarCabecera)
-        Me.Panel1.Controls.Add(Me.lbNroFactura)
-        Me.Panel1.Controls.Add(Me.txtNroSerie)
-        Me.Panel1.Controls.Add(Me.lbFactura)
-        Me.Panel1.Controls.Add(Me.Label8)
-        Me.Panel1.Location = New System.Drawing.Point(967, 12)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(317, 146)
-        Me.Panel1.TabIndex = 10
-        '
-        'btnGuardarCabecera
-        '
-        Me.btnGuardarCabecera.Location = New System.Drawing.Point(98, 120)
-        Me.btnGuardarCabecera.Name = "btnGuardarCabecera"
-        Me.btnGuardarCabecera.Size = New System.Drawing.Size(141, 23)
-        Me.btnGuardarCabecera.TabIndex = 5
-        Me.btnGuardarCabecera.Text = "Guardar Datos"
-        Me.btnGuardarCabecera.UseVisualStyleBackColor = True
-        '
-        'lbNroFactura
-        '
-        Me.lbNroFactura.AutoSize = True
-        Me.lbNroFactura.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbNroFactura.ForeColor = System.Drawing.Color.DarkRed
-        Me.lbNroFactura.Location = New System.Drawing.Point(208, 94)
-        Me.lbNroFactura.Name = "lbNroFactura"
-        Me.lbNroFactura.Size = New System.Drawing.Size(0, 20)
-        Me.lbNroFactura.TabIndex = 3
-        '
-        'txtNroSerie
-        '
-        Me.txtNroSerie.Location = New System.Drawing.Point(154, 94)
-        Me.txtNroSerie.Name = "txtNroSerie"
-        Me.txtNroSerie.Size = New System.Drawing.Size(48, 20)
-        Me.txtNroSerie.TabIndex = 2
-        '
-        'lbFactura
-        '
-        Me.lbFactura.AutoSize = True
-        Me.lbFactura.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbFactura.ForeColor = System.Drawing.Color.DarkRed
-        Me.lbFactura.Location = New System.Drawing.Point(16, 94)
-        Me.lbFactura.Name = "lbFactura"
-        Me.lbFactura.Size = New System.Drawing.Size(132, 20)
-        Me.lbFactura.TabIndex = 1
-        Me.lbFactura.Text = "NRO FACTURA: "
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(48, 32)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(245, 25)
-        Me.Label8.TabIndex = 0
-        Me.Label8.Text = "R.U.C. : 20519804427"
-        '
         'Label7
         '
         Me.Label7.AutoSize = True
@@ -259,21 +198,21 @@ Partial Class ChildFacturaLibre
         Me.txtCantidad.Location = New System.Drawing.Point(214, 209)
         Me.txtCantidad.Name = "txtCantidad"
         Me.txtCantidad.Size = New System.Drawing.Size(100, 20)
-        Me.txtCantidad.TabIndex = 6
+        Me.txtCantidad.TabIndex = 7
         '
         'txtDescripcion
         '
         Me.txtDescripcion.Location = New System.Drawing.Point(337, 209)
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(587, 20)
-        Me.txtDescripcion.TabIndex = 7
+        Me.txtDescripcion.TabIndex = 8
         '
         'txtPrecioUnitario
         '
         Me.txtPrecioUnitario.Location = New System.Drawing.Point(939, 209)
         Me.txtPrecioUnitario.Name = "txtPrecioUnitario"
         Me.txtPrecioUnitario.Size = New System.Drawing.Size(100, 20)
-        Me.txtPrecioUnitario.TabIndex = 8
+        Me.txtPrecioUnitario.TabIndex = 9
         '
         'txtSubtotal
         '
@@ -358,7 +297,7 @@ Partial Class ChildFacturaLibre
         Me.btnGrabar.Location = New System.Drawing.Point(1074, 209)
         Me.btnGrabar.Name = "btnGrabar"
         Me.btnGrabar.Size = New System.Drawing.Size(75, 23)
-        Me.btnGrabar.TabIndex = 9
+        Me.btnGrabar.TabIndex = 10
         Me.btnGrabar.Text = "Grabar"
         Me.btnGrabar.UseVisualStyleBackColor = True
         '
@@ -367,7 +306,7 @@ Partial Class ChildFacturaLibre
         Me.btnEliminar.Location = New System.Drawing.Point(1074, 268)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(75, 23)
-        Me.btnEliminar.TabIndex = 11
+        Me.btnEliminar.TabIndex = 12
         Me.btnEliminar.Text = "Eliminar"
         Me.btnEliminar.UseVisualStyleBackColor = True
         '
@@ -376,7 +315,7 @@ Partial Class ChildFacturaLibre
         Me.btnNuevo.Location = New System.Drawing.Point(1074, 239)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
-        Me.btnNuevo.TabIndex = 10
+        Me.btnNuevo.TabIndex = 11
         Me.btnNuevo.Text = "Nuevo"
         Me.btnNuevo.UseVisualStyleBackColor = True
         '
@@ -389,15 +328,67 @@ Partial Class ChildFacturaLibre
         Me.btnImprimir.Text = "Imprimir"
         Me.btnImprimir.UseVisualStyleBackColor = True
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(1039, 31)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(245, 25)
+        Me.Label8.TabIndex = 0
+        Me.Label8.Text = "R.U.C. : 20519804427"
+        '
+        'lbFactura
+        '
+        Me.lbFactura.AutoSize = True
+        Me.lbFactura.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbFactura.ForeColor = System.Drawing.Color.DarkRed
+        Me.lbFactura.Location = New System.Drawing.Point(1007, 93)
+        Me.lbFactura.Name = "lbFactura"
+        Me.lbFactura.Size = New System.Drawing.Size(132, 20)
+        Me.lbFactura.TabIndex = 1
+        Me.lbFactura.Text = "NRO FACTURA: "
+        '
+        'txtNroSerie
+        '
+        Me.txtNroSerie.Location = New System.Drawing.Point(1145, 93)
+        Me.txtNroSerie.Name = "txtNroSerie"
+        Me.txtNroSerie.Size = New System.Drawing.Size(48, 20)
+        Me.txtNroSerie.TabIndex = 5
+        '
+        'lbNroFactura
+        '
+        Me.lbNroFactura.AutoSize = True
+        Me.lbNroFactura.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbNroFactura.ForeColor = System.Drawing.Color.DarkRed
+        Me.lbNroFactura.Location = New System.Drawing.Point(1199, 93)
+        Me.lbNroFactura.Name = "lbNroFactura"
+        Me.lbNroFactura.Size = New System.Drawing.Size(0, 20)
+        Me.lbNroFactura.TabIndex = 3
+        '
+        'btnGuardarCabecera
+        '
+        Me.btnGuardarCabecera.Location = New System.Drawing.Point(1089, 119)
+        Me.btnGuardarCabecera.Name = "btnGuardarCabecera"
+        Me.btnGuardarCabecera.Size = New System.Drawing.Size(141, 23)
+        Me.btnGuardarCabecera.TabIndex = 6
+        Me.btnGuardarCabecera.Text = "Guardar Datos"
+        Me.btnGuardarCabecera.UseVisualStyleBackColor = True
+        '
         'ChildFacturaLibre
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 524)
+        Me.Controls.Add(Me.btnGuardarCabecera)
         Me.Controls.Add(Me.btnImprimir)
+        Me.Controls.Add(Me.lbNroFactura)
         Me.Controls.Add(Me.btnNuevo)
+        Me.Controls.Add(Me.txtNroSerie)
         Me.Controls.Add(Me.btnEliminar)
+        Me.Controls.Add(Me.lbFactura)
         Me.Controls.Add(Me.btnGrabar)
+        Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.Label11)
@@ -420,7 +411,6 @@ Partial Class ChildFacturaLibre
         Me.Controls.Add(Me.txtDireccion)
         Me.Controls.Add(Me.txtTelefono)
         Me.Controls.Add(Me.cbRazonSocial)
-        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
@@ -429,8 +419,6 @@ Partial Class ChildFacturaLibre
         Me.Name = "ChildFacturaLibre"
         Me.Text = "ChildFacturaLibre"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
         CType(Me.dgvDetalle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -446,12 +434,6 @@ Partial Class ChildFacturaLibre
     Friend WithEvents txtDireccion As TextBox
     Friend WithEvents txtTelefono As TextBox
     Friend WithEvents cbRazonSocial As ComboBox
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents btnGuardarCabecera As Button
-    Friend WithEvents lbNroFactura As Label
-    Friend WithEvents txtNroSerie As TextBox
-    Friend WithEvents lbFactura As Label
-    Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
@@ -474,4 +456,9 @@ Partial Class ChildFacturaLibre
     Friend WithEvents btnEliminar As Button
     Friend WithEvents btnNuevo As Button
     Friend WithEvents btnImprimir As Button
+    Friend WithEvents btnGuardarCabecera As Button
+    Friend WithEvents lbNroFactura As Label
+    Friend WithEvents txtNroSerie As TextBox
+    Friend WithEvents lbFactura As Label
+    Friend WithEvents Label8 As Label
 End Class

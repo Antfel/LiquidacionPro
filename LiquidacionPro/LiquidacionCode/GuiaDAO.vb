@@ -126,12 +126,12 @@ Public Class GuiaDAO
     End Function
 
     Public Function GetAllGuia() As DataTable
-        Return sqlControl.ExecQuery("select	a.CODIGO_GUIA,
-		a.DETALLE_GUIA,
+        Return sqlControl.ExecQuery("select	a.CODIGO_GUIA CODIGO,
+		a.DETALLE_GUIA 'DETALLE',
 		a.CODIGO_ESTADO,
-		a.FECHA_LIQUIDACION,
-		a.FECHA_FACTURACION,
-		b.DETALLE_ESTADO
+		a.FECHA_LIQUIDACION 'FECHA LIQUIDACION',
+		a.FECHA_FACTURACION 'FECHA FACTURACION',
+		b.DETALLE_ESTADO 'ESTADO'
 from	GUIA_TRANSPORTISTA a
 left	join ESTADO b on a.CODIGO_ESTADO=b.CODIGO_ESTADO and TIPO_ESTADO=3", Nothing)
 
