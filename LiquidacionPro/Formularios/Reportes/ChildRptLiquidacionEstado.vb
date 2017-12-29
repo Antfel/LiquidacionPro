@@ -43,8 +43,10 @@
         Dim estado As Integer
         estado = cbEstadoRpt.SelectedValue
         Try
-            dtLiquidacionEstadoTableAdapter.Fill(rptLiquidaciones.dtLiquidacionEstado, estado)
-            ReportViewer1.RefreshReport()
+            'dtLiquidacionEstadoTableAdapter.Fill(rptLiquidaciones.dtLiquidacionEstado, estado)
+
+            'ReportViewer1.
+            ''ReportViewer1.RefreshReport()
         Catch ex As Exception
             MsgBox("" + ex.Message)
         End Try

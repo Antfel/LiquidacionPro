@@ -39,13 +39,13 @@ Public Class LiquidacionDAO
         Return sqlControl.ExecQuery("select		a.CODIGO_LIQUIDACION,
 			                        a.NUMERO_LIQUIDACION,
 			                        a.CODIGO_TRABAJADOR,
-			                        f.APELLIDO_PATERNO_TRABAJADOR+' '+f.APELLIDO_MATERNO_TRABAJADOR+', '+f.NOMBRES_TRABAJADOR,
+			                        f.APELLIDO_PATERNO_TRABAJADOR+' '+f.APELLIDO_MATERNO_TRABAJADOR+', '+f.NOMBRES_TRABAJADOR TRABAJADOR,
 			                        a.CODIGO_GUIA,
 			                        d.DETALLE_GUIA,
 			                        a.CODIGO_UNIDAD_TRACTO,
-			                        b.PLACA_UNIDAD,
+			                        b.PLACA_UNIDAD PLACA_TRACTO,
 			                        a.CODIGO_UNIDAD_SEMITRAILER,
-			                        c.PLACA_UNIDAD,
+			                        c.PLACA_UNIDAD PLACA_SEMITRAILER,
 			                        a.ORIGEN_LIQUIDACION,
 			                        a.DESTINO_LIQUIDACION,
 			                        a.FECHA_SALIDA,
@@ -242,6 +242,49 @@ Public Class LiquidacionDAO
         Else
             Return -1
         End If
+
+    End Function
+
+
+    Public Function GetAllLiquidacionByEstado(estado As Integer) As DataTable
+        Return sqlControl.ExecQuery("select		a.CODIGO_LIQUIDACION,
+			                        a.NUMERO_LIQUIDACION,
+			                        a.CODIGO_TRABAJADOR,
+			                        f.APELLIDO_PATERNO_TRABAJADOR+' '+f.APELLIDO_MATERNO_TRABAJADOR+', '+f.NOMBRES_TRABAJADOR TRABAJADOR,
+			                        a.CODIGO_GUIA,
+			                        d.DETALLE_GUIA,
+			                        a.CODIGO_UNIDAD_TRACTO,
+			                        b.PLACA_UNIDAD PLACA_TRACTO,
+			                        a.CODIGO_UNIDAD_SEMITRAILER,
+			                        c.PLACA_UNIDAD PLACA_SEMITRAILER,
+			                        a.ORIGEN_LIQUIDACION,
+			                        a.DESTINO_LIQUIDACION,
+			                        a.FECHA_SALIDA,
+			                        a.FECHA_LLEGADA,
+			                        a.DINERO_LIQUIDACION,
+			                        a.PEAJES_LIQUIDACION,
+			                        a.VIATICOS_LIQUIDACION,
+			                        a.GUARDIANIA_LIQUIDACION,
+                                    a.HOSPEDAJE_LIQUIDACION,
+			                        a.BALANZA_LIQUIDACION,
+			                        a.OTROS_LIQUIDACION,
+			                        a.CONSUMO_FISICO_LIQUIDACION,
+			                        a.CONSUMO_VIRTUAL_LIQUIDACION,
+			                        a.CODIGO_ESTADO,
+			                        e.DETALLE_ESTADO,
+                                    a.DINERO_LIQUIDACION,
+			                        (coalesce(a.PEAJES_LIQUIDACION,0)+coalesce(a.VIATICOS_LIQUIDACION,0)+coalesce(a.GUARDIANIA_LIQUIDACION,0)+
+			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0)) TOTAL_GASTO,
+			                        (coalesce(a.DINERO_LIQUIDACION,0)-(coalesce(a.PEAJES_LIQUIDACION,0)+coalesce(a.VIATICOS_LIQUIDACION,0)+coalesce(a.GUARDIANIA_LIQUIDACION,0)+
+			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0)))DIFERENCIA
+                        from		LIQUIDACION a
+                        LEFT JOIN	UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
+                        LEFT JOIN	UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD
+                        LEFT JOIN	GUIA_TRANSPORTISTA d on d.CODIGO_GUIA=a.CODIGO_GUIA
+                        LEFT JOIN	ESTADO e on e.CODIGO_ESTADO=a.CODIGO_ESTADO
+                        LEFT JOIN	TRABAJADOR f on f.CODIGO_TRABAJADOR=a.CODIGO_TRABAJADOR
+                        WHERE		(a.CODIGO_ESTADO like '%'+cast(" + CStr(estado) + " as varchar(2))+'%') 
+                        ORDER BY	CODIGO_LIQUIDACION ASC", Nothing)
 
     End Function
 End Class

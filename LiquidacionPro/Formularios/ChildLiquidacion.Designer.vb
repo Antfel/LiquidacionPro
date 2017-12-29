@@ -438,6 +438,7 @@ Partial Class ChildLiquidacion
         '
         Me.txtTotalGasto.Location = New System.Drawing.Point(334, 188)
         Me.txtTotalGasto.Name = "txtTotalGasto"
+        Me.txtTotalGasto.ReadOnly = True
         Me.txtTotalGasto.Size = New System.Drawing.Size(107, 20)
         Me.txtTotalGasto.TabIndex = 89
         '
@@ -445,6 +446,7 @@ Partial Class ChildLiquidacion
         '
         Me.txtDiferencia.Location = New System.Drawing.Point(521, 188)
         Me.txtDiferencia.Name = "txtDiferencia"
+        Me.txtDiferencia.ReadOnly = True
         Me.txtDiferencia.Size = New System.Drawing.Size(107, 20)
         Me.txtDiferencia.TabIndex = 90
         '

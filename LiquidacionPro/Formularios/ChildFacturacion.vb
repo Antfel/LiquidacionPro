@@ -28,7 +28,6 @@
             facturacionDao.setDBcmd()
 
             dtCabeceraFactura = facturacionDao.getFacturaById(codigo_Factura)
-            sqlControl.commitTransaction()
             cbRazonSocial.SelectedValue = dtCabeceraFactura.Rows(0).Item(3).ToString
             txtPrecioFactura.Text = dtCabeceraFactura.Rows(0).Item(4).ToString
             cbMoneda.SelectedValue = dtCabeceraFactura.Rows(0).Item(5)
@@ -773,16 +772,25 @@
 
             dataTipoServicio = tipoServicioDao.getTiposDeServicio()
 
+
             With cbTipoServicio
                 .DataSource = dataTipoServicio
                 .ValueMember = "CODIGO_ESTADO"
                 .DisplayMember = "DETALLE_ESTADO"
                 .SelectedIndex = -1
             End With
+            sqlControl.commitTransaction()
         Catch ex As Exception
+            sqlControl.rollbackTransaccion()
 
         Finally
+            Try
 
+                sqlControl.closeConexion()
+
+            Catch ex As Exception
+
+            End Try
         End Try
 
     End Sub

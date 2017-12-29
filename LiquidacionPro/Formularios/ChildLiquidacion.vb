@@ -25,6 +25,7 @@
                 liquidacionDao.setDBcmd()
                 Dim correla As Integer
                 proceso = "grabada"
+                cbEstado.SelectedValue = 1
                 correla = liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue,
                                                            cbGuia.SelectedValue,
                                              cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
@@ -39,6 +40,10 @@
                     MsgBox("Liquidación " + proceso + " correctamente")
                 End If
                 sqlControl.commitTransaction()
+                btnNuevo.PerformClick()
+
+
+
             Catch excep As Exception
                 sqlControl.rollbackTransaccion()
 
