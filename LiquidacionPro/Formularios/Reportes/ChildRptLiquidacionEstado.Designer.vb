@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ChildRptLiquidacionEstado
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,19 +20,11 @@ Partial Class ChildRptLiquidacionEstado
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim ReportDataSource1 As Microsoft.Reporting.WinForms.ReportDataSource = New Microsoft.Reporting.WinForms.ReportDataSource()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.cbEstadoRpt = New System.Windows.Forms.ComboBox()
         Me.btnVer = New System.Windows.Forms.Button()
-        Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
-        Me.dtLiquidacionEstadoBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.rptLiquidaciones = New LiquidacionPro.rptLiquidaciones()
-        Me.dtLiquidacionEstadoTableAdapter = New LiquidacionPro.rptLiquidacionesTableAdapters.dtLiquidacionEstadoTableAdapter()
-        CType(Me.dtLiquidacionEstadoBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.rptLiquidaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label21
@@ -62,46 +54,17 @@ Partial Class ChildRptLiquidacionEstado
         Me.btnVer.Text = "Ver"
         Me.btnVer.UseVisualStyleBackColor = True
         '
-        'ReportViewer1
-        '
-        ReportDataSource1.Name = "DataSet1"
-        ReportDataSource1.Value = Me.dtLiquidacionEstadoBindingSource
-        Me.ReportViewer1.LocalReport.DataSources.Add(ReportDataSource1)
-        Me.ReportViewer1.LocalReport.ReportEmbeddedResource = "LiquidacionPro.RptLiquidacionesEstado.rdlc"
-        Me.ReportViewer1.Location = New System.Drawing.Point(12, 45)
-        Me.ReportViewer1.Name = "ReportViewer1"
-        Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(1090, 304)
-        Me.ReportViewer1.TabIndex = 50
-        '
-        'dtLiquidacionEstadoBindingSource
-        '
-        Me.dtLiquidacionEstadoBindingSource.DataMember = "dtLiquidacionEstado"
-        Me.dtLiquidacionEstadoBindingSource.DataSource = Me.rptLiquidaciones
-        '
-        'rptLiquidaciones
-        '
-        Me.rptLiquidaciones.DataSetName = "rptLiquidaciones"
-        Me.rptLiquidaciones.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'dtLiquidacionEstadoTableAdapter
-        '
-        Me.dtLiquidacionEstadoTableAdapter.ClearBeforeFill = True
-        '
         'ChildRptLiquidacionEstado
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1114, 355)
-        Me.Controls.Add(Me.ReportViewer1)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.cbEstadoRpt)
         Me.Controls.Add(Me.btnVer)
         Me.Name = "ChildRptLiquidacionEstado"
         Me.Text = "Reporte de Liquidación por Estado"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.dtLiquidacionEstadoBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.rptLiquidaciones, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -110,8 +73,4 @@ Partial Class ChildRptLiquidacionEstado
     Friend WithEvents Label21 As Label
     Friend WithEvents cbEstadoRpt As ComboBox
     Friend WithEvents btnVer As Button
-    Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
-    Friend WithEvents dtLiquidacionEstadoBindingSource As BindingSource
-    Friend WithEvents rptLiquidaciones As rptLiquidaciones
-    Friend WithEvents dtLiquidacionEstadoTableAdapter As rptLiquidacionesTableAdapters.dtLiquidacionEstadoTableAdapter
 End Class
