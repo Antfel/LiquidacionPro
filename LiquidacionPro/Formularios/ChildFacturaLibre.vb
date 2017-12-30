@@ -279,11 +279,12 @@
     End Sub
 
     Private Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
+        Dim cantidad As Integer, precio As Double
+
         If txtCantidad.Text = Nothing Then
-            MessageBox.Show("Ingresar Cantidad.", "Validación",
-                                 MessageBoxButtons.OK,
-                                 MessageBoxIcon.Exclamation)
-            Return
+            cantidad = 0
+        Else
+            cantidad = Integer.Parse(txtCantidad.Text)
         End If
         If txtDescripcion.Text = Nothing Then
             MessageBox.Show("Ingresar Descripción.", "Validación",
@@ -292,10 +293,9 @@
             Return
         End If
         If txtPrecioUnitario.Text = Nothing Then
-            MessageBox.Show("Ingresar Precio Unitario.", "Validación",
-                                 MessageBoxButtons.OK,
-                                 MessageBoxIcon.Exclamation)
-            Return
+            precio = 0
+        Else
+            precio = txtPrecioUnitario.Text
         End If
 
         Dim sqlControl As New SQLControl
@@ -310,11 +310,11 @@
             facturacionDao.InsertFacturaDetalle(codigo_Factura,
                                                 -1,
                                                 txtDescripcion.Text,
-                                                CType(txtCantidad.Text, Integer),
+                                                cantidad,
                                                 "",
                                                 0,
                                                 "",
-                                                CType(txtPrecioUnitario.Text, Double),
+                                                precio,
                                                 "",
                                                 ""
                                                 )

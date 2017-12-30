@@ -200,6 +200,17 @@ Public Class FacturacionDAO
                                         "@FECHA_FACTURA ", params)
     End Sub
 
+    Public Sub UpdateFacturaEstado(codigo_factura As Integer, codigo_estado As Integer)
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
+        params.Add(New SqlParameter("@CODIGO_ESTADO", codigo_estado))
+
+        sqlControl.ExecQuery("EXECUTE updateFacturaCabeceraEstado " +
+                                        "@CODIGO_FACTURA," +
+                                        "@CODIGO_ESTADO ", params)
+    End Sub
+
     Public Function InsertFacturaDetalle(codigo_factura As Integer,
                                     tipo_servicio As Integer, descripcion As String,
                                          cantidad As Integer, conf_vehi As String,

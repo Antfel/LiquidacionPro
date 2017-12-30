@@ -374,7 +374,7 @@
                                                 )
 
             sqlControl.commitTransaction()
-
+            cargandoDatosActualizar = 0
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
@@ -471,7 +471,7 @@
             cbMoneda.Enabled = False
             dtFecha.Enabled = False
             btnRazonSocial.Enabled = False
-
+            btnGuardarCabecera.Enabled = False
             sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
@@ -540,6 +540,7 @@
                                                                  "")
 
             sqlControl.commitTransaction()
+            btnImprimir.Enabled = True
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
@@ -586,6 +587,7 @@
         BloquearBotones()
         cargarDatosFactura()
         LimpiarCampos()
+        cbAccionGuia.SelectedIndex = cbAccionGuia.Items.Count - 1
     End Sub
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
@@ -980,7 +982,7 @@
 
     Private Sub btnAgregarPlaca_Click(sender As Object, e As EventArgs) Handles btnAgregarPlaca.Click
 
-        If cbTracto.SelectedIndex = -1 Or cbTracto.Text = Nothing Then
+        If cbTracto.Text = Nothing Then
             MessageBox.Show("Ingresar una Unidad", "Agregar Unidad",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Information)
@@ -997,7 +999,8 @@
             facturacionDao.setDBcmd()
 
             facturacionDao.InsertFacturaDetalleUnidad(codigo_Detalle, codigo_Factura, cbTracto.Text)
-
+            cbTracto.SelectedIndex = -1
+            cbTracto.Text = Nothing
             sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
@@ -1013,8 +1016,9 @@
     End Sub
 
     Private Sub btnEliminarPlaca_Click(sender As Object, e As EventArgs) Handles btnEliminarPlaca.Click
+
         Dim seleccion As DataGridViewRow = tbPlaca.SelectedRows(0)
-        Dim codigo As Integer = seleccion.Cells(0).Value
+        Dim codigo As String = seleccion.Cells(0).Value
 
         If seleccion.Index > -1 Then
             Dim sqlControl As New SQLControl
@@ -1039,14 +1043,14 @@
                 End Try
             End Try
 
-            cargarGuiasTransportistas()
+            cargarPlacasDetalle()
 
         End If
     End Sub
 
     Private Sub btnEliminarRemitente_Click(sender As Object, e As EventArgs) Handles btnEliminarRemitente.Click
         Dim seleccion As DataGridViewRow = tbRemitente.SelectedRows(0)
-        Dim codigo As Integer = seleccion.Cells(0).Value
+        Dim codigo As String = seleccion.Cells(0).Value
 
         If seleccion.Index > -1 Then
             Dim sqlControl As New SQLControl
@@ -1071,7 +1075,7 @@
                 End Try
             End Try
 
-            cargarGuiasTransportistas()
+            cargarGuiasRemitente()
 
         End If
     End Sub

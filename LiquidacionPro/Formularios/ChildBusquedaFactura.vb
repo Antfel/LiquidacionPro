@@ -116,4 +116,33 @@
         dgvFacturas.Refresh()
         txtFiltro.Text = ""
     End Sub
+
+    Private Sub btnAnular_Click(sender As Object, e As EventArgs) Handles btnAnular.Click
+        Dim seleccion As DataGridViewRow = dgvFacturas.SelectedRows(0)
+        Dim codigo As Integer = seleccion.Cells(0).Value
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim facturacionDAO As New FacturacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            facturacionDAO.setDBcmd()
+
+            facturacionDAO.UpdateFacturaEstado(codigo, 15)
+
+            sqlControl.commitTransaction()
+
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MsgBox("No se pudo establecer la conexion con el servidor.")
+            End Try
+        End Try
+        cargarDatosFactura()
+    End Sub
 End Class

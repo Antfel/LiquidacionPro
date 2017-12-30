@@ -32,6 +32,7 @@ Partial Class ChildBusquedaFactura
         Me.Label24 = New System.Windows.Forms.Label()
         Me.btnFiltrar = New System.Windows.Forms.Button()
         Me.btnDeshacer = New System.Windows.Forms.Button()
+        Me.btnAnular = New System.Windows.Forms.Button()
         CType(Me.dgvFacturas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -134,11 +135,21 @@ Partial Class ChildBusquedaFactura
         Me.btnDeshacer.Text = "Deshacer"
         Me.btnDeshacer.UseVisualStyleBackColor = True
         '
+        'btnAnular
+        '
+        Me.btnAnular.Location = New System.Drawing.Point(1219, 96)
+        Me.btnAnular.Name = "btnAnular"
+        Me.btnAnular.Size = New System.Drawing.Size(75, 23)
+        Me.btnAnular.TabIndex = 102
+        Me.btnAnular.Text = "Anular Factura"
+        Me.btnAnular.UseVisualStyleBackColor = True
+        '
         'ChildBusquedaFactura
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 524)
+        Me.Controls.Add(Me.btnAnular)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button1)
@@ -164,4 +175,5 @@ Partial Class ChildBusquedaFactura
     Friend WithEvents Label24 As Label
     Friend WithEvents btnFiltrar As Button
     Friend WithEvents btnDeshacer As Button
+    Friend WithEvents btnAnular As Button
 End Class

@@ -76,7 +76,9 @@ Public Class RptPrintFacturaLibre
         End If
 
         For i As Integer = 0 To dtd.Rows.Count - 1
-            e.Graphics.DrawString(dtd.Rows.Item(i)(0), FONT, Brushes.Black, 45, cordy)
+            If Double.Parse(dtd.Rows.Item(i)(0)) <> 0 Then
+                e.Graphics.DrawString(dtd.Rows.Item(i)(0), FONT, Brushes.Black, 45, cordy)
+            End If
             e.Graphics.DrawString(dtd.Rows.Item(i)(17), FONT, Brushes.Black, 90, cordy)
             If dtd.Rows.Item(i)(3) <> 0 Then
                 e.Graphics.DrawString(simbolo + Double.Parse(dtd.Rows.Item(i)(3)).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 565, cordy)

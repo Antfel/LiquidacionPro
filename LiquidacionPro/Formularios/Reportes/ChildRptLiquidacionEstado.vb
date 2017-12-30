@@ -1,7 +1,10 @@
 ﻿Public Class ChildRptLiquidacionEstado
     Private Sub ChildRptLiquidacionEstado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: esta línea de código carga datos en la tabla 'rptLiquidaciones.dtLiquidacionEstado' Puede moverla o quitarla según sea necesario.
+
+        'TODO: esta línea de código carga datos en la tabla 'rptLiquidaciones.dtLiquidacionEstado' Puede moverla o quitarla según sea necesario.
         actualizarEstados()
+
     End Sub
 
     Private Sub actualizarEstados()
@@ -47,6 +50,8 @@
 
             'ReportViewer1.
             ''ReportViewer1.RefreshReport()
+            Me.dtLiquidacionEstadoTableAdapter.Fill(Me.rptLiquidaciones.dtLiquidacionEstado, estado)
+            Me.ReportViewer1.RefreshReport()
         Catch ex As Exception
             MsgBox("" + ex.Message)
         End Try
