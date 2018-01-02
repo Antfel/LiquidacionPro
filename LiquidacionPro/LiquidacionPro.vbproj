@@ -123,6 +123,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formularios\ChildClientes.Designer.vb">
+      <DependentUpon>ChildClientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildClientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\ChildCorrelativo.Designer.vb">
       <DependentUpon>ChildCorrelativo.vb</DependentUpon>
     </Compile>
@@ -224,6 +230,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Formularios\ChildBusquedaFactura.resx">
       <DependentUpon>ChildBusquedaFactura.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ChildClientes.resx">
+      <DependentUpon>ChildClientes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ChildCorrelativo.resx">
       <DependentUpon>ChildCorrelativo.vb</DependentUpon>

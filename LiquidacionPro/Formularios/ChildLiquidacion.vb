@@ -156,10 +156,6 @@
 
             End Try
         End Try
-
-
-
-
     End Sub
 
     Private Sub txtCodigoLiquidacion_TextChanged(sender As Object, e As EventArgs) Handles txtCodigoLiquidacion.TextChanged

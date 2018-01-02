@@ -36,6 +36,7 @@ Partial Class MDIPrincipal
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesPorEstadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -66,7 +67,7 @@ Partial Class MDIPrincipal
         '
         'ToolStripMenuItem1
         '
-        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem, Me.FacturaciónToolStripMenuItem, Me.GuíasDeTransportistaToolStripMenuItem, Me.CorrelativosToolStripMenuItem})
+        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem, Me.FacturaciónToolStripMenuItem, Me.GuíasDeTransportistaToolStripMenuItem, Me.CorrelativosToolStripMenuItem, Me.ClientesToolStripMenuItem})
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(66, 20)
         Me.ToolStripMenuItem1.Text = "Procesos"
@@ -74,25 +75,25 @@ Partial Class MDIPrincipal
         'LiquidacionesToolStripMenuItem
         '
         Me.LiquidacionesToolStripMenuItem.Name = "LiquidacionesToolStripMenuItem"
-        Me.LiquidacionesToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.LiquidacionesToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
         Me.LiquidacionesToolStripMenuItem.Text = "Liquidaciones"
         '
         'FacturaciónToolStripMenuItem
         '
         Me.FacturaciónToolStripMenuItem.Name = "FacturaciónToolStripMenuItem"
-        Me.FacturaciónToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.FacturaciónToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
         Me.FacturaciónToolStripMenuItem.Text = "Facturación"
         '
         'GuíasDeTransportistaToolStripMenuItem
         '
         Me.GuíasDeTransportistaToolStripMenuItem.Name = "GuíasDeTransportistaToolStripMenuItem"
-        Me.GuíasDeTransportistaToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.GuíasDeTransportistaToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
         Me.GuíasDeTransportistaToolStripMenuItem.Text = "Guías de Transportista"
         '
         'CorrelativosToolStripMenuItem
         '
         Me.CorrelativosToolStripMenuItem.Name = "CorrelativosToolStripMenuItem"
-        Me.CorrelativosToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.CorrelativosToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
         Me.CorrelativosToolStripMenuItem.Text = "Correlativos"
         '
         'ReportesToolStripMenuItem
@@ -106,7 +107,7 @@ Partial Class MDIPrincipal
         '
         Me.LiquidacionesToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesPorEstadoToolStripMenuItem})
         Me.LiquidacionesToolStripMenuItem1.Name = "LiquidacionesToolStripMenuItem1"
-        Me.LiquidacionesToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.LiquidacionesToolStripMenuItem1.Size = New System.Drawing.Size(147, 22)
         Me.LiquidacionesToolStripMenuItem1.Text = "Liquidaciones"
         '
         'LiquidacionesPorEstadoToolStripMenuItem
@@ -114,6 +115,12 @@ Partial Class MDIPrincipal
         Me.LiquidacionesPorEstadoToolStripMenuItem.Name = "LiquidacionesPorEstadoToolStripMenuItem"
         Me.LiquidacionesPorEstadoToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
         Me.LiquidacionesPorEstadoToolStripMenuItem.Text = "Liquidaciones por Estado"
+        '
+        'ClientesToolStripMenuItem
+        '
+        Me.ClientesToolStripMenuItem.Name = "ClientesToolStripMenuItem"
+        Me.ClientesToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.ClientesToolStripMenuItem.Text = "Clientes"
         '
         'MDIPrincipal
         '
@@ -146,4 +153,5 @@ Partial Class MDIPrincipal
     Friend WithEvents LiquidacionesPorEstadoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GuíasDeTransportistaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CorrelativosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ClientesToolStripMenuItem As ToolStripMenuItem
 End Class

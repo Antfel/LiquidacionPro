@@ -10,6 +10,7 @@ Public Class MDIPrincipal
     End Sub
 
     Private Sub FacturaciónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaciónToolStripMenuItem.Click
+        cerrarVentanas()
         Dim busquedaFacturaChild As New ChildBusquedaFactura()
         busquedaFacturaChild.MdiParent = Me
         busquedaFacturaChild.Show()
@@ -39,9 +40,6 @@ Public Class MDIPrincipal
 
     End Sub
 
-    Private Sub FacturaDeServiciosToolStripMenuItem_Click(sender As Object, e As EventArgs)
-    End Sub
-
     'se cierra ventanas
     Sub cerrarVentanas()
         For Each frm As Form In Me.MdiChildren
@@ -49,4 +47,10 @@ Public Class MDIPrincipal
         Next
     End Sub
 
+    Private Sub ClientesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClientesToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim childClientes As New ChildClientes()
+        childClientes.MdiParent = Me
+        childClientes.Show()
+    End Sub
 End Class
