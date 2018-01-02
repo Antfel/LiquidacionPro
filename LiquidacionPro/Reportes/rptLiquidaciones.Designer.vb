@@ -3092,7 +3092,7 @@ Partial Public Class rptLiquidaciones
             Me.columnCODIGO_FACTURA.AllowDBNull = false
             Me.columnCODIGO_DETALLE_FACTURA.AllowDBNull = false
             Me.columnGUIA_REMITENTE.AllowDBNull = false
-            Me.columnGUIA_REMITENTE.MaxLength = 11
+            Me.columnGUIA_REMITENTE.MaxLength = 20
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3381,7 +3381,7 @@ Partial Public Class rptLiquidaciones
             Me.columnCODIGO_FACTURA.AllowDBNull = false
             Me.columnCODIGO_DETALLE_FACTURA.AllowDBNull = false
             Me.columnPLACA_UNIDAD.AllowDBNull = false
-            Me.columnPLACA_UNIDAD.MaxLength = 11
+            Me.columnPLACA_UNIDAD.MaxLength = 20
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

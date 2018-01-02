@@ -351,6 +351,21 @@
     End Sub
 
     Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles btnActualizar.Click
+
+        If txtCantidad.Text = Nothing Then
+            MessageBox.Show("Ingresar cantidad.", "Agregar Detalle",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
+            Return
+        End If
+
+        If txtPrecioUnitario.Text = Nothing Then
+            MessageBox.Show("Ingresar precio.", "Agregar Detalle",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
+            Return
+        End If
+
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
 
@@ -360,18 +375,55 @@
             sqlControl.beginTransaction()
             facturacionDao.setDBcmd()
 
+            Dim descripcionDetalle As String, confVehi As String, valorRef As Double, obs As String, origen As String, destino As String
+
+            If txtDescripcionDetalle.Text = Nothing Then
+                descripcionDetalle = ""
+            Else
+                descripcionDetalle = txtDescripcionDetalle.Text
+            End If
+
+            If txtConfVehicular.Text = Nothing Then
+                confVehi = ""
+            Else
+                confVehi = txtConfVehicular.Text
+            End If
+
+            If txtValorReferencial.Text = Nothing Then
+                valorRef = 0.00
+            Else
+                valorRef = CType(txtValorReferencial.Text, Double)
+            End If
+
+            If txtObservaciones.Text = Nothing Then
+                obs = ""
+            Else
+                obs = txtObservaciones.Text
+            End If
+
+            If txtOrigen.Text = Nothing Then
+                origen = ""
+            Else
+                origen = txtOrigen.Text
+            End If
+
+            If txtDestino.Text = Nothing Then
+                destino = ""
+            Else
+                destino = txtDestino.Text
+            End If
+
             facturacionDao.UpdateFacturaDetalle(codigo_Detalle,
                                                 codigo_Factura,
                                                 CType(cbTipoServicio.SelectedValue, Integer),
-                                                txtDescripcionDetalle.Text,
+                                                descripcionDetalle,
                                                 CType(txtCantidad.Text, Integer),
-                                                txtConfVehicular.Text,
-                                                CType(txtValorReferencial.Text, Double),
-                                                txtObservaciones.Text,
+                                                confVehi,
+                                                valorRef,
+                                                obs,
                                                 CType(txtPrecioUnitario.Text, Double),
-                                                txtOrigen.Text,
-                                                txtDestino.Text
-                                                )
+                                                origen,
+                                                destino)
 
             sqlControl.commitTransaction()
             cargandoDatosActualizar = 0
@@ -452,11 +504,12 @@
             sqlControl.beginTransaction()
             correlativoDao.setDBcmd()
 
-            correlativoDao.updateCorrelativoNumero(1, txtNroSerie.Text, correlativoFactura)
+            If codigo_Factura < 0 Then
+                correlativoDao.updateCorrelativoNumero(1, txtNroSerie.Text, correlativoFactura)
 
 
-            'Inicio - Ingreso de la Cabecera de la Factura
-            codigo_Factura = facturacionDao.InsertFactura(txtNroSerie.Text,
+                'Inicio - Ingreso de la Cabecera de la Factura
+                codigo_Factura = facturacionDao.InsertFactura(txtNroSerie.Text,
                                          lbNroFactura.Text,
                                          CType(cbRazonSocial.SelectedValue, Integer),
                                          CType(txtPrecioFactura.Text, Long),
@@ -464,7 +517,17 @@
                                          16,
                                          dtFecha.Value,
                                          34)
-            'Fin - Ingreso de la Cabecera de la Factura
+                'Fin - Ingreso de la Cabecera de la Factura
+            Else
+                facturacionDao.UpdateFactura(codigo_Factura, txtNroSerie.Text,
+                                         lbNroFactura.Text,
+                                         CType(cbRazonSocial.SelectedValue, Integer),
+                                         CType(txtPrecioFactura.Text, Long),
+                                         CType(cbMoneda.SelectedValue, Integer),
+                                         16,
+                                         dtFecha.Value)
+            End If
+
 
             txtNroSerie.Enabled = False
             cbRazonSocial.Enabled = False
@@ -863,12 +926,6 @@
 
             End Try
         End Try
-    End Sub
-
-    Private Sub btnGuardarCabecera_Click(sender As Object, e As EventArgs)
-        GuardarCabeceraFactura()
-        cargarDetalleFactura()
-        BloquearBotones()
     End Sub
 
     Private Sub btnGuardarCabecera_Click_1(sender As Object, e As EventArgs) Handles btnGuardarCabecera.Click
