@@ -303,6 +303,7 @@ Partial Class ChildFacturacion
         '
         Me.cbGuia.FormattingEnabled = True
         Me.cbGuia.Location = New System.Drawing.Point(169, 216)
+        Me.cbGuia.MaxLength = 11
         Me.cbGuia.Name = "cbGuia"
         Me.cbGuia.Size = New System.Drawing.Size(100, 21)
         Me.cbGuia.TabIndex = 130
@@ -367,9 +368,10 @@ Partial Class ChildFacturacion
         '
         'txtRemitente
         '
-        Me.txtRemitente.Location = New System.Drawing.Point(432, 217)
+        Me.txtRemitente.Location = New System.Drawing.Point(405, 217)
+        Me.txtRemitente.MaxLength = 20
         Me.txtRemitente.Name = "txtRemitente"
-        Me.txtRemitente.Size = New System.Drawing.Size(84, 20)
+        Me.txtRemitente.Size = New System.Drawing.Size(111, 20)
         Me.txtRemitente.TabIndex = 160
         '
         'Label17
@@ -417,9 +419,10 @@ Partial Class ChildFacturacion
         'cbTracto
         '
         Me.cbTracto.FormattingEnabled = True
-        Me.cbTracto.Location = New System.Drawing.Point(624, 217)
+        Me.cbTracto.Location = New System.Drawing.Point(601, 217)
+        Me.cbTracto.MaxLength = 20
         Me.cbTracto.Name = "cbTracto"
-        Me.cbTracto.Size = New System.Drawing.Size(121, 21)
+        Me.cbTracto.Size = New System.Drawing.Size(144, 21)
         Me.cbTracto.TabIndex = 190
         '
         'Label18

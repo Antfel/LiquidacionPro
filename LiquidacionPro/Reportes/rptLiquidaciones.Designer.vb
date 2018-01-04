@@ -3236,6 +3236,8 @@ Partial Public Class rptLiquidaciones
         
         Private columnPLACA_UNIDAD As Global.System.Data.DataColumn
         
+        Private columnCODIGO_FACTURA_GUIA As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -3296,6 +3298,14 @@ Partial Public Class rptLiquidaciones
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CODIGO_FACTURA_GUIAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCODIGO_FACTURA_GUIA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -3334,7 +3344,7 @@ Partial Public Class rptLiquidaciones
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overloads Function AdddtRptFacturaUnidadRow(ByVal CODIGO_FACTURA As Integer, ByVal CODIGO_DETALLE_FACTURA As Integer, ByVal PLACA_UNIDAD As String) As dtRptFacturaUnidadRow
             Dim rowdtRptFacturaUnidadRow As dtRptFacturaUnidadRow = CType(Me.NewRow,dtRptFacturaUnidadRow)
-            Dim columnValuesArray() As Object = New Object() {CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, PLACA_UNIDAD}
+            Dim columnValuesArray() As Object = New Object() {CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, PLACA_UNIDAD, Nothing}
             rowdtRptFacturaUnidadRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdtRptFacturaUnidadRow)
             Return rowdtRptFacturaUnidadRow
@@ -3342,8 +3352,8 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByCODIGO_FACTURACODIGO_DETALLE_FACTURAPLACA_UNIDAD(ByVal CODIGO_FACTURA As Integer, ByVal CODIGO_DETALLE_FACTURA As Integer, ByVal PLACA_UNIDAD As String) As dtRptFacturaUnidadRow
-            Return CType(Me.Rows.Find(New Object() {CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, PLACA_UNIDAD}),dtRptFacturaUnidadRow)
+        Public Function FindByCODIGO_FACTURACODIGO_DETALLE_FACTURACODIGO_FACTURA_GUIA(ByVal CODIGO_FACTURA As Integer, ByVal CODIGO_DETALLE_FACTURA As Integer, ByVal CODIGO_FACTURA_GUIA As Integer) As dtRptFacturaUnidadRow
+            Return CType(Me.Rows.Find(New Object() {CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, CODIGO_FACTURA_GUIA}),dtRptFacturaUnidadRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3366,6 +3376,7 @@ Partial Public Class rptLiquidaciones
             Me.columnCODIGO_FACTURA = MyBase.Columns("CODIGO_FACTURA")
             Me.columnCODIGO_DETALLE_FACTURA = MyBase.Columns("CODIGO_DETALLE_FACTURA")
             Me.columnPLACA_UNIDAD = MyBase.Columns("PLACA_UNIDAD")
+            Me.columnCODIGO_FACTURA_GUIA = MyBase.Columns("CODIGO_FACTURA_GUIA")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3377,11 +3388,18 @@ Partial Public Class rptLiquidaciones
             MyBase.Columns.Add(Me.columnCODIGO_DETALLE_FACTURA)
             Me.columnPLACA_UNIDAD = New Global.System.Data.DataColumn("PLACA_UNIDAD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPLACA_UNIDAD)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnCODIGO_FACTURA, Me.columnCODIGO_DETALLE_FACTURA, Me.columnPLACA_UNIDAD}, true))
+            Me.columnCODIGO_FACTURA_GUIA = New Global.System.Data.DataColumn("CODIGO_FACTURA_GUIA", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCODIGO_FACTURA_GUIA)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnCODIGO_FACTURA, Me.columnCODIGO_DETALLE_FACTURA, Me.columnCODIGO_FACTURA_GUIA}, true))
             Me.columnCODIGO_FACTURA.AllowDBNull = false
             Me.columnCODIGO_DETALLE_FACTURA.AllowDBNull = false
             Me.columnPLACA_UNIDAD.AllowDBNull = false
             Me.columnPLACA_UNIDAD.MaxLength = 20
+            Me.columnCODIGO_FACTURA_GUIA.AutoIncrement = true
+            Me.columnCODIGO_FACTURA_GUIA.AutoIncrementSeed = -1
+            Me.columnCODIGO_FACTURA_GUIA.AutoIncrementStep = -1
+            Me.columnCODIGO_FACTURA_GUIA.AllowDBNull = false
+            Me.columnCODIGO_FACTURA_GUIA.ReadOnly = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6328,6 +6346,17 @@ Partial Public Class rptLiquidaciones
                 Me(Me.tabledtRptFacturaUnidad.PLACA_UNIDADColumn) = value
             End Set
         End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CODIGO_FACTURA_GUIA() As Integer
+            Get
+                Return CType(Me(Me.tabledtRptFacturaUnidad.CODIGO_FACTURA_GUIAColumn),Integer)
+            End Get
+            Set
+                Me(Me.tabledtRptFacturaUnidad.CODIGO_FACTURA_GUIAColumn) = value
+            End Set
+        End Property
     End Class
     
     '''<summary>
@@ -8605,23 +8634,27 @@ Namespace rptLiquidacionesTableAdapters
             tableMapping.ColumnMappings.Add("CODIGO_FACTURA", "CODIGO_FACTURA")
             tableMapping.ColumnMappings.Add("CODIGO_DETALLE_FACTURA", "CODIGO_DETALLE_FACTURA")
             tableMapping.ColumnMappings.Add("PLACA_UNIDAD", "PLACA_UNIDAD")
+            tableMapping.ColumnMappings.Add("CODIGO_FACTURA_GUIA", "CODIGO_FACTURA_GUIA")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
             Me._adapter.DeleteCommand.CommandText = "DELETE FROM [DETALLE_FACTURA_UNIDAD] WHERE (([CODIGO_FACTURA] = @Original_CODIGO_"& _ 
                 "FACTURA) AND ([CODIGO_DETALLE_FACTURA] = @Original_CODIGO_DETALLE_FACTURA) AND ("& _ 
-                "[PLACA_UNIDAD] = @Original_PLACA_UNIDAD))"
+                "[CODIGO_FACTURA_GUIA] = @Original_CODIGO_FACTURA_GUIA) AND ([PLACA_UNIDAD] = @Or"& _ 
+                "iginal_PLACA_UNIDAD))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CODIGO_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CODIGO_DETALLE_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_DETALLE_FACTURA", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CODIGO_FACTURA_GUIA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA_GUIA", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PLACA_UNIDAD", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PLACA_UNIDAD", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [DETALLE_FACTURA_UNIDAD] ([CODIGO_FACTURA], [CODIGO_DETALLE_FACTURA],"& _ 
                 " [PLACA_UNIDAD]) VALUES (@CODIGO_FACTURA, @CODIGO_DETALLE_FACTURA, @PLACA_UNIDAD"& _ 
-                ");"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, PLACA_UNIDAD FROM dbo.DETALLE"& _ 
-                "_FACTURA_UNIDAD WHERE (CODIGO_DETALLE_FACTURA = @CODIGO_DETALLE_FACTURA) AND (CO"& _ 
-                "DIGO_FACTURA = @CODIGO_FACTURA) AND (PLACA_UNIDAD = @PLACA_UNIDAD)"
+                ");"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, CODIGO_FACTURA_GUIA, PLACA_UN"& _ 
+                "IDAD FROM DETALLE_FACTURA_UNIDAD WHERE (CODIGO_DETALLE_FACTURA = @CODIGO_DETALLE"& _ 
+                "_FACTURA) AND (CODIGO_FACTURA = @CODIGO_FACTURA) AND (CODIGO_FACTURA_GUIA = SCOP"& _ 
+                "E_IDENTITY())"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CODIGO_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CODIGO_DETALLE_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_DETALLE_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -8631,17 +8664,20 @@ Namespace rptLiquidacionesTableAdapters
             Me._adapter.UpdateCommand.CommandText = "UPDATE [DETALLE_FACTURA_UNIDAD] SET [CODIGO_FACTURA] = @CODIGO_FACTURA, [CODIGO_D"& _ 
                 "ETALLE_FACTURA] = @CODIGO_DETALLE_FACTURA, [PLACA_UNIDAD] = @PLACA_UNIDAD WHERE "& _ 
                 "(([CODIGO_FACTURA] = @Original_CODIGO_FACTURA) AND ([CODIGO_DETALLE_FACTURA] = @"& _ 
-                "Original_CODIGO_DETALLE_FACTURA) AND ([PLACA_UNIDAD] = @Original_PLACA_UNIDAD));"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, PLACA_UNIDAD FROM dbo.DETALLE_F"& _ 
-                "ACTURA_UNIDAD WHERE (CODIGO_DETALLE_FACTURA = @CODIGO_DETALLE_FACTURA) AND (CODI"& _ 
-                "GO_FACTURA = @CODIGO_FACTURA) AND (PLACA_UNIDAD = @PLACA_UNIDAD)"
+                "Original_CODIGO_DETALLE_FACTURA) AND ([CODIGO_FACTURA_GUIA] = @Original_CODIGO_F"& _ 
+                "ACTURA_GUIA) AND ([PLACA_UNIDAD] = @Original_PLACA_UNIDAD));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT CODIGO_FACT"& _ 
+                "URA, CODIGO_DETALLE_FACTURA, CODIGO_FACTURA_GUIA, PLACA_UNIDAD FROM DETALLE_FACT"& _ 
+                "URA_UNIDAD WHERE (CODIGO_DETALLE_FACTURA = @CODIGO_DETALLE_FACTURA) AND (CODIGO_"& _ 
+                "FACTURA = @CODIGO_FACTURA) AND (CODIGO_FACTURA_GUIA = @CODIGO_FACTURA_GUIA)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CODIGO_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CODIGO_DETALLE_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_DETALLE_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PLACA_UNIDAD", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PLACA_UNIDAD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CODIGO_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CODIGO_DETALLE_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_DETALLE_FACTURA", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CODIGO_FACTURA_GUIA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA_GUIA", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PLACA_UNIDAD", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PLACA_UNIDAD", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CODIGO_FACTURA_GUIA", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA_GUIA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8657,9 +8693,9 @@ Namespace rptLiquidacionesTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "select"&Global.Microsoft.VisualBasic.ChrW(9)&"CODIGO_FACTURA,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"CODIGO_DETALLE_FACTURA,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"PLACA_UNIDAD"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"from"&Global.Microsoft.VisualBasic.ChrW(9)&"DETALLE_F"& _ 
-                "ACTURA_UNIDAD"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where"&Global.Microsoft.VisualBasic.ChrW(9)&"CODIGO_FACTURA=@codigo_factura"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"and CODIGO_DETALLE_FACTUR"& _ 
-                "A=@codigo_detalle"
+            Me._commandCollection(0).CommandText = "select"&Global.Microsoft.VisualBasic.ChrW(9)&"CODIGO_FACTURA,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"CODIGO_DETALLE_FACTURA,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"CODIGO_FACTURA_GUIA,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"PLACA_"& _ 
+                "UNIDAD"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"from"&Global.Microsoft.VisualBasic.ChrW(9)&"DETALLE_FACTURA_UNIDAD"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where"&Global.Microsoft.VisualBasic.ChrW(9)&"CODIGO_FACTURA=@codigo_factura"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"and"& _ 
+                " CODIGO_DETALLE_FACTURA=@codigo_detalle"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@codigo_factura", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@codigo_detalle", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_DETALLE_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -8725,13 +8761,14 @@ Namespace rptLiquidacionesTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_CODIGO_FACTURA As Integer, ByVal Original_CODIGO_DETALLE_FACTURA As Integer, ByVal Original_PLACA_UNIDAD As String) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_CODIGO_FACTURA As Integer, ByVal Original_CODIGO_DETALLE_FACTURA As Integer, ByVal Original_CODIGO_FACTURA_GUIA As Integer, ByVal Original_PLACA_UNIDAD As String) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_CODIGO_FACTURA,Integer)
             Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_CODIGO_DETALLE_FACTURA,Integer)
+            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_CODIGO_FACTURA_GUIA,Integer)
             If (Original_PLACA_UNIDAD Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_PLACA_UNIDAD")
             Else
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_PLACA_UNIDAD,String)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_PLACA_UNIDAD,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -8779,7 +8816,7 @@ Namespace rptLiquidacionesTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal CODIGO_FACTURA As Integer, ByVal CODIGO_DETALLE_FACTURA As Integer, ByVal PLACA_UNIDAD As String, ByVal Original_CODIGO_FACTURA As Integer, ByVal Original_CODIGO_DETALLE_FACTURA As Integer, ByVal Original_PLACA_UNIDAD As String) As Integer
+        Public Overloads Overridable Function Update(ByVal CODIGO_FACTURA As Integer, ByVal CODIGO_DETALLE_FACTURA As Integer, ByVal PLACA_UNIDAD As String, ByVal Original_CODIGO_FACTURA As Integer, ByVal Original_CODIGO_DETALLE_FACTURA As Integer, ByVal Original_CODIGO_FACTURA_GUIA As Integer, ByVal Original_PLACA_UNIDAD As String, ByVal CODIGO_FACTURA_GUIA As Integer) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(CODIGO_FACTURA,Integer)
             Me.Adapter.UpdateCommand.Parameters(1).Value = CType(CODIGO_DETALLE_FACTURA,Integer)
             If (PLACA_UNIDAD Is Nothing) Then
@@ -8789,11 +8826,13 @@ Namespace rptLiquidacionesTableAdapters
             End If
             Me.Adapter.UpdateCommand.Parameters(3).Value = CType(Original_CODIGO_FACTURA,Integer)
             Me.Adapter.UpdateCommand.Parameters(4).Value = CType(Original_CODIGO_DETALLE_FACTURA,Integer)
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Original_CODIGO_FACTURA_GUIA,Integer)
             If (Original_PLACA_UNIDAD Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("Original_PLACA_UNIDAD")
             Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Original_PLACA_UNIDAD,String)
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_PLACA_UNIDAD,String)
             End If
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(CODIGO_FACTURA_GUIA,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -8813,8 +8852,8 @@ Namespace rptLiquidacionesTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Original_CODIGO_FACTURA As Integer, ByVal Original_CODIGO_DETALLE_FACTURA As Integer, ByVal Original_PLACA_UNIDAD As String) As Integer
-            Return Me.Update(Original_CODIGO_FACTURA, Original_CODIGO_DETALLE_FACTURA, Original_PLACA_UNIDAD, Original_CODIGO_FACTURA, Original_CODIGO_DETALLE_FACTURA, Original_PLACA_UNIDAD)
+        Public Overloads Overridable Function Update(ByVal PLACA_UNIDAD As String, ByVal Original_CODIGO_FACTURA As Integer, ByVal Original_CODIGO_DETALLE_FACTURA As Integer, ByVal Original_CODIGO_FACTURA_GUIA As Integer, ByVal Original_PLACA_UNIDAD As String) As Integer
+            Return Me.Update(Original_CODIGO_FACTURA, Original_CODIGO_DETALLE_FACTURA, PLACA_UNIDAD, Original_CODIGO_FACTURA, Original_CODIGO_DETALLE_FACTURA, Original_CODIGO_FACTURA_GUIA, Original_PLACA_UNIDAD, Original_CODIGO_FACTURA_GUIA)
         End Function
     End Class
     

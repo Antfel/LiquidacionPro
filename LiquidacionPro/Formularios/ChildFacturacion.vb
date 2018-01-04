@@ -28,6 +28,7 @@
             facturacionDao.setDBcmd()
 
             dtCabeceraFactura = facturacionDao.getFacturaById(codigo_Factura)
+
             cbRazonSocial.SelectedValue = dtCabeceraFactura.Rows(0).Item(3).ToString
             txtPrecioFactura.Text = dtCabeceraFactura.Rows(0).Item(4).ToString
             cbMoneda.SelectedValue = dtCabeceraFactura.Rows(0).Item(5)
@@ -38,6 +39,9 @@
             sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos de factura. " + ex.Message, "Cargar datos factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
@@ -45,7 +49,9 @@
                 cargarDetalleFactura()
                 BloquearBotones()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
     End Sub
@@ -81,12 +87,16 @@
 
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
-
+            MessageBox.Show("Error al cargar cliente. " + ex.Message, "Cargar datos de cliente",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos de cliente",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             End Try
 
         End Try
@@ -118,11 +128,16 @@
             sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos del tracto. " + ex.Message, "Cargar datos de tracto",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos de tracto",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             End Try
 
         End Try
@@ -153,11 +168,16 @@
             sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos moneda. " + ex.Message, "Cargar datos moneda",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos moneda",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
 
         End Try
@@ -190,11 +210,16 @@
             sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos de guía. " + ex.Message, "Cargar datos guías",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar datos guías",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -254,103 +279,123 @@
             sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos de cliente. " + ex.Message, "Cargar datos de cliente",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos de cliente",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
     End Sub
 
 
-    Private Sub Button3_Click_1(sender As Object, e As EventArgs)
-        If CType(cbGuia.SelectedValue, Integer) <> -1 And cbGuia.Text <> "" Then
-            Dim sqlControl As New SQLControl
-            sqlControl.setConnection()
+    'Private Sub Button3_Click_1(sender As Object, e As EventArgs)
+    '    If CType(cbGuia.SelectedValue, Integer) <> -1 And cbGuia.Text <> "" Then
+    '        Dim sqlControl As New SQLControl
+    '        sqlControl.setConnection()
 
-            Dim facturacionDao As New FacturacionDAO(sqlControl)
-            Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
-                facturacionDao.setDBcmd()
+    '        Dim facturacionDao As New FacturacionDAO(sqlControl)
+    '        Try
+    '            sqlControl.openConexion()
+    '            sqlControl.beginTransaction()
+    '            facturacionDao.setDBcmd()
 
-                facturacionDao.InsertFacturaDetalleGuia(codigo_Detalle, codigo_Factura, CType(cbGuia.SelectedValue, Integer))
+    '            facturacionDao.InsertFacturaDetalleGuia(codigo_Detalle, codigo_Factura, CType(cbGuia.SelectedValue, Integer))
 
-                sqlControl.commitTransaction()
-                cbGuia.SelectedIndex = -1
-            Catch ex As Exception
-                sqlControl.rollbackTransaccion()
-            Finally
-                Try
-                    sqlControl.closeConexion()
-                Catch ex As Exception
-                    MsgBox("No se pudo establecer la conexion con el servidor.")
-                End Try
-            End Try
+    '            sqlControl.commitTransaction()
+    '            cbGuia.SelectedIndex = -1
+    '        Catch ex As Exception
+    '            sqlControl.rollbackTransaccion()
+    '            MessageBox.Show("Error al ingresar transpostista. " + ex.Message, "Agregar guía transportista",
+    '                             MessageBoxButtons.OK,
+    '                             MessageBoxIcon.Error)
+    '        Finally
+    '            Try
+    '                sqlControl.closeConexion()
+    '            Catch ex As Exception
+    '                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar guía transportista",
+    '                             MessageBoxButtons.OK,
+    '                             MessageBoxIcon.Error)
+    '            End Try
+    '        End Try
 
-            cargarGuiasTransportistas()
+    '        cargarGuiasTransportistas()
 
-        End If
+    '    End If
 
-    End Sub
+    'End Sub
 
-    Private Sub Button2_Click_1(sender As Object, e As EventArgs)
-        Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+    'Private Sub Button2_Click_1(sender As Object, e As EventArgs)
+    '    Dim sqlControl As New SQLControl
+    '    sqlControl.setConnection()
 
-        Dim facturacionDao As New FacturacionDAO(sqlControl)
-        Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
+    '    Dim facturacionDao As New FacturacionDAO(sqlControl)
+    '    Try
+    '        sqlControl.openConexion()
+    '        sqlControl.beginTransaction()
+    '        facturacionDao.setDBcmd()
 
-            facturacionDao.InsertFacturaDetalleRemitente(codigo_Detalle, codigo_Factura, txtRemitente.Text)
+    '        facturacionDao.InsertFacturaDetalleRemitente(codigo_Detalle, codigo_Factura, txtRemitente.Text)
 
-            sqlControl.commitTransaction()
-            txtRemitente.Text = ""
-        Catch ex As Exception
-            sqlControl.rollbackTransaccion()
-        Finally
-            Try
-                sqlControl.closeConexion()
-            Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
-            End Try
-        End Try
+    '        sqlControl.commitTransaction()
+    '        txtRemitente.Text = ""
+    '    Catch ex As Exception
+    '        sqlControl.rollbackTransaccion()
+    '        MessageBox.Show("Error al ingresar remitente. " + ex.Message, "Cargar datos factura",
+    '                             MessageBoxButtons.OK,
+    '                             MessageBoxIcon.Error)
+    '    Finally
+    '        Try
+    '            sqlControl.closeConexion()
+    '        Catch ex As Exception
+    '            MsgBox("No se pudo establecer la conexion con el servidor.")
+    '        End Try
+    '    End Try
 
-        cargarGuiasRemitente()
-    End Sub
+    '    cargarGuiasRemitente()
+    'End Sub
 
 
-    Private Sub Button7_Click_1(sender As Object, e As EventArgs)
-        Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+    'Private Sub Button7_Click_1(sender As Object, e As EventArgs)
+    '    Dim sqlControl As New SQLControl
+    '    sqlControl.setConnection()
 
-        Dim facturacionDao As New FacturacionDAO(sqlControl)
-        Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
+    '    Dim facturacionDao As New FacturacionDAO(sqlControl)
+    '    Try
+    '        sqlControl.openConexion()
+    '        sqlControl.beginTransaction()
+    '        facturacionDao.setDBcmd()
 
-            facturacionDao.InsertFacturaDetalleUnidad(codigo_Detalle, codigo_Factura, cbTracto.Text)
+    '        facturacionDao.InsertFacturaDetalleUnidad(codigo_Detalle, codigo_Factura, cbTracto.Text)
 
-            sqlControl.commitTransaction()
-            cbTracto.SelectedIndex = -1
-        Catch ex As Exception
-            sqlControl.rollbackTransaccion()
-        Finally
-            Try
-                sqlControl.closeConexion()
-            Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
-            End Try
-        End Try
+    '        sqlControl.commitTransaction()
+    '        cbTracto.SelectedIndex = -1
+    '    Catch ex As Exception
+    '        sqlControl.rollbackTransaccion()
+    '    Finally
+    '        Try
+    '            sqlControl.closeConexion()
+    '        Catch ex As Exception
+    '            MsgBox("No se pudo establecer la conexion con el servidor.")
+    '        End Try
+    '    End Try
 
-        cargarPlacasDetalle()
-    End Sub
+    '    cargarPlacasDetalle()
+    'End Sub
 
     Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles btnActualizar.Click
+
+        If cbAccionGuia.SelectedIndex = -1 Then
+            MessageBox.Show("Seleccionar un Item.", "Agregar Detalle",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
+            Return
+        End If
 
         If txtCantidad.Text = Nothing Then
             MessageBox.Show("Ingresar cantidad.", "Agregar Detalle",
@@ -429,11 +474,16 @@
             cargandoDatosActualizar = 0
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al grabar datos del detalle. " + ex.Message, "Actualizar detalle item",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Actualizar detalle item",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -538,12 +588,16 @@
             sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
-            MsgBox(ex.Message)
+            MessageBox.Show("Error al grabar datos de factura. " + ex.Message, "Grabar datos factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Grabar datos factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
     End Sub
@@ -571,11 +625,16 @@
             sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos de detalle factura. " + ex.Message, "Cargar datos detalle factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+                MessageBox.Show("Error al cargar datos de detalle factura. " + ex.Message, "Cargar datos detalle factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
     End Sub
@@ -606,11 +665,16 @@
             btnImprimir.Enabled = True
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al guardar datos de detalle factura. " + ex.Message, "Guardar datos de detalle factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+                MessageBox.Show("Error al cargar datos de detalle factura. " + ex.Message, "Guardar datos detalle factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -681,7 +745,7 @@
         BloquearDetalle()
         BloquearBotones()
         cargarDatosFactura()
-
+        LimpiarCampos()
 
     End Sub
 
@@ -907,23 +971,31 @@
 
             datDetalle = facturacionDao.getDetalleFacturaByIdDetalle(codigo_Detalle)
 
-            cbTipoServicio.SelectedValue = datDetalle.Rows(0).Item(0)
-            txtDescripcionDetalle.Text = datDetalle.Rows(0).Item(1).ToString
-            txtCantidad.Text = datDetalle.Rows(0).Item(2).ToString
-            txtConfVehicular.Text = datDetalle.Rows(0).Item(3).ToString
-            txtValorReferencial.Text = datDetalle.Rows(0).Item(4).ToString
-            txtPrecioUnitario.Text = datDetalle.Rows(0).Item(5).ToString
-            txtOrigen.Text = datDetalle.Rows(0).Item(6).ToString
-            txtDestino.Text = datDetalle.Rows(0).Item(7).ToString
-            txtObservaciones.Text = datDetalle.Rows(0).Item(8).ToString
-            sqlControl.commitTransaction()
+            If datDetalle.Rows.Count > 0 Then
+                cbTipoServicio.SelectedValue = datDetalle.Rows(0).Item(0)
+                txtDescripcionDetalle.Text = datDetalle.Rows(0).Item(1).ToString
+                txtCantidad.Text = datDetalle.Rows(0).Item(2).ToString
+                txtConfVehicular.Text = datDetalle.Rows(0).Item(3).ToString
+                txtValorReferencial.Text = datDetalle.Rows(0).Item(4).ToString
+                txtPrecioUnitario.Text = datDetalle.Rows(0).Item(5).ToString
+                txtOrigen.Text = datDetalle.Rows(0).Item(6).ToString
+                txtDestino.Text = datDetalle.Rows(0).Item(7).ToString
+                txtObservaciones.Text = datDetalle.Rows(0).Item(8).ToString
+                sqlControl.commitTransaction()
+            End If
+
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos detalle. " + ex.Message, "Cargar datos detalleee",
+                 MessageBoxButtons.OK,
+                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar datos detalleeeeee",
+                 MessageBoxButtons.OK,
+                 MessageBoxIcon.Error)
             End Try
         End Try
     End Sub
@@ -935,6 +1007,14 @@
     End Sub
 
     Private Sub btnAgregarTransportista_Click(sender As Object, e As EventArgs) Handles btnAgregarTransportista.Click
+
+        If cbAccionGuia.SelectedIndex = -1 Then
+            MessageBox.Show("Seleccionar un Item", "Agregar Transportista",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
+            Return
+        End If
+
         If cbGuia.SelectedIndex = -1 Then
             MessageBox.Show("Seleccionar una Guía de Transportista", "Agregar Transportista",
                                  MessageBoxButtons.OK,
@@ -958,11 +1038,16 @@
                 cbGuia.SelectedIndex = -1
             Catch ex As Exception
                 sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar transportista. " + ex.Message, "Agregar transportista",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             Finally
                 Try
                     sqlControl.closeConexion()
                 Catch ex As Exception
-                    MsgBox("No se pudo establecer la conexion con el servidor.")
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar transportista",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
                 End Try
             End Try
 
@@ -972,6 +1057,14 @@
     End Sub
 
     Private Sub btnEliminarTransportista_Click(sender As Object, e As EventArgs) Handles btnEliminarTransportista.Click
+
+        If tbTransportista.RowCount <= 0 Then
+            MessageBox.Show("Ingresar una guía de transportista.", "Eliminar Transportista",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
+            Return
+        End If
+
         Dim seleccion As DataGridViewRow = tbTransportista.SelectedRows(0)
         Dim codigo As Integer = seleccion.Cells(0).Value
 
@@ -990,11 +1083,16 @@
                 sqlControl.commitTransaction()
             Catch ex As Exception
                 sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al eliminar transportista. " + ex.Message, "Eliminar transportista",
+                 MessageBoxButtons.OK,
+                 MessageBoxIcon.Error)
             Finally
                 Try
                     sqlControl.closeConexion()
                 Catch ex As Exception
-                    MsgBox("No se pudo establecer la conexion con el servidor.")
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar transportista",
+                 MessageBoxButtons.OK,
+                 MessageBoxIcon.Error)
                 End Try
             End Try
 
@@ -1005,8 +1103,15 @@
 
     Private Sub btnAgregarRemitente_Click(sender As Object, e As EventArgs) Handles btnAgregarRemitente.Click
 
+        If cbAccionGuia.SelectedIndex = -1 Then
+            MessageBox.Show("Seleccionar un Item.", "Agregar Remitente",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
+            Return
+        End If
+
         If txtRemitente.Text = Nothing Then
-            MessageBox.Show("Ingresar una Guía de Remitente", "Agregar Remitente",
+            MessageBox.Show("Ingresar una Guía de Remitente.", "Agregar Remitente",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Information)
             Return
@@ -1026,11 +1131,16 @@
             txtRemitente.Text = ""
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar remitente. " + ex.Message, "Agregar remitente",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Agregar remitente",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -1038,6 +1148,13 @@
     End Sub
 
     Private Sub btnAgregarPlaca_Click(sender As Object, e As EventArgs) Handles btnAgregarPlaca.Click
+
+        If cbAccionGuia.SelectedIndex = -1 Then
+            MessageBox.Show("Seleccionar un Item", "Agregar Unidad",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
+            Return
+        End If
 
         If cbTracto.Text = Nothing Then
             MessageBox.Show("Ingresar una Unidad", "Agregar Unidad",
@@ -1061,11 +1178,16 @@
             sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al grabar unidad. " + ex.Message, "Agregar unidad",
+                 MessageBoxButtons.OK,
+                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+                MessageBox.Show("Error al cerrar unidad. " + ex.Message, "Agregar unidad",
+                 MessageBoxButtons.OK,
+                 MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -1073,6 +1195,13 @@
     End Sub
 
     Private Sub btnEliminarPlaca_Click(sender As Object, e As EventArgs) Handles btnEliminarPlaca.Click
+
+        If tbPlaca.RowCount <= 0 Then
+            MessageBox.Show("Ingresar una Unidad.", "Agregar Unidad",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
+            Return
+        End If
 
         Dim seleccion As DataGridViewRow = tbPlaca.SelectedRows(0)
         Dim codigo As String = seleccion.Cells(0).Value
@@ -1092,11 +1221,16 @@
                 sqlControl.commitTransaction()
             Catch ex As Exception
                 sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al eliminar unidad. " + ex.Message, "Eliminar unidad",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             Finally
                 Try
                     sqlControl.closeConexion()
                 Catch ex As Exception
-                    MsgBox("No se pudo establecer la conexion con el servidor.")
+                    MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Eliminar unidad",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
                 End Try
             End Try
 
@@ -1106,6 +1240,14 @@
     End Sub
 
     Private Sub btnEliminarRemitente_Click(sender As Object, e As EventArgs) Handles btnEliminarRemitente.Click
+
+        If tbRemitente.RowCount <= 0 Then
+            MessageBox.Show("Ingresar una guía de remitente.", "Agregar Remitente",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
+            Return
+        End If
+
         Dim seleccion As DataGridViewRow = tbRemitente.SelectedRows(0)
         Dim codigo As String = seleccion.Cells(0).Value
 
@@ -1124,11 +1266,16 @@
                 sqlControl.commitTransaction()
             Catch ex As Exception
                 sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al eliminar remitente. " + ex.Message, "Eliminar remitente",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             Finally
                 Try
                     sqlControl.closeConexion()
                 Catch ex As Exception
-                    MsgBox("No se pudo establecer la conexion con el servidor.")
+                    MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Eliminar remitente",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
                 End Try
             End Try
 

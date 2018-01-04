@@ -113,7 +113,6 @@ Public Class RptPrintFactura
                     'If (dtd.Rows.Item(i)(17) <> "NULL") Then
                     '    text = text + " DE " + dtd.Rows.Item(i)(17)
                     'End If
-                    Console.WriteLine("tipo de servicio: " + CStr(dtd.Rows.Item(i)(19)))
                     text = "SERVICIO DE TRANSPORTE "
                     Select Case CInt(dtd.Rows.Item(i)(19))
                         Case 18
@@ -162,9 +161,12 @@ Public Class RptPrintFactura
                     pgdr = cordy
                     pgdp = cordy
                     mayor = dtg.Rows.Count
+
                     If (mayor <= dtr.Rows.Count) Then
                         mayor = dtr.Rows.Count
-                    ElseIf (mayor <= dtu.Rows.Count) Then
+                    End If
+
+                    If (mayor <= dtu.Rows.Count) Then
                         mayor = dtu.Rows.Count
                     End If
 
@@ -249,7 +251,7 @@ Public Class RptPrintFactura
             e.Graphics.DrawString(NUMBERF.DecimalLetras(TOTAL.ToString("0.00", CultureInfo.InvariantCulture)) + " " + moneda, FONT, Brushes.Black, 60, 1045)
 
         Catch ex As Exception
-
+            Console.WriteLine(ex.Message)
         End Try
 
 

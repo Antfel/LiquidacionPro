@@ -365,23 +365,24 @@ Public Class FacturacionDAO
     End Sub
 
     Public Sub deleteFacturaDetalleRemitente(codigo_detalle_factura As Integer, codigo_factura As Integer,
-                                        guia_remitente As String)
+                                        codigo_factura_remitente As Integer)
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
-        params.Add(New SqlParameter("@GUIA_REMITENTE", guia_remitente))
+        params.Add(New SqlParameter("@CODIGO_FACTURA_REMITENTE", codigo_factura_remitente))
 
         sqlControl.ExecQuery("EXECUTE deleteFacturaDetalleRemitente " +
                                         "@CODIGO_DETALLE_FACTURA," +
                                         "@CODIGO_FACTURA," +
-                                        "@GUIA_REMITENTE ", params)
+                                        "@CODIGO_FACTURA_REMITENTE ", params)
     End Sub
 
     Public Function getRemitentesByDetalle(codigoDetalle As Integer) As DataTable
 
-        Return sqlControl.ExecQuery("SELECT GUIA_REMITENTE 
-                                     FROM DETALLE_FACTURA_REMITENTE 
+        Return sqlControl.ExecQuery("SELECT     CODIGO_FACTURA_REMITENTE,
+                                                GUIA_REMITENTE 
+                                     FROM       DETALLE_FACTURA_REMITENTE 
                                      where 
                                      CODIGO_DETALLE_FACTURA =" + CStr(codigoDetalle),
                                      Nothing)
@@ -411,23 +412,24 @@ Public Class FacturacionDAO
     End Function
 
     Public Sub deleteFacturaDetalleUnidad(codigo_detalle_factura As Integer, codigo_factura As Integer,
-                                            placa_unidad As String)
+                                            codigo_factura_guia As Integer)
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
-        params.Add(New SqlParameter("@PLACA_UNIDAD", placa_unidad))
+        params.Add(New SqlParameter("@CODIGO_FACTURA_GUIA", codigo_factura_guia))
 
         sqlControl.ExecQuery("EXECUTE deleteFacturaDetalleUnidad " +
                                         "@CODIGO_DETALLE_FACTURA," +
                                         "@CODIGO_FACTURA," +
-                                        "@PLACA_UNIDAD ", params)
+                                        "@CODIGO_FACTURA_GUIA ", params)
     End Sub
 
     Public Function getPlacaByDetalle(codigoDetalle As Integer) As DataTable
 
-        Return sqlControl.ExecQuery("SELECT PLACA_UNIDAD 
-                                     FROM DETALLE_FACTURA_UNIDAD 
+        Return sqlControl.ExecQuery("SELECT CODIGO_FACTURA_GUIA, 
+                                            PLACA_UNIDAD  
+                                     FROM   DETALLE_FACTURA_UNIDAD 
                                      where 
                                      CODIGO_DETALLE_FACTURA =" + CStr(codigoDetalle),
                                      Nothing)
