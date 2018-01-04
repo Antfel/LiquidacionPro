@@ -159,6 +159,12 @@
     <Compile Include="Formularios\ChildLiquidacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\ChildTrabajador.Designer.vb">
+      <DependentUpon>ChildTrabajador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildTrabajador.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\formatDate.vb" />
     <Compile Include="Formularios\formatNUMBER.vb" />
     <Compile Include="Formularios\ChildBusquedaFactura.Designer.vb">
@@ -191,6 +197,7 @@
     <Compile Include="Formularios\RptPrintFacturaLibre.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LiquidacionCode\CargoTrabajadorDAO.vb" />
     <Compile Include="LiquidacionCode\Correlativo_NumeroDAO.vb" />
     <Compile Include="LiquidacionCode\EstadoDAO.vb" />
     <Compile Include="LiquidacionCode\EstadoGuiaDAO.vb" />
@@ -248,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ChildLiquidacion.resx">
       <DependentUpon>ChildLiquidacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ChildTrabajador.resx">
+      <DependentUpon>ChildTrabajador.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.vb</DependentUpon>

@@ -53,4 +53,11 @@ Public Class MDIPrincipal
         childClientes.MdiParent = Me
         childClientes.Show()
     End Sub
+
+    Private Sub TrabajadorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TrabajadorToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim childTrabajador As New ChildTrabajador()
+        childTrabajador.MdiParent = Me
+        childTrabajador.Show()
+    End Sub
 End Class
