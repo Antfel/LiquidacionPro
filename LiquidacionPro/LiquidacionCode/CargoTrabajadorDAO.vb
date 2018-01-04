@@ -1,6 +1,6 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
-Public Class EstadoDAO
+Public Class CargoTrabajadorDAO
     Dim DBcon As SqlConnection
     Dim DBcmd As SqlCommand
     Dim sqlControl As SQLControl
@@ -34,14 +34,11 @@ Public Class EstadoDAO
         sqlControl.rollbackTransaccion()
     End Sub
 
-    Public Function getEstados() As DataTable
-        Return sqlControl.ExecQuery("SELECT CODIGO_ESTADO,DETALLE_ESTADO from ESTADO where TIPO_ESTADO = 1", Nothing)
+    Public Function getAllCargoTrabajador() As DataTable
+        'Se obtiene conductores y escoltas
+        Return sqlControl.ExecQuery("select	CODIGO_CARGO_TRABAJADOR,
+		                                    DESCRIPCION_CARGO_TRABAJADOR 
+                                    from	CARGO_TRABAJADOR", Nothing)
     End Function
-
-    Public Function getEstadoTrabajador() As DataTable
-        Return sqlControl.ExecQuery("SELECT CODIGO_ESTADO,DETALLE_ESTADO from ESTADO where TIPO_ESTADO = 2", Nothing)
-    End Function
-
-
 
 End Class
