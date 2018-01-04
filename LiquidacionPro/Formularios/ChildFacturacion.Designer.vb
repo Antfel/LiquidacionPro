@@ -81,6 +81,8 @@ Partial Class ChildFacturacion
         Me.txtNroSerie = New System.Windows.Forms.TextBox()
         Me.lbFactura = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.cbOrigen = New System.Windows.Forms.ComboBox()
+        Me.cbDestino = New System.Windows.Forms.ComboBox()
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbRemitente, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbPlaca, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -520,10 +522,11 @@ Partial Class ChildFacturacion
         'txtOrigen
         '
         Me.txtOrigen.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtOrigen.Location = New System.Drawing.Point(778, 289)
+        Me.txtOrigen.Location = New System.Drawing.Point(1293, 467)
         Me.txtOrigen.Name = "txtOrigen"
-        Me.txtOrigen.Size = New System.Drawing.Size(504, 20)
+        Me.txtOrigen.Size = New System.Drawing.Size(16, 20)
         Me.txtOrigen.TabIndex = 260
+        Me.txtOrigen.Visible = False
         '
         'Label24
         '
@@ -554,10 +557,11 @@ Partial Class ChildFacturacion
         'txtDestino
         '
         Me.txtDestino.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtDestino.Location = New System.Drawing.Point(778, 329)
+        Me.txtDestino.Location = New System.Drawing.Point(1293, 493)
         Me.txtDestino.Name = "txtDestino"
-        Me.txtDestino.Size = New System.Drawing.Size(504, 20)
+        Me.txtDestino.Size = New System.Drawing.Size(16, 20)
         Me.txtDestino.TabIndex = 270
+        Me.txtDestino.Visible = False
         '
         'Label25
         '
@@ -615,11 +619,29 @@ Partial Class ChildFacturacion
         Me.Label8.TabIndex = 1035
         Me.Label8.Text = "R.U.C. : 20519804427"
         '
+        'cbOrigen
+        '
+        Me.cbOrigen.FormattingEnabled = True
+        Me.cbOrigen.Location = New System.Drawing.Point(778, 289)
+        Me.cbOrigen.Name = "cbOrigen"
+        Me.cbOrigen.Size = New System.Drawing.Size(504, 21)
+        Me.cbOrigen.TabIndex = 1036
+        '
+        'cbDestino
+        '
+        Me.cbDestino.FormattingEnabled = True
+        Me.cbDestino.Location = New System.Drawing.Point(778, 328)
+        Me.cbDestino.Name = "cbDestino"
+        Me.cbDestino.Size = New System.Drawing.Size(504, 21)
+        Me.cbDestino.TabIndex = 1037
+        '
         'ChildFacturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 524)
+        Me.Controls.Add(Me.cbDestino)
+        Me.Controls.Add(Me.cbOrigen)
         Me.Controls.Add(Me.btnGuardarCabecera)
         Me.Controls.Add(Me.lbNroFactura)
         Me.Controls.Add(Me.txtNroSerie)
@@ -749,4 +771,6 @@ Partial Class ChildFacturacion
     Friend WithEvents txtNroSerie As TextBox
     Friend WithEvents lbFactura As Label
     Friend WithEvents Label8 As Label
+    Friend WithEvents cbOrigen As ComboBox
+    Friend WithEvents cbDestino As ComboBox
 End Class

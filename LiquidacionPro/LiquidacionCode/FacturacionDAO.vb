@@ -435,4 +435,21 @@ Public Class FacturacionDAO
                                      Nothing)
 
     End Function
+
+    Public Function getOrigenDestino() As DataTable
+
+        Return sqlControl.ExecQuery("select	distinct cast(ROW_NUMBER()  OVER(ORDER BY direccion ASC) as varchar(10)) AS ITEM,
+		                                    DIRECCION from (
+						                                    select distinct * from (
+											                                    SELECT	distinct
+													                                    ORIGEn direccion
+											                                    FROM	DETALLE_FACTURA
+											                                    union all 
+											                                    SELECT	distinct
+													                                    DESTINO direccion
+											                                    FROM	DETALLE_FACTURA) a)b",
+                                     Nothing)
+
+    End Function
+
 End Class

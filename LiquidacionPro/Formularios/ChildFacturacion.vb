@@ -244,7 +244,7 @@
             ObtenerCorrelativo()
 
         End If
-
+        cargarDireccionesPrevias()
         actualizarDatosGuia()
         actualizarDatosTracto()
         BloquearDetalle()
@@ -446,16 +446,28 @@
                 obs = txtObservaciones.Text
             End If
 
-            If txtOrigen.Text = Nothing Then
+            'If txtOrigen.Text = Nothing Then
+            '    origen = ""
+            'Else
+            '    origen = txtOrigen.Text
+            'End If
+
+            'If txtDestino.Text = Nothing Then
+            '    destino = ""
+            'Else
+            '    destino = txtDestino.Text
+            'End If
+
+            If cbOrigen.Text = Nothing Then
                 origen = ""
             Else
-                origen = txtOrigen.Text
+                origen = cbOrigen.Text
             End If
 
-            If txtDestino.Text = Nothing Then
+            If cbDestino.Text = Nothing Then
                 destino = ""
             Else
-                destino = txtDestino.Text
+                destino = cbDestino.Text
             End If
 
             facturacionDao.UpdateFacturaDetalle(codigo_Detalle,
@@ -492,6 +504,7 @@
         BloquearBotones()
         cargarDatosFactura()
         LimpiarCampos()
+        cargarDireccionesPrevias()
     End Sub
 
     Private Sub LimpiarCampos()
@@ -504,8 +517,10 @@
         txtValorReferencial.Text = ""
         txtObservaciones.Text = ""
         txtPrecioUnitario.Text = ""
-        txtOrigen.Text = ""
-        txtDestino.Text = ""
+        'txtOrigen.Text = ""
+        'txtDestino.Text = ""
+        cbOrigen.SelectedIndex = -1
+        cbDestino.SelectedIndex = -1
         cbTracto.SelectedIndex = -1
         cbGuia.SelectedIndex = -1
         txtRemitente.Text = ""
@@ -771,9 +786,11 @@
             txtPrecioUnitario.Enabled = False
             txtValorReferencial.Enabled = False
             txtObservaciones.Enabled = False
-            txtOrigen.Enabled = False
+            'txtOrigen.Enabled = False
+            cbOrigen.Enabled = False
             txtConfVehicular.Enabled = False
-            txtDestino.Enabled = False
+            'txtDestino.Enabled = False
+            cbDestino.Enabled = False
             tbTransportista.Enabled = False
             tbRemitente.Enabled = False
             tbPlaca.Enabled = False
@@ -798,9 +815,11 @@
             txtPrecioUnitario.Enabled = True
             txtValorReferencial.Enabled = True
             txtObservaciones.Enabled = True
-            txtOrigen.Enabled = True
+            'txtOrigen.Enabled = True
+            cbOrigen.Enabled = True
             txtConfVehicular.Enabled = True
-            txtDestino.Enabled = True
+            'txtDestino.Enabled = True
+            cbDestino.Enabled = True
             tbTransportista.Enabled = True
             tbRemitente.Enabled = True
             tbPlaca.Enabled = True
@@ -978,8 +997,10 @@
                 txtConfVehicular.Text = datDetalle.Rows(0).Item(3).ToString
                 txtValorReferencial.Text = datDetalle.Rows(0).Item(4).ToString
                 txtPrecioUnitario.Text = datDetalle.Rows(0).Item(5).ToString
-                txtOrigen.Text = datDetalle.Rows(0).Item(6).ToString
-                txtDestino.Text = datDetalle.Rows(0).Item(7).ToString
+                'txtOrigen.Text = datDetalle.Rows(0).Item(6).ToString
+                'txtDestino.Text = datDetalle.Rows(0).Item(7).ToString
+                cbOrigen.Text = datDetalle.Rows(0).Item(6).ToString
+                cbDestino.Text = datDetalle.Rows(0).Item(7).ToString
                 txtObservaciones.Text = datDetalle.Rows(0).Item(8).ToString
                 sqlControl.commitTransaction()
             End If
@@ -1282,5 +1303,62 @@
             cargarGuiasRemitente()
 
         End If
+    End Sub
+
+    Private Sub cargarDireccionesPrevias()
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim facturacionDAO As New FacturacionDAO(sqlControl)
+
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+
+            facturacionDAO.setDBcmd()
+
+            Dim dtOrigen, dtDestino As DataTable
+            dtOrigen = facturacionDAO.getOrigenDestino
+            dtDestino = facturacionDAO.getOrigenDestino
+            With cbOrigen
+                .DataSource = dtOrigen
+                .DisplayMember = "DIRECCION"
+                .ValueMember = "ITEM"
+                .DropDownStyle = ComboBoxStyle.Simple
+                .AutoCompleteMode = AutoCompleteMode.SuggestAppend
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+
+            End With
+
+            With cbDestino
+                .DataSource = dtDestino
+                .DisplayMember = "DIRECCION"
+                .ValueMember = "ITEM"
+                .DropDownStyle = ComboBoxStyle.Simple
+                .AutoCompleteMode = AutoCompleteMode.SuggestAppend
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+
+            End With
+
+            sqlControl.commitTransaction()
+
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar direcciones. " + ex.Message, "Cargar direcciones",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar direcciones",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+            End Try
+
+        End Try
     End Sub
 End Class

@@ -2138,6 +2138,12 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function FindByCODIGO_FACTURACODIGO_GUIACODIGO_DETALLE_FACTURA(ByVal CODIGO_FACTURA As Integer, ByVal CODIGO_GUIA As Integer, ByVal CODIGO_DETALLE_FACTURA As Integer) As dtRptFacturaGuiaRow
+            Return CType(Me.Rows.Find(New Object() {CODIGO_FACTURA, CODIGO_GUIA, CODIGO_DETALLE_FACTURA}),dtRptFacturaGuiaRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
             Dim cln As dtRptFacturaGuiaDataTable = CType(MyBase.Clone,dtRptFacturaGuiaDataTable)
             cln.InitVars
@@ -2170,11 +2176,13 @@ Partial Public Class rptLiquidaciones
             MyBase.Columns.Add(Me.columnCODIGO_GUIA)
             Me.columnDETALLE_GUIA = New Global.System.Data.DataColumn("DETALLE_GUIA", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDETALLE_GUIA)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnCODIGO_FACTURA, Me.columnCODIGO_GUIA, Me.columnCODIGO_DETALLE_FACTURA}, true))
             Me.columnCODIGO_FACTURA.AllowDBNull = false
             Me.columnCODIGO_DETALLE_FACTURA.AllowDBNull = false
             Me.columnCODIGO_GUIA.AutoIncrement = true
             Me.columnCODIGO_GUIA.AutoIncrementSeed = -1
             Me.columnCODIGO_GUIA.AutoIncrementStep = -1
+            Me.columnCODIGO_GUIA.AllowDBNull = false
             Me.columnCODIGO_GUIA.ReadOnly = true
             Me.columnDETALLE_GUIA.MaxLength = 11
         End Sub
@@ -2947,6 +2955,8 @@ Partial Public Class rptLiquidaciones
         
         Private columnGUIA_REMITENTE As Global.System.Data.DataColumn
         
+        Private columnCODIGO_FACTURA_REMITENTE As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -3007,6 +3017,14 @@ Partial Public Class rptLiquidaciones
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CODIGO_FACTURA_REMITENTEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCODIGO_FACTURA_REMITENTE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -3045,7 +3063,7 @@ Partial Public Class rptLiquidaciones
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overloads Function AdddtRptFacturaRemitenteRow(ByVal CODIGO_FACTURA As Integer, ByVal CODIGO_DETALLE_FACTURA As Integer, ByVal GUIA_REMITENTE As String) As dtRptFacturaRemitenteRow
             Dim rowdtRptFacturaRemitenteRow As dtRptFacturaRemitenteRow = CType(Me.NewRow,dtRptFacturaRemitenteRow)
-            Dim columnValuesArray() As Object = New Object() {CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, GUIA_REMITENTE}
+            Dim columnValuesArray() As Object = New Object() {CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, GUIA_REMITENTE, Nothing}
             rowdtRptFacturaRemitenteRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdtRptFacturaRemitenteRow)
             Return rowdtRptFacturaRemitenteRow
@@ -3053,8 +3071,8 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByCODIGO_FACTURACODIGO_DETALLE_FACTURAGUIA_REMITENTE(ByVal CODIGO_FACTURA As Integer, ByVal CODIGO_DETALLE_FACTURA As Integer, ByVal GUIA_REMITENTE As String) As dtRptFacturaRemitenteRow
-            Return CType(Me.Rows.Find(New Object() {CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, GUIA_REMITENTE}),dtRptFacturaRemitenteRow)
+        Public Function FindByCODIGO_FACTURACODIGO_DETALLE_FACTURACODIGO_FACTURA_REMITENTE(ByVal CODIGO_FACTURA As Integer, ByVal CODIGO_DETALLE_FACTURA As Integer, ByVal CODIGO_FACTURA_REMITENTE As Integer) As dtRptFacturaRemitenteRow
+            Return CType(Me.Rows.Find(New Object() {CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, CODIGO_FACTURA_REMITENTE}),dtRptFacturaRemitenteRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3077,6 +3095,7 @@ Partial Public Class rptLiquidaciones
             Me.columnCODIGO_FACTURA = MyBase.Columns("CODIGO_FACTURA")
             Me.columnCODIGO_DETALLE_FACTURA = MyBase.Columns("CODIGO_DETALLE_FACTURA")
             Me.columnGUIA_REMITENTE = MyBase.Columns("GUIA_REMITENTE")
+            Me.columnCODIGO_FACTURA_REMITENTE = MyBase.Columns("CODIGO_FACTURA_REMITENTE")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3088,11 +3107,18 @@ Partial Public Class rptLiquidaciones
             MyBase.Columns.Add(Me.columnCODIGO_DETALLE_FACTURA)
             Me.columnGUIA_REMITENTE = New Global.System.Data.DataColumn("GUIA_REMITENTE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnGUIA_REMITENTE)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnCODIGO_FACTURA, Me.columnCODIGO_DETALLE_FACTURA, Me.columnGUIA_REMITENTE}, true))
+            Me.columnCODIGO_FACTURA_REMITENTE = New Global.System.Data.DataColumn("CODIGO_FACTURA_REMITENTE", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCODIGO_FACTURA_REMITENTE)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnCODIGO_FACTURA, Me.columnCODIGO_DETALLE_FACTURA, Me.columnCODIGO_FACTURA_REMITENTE}, true))
             Me.columnCODIGO_FACTURA.AllowDBNull = false
             Me.columnCODIGO_DETALLE_FACTURA.AllowDBNull = false
             Me.columnGUIA_REMITENTE.AllowDBNull = false
             Me.columnGUIA_REMITENTE.MaxLength = 20
+            Me.columnCODIGO_FACTURA_REMITENTE.AutoIncrement = true
+            Me.columnCODIGO_FACTURA_REMITENTE.AutoIncrementSeed = -1
+            Me.columnCODIGO_FACTURA_REMITENTE.AutoIncrementStep = -1
+            Me.columnCODIGO_FACTURA_REMITENTE.AllowDBNull = false
+            Me.columnCODIGO_FACTURA_REMITENTE.ReadOnly = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5481,11 +5507,7 @@ Partial Public Class rptLiquidaciones
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property CODIGO_GUIA() As Integer
             Get
-                Try 
-                    Return CType(Me(Me.tabledtRptFacturaGuia.CODIGO_GUIAColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CODIGO_GUIA' de la tabla 'dtRptFacturaGuia' es DBNull.", e)
-                End Try
+                Return CType(Me(Me.tabledtRptFacturaGuia.CODIGO_GUIAColumn),Integer)
             End Get
             Set
                 Me(Me.tabledtRptFacturaGuia.CODIGO_GUIAColumn) = value
@@ -5506,18 +5528,6 @@ Partial Public Class rptLiquidaciones
                 Me(Me.tabledtRptFacturaGuia.DETALLE_GUIAColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsCODIGO_GUIANull() As Boolean
-            Return Me.IsNull(Me.tabledtRptFacturaGuia.CODIGO_GUIAColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetCODIGO_GUIANull()
-            Me(Me.tabledtRptFacturaGuia.CODIGO_GUIAColumn) = Global.System.Convert.DBNull
-        End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -6295,6 +6305,17 @@ Partial Public Class rptLiquidaciones
             End Get
             Set
                 Me(Me.tabledtRptFacturaRemitente.GUIA_REMITENTEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CODIGO_FACTURA_REMITENTE() As Integer
+            Get
+                Return CType(Me(Me.tabledtRptFacturaRemitente.CODIGO_FACTURA_REMITENTEColumn),Integer)
+            End Get
+            Set
+                Me(Me.tabledtRptFacturaRemitente.CODIGO_FACTURA_REMITENTEColumn) = value
             End Set
         End Property
     End Class
@@ -8289,24 +8310,27 @@ Namespace rptLiquidacionesTableAdapters
             tableMapping.ColumnMappings.Add("CODIGO_FACTURA", "CODIGO_FACTURA")
             tableMapping.ColumnMappings.Add("CODIGO_DETALLE_FACTURA", "CODIGO_DETALLE_FACTURA")
             tableMapping.ColumnMappings.Add("GUIA_REMITENTE", "GUIA_REMITENTE")
+            tableMapping.ColumnMappings.Add("CODIGO_FACTURA_REMITENTE", "CODIGO_FACTURA_REMITENTE")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
             Me._adapter.DeleteCommand.CommandText = "DELETE FROM [DETALLE_FACTURA_REMITENTE] WHERE (([CODIGO_FACTURA] = @Original_CODI"& _ 
                 "GO_FACTURA) AND ([CODIGO_DETALLE_FACTURA] = @Original_CODIGO_DETALLE_FACTURA) AN"& _ 
-                "D ([GUIA_REMITENTE] = @Original_GUIA_REMITENTE))"
+                "D ([GUIA_REMITENTE] = @Original_GUIA_REMITENTE) AND ([CODIGO_FACTURA_REMITENTE] "& _ 
+                "= @Original_CODIGO_FACTURA_REMITENTE))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CODIGO_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CODIGO_DETALLE_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_DETALLE_FACTURA", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_GUIA_REMITENTE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GUIA_REMITENTE", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CODIGO_FACTURA_REMITENTE", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA_REMITENTE", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [DETALLE_FACTURA_REMITENTE] ([CODIGO_FACTURA], [CODIGO_DETALLE_FACTUR"& _ 
                 "A], [GUIA_REMITENTE]) VALUES (@CODIGO_FACTURA, @CODIGO_DETALLE_FACTURA, @GUIA_RE"& _ 
-                "MITENTE);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, GUIA_REMITENTE FROM db"& _ 
-                "o.DETALLE_FACTURA_REMITENTE WHERE (CODIGO_DETALLE_FACTURA = @CODIGO_DETALLE_FACT"& _ 
-                "URA) AND (CODIGO_FACTURA = @CODIGO_FACTURA) AND (GUIA_REMITENTE = @GUIA_REMITENT"& _ 
-                "E)"
+                "MITENTE);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, GUIA_REMITENTE, CODIGO"& _ 
+                "_FACTURA_REMITENTE FROM DETALLE_FACTURA_REMITENTE WHERE (CODIGO_DETALLE_FACTURA "& _ 
+                "= @CODIGO_DETALLE_FACTURA) AND (CODIGO_FACTURA = @CODIGO_FACTURA) AND (CODIGO_FA"& _ 
+                "CTURA_REMITENTE = SCOPE_IDENTITY())"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CODIGO_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CODIGO_DETALLE_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_DETALLE_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -8317,10 +8341,11 @@ Namespace rptLiquidacionesTableAdapters
                 "O_DETALLE_FACTURA] = @CODIGO_DETALLE_FACTURA, [GUIA_REMITENTE] = @GUIA_REMITENTE"& _ 
                 " WHERE (([CODIGO_FACTURA] = @Original_CODIGO_FACTURA) AND ([CODIGO_DETALLE_FACTU"& _ 
                 "RA] = @Original_CODIGO_DETALLE_FACTURA) AND ([GUIA_REMITENTE] = @Original_GUIA_R"& _ 
-                "EMITENTE));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, GUIA_REMITENTE FROM "& _ 
-                "dbo.DETALLE_FACTURA_REMITENTE WHERE (CODIGO_DETALLE_FACTURA = @CODIGO_DETALLE_FA"& _ 
-                "CTURA) AND (CODIGO_FACTURA = @CODIGO_FACTURA) AND (GUIA_REMITENTE = @GUIA_REMITE"& _ 
-                "NTE)"
+                "EMITENTE) AND ([CODIGO_FACTURA_REMITENTE] = @Original_CODIGO_FACTURA_REMITENTE))"& _ 
+                ";"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT CODIGO_FACTURA, CODIGO_DETALLE_FACTURA, GUIA_REMITENTE, CODIGO_FACTURA"& _ 
+                "_REMITENTE FROM DETALLE_FACTURA_REMITENTE WHERE (CODIGO_DETALLE_FACTURA = @CODIG"& _ 
+                "O_DETALLE_FACTURA) AND (CODIGO_FACTURA = @CODIGO_FACTURA) AND (CODIGO_FACTURA_RE"& _ 
+                "MITENTE = @CODIGO_FACTURA_REMITENTE)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CODIGO_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CODIGO_DETALLE_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_DETALLE_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -8328,6 +8353,8 @@ Namespace rptLiquidacionesTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CODIGO_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CODIGO_DETALLE_FACTURA", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_DETALLE_FACTURA", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_GUIA_REMITENTE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "GUIA_REMITENTE", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CODIGO_FACTURA_REMITENTE", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA_REMITENTE", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CODIGO_FACTURA_REMITENTE", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA_REMITENTE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8343,9 +8370,9 @@ Namespace rptLiquidacionesTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "select"&Global.Microsoft.VisualBasic.ChrW(9)&"CODIGO_FACTURA,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"CODIGO_DETALLE_FACTURA,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"GUIA_REMITENTE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"from"&Global.Microsoft.VisualBasic.ChrW(9)&"DETALLE"& _ 
-                "_FACTURA_REMITENTE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where"&Global.Microsoft.VisualBasic.ChrW(9)&"CODIGO_FACTURA=@codigo_factura"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"and CODIGO_DETALLE_F"& _ 
-                "ACTURA=@codigo_detalle"
+            Me._commandCollection(0).CommandText = "select"&Global.Microsoft.VisualBasic.ChrW(9)&"CODIGO_FACTURA,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"CODIGO_DETALLE_FACTURA,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"GUIA_REMITENTE,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"CODIGO_FACT"& _ 
+                "URA_REMITENTE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"from"&Global.Microsoft.VisualBasic.ChrW(9)&"DETALLE_FACTURA_REMITENTE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where"&Global.Microsoft.VisualBasic.ChrW(9)&"CODIGO_FACTURA=@codigo_fact"& _ 
+                "ura"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"and CODIGO_DETALLE_FACTURA=@codigo_detalle"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@codigo_factura", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@codigo_detalle", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_DETALLE_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -8411,7 +8438,7 @@ Namespace rptLiquidacionesTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_CODIGO_FACTURA As Integer, ByVal Original_CODIGO_DETALLE_FACTURA As Integer, ByVal Original_GUIA_REMITENTE As String) As Integer
+        Public Overloads Overridable Function Delete(ByVal Original_CODIGO_FACTURA As Integer, ByVal Original_CODIGO_DETALLE_FACTURA As Integer, ByVal Original_GUIA_REMITENTE As String, ByVal Original_CODIGO_FACTURA_REMITENTE As Integer) As Integer
             Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_CODIGO_FACTURA,Integer)
             Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_CODIGO_DETALLE_FACTURA,Integer)
             If (Original_GUIA_REMITENTE Is Nothing) Then
@@ -8419,6 +8446,7 @@ Namespace rptLiquidacionesTableAdapters
             Else
                 Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_GUIA_REMITENTE,String)
             End If
+            Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_CODIGO_FACTURA_REMITENTE,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -8465,7 +8493,7 @@ Namespace rptLiquidacionesTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal CODIGO_FACTURA As Integer, ByVal CODIGO_DETALLE_FACTURA As Integer, ByVal GUIA_REMITENTE As String, ByVal Original_CODIGO_FACTURA As Integer, ByVal Original_CODIGO_DETALLE_FACTURA As Integer, ByVal Original_GUIA_REMITENTE As String) As Integer
+        Public Overloads Overridable Function Update(ByVal CODIGO_FACTURA As Integer, ByVal CODIGO_DETALLE_FACTURA As Integer, ByVal GUIA_REMITENTE As String, ByVal Original_CODIGO_FACTURA As Integer, ByVal Original_CODIGO_DETALLE_FACTURA As Integer, ByVal Original_GUIA_REMITENTE As String, ByVal Original_CODIGO_FACTURA_REMITENTE As Integer, ByVal CODIGO_FACTURA_REMITENTE As Integer) As Integer
             Me.Adapter.UpdateCommand.Parameters(0).Value = CType(CODIGO_FACTURA,Integer)
             Me.Adapter.UpdateCommand.Parameters(1).Value = CType(CODIGO_DETALLE_FACTURA,Integer)
             If (GUIA_REMITENTE Is Nothing) Then
@@ -8480,6 +8508,8 @@ Namespace rptLiquidacionesTableAdapters
             Else
                 Me.Adapter.UpdateCommand.Parameters(5).Value = CType(Original_GUIA_REMITENTE,String)
             End If
+            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(Original_CODIGO_FACTURA_REMITENTE,Integer)
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(CODIGO_FACTURA_REMITENTE,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -8499,8 +8529,8 @@ Namespace rptLiquidacionesTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal Original_CODIGO_FACTURA As Integer, ByVal Original_CODIGO_DETALLE_FACTURA As Integer, ByVal Original_GUIA_REMITENTE As String) As Integer
-            Return Me.Update(Original_CODIGO_FACTURA, Original_CODIGO_DETALLE_FACTURA, Original_GUIA_REMITENTE, Original_CODIGO_FACTURA, Original_CODIGO_DETALLE_FACTURA, Original_GUIA_REMITENTE)
+        Public Overloads Overridable Function Update(ByVal GUIA_REMITENTE As String, ByVal Original_CODIGO_FACTURA As Integer, ByVal Original_CODIGO_DETALLE_FACTURA As Integer, ByVal Original_GUIA_REMITENTE As String, ByVal Original_CODIGO_FACTURA_REMITENTE As Integer) As Integer
+            Return Me.Update(Original_CODIGO_FACTURA, Original_CODIGO_DETALLE_FACTURA, GUIA_REMITENTE, Original_CODIGO_FACTURA, Original_CODIGO_DETALLE_FACTURA, Original_GUIA_REMITENTE, Original_CODIGO_FACTURA_REMITENTE, Original_CODIGO_FACTURA_REMITENTE)
         End Function
     End Class
     
