@@ -144,8 +144,8 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@HOSPEDAJE_LIQUIDACION", hospedaje))
         params.Add(New SqlParameter("@BALANZA_LIQUIDACION", balanaza))
         params.Add(New SqlParameter("@OTROS_LIQUIDACION", otros))
-        params.Add(New SqlParameter("@CONSUMO_FISICO_LIQUIDACION", virtual))
-        params.Add(New SqlParameter("@CONSUMO_VIRTUAL_LIQUIDACION", nroLiquidacion))
+        params.Add(New SqlParameter("@CONSUMO_FISICO_LIQUIDACION", fisico))
+        params.Add(New SqlParameter("@CONSUMO_VIRTUAL_LIQUIDACION", virtual))
         params.Add(New SqlParameter("@CODIGO_ESTADO", estado))
 
         Dim dt As DataTable

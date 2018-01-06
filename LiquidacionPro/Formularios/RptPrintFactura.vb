@@ -113,37 +113,40 @@ Public Class RptPrintFactura
                     'If (dtd.Rows.Item(i)(17) <> "NULL") Then
                     '    text = text + " DE " + dtd.Rows.Item(i)(17)
                     'End If
-                    text = "SERVICIO DE TRANSPORTE "
-                    Select Case CInt(dtd.Rows.Item(i)(19))
-                        Case 18
-                            text = "SERVICIO DE TRANSPORTE "
-                        Case 19
-                            text = text + "EN " + dtd.Rows.Item(i)(8)
-                        Case 20
-                            text = text + "EN " + dtd.Rows.Item(i)(8)
-                        Case 21
-                            text = text + "EN " + dtd.Rows.Item(i)(8)
-                        Case 22
-                            text = text + "EN " + dtd.Rows.Item(i)(8)
-                        Case 23
-                            text = text + "EN " + dtd.Rows.Item(i)(8)
-                        Case 24
-                            text = text + "EN " + dtd.Rows.Item(i)(8)
-                        Case 25
-                            text = text + "EN " + dtd.Rows.Item(i)(8)
-                        Case 26
-                            text = text + "EN " + dtd.Rows.Item(i)(8)
-                        Case 27
-                            text = text + dtd.Rows.Item(i)(8)
-                        Case 28
-                            text = text + dtd.Rows.Item(i)(8)
-                        Case 29
-                            text = dtd.Rows.Item(i)(8)
-                        Case 30
-                            text = dtd.Rows.Item(i)(8)
-                        Case 31
-                            text = dtd.Rows.Item(i)(8)
-                    End Select
+                    'text = "SERVICIO DE TRANSPORTE "
+                    'Select Case CInt(dtd.Rows.Item(i)(19))
+                    '    Case 18
+                    '        text = "SERVICIO DE TRANSPORTE "
+                    '    Case 19
+                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    '    Case 20
+                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    '    Case 21
+                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    '    Case 22
+                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    '    Case 23
+                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    '    Case 24
+                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    '    Case 25
+                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    '    Case 26
+                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
+                    '    Case 27
+                    '        text = text + dtd.Rows.Item(i)(8)
+                    '    Case 28
+                    '        text = text + dtd.Rows.Item(i)(8)
+                    '    Case 29
+                    '        text = dtd.Rows.Item(i)(8)
+                    '    Case 30
+                    '        text = dtd.Rows.Item(i)(8)
+                    '    Case 31
+                    '        text = dtd.Rows.Item(i)(8)
+                    'End Select
+
+                    text = dtd.Rows.Item(i)(20)
+
                     If (dtd.Rows.Item(i)(17) <> "") Then
                         text = text + " DE " + dtd.Rows.Item(i)(17)
                     End If

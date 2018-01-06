@@ -1511,6 +1511,8 @@ Partial Public Class rptLiquidaciones
         
         Private columnTIPO_SERVICIO As Global.System.Data.DataColumn
         
+        Private columnDETALLE_ESTADO_COMPLETO As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -1707,6 +1709,14 @@ Partial Public Class rptLiquidaciones
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DETALLE_ESTADO_COMPLETOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDETALLE_ESTADO_COMPLETO
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1762,9 +1772,10 @@ Partial Public Class rptLiquidaciones
                     ByVal FECHA_FACTURA As Date,  _
                     ByVal DESCRIPCION As String,  _
                     ByVal VALOR_REFERENCIAL As Decimal,  _
-                    ByVal TIPO_SERVICIO As Integer) As dtRptFacturaDetalleRow
+                    ByVal TIPO_SERVICIO As Integer,  _
+                    ByVal DETALLE_ESTADO_COMPLETO As String) As dtRptFacturaDetalleRow
             Dim rowdtRptFacturaDetalleRow As dtRptFacturaDetalleRow = CType(Me.NewRow,dtRptFacturaDetalleRow)
-            Dim columnValuesArray() As Object = New Object() {CANTIDAD, CONF_VEHICULAR, OBSERVACION, PRECIO_UNITARIO, ORIGEN, DESTINO, CODIGO_FACTURA, Nothing, DETALLE_ESTADO, RAZON_CLIENTE, DIRECCION_CLIENTE, RUC_CLIENTE, TELEFONO_CLIENTE, TOTAL_FACTURA, DETALLE_MONEDA, NRO_LETRA, FECHA_FACTURA, DESCRIPCION, VALOR_REFERENCIAL, TIPO_SERVICIO}
+            Dim columnValuesArray() As Object = New Object() {CANTIDAD, CONF_VEHICULAR, OBSERVACION, PRECIO_UNITARIO, ORIGEN, DESTINO, CODIGO_FACTURA, Nothing, DETALLE_ESTADO, RAZON_CLIENTE, DIRECCION_CLIENTE, RUC_CLIENTE, TELEFONO_CLIENTE, TOTAL_FACTURA, DETALLE_MONEDA, NRO_LETRA, FECHA_FACTURA, DESCRIPCION, VALOR_REFERENCIAL, TIPO_SERVICIO, DETALLE_ESTADO_COMPLETO}
             rowdtRptFacturaDetalleRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdtRptFacturaDetalleRow)
             Return rowdtRptFacturaDetalleRow
@@ -1813,6 +1824,7 @@ Partial Public Class rptLiquidaciones
             Me.columnDESCRIPCION = MyBase.Columns("DESCRIPCION")
             Me.columnVALOR_REFERENCIAL = MyBase.Columns("VALOR_REFERENCIAL")
             Me.columnTIPO_SERVICIO = MyBase.Columns("TIPO_SERVICIO")
+            Me.columnDETALLE_ESTADO_COMPLETO = MyBase.Columns("DETALLE_ESTADO_COMPLETO")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1858,6 +1870,8 @@ Partial Public Class rptLiquidaciones
             MyBase.Columns.Add(Me.columnVALOR_REFERENCIAL)
             Me.columnTIPO_SERVICIO = New Global.System.Data.DataColumn("TIPO_SERVICIO", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTIPO_SERVICIO)
+            Me.columnDETALLE_ESTADO_COMPLETO = New Global.System.Data.DataColumn("DETALLE_ESTADO_COMPLETO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDETALLE_ESTADO_COMPLETO)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnCODIGO_FACTURA, Me.columnCODIGO_DETALLE_FACTURA}, true))
             Me.columnCONF_VEHICULAR.MaxLength = 20
             Me.columnOBSERVACION.MaxLength = 150
@@ -1879,6 +1893,7 @@ Partial Public Class rptLiquidaciones
             Me.columnNRO_LETRA.Caption = "Column1"
             Me.columnNRO_LETRA.MaxLength = 180
             Me.columnDESCRIPCION.MaxLength = 250
+            Me.columnDETALLE_ESTADO_COMPLETO.MaxLength = 100
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5251,6 +5266,22 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DETALLE_ESTADO_COMPLETO() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptFacturaDetalle.DETALLE_ESTADO_COMPLETOColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'DETALLE_ESTADO_COMPLETO' de la tabla 'dtRptFacturaDetalle"& _ 
+                            "' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptFacturaDetalle.DETALLE_ESTADO_COMPLETOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsCANTIDADNull() As Boolean
             Return Me.IsNull(Me.tabledtRptFacturaDetalle.CANTIDADColumn)
         End Function
@@ -5463,6 +5494,18 @@ Partial Public Class rptLiquidaciones
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetTIPO_SERVICIONull()
             Me(Me.tabledtRptFacturaDetalle.TIPO_SERVICIOColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDETALLE_ESTADO_COMPLETONull() As Boolean
+            Return Me.IsNull(Me.tabledtRptFacturaDetalle.DETALLE_ESTADO_COMPLETOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDETALLE_ESTADO_COMPLETONull()
+            Me(Me.tabledtRptFacturaDetalle.DETALLE_ESTADO_COMPLETOColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -7721,6 +7764,7 @@ Namespace rptLiquidacionesTableAdapters
             tableMapping.ColumnMappings.Add("DESCRIPCION", "DESCRIPCION")
             tableMapping.ColumnMappings.Add("VALOR_REFERENCIAL", "VALOR_REFERENCIAL")
             tableMapping.ColumnMappings.Add("TIPO_SERVICIO", "TIPO_SERVICIO")
+            tableMapping.ColumnMappings.Add("DETALLE_ESTADO_COMPLETO", "DETALLE_ESTADO_COMPLETO")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -7742,11 +7786,11 @@ Namespace rptLiquidacionesTableAdapters
                 ""&Global.Microsoft.VisualBasic.ChrW(9)&"d.DETALLE_MONEDA,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"dbo.ufnConvertirNumeroLetra(a.TOTAL_FACTURA),"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"a.FECHA_F"& _ 
                 "ACTURA,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"b.CANTIDAD,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"b.CONF_VEHICULAR,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"coalesce(b.DESCRIPCION,'')DESCRIP"& _ 
                 "CION,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"b.OBSERVACION,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"b.ORIGEN,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"b.DESTINO,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&Global.Microsoft.VisualBasic.ChrW(9)&"b.PRECIO_UNITARIO,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"e.DETA"& _ 
-                "LLE_ESTADO,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"b.VALOR_REFERENCIAL,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"b.TIPO_SERVICIO"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"from"&Global.Microsoft.VisualBasic.ChrW(9)&"FACTURA a"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"left"&Global.Microsoft.VisualBasic.ChrW(9)&"join DE"& _ 
-                "TALLE_FACTURA b on a.CODIGO_FACTURA=b.CODIGO_FACTURA"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"left"&Global.Microsoft.VisualBasic.ChrW(9)&"join CLIENTE c on c.C"& _ 
-                "ODIGO_CLIENTE=a.CODIGO_CLIENTE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"left"&Global.Microsoft.VisualBasic.ChrW(9)&"join MONEDA d on d.CODIGO_MONEDA=a.CODIGO_M"& _ 
-                "ONEDA"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"left"&Global.Microsoft.VisualBasic.ChrW(9)&"join ESTADO e on e.CODIGO_ESTADO=b.TIPO_SERVICIO and e.TIPO_ESTADO=6"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where"&Global.Microsoft.VisualBasic.ChrW(9)&"a.CODIGO_FACTURA=@codigo_factura"
+                "LLE_ESTADO,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"b.VALOR_REFERENCIAL,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"b.TIPO_SERVICIO,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"e.DETALLE_ESTADO_COMPLETO"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "from"&Global.Microsoft.VisualBasic.ChrW(9)&"FACTURA a"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"left"&Global.Microsoft.VisualBasic.ChrW(9)&"join DETALLE_FACTURA b on a.CODIGO_FACTURA=b.CODIGO_FACTURA"& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"left"&Global.Microsoft.VisualBasic.ChrW(9)&"join CLIENTE c on c.CODIGO_CLIENTE=a.CODIGO_CLIENTE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"left"&Global.Microsoft.VisualBasic.ChrW(9)&"join MONEDA d o"& _ 
+                "n d.CODIGO_MONEDA=a.CODIGO_MONEDA"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"left"&Global.Microsoft.VisualBasic.ChrW(9)&"join ESTADO e on e.CODIGO_ESTADO=b.TIPO_"& _ 
+                "SERVICIO and e.TIPO_ESTADO=6"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where"&Global.Microsoft.VisualBasic.ChrW(9)&"a.CODIGO_FACTURA=@codigo_factura"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@codigo_factura", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "CODIGO_FACTURA", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
