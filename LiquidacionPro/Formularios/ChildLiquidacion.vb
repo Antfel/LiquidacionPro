@@ -147,6 +147,7 @@
             txtTotalGasto.Text = dt.Rows(0)(25)
             txtDiferencia.Text = dt.Rows(0)(26)
             txtDiferenciaComb.Text = dt.Rows(0)(27)
+
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
