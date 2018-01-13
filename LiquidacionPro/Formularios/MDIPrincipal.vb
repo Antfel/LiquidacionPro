@@ -1,7 +1,7 @@
 ﻿Imports System.Windows.Forms
 
 Public Class MDIPrincipal
-    Private Sub LiquidacionesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LiquidacionesToolStripMenuItem.Click
+    Private Sub LiquidacionesToolStripMenuItem_Click(sender As Object, e As EventArgs) 
         cerrarVentanas()
         Dim liquidacionChild As New ChildLiquidacion()
         liquidacionChild.MdiParent = Me
@@ -59,5 +59,19 @@ Public Class MDIPrincipal
         Dim childTrabajador As New ChildTrabajador()
         childTrabajador.MdiParent = Me
         childTrabajador.Show()
+    End Sub
+
+    Private Sub LiquidaciónControlToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LiquidaciónControlToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim childLiquidacionControl As New ChildLiquidacionControl()
+        childLiquidacionControl.MdiParent = Me
+        childLiquidacionControl.Show()
+    End Sub
+
+    Private Sub LiquidaciónDeCombustibleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LiquidaciónDeCombustibleToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim childLiquidacionCombustible As New ChildLiquidacionCombustible()
+        childLiquidacionCombustible.MdiParent = Me
+        childLiquidacionCombustible.Show()
     End Sub
 End Class
