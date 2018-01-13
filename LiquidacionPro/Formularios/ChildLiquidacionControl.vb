@@ -36,7 +36,6 @@
             Dim dt As DataTable
 
             dt = unidadMedidaDAO.getAllUnidadMedida
-            sqlControl.commitTransaction()
 
             With cbUnidadMedida
                 .DataSource = dt
@@ -44,13 +43,20 @@
                 .ValueMember = "CODIGO_ESTADO"
                 .SelectedIndex = 0
             End With
+
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar Unidad Medida. " + ex.Message, "Cargar Unidad Medida",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Unidad Medida",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             End Try
         End Try
     End Sub
@@ -346,8 +352,6 @@
             dt = liquidacionDao.GetAllLiquidacion()
             dgvLiquidacion.DataSource = dt
 
-            sqlControl.commitTransaction()
-
             dgvLiquidacion.Columns(2).Visible = False
             dgvLiquidacion.Columns(4).Visible = False
             dgvLiquidacion.Columns(6).Visible = False
@@ -357,13 +361,19 @@
             dgvLiquidacion.MultiSelect = False
             dgvLiquidacion.RowHeadersVisible = False
 
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar liquidaciones. " + ex.Message, "Cargar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -384,8 +394,6 @@
 
             dtTrabajador = trabajadorDao.GetConductor
 
-            sqlControl.commitTransaction()
-
             With cbTrabajador
                 .DataSource = dtTrabajador
                 .DisplayMember = "NOMBRE_TRABAJADOR"
@@ -395,13 +403,20 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
+
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar trabajador. " + ex.Message, "Cargar Datos Trabajador",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Datos Trabajador",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
     End Sub
@@ -418,7 +433,6 @@
             Dim dtGuia As DataTable
 
             dtGuia = guiaDao.getGuiaPendLiquidacion
-            sqlControl.commitTransaction()
 
             With cbGuia
                 .DataSource = dtGuia
@@ -429,13 +443,19 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar guías. " + ex.Message, "Cargar Guías",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Guías",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -494,7 +514,6 @@
             Dim dtUnidad As DataTable
 
             dtUnidad = unidadDao.getUnidadTractos()
-            sqlControl.commitTransaction()
 
             With cbTracto
                 .DataSource = dtUnidad
@@ -505,13 +524,21 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
+
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+
+            MessageBox.Show("Error al cargar tractos. " + ex.Message, "Cargar Tractos",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Tractos",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -532,8 +559,6 @@
 
             dtUnidad = unidadDao.getUnidadSemiTrailer
 
-            sqlControl.commitTransaction()
-
             With cbCamabaja
                 .DataSource = dtUnidad
                 .DisplayMember = "PLACA_UNIDAD"
@@ -543,13 +568,20 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
+
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar semitrailer. " + ex.Message, "Cargar Semitrailer",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Semitrailer",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -568,7 +600,6 @@
             Dim dtEstado As DataTable
 
             dtEstado = estadoDao.getEstados
-            sqlControl.commitTransaction()
 
             With cbEstado
                 .DataSource = dtEstado
@@ -579,13 +610,20 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedValue = 1
             End With
+
+            sqlControl.commitTransaction()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar estados. " + ex.Message, "Cargar Estados",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Estados",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             End Try
         End Try
 
