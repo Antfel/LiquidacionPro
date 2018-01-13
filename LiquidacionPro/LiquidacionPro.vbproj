@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>13</ApplicationRevision>
+    <ApplicationRevision>21</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -153,6 +153,18 @@
     <Compile Include="Formularios\ChildGuia.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\ChildLiquidacionCombustible.Designer.vb">
+      <DependentUpon>ChildLiquidacionCombustible.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildLiquidacionCombustible.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ChildLiquidacionControl.Designer.vb">
+      <DependentUpon>ChildLiquidacionControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildLiquidacionControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\ChildLiquidacion.Designer.vb">
       <DependentUpon>ChildLiquidacion.vb</DependentUpon>
     </Compile>
@@ -179,10 +191,28 @@
     <Compile Include="Formularios\MDIPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\Reportes\ChildRptLiquidacionEstado.Designer.vb">
+    <Compile Include="Formularios\ChildRptLiquidacionEstado.Designer.vb">
       <DependentUpon>ChildRptLiquidacionEstado.vb</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Reportes\ChildRptLiquidacionEstado.vb">
+    <Compile Include="Formularios\ChildRptLiquidacionEstado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\RptFormLiquidacionCombustible.Designer.vb">
+      <DependentUpon>RptFormLiquidacionCombustible.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RptFormLiquidacionCombustible.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\RptFormLiquidacionGeneral.Designer.vb">
+      <DependentUpon>RptFormLiquidacionGeneral.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RptFormLiquidacionGeneral.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\RptFormLiquidacionViaje.Designer.vb">
+      <DependentUpon>RptFormLiquidacionViaje.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RptFormLiquidacionViaje.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\RptPrintFactura.Designer.vb">
@@ -210,6 +240,7 @@
     <Compile Include="LiquidacionCode\LiquidacionDAO.vb" />
     <Compile Include="LiquidacionCode\SQLControl.vb" />
     <Compile Include="LiquidacionCode\UnidadDAO.vb" />
+    <Compile Include="LiquidacionCode\UnidadMedidaDAO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -253,6 +284,12 @@
     <EmbeddedResource Include="Formularios\ChildGuia.resx">
       <DependentUpon>ChildGuia.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ChildLiquidacionCombustible.resx">
+      <DependentUpon>ChildLiquidacionCombustible.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ChildLiquidacionControl.resx">
+      <DependentUpon>ChildLiquidacionControl.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ChildLiquidacion.resx">
       <DependentUpon>ChildLiquidacion.vb</DependentUpon>
     </EmbeddedResource>
@@ -262,10 +299,45 @@
     <EmbeddedResource Include="Formularios\MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Reportes\ChildRptLiquidacionEstado.resx">
+    <EmbeddedResource Include="Formularios\ChildRptLiquidacionEstado.resx">
       <DependentUpon>ChildRptLiquidacionEstado.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Reportes\RptLiquidacionesEstado.rdlc" />
+    <Content Include="Formularios\Reportes\RptLiquidacionGeneralDetalle.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formularios\Reportes\RptLiquidacionViajeCabecera.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formularios\Reportes\RptLiquidacionViajePeaje.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formularios\Reportes\RptLiquidacionViajeViatico.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formularios\Reportes\RptLiquidacionViajeOtro.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formularios\Reportes\RptLiquidacionCombustibleCabecera.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formularios\Reportes\RptLiquidacionCombustibleDetalle.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Formularios\RptFormLiquidacionCombustible.resx">
+      <DependentUpon>RptFormLiquidacionCombustible.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptFormLiquidacionGeneral.resx">
+      <DependentUpon>RptFormLiquidacionGeneral.vb</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Formularios\Reportes\RptLiquidacionesEstado.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formularios\Reportes\RptLiquidacionGeneral.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Formularios\RptFormLiquidacionViaje.resx">
+      <DependentUpon>RptFormLiquidacionViaje.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\RptPrintFactura.resx">
       <DependentUpon>RptPrintFactura.vb</DependentUpon>
     </EmbeddedResource>
@@ -305,6 +377,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Imagenes\logo_ts.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

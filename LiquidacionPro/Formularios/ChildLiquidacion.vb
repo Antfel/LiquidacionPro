@@ -32,14 +32,14 @@
                 Dim correla As Integer
 
                 cbEstado.SelectedValue = 1
-                correla = liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue,
-                                                           cbGuia.SelectedValue,
-                                             cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
-                                             txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
-                                             Double.Parse(txtDinero.Text), Double.Parse(txtPeajes.Text), Double.Parse(txtViaticos.Text),
-                                             Double.Parse(txtGuardiania.Text), Double.Parse(txtHospedaje.Text), Double.Parse(txtBalanza.Text),
-                                             Double.Parse(txtOtros.Text), Double.Parse(txtCombustibleFisico.Text),
-                                             Double.Parse(txtCombustibleVirtual.Text), cbEstado.SelectedValue)
+                'correla = liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue,
+                '                                           cbGuia.SelectedValue,
+                '                             cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
+                '                             txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
+                '                             Double.Parse(txtDinero.Text), Double.Parse(txtPeajes.Text), Double.Parse(txtViaticos.Text),
+                '                             Double.Parse(txtGuardiania.Text), Double.Parse(txtHospedaje.Text), Double.Parse(txtBalanza.Text),
+                '                             Double.Parse(txtOtros.Text), Double.Parse(txtCombustibleFisico.Text),
+                '                             Double.Parse(txtCombustibleVirtual.Text), cbEstado.SelectedValue)
                 If correla >= 0 Then
                     txtCodigoLiquidacion.Text = CStr(correla)
                     MessageBox.Show("Liquidación grabada correctamente", "Agregar Liquidaciones",
@@ -68,13 +68,13 @@
 
                 Dim correla As Integer
 
-                correla = liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
-                                         cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
-                                         txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
-                                         Double.Parse(txtDinero.Text), Double.Parse(txtPeajes.Text), Double.Parse(txtViaticos.Text),
-                                         Double.Parse(txtGuardiania.Text), Double.Parse(txtHospedaje.Text), Double.Parse(txtBalanza.Text),
-                                         Double.Parse(txtOtros.Text), Double.Parse(txtCombustibleFisico.Text), Double.Parse(txtCombustibleVirtual.Text),
-                                         cbEstado.SelectedValue)
+                'correla = liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
+                '                         cbTracto.SelectedValue, cbCamabaja.SelectedValue, txtOrigen.Text,
+                '                         txtDestino.Text, dtpSalida.Value, dtpLlegada.Value,
+                '                         Double.Parse(txtDinero.Text), Double.Parse(txtPeajes.Text), Double.Parse(txtViaticos.Text),
+                '                         Double.Parse(txtGuardiania.Text), Double.Parse(txtHospedaje.Text), Double.Parse(txtBalanza.Text),
+                '                         Double.Parse(txtOtros.Text), Double.Parse(txtCombustibleFisico.Text), Double.Parse(txtCombustibleVirtual.Text),
+                '                         cbEstado.SelectedValue)
 
 
                 If correla >= 0 Then
