@@ -321,15 +321,24 @@
             txtDiferencia.Text = dt.Rows(0)(26)
             txtDiferenciaComb.Text = dt.Rows(0)(27)
 
+            txtCarga.Text = dt.Rows(0)(34)
+            txtPeso.Text = dt.Rows(0)(35)
+            cbUnidadMedida.SelectedValue = dt.Rows(0)(36)
+
             sqlControl.commitTransaction()
 
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Liquidación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
     End Sub

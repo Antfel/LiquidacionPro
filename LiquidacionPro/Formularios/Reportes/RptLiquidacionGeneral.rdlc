@@ -1380,6 +1380,98 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="CARGA">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!CARGA.Value, "DataSet1")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>CARGA</rd:DefaultName>
+        <Top>3.53482cm</Top>
+        <Left>2.14405cm</Left>
+        <Height>0.6cm</Height>
+        <Width>6.48702cm</Width>
+        <ZIndex>25</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="PESO">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(Fields!PESO.Value, "DataSet1")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>PESO</rd:DefaultName>
+        <Top>3.53482cm</Top>
+        <Left>10.08156cm</Left>
+        <Height>0.6cm</Height>
+        <Width>2.22722cm</Width>
+        <ZIndex>26</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="NOMBRE_UNIDAD_MEDIDA">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!NOMBRE_UNIDAD_MEDIDA.Value, "DataSet1")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>NOMBRE_UNIDAD_MEDIDA</rd:DefaultName>
+        <Top>3.53482cm</Top>
+        <Left>12.37933cm</Left>
+        <Height>0.6cm</Height>
+        <Width>0.89958cm</Width>
+        <ZIndex>27</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>3.61838in</Height>
     <Style />
@@ -1828,10 +1920,58 @@
           <DataField>CODIGO_ESTADO</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="CARGA">
+          <DataField>CARGA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PESO">
+          <DataField>PESO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="UNIDAD_MEDIDA">
+          <DataField>UNIDAD_MEDIDA</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TANQUE">
+          <DataField>TANQUE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="KM_SALIDA">
+          <DataField>KM_SALIDA</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="KM_LLEGADA">
+          <DataField>KM_LLEGADA</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="KM_RECORRIDO">
+          <DataField>KM_RECORRIDO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TOTAL_GASTO_COMBUSTIBLE">
+          <DataField>TOTAL_GASTO_COMBUSTIBLE</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="GALONES_LLEGA">
+          <DataField>GALONES_LLEGA</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="NOMBRE_UNIDAD_MEDIDA">
+          <DataField>NOMBRE_UNIDAD_MEDIDA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CONSUMO_FISICO_LIQUIDACION">
+          <DataField>CONSUMO_FISICO_LIQUIDACION</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CONSUMO_VIRTUAL_LIQUIDACION">
+          <DataField>CONSUMO_VIRTUAL_LIQUIDACION</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>rptLiquidaciones</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\rasec\Source\Repos\LiquidacionPro\LiquidacionPro\Reportes\rptLiquidaciones.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\Proyecto Facturacion\LiquidacionPro\LiquidacionPro\Reportes\rptLiquidaciones.xsd</rd:SchemaPath>
         <rd:TableName>dtRptLiquidacionGeneral</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

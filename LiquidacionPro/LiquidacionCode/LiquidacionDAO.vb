@@ -109,12 +109,15 @@ Public Class LiquidacionDAO
 			                        (coalesce(a.DINERO_LIQUIDACION,0)-(coalesce(a.PEAJES_LIQUIDACION,0)+coalesce(a.VIATICOS_LIQUIDACION,0)+coalesce(a.GUARDIANIA_LIQUIDACION,0)+
 			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0)))DIFERENCIA,
                                     a.CONSUMO_FISICO_LIQUIDACION-a.CONSUMO_VIRTUAL_LIQUIDACION DIFERENCIA_CONSUMO,
-                                    a.TOTAL_GASTO_COMBUSTIBLE,
-                                    a.TANQUE,
-                                    a.KM_SALIDA,
-                                    a.KM_LLEGADA,
-                                    a.KM_RECORRIDO,
-                                    a.GALONES_LLEGA 
+                                    coalesce(a.TOTAL_GASTO_COMBUSTIBLE,0),
+                                    coalesce(a.TANQUE,0),
+                                    coalesce(a.KM_SALIDA,0),
+                                    coalesce(a.KM_LLEGADA,0),
+                                    coalesce(a.KM_RECORRIDO,0),
+                                    coalesce(a.GALONES_LLEGA,0),
+                                    coalesce(a.CARGA,''),
+                                    coalesce(a.PESO,0),
+                                    a.UNIDAD_MEDIDA 
                         from		LIQUIDACION a
                         LEFT JOIN	UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
                         LEFT JOIN	UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD
@@ -227,6 +230,7 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@CARGA", carga))
         params.Add(New SqlParameter("@PESO", peso))
         params.Add(New SqlParameter("@UNIDAD_MEDIDA", unidadMedida))
+        MsgBox("" + carga)
 
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE updateLiquidacion 
