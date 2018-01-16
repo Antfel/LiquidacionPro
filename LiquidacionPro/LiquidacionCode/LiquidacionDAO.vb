@@ -139,9 +139,20 @@ Public Class LiquidacionDAO
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@NUMERO_LIQUIDACION", nroLiquidacion))
         params.Add(New SqlParameter("@CODIGO_TRABAJADOR", trabajador))
-        params.Add(New SqlParameter("@CODIGO_GUIA", guia))
+        If guia = -1 Then
+            params.Add(New SqlParameter("@CODIGO_GUIA", DBNull.Value))
+        Else
+            params.Add(New SqlParameter("@CODIGO_GUIA", guia))
+        End If
+
         params.Add(New SqlParameter("@CODIGO_UNIDAD_TRACTO", tracto))
-        params.Add(New SqlParameter("@CODIGO_UNIDAD_SEMITRAILER", camabaja))
+
+        If camabaja = -1 Then
+            params.Add(New SqlParameter("@CODIGO_UNIDAD_SEMITRAILER", DBNull.Value))
+        Else
+            params.Add(New SqlParameter("@CODIGO_UNIDAD_SEMITRAILER", camabaja))
+        End If
+
         params.Add(New SqlParameter("@ORIGEN_LIQUIDACION", origen))
         params.Add(New SqlParameter("@DESTINO_LIQUIDACION", destino))
         params.Add(New SqlParameter("@FECHA_SALIDA", salida))
@@ -523,7 +534,7 @@ Public Class LiquidacionDAO
         Return sqlControl.ExecQuery("select	a.CODIGO_LIQUIDACION,
 		                                    a.NUMERO_LIQUIDACION,
 		                                    a.CODIGO_TRABAJADOR,
-		                                    coalesce(b.NOMBRES_TRABAJADOR,'')+''+coalesce(b.APELLIDO_PATERNO_TRABAJADOR,'')+''+coalesce(b.APELLIDO_MATERNO_TRABAJADOR,'') TRABAJADOR,
+		                                    coalesce(b.NOMBRES_TRABAJADOR,'')+' '+coalesce(b.APELLIDO_PATERNO_TRABAJADOR,'')+' '+coalesce(b.APELLIDO_MATERNO_TRABAJADOR,'') TRABAJADOR,
 		                                    a.CODIGO_GUIA,
 		                                    c.DETALLE_GUIA,
 		                                    a.CODIGO_UNIDAD_TRACTO,
@@ -544,15 +555,15 @@ Public Class LiquidacionDAO
 		                                    a.CODIGO_ESTADO,
                                             a.CARGA, a.PESO, 
                                             a.UNIDAD_MEDIDA,
-                                            a.TANQUE,
-                                            a.KM_SALIDA,
-                                            a.KM_LLEGADA,
-                                            a.KM_RECORRIDO,
-                                            a.TOTAL_GASTO_COMBUSTIBLE,
-                                            a.GALONES_LLEGA,
-                                            f.DETALLE_ESTADO NOMBRE_UNIDAD_MEDIDA,
-                                            a.CONSUMO_FISICO_LIQUIDACION,
-                                            a.CONSUMO_VIRTUAL_LIQUIDACION 
+                                            coalesce(a.TANQUE,0)TANQUE,
+                                            coalesce(a.KM_SALIDA,0)KM_SALIDA,
+                                            coalesce(a.KM_LLEGADA,0)KM_LLEGADA,
+                                            coalesce(a.KM_RECORRIDO,0)KM_RECORRIDO,
+                                            coalesce(a.TOTAL_GASTO_COMBUSTIBLE,0)TOTAL_GASTO_COMBUSTIBLE,
+                                            coalesce(a.GALONES_LLEGA,0)GALONES_LLEGA,
+                                            coalesce(f.DETALLE_ESTADO,'') NOMBRE_UNIDAD_MEDIDA,
+                                            coalesce(a.CONSUMO_FISICO_LIQUIDACION,0) CONSUMO_FISICO_LIQUIDACION,
+                                            coalesce(a.CONSUMO_VIRTUAL_LIQUIDACION,0)  CONSUMO_VIRTUAL_LIQUIDACION 
                                     from	LIQUIDACION a 
                                     left	join TRABAJADOR b on a.CODIGO_TRABAJADOR=b.CODIGO_TRABAJADOR 
                                     left	join GUIA_TRANSPORTISTA c on c.CODIGO_GUIA=a.CODIGO_GUIA 

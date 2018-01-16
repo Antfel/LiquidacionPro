@@ -35,7 +35,7 @@ Public Class UnidadDAO
     End Sub
 
     Public Function getUnidadTractos() As DataTable
-        Return sqlControl.ExecQuery("SELECT CODIGO_UNIDAD, PLACA_UNIDAD, CODIGO_TIPO_UNIDAD, EJES_UNIDAD FROM UNIDAD WHERE CODIGO_TIPO_UNIDAD=0", Nothing)
+        Return sqlControl.ExecQuery("SELECT CODIGO_UNIDAD, PLACA_UNIDAD, CODIGO_TIPO_UNIDAD, EJES_UNIDAD FROM UNIDAD WHERE CODIGO_TIPO_UNIDAD=0 or CODIGO_TIPO_UNIDAD=2", Nothing)
     End Function
 
     Public Function getUnidadSemiTrailer() As DataTable

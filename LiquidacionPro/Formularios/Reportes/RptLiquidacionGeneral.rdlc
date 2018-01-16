@@ -18,9 +18,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
         <Top>0.17639cm</Top>
-        <Left>0.47307cm</Left>
+        <Left>0.15557cm</Left>
         <Height>0.6cm</Height>
-        <Width>4.14042cm</Width>
+        <Width>4.29917cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -47,9 +47,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
         <Top>0.84694cm</Top>
-        <Left>0.47307cm</Left>
+        <Left>0.15557cm</Left>
         <Height>0.6cm</Height>
-        <Width>6.36292cm</Width>
+        <Width>6.6275cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -77,9 +77,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
         <Top>1.5175cm</Top>
-        <Left>0.47307cm</Left>
+        <Left>0.15557cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.92333cm</Width>
+        <Width>3.24083cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -107,7 +107,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
         <Top>1.5175cm</Top>
-        <Left>11.37391cm</Left>
+        <Left>8.83391cm</Left>
         <Height>0.6cm</Height>
         <Width>3.50542cm</Width>
         <ZIndex>3</ZIndex>
@@ -137,9 +137,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
         <Top>2.18806cm</Top>
-        <Left>0.47307cm</Left>
+        <Left>0.15557cm</Left>
         <Height>0.6cm</Height>
-        <Width>1.60042cm</Width>
+        <Width>1.81209cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -167,9 +167,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
         <Top>2.86426cm</Top>
-        <Left>0.47307cm</Left>
+        <Left>0.15557cm</Left>
         <Height>0.6cm</Height>
-        <Width>1.94438cm</Width>
+        <Width>2.15605cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -197,7 +197,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox9</rd:DefaultName>
         <Top>3.53481cm</Top>
-        <Left>0.47307cm</Left>
+        <Left>0.15557cm</Left>
         <Height>0.6cm</Height>
         <Width>1.60042cm</Width>
         <ZIndex>6</ZIndex>
@@ -227,7 +227,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>2.1937cm</Top>
-        <Left>11.37391cm</Left>
+        <Left>8.83391cm</Left>
         <Height>0.6cm</Height>
         <Width>1.49458cm</Width>
         <ZIndex>7</ZIndex>
@@ -257,7 +257,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
         <Top>2.86426cm</Top>
-        <Left>11.37391cm</Left>
+        <Left>8.83391cm</Left>
         <Height>0.6cm</Height>
         <Width>1.49458cm</Width>
         <ZIndex>8</ZIndex>
@@ -287,9 +287,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox12</rd:DefaultName>
         <Top>2.1937cm</Top>
-        <Left>16.16287cm</Left>
+        <Left>12.98787cm</Left>
         <Height>0.6cm</Height>
-        <Width>1.33583cm</Width>
+        <Width>1.52104cm</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>
@@ -317,9 +317,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox13</rd:DefaultName>
         <Top>2.89953cm</Top>
-        <Left>16.16287cm</Left>
+        <Left>12.98787cm</Left>
         <Height>0.6cm</Height>
-        <Width>1.33583cm</Width>
+        <Width>1.52104cm</Width>
         <ZIndex>10</ZIndex>
         <Style>
           <Border>
@@ -347,7 +347,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox14</rd:DefaultName>
         <Top>3.53481cm</Top>
-        <Left>8.70162cm</Left>
+        <Left>8.06662cm</Left>
         <Height>0.6cm</Height>
         <Width>1.30938cm</Width>
         <ZIndex>11</ZIndex>
@@ -377,9 +377,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox15</rd:DefaultName>
         <Top>3.53481cm</Top>
-        <Left>13.27891cm</Left>
+        <Left>12.64391cm</Left>
         <Height>0.6cm</Height>
-        <Width>1.60042cm</Width>
+        <Width>1.865cm</Width>
         <ZIndex>12</ZIndex>
         <Style>
           <Border>
@@ -407,9 +407,9 @@
         </Paragraphs>
         <rd:DefaultName>TRABAJADOR</rd:DefaultName>
         <Top>0.17639cm</Top>
-        <Left>4.68405cm</Left>
+        <Left>4.86926cm</Left>
         <Height>0.6cm</Height>
-        <Width>15.16944cm</Width>
+        <Width>11.39cm</Width>
         <ZIndex>13</ZIndex>
         <Style>
           <Border>
@@ -437,9 +437,9 @@
         </Paragraphs>
         <rd:DefaultName>DETALLE_GUIA</rd:DefaultName>
         <Top>0.84694cm</Top>
-        <Left>6.90655cm</Left>
+        <Left>7.0653cm</Left>
         <Height>0.6cm</Height>
-        <Width>12.94694cm</Width>
+        <Width>9.19396cm</Width>
         <ZIndex>14</ZIndex>
         <Style>
           <Border>
@@ -467,7 +467,7 @@
         </Paragraphs>
         <rd:DefaultName>TRACTO</rd:DefaultName>
         <Top>1.5175cm</Top>
-        <Left>3.46696cm</Left>
+        <Left>3.78446cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>15</ZIndex>
@@ -497,7 +497,7 @@
         </Paragraphs>
         <rd:DefaultName>SEMITRAILER</rd:DefaultName>
         <Top>1.5175cm</Top>
-        <Left>14.94988cm</Left>
+        <Left>12.40988cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>16</ZIndex>
@@ -529,7 +529,7 @@
         <Top>2.1937cm</Top>
         <Left>2.14405cm</Left>
         <Height>0.6cm</Height>
-        <Width>8.92938cm</Width>
+        <Width>6.16069cm</Width>
         <ZIndex>17</ZIndex>
         <Style>
           <Border>
@@ -559,7 +559,7 @@
         <Top>2.86426cm</Top>
         <Left>2.48801cm</Left>
         <Height>0.6cm</Height>
-        <Width>8.58542cm</Width>
+        <Width>5.81673cm</Width>
         <ZIndex>18</ZIndex>
         <Style>
           <Border>
@@ -589,7 +589,7 @@
         </Paragraphs>
         <rd:DefaultName>FECHA_SALIDA</rd:DefaultName>
         <Top>2.1937cm</Top>
-        <Left>12.93905cm</Left>
+        <Left>10.39905cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>19</ZIndex>
@@ -621,9 +621,9 @@
         </Paragraphs>
         <rd:DefaultName>FECHA_SALIDA1</rd:DefaultName>
         <Top>2.1937cm</Top>
-        <Left>17.56926cm</Left>
+        <Left>14.6853cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Width>2.20896cm</Width>
         <ZIndex>20</ZIndex>
         <Style>
           <Border>
@@ -653,7 +653,7 @@
         </Paragraphs>
         <rd:DefaultName>FECHA_LLEGADA</rd:DefaultName>
         <Top>2.86426cm</Top>
-        <Left>12.93905cm</Left>
+        <Left>10.39905cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
         <ZIndex>21</ZIndex>
@@ -685,9 +685,9 @@
         </Paragraphs>
         <rd:DefaultName>FECHA_LLEGADA1</rd:DefaultName>
         <Top>2.89953cm</Top>
-        <Left>17.56926cm</Left>
+        <Left>14.6853cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Width>2.20896cm</Width>
         <ZIndex>22</ZIndex>
         <Style>
           <Border>
@@ -719,9 +719,9 @@
         </Paragraphs>
         <rd:DefaultName>DINERO_LIQUIDACION</rd:DefaultName>
         <Top>3.53481cm</Top>
-        <Left>14.94988cm</Left>
+        <Left>14.6853cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Width>2.20896cm</Width>
         <ZIndex>23</ZIndex>
         <Style>
           <Border>
@@ -738,10 +738,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.45118cm</Width>
+              <Width>1.59433cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>14.57445cm</Width>
+              <Width>12.5738cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.57056cm</Width>
@@ -779,38 +779,10 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <ColSpan>2</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox41">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox41</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
+                <TablixCell />
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="PEAJES_LIQUIDACION1">
@@ -879,38 +851,10 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <ColSpan>2</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox45">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox45</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
+                <TablixCell />
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="VIATICOS_LIQUIDACION1">
@@ -979,38 +923,10 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <ColSpan>2</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox48">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox48</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
+                <TablixCell />
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="GUARDIANIA_LIQUIDACION1">
@@ -1079,38 +995,10 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <ColSpan>2</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox51">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox51</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
+                <TablixCell />
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="HOSPEDAJE_LIQUIDACION1">
@@ -1179,38 +1067,10 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <ColSpan>2</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox54">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox54</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
+                <TablixCell />
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="BALANZA_LIQUIDACION1">
@@ -1279,42 +1139,10 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <ColSpan>3</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox57">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox57</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <RightBorder>
-                          <Style>None</Style>
-                        </RightBorder>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                    <ColSpan>2</ColSpan>
-                  </CellContents>
-                </TablixCell>
+                <TablixCell />
                 <TablixCell />
               </TablixCells>
             </TablixRow>
@@ -1370,9 +1198,9 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>4.67995cm</Top>
-        <Left>0.47307cm</Left>
+        <Left>0.15557cm</Left>
         <Height>4.41166cm</Height>
-        <Width>19.59619cm</Width>
+        <Width>16.73869cm</Width>
         <ZIndex>24</ZIndex>
         <Style>
           <Border>
@@ -1396,9 +1224,9 @@
         </Paragraphs>
         <rd:DefaultName>CARGA</rd:DefaultName>
         <Top>3.53482cm</Top>
-        <Left>2.14405cm</Left>
+        <Left>1.82655cm</Left>
         <Height>0.6cm</Height>
-        <Width>6.48702cm</Width>
+        <Width>6.16069cm</Width>
         <ZIndex>25</ZIndex>
         <Style>
           <Border>
@@ -1426,7 +1254,7 @@
         </Paragraphs>
         <rd:DefaultName>PESO</rd:DefaultName>
         <Top>3.53482cm</Top>
-        <Left>10.08156cm</Left>
+        <Left>9.44656cm</Left>
         <Height>0.6cm</Height>
         <Width>2.22722cm</Width>
         <ZIndex>26</ZIndex>
@@ -1458,7 +1286,7 @@
         </Paragraphs>
         <rd:DefaultName>NOMBRE_UNIDAD_MEDIDA</rd:DefaultName>
         <Top>3.53482cm</Top>
-        <Left>12.37933cm</Left>
+        <Left>11.74433cm</Left>
         <Height>0.6cm</Height>
         <Width>0.89958cm</Width>
         <ZIndex>27</ZIndex>
@@ -1476,10 +1304,10 @@
     <Height>3.61838in</Height>
     <Style />
   </Body>
-  <Width>8.108in</Width>
+  <Width>6.71217in</Width>
   <Page>
     <PageHeader>
-      <Height>3.20146cm</Height>
+      <Height>3.22792cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1503,7 +1331,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>2.23724cm</Top>
-          <Left>7.85495cm</Left>
+          <Left>5.63245cm</Left>
           <Height>0.70583cm</Height>
           <Width>6.70688cm</Width>
           <Style>
@@ -1534,9 +1362,9 @@
           </Paragraphs>
           <rd:DefaultName>NUMERO_LIQUIDACION</rd:DefaultName>
           <Top>1.46085cm</Top>
-          <Left>17.08891cm</Left>
+          <Left>13.91391cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.76458cm</Width>
+          <Width>2.66285cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -1553,7 +1381,7 @@
           <Value>logo_ts</Value>
           <Sizing>FitProportional</Sizing>
           <Top>0.14111cm</Top>
-          <Left>0.47307cm</Left>
+          <Left>0.15557cm</Left>
           <Height>1.91974cm</Height>
           <Width>7.83167cm</Width>
           <ZIndex>2</ZIndex>
@@ -1579,7 +1407,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
           <Top>1.46085cm</Top>
-          <Left>16.48919cm</Left>
+          <Left>13.31419cm</Left>
           <Height>0.6cm</Height>
           <Width>0.52917cm</Width>
           <ZIndex>3</ZIndex>
@@ -1625,7 +1453,7 @@
           </Paragraphs>
           <rd:DefaultName>DINERO_LIQUIDACION1</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>17.52044cm</Left>
+          <Left>14.34544cm</Left>
           <Height>0.6cm</Height>
           <Width>2.57056cm</Width>
           <Style>
@@ -1655,9 +1483,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox20</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>13.94446cm</Left>
+          <Left>10.08154cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.50542cm</Width>
+          <Width>4.19334cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -1685,9 +1513,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox21</rd:DefaultName>
           <Top>0.84695cm</Top>
-          <Left>14.94988cm</Left>
+          <Left>10.08154cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.5cm</Width>
+          <Width>4.19334cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -1719,7 +1547,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox22</rd:DefaultName>
           <Top>0.84695cm</Top>
-          <Left>17.48516cm</Left>
+          <Left>14.31016cm</Left>
           <Height>0.6cm</Height>
           <Width>2.60584cm</Width>
           <ZIndex>3</ZIndex>
@@ -1750,9 +1578,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox23</rd:DefaultName>
           <Top>1.5175cm</Top>
-          <Left>14.97162cm</Left>
+          <Left>10.10328cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.47826cm</Width>
+          <Width>4.1716cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>
@@ -1784,7 +1612,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox24</rd:DefaultName>
           <Top>1.5175cm</Top>
-          <Left>17.44988cm</Left>
+          <Left>14.27488cm</Left>
           <Height>0.6cm</Height>
           <Width>2.64112cm</Width>
           <ZIndex>5</ZIndex>
@@ -1808,10 +1636,10 @@
     </PageFooter>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
-    <LeftMargin>2cm</LeftMargin>
-    <RightMargin>2cm</RightMargin>
-    <TopMargin>2cm</TopMargin>
-    <BottomMargin>2cm</BottomMargin>
+    <LeftMargin>1cm</LeftMargin>
+    <RightMargin>0.5cm</RightMargin>
+    <TopMargin>1cm</TopMargin>
+    <BottomMargin>1cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>

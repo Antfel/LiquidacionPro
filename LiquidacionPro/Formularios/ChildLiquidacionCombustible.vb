@@ -268,6 +268,11 @@
             txtKmLlegada.Text = dt.Rows(0)(31)
             txtKmRecorrido.Text = dt.Rows(0)(32)
             txtLlegadaLima.Text = dt.Rows(0)(33)
+
+            txtCarga.Text = dt.Rows(0)(34)
+            txtPeso.Text = dt.Rows(0)(35)
+            cbUnidadMedida.SelectedValue = dt.Rows(0)(36)
+
             sqlControl.commitTransaction()
 
         Catch ex As Exception

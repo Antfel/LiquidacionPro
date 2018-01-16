@@ -39,8 +39,6 @@ Partial Class MDIPrincipal
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesPorEstadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LiquidacionGeneralToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LiquidaciónViajeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -50,7 +48,7 @@ Partial Class MDIPrincipal
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel})
         Me.StatusStrip.Location = New System.Drawing.Point(0, 535)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(1321, 22)
+        Me.StatusStrip.Size = New System.Drawing.Size(1012, 22)
         Me.StatusStrip.TabIndex = 7
         Me.StatusStrip.Text = "StatusStrip"
         '
@@ -65,7 +63,7 @@ Partial Class MDIPrincipal
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ReportesToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1321, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1012, 24)
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -120,7 +118,7 @@ Partial Class MDIPrincipal
         '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem1, Me.LiquidacionGeneralToolStripMenuItem, Me.LiquidaciónViajeToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem1})
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.ReportesToolStripMenuItem.Text = "Reportes"
@@ -129,7 +127,7 @@ Partial Class MDIPrincipal
         '
         Me.LiquidacionesToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesPorEstadoToolStripMenuItem})
         Me.LiquidacionesToolStripMenuItem1.Name = "LiquidacionesToolStripMenuItem1"
-        Me.LiquidacionesToolStripMenuItem1.Size = New System.Drawing.Size(178, 22)
+        Me.LiquidacionesToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.LiquidacionesToolStripMenuItem1.Text = "Liquidaciones"
         '
         'LiquidacionesPorEstadoToolStripMenuItem
@@ -138,23 +136,11 @@ Partial Class MDIPrincipal
         Me.LiquidacionesPorEstadoToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
         Me.LiquidacionesPorEstadoToolStripMenuItem.Text = "Liquidaciones por Estado"
         '
-        'LiquidacionGeneralToolStripMenuItem
-        '
-        Me.LiquidacionGeneralToolStripMenuItem.Name = "LiquidacionGeneralToolStripMenuItem"
-        Me.LiquidacionGeneralToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
-        Me.LiquidacionGeneralToolStripMenuItem.Text = "Liquidacion general"
-        '
-        'LiquidaciónViajeToolStripMenuItem
-        '
-        Me.LiquidaciónViajeToolStripMenuItem.Name = "LiquidaciónViajeToolStripMenuItem"
-        Me.LiquidaciónViajeToolStripMenuItem.Size = New System.Drawing.Size(178, 22)
-        Me.LiquidaciónViajeToolStripMenuItem.Text = "Liquidación Viaje"
-        '
         'MDIPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1321, 557)
+        Me.ClientSize = New System.Drawing.Size(1012, 557)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.MenuStrip1)
         Me.IsMdiContainer = True
@@ -183,7 +169,5 @@ Partial Class MDIPrincipal
     Friend WithEvents ClientesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TrabajadorToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LiquidaciónControlToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents LiquidacionGeneralToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents LiquidaciónViajeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LiquidaciónDeCombustibleToolStripMenuItem As ToolStripMenuItem
 End Class

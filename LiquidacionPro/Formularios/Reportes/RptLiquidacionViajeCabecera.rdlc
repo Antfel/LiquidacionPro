@@ -71,16 +71,16 @@
               <Width>3.51817cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.25359cm</Width>
+              <Width>2.56566cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.25359cm</Width>
+              <Width>2.69796cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.25359cm</Width>
+              <Width>2.72442cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.25359cm</Width>
+              <Width>2.61859cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1026,7 +1026,7 @@
         <Top>0.69697cm</Top>
         <Left>0.28787cm</Left>
         <Height>3.02645cm</Height>
-        <Width>19.90959cm</Width>
+        <Width>17.50187cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -1716,7 +1716,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>4.93417cm</Width>
+              <Width>5.65752cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -2051,9 +2051,9 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>11.66496cm</Top>
-        <Left>4.38828cm</Left>
+        <Left>3.66493cm</Left>
         <Height>2.4cm</Height>
-        <Width>7.43417cm</Width>
+        <Width>8.15752cm</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -2065,7 +2065,7 @@
     <Height>5.59375in</Height>
     <Style />
   </Body>
-  <Width>8.08333in</Width>
+  <Width>7.09375in</Width>
   <Page>
     <PageHeader>
       <Height>1.03187cm</Height>
@@ -2092,10 +2092,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.24662cm</Top>
+          <Top>0.22021cm</Top>
           <Left>0.28787cm</Left>
           <Height>0.70583cm</Height>
-          <Width>19.90958cm</Width>
+          <Width>17.50187cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -2116,10 +2116,10 @@
     </PageHeader>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
-    <LeftMargin>2cm</LeftMargin>
-    <RightMargin>2cm</RightMargin>
-    <TopMargin>2cm</TopMargin>
-    <BottomMargin>2cm</BottomMargin>
+    <LeftMargin>1cm</LeftMargin>
+    <RightMargin>0.5cm</RightMargin>
+    <TopMargin>1cm</TopMargin>
+    <BottomMargin>1cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>

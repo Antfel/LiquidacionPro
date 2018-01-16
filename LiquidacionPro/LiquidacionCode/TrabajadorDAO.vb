@@ -48,7 +48,7 @@ Public Class TrabajadorDAO
                               coalesce(APELLIDO_PATERNO_TRABAJADOR,'') + ' '+
                               coalesce(APELLIDO_MATERNO_TRABAJADOR,'') + ', ' +
                               coalesce(NOMBRES_TRABAJADOR,'') as NOMBRE_TRABAJADOR
-                        FROM TRABAJADOR where CODIGO_CARGO_TRABAJADOR = 1 or CODIGO_CARGO_TRABAJADOR = 8", Nothing)
+                        FROM TRABAJADOR where CODIGO_CARGO_TRABAJADOR = 1 or CODIGO_CARGO_TRABAJADOR = 8 or CODIGO_CARGO_TRABAJADOR = 6", Nothing)
     End Function
 
     Public Function getAllTrabajador() As DataTable

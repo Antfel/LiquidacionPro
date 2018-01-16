@@ -52,10 +52,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>17.02563cm</Width>
+                  <Width>14.16813cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.58056cm</Width>
+                  <Width>2.57056cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -125,7 +125,6 @@
                             <rd:FormatSymbolCulture>es-PE</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -147,7 +146,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Height>0.6cm</Height>
-            <Width>19.60619cm</Width>
+            <Width>16.73869cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -158,7 +157,7 @@
         <Height>0.25in</Height>
         <Style />
       </Body>
-      <Width>7.72383in</Width>
+      <Width>6.60925in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>

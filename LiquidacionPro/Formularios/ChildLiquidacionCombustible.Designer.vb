@@ -135,7 +135,7 @@ Partial Class ChildLiquidacionCombustible
         Me.cbCamabaja.Location = New System.Drawing.Point(340, 64)
         Me.cbCamabaja.Name = "cbCamabaja"
         Me.cbCamabaja.Size = New System.Drawing.Size(100, 21)
-        Me.cbCamabaja.TabIndex = 59
+        Me.cbCamabaja.TabIndex = 56
         '
         'cbTracto
         '
@@ -144,7 +144,7 @@ Partial Class ChildLiquidacionCombustible
         Me.cbTracto.Location = New System.Drawing.Point(340, 38)
         Me.cbTracto.Name = "cbTracto"
         Me.cbTracto.Size = New System.Drawing.Size(100, 21)
-        Me.cbTracto.TabIndex = 53
+        Me.cbTracto.TabIndex = 52
         '
         'cbTrabajador
         '
@@ -190,7 +190,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtDinero.Name = "txtDinero"
         Me.txtDinero.ReadOnly = True
         Me.txtDinero.Size = New System.Drawing.Size(107, 20)
-        Me.txtDinero.TabIndex = 58
+        Me.txtDinero.TabIndex = 55
         '
         'Label18
         '
@@ -246,7 +246,7 @@ Partial Class ChildLiquidacionCombustible
         Me.btnAgregarLiquidacion.Location = New System.Drawing.Point(905, 53)
         Me.btnAgregarLiquidacion.Name = "btnAgregarLiquidacion"
         Me.btnAgregarLiquidacion.Size = New System.Drawing.Size(132, 34)
-        Me.btnAgregarLiquidacion.TabIndex = 82
+        Me.btnAgregarLiquidacion.TabIndex = 62
         Me.btnAgregarLiquidacion.Text = "Grabar"
         Me.btnAgregarLiquidacion.UseVisualStyleBackColor = True
         '
@@ -273,7 +273,7 @@ Partial Class ChildLiquidacionCombustible
         Me.dtpLlegada.Location = New System.Drawing.Point(739, 64)
         Me.dtpLlegada.Name = "dtpLlegada"
         Me.dtpLlegada.Size = New System.Drawing.Size(150, 20)
-        Me.dtpLlegada.TabIndex = 61
+        Me.dtpLlegada.TabIndex = 58
         '
         'Label15
         '
@@ -291,7 +291,7 @@ Partial Class ChildLiquidacionCombustible
         Me.dtpSalida.Location = New System.Drawing.Point(739, 38)
         Me.dtpSalida.Name = "dtpSalida"
         Me.dtpSalida.Size = New System.Drawing.Size(150, 20)
-        Me.dtpSalida.TabIndex = 56
+        Me.dtpSalida.TabIndex = 54
         '
         'Label6
         '
@@ -308,7 +308,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtDestino.Name = "txtDestino"
         Me.txtDestino.ReadOnly = True
         Me.txtDestino.Size = New System.Drawing.Size(107, 20)
-        Me.txtDestino.TabIndex = 60
+        Me.txtDestino.TabIndex = 57
         '
         'Label14
         '
@@ -393,7 +393,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtOrigen.Name = "txtOrigen"
         Me.txtOrigen.ReadOnly = True
         Me.txtOrigen.Size = New System.Drawing.Size(107, 20)
-        Me.txtOrigen.TabIndex = 55
+        Me.txtOrigen.TabIndex = 53
         '
         'Label5
         '
@@ -572,7 +572,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtCarga.Name = "txtCarga"
         Me.txtCarga.ReadOnly = True
         Me.txtCarga.Size = New System.Drawing.Size(217, 20)
-        Me.txtCarga.TabIndex = 106
+        Me.txtCarga.TabIndex = 59
         '
         'Label35
         '
@@ -598,7 +598,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtPeso.Name = "txtPeso"
         Me.txtPeso.ReadOnly = True
         Me.txtPeso.Size = New System.Drawing.Size(85, 20)
-        Me.txtPeso.TabIndex = 109
+        Me.txtPeso.TabIndex = 60
         '
         'Label37
         '
@@ -616,7 +616,7 @@ Partial Class ChildLiquidacionCombustible
         Me.cbUnidadMedida.Location = New System.Drawing.Point(521, 90)
         Me.cbUnidadMedida.Name = "cbUnidadMedida"
         Me.cbUnidadMedida.Size = New System.Drawing.Size(112, 21)
-        Me.cbUnidadMedida.TabIndex = 111
+        Me.cbUnidadMedida.TabIndex = 61
         '
         'Label7
         '

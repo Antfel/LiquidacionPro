@@ -18,8 +18,6 @@
         dtpLlegada.CustomFormat = "dd/MM/yyyy hh:mm tt"
         dtpFechaHoraPeaje.Format = DateTimePickerFormat.Custom
         dtpFechaHoraPeaje.CustomFormat = "dd/MM/yyyy hh:mm tt"
-        dtpTurnoViaticos.Format = DateTimePickerFormat.Custom
-        dtpTurnoViaticos.CustomFormat = "dd/MM/yyyy hh:mm tt"
         limpiar()
     End Sub
 
@@ -84,20 +82,46 @@
             Return
         End If
 
+        'If cbCamabaja.SelectedIndex < 0 Then
+        '    MessageBox.Show("Seleccionar un semitrailer.", "Agregar liquidación",
+        '                        MessageBoxButtons.OK,
+        '                        MessageBoxIcon.Exclamation)
+        '    Return
+        'End If
+
+
+        'If cbGuia.SelectedIndex < 0 Then
+        '    MessageBox.Show("Seleccionar una guía de transportista.", "Agregar liquidación",
+        '                        MessageBoxButtons.OK,
+        '                        MessageBoxIcon.Exclamation)
+        '    Return
+        'End If
+
+        Dim respuesta As Integer, guia, camabaja As Integer
+
+        guia = -1
+        camabaja = -1
+
+
         If cbCamabaja.SelectedIndex < 0 Then
-            MessageBox.Show("Seleccionar un semitrailer.", "Agregar liquidación",
-                                MessageBoxButtons.OK,
+            respuesta = MessageBox.Show("Está registrando una liquidación sin camabaja asignada. ¿Está seguro de proceder?", "Valiidación",
+                                MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Exclamation)
-            Return
+
+            If respuesta = 7 Then
+                Return
+            End If
         End If
 
         If cbGuia.SelectedIndex < 0 Then
-            MessageBox.Show("Seleccionar una guía de transportista.", "Agregar liquidación",
-                                MessageBoxButtons.OK,
+            respuesta = MessageBox.Show("Está registrando una liquidación sin guía de transportista. ¿Está seguro de proceder?", "Valiidación",
+                                MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Exclamation)
-            Return
-        End If
 
+            If respuesta = 7 Then
+                Return
+            End If
+        End If
         Dim origen As String, destino As String, dinero As Double, peaje As Double, viatico As Double, guardiania As Double, hospedaje As Double, balanza As Double,
             otros As Double, fisico As Double, virtual As Double, carga As String, peso As Double, unidadMedida As Integer
 
@@ -179,6 +203,18 @@
             peso = Double.Parse(txtPeso.Text)
         End If
 
+        If cbGuia.SelectedIndex < 0 Then
+            guia = -1
+        Else
+            guia = cbGuia.SelectedValue
+        End If
+
+        If cbCamabaja.SelectedIndex < 0 Then
+            camabaja = -1
+        Else
+            camabaja = cbCamabaja.SelectedValue
+        End If
+
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
 
@@ -196,8 +232,8 @@
 
 
                 correla = liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue,
-                                                           cbGuia.SelectedValue,
-                                             cbTracto.SelectedValue, cbCamabaja.SelectedValue, origen,
+                                                           guia,
+                                             cbTracto.SelectedValue, camabaja, origen,
                                              destino, dtpSalida.Value, dtpLlegada.Value,
                                              dinero, peaje, viatico,
                                              guardiania, hospedaje, balanza,
@@ -231,8 +267,8 @@
 
                 Dim correla As Integer
 
-                correla = liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, cbGuia.SelectedValue,
-                                         cbTracto.SelectedValue, cbCamabaja.SelectedValue, origen,
+                correla = liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, guia,
+                                         cbTracto.SelectedValue, camabaja, origen,
                                          destino, dtpSalida.Value, dtpLlegada.Value,
                                          dinero, peaje, viatico,
                                          guardiania, hospedaje, balanza,
@@ -299,12 +335,20 @@
             txtCodigoLiquidacion.Text = dt.Rows(0)(0)
             txtNroLiquidacion.Text = dt.Rows(0)(1)
             cbTrabajador.SelectedValue = dt.Rows(0)(2)
-            actualizarDatosGuiaRegistrada(CInt(dt.Rows(0)(4)))
-            cbGuia.SelectedValue = dt.Rows(0)(4)
+            If dt.Rows(0)(4) IsNot DBNull.Value Then
+                actualizarDatosGuiaRegistrada(CInt(dt.Rows(0)(4)))
+                cbGuia.SelectedValue = dt.Rows(0)(4)
+            End If
+
+
             cbTracto.SelectedValue = dt.Rows(0)(6)
             txtOrigen.Text = dt.Rows(0)(10)
             dtpLlegada.Value = dt.Rows(0)(13)
-            cbCamabaja.SelectedValue = dt.Rows(0)(8)
+
+            If dt.Rows(0)(8) IsNot DBNull.Value Then
+                cbCamabaja.SelectedValue = dt.Rows(0)(8)
+            End If
+
             txtDestino.Text = dt.Rows(0)(11)
             dtpSalida.Value = dt.Rows(0)(12)
             txtDinero.Text = dt.Rows(0)(14)
