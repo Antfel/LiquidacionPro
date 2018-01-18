@@ -100,15 +100,15 @@ Public Class LiquidacionDAO
                                     a.HOSPEDAJE_LIQUIDACION,
 			                        a.BALANZA_LIQUIDACION,
 			                        a.OTROS_LIQUIDACION,
-			                        a.CONSUMO_FISICO_LIQUIDACION,
-			                        a.CONSUMO_VIRTUAL_LIQUIDACION,
+			                        coalesce(a.CONSUMO_FISICO_LIQUIDACION,0),
+			                        coalesce(a.CONSUMO_VIRTUAL_LIQUIDACION,0),
 			                        a.CODIGO_ESTADO,
 			                        e.DETALLE_ESTADO,
                                     (coalesce(a.PEAJES_LIQUIDACION,0)+coalesce(a.VIATICOS_LIQUIDACION,0)+coalesce(a.GUARDIANIA_LIQUIDACION,0)+
 			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0)) TOTAL_GASTO,
 			                        (coalesce(a.DINERO_LIQUIDACION,0)-(coalesce(a.PEAJES_LIQUIDACION,0)+coalesce(a.VIATICOS_LIQUIDACION,0)+coalesce(a.GUARDIANIA_LIQUIDACION,0)+
 			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0)))DIFERENCIA,
-                                    a.CONSUMO_FISICO_LIQUIDACION-a.CONSUMO_VIRTUAL_LIQUIDACION DIFERENCIA_CONSUMO,
+                                    coalesce(a.CONSUMO_FISICO_LIQUIDACION,0)-coalesce(a.CONSUMO_VIRTUAL_LIQUIDACION,0) DIFERENCIA_CONSUMO,
                                     coalesce(a.TOTAL_GASTO_COMBUSTIBLE,0),
                                     coalesce(a.TANQUE,0),
                                     coalesce(a.KM_SALIDA,0),
@@ -117,7 +117,11 @@ Public Class LiquidacionDAO
                                     coalesce(a.GALONES_LLEGA,0),
                                     coalesce(a.CARGA,''),
                                     coalesce(a.PESO,0),
-                                    a.UNIDAD_MEDIDA 
+                                    coalesce(a.UNIDAD_MEDIDA,-1),
+                                    coalesce(a.RUTA_DETALLE,''),
+                                    coalesce(a.CARGA_DETALLE,''),
+                                    coalesce(a.AJUSTE_GALONES,0),
+                                    coalesce(a.TOTAL_GALONES,0) 
                         from		LIQUIDACION a
                         LEFT JOIN	UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
                         LEFT JOIN	UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD
@@ -241,7 +245,6 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@CARGA", carga))
         params.Add(New SqlParameter("@PESO", peso))
         params.Add(New SqlParameter("@UNIDAD_MEDIDA", unidadMedida))
-        MsgBox("" + carga)
 
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE updateLiquidacion 
@@ -281,7 +284,8 @@ Public Class LiquidacionDAO
     End Function
 
     Public Function UpdateLiquidacionCombustible(codigo As String, tanque As Double, salida As Double, llegada As Double,
-                                                 recorrido As Double, galonesLlega As Double, virtual As Double) As Integer
+                                                 recorrido As Double, galonesLlega As Double, virtual As Double,
+                                                 rutaDetalle As String, cargaDetalle As String, ajuste As Double, pesoDescripcion As String) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
@@ -291,7 +295,10 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@KM_RECORRIDO", recorrido))
         params.Add(New SqlParameter("@GALONES_LLEGA", galonesLlega))
         params.Add(New SqlParameter("@CONSUMO_VIRTUAL_LIQUIDACION", virtual))
-
+        params.Add(New SqlParameter("@RUTA_DETALLE", rutaDetalle))
+        params.Add(New SqlParameter("@CARGA_DETALLE", cargaDetalle))
+        params.Add(New SqlParameter("@AJUSTE_GALONES", ajuste))
+        params.Add(New SqlParameter("@PESO_DESCRIPCION", pesoDescripcion))
 
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE updateLiquidacionCombustible 
@@ -301,7 +308,11 @@ Public Class LiquidacionDAO
                                         @KM_LLEGADA,
                                         @KM_RECORRIDO,
                                         @GALONES_LLEGA,
-                                        @CONSUMO_VIRTUAL_LIQUIDACION 
+                                        @CONSUMO_VIRTUAL_LIQUIDACION,
+                                        @RUTA_DETALLE,
+                                        @CARGA_DETALLE,
+                                        @AJUSTE_GALONES,
+                                        @PESO_DESCRIPCION 
                                         ", params)
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
@@ -450,7 +461,8 @@ Public Class LiquidacionDAO
     End Function
 
     Public Function InsertLiquidacionCombustible(codigo As Integer, fecha As Date, lugar As String,
-                                                 galones As Double, precioGalon As Double, total As Double) As Integer
+                                                 galones As Double, precioGalon As Double, total As Double,
+                                                 km As Double) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
@@ -459,6 +471,7 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@GALONES", galones))
         params.Add(New SqlParameter("@PRECIO_GALON", precioGalon))
         params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@KM", km))
 
 
         Dim dt As DataTable
@@ -468,7 +481,8 @@ Public Class LiquidacionDAO
                                         @LUGAR,
                                         @GALONES,
                                         @PRECIO_GALON,
-                                        @TOTAL ", params)
+                                        @TOTAL,
+                                        @KM ", params)
 
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
@@ -523,7 +537,8 @@ Public Class LiquidacionDAO
 		                                    LUGAR,
 		                                    GALONES,
 		                                    PRECIO_GALON,
-		                                    TOTAL 
+		                                    TOTAL,
+                                            coalesce(KM,0) KM 
                                     from	LIQUIDACION_COMBUSTIBLE
                                     where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
                         ", Nothing)
@@ -667,4 +682,43 @@ Public Class LiquidacionDAO
                                     WHERE	CODIGO_LIQUIDACION=" + CStr(codigo) + " AND BALANZA_LIQUIDACION<>0", Nothing)
     End Function
 
+    Public Function getRptLiquidacionCombustiblePrincipal(codigo As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	a.CODIGO_LIQUIDACION,
+		                                    a.FECHA_SALIDA,
+		                                    a.FECHA_LLEGADA,
+		                                    a.CODIGO_UNIDAD_TRACTO,
+		                                    b.PLACA_UNIDAD TRACTO,
+		                                    a.CODIGO_UNIDAD_SEMITRAILER,
+		                                    c.PLACA_UNIDAD SEMITRAILER,
+		                                    a.CODIGO_TRABAJADOR,
+		                                    d.APELLIDO_PATERNO_TRABAJADOR+' '+d.APELLIDO_MATERNO_TRABAJADOR+' '+d.NOMBRES_TRABAJADOR TRABAJADOR,
+		                                    a.RUTA_DETALLE,
+		                                    a.CARGA_DETALLE,
+		                                    a.PESO_DESCRIPCION,
+		                                    a.KM_SALIDA,
+		                                    a.KM_LLEGADA,
+                                            a.KM_RECORRIDO,
+		                                    a.CONSUMO_VIRTUAL_LIQUIDACION,
+		                                    a.CONSUMO_FISICO_LIQUIDACION,
+                                            (CASE WHEN a.AJUSTE_GALONES<0 THEN (a.AJUSTE_GALONES*-1) ELSE COALESCE(a.AJUSTE_GALONES,0) END) AJUSTE_GALONES,
+                                            a.TOTAL_GALONES 
+                                    FROM	LIQUIDACION a 
+                                    LEFT	JOIN UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
+                                    LEFT	JOIN UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD
+                                    LEFT	join TRABAJADOR d on a.CODIGO_TRABAJADOR=d.CODIGO_TRABAJADOR
+                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + "", Nothing)
+    End Function
+
+    Public Function getRptLiquidacionCombustiblePrincipalDetalle(codigo As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	CODIGO_LIQUIDACION,
+		                                    CODIGO_COMBUSTIBLE,
+		                                    FECHA,
+		                                    LUGAR,
+		                                    GALONES,
+		                                    KM 
+                                    FROM	LIQUIDACION_COMBUSTIBLE
+                                    WHERE	CODIGO_LIQUIDACION=" + CStr(codigo) + "", Nothing)
+    End Function
 End Class

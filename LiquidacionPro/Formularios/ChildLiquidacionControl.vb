@@ -266,7 +266,6 @@
                 liquidacionDao.setDBcmd()
 
                 Dim correla As Integer
-
                 correla = liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, guia,
                                          cbTracto.SelectedValue, camabaja, origen,
                                          destino, dtpSalida.Value, dtpLlegada.Value,
@@ -367,7 +366,13 @@
 
             txtCarga.Text = dt.Rows(0)(34)
             txtPeso.Text = dt.Rows(0)(35)
-            cbUnidadMedida.SelectedValue = dt.Rows(0)(36)
+
+            If dt.Rows(0)(36) <> -1 Then
+                cbUnidadMedida.SelectedValue = dt.Rows(0)(36)
+            Else
+                cbUnidadMedida.SelectedIndex = 0
+            End If
+
 
             sqlControl.commitTransaction()
 
