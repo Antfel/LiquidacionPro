@@ -53,6 +53,10 @@ Partial Public Class rptLiquidaciones
     
     Private tabledtRptLiquidacionCombustible As dtRptLiquidacionCombustibleDataTable
     
+    Private tabledtRptLiquidacionCombustiblePrincipal As dtRptLiquidacionCombustiblePrincipalDataTable
+    
+    Private tabledtRptLiquidacionCombustiblePrincipalDetalle As dtRptLiquidacionCombustiblePrincipalDetalleDataTable
+    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -123,6 +127,12 @@ Partial Public Class rptLiquidaciones
             End If
             If (Not (ds.Tables("dtRptLiquidacionCombustible")) Is Nothing) Then
                 MyBase.Tables.Add(New dtRptLiquidacionCombustibleDataTable(ds.Tables("dtRptLiquidacionCombustible")))
+            End If
+            If (Not (ds.Tables("dtRptLiquidacionCombustiblePrincipal")) Is Nothing) Then
+                MyBase.Tables.Add(New dtRptLiquidacionCombustiblePrincipalDataTable(ds.Tables("dtRptLiquidacionCombustiblePrincipal")))
+            End If
+            If (Not (ds.Tables("dtRptLiquidacionCombustiblePrincipalDetalle")) Is Nothing) Then
+                MyBase.Tables.Add(New dtRptLiquidacionCombustiblePrincipalDetalleDataTable(ds.Tables("dtRptLiquidacionCombustiblePrincipalDetalle")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -283,6 +293,26 @@ Partial Public Class rptLiquidaciones
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property dtRptLiquidacionCombustiblePrincipal() As dtRptLiquidacionCombustiblePrincipalDataTable
+        Get
+            Return Me.tabledtRptLiquidacionCombustiblePrincipal
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property dtRptLiquidacionCombustiblePrincipalDetalle() As dtRptLiquidacionCombustiblePrincipalDetalleDataTable
+        Get
+            Return Me.tabledtRptLiquidacionCombustiblePrincipalDetalle
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
      Global.System.ComponentModel.BrowsableAttribute(true),  _
      Global.System.ComponentModel.DesignerSerializationVisibilityAttribute(Global.System.ComponentModel.DesignerSerializationVisibility.Visible)>  _
     Public Overrides Property SchemaSerializationMode() As Global.System.Data.SchemaSerializationMode
@@ -389,6 +419,12 @@ Partial Public Class rptLiquidaciones
             End If
             If (Not (ds.Tables("dtRptLiquidacionCombustible")) Is Nothing) Then
                 MyBase.Tables.Add(New dtRptLiquidacionCombustibleDataTable(ds.Tables("dtRptLiquidacionCombustible")))
+            End If
+            If (Not (ds.Tables("dtRptLiquidacionCombustiblePrincipal")) Is Nothing) Then
+                MyBase.Tables.Add(New dtRptLiquidacionCombustiblePrincipalDataTable(ds.Tables("dtRptLiquidacionCombustiblePrincipal")))
+            End If
+            If (Not (ds.Tables("dtRptLiquidacionCombustiblePrincipalDetalle")) Is Nothing) Then
+                MyBase.Tables.Add(New dtRptLiquidacionCombustiblePrincipalDetalleDataTable(ds.Tables("dtRptLiquidacionCombustiblePrincipalDetalle")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -506,6 +542,18 @@ Partial Public Class rptLiquidaciones
                 Me.tabledtRptLiquidacionCombustible.InitVars
             End If
         End If
+        Me.tabledtRptLiquidacionCombustiblePrincipal = CType(MyBase.Tables("dtRptLiquidacionCombustiblePrincipal"),dtRptLiquidacionCombustiblePrincipalDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tabledtRptLiquidacionCombustiblePrincipal) Is Nothing) Then
+                Me.tabledtRptLiquidacionCombustiblePrincipal.InitVars
+            End If
+        End If
+        Me.tabledtRptLiquidacionCombustiblePrincipalDetalle = CType(MyBase.Tables("dtRptLiquidacionCombustiblePrincipalDetalle"),dtRptLiquidacionCombustiblePrincipalDetalleDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tabledtRptLiquidacionCombustiblePrincipalDetalle) Is Nothing) Then
+                Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.InitVars
+            End If
+        End If
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -544,6 +592,10 @@ Partial Public Class rptLiquidaciones
         MyBase.Tables.Add(Me.tabledtRptLiquidacionViajeOtro)
         Me.tabledtRptLiquidacionCombustible = New dtRptLiquidacionCombustibleDataTable()
         MyBase.Tables.Add(Me.tabledtRptLiquidacionCombustible)
+        Me.tabledtRptLiquidacionCombustiblePrincipal = New dtRptLiquidacionCombustiblePrincipalDataTable()
+        MyBase.Tables.Add(Me.tabledtRptLiquidacionCombustiblePrincipal)
+        Me.tabledtRptLiquidacionCombustiblePrincipalDetalle = New dtRptLiquidacionCombustiblePrincipalDetalleDataTable()
+        MyBase.Tables.Add(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -627,6 +679,18 @@ Partial Public Class rptLiquidaciones
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Private Function ShouldSerializedtRptLiquidacionCombustible() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Private Function ShouldSerializedtRptLiquidacionCombustiblePrincipal() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Private Function ShouldSerializedtRptLiquidacionCombustiblePrincipalDetalle() As Boolean
         Return false
     End Function
     
@@ -729,6 +793,12 @@ Partial Public Class rptLiquidaciones
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Delegate Sub dtRptLiquidacionCombustibleRowChangeEventHandler(ByVal sender As Object, ByVal e As dtRptLiquidacionCombustibleRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Delegate Sub dtRptLiquidacionCombustiblePrincipalRowChangeEventHandler(ByVal sender As Object, ByVal e As dtRptLiquidacionCombustiblePrincipalRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Delegate Sub dtRptLiquidacionCombustiblePrincipalDetalleRowChangeEventHandler(ByVal sender As Object, ByVal e As dtRptLiquidacionCombustiblePrincipalDetalleRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -6553,6 +6623,828 @@ Partial Public Class rptLiquidaciones
     End Class
     
     '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class dtRptLiquidacionCombustiblePrincipalDataTable
+        Inherits Global.System.Data.TypedTableBase(Of dtRptLiquidacionCombustiblePrincipalRow)
+        
+        Private columnCODIGO_LIQUIDACION As Global.System.Data.DataColumn
+        
+        Private columnFECHA_SALIDA As Global.System.Data.DataColumn
+        
+        Private columnFECHA_LLEGADA As Global.System.Data.DataColumn
+        
+        Private columnCODIGO_UNIDAD_TRACTO As Global.System.Data.DataColumn
+        
+        Private columnTRACTO As Global.System.Data.DataColumn
+        
+        Private columnCODIGO_UNIDAD_SEMITRAILER As Global.System.Data.DataColumn
+        
+        Private columnSEMITRAILER As Global.System.Data.DataColumn
+        
+        Private columnCODIGO_TRABAJADOR As Global.System.Data.DataColumn
+        
+        Private columnTRABAJADOR As Global.System.Data.DataColumn
+        
+        Private columnRUTA_DETALLE As Global.System.Data.DataColumn
+        
+        Private columnCARGA_DETALLE As Global.System.Data.DataColumn
+        
+        Private columnPESO_DESCRIPCION As Global.System.Data.DataColumn
+        
+        Private columnKM_SALIDA As Global.System.Data.DataColumn
+        
+        Private columnKM_LLEGADA As Global.System.Data.DataColumn
+        
+        Private columnKM_RECORRIDO As Global.System.Data.DataColumn
+        
+        Private columnCONSUMO_VIRTUAL_LIQUIDACION As Global.System.Data.DataColumn
+        
+        Private columnCONSUMO_FISICO_LIQUIDACION As Global.System.Data.DataColumn
+        
+        Private columnAJUSTE_GALONES As Global.System.Data.DataColumn
+        
+        Private columnTOTAL_GALONES As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "dtRptLiquidacionCombustiblePrincipal"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CODIGO_LIQUIDACIONColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCODIGO_LIQUIDACION
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property FECHA_SALIDAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFECHA_SALIDA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property FECHA_LLEGADAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFECHA_LLEGADA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CODIGO_UNIDAD_TRACTOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCODIGO_UNIDAD_TRACTO
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TRACTOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTRACTO
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CODIGO_UNIDAD_SEMITRAILERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCODIGO_UNIDAD_SEMITRAILER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SEMITRAILERColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSEMITRAILER
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CODIGO_TRABAJADORColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCODIGO_TRABAJADOR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TRABAJADORColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTRABAJADOR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property RUTA_DETALLEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnRUTA_DETALLE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CARGA_DETALLEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCARGA_DETALLE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PESO_DESCRIPCIONColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPESO_DESCRIPCION
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property KM_SALIDAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnKM_SALIDA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property KM_LLEGADAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnKM_LLEGADA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property KM_RECORRIDOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnKM_RECORRIDO
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CONSUMO_VIRTUAL_LIQUIDACIONColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCONSUMO_VIRTUAL_LIQUIDACION
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CONSUMO_FISICO_LIQUIDACIONColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCONSUMO_FISICO_LIQUIDACION
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property AJUSTE_GALONESColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAJUSTE_GALONES
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property TOTAL_GALONESColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTOTAL_GALONES
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As dtRptLiquidacionCombustiblePrincipalRow
+            Get
+                Return CType(Me.Rows(index),dtRptLiquidacionCombustiblePrincipalRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event dtRptLiquidacionCombustiblePrincipalRowChanging As dtRptLiquidacionCombustiblePrincipalRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event dtRptLiquidacionCombustiblePrincipalRowChanged As dtRptLiquidacionCombustiblePrincipalRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event dtRptLiquidacionCombustiblePrincipalRowDeleting As dtRptLiquidacionCombustiblePrincipalRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event dtRptLiquidacionCombustiblePrincipalRowDeleted As dtRptLiquidacionCombustiblePrincipalRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Sub AdddtRptLiquidacionCombustiblePrincipalRow(ByVal row As dtRptLiquidacionCombustiblePrincipalRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Function AdddtRptLiquidacionCombustiblePrincipalRow( _
+                    ByVal CODIGO_LIQUIDACION As Long,  _
+                    ByVal FECHA_SALIDA As Date,  _
+                    ByVal FECHA_LLEGADA As Date,  _
+                    ByVal CODIGO_UNIDAD_TRACTO As Long,  _
+                    ByVal TRACTO As String,  _
+                    ByVal CODIGO_UNIDAD_SEMITRAILER As Long,  _
+                    ByVal SEMITRAILER As String,  _
+                    ByVal CODIGO_TRABAJADOR As Long,  _
+                    ByVal TRABAJADOR As String,  _
+                    ByVal RUTA_DETALLE As String,  _
+                    ByVal CARGA_DETALLE As String,  _
+                    ByVal PESO_DESCRIPCION As String,  _
+                    ByVal KM_SALIDA As Decimal,  _
+                    ByVal KM_LLEGADA As Decimal,  _
+                    ByVal KM_RECORRIDO As Decimal,  _
+                    ByVal CONSUMO_VIRTUAL_LIQUIDACION As Decimal,  _
+                    ByVal CONSUMO_FISICO_LIQUIDACION As Decimal,  _
+                    ByVal AJUSTE_GALONES As Decimal,  _
+                    ByVal TOTAL_GALONES As Decimal) As dtRptLiquidacionCombustiblePrincipalRow
+            Dim rowdtRptLiquidacionCombustiblePrincipalRow As dtRptLiquidacionCombustiblePrincipalRow = CType(Me.NewRow,dtRptLiquidacionCombustiblePrincipalRow)
+            Dim columnValuesArray() As Object = New Object() {CODIGO_LIQUIDACION, FECHA_SALIDA, FECHA_LLEGADA, CODIGO_UNIDAD_TRACTO, TRACTO, CODIGO_UNIDAD_SEMITRAILER, SEMITRAILER, CODIGO_TRABAJADOR, TRABAJADOR, RUTA_DETALLE, CARGA_DETALLE, PESO_DESCRIPCION, KM_SALIDA, KM_LLEGADA, KM_RECORRIDO, CONSUMO_VIRTUAL_LIQUIDACION, CONSUMO_FISICO_LIQUIDACION, AJUSTE_GALONES, TOTAL_GALONES}
+            rowdtRptLiquidacionCombustiblePrincipalRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowdtRptLiquidacionCombustiblePrincipalRow)
+            Return rowdtRptLiquidacionCombustiblePrincipalRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As dtRptLiquidacionCombustiblePrincipalDataTable = CType(MyBase.Clone,dtRptLiquidacionCombustiblePrincipalDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New dtRptLiquidacionCombustiblePrincipalDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnCODIGO_LIQUIDACION = MyBase.Columns("CODIGO_LIQUIDACION")
+            Me.columnFECHA_SALIDA = MyBase.Columns("FECHA_SALIDA")
+            Me.columnFECHA_LLEGADA = MyBase.Columns("FECHA_LLEGADA")
+            Me.columnCODIGO_UNIDAD_TRACTO = MyBase.Columns("CODIGO_UNIDAD_TRACTO")
+            Me.columnTRACTO = MyBase.Columns("TRACTO")
+            Me.columnCODIGO_UNIDAD_SEMITRAILER = MyBase.Columns("CODIGO_UNIDAD_SEMITRAILER")
+            Me.columnSEMITRAILER = MyBase.Columns("SEMITRAILER")
+            Me.columnCODIGO_TRABAJADOR = MyBase.Columns("CODIGO_TRABAJADOR")
+            Me.columnTRABAJADOR = MyBase.Columns("TRABAJADOR")
+            Me.columnRUTA_DETALLE = MyBase.Columns("RUTA_DETALLE")
+            Me.columnCARGA_DETALLE = MyBase.Columns("CARGA_DETALLE")
+            Me.columnPESO_DESCRIPCION = MyBase.Columns("PESO_DESCRIPCION")
+            Me.columnKM_SALIDA = MyBase.Columns("KM_SALIDA")
+            Me.columnKM_LLEGADA = MyBase.Columns("KM_LLEGADA")
+            Me.columnKM_RECORRIDO = MyBase.Columns("KM_RECORRIDO")
+            Me.columnCONSUMO_VIRTUAL_LIQUIDACION = MyBase.Columns("CONSUMO_VIRTUAL_LIQUIDACION")
+            Me.columnCONSUMO_FISICO_LIQUIDACION = MyBase.Columns("CONSUMO_FISICO_LIQUIDACION")
+            Me.columnAJUSTE_GALONES = MyBase.Columns("AJUSTE_GALONES")
+            Me.columnTOTAL_GALONES = MyBase.Columns("TOTAL_GALONES")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnCODIGO_LIQUIDACION = New Global.System.Data.DataColumn("CODIGO_LIQUIDACION", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCODIGO_LIQUIDACION)
+            Me.columnFECHA_SALIDA = New Global.System.Data.DataColumn("FECHA_SALIDA", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFECHA_SALIDA)
+            Me.columnFECHA_LLEGADA = New Global.System.Data.DataColumn("FECHA_LLEGADA", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFECHA_LLEGADA)
+            Me.columnCODIGO_UNIDAD_TRACTO = New Global.System.Data.DataColumn("CODIGO_UNIDAD_TRACTO", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCODIGO_UNIDAD_TRACTO)
+            Me.columnTRACTO = New Global.System.Data.DataColumn("TRACTO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTRACTO)
+            Me.columnCODIGO_UNIDAD_SEMITRAILER = New Global.System.Data.DataColumn("CODIGO_UNIDAD_SEMITRAILER", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCODIGO_UNIDAD_SEMITRAILER)
+            Me.columnSEMITRAILER = New Global.System.Data.DataColumn("SEMITRAILER", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSEMITRAILER)
+            Me.columnCODIGO_TRABAJADOR = New Global.System.Data.DataColumn("CODIGO_TRABAJADOR", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCODIGO_TRABAJADOR)
+            Me.columnTRABAJADOR = New Global.System.Data.DataColumn("TRABAJADOR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTRABAJADOR)
+            Me.columnRUTA_DETALLE = New Global.System.Data.DataColumn("RUTA_DETALLE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRUTA_DETALLE)
+            Me.columnCARGA_DETALLE = New Global.System.Data.DataColumn("CARGA_DETALLE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCARGA_DETALLE)
+            Me.columnPESO_DESCRIPCION = New Global.System.Data.DataColumn("PESO_DESCRIPCION", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPESO_DESCRIPCION)
+            Me.columnKM_SALIDA = New Global.System.Data.DataColumn("KM_SALIDA", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnKM_SALIDA)
+            Me.columnKM_LLEGADA = New Global.System.Data.DataColumn("KM_LLEGADA", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnKM_LLEGADA)
+            Me.columnKM_RECORRIDO = New Global.System.Data.DataColumn("KM_RECORRIDO", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnKM_RECORRIDO)
+            Me.columnCONSUMO_VIRTUAL_LIQUIDACION = New Global.System.Data.DataColumn("CONSUMO_VIRTUAL_LIQUIDACION", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCONSUMO_VIRTUAL_LIQUIDACION)
+            Me.columnCONSUMO_FISICO_LIQUIDACION = New Global.System.Data.DataColumn("CONSUMO_FISICO_LIQUIDACION", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCONSUMO_FISICO_LIQUIDACION)
+            Me.columnAJUSTE_GALONES = New Global.System.Data.DataColumn("AJUSTE_GALONES", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAJUSTE_GALONES)
+            Me.columnTOTAL_GALONES = New Global.System.Data.DataColumn("TOTAL_GALONES", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTOTAL_GALONES)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function NewdtRptLiquidacionCombustiblePrincipalRow() As dtRptLiquidacionCombustiblePrincipalRow
+            Return CType(Me.NewRow,dtRptLiquidacionCombustiblePrincipalRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New dtRptLiquidacionCombustiblePrincipalRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(dtRptLiquidacionCombustiblePrincipalRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.dtRptLiquidacionCombustiblePrincipalRowChangedEvent) Is Nothing) Then
+                RaiseEvent dtRptLiquidacionCombustiblePrincipalRowChanged(Me, New dtRptLiquidacionCombustiblePrincipalRowChangeEvent(CType(e.Row,dtRptLiquidacionCombustiblePrincipalRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.dtRptLiquidacionCombustiblePrincipalRowChangingEvent) Is Nothing) Then
+                RaiseEvent dtRptLiquidacionCombustiblePrincipalRowChanging(Me, New dtRptLiquidacionCombustiblePrincipalRowChangeEvent(CType(e.Row,dtRptLiquidacionCombustiblePrincipalRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.dtRptLiquidacionCombustiblePrincipalRowDeletedEvent) Is Nothing) Then
+                RaiseEvent dtRptLiquidacionCombustiblePrincipalRowDeleted(Me, New dtRptLiquidacionCombustiblePrincipalRowChangeEvent(CType(e.Row,dtRptLiquidacionCombustiblePrincipalRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.dtRptLiquidacionCombustiblePrincipalRowDeletingEvent) Is Nothing) Then
+                RaiseEvent dtRptLiquidacionCombustiblePrincipalRowDeleting(Me, New dtRptLiquidacionCombustiblePrincipalRowChangeEvent(CType(e.Row,dtRptLiquidacionCombustiblePrincipalRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub RemovedtRptLiquidacionCombustiblePrincipalRow(ByVal row As dtRptLiquidacionCombustiblePrincipalRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As rptLiquidaciones = New rptLiquidaciones()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "dtRptLiquidacionCombustiblePrincipalDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class dtRptLiquidacionCombustiblePrincipalDetalleDataTable
+        Inherits Global.System.Data.TypedTableBase(Of dtRptLiquidacionCombustiblePrincipalDetalleRow)
+        
+        Private columnCODIGO_LIQUIDACION As Global.System.Data.DataColumn
+        
+        Private columnCODIGO_COMBUSTIBLE As Global.System.Data.DataColumn
+        
+        Private columnFECHA As Global.System.Data.DataColumn
+        
+        Private columnLUGAR As Global.System.Data.DataColumn
+        
+        Private columnGALONES As Global.System.Data.DataColumn
+        
+        Private columnKM As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "dtRptLiquidacionCombustiblePrincipalDetalle"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CODIGO_LIQUIDACIONColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCODIGO_LIQUIDACION
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CODIGO_COMBUSTIBLEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCODIGO_COMBUSTIBLE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property FECHAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFECHA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property LUGARColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnLUGAR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property GALONESColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGALONES
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property KMColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnKM
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As dtRptLiquidacionCombustiblePrincipalDetalleRow
+            Get
+                Return CType(Me.Rows(index),dtRptLiquidacionCombustiblePrincipalDetalleRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event dtRptLiquidacionCombustiblePrincipalDetalleRowChanging As dtRptLiquidacionCombustiblePrincipalDetalleRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event dtRptLiquidacionCombustiblePrincipalDetalleRowChanged As dtRptLiquidacionCombustiblePrincipalDetalleRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event dtRptLiquidacionCombustiblePrincipalDetalleRowDeleting As dtRptLiquidacionCombustiblePrincipalDetalleRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event dtRptLiquidacionCombustiblePrincipalDetalleRowDeleted As dtRptLiquidacionCombustiblePrincipalDetalleRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Sub AdddtRptLiquidacionCombustiblePrincipalDetalleRow(ByVal row As dtRptLiquidacionCombustiblePrincipalDetalleRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Function AdddtRptLiquidacionCombustiblePrincipalDetalleRow(ByVal CODIGO_LIQUIDACION As Long, ByVal CODIGO_COMBUSTIBLE As Long, ByVal FECHA As Date, ByVal LUGAR As String, ByVal GALONES As Decimal, ByVal KM As Decimal) As dtRptLiquidacionCombustiblePrincipalDetalleRow
+            Dim rowdtRptLiquidacionCombustiblePrincipalDetalleRow As dtRptLiquidacionCombustiblePrincipalDetalleRow = CType(Me.NewRow,dtRptLiquidacionCombustiblePrincipalDetalleRow)
+            Dim columnValuesArray() As Object = New Object() {CODIGO_LIQUIDACION, CODIGO_COMBUSTIBLE, FECHA, LUGAR, GALONES, KM}
+            rowdtRptLiquidacionCombustiblePrincipalDetalleRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowdtRptLiquidacionCombustiblePrincipalDetalleRow)
+            Return rowdtRptLiquidacionCombustiblePrincipalDetalleRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As dtRptLiquidacionCombustiblePrincipalDetalleDataTable = CType(MyBase.Clone,dtRptLiquidacionCombustiblePrincipalDetalleDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New dtRptLiquidacionCombustiblePrincipalDetalleDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnCODIGO_LIQUIDACION = MyBase.Columns("CODIGO_LIQUIDACION")
+            Me.columnCODIGO_COMBUSTIBLE = MyBase.Columns("CODIGO_COMBUSTIBLE")
+            Me.columnFECHA = MyBase.Columns("FECHA")
+            Me.columnLUGAR = MyBase.Columns("LUGAR")
+            Me.columnGALONES = MyBase.Columns("GALONES")
+            Me.columnKM = MyBase.Columns("KM")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnCODIGO_LIQUIDACION = New Global.System.Data.DataColumn("CODIGO_LIQUIDACION", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCODIGO_LIQUIDACION)
+            Me.columnCODIGO_COMBUSTIBLE = New Global.System.Data.DataColumn("CODIGO_COMBUSTIBLE", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCODIGO_COMBUSTIBLE)
+            Me.columnFECHA = New Global.System.Data.DataColumn("FECHA", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFECHA)
+            Me.columnLUGAR = New Global.System.Data.DataColumn("LUGAR", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLUGAR)
+            Me.columnGALONES = New Global.System.Data.DataColumn("GALONES", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGALONES)
+            Me.columnKM = New Global.System.Data.DataColumn("KM", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnKM)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function NewdtRptLiquidacionCombustiblePrincipalDetalleRow() As dtRptLiquidacionCombustiblePrincipalDetalleRow
+            Return CType(Me.NewRow,dtRptLiquidacionCombustiblePrincipalDetalleRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New dtRptLiquidacionCombustiblePrincipalDetalleRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(dtRptLiquidacionCombustiblePrincipalDetalleRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.dtRptLiquidacionCombustiblePrincipalDetalleRowChangedEvent) Is Nothing) Then
+                RaiseEvent dtRptLiquidacionCombustiblePrincipalDetalleRowChanged(Me, New dtRptLiquidacionCombustiblePrincipalDetalleRowChangeEvent(CType(e.Row,dtRptLiquidacionCombustiblePrincipalDetalleRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.dtRptLiquidacionCombustiblePrincipalDetalleRowChangingEvent) Is Nothing) Then
+                RaiseEvent dtRptLiquidacionCombustiblePrincipalDetalleRowChanging(Me, New dtRptLiquidacionCombustiblePrincipalDetalleRowChangeEvent(CType(e.Row,dtRptLiquidacionCombustiblePrincipalDetalleRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.dtRptLiquidacionCombustiblePrincipalDetalleRowDeletedEvent) Is Nothing) Then
+                RaiseEvent dtRptLiquidacionCombustiblePrincipalDetalleRowDeleted(Me, New dtRptLiquidacionCombustiblePrincipalDetalleRowChangeEvent(CType(e.Row,dtRptLiquidacionCombustiblePrincipalDetalleRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.dtRptLiquidacionCombustiblePrincipalDetalleRowDeletingEvent) Is Nothing) Then
+                RaiseEvent dtRptLiquidacionCombustiblePrincipalDetalleRowDeleting(Me, New dtRptLiquidacionCombustiblePrincipalDetalleRowChangeEvent(CType(e.Row,dtRptLiquidacionCombustiblePrincipalDetalleRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub RemovedtRptLiquidacionCombustiblePrincipalDetalleRow(ByVal row As dtRptLiquidacionCombustiblePrincipalDetalleRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As rptLiquidaciones = New rptLiquidaciones()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "dtRptLiquidacionCombustiblePrincipalDetalleDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class dtLiquidacionEstadoRow
@@ -11188,6 +12080,738 @@ Partial Public Class rptLiquidaciones
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class dtRptLiquidacionCombustiblePrincipalRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tabledtRptLiquidacionCombustiblePrincipal As dtRptLiquidacionCombustiblePrincipalDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tabledtRptLiquidacionCombustiblePrincipal = CType(Me.Table,dtRptLiquidacionCombustiblePrincipalDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CODIGO_LIQUIDACION() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_LIQUIDACIONColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CODIGO_LIQUIDACION' de la tabla 'dtRptLiquidacionCombusti"& _ 
+                            "blePrincipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_LIQUIDACIONColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property FECHA_SALIDA() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.FECHA_SALIDAColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'FECHA_SALIDA' de la tabla 'dtRptLiquidacionCombustiblePri"& _ 
+                            "ncipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.FECHA_SALIDAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property FECHA_LLEGADA() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.FECHA_LLEGADAColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'FECHA_LLEGADA' de la tabla 'dtRptLiquidacionCombustiblePr"& _ 
+                            "incipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.FECHA_LLEGADAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CODIGO_UNIDAD_TRACTO() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_UNIDAD_TRACTOColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CODIGO_UNIDAD_TRACTO' de la tabla 'dtRptLiquidacionCombus"& _ 
+                            "tiblePrincipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_UNIDAD_TRACTOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TRACTO() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.TRACTOColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'TRACTO' de la tabla 'dtRptLiquidacionCombustiblePrincipal"& _ 
+                            "' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.TRACTOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CODIGO_UNIDAD_SEMITRAILER() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_UNIDAD_SEMITRAILERColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CODIGO_UNIDAD_SEMITRAILER' de la tabla 'dtRptLiquidacionC"& _ 
+                            "ombustiblePrincipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_UNIDAD_SEMITRAILERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SEMITRAILER() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.SEMITRAILERColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'SEMITRAILER' de la tabla 'dtRptLiquidacionCombustiblePrin"& _ 
+                            "cipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.SEMITRAILERColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CODIGO_TRABAJADOR() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_TRABAJADORColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CODIGO_TRABAJADOR' de la tabla 'dtRptLiquidacionCombustib"& _ 
+                            "lePrincipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_TRABAJADORColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TRABAJADOR() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.TRABAJADORColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'TRABAJADOR' de la tabla 'dtRptLiquidacionCombustiblePrinc"& _ 
+                            "ipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.TRABAJADORColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property RUTA_DETALLE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.RUTA_DETALLEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'RUTA_DETALLE' de la tabla 'dtRptLiquidacionCombustiblePri"& _ 
+                            "ncipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.RUTA_DETALLEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CARGA_DETALLE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CARGA_DETALLEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CARGA_DETALLE' de la tabla 'dtRptLiquidacionCombustiblePr"& _ 
+                            "incipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CARGA_DETALLEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property PESO_DESCRIPCION() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.PESO_DESCRIPCIONColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'PESO_DESCRIPCION' de la tabla 'dtRptLiquidacionCombustibl"& _ 
+                            "ePrincipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.PESO_DESCRIPCIONColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property KM_SALIDA() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.KM_SALIDAColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'KM_SALIDA' de la tabla 'dtRptLiquidacionCombustiblePrinci"& _ 
+                            "pal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.KM_SALIDAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property KM_LLEGADA() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.KM_LLEGADAColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'KM_LLEGADA' de la tabla 'dtRptLiquidacionCombustiblePrinc"& _ 
+                            "ipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.KM_LLEGADAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property KM_RECORRIDO() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.KM_RECORRIDOColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'KM_RECORRIDO' de la tabla 'dtRptLiquidacionCombustiblePri"& _ 
+                            "ncipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.KM_RECORRIDOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CONSUMO_VIRTUAL_LIQUIDACION() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CONSUMO_VIRTUAL_LIQUIDACIONColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CONSUMO_VIRTUAL_LIQUIDACION' de la tabla 'dtRptLiquidacio"& _ 
+                            "nCombustiblePrincipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CONSUMO_VIRTUAL_LIQUIDACIONColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CONSUMO_FISICO_LIQUIDACION() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CONSUMO_FISICO_LIQUIDACIONColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CONSUMO_FISICO_LIQUIDACION' de la tabla 'dtRptLiquidacion"& _ 
+                            "CombustiblePrincipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CONSUMO_FISICO_LIQUIDACIONColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property AJUSTE_GALONES() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.AJUSTE_GALONESColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'AJUSTE_GALONES' de la tabla 'dtRptLiquidacionCombustibleP"& _ 
+                            "rincipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.AJUSTE_GALONESColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property TOTAL_GALONES() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.TOTAL_GALONESColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'TOTAL_GALONES' de la tabla 'dtRptLiquidacionCombustiblePr"& _ 
+                            "incipal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.TOTAL_GALONESColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCODIGO_LIQUIDACIONNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_LIQUIDACIONColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCODIGO_LIQUIDACIONNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_LIQUIDACIONColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsFECHA_SALIDANull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.FECHA_SALIDAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetFECHA_SALIDANull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.FECHA_SALIDAColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsFECHA_LLEGADANull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.FECHA_LLEGADAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetFECHA_LLEGADANull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.FECHA_LLEGADAColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCODIGO_UNIDAD_TRACTONull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_UNIDAD_TRACTOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCODIGO_UNIDAD_TRACTONull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_UNIDAD_TRACTOColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTRACTONull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.TRACTOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTRACTONull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.TRACTOColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCODIGO_UNIDAD_SEMITRAILERNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_UNIDAD_SEMITRAILERColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCODIGO_UNIDAD_SEMITRAILERNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_UNIDAD_SEMITRAILERColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSEMITRAILERNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.SEMITRAILERColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSEMITRAILERNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.SEMITRAILERColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCODIGO_TRABAJADORNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_TRABAJADORColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCODIGO_TRABAJADORNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_TRABAJADORColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTRABAJADORNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.TRABAJADORColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTRABAJADORNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.TRABAJADORColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsRUTA_DETALLENull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.RUTA_DETALLEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetRUTA_DETALLENull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.RUTA_DETALLEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCARGA_DETALLENull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.CARGA_DETALLEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCARGA_DETALLENull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CARGA_DETALLEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPESO_DESCRIPCIONNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.PESO_DESCRIPCIONColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPESO_DESCRIPCIONNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.PESO_DESCRIPCIONColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsKM_SALIDANull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.KM_SALIDAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetKM_SALIDANull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.KM_SALIDAColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsKM_LLEGADANull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.KM_LLEGADAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetKM_LLEGADANull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.KM_LLEGADAColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsKM_RECORRIDONull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.KM_RECORRIDOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetKM_RECORRIDONull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.KM_RECORRIDOColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCONSUMO_VIRTUAL_LIQUIDACIONNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.CONSUMO_VIRTUAL_LIQUIDACIONColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCONSUMO_VIRTUAL_LIQUIDACIONNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CONSUMO_VIRTUAL_LIQUIDACIONColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCONSUMO_FISICO_LIQUIDACIONNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.CONSUMO_FISICO_LIQUIDACIONColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCONSUMO_FISICO_LIQUIDACIONNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.CONSUMO_FISICO_LIQUIDACIONColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsAJUSTE_GALONESNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.AJUSTE_GALONESColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetAJUSTE_GALONESNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.AJUSTE_GALONESColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsTOTAL_GALONESNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.TOTAL_GALONESColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetTOTAL_GALONESNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.TOTAL_GALONESColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class dtRptLiquidacionCombustiblePrincipalDetalleRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tabledtRptLiquidacionCombustiblePrincipalDetalle As dtRptLiquidacionCombustiblePrincipalDetalleDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tabledtRptLiquidacionCombustiblePrincipalDetalle = CType(Me.Table,dtRptLiquidacionCombustiblePrincipalDetalleDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CODIGO_LIQUIDACION() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.CODIGO_LIQUIDACIONColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CODIGO_LIQUIDACION' de la tabla 'dtRptLiquidacionCombusti"& _ 
+                            "blePrincipalDetalle' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.CODIGO_LIQUIDACIONColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CODIGO_COMBUSTIBLE() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.CODIGO_COMBUSTIBLEColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CODIGO_COMBUSTIBLE' de la tabla 'dtRptLiquidacionCombusti"& _ 
+                            "blePrincipalDetalle' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.CODIGO_COMBUSTIBLEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property FECHA() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.FECHAColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'FECHA' de la tabla 'dtRptLiquidacionCombustiblePrincipalD"& _ 
+                            "etalle' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.FECHAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property LUGAR() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.LUGARColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'LUGAR' de la tabla 'dtRptLiquidacionCombustiblePrincipalD"& _ 
+                            "etalle' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.LUGARColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property GALONES() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.GALONESColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'GALONES' de la tabla 'dtRptLiquidacionCombustiblePrincipa"& _ 
+                            "lDetalle' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.GALONESColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property KM() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.KMColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'KM' de la tabla 'dtRptLiquidacionCombustiblePrincipalDeta"& _ 
+                            "lle' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.KMColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCODIGO_LIQUIDACIONNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.CODIGO_LIQUIDACIONColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCODIGO_LIQUIDACIONNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.CODIGO_LIQUIDACIONColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCODIGO_COMBUSTIBLENull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.CODIGO_COMBUSTIBLEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCODIGO_COMBUSTIBLENull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.CODIGO_COMBUSTIBLEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsFECHANull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.FECHAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetFECHANull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.FECHAColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsLUGARNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.LUGARColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetLUGARNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.LUGARColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsGALONESNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.GALONESColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetGALONESNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.GALONESColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsKMNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.KMColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetKMNull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipalDetalle.KMColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -11677,6 +13301,78 @@ Partial Public Class rptLiquidaciones
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public ReadOnly Property Row() As dtRptLiquidacionCombustibleRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Class dtRptLiquidacionCombustiblePrincipalRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As dtRptLiquidacionCombustiblePrincipalRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New(ByVal row As dtRptLiquidacionCombustiblePrincipalRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Row() As dtRptLiquidacionCombustiblePrincipalRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Class dtRptLiquidacionCombustiblePrincipalDetalleRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As dtRptLiquidacionCombustiblePrincipalDetalleRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New(ByVal row As dtRptLiquidacionCombustiblePrincipalDetalleRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Row() As dtRptLiquidacionCombustiblePrincipalDetalleRow
             Get
                 Return Me.eventRow
             End Get
