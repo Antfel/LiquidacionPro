@@ -129,11 +129,13 @@ Partial Class ChildClientes
         'dgvListaClientes
         '
         Me.dgvListaClientes.AllowUserToAddRows = False
+        Me.dgvListaClientes.AllowUserToDeleteRows = False
         Me.dgvListaClientes.AllowUserToResizeRows = False
         Me.dgvListaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvListaClientes.Location = New System.Drawing.Point(21, 163)
         Me.dgvListaClientes.MultiSelect = False
         Me.dgvListaClientes.Name = "dgvListaClientes"
+        Me.dgvListaClientes.ReadOnly = True
         Me.dgvListaClientes.RowHeadersVisible = False
         Me.dgvListaClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvListaClientes.Size = New System.Drawing.Size(932, 279)

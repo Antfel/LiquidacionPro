@@ -39,6 +39,9 @@ Partial Class MDIPrincipal
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesPorEstadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturaciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturaciónVsLiquidaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -118,7 +121,7 @@ Partial Class MDIPrincipal
         '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem1})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem1, Me.FacturaciónToolStripMenuItem1})
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.ReportesToolStripMenuItem.Text = "Reportes"
@@ -135,6 +138,25 @@ Partial Class MDIPrincipal
         Me.LiquidacionesPorEstadoToolStripMenuItem.Name = "LiquidacionesPorEstadoToolStripMenuItem"
         Me.LiquidacionesPorEstadoToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
         Me.LiquidacionesPorEstadoToolStripMenuItem.Text = "Liquidaciones por Estado"
+        '
+        'FacturaciónToolStripMenuItem1
+        '
+        Me.FacturaciónToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturaciónVsLiquidaciónToolStripMenuItem, Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem})
+        Me.FacturaciónToolStripMenuItem1.Name = "FacturaciónToolStripMenuItem1"
+        Me.FacturaciónToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.FacturaciónToolStripMenuItem1.Text = "Facturación"
+        '
+        'FacturaciónVsLiquidaciónToolStripMenuItem
+        '
+        Me.FacturaciónVsLiquidaciónToolStripMenuItem.Name = "FacturaciónVsLiquidaciónToolStripMenuItem"
+        Me.FacturaciónVsLiquidaciónToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
+        Me.FacturaciónVsLiquidaciónToolStripMenuItem.Text = "Facturación vs Liquidación - Soles"
+        '
+        'FacturaciónVsLiquidaciónDólaresToolStripMenuItem
+        '
+        Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem.Name = "FacturaciónVsLiquidaciónDólaresToolStripMenuItem"
+        Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
+        Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem.Text = "Facturación vs Liquidación - Dólares"
         '
         'MDIPrincipal
         '
@@ -170,4 +192,7 @@ Partial Class MDIPrincipal
     Friend WithEvents TrabajadorToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LiquidaciónControlToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LiquidaciónDeCombustibleToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FacturaciónToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents FacturaciónVsLiquidaciónToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FacturaciónVsLiquidaciónDólaresToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -308,13 +308,19 @@
 
             txtCarga.Text = dt.Rows(0)(34)
             txtPeso.Text = dt.Rows(0)(35)
-            cbUnidadMedida.SelectedValue = dt.Rows(0)(36)
+            If dt.Rows(0)(36) <> -1 Then
+                cbUnidadMedida.SelectedValue = dt.Rows(0)(36)
+            Else
+                cbUnidadMedida.SelectedIndex = 0
+            End If
+
 
             txtRutaDetalle.Text = dt.Rows(0)(37)
             txtCargaDetalle.Text = dt.Rows(0)(38)
             txtAjusteGalon.Text = dt.Rows(0)(39)
             txtTotalGalones.Text = dt.Rows(0)(40)
 
+            txtPesoDetalle.Text = dt.Rows(0)(41)
 
             sqlControl.commitTransaction()
 
@@ -773,7 +779,7 @@
             txtGastoCombustible.Text = ""
             dtpFechaCombustible.Value = Date.Now
             txtKm.Text = ""
-
+            txtLugarCombustible.Focus()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
             MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",

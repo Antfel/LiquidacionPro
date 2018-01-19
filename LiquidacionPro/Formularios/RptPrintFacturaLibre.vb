@@ -68,7 +68,7 @@ Public Class RptPrintFacturaLibre
         e.Graphics.DrawString(CDate(dtc.Rows.Item(0)(3)).Year.ToString.Substring(2, 2), FONT, Brushes.Black, 320, 175)
 
         If (dtc.Rows.Item(0)(10) = 0) Then
-            simbolo = "S/. "
+            simbolo = "S/ "
             moneda = "SOLES"
         Else
             simbolo = "$ "

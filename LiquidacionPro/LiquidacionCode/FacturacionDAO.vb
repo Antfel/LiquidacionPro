@@ -55,7 +55,8 @@ Public Class FacturacionDAO
                                     LEFT JOIN ESTADO d 
                                     on a.CODIGO_ESTADO = d.CODIGO_ESTADO
                                     LEFT JOIN ESTADO e
-                                    on a.TIPO_FACTURA=e.CODIGO_ESTADO and e.TIPO_ESTADO=7", Nothing)
+                                    on a.TIPO_FACTURA=e.CODIGO_ESTADO and e.TIPO_ESTADO=7 
+                                    order by a.NUMERO_FACTURA", Nothing)
     End Function
 
     Public Function getAllFacturasFiltro(Filtro As String) As DataTable
@@ -448,6 +449,59 @@ Public Class FacturacionDAO
 											                                    SELECT	distinct
 													                                    DESTINO direccion
 											                                    FROM	DETALLE_FACTURA) a)b",
+                                     Nothing)
+
+    End Function
+
+
+    Public Function getRptLiquidacionFacturacionCabeceraAll(codigoMoneda As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	a.CODIGO_FACTURA,
+		                                    a.NUMERO_FACTURA,
+		                                    a.FECHA_FACTURA,
+		                                    a.TOTAL_FACTURA,
+		                                    b.SIMBOLO
+                                    FROM	FACTURA a
+                                    inner	join MONEDA b on a.CODIGO_MONEDA=b.CODIGO_MONEDA
+                                    where   a.CODIGO_MONEDA=" + CStr(codigoMoneda),
+                                     Nothing)
+
+    End Function
+
+    Public Function getRptLiquidacionFacturacionDetalle(codigo_factura As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	a.CODIGO_FACTURA,
+		                                    f.PLACA_UNIDAD,
+		                                    d.DETALLE_GUIA,
+		                                    e.PEAJES_LIQUIDACION,
+		                                    e.VIATICOS_LIQUIDACION,
+		                                    e.GUARDIANIA_LIQUIDACION,
+		                                    e.HOSPEDAJE_LIQUIDACION,
+		                                    e.BALANZA_LIQUIDACION,
+		                                    e.OTROS_LIQUIDACION,
+		                                    e.CONSUMO_FISICO_LIQUIDACION,
+		                                    round(e.TOTAL_GASTO_COMBUSTIBLE+coalesce(e.PEAJES_LIQUIDACION,0)+
+		                                    coalesce(e.VIATICOS_LIQUIDACION,0)+coalesce(e.GUARDIANIA_LIQUIDACION,0)+coalesce(e.HOSPEDAJE_LIQUIDACION,0)+
+		                                    coalesce(e.BALANZA_LIQUIDACION,0)+coalesce(e.OTROS_LIQUIDACION,0),3) TOTAL_GASTO,
+		                                    b.PRECIO_UNITARIO,
+		                                    case when e.CONSUMO_FISICO_LIQUIDACION<>0 then e.TOTAL_GASTO_COMBUSTIBLE/e.CONSUMO_FISICO_LIQUIDACION else 0 end 'PRECIO_COMBUSTIBLE',
+		                                    PRECIO_UNITARIO-round(e.TOTAL_GASTO_COMBUSTIBLE+coalesce(e.PEAJES_LIQUIDACION,0)+
+		                                    coalesce(e.VIATICOS_LIQUIDACION,0)+coalesce(e.GUARDIANIA_LIQUIDACION,0)+coalesce(e.HOSPEDAJE_LIQUIDACION,0)+
+		                                    coalesce(e.BALANZA_LIQUIDACION,0)+coalesce(e.OTROS_LIQUIDACION,0),3) 'GANANCIA_BRUTA',
+		                                    0 'PORCENTAJE',
+		                                    b.PRECIO_UNITARIO*0 'PAGA',
+		                                    (PRECIO_UNITARIO-round(e.TOTAL_GASTO_COMBUSTIBLE+coalesce(e.PEAJES_LIQUIDACION,0)+
+		                                    coalesce(e.VIATICOS_LIQUIDACION,0)+coalesce(e.GUARDIANIA_LIQUIDACION,0)+coalesce(e.HOSPEDAJE_LIQUIDACION,0)+
+		                                    coalesce(e.BALANZA_LIQUIDACION,0)+coalesce(e.OTROS_LIQUIDACION,0),3))-b.PRECIO_UNITARIO*0 'INGRESO',
+                                            e.ORIGEN_LIQUIDACION,
+                                            e.DESTINO_LIQUIDACION 
+                                    FROM	FACTURA a
+                                    inner	JOIN DETALLE_FACTURA b ON a.CODIGO_FACTURA=b.CODIGO_FACTURA
+                                    inner	JOIN DETALLE_FACTURA_GUIA c on a.CODIGO_FACTURA=b.CODIGO_FACTURA and b.CODIGO_DETALLE_FACTURA=c.CODIGO_DETALLE_FACTURA 
+                                    inner	join GUIA_TRANSPORTISTA d on c.CODIGO_GUIA=d.CODIGO_GUIA
+                                    inner	join LIQUIDACION e on d.CODIGO_GUIA=e.CODIGO_GUIA
+                                    inner	join UNIDAD f on f.CODIGO_UNIDAD=e.CODIGO_UNIDAD_TRACTO
+                                    where	a.CODIGO_FACTURA=" + CStr(codigo_factura),
                                      Nothing)
 
     End Function

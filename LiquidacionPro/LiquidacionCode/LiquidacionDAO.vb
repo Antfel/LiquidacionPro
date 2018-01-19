@@ -121,7 +121,8 @@ Public Class LiquidacionDAO
                                     coalesce(a.RUTA_DETALLE,''),
                                     coalesce(a.CARGA_DETALLE,''),
                                     coalesce(a.AJUSTE_GALONES,0),
-                                    coalesce(a.TOTAL_GALONES,0) 
+                                    coalesce(a.TOTAL_GALONES,0),
+                                    coalesce(a.PESO_DESCRIPCION,'') 
                         from		LIQUIDACION a
                         LEFT JOIN	UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
                         LEFT JOIN	UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD

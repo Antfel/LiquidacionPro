@@ -133,8 +133,8 @@
                 trabajadorDAO.setDBcmd()
                 Dim correla As Integer
 
-                Dim apePaterno As String, apeMaterno As String, nombres As String, feNacimiento As Date, sexo As String, direccion As String,
-                    telefono As String, dni As String, brevete As String, cargo As Integer, estado As Integer
+                Dim apePaterno As String, apeMaterno As String, nombres As String, sexo As String, direccion As String,
+                    telefono As String, dni As String, brevete As String
 
                 If txtApePaterno.Text = Nothing Then
                     apePaterno = ""
@@ -219,8 +219,8 @@
                 trabajadorDAO.setDBcmd()
                 Dim correla As Integer
 
-                Dim codigo As Integer, apePaterno As String, apeMaterno As String, nombres As String, feNacimiento As Date, sexo As String, direccion As String,
-                    telefono As String, dni As String, brevete As String, cargo As Integer, estado As Integer
+                Dim codigo As Integer, apePaterno As String, apeMaterno As String, nombres As String, sexo As String, direccion As String,
+                    telefono As String, dni As String, brevete As String
 
                 codigo = CInt(txtCodigo.Text)
 
