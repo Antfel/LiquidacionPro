@@ -87,7 +87,7 @@ Public Class RptPrintFactura
             e.Graphics.DrawString(CDate(dtc.Rows.Item(0)(3)).Year.ToString.Substring(2, 2), FONT, Brushes.Black, 320, 175)
 
             If (dtc.Rows.Item(0)(10) = 0) Then
-                simbolo = "S/. "
+                simbolo = "S/ "
                 moneda = "SOLES"
             Else
                 simbolo = "$ "
@@ -223,7 +223,7 @@ Public Class RptPrintFactura
                         printMULTILINES(text, FONT, e, salto)
                     End If
                     If (dtd.Rows.Item(i)(18) <> 0) Then
-                        text = "VALOR REFERENCIAL: S/. " + CStr(dtd.Rows.Item(i)(18)) + vbLf
+                        text = "VALOR REFERENCIAL: S/ " + CStr(dtd.Rows.Item(i)(18)) + vbLf
                         printMULTILINES(text, FONT, e, salto)
                     End If
                     If (dtd.Rows.Item(i)(2) <> "") Then

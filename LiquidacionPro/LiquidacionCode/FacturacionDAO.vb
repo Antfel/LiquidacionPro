@@ -55,7 +55,8 @@ Public Class FacturacionDAO
                                     LEFT JOIN ESTADO d 
                                     on a.CODIGO_ESTADO = d.CODIGO_ESTADO
                                     LEFT JOIN ESTADO e
-                                    on a.TIPO_FACTURA=e.CODIGO_ESTADO and e.TIPO_ESTADO=7", Nothing)
+                                    on a.TIPO_FACTURA=e.CODIGO_ESTADO and e.TIPO_ESTADO=7 
+                                    order by a.NUMERO_FACTURA", Nothing)
     End Function
 
     Public Function getAllFacturasFiltro(Filtro As String) As DataTable
