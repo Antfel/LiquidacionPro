@@ -3,6 +3,7 @@
     Dim columnaFiltro As Integer = -1
     Dim source1 As New BindingSource()
     Dim nombreColumnaFiltro As String
+    Dim filaSeleccionada As Integer = -1
 
     Private Sub ChildLiquidacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actualizarListaLiquidacion()
@@ -89,7 +90,8 @@
         '    Return
         'End If
 
-        Dim tanque As Double, salida As Double, llegada As Double, recorrido As Double, llegaLima As Double, virtual As Double
+        Dim tanque As Double, salida As Double, llegada As Double, recorrido As Double, llegaLima As Double, virtual As Double,
+            ajuste As Double, cargaDetalle As String, rutaDetalle As String, pesoDetalle As String
 
         If txtTanque.Text = Nothing Then
             tanque = 0
@@ -127,12 +129,40 @@
             virtual = Double.Parse(txtCombustibleVirtual.Text)
         End If
 
+        If txtAjusteGalon.Text = Nothing Then
+            ajuste = 0
+        Else
+            ajuste = Double.Parse(txtAjusteGalon.Text)
+        End If
+
+        If txtRutaDetalle.Text = Nothing Then
+            rutaDetalle = ""
+        Else
+            rutaDetalle = txtRutaDetalle.Text
+        End If
+
+        If txtCargaDetalle.Text = Nothing Then
+            cargaDetalle = ""
+        Else
+            cargaDetalle = txtCargaDetalle.Text
+        End If
+
+        If txtPesoDetalle.Text = Nothing Then
+            pesoDetalle = ""
+        Else
+            pesoDetalle = txtPesoDetalle.Text
+        End If
+
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
 
         If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Seleccione una liquidación para agregar gastos de combustible. ", "Agregar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
+            Return
             'Try
             '    sqlControl.openConexion()
             '    sqlControl.beginTransaction()
@@ -179,7 +209,9 @@
 
                 Dim correla As Integer
 
-                correla = liquidacionDao.UpdateLiquidacionCombustible(CInt(txtCodigoLiquidacion.Text), tanque, salida, llegada, recorrido, llegaLima, virtual)
+                correla = liquidacionDao.UpdateLiquidacionCombustible(CInt(txtCodigoLiquidacion.Text), tanque, salida, llegada,
+                                                                      recorrido, llegaLima, virtual,
+                                                                      rutaDetalle, cargaDetalle, ajuste, pesoDetalle)
 
 
                 If correla >= 0 Then
@@ -207,6 +239,11 @@
 
         End If
 
+        cargarLiquidacion()
+        If txtCodigoLiquidacion.Text IsNot Nothing Then
+            cargarCombustible(CInt(txtCodigoLiquidacion.Text))
+        End If
+
         actualizarListaLiquidacion()
 
     End Sub
@@ -231,6 +268,7 @@
 
             Dim seleccion As DataGridViewRow = dgvLiquidacion.SelectedRows(0)
             Dim codigo As Integer = seleccion.Cells(0).Value
+            filaSeleccionada = seleccion.Index
 
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionById(codigo)
@@ -261,7 +299,6 @@
             txtDiferencia.Text = dt.Rows(0)(26)
             txtDiferenciaComb.Text = dt.Rows(0)(27)
             txtTotalGastoGalones.Text = dt.Rows(0)(28)
-            txtTotalGalones.Text = dt.Rows(0)(21)
 
             txtTanque.Text = dt.Rows(0)(29)
             txtKmSalida.Text = dt.Rows(0)(30)
@@ -271,7 +308,19 @@
 
             txtCarga.Text = dt.Rows(0)(34)
             txtPeso.Text = dt.Rows(0)(35)
-            cbUnidadMedida.SelectedValue = dt.Rows(0)(36)
+            If dt.Rows(0)(36) <> -1 Then
+                cbUnidadMedida.SelectedValue = dt.Rows(0)(36)
+            Else
+                cbUnidadMedida.SelectedIndex = 0
+            End If
+
+
+            txtRutaDetalle.Text = dt.Rows(0)(37)
+            txtCargaDetalle.Text = dt.Rows(0)(38)
+            txtAjusteGalon.Text = dt.Rows(0)(39)
+            txtTotalGalones.Text = dt.Rows(0)(40)
+
+            txtPesoDetalle.Text = dt.Rows(0)(41)
 
             sqlControl.commitTransaction()
 
@@ -304,7 +353,7 @@
             dt = liquidacionDao.GetAllLiquidacion()
             dgvLiquidacion.DataSource = dt
 
-            sqlControl.commitTransaction()
+
 
             dgvLiquidacion.Columns(2).Visible = False
             dgvLiquidacion.Columns(4).Visible = False
@@ -314,7 +363,11 @@
 
             dgvLiquidacion.MultiSelect = False
             dgvLiquidacion.RowHeadersVisible = False
+            sqlControl.commitTransaction()
 
+            If filaSeleccionada <> -1 Then
+                dgvLiquidacion.CurrentCell = dgvLiquidacion.Item(0, filaSeleccionada)
+            End If
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
@@ -654,31 +707,6 @@
         End Try
     End Sub
 
-    Private Sub btnRptLiquidacionDetallado_Click(sender As Object, e As EventArgs) Handles btnRptLiquidacionDetallado.Click
-        If txtCodigoLiquidacion.Text = Nothing Then
-            MessageBox.Show("La liquidación debe estar registrada.", "Imprimir Detalle de Liquidación",
-                             MessageBoxButtons.OK,
-                             MessageBoxIcon.Exclamation)
-            Return
-        End If
-        Dim rptFormLiquidacionViaje As New RptFormLiquidacionViaje()
-        rptFormLiquidacionViaje.setCodigo(CInt(txtCodigoLiquidacion.Text))
-        rptFormLiquidacionViaje.Show()
-    End Sub
-
-    Private Sub btnRptLiquidacion_Click(sender As Object, e As EventArgs) Handles btnRptLiquidacion.Click
-        If txtCodigoLiquidacion.Text = Nothing Then
-            MessageBox.Show("La liquidación debe estar registrada.", "Imprimir Vista General de Liquidación",
-                             MessageBoxButtons.OK,
-                             MessageBoxIcon.Exclamation)
-            Return
-        End If
-
-        Dim rptFormLiquidacionGeneral As New RptFormLiquidacionGeneral()
-        rptFormLiquidacionGeneral.setCodigo(CInt(txtCodigoLiquidacion.Text))
-        rptFormLiquidacionGeneral.Show()
-    End Sub
-
     Private Sub btnAgregarCombustible_Click(sender As Object, e As EventArgs) Handles btnAgregarCombustible.Click
         If txtCodigoLiquidacion.Text = Nothing Then
             MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar combustible",
@@ -715,12 +743,18 @@
             Return
         End If
 
-        Dim gastoCombustible As Double
+        Dim gastoCombustible As Double, km As Double
 
         If txtGastoCombustible.Text = Nothing Then
             gastoCombustible = 0
         Else
             gastoCombustible = Double.Parse(txtGastoCombustible.Text)
+        End If
+
+        If txtKm.Text = Nothing Then
+            km = 0
+        Else
+            km = Double.Parse(txtKm.Text)
         End If
 
         Dim sqlControl As New SQLControl
@@ -732,7 +766,9 @@
             sqlControl.beginTransaction()
             liquidacionDAO.setDBcmd()
 
-            liquidacionDAO.InsertLiquidacionCombustible(CInt(txtCodigoLiquidacion.Text), dtpFechaCombustible.Value, txtLugarCombustible.Text, Double.Parse(txtGalonesCombustible.Text), Double.Parse(txtPrecioGalon.Text), gastoCombustible)
+            liquidacionDAO.InsertLiquidacionCombustible(CInt(txtCodigoLiquidacion.Text), dtpFechaCombustible.Value,
+                                                        txtLugarCombustible.Text, Double.Parse(txtGalonesCombustible.Text),
+                                                        Double.Parse(txtPrecioGalon.Text), gastoCombustible, km)
 
             sqlControl.commitTransaction()
             cargarLiquidacion()
@@ -742,7 +778,8 @@
             txtPrecioGalon.Text = ""
             txtGastoCombustible.Text = ""
             dtpFechaCombustible.Value = Date.Now
-
+            txtKm.Text = ""
+            txtLugarCombustible.Focus()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
             MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
@@ -861,8 +898,8 @@
             Return
         End If
 
-        Dim rptFormLiquidacionCombustible As New RptFormLiquidacionCombustible()
-        rptFormLiquidacionCombustible.setCodigo(CInt(txtCodigoLiquidacion.Text))
-        rptFormLiquidacionCombustible.Show()
+        Dim rptFormLiquidacionCombustiblePrincipal As New RptFormLiquidacionCombustiblePrincipal()
+        rptFormLiquidacionCombustiblePrincipal.setCodigo(CInt(txtCodigoLiquidacion.Text))
+        rptFormLiquidacionCombustiblePrincipal.Show()
     End Sub
 End Class

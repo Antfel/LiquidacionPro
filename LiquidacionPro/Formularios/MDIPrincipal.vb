@@ -74,4 +74,16 @@ Public Class MDIPrincipal
         childLiquidacionCombustible.MdiParent = Me
         childLiquidacionCombustible.Show()
     End Sub
+
+    Private Sub FacturaciónVsLiquidaciónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaciónVsLiquidaciónToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim rptFormLiquidacionFacturacion As New RptFormLiquidacionFacturacionSoles()
+        rptFormLiquidacionFacturacion.Show()
+    End Sub
+
+    Private Sub FacturaciónVsLiquidaciónDólaresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaciónVsLiquidaciónDólaresToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim rptFormLiquidacionFacturacion As New RptFormLiquidacionFacturacionDolares()
+        rptFormLiquidacionFacturacion.Show()
+    End Sub
 End Class

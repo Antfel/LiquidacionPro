@@ -70,8 +70,6 @@ Partial Class ChildLiquidacionCombustible
         Me.Label24 = New System.Windows.Forms.Label()
         Me.lblFiltro = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.btnRptLiquidacion = New System.Windows.Forms.Button()
-        Me.btnRptLiquidacionDetallado = New System.Windows.Forms.Button()
         Me.txtCarga = New System.Windows.Forms.TextBox()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.Label36 = New System.Windows.Forms.Label()
@@ -92,11 +90,12 @@ Partial Class ChildLiquidacionCombustible
         Me.btnAgregarCombustible = New System.Windows.Forms.Button()
         Me.btnEliminarCombustible = New System.Windows.Forms.Button()
         Me.gbPeajes = New System.Windows.Forms.GroupBox()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.txtKm = New System.Windows.Forms.TextBox()
         Me.txtTotalGastoGalones = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.txtPrecioGalon = New System.Windows.Forms.TextBox()
-        Me.btnRptLiquidacionCombustible = New System.Windows.Forms.Button()
         Me.txtPeajes = New System.Windows.Forms.TextBox()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.txtViaticos = New System.Windows.Forms.TextBox()
@@ -113,6 +112,15 @@ Partial Class ChildLiquidacionCombustible
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label39 = New System.Windows.Forms.Label()
+        Me.btnRptLiquidacionCombustible = New System.Windows.Forms.Button()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.txtAjusteGalon = New System.Windows.Forms.TextBox()
+        Me.txtPesoDetalle = New System.Windows.Forms.TextBox()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.txtCargaDetalle = New System.Windows.Forms.TextBox()
+        Me.txtRutaDetalle = New System.Windows.Forms.TextBox()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvCombustible, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,7 +134,7 @@ Partial Class ChildLiquidacionCombustible
         Me.cbGuia.Location = New System.Drawing.Point(129, 38)
         Me.cbGuia.Name = "cbGuia"
         Me.cbGuia.Size = New System.Drawing.Size(81, 21)
-        Me.cbGuia.TabIndex = 51
+        Me.cbGuia.TabIndex = 1000
         '
         'cbCamabaja
         '
@@ -135,7 +143,7 @@ Partial Class ChildLiquidacionCombustible
         Me.cbCamabaja.Location = New System.Drawing.Point(340, 64)
         Me.cbCamabaja.Name = "cbCamabaja"
         Me.cbCamabaja.Size = New System.Drawing.Size(100, 21)
-        Me.cbCamabaja.TabIndex = 56
+        Me.cbCamabaja.TabIndex = 1000
         '
         'cbTracto
         '
@@ -144,7 +152,7 @@ Partial Class ChildLiquidacionCombustible
         Me.cbTracto.Location = New System.Drawing.Point(340, 38)
         Me.cbTracto.Name = "cbTracto"
         Me.cbTracto.Size = New System.Drawing.Size(100, 21)
-        Me.cbTracto.TabIndex = 52
+        Me.cbTracto.TabIndex = 1000
         '
         'cbTrabajador
         '
@@ -153,12 +161,12 @@ Partial Class ChildLiquidacionCombustible
         Me.cbTrabajador.Location = New System.Drawing.Point(564, 12)
         Me.cbTrabajador.Name = "cbTrabajador"
         Me.cbTrabajador.Size = New System.Drawing.Size(305, 21)
-        Me.cbTrabajador.TabIndex = 50
+        Me.cbTrabajador.TabIndex = 1000
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(28, 343)
+        Me.Label20.Location = New System.Drawing.Point(1058, 113)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(40, 13)
         Me.Label20.TabIndex = 87
@@ -170,9 +178,9 @@ Partial Class ChildLiquidacionCombustible
         Me.cbEstado.FormattingEnabled = True
         Me.cbEstado.ItemHeight = 13
         Me.cbEstado.Items.AddRange(New Object() {"1", "2"})
-        Me.cbEstado.Location = New System.Drawing.Point(74, 343)
+        Me.cbEstado.Location = New System.Drawing.Point(1104, 113)
         Me.cbEstado.Name = "cbEstado"
-        Me.cbEstado.Size = New System.Drawing.Size(107, 21)
+        Me.cbEstado.Size = New System.Drawing.Size(95, 21)
         Me.cbEstado.TabIndex = 74
         '
         'Label19
@@ -190,7 +198,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtDinero.Name = "txtDinero"
         Me.txtDinero.ReadOnly = True
         Me.txtDinero.Size = New System.Drawing.Size(107, 20)
-        Me.txtDinero.TabIndex = 55
+        Me.txtDinero.TabIndex = 1000
         '
         'Label18
         '
@@ -217,7 +225,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtNroLiquidacion.Name = "txtNroLiquidacion"
         Me.txtNroLiquidacion.ReadOnly = True
         Me.txtNroLiquidacion.Size = New System.Drawing.Size(100, 20)
-        Me.txtNroLiquidacion.TabIndex = 49
+        Me.txtNroLiquidacion.TabIndex = 1000
         '
         'txtCodigoLiquidacion
         '
@@ -225,7 +233,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtCodigoLiquidacion.Name = "txtCodigoLiquidacion"
         Me.txtCodigoLiquidacion.ReadOnly = True
         Me.txtCodigoLiquidacion.Size = New System.Drawing.Size(99, 20)
-        Me.txtCodigoLiquidacion.TabIndex = 47
+        Me.txtCodigoLiquidacion.TabIndex = 1000
         '
         'dgvLiquidacion
         '
@@ -252,18 +260,18 @@ Partial Class ChildLiquidacionCombustible
         '
         'txtCombustibleVirtual
         '
-        Me.txtCombustibleVirtual.Location = New System.Drawing.Point(739, 284)
+        Me.txtCombustibleVirtual.Location = New System.Drawing.Point(739, 245)
         Me.txtCombustibleVirtual.Name = "txtCombustibleVirtual"
         Me.txtCombustibleVirtual.Size = New System.Drawing.Size(108, 20)
-        Me.txtCombustibleVirtual.TabIndex = 73
+        Me.txtCombustibleVirtual.TabIndex = 12
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(668, 284)
+        Me.Label16.Location = New System.Drawing.Point(663, 244)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(66, 13)
-        Me.Label16.TabIndex = 81
+        Me.Label16.TabIndex = 7
         Me.Label16.Text = "Cons. Virtual"
         '
         'dtpLlegada
@@ -273,7 +281,7 @@ Partial Class ChildLiquidacionCombustible
         Me.dtpLlegada.Location = New System.Drawing.Point(739, 64)
         Me.dtpLlegada.Name = "dtpLlegada"
         Me.dtpLlegada.Size = New System.Drawing.Size(150, 20)
-        Me.dtpLlegada.TabIndex = 58
+        Me.dtpLlegada.TabIndex = 1000
         '
         'Label15
         '
@@ -291,7 +299,7 @@ Partial Class ChildLiquidacionCombustible
         Me.dtpSalida.Location = New System.Drawing.Point(739, 38)
         Me.dtpSalida.Name = "dtpSalida"
         Me.dtpSalida.Size = New System.Drawing.Size(150, 20)
-        Me.dtpSalida.TabIndex = 54
+        Me.dtpSalida.TabIndex = 1000
         '
         'Label6
         '
@@ -308,7 +316,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtDestino.Name = "txtDestino"
         Me.txtDestino.ReadOnly = True
         Me.txtDestino.Size = New System.Drawing.Size(107, 20)
-        Me.txtDestino.TabIndex = 57
+        Me.txtDestino.TabIndex = 1000
         '
         'Label14
         '
@@ -321,16 +329,16 @@ Partial Class ChildLiquidacionCombustible
         '
         'txtCombustibleFisico
         '
-        Me.txtCombustibleFisico.Location = New System.Drawing.Point(739, 257)
+        Me.txtCombustibleFisico.Location = New System.Drawing.Point(739, 218)
         Me.txtCombustibleFisico.Name = "txtCombustibleFisico"
         Me.txtCombustibleFisico.ReadOnly = True
         Me.txtCombustibleFisico.Size = New System.Drawing.Size(107, 20)
-        Me.txtCombustibleFisico.TabIndex = 71
+        Me.txtCombustibleFisico.TabIndex = 1000
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(670, 260)
+        Me.Label13.Location = New System.Drawing.Point(665, 218)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(64, 13)
         Me.Label13.TabIndex = 77
@@ -342,12 +350,12 @@ Partial Class ChildLiquidacionCombustible
         Me.txtBalanza.Name = "txtBalanza"
         Me.txtBalanza.ReadOnly = True
         Me.txtBalanza.Size = New System.Drawing.Size(107, 20)
-        Me.txtBalanza.TabIndex = 69
+        Me.txtBalanza.TabIndex = 1000
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(688, 165)
+        Me.Label11.Location = New System.Drawing.Point(684, 162)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(45, 13)
         Me.Label11.TabIndex = 75
@@ -359,12 +367,12 @@ Partial Class ChildLiquidacionCombustible
         Me.txtHospedaje.Name = "txtHospedaje"
         Me.txtHospedaje.ReadOnly = True
         Me.txtHospedaje.Size = New System.Drawing.Size(107, 20)
-        Me.txtHospedaje.TabIndex = 64
+        Me.txtHospedaje.TabIndex = 1000
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(675, 113)
+        Me.Label10.Location = New System.Drawing.Point(675, 110)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(58, 13)
         Me.Label10.TabIndex = 72
@@ -376,12 +384,12 @@ Partial Class ChildLiquidacionCombustible
         Me.txtGuardiania.Name = "txtGuardiania"
         Me.txtGuardiania.ReadOnly = True
         Me.txtGuardiania.Size = New System.Drawing.Size(107, 20)
-        Me.txtGuardiania.TabIndex = 63
+        Me.txtGuardiania.TabIndex = 1000
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(671, 139)
+        Me.Label9.Location = New System.Drawing.Point(675, 136)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(58, 13)
         Me.Label9.TabIndex = 68
@@ -393,7 +401,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtOrigen.Name = "txtOrigen"
         Me.txtOrigen.ReadOnly = True
         Me.txtOrigen.Size = New System.Drawing.Size(107, 20)
-        Me.txtOrigen.TabIndex = 53
+        Me.txtOrigen.TabIndex = 1000
         '
         'Label5
         '
@@ -446,20 +454,20 @@ Partial Class ChildLiquidacionCombustible
         Me.txtTotalGasto.Name = "txtTotalGasto"
         Me.txtTotalGasto.ReadOnly = True
         Me.txtTotalGasto.Size = New System.Drawing.Size(107, 20)
-        Me.txtTotalGasto.TabIndex = 89
+        Me.txtTotalGasto.TabIndex = 1000
         '
         'txtDiferencia
         '
-        Me.txtDiferencia.Location = New System.Drawing.Point(739, 213)
+        Me.txtDiferencia.Location = New System.Drawing.Point(943, 191)
         Me.txtDiferencia.Name = "txtDiferencia"
         Me.txtDiferencia.ReadOnly = True
-        Me.txtDiferencia.Size = New System.Drawing.Size(107, 20)
-        Me.txtDiferencia.TabIndex = 90
+        Me.txtDiferencia.Size = New System.Drawing.Size(87, 20)
+        Me.txtDiferencia.TabIndex = 1000
         '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(631, 188)
+        Me.Label21.Location = New System.Drawing.Point(628, 188)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(105, 13)
         Me.Label21.TabIndex = 91
@@ -468,7 +476,7 @@ Partial Class ChildLiquidacionCombustible
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(650, 213)
+        Me.Label22.Location = New System.Drawing.Point(854, 191)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(86, 13)
         Me.Label22.TabIndex = 92
@@ -476,16 +484,16 @@ Partial Class ChildLiquidacionCombustible
         '
         'txtDiferenciaComb
         '
-        Me.txtDiferenciaComb.Location = New System.Drawing.Point(739, 312)
+        Me.txtDiferenciaComb.Location = New System.Drawing.Point(739, 273)
         Me.txtDiferenciaComb.Name = "txtDiferenciaComb"
         Me.txtDiferenciaComb.ReadOnly = True
         Me.txtDiferenciaComb.Size = New System.Drawing.Size(108, 20)
-        Me.txtDiferenciaComb.TabIndex = 93
+        Me.txtDiferenciaComb.TabIndex = 1000
         '
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(642, 315)
+        Me.Label23.Location = New System.Drawing.Point(648, 273)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(85, 13)
         Me.Label23.TabIndex = 94
@@ -548,31 +556,13 @@ Partial Class ChildLiquidacionCombustible
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtros"
         '
-        'btnRptLiquidacion
-        '
-        Me.btnRptLiquidacion.Location = New System.Drawing.Point(835, 377)
-        Me.btnRptLiquidacion.Name = "btnRptLiquidacion"
-        Me.btnRptLiquidacion.Size = New System.Drawing.Size(100, 51)
-        Me.btnRptLiquidacion.TabIndex = 104
-        Me.btnRptLiquidacion.Text = "Liquidación de viaje general"
-        Me.btnRptLiquidacion.UseVisualStyleBackColor = True
-        '
-        'btnRptLiquidacionDetallado
-        '
-        Me.btnRptLiquidacionDetallado.Location = New System.Drawing.Point(955, 377)
-        Me.btnRptLiquidacionDetallado.Name = "btnRptLiquidacionDetallado"
-        Me.btnRptLiquidacionDetallado.Size = New System.Drawing.Size(100, 51)
-        Me.btnRptLiquidacionDetallado.TabIndex = 105
-        Me.btnRptLiquidacionDetallado.Text = "Liquidación de viaje detallado"
-        Me.btnRptLiquidacionDetallado.UseVisualStyleBackColor = True
-        '
         'txtCarga
         '
         Me.txtCarga.Location = New System.Drawing.Point(103, 90)
         Me.txtCarga.Name = "txtCarga"
         Me.txtCarga.ReadOnly = True
         Me.txtCarga.Size = New System.Drawing.Size(217, 20)
-        Me.txtCarga.TabIndex = 59
+        Me.txtCarga.TabIndex = 1000
         '
         'Label35
         '
@@ -598,7 +588,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtPeso.Name = "txtPeso"
         Me.txtPeso.ReadOnly = True
         Me.txtPeso.Size = New System.Drawing.Size(85, 20)
-        Me.txtPeso.TabIndex = 60
+        Me.txtPeso.TabIndex = 1000
         '
         'Label37
         '
@@ -616,7 +606,7 @@ Partial Class ChildLiquidacionCombustible
         Me.cbUnidadMedida.Location = New System.Drawing.Point(521, 90)
         Me.cbUnidadMedida.Name = "cbUnidadMedida"
         Me.cbUnidadMedida.Size = New System.Drawing.Size(112, 21)
-        Me.cbUnidadMedida.TabIndex = 61
+        Me.cbUnidadMedida.TabIndex = 1000
         '
         'Label7
         '
@@ -633,7 +623,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtTotalGalones.Name = "txtTotalGalones"
         Me.txtTotalGalones.ReadOnly = True
         Me.txtTotalGalones.Size = New System.Drawing.Size(107, 20)
-        Me.txtTotalGalones.TabIndex = 65
+        Me.txtTotalGalones.TabIndex = 10
         '
         'dtpFechaCombustible
         '
@@ -641,7 +631,7 @@ Partial Class ChildLiquidacionCombustible
         Me.dtpFechaCombustible.Location = New System.Drawing.Point(84, 20)
         Me.dtpFechaCombustible.Name = "dtpFechaCombustible"
         Me.dtpFechaCombustible.Size = New System.Drawing.Size(150, 20)
-        Me.dtpFechaCombustible.TabIndex = 0
+        Me.dtpFechaCombustible.TabIndex = 1
         '
         'Label25
         '
@@ -672,15 +662,15 @@ Partial Class ChildLiquidacionCombustible
         '
         Me.txtGalonesCombustible.Location = New System.Drawing.Point(84, 45)
         Me.txtGalonesCombustible.Name = "txtGalonesCombustible"
-        Me.txtGalonesCombustible.Size = New System.Drawing.Size(73, 20)
-        Me.txtGalonesCombustible.TabIndex = 4
+        Me.txtGalonesCombustible.Size = New System.Drawing.Size(66, 20)
+        Me.txtGalonesCombustible.TabIndex = 3
         '
         'txtGastoCombustible
         '
-        Me.txtGastoCombustible.Location = New System.Drawing.Point(502, 45)
+        Me.txtGastoCombustible.Location = New System.Drawing.Point(378, 45)
         Me.txtGastoCombustible.Name = "txtGastoCombustible"
         Me.txtGastoCombustible.ReadOnly = True
-        Me.txtGastoCombustible.Size = New System.Drawing.Size(73, 20)
+        Me.txtGastoCombustible.Size = New System.Drawing.Size(66, 20)
         Me.txtGastoCombustible.TabIndex = 5
         '
         'Label27
@@ -695,7 +685,7 @@ Partial Class ChildLiquidacionCombustible
         'Label28
         '
         Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(446, 45)
+        Me.Label28.Location = New System.Drawing.Point(341, 45)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(31, 13)
         Me.Label28.TabIndex = 7
@@ -720,7 +710,7 @@ Partial Class ChildLiquidacionCombustible
         Me.btnAgregarCombustible.Location = New System.Drawing.Point(581, 108)
         Me.btnAgregarCombustible.Name = "btnAgregarCombustible"
         Me.btnAgregarCombustible.Size = New System.Drawing.Size(23, 23)
-        Me.btnAgregarCombustible.TabIndex = 9
+        Me.btnAgregarCombustible.TabIndex = 7
         Me.btnAgregarCombustible.Text = "+"
         Me.btnAgregarCombustible.UseVisualStyleBackColor = True
         '
@@ -729,12 +719,14 @@ Partial Class ChildLiquidacionCombustible
         Me.btnEliminarCombustible.Location = New System.Drawing.Point(581, 138)
         Me.btnEliminarCombustible.Name = "btnEliminarCombustible"
         Me.btnEliminarCombustible.Size = New System.Drawing.Size(23, 23)
-        Me.btnEliminarCombustible.TabIndex = 10
+        Me.btnEliminarCombustible.TabIndex = 8
         Me.btnEliminarCombustible.Text = "-"
         Me.btnEliminarCombustible.UseVisualStyleBackColor = True
         '
         'gbPeajes
         '
+        Me.gbPeajes.Controls.Add(Me.Label43)
+        Me.gbPeajes.Controls.Add(Me.txtKm)
         Me.gbPeajes.Controls.Add(Me.txtTotalGastoGalones)
         Me.gbPeajes.Controls.Add(Me.Label12)
         Me.gbPeajes.Controls.Add(Me.Label8)
@@ -754,10 +746,26 @@ Partial Class ChildLiquidacionCombustible
         Me.gbPeajes.Controls.Add(Me.Label7)
         Me.gbPeajes.Location = New System.Drawing.Point(10, 117)
         Me.gbPeajes.Name = "gbPeajes"
-        Me.gbPeajes.Size = New System.Drawing.Size(615, 220)
-        Me.gbPeajes.TabIndex = 101
+        Me.gbPeajes.Size = New System.Drawing.Size(615, 224)
+        Me.gbPeajes.TabIndex = 1
         Me.gbPeajes.TabStop = False
         Me.gbPeajes.Text = "Consumo de Combustible"
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.Location = New System.Drawing.Point(475, 46)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(25, 13)
+        Me.Label43.TabIndex = 72
+        Me.Label43.Text = "Km."
+        '
+        'txtKm
+        '
+        Me.txtKm.Location = New System.Drawing.Point(509, 46)
+        Me.txtKm.Name = "txtKm"
+        Me.txtKm.Size = New System.Drawing.Size(66, 20)
+        Me.txtKm.TabIndex = 6
         '
         'txtTotalGastoGalones
         '
@@ -765,7 +773,7 @@ Partial Class ChildLiquidacionCombustible
         Me.txtTotalGastoGalones.Name = "txtTotalGastoGalones"
         Me.txtTotalGastoGalones.ReadOnly = True
         Me.txtTotalGastoGalones.Size = New System.Drawing.Size(100, 20)
-        Me.txtTotalGastoGalones.TabIndex = 69
+        Me.txtTotalGastoGalones.TabIndex = 11
         '
         'Label12
         '
@@ -779,7 +787,7 @@ Partial Class ChildLiquidacionCombustible
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(209, 45)
+        Me.Label8.Location = New System.Drawing.Point(177, 45)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(68, 13)
         Me.Label8.TabIndex = 67
@@ -787,32 +795,23 @@ Partial Class ChildLiquidacionCombustible
         '
         'txtPrecioGalon
         '
-        Me.txtPrecioGalon.Location = New System.Drawing.Point(285, 45)
+        Me.txtPrecioGalon.Location = New System.Drawing.Point(253, 45)
         Me.txtPrecioGalon.Name = "txtPrecioGalon"
-        Me.txtPrecioGalon.Size = New System.Drawing.Size(73, 20)
-        Me.txtPrecioGalon.TabIndex = 66
-        '
-        'btnRptLiquidacionCombustible
-        '
-        Me.btnRptLiquidacionCombustible.Location = New System.Drawing.Point(1074, 377)
-        Me.btnRptLiquidacionCombustible.Name = "btnRptLiquidacionCombustible"
-        Me.btnRptLiquidacionCombustible.Size = New System.Drawing.Size(100, 51)
-        Me.btnRptLiquidacionCombustible.TabIndex = 112
-        Me.btnRptLiquidacionCombustible.Text = "Liquidación de Combustible"
-        Me.btnRptLiquidacionCombustible.UseVisualStyleBackColor = True
+        Me.txtPrecioGalon.Size = New System.Drawing.Size(66, 20)
+        Me.txtPrecioGalon.TabIndex = 4
         '
         'txtPeajes
         '
-        Me.txtPeajes.Location = New System.Drawing.Point(930, 110)
+        Me.txtPeajes.Location = New System.Drawing.Point(943, 110)
         Me.txtPeajes.Name = "txtPeajes"
         Me.txtPeajes.ReadOnly = True
-        Me.txtPeajes.Size = New System.Drawing.Size(107, 20)
-        Me.txtPeajes.TabIndex = 114
+        Me.txtPeajes.Size = New System.Drawing.Size(87, 20)
+        Me.txtPeajes.TabIndex = 1000
         '
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(858, 113)
+        Me.Label29.Location = New System.Drawing.Point(871, 113)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(66, 13)
         Me.Label29.TabIndex = 113
@@ -820,16 +819,16 @@ Partial Class ChildLiquidacionCombustible
         '
         'txtViaticos
         '
-        Me.txtViaticos.Location = New System.Drawing.Point(930, 139)
+        Me.txtViaticos.Location = New System.Drawing.Point(943, 139)
         Me.txtViaticos.Name = "txtViaticos"
         Me.txtViaticos.ReadOnly = True
-        Me.txtViaticos.Size = New System.Drawing.Size(107, 20)
-        Me.txtViaticos.TabIndex = 116
+        Me.txtViaticos.Size = New System.Drawing.Size(87, 20)
+        Me.txtViaticos.TabIndex = 1000
         '
         'Label30
         '
         Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(850, 142)
+        Me.Label30.Location = New System.Drawing.Point(863, 142)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(71, 13)
         Me.Label30.TabIndex = 115
@@ -837,16 +836,16 @@ Partial Class ChildLiquidacionCombustible
         '
         'txtOtros
         '
-        Me.txtOtros.Location = New System.Drawing.Point(930, 165)
+        Me.txtOtros.Location = New System.Drawing.Point(943, 165)
         Me.txtOtros.Name = "txtOtros"
         Me.txtOtros.ReadOnly = True
-        Me.txtOtros.Size = New System.Drawing.Size(107, 20)
-        Me.txtOtros.TabIndex = 117
+        Me.txtOtros.Size = New System.Drawing.Size(87, 20)
+        Me.txtOtros.TabIndex = 1000
         '
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(865, 168)
+        Me.Label31.Location = New System.Drawing.Point(878, 168)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(59, 13)
         Me.Label31.TabIndex = 118
@@ -854,44 +853,44 @@ Partial Class ChildLiquidacionCombustible
         '
         'txtKmSalida
         '
-        Me.txtKmSalida.Location = New System.Drawing.Point(930, 255)
+        Me.txtKmSalida.Location = New System.Drawing.Point(1110, 221)
         Me.txtKmSalida.Name = "txtKmSalida"
-        Me.txtKmSalida.Size = New System.Drawing.Size(100, 20)
-        Me.txtKmSalida.TabIndex = 119
+        Me.txtKmSalida.Size = New System.Drawing.Size(89, 20)
+        Me.txtKmSalida.TabIndex = 16
         '
         'txtKmLlegada
         '
-        Me.txtKmLlegada.Location = New System.Drawing.Point(930, 283)
+        Me.txtKmLlegada.Location = New System.Drawing.Point(1110, 244)
         Me.txtKmLlegada.Name = "txtKmLlegada"
-        Me.txtKmLlegada.Size = New System.Drawing.Size(100, 20)
-        Me.txtKmLlegada.TabIndex = 120
+        Me.txtKmLlegada.Size = New System.Drawing.Size(89, 20)
+        Me.txtKmLlegada.TabIndex = 17
         '
         'txtKmRecorrido
         '
-        Me.txtKmRecorrido.Location = New System.Drawing.Point(930, 312)
+        Me.txtKmRecorrido.Location = New System.Drawing.Point(1110, 269)
         Me.txtKmRecorrido.Name = "txtKmRecorrido"
         Me.txtKmRecorrido.ReadOnly = True
-        Me.txtKmRecorrido.Size = New System.Drawing.Size(100, 20)
-        Me.txtKmRecorrido.TabIndex = 121
+        Me.txtKmRecorrido.Size = New System.Drawing.Size(89, 20)
+        Me.txtKmRecorrido.TabIndex = 1000
         '
         'txtTanque
         '
-        Me.txtTanque.Location = New System.Drawing.Point(1104, 255)
+        Me.txtTanque.Location = New System.Drawing.Point(943, 245)
         Me.txtTanque.Name = "txtTanque"
-        Me.txtTanque.Size = New System.Drawing.Size(100, 20)
-        Me.txtTanque.TabIndex = 122
+        Me.txtTanque.Size = New System.Drawing.Size(87, 20)
+        Me.txtTanque.TabIndex = 14
         '
         'txtLlegadaLima
         '
-        Me.txtLlegadaLima.Location = New System.Drawing.Point(1104, 283)
+        Me.txtLlegadaLima.Location = New System.Drawing.Point(943, 270)
         Me.txtLlegadaLima.Name = "txtLlegadaLima"
-        Me.txtLlegadaLima.Size = New System.Drawing.Size(100, 20)
-        Me.txtLlegadaLima.TabIndex = 123
+        Me.txtLlegadaLima.Size = New System.Drawing.Size(87, 20)
+        Me.txtLlegadaLima.TabIndex = 15
         '
         'Label32
         '
         Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(858, 258)
+        Me.Label32.Location = New System.Drawing.Point(1047, 224)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(57, 13)
         Me.Label32.TabIndex = 124
@@ -900,7 +899,7 @@ Partial Class ChildLiquidacionCombustible
         'Label33
         '
         Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(858, 286)
+        Me.Label33.Location = New System.Drawing.Point(1040, 245)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(66, 13)
         Me.Label33.TabIndex = 125
@@ -909,7 +908,7 @@ Partial Class ChildLiquidacionCombustible
         'Label34
         '
         Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(852, 315)
+        Me.Label34.Location = New System.Drawing.Point(1032, 269)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(74, 13)
         Me.Label34.TabIndex = 126
@@ -918,7 +917,7 @@ Partial Class ChildLiquidacionCombustible
         'Label38
         '
         Me.Label38.AutoSize = True
-        Me.Label38.Location = New System.Drawing.Point(1054, 259)
+        Me.Label38.Location = New System.Drawing.Point(891, 245)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(44, 13)
         Me.Label38.TabIndex = 127
@@ -927,17 +926,99 @@ Partial Class ChildLiquidacionCombustible
         'Label39
         '
         Me.Label39.AutoSize = True
-        Me.Label39.Location = New System.Drawing.Point(1033, 287)
+        Me.Label39.Location = New System.Drawing.Point(870, 269)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(67, 13)
         Me.Label39.TabIndex = 128
         Me.Label39.Text = "Llega a Lima"
+        '
+        'btnRptLiquidacionCombustible
+        '
+        Me.btnRptLiquidacionCombustible.Location = New System.Drawing.Point(823, 372)
+        Me.btnRptLiquidacionCombustible.Name = "btnRptLiquidacionCombustible"
+        Me.btnRptLiquidacionCombustible.Size = New System.Drawing.Size(128, 59)
+        Me.btnRptLiquidacionCombustible.TabIndex = 129
+        Me.btnRptLiquidacionCombustible.Text = "Liquidación de Combustible"
+        Me.btnRptLiquidacionCombustible.UseVisualStyleBackColor = True
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(851, 217)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(91, 13)
+        Me.Label42.TabIndex = 70
+        Me.Label42.Text = "Ajuste de galones"
+        '
+        'txtAjusteGalon
+        '
+        Me.txtAjusteGalon.Location = New System.Drawing.Point(943, 218)
+        Me.txtAjusteGalon.Name = "txtAjusteGalon"
+        Me.txtAjusteGalon.Size = New System.Drawing.Size(87, 20)
+        Me.txtAjusteGalon.TabIndex = 13
+        '
+        'txtPesoDetalle
+        '
+        Me.txtPesoDetalle.Location = New System.Drawing.Point(739, 299)
+        Me.txtPesoDetalle.Name = "txtPesoDetalle"
+        Me.txtPesoDetalle.Size = New System.Drawing.Size(460, 20)
+        Me.txtPesoDetalle.TabIndex = 18
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(647, 302)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(82, 13)
+        Me.Label44.TabIndex = 1006
+        Me.Label44.Text = "Detalle de Peso"
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.Location = New System.Drawing.Point(646, 349)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(83, 13)
+        Me.Label41.TabIndex = 1010
+        Me.Label41.Text = "Carga Detallada"
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(651, 325)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(78, 13)
+        Me.Label40.TabIndex = 1009
+        Me.Label40.Text = "Ruta Detallada"
+        '
+        'txtCargaDetalle
+        '
+        Me.txtCargaDetalle.Location = New System.Drawing.Point(739, 349)
+        Me.txtCargaDetalle.Name = "txtCargaDetalle"
+        Me.txtCargaDetalle.Size = New System.Drawing.Size(460, 20)
+        Me.txtCargaDetalle.TabIndex = 20
+        '
+        'txtRutaDetalle
+        '
+        Me.txtRutaDetalle.Location = New System.Drawing.Point(739, 325)
+        Me.txtRutaDetalle.Name = "txtRutaDetalle"
+        Me.txtRutaDetalle.Size = New System.Drawing.Size(460, 20)
+        Me.txtRutaDetalle.TabIndex = 19
         '
         'ChildLiquidacionCombustible
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1216, 644)
+        Me.Controls.Add(Me.Label41)
+        Me.Controls.Add(Me.Label40)
+        Me.Controls.Add(Me.txtCargaDetalle)
+        Me.Controls.Add(Me.txtRutaDetalle)
+        Me.Controls.Add(Me.Label44)
+        Me.Controls.Add(Me.txtPesoDetalle)
+        Me.Controls.Add(Me.txtAjusteGalon)
+        Me.Controls.Add(Me.Label42)
+        Me.Controls.Add(Me.btnRptLiquidacionCombustible)
         Me.Controls.Add(Me.Label39)
         Me.Controls.Add(Me.Label38)
         Me.Controls.Add(Me.Label34)
@@ -954,15 +1035,12 @@ Partial Class ChildLiquidacionCombustible
         Me.Controls.Add(Me.Label30)
         Me.Controls.Add(Me.txtOtros)
         Me.Controls.Add(Me.Label31)
-        Me.Controls.Add(Me.btnRptLiquidacionCombustible)
         Me.Controls.Add(Me.cbUnidadMedida)
         Me.Controls.Add(Me.Label37)
         Me.Controls.Add(Me.txtPeso)
         Me.Controls.Add(Me.Label36)
         Me.Controls.Add(Me.Label35)
         Me.Controls.Add(Me.txtCarga)
-        Me.Controls.Add(Me.btnRptLiquidacionDetallado)
-        Me.Controls.Add(Me.btnRptLiquidacion)
         Me.Controls.Add(Me.gbPeajes)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label23)
@@ -1068,8 +1146,6 @@ Partial Class ChildLiquidacionCombustible
     Friend WithEvents Label24 As Label
     Friend WithEvents lblFiltro As Label
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents btnRptLiquidacion As Button
-    Friend WithEvents btnRptLiquidacionDetallado As Button
     Friend WithEvents txtCarga As TextBox
     Friend WithEvents Label35 As Label
     Friend WithEvents Label36 As Label
@@ -1094,7 +1170,6 @@ Partial Class ChildLiquidacionCombustible
     Friend WithEvents Label12 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents txtPrecioGalon As TextBox
-    Friend WithEvents btnRptLiquidacionCombustible As Button
     Friend WithEvents txtPeajes As TextBox
     Friend WithEvents Label29 As Label
     Friend WithEvents txtViaticos As TextBox
@@ -1111,4 +1186,15 @@ Partial Class ChildLiquidacionCombustible
     Friend WithEvents Label34 As Label
     Friend WithEvents Label38 As Label
     Friend WithEvents Label39 As Label
+    Friend WithEvents btnRptLiquidacionCombustible As Button
+    Friend WithEvents Label42 As Label
+    Friend WithEvents Label43 As Label
+    Friend WithEvents txtKm As TextBox
+    Friend WithEvents txtAjusteGalon As TextBox
+    Friend WithEvents txtPesoDetalle As TextBox
+    Friend WithEvents Label44 As Label
+    Friend WithEvents Label41 As Label
+    Friend WithEvents Label40 As Label
+    Friend WithEvents txtCargaDetalle As TextBox
+    Friend WithEvents txtRutaDetalle As TextBox
 End Class

@@ -3,7 +3,7 @@
     Dim columnaFiltro As Integer = -1
     Dim source1 As New BindingSource()
     Dim nombreColumnaFiltro As String
-
+    Dim filaSeleccionada As Integer = -1
     Private Sub ChildLiquidacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actualizarListaLiquidacion()
         actualizarDatosTrabajador()
@@ -123,7 +123,7 @@
             End If
         End If
         Dim origen As String, destino As String, dinero As Double, peaje As Double, viatico As Double, guardiania As Double, hospedaje As Double, balanza As Double,
-            otros As Double, fisico As Double, virtual As Double, carga As String, peso As Double, unidadMedida As Integer
+            otros As Double, fisico As Double, virtual As Double, carga As String, peso As Double
 
         If txtOrigen.Text = Nothing Then
             origen = ""
@@ -266,7 +266,6 @@
                 liquidacionDao.setDBcmd()
 
                 Dim correla As Integer
-
                 correla = liquidacionDao.UpdateLiquidacion(txtCodigoLiquidacion.Text, txtNroLiquidacion.Text, cbTrabajador.SelectedValue, guia,
                                          cbTracto.SelectedValue, camabaja, origen,
                                          destino, dtpSalida.Value, dtpLlegada.Value,
@@ -327,7 +326,7 @@
 
             Dim seleccion As DataGridViewRow = dgvLiquidacion.SelectedRows(0)
             Dim codigo As Integer = seleccion.Cells(0).Value
-
+            filaSeleccionada = seleccion.Index
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionById(codigo)
 
@@ -367,7 +366,13 @@
 
             txtCarga.Text = dt.Rows(0)(34)
             txtPeso.Text = dt.Rows(0)(35)
-            cbUnidadMedida.SelectedValue = dt.Rows(0)(36)
+
+            If dt.Rows(0)(36) <> -1 Then
+                cbUnidadMedida.SelectedValue = dt.Rows(0)(36)
+            Else
+                cbUnidadMedida.SelectedIndex = 0
+            End If
+
 
             sqlControl.commitTransaction()
 
@@ -415,6 +420,10 @@
             dgvLiquidacion.RowHeadersVisible = False
 
             sqlControl.commitTransaction()
+
+            If filaSeleccionada <> -1 Then
+                dgvLiquidacion.CurrentCell = dgvLiquidacion.Item(0, filaSeleccionada)
+            End If
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
             MessageBox.Show("Error al cargar liquidaciones. " + ex.Message, "Cargar Liquidaciones",
@@ -804,7 +813,7 @@
             txtTotalPeaje.Text = ""
             txtLugarPeaje.Text = ""
             dtpFechaHoraPeaje.Value = Date.Now
-
+            dtpFechaHoraPeaje.Focus()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
             MessageBox.Show("Error al agregar peaje. " + ex.Message, "Agregar peaje",
@@ -978,7 +987,7 @@
             txtDescripcionViatico.Text = ""
             txtTotalGasto.Text = ""
             dtpTurnoViaticos.Value = Date.Now
-
+            txtCantidadViatico.Focus()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
             MessageBox.Show("Error al agregar peaje. " + ex.Message, "Agregar peaje",
@@ -1070,7 +1079,7 @@
             cargarOtros(CInt(txtCodigoLiquidacion.Text))
             txtDescripcionOtros.Text = ""
             txtTotalOtros.Text = ""
-
+            txtDescripcionOtros.Focus()
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
             MessageBox.Show("Error al agregar peaje. " + ex.Message, "Agregar peaje",
@@ -1133,7 +1142,7 @@
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
 
-            Dim seleccion As DataGridViewRow = dgvViaticos.SelectedRows(0)
+            Dim seleccion As DataGridViewRow = dgvOtros.SelectedRows(0)
             Dim codigo As Integer = seleccion.Cells(1).Value
 
             sqlControl.openConexion()

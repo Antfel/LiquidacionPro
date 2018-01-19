@@ -203,6 +203,24 @@
     <Compile Include="Formularios\RptFormLiquidacionCombustible.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\RptFormLiquidacionCombustiblePrincipal.Designer.vb">
+      <DependentUpon>RptFormLiquidacionCombustiblePrincipal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RptFormLiquidacionCombustiblePrincipal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\RptFormLiquidacionFacturacionDolares.Designer.vb">
+      <DependentUpon>RptFormLiquidacionFacturacionDolares.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RptFormLiquidacionFacturacionDolares.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\RptFormLiquidacionFacturacionSoles.Designer.vb">
+      <DependentUpon>RptFormLiquidacionFacturacionSoles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RptFormLiquidacionFacturacionSoles.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\RptFormLiquidacionGeneral.Designer.vb">
       <DependentUpon>RptFormLiquidacionGeneral.vb</DependentUpon>
     </Compile>
@@ -323,8 +341,29 @@
     <Content Include="Formularios\Reportes\RptLiquidacionCombustibleDetalle.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Formularios\Reportes\RptLiquidacionCombustiblePrincipal.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formularios\Reportes\RptLiquidacionCombustiblePrincipalD.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formularios\Reportes\RptLiquidacionFacturacionCabecera.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Formularios\Reportes\RptLiquidacionFacturacionDetalle.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Formularios\RptFormLiquidacionCombustible.resx">
       <DependentUpon>RptFormLiquidacionCombustible.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptFormLiquidacionCombustiblePrincipal.resx">
+      <DependentUpon>RptFormLiquidacionCombustiblePrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptFormLiquidacionFacturacionDolares.resx">
+      <DependentUpon>RptFormLiquidacionFacturacionDolares.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptFormLiquidacionFacturacionSoles.resx">
+      <DependentUpon>RptFormLiquidacionFacturacionSoles.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\RptFormLiquidacionGeneral.resx">
       <DependentUpon>RptFormLiquidacionGeneral.vb</DependentUpon>

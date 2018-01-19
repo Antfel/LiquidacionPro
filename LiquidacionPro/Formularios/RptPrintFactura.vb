@@ -102,7 +102,7 @@ Public Class RptPrintFactura
                     e.Graphics.DrawString(simbolo + Double.Parse(dtd.Rows.Item(i)(3)).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 565, cordy)
                     e.Graphics.DrawString(simbolo + (Double.Parse(dtd.Rows.Item(i)(0)) * Double.Parse(dtd.Rows.Item(i)(3))).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, cordy)
 
-                    'text = "SERVICIO DE TRANSPORTE"
+                    text = "SERVICIO DE TRANSPORTE"
                     'If (dtd.Rows.Item(i)(8) <> "") Then
                     '    If (dtd.Rows.Item(i)(8) <> "INTEGRAL ESPECIAL" And dtd.Rows.Item(i)(8) <> "INTEGRAL") Then
                     '        text = text + " EN " + dtd.Rows.Item(i)(8)
@@ -145,7 +145,9 @@ Public Class RptPrintFactura
                     '        text = dtd.Rows.Item(i)(8)
                     'End Select
 
-                    text = dtd.Rows.Item(i)(20)
+                    If CInt(dtd.Rows.Item(i)(19)) <> 0 Then
+                        text = dtd.Rows.Item(i)(20)
+                    End If
 
                     If (dtd.Rows.Item(i)(17) <> "") Then
                         text = text + " DE " + dtd.Rows.Item(i)(17)
@@ -160,6 +162,7 @@ Public Class RptPrintFactura
                     End If
 
                     printMULTILINES(text, FONT, e, salto)
+
                     pgdt = cordy
                     pgdr = cordy
                     pgdp = cordy
