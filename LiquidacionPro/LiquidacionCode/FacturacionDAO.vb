@@ -462,8 +462,8 @@ Public Class FacturacionDAO
 		                                    a.TOTAL_FACTURA,
 		                                    b.SIMBOLO
                                     FROM	FACTURA a
-                                    inner	join MONEDA b on a.CODIGO_MONEDA=b.CODIGO_MONEDA
-                                    where   a.CODIGO_MONEDA=" + CStr(codigoMoneda),
+                                    inner	join MONEDA b on a.CODIGO_MONEDA=b.CODIGO_MONEDA 
+                                    where   a.CODIGO_MONEDA=" + CStr(codigoMoneda) + " and a.CODIGO_ESTADO<>15",
                                      Nothing)
 
     End Function
@@ -480,17 +480,17 @@ Public Class FacturacionDAO
 		                                    e.BALANZA_LIQUIDACION,
 		                                    e.OTROS_LIQUIDACION,
 		                                    e.CONSUMO_FISICO_LIQUIDACION,
-		                                    round(e.TOTAL_GASTO_COMBUSTIBLE+coalesce(e.PEAJES_LIQUIDACION,0)+
+		                                    round(coalesce(e.TOTAL_GASTO_COMBUSTIBLE,0)+coalesce(e.PEAJES_LIQUIDACION,0)+
 		                                    coalesce(e.VIATICOS_LIQUIDACION,0)+coalesce(e.GUARDIANIA_LIQUIDACION,0)+coalesce(e.HOSPEDAJE_LIQUIDACION,0)+
 		                                    coalesce(e.BALANZA_LIQUIDACION,0)+coalesce(e.OTROS_LIQUIDACION,0),3) TOTAL_GASTO,
 		                                    b.PRECIO_UNITARIO,
-		                                    case when e.CONSUMO_FISICO_LIQUIDACION<>0 then e.TOTAL_GASTO_COMBUSTIBLE/e.CONSUMO_FISICO_LIQUIDACION else 0 end 'PRECIO_COMBUSTIBLE',
-		                                    PRECIO_UNITARIO-round(e.TOTAL_GASTO_COMBUSTIBLE+coalesce(e.PEAJES_LIQUIDACION,0)+
+		                                    case when e.CONSUMO_FISICO_LIQUIDACION<>0 then coalesce(e.TOTAL_GASTO_COMBUSTIBLE,0)/e.CONSUMO_FISICO_LIQUIDACION else 0 end 'PRECIO_COMBUSTIBLE',
+		                                    PRECIO_UNITARIO-round(coalesce(e.TOTAL_GASTO_COMBUSTIBLE,0)+coalesce(e.PEAJES_LIQUIDACION,0)+
 		                                    coalesce(e.VIATICOS_LIQUIDACION,0)+coalesce(e.GUARDIANIA_LIQUIDACION,0)+coalesce(e.HOSPEDAJE_LIQUIDACION,0)+
 		                                    coalesce(e.BALANZA_LIQUIDACION,0)+coalesce(e.OTROS_LIQUIDACION,0),3) 'GANANCIA_BRUTA',
 		                                    0 'PORCENTAJE',
 		                                    b.PRECIO_UNITARIO*0 'PAGA',
-		                                    (PRECIO_UNITARIO-round(e.TOTAL_GASTO_COMBUSTIBLE+coalesce(e.PEAJES_LIQUIDACION,0)+
+		                                    (PRECIO_UNITARIO-round(coalesce(e.TOTAL_GASTO_COMBUSTIBLE,0)+coalesce(e.PEAJES_LIQUIDACION,0)+
 		                                    coalesce(e.VIATICOS_LIQUIDACION,0)+coalesce(e.GUARDIANIA_LIQUIDACION,0)+coalesce(e.HOSPEDAJE_LIQUIDACION,0)+
 		                                    coalesce(e.BALANZA_LIQUIDACION,0)+coalesce(e.OTROS_LIQUIDACION,0),3))-b.PRECIO_UNITARIO*0 'INGRESO',
                                             e.ORIGEN_LIQUIDACION,
