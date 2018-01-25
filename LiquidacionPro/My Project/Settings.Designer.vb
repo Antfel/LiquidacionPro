@@ -57,8 +57,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=minos;Initial Catalog=TRANSCAR;Persist Security Info=True;User ID=sa;"& _ 
-            "Password=Louisse98")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=SERVCONT;Initial Catalog=TRANSCAR;Persist Security Info=True;User ID="& _ 
+            "sa;Password=Louisse98")>  _
         Public ReadOnly Property TRANSCARConnectionString() As String
             Get
                 Return CType(Me("TRANSCARConnectionString"),String)
