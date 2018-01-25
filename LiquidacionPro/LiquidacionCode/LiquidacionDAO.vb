@@ -682,7 +682,7 @@ Public Class LiquidacionDAO
 		                                    TOTAL 
                                     from	LIQUIDACION_COMBUSTIBLE
                                     where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
-                        ", Nothing)
+                                    ORDER BY NRO_LINEA ASC", Nothing)
     End Function
 
     'Public Function getRptLiquidacionViajeOtro(codigo As Integer) As DataTable
@@ -764,7 +764,7 @@ Public Class LiquidacionDAO
 		                                    GALONES,
 		                                    KM 
                                     FROM	LIQUIDACION_COMBUSTIBLE
-                                    WHERE	CODIGO_LIQUIDACION=" + CStr(codigo) + "", Nothing)
+                                    WHERE	CODIGO_LIQUIDACION=" + CStr(codigo) + " ORDER BY NRO_LINEA ASC", Nothing)
     End Function
 
     Public Function getRptLiquidacionByTrabajador(codigo As String) As DataTable
