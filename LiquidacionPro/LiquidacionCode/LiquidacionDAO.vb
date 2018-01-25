@@ -415,11 +415,11 @@ Public Class LiquidacionDAO
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
-        params.Add(New SqlParameter("@CODIGO_PEAJE", peaje))
+        params.Add(New SqlParameter("@CODIGO_VIATICO", peaje))
 
-        sqlControl.ExecQuery("EXECUTE deleteLiquidacionPeaje " +
+        sqlControl.ExecQuery("EXECUTE deleteLiquidacionViatico " +
                                         "@CODIGO_LIQUIDACION," +
-                                        "@CODIGO_PEAJE ", params)
+                                        "@CODIGO_VIATICO ", params)
     End Sub
 
     Public Function GetLiquidacionViaticoByIdLiquidacion(codigo As Integer) As DataTable

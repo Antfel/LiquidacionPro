@@ -2224,7 +2224,7 @@ Partial Public Class rptLiquidaciones
             MyBase.Columns.Add(Me.columnDETALLE_ESTADO_COMPLETO)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnCODIGO_FACTURA, Me.columnCODIGO_DETALLE_FACTURA}, true))
             Me.columnCONF_VEHICULAR.MaxLength = 20
-            Me.columnOBSERVACION.MaxLength = 150
+            Me.columnOBSERVACION.MaxLength = 250
             Me.columnORIGEN.MaxLength = 150
             Me.columnDESTINO.MaxLength = 150
             Me.columnCODIGO_FACTURA.AllowDBNull = false
