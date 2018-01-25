@@ -217,12 +217,18 @@ Public Class ChildLiquidacionCombustible
             txtCodigoLiquidacion.Text = dt.Rows(0)(0)
             txtNroLiquidacion.Text = dt.Rows(0)(1)
             cbTrabajador.SelectedValue = dt.Rows(0)(2)
-            actualizarDatosGuiaRegistrada(CInt(dt.Rows(0)(4)))
-            cbGuia.SelectedValue = dt.Rows(0)(4)
+            If dt.Rows(0)(4) IsNot DBNull.Value Then
+                actualizarDatosGuiaRegistrada(CInt(dt.Rows(0)(4)))
+                cbGuia.SelectedValue = dt.Rows(0)(4)
+            End If
+
             cbTracto.SelectedValue = dt.Rows(0)(6)
             txtOrigen.Text = dt.Rows(0)(10)
             dtpLlegada.Value = dt.Rows(0)(13)
-            cbCamabaja.SelectedValue = dt.Rows(0)(8)
+            If dt.Rows(0)(8) IsNot DBNull.Value Then
+                cbCamabaja.SelectedValue = dt.Rows(0)(8)
+            End If
+
             txtDestino.Text = dt.Rows(0)(11)
             dtpSalida.Value = dt.Rows(0)(12)
             txtDinero.Text = dt.Rows(0)(14)
