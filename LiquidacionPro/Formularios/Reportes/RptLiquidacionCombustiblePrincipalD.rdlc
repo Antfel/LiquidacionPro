@@ -286,7 +286,7 @@
                                 <TextRun>
                                   <Value>=Fields!GALONES.Value</Value>
                                   <Style>
-                                    <Format>#,0.00;(#,0.00)</Format>
+                                    <Format>#,0.000;(#,0.000)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
