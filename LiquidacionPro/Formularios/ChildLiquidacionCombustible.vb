@@ -1,4 +1,6 @@
-﻿Public Class ChildLiquidacionCombustible
+﻿Imports System.Data.SqlClient
+
+Public Class ChildLiquidacionCombustible
 
     Dim columnaFiltro As Integer = -1
     Dim source1 As New BindingSource()
@@ -42,53 +44,28 @@
                 .ValueMember = "CODIGO_ESTADO"
                 .SelectedIndex = 0
             End With
-        Catch ex As Exception
+
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos Unidad de Medida. " + ex.Message, "Cargar Unidad de Medida",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar datos Unidad de Medida. " + ex.Message, "Cargar Unidad de Medida",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Unidad de Medida",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             End Try
         End Try
     End Sub
 
     Private Sub btnAgregarLiquidacion_Click(sender As Object, e As EventArgs) Handles btnAgregarLiquidacion.Click
-
-        'If cbTrabajador.SelectedIndex < 0 Then
-        '    MessageBox.Show("Seleccionar un Trabajador.", "Agregar liquidación",
-        '                        MessageBoxButtons.OK,
-        '                        MessageBoxIcon.Exclamation)
-        '    Return
-        'End If
-
-        'If txtNroLiquidacion.Text = Nothing Then
-        '    MessageBox.Show("Ingresar nro. de liquidación.", "Agregar liquidación",
-        '                        MessageBoxButtons.OK,
-        '                        MessageBoxIcon.Exclamation)
-        '    Return
-        'End If
-
-        'If cbTracto.SelectedIndex < 0 Then
-        '    MessageBox.Show("Seleccionar un tracto.", "Agregar liquidación",
-        '                        MessageBoxButtons.OK,
-        '                        MessageBoxIcon.Exclamation)
-        '    Return
-        'End If
-
-        'If cbCamabaja.SelectedIndex < 0 Then
-        '    MessageBox.Show("Seleccionar un semitrailer.", "Agregar liquidación",
-        '                        MessageBoxButtons.OK,
-        '                        MessageBoxIcon.Exclamation)
-        '    Return
-        'End If
-
-        'If cbGuia.SelectedIndex < 0 Then
-        '    MessageBox.Show("Seleccionar una guía de transportista.", "Agregar liquidación",
-        '                        MessageBoxButtons.OK,
-        '                        MessageBoxIcon.Exclamation)
-        '    Return
-        'End If
 
         Dim tanque As Double, salida As Double, llegada As Double, recorrido As Double, llegaLima As Double, virtual As Double,
             ajuste As Double, cargaDetalle As String, rutaDetalle As String, pesoDetalle As String
@@ -163,44 +140,7 @@
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Exclamation)
             Return
-            'Try
-            '    sqlControl.openConexion()
-            '    sqlControl.beginTransaction()
-            '    liquidacionDao.setDBcmd()
-            '    Dim correla As Integer
 
-            '    cbEstado.SelectedValue = 1
-
-
-
-            '    correla = liquidacionDao.InsertLiquidacion(txtNroLiquidacion.Text, cbTrabajador.SelectedValue,
-            '                                               cbGuia.SelectedValue,
-            '                                 cbTracto.SelectedValue, cbCamabaja.SelectedValue, origen,
-            '                                 destino, dtpSalida.Value, dtpLlegada.Value,
-            '                                 dinero, peaje, viatico,
-            '                                 guardiania, hospedaje, balanza,
-            '                                 otros, fisico,
-            '                                 virtual, cbEstado.SelectedValue, carga, peso, cbUnidadMedida.SelectedValue)
-            '    If correla >= 0 Then
-            '        txtCodigoLiquidacion.Text = CStr(correla)
-            '        MessageBox.Show("Liquidación grabada correctamente", "Agregar Liquidaciones",
-            '                     MessageBoxButtons.OK,
-            '                     MessageBoxIcon.Information)
-            '    End If
-            '    sqlControl.commitTransaction()
-            'Catch excep As Exception
-            '    sqlControl.rollbackTransaccion()
-
-            '    MessageBox.Show("Error al grabar Liquidación. " + excep.Message, "Agregar Liquidaciones",
-            '                     MessageBoxButtons.OK,
-            '                     MessageBoxIcon.Error)
-            'Finally
-            '    Try
-            '        sqlControl.closeConexion()
-            '    Catch ex As Exception
-
-            '    End Try
-            'End Try
         Else
             Try
                 sqlControl.openConexion()
@@ -209,7 +149,7 @@
 
                 Dim correla As Integer
 
-                correla = liquidacionDao.UpdateLiquidacionCombustible(CInt(txtCodigoLiquidacion.Text), tanque, salida, llegada,
+                correla = liquidacionDao.UpdateLiquidacionCabeceraCombustible(CInt(txtCodigoLiquidacion.Text), tanque, salida, llegada,
                                                                       recorrido, llegaLima, virtual,
                                                                       rutaDetalle, cargaDetalle, ajuste, pesoDetalle)
 
@@ -323,19 +263,24 @@
             txtPesoDetalle.Text = dt.Rows(0)(41)
 
             sqlControl.commitTransaction()
-
-        Catch ex As Exception
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos de Liquidación. " + ex.Message, "Cargar Liquidación",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar datos de Liquidación. " + ex.Message, "Cargar Liquidación",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Liquidación",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             End Try
         End Try
-    End Sub
-    Private Sub txtCodigoLiquidacion_TextChanged(sender As Object, e As EventArgs) Handles txtCodigoLiquidacion.TextChanged
-
     End Sub
 
     Private Sub actualizarListaLiquidacion()
@@ -351,9 +296,9 @@
             Dim dt As DataTable
 
             dt = liquidacionDao.GetAllLiquidacion()
+            sqlControl.commitTransaction()
+
             dgvLiquidacion.DataSource = dt
-
-
 
             dgvLiquidacion.Columns(2).Visible = False
             dgvLiquidacion.Columns(4).Visible = False
@@ -363,18 +308,28 @@
 
             dgvLiquidacion.MultiSelect = False
             dgvLiquidacion.RowHeadersVisible = False
-            sqlControl.commitTransaction()
+
 
             If filaSeleccionada <> -1 Then
                 dgvLiquidacion.CurrentCell = dgvLiquidacion.Item(0, filaSeleccionada)
             End If
-        Catch ex As Exception
+
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar lista Liquidación. " + ex.Message, "Cargar Lista Liquidación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar lista Liquidación. " + ex.Message, "Cargar Lista Liquidación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Lista Liquidación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -394,7 +349,6 @@
             Dim dtTrabajador As DataTable
 
             dtTrabajador = trabajadorDao.GetConductor
-
             sqlControl.commitTransaction()
 
             With cbTrabajador
@@ -406,13 +360,23 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
-        Catch ex As Exception
+
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos Trabajador. " + ex.Message, "Cargar Datos Trabajador",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar datos Trabajador. " + ex.Message, "Cargar Datos Trabajador",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Datos Trabajador",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
     End Sub
@@ -440,13 +404,23 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
-        Catch ex As Exception
+
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos guía. " + ex.Message, "Cargar Datos Guía",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar datos guía. " + ex.Message, "Cargar Datos Guía",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Datos Guía",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -516,13 +490,22 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
-        Catch ex As Exception
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos Tracto. " + ex.Message, "Cargar Datos Tracto",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar datos Tracto. " + ex.Message, "Cargar Datos Tracto",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Datos Tracto",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -542,7 +525,6 @@
             Dim dtUnidad As DataTable
 
             dtUnidad = unidadDao.getUnidadSemiTrailer
-
             sqlControl.commitTransaction()
 
             With cbCamabaja
@@ -554,13 +536,23 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
-        Catch ex As Exception
+
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos Semitrailer. " + ex.Message, "Cargar Datos Semitrailer",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar datos Semitrailer. " + ex.Message, "Cargar Datos Semitrailer",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Datos Semitrailer",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -590,13 +582,22 @@
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedValue = 1
             End With
-        Catch ex As Exception
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos Estado Liquidación. " + ex.Message, "Cargar Estado Liquidación",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar datos Estado Liquidación. " + ex.Message, "Cargar Estado Liquidación",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Estado Liquidación",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             End Try
         End Try
 
@@ -683,24 +684,28 @@
 
             Dim dt As DataTable
             dt = liquidacionDAO.GetLiquidacionCombustibleByIdLiquidacion(codigo)
+            sqlControl.commitTransaction()
 
             dgvCombustible.DataSource = dt
 
             dgvCombustible.Columns(0).Visible = False
             dgvCombustible.Columns(1).Visible = False
+            dgvCombustible.Columns(2).Visible = False
 
-            sqlControl.commitTransaction()
-
-        Catch ex As Exception
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
-            MessageBox.Show("Error al cargar otros. " + ex.Message, "Cargar Otros",
+            MessageBox.Show("Error al cargar Combustible. " + ex.Message, "Cargar Combustible",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar Combustible. " + ex.Message, "Cargar Combustible",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Otros",
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Combustible",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
             End Try
@@ -757,43 +762,106 @@
             km = Double.Parse(txtKm.Text)
         End If
 
+
+
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
-
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
-        Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            liquidacionDAO.setDBcmd()
 
-            liquidacionDAO.InsertLiquidacionCombustible(CInt(txtCodigoLiquidacion.Text), dtpFechaCombustible.Value,
-                                                        txtLugarCombustible.Text, Double.Parse(txtGalonesCombustible.Text),
-                                                        Double.Parse(txtPrecioGalon.Text), gastoCombustible, km)
-
-            sqlControl.commitTransaction()
-            cargarLiquidacion()
-            cargarCombustible(CInt(txtCodigoLiquidacion.Text))
-            txtLugarCombustible.Text = ""
-            txtGalonesCombustible.Text = ""
-            txtPrecioGalon.Text = ""
-            txtGastoCombustible.Text = ""
-            dtpFechaCombustible.Value = Date.Now
-            txtKm.Text = ""
-            txtLugarCombustible.Focus()
-        Catch ex As Exception
-            sqlControl.rollbackTransaccion()
-            MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
-                             MessageBoxButtons.OK,
-                             MessageBoxIcon.Error)
-        Finally
+        If txtCodigoLiquidacionCombustible.Text = Nothing Then
             Try
-                sqlControl.closeConexion()
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                liquidacionDAO.setDBcmd()
+
+                Dim linea As Integer
+
+                If dgvCombustible.Rows.Count > 0 Then
+                    Dim fila As Integer
+                    fila = dgvCombustible.Rows.Count + 1
+                    linea = fila * 10000
+                Else
+                    linea = 10000
+                End If
+
+                liquidacionDAO.InsertLiquidacionCombustible(CInt(txtCodigoLiquidacion.Text), dtpFechaCombustible.Value,
+                                                            txtLugarCombustible.Text, Double.Parse(txtGalonesCombustible.Text),
+                                                            Double.Parse(txtPrecioGalon.Text), gastoCombustible, km, linea)
+
+                sqlControl.commitTransaction()
+                cargarLiquidacion()
+                cargarCombustible(CInt(txtCodigoLiquidacion.Text))
+                txtLugarCombustible.Text = ""
+                txtGalonesCombustible.Text = ""
+                txtPrecioGalon.Text = ""
+                txtGastoCombustible.Text = ""
+                dtpFechaCombustible.Value = Date.Now
+                txtKm.Text = ""
+                txtLugarCombustible.Focus()
+            Catch ex As SqlException
+                sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             Catch ex As Exception
-                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar combustible",
-                             MessageBoxButtons.OK,
-                             MessageBoxIcon.Error)
+                MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar combustible",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                End Try
             End Try
-        End Try
+        Else
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                liquidacionDAO.setDBcmd()
+
+                Dim linea As Integer
+
+                If dgvCombustible.Rows.Count > 0 Then
+                    Dim fila As Integer
+                    fila = dgvCombustible.Rows.Count + 1
+                    linea = fila * 10000
+                Else
+                    linea = 10000
+                End If
+
+                liquidacionDAO.UpdateLiquidacionCombustible(CInt(txtCodigoLiquidacionCombustible.Text), CInt(txtCodigoCombustible.Text),
+                                                            dtpFechaCombustible.Value, txtLugarCombustible.Text,
+                                                            Double.Parse(txtGalonesCombustible.Text), Double.Parse(txtPrecioGalon.Text),
+                                                            gastoCombustible, km, linea)
+
+                sqlControl.commitTransaction()
+                cargarLiquidacion()
+                cargarCombustible(CInt(txtCodigoLiquidacion.Text))
+                txtLugarCombustible.Text = ""
+                txtGalonesCombustible.Text = ""
+                txtPrecioGalon.Text = ""
+                txtGastoCombustible.Text = ""
+                dtpFechaCombustible.Value = Date.Now
+                txtKm.Text = ""
+                txtLugarCombustible.Focus()
+            Catch ex As Exception
+                sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar combustible",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                End Try
+            End Try
+        End If
     End Sub
 
     Private Sub btnEliminarCombustible_Click(sender As Object, e As EventArgs) Handles btnEliminarCombustible.Click
@@ -819,10 +887,14 @@
             sqlControl.commitTransaction()
             cargarLiquidacion()
             cargarCombustible(CInt(txtCodigoLiquidacion.Text))
+            txtCodigoLiquidacionCombustible.Text = ""
+            txtCodigoCombustible.Text = ""
+            txtNroLinea.Text = ""
             txtLugarCombustible.Text = ""
             txtGalonesCombustible.Text = ""
             txtPrecioGalon.Text = ""
             txtGastoCombustible.Text = ""
+            txtKm.Text = ""
             dtpFechaCombustible.Value = Date.Now
 
         Catch ex As Exception
@@ -901,5 +973,303 @@
         Dim rptFormLiquidacionCombustiblePrincipal As New RptFormLiquidacionCombustiblePrincipal()
         rptFormLiquidacionCombustiblePrincipal.setCodigo(CInt(txtCodigoLiquidacion.Text))
         rptFormLiquidacionCombustiblePrincipal.Show()
+    End Sub
+
+    Private Sub dgvCombustible_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvCombustible.CellMouseClick
+        cargarCombustibleById()
+    End Sub
+    Sub cargarCombustibleById()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDao As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDao.setDBcmd()
+
+            Dim seleccion As DataGridViewRow = dgvCombustible.SelectedRows(0)
+            Dim codigo As Integer = seleccion.Cells(1).Value
+            'filaSeleccionada = seleccion.Index
+            Dim dt As DataTable
+            dt = liquidacionDao.GetLiquidacionCombustibleById(CInt(txtCodigoLiquidacion.Text), codigo)
+            sqlControl.commitTransaction()
+
+            txtCodigoLiquidacionCombustible.Text = dt.Rows(0)(0)
+            txtCodigoCombustible.Text = dt.Rows(0)(1)
+            txtNroLinea.Text = dt.Rows(0)(2)
+            dtpFechaCombustible.Value = dt.Rows(0)(3)
+            txtLugarCombustible.Text = dt.Rows(0)(4)
+            txtGalonesCombustible.Text = dt.Rows(0)(5)
+            txtPrecioGalon.Text = dt.Rows(0)(6)
+            txtGastoCombustible.Text = dt.Rows(0)(7)
+            txtKm.Text = dt.Rows(0)(8)
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Liquidación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnInsertarArribaCombustible_Click(sender As Object, e As EventArgs) Handles btnInsertarArribaCombustible.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar combustible",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtLugarCombustible.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el lugar. ", "Agregar combustible",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtGalonesCombustible.Text = Nothing Then
+            MessageBox.Show("Debe ingresar galones. ", "Agregar combustible",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtPrecioGalon.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el precio de galón. ", "Agregar combustible",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtGastoCombustible.Text = Nothing Then
+            MessageBox.Show("Debe ingresar los galones y precio. ", "Agregar combustible",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim gastoCombustible As Double, km As Double
+
+        If txtGastoCombustible.Text = Nothing Then
+            gastoCombustible = 0
+        Else
+            gastoCombustible = Double.Parse(txtGastoCombustible.Text)
+        End If
+
+        If txtKm.Text = Nothing Then
+            km = 0
+        Else
+            km = Double.Parse(txtKm.Text)
+        End If
+
+        If dgvCombustible.Rows.Count <= 0 Then
+            MessageBox.Show("Debe existir un registro previo en Combustible para insertar arriba. ", "Agregar Combustible",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = dgvCombustible.SelectedRows(0)
+        Dim nroLinea1 As Integer = seleccion.Cells(2).Value
+        Dim nroLinea2 As Integer
+        Dim linea As Integer
+
+        If seleccion.Index = 0 Then
+            linea = nroLinea1 / 2
+        Else
+            nroLinea2 = dgvCombustible.Rows(seleccion.Index - 1).Cells(2).Value
+            linea = (nroLinea1 + nroLinea2) / 2
+        End If
+
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+
+
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            liquidacionDAO.InsertLiquidacionCombustible(CInt(txtCodigoLiquidacion.Text), dtpFechaCombustible.Value,
+                                                            txtLugarCombustible.Text, Double.Parse(txtGalonesCombustible.Text),
+                                                            Double.Parse(txtPrecioGalon.Text), gastoCombustible, km, linea)
+
+            sqlControl.commitTransaction()
+            cargarLiquidacion()
+            cargarCombustible(CInt(txtCodigoLiquidacion.Text))
+            txtCodigoLiquidacionCombustible.Text = ""
+            txtCodigoCombustible.Text = ""
+            txtNroLinea.Text = ""
+            txtLugarCombustible.Text = ""
+            txtGalonesCombustible.Text = ""
+            txtPrecioGalon.Text = ""
+            txtGastoCombustible.Text = ""
+            txtKm.Text = ""
+            dtpFechaCombustible.Value = Date.Now
+            txtLugarCombustible.Focus()
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar combustible",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+            End Try
+        End Try
+
+    End Sub
+
+    Private Sub btnInsertarAbajoCombustible_Click(sender As Object, e As EventArgs) Handles btnInsertarAbajoCombustible.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar combustible",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtLugarCombustible.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el lugar. ", "Agregar combustible",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtGalonesCombustible.Text = Nothing Then
+            MessageBox.Show("Debe ingresar galones. ", "Agregar combustible",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtPrecioGalon.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el precio de galón. ", "Agregar combustible",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtGastoCombustible.Text = Nothing Then
+            MessageBox.Show("Debe ingresar los galones y precio. ", "Agregar combustible",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim gastoCombustible As Double, km As Double
+
+        If txtGastoCombustible.Text = Nothing Then
+            gastoCombustible = 0
+        Else
+            gastoCombustible = Double.Parse(txtGastoCombustible.Text)
+        End If
+
+        If txtKm.Text = Nothing Then
+            km = 0
+        Else
+            km = Double.Parse(txtKm.Text)
+        End If
+
+        If dgvCombustible.Rows.Count <= 0 Then
+            MessageBox.Show("Debe existir un registro previo en Combustible para insertar abajo. ", "Agregar Combustible",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = dgvCombustible.SelectedRows(0)
+        Dim nroLinea1 As Integer = seleccion.Cells(2).Value
+        Dim nroLinea2 As Integer
+        Dim linea As Integer
+
+        If seleccion.Index = dgvCombustible.Rows.Count - 1 Then
+            Dim fila As Integer
+            fila = dgvCombustible.Rows.Count + 1
+            linea = fila * 10000
+        Else
+            nroLinea2 = dgvCombustible.Rows(seleccion.Index + 1).Cells(2).Value
+            linea = (nroLinea1 + nroLinea2) / 2
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+
+
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            liquidacionDAO.InsertLiquidacionCombustible(CInt(txtCodigoLiquidacion.Text), dtpFechaCombustible.Value,
+                                                            txtLugarCombustible.Text, Double.Parse(txtGalonesCombustible.Text),
+                                                            Double.Parse(txtPrecioGalon.Text), gastoCombustible, km, linea)
+
+            sqlControl.commitTransaction()
+            cargarLiquidacion()
+            cargarCombustible(CInt(txtCodigoLiquidacion.Text))
+            txtCodigoLiquidacionCombustible.Text = ""
+            txtCodigoCombustible.Text = ""
+            txtNroLinea.Text = ""
+            txtLugarCombustible.Text = ""
+            txtGalonesCombustible.Text = ""
+            txtPrecioGalon.Text = ""
+            txtGastoCombustible.Text = ""
+            txtKm.Text = ""
+            dtpFechaCombustible.Value = Date.Now
+            txtLugarCombustible.Focus()
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar combustible",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnNuevoCombustible_Click(sender As Object, e As EventArgs) Handles btnNuevoCombustible.Click
+        txtCodigoLiquidacionCombustible.Text = ""
+        txtCodigoCombustible.Text = ""
+        txtNroLinea.Text = ""
+        txtLugarCombustible.Text = ""
+        txtGalonesCombustible.Text = ""
+        txtPrecioGalon.Text = ""
+        txtGastoCombustible.Text = ""
+        txtKm.Text = ""
+        dtpFechaCombustible.Value = Date.Now
     End Sub
 End Class

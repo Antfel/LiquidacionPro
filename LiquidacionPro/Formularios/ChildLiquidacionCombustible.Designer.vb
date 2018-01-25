@@ -90,6 +90,12 @@ Partial Class ChildLiquidacionCombustible
         Me.btnAgregarCombustible = New System.Windows.Forms.Button()
         Me.btnEliminarCombustible = New System.Windows.Forms.Button()
         Me.gbPeajes = New System.Windows.Forms.GroupBox()
+        Me.txtNroLinea = New System.Windows.Forms.TextBox()
+        Me.txtCodigoCombustible = New System.Windows.Forms.TextBox()
+        Me.btnNuevoCombustible = New System.Windows.Forms.Button()
+        Me.txtCodigoLiquidacionCombustible = New System.Windows.Forms.TextBox()
+        Me.btnInsertarAbajoCombustible = New System.Windows.Forms.Button()
+        Me.btnInsertarArribaCombustible = New System.Windows.Forms.Button()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.txtKm = New System.Windows.Forms.TextBox()
         Me.txtTotalGastoGalones = New System.Windows.Forms.TextBox()
@@ -707,7 +713,7 @@ Partial Class ChildLiquidacionCombustible
         '
         'btnAgregarCombustible
         '
-        Me.btnAgregarCombustible.Location = New System.Drawing.Point(581, 108)
+        Me.btnAgregarCombustible.Location = New System.Drawing.Point(581, 18)
         Me.btnAgregarCombustible.Name = "btnAgregarCombustible"
         Me.btnAgregarCombustible.Size = New System.Drawing.Size(23, 23)
         Me.btnAgregarCombustible.TabIndex = 7
@@ -725,6 +731,13 @@ Partial Class ChildLiquidacionCombustible
         '
         'gbPeajes
         '
+        Me.gbPeajes.Controls.Add(Me.Label25)
+        Me.gbPeajes.Controls.Add(Me.txtNroLinea)
+        Me.gbPeajes.Controls.Add(Me.txtCodigoCombustible)
+        Me.gbPeajes.Controls.Add(Me.btnNuevoCombustible)
+        Me.gbPeajes.Controls.Add(Me.txtCodigoLiquidacionCombustible)
+        Me.gbPeajes.Controls.Add(Me.btnInsertarAbajoCombustible)
+        Me.gbPeajes.Controls.Add(Me.btnInsertarArribaCombustible)
         Me.gbPeajes.Controls.Add(Me.Label43)
         Me.gbPeajes.Controls.Add(Me.txtKm)
         Me.gbPeajes.Controls.Add(Me.txtTotalGastoGalones)
@@ -740,7 +753,6 @@ Partial Class ChildLiquidacionCombustible
         Me.gbPeajes.Controls.Add(Me.txtGalonesCombustible)
         Me.gbPeajes.Controls.Add(Me.Label26)
         Me.gbPeajes.Controls.Add(Me.txtLugarCombustible)
-        Me.gbPeajes.Controls.Add(Me.Label25)
         Me.gbPeajes.Controls.Add(Me.dtpFechaCombustible)
         Me.gbPeajes.Controls.Add(Me.txtTotalGalones)
         Me.gbPeajes.Controls.Add(Me.Label7)
@@ -750,6 +762,57 @@ Partial Class ChildLiquidacionCombustible
         Me.gbPeajes.TabIndex = 1
         Me.gbPeajes.TabStop = False
         Me.gbPeajes.Text = "Consumo de Combustible"
+        '
+        'txtNroLinea
+        '
+        Me.txtNroLinea.Location = New System.Drawing.Point(55, 17)
+        Me.txtNroLinea.Name = "txtNroLinea"
+        Me.txtNroLinea.Size = New System.Drawing.Size(10, 20)
+        Me.txtNroLinea.TabIndex = 1013
+        Me.txtNroLinea.Visible = False
+        '
+        'txtCodigoCombustible
+        '
+        Me.txtCodigoCombustible.Location = New System.Drawing.Point(39, 17)
+        Me.txtCodigoCombustible.Name = "txtCodigoCombustible"
+        Me.txtCodigoCombustible.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoCombustible.TabIndex = 1012
+        Me.txtCodigoCombustible.Visible = False
+        '
+        'btnNuevoCombustible
+        '
+        Me.btnNuevoCombustible.Location = New System.Drawing.Point(581, 42)
+        Me.btnNuevoCombustible.Name = "btnNuevoCombustible"
+        Me.btnNuevoCombustible.Size = New System.Drawing.Size(23, 23)
+        Me.btnNuevoCombustible.TabIndex = 1012
+        Me.btnNuevoCombustible.Text = "N"
+        Me.btnNuevoCombustible.UseVisualStyleBackColor = True
+        '
+        'txtCodigoLiquidacionCombustible
+        '
+        Me.txtCodigoLiquidacionCombustible.Location = New System.Drawing.Point(23, 17)
+        Me.txtCodigoLiquidacionCombustible.Name = "txtCodigoLiquidacionCombustible"
+        Me.txtCodigoLiquidacionCombustible.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoLiquidacionCombustible.TabIndex = 1011
+        Me.txtCodigoLiquidacionCombustible.Visible = False
+        '
+        'btnInsertarAbajoCombustible
+        '
+        Me.btnInsertarAbajoCombustible.Location = New System.Drawing.Point(581, 117)
+        Me.btnInsertarAbajoCombustible.Name = "btnInsertarAbajoCombustible"
+        Me.btnInsertarAbajoCombustible.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarAbajoCombustible.TabIndex = 1011
+        Me.btnInsertarAbajoCombustible.Text = "i-"
+        Me.btnInsertarAbajoCombustible.UseVisualStyleBackColor = True
+        '
+        'btnInsertarArribaCombustible
+        '
+        Me.btnInsertarArribaCombustible.Location = New System.Drawing.Point(581, 90)
+        Me.btnInsertarArribaCombustible.Name = "btnInsertarArribaCombustible"
+        Me.btnInsertarArribaCombustible.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarArribaCombustible.TabIndex = 1011
+        Me.btnInsertarArribaCombustible.Text = "i+"
+        Me.btnInsertarArribaCombustible.UseVisualStyleBackColor = True
         '
         'Label43
         '
@@ -1197,4 +1260,10 @@ Partial Class ChildLiquidacionCombustible
     Friend WithEvents Label40 As Label
     Friend WithEvents txtCargaDetalle As TextBox
     Friend WithEvents txtRutaDetalle As TextBox
+    Friend WithEvents btnInsertarAbajoCombustible As Button
+    Friend WithEvents btnInsertarArribaCombustible As Button
+    Friend WithEvents btnNuevoCombustible As Button
+    Friend WithEvents txtNroLinea As TextBox
+    Friend WithEvents txtCodigoCombustible As TextBox
+    Friend WithEvents txtCodigoLiquidacionCombustible As TextBox
 End Class

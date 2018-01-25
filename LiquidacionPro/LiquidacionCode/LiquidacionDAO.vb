@@ -284,7 +284,7 @@ Public Class LiquidacionDAO
 
     End Function
 
-    Public Function UpdateLiquidacionCombustible(codigo As String, tanque As Double, salida As Double, llegada As Double,
+    Public Function UpdateLiquidacionCabeceraCombustible(codigo As String, tanque As Double, salida As Double, llegada As Double,
                                                  recorrido As Double, galonesLlega As Double, virtual As Double,
                                                  rutaDetalle As String, cargaDetalle As String, ajuste As Double, pesoDescripcion As String) As Integer
 
@@ -302,7 +302,7 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@PESO_DESCRIPCION", pesoDescripcion))
 
         Dim dt As DataTable
-        dt = sqlControl.ExecQuery("EXECUTE updateLiquidacionCombustible 
+        dt = sqlControl.ExecQuery("EXECUTE updateLiquidacionCabeceraCombustible  
                                         @CODIGO_LIQUIDACION,
                                         @TANQUE,
                                         @KM_SALIDA,
@@ -327,7 +327,7 @@ Public Class LiquidacionDAO
 
     End Function
 
-    Public Function InsertLiquidacionPeaje(codigo As Integer, fecha As Date, lugar As String, ejes As Integer, total As Double) As Integer
+    Public Function InsertLiquidacionPeaje(codigo As Integer, fecha As Date, lugar As String, ejes As Integer, total As Double, nroLinea As Integer) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
@@ -335,6 +335,7 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@LUGAR", lugar))
         params.Add(New SqlParameter("@EJES", ejes))
         params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@NRO_LINEA", nroLinea))
 
 
         Dim dt As DataTable
@@ -343,7 +344,8 @@ Public Class LiquidacionDAO
                                         @FECHA_PEAJE,
                                         @LUGAR,
                                         @EJES,
-                                        @TOTAL", params)
+                                        @TOTAL,
+                                        @NRO_LINEA ", params)
 
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
@@ -361,13 +363,13 @@ Public Class LiquidacionDAO
 
         Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
 		                                    CODIGO_PEAJE,
+                                            NRO_LINEA,
 		                                    FECHA_PEAJE FECHA,
 		                                    LUGAR,
 		                                    EJES,
 		                                    TOTAL
                                     from	LIQUIDACION_PEAJE
-                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
-                        ", Nothing)
+                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + " order by NRO_LINEA asc", Nothing)
     End Function
 
     Public Sub deleteLiquidacionPeajeById(codigo As Integer, peaje As Integer)
@@ -463,7 +465,7 @@ Public Class LiquidacionDAO
 
     Public Function InsertLiquidacionCombustible(codigo As Integer, fecha As Date, lugar As String,
                                                  galones As Double, precioGalon As Double, total As Double,
-                                                 km As Double) As Integer
+                                                 km As Double, linea As Integer) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
@@ -473,6 +475,7 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@PRECIO_GALON", precioGalon))
         params.Add(New SqlParameter("@TOTAL", total))
         params.Add(New SqlParameter("@KM", km))
+        params.Add(New SqlParameter("@NRO_LINEA", linea))
 
 
         Dim dt As DataTable
@@ -483,7 +486,47 @@ Public Class LiquidacionDAO
                                         @GALONES,
                                         @PRECIO_GALON,
                                         @TOTAL,
-                                        @KM ", params)
+                                        @KM,
+                                        @NRO_LINEA ", params)
+
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+    End Function
+
+    Public Function UpdateLiquidacionCombustible(codigo As Integer, combustible As Integer, fecha As Date, lugar As String,
+                                                 galones As Double, precioGalon As Double, total As Double,
+                                                 km As Double, nroLinea As Integer) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
+        params.Add(New SqlParameter("@CODIGO_COMBUSTIBLE", combustible))
+        params.Add(New SqlParameter("@FECHA", fecha))
+        params.Add(New SqlParameter("@LUGAR", lugar))
+        params.Add(New SqlParameter("@GALONES", galones))
+        params.Add(New SqlParameter("@PRECIO_GALON", precioGalon))
+        params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@KM", km))
+        params.Add(New SqlParameter("@NRO_LINEA", nroLinea))
+
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE updateLiquidacionCombustible    
+                                        @CODIGO_LIQUIDACION,
+                                        @CODIGO_COMBUSTIBLE,
+                                        @FECHA,
+                                        @LUGAR,
+                                        @GALONES,
+                                        @PRECIO_GALON,
+                                        @TOTAL,
+                                        @KM,
+                                        @NRO_LINEA ", params)
 
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
@@ -534,6 +577,7 @@ Public Class LiquidacionDAO
 
         Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
 		                                    CODIGO_COMBUSTIBLE,
+                                            NRO_LINEA,
 		                                    FECHA,
 		                                    LUGAR,
 		                                    GALONES,
@@ -542,7 +586,7 @@ Public Class LiquidacionDAO
                                             coalesce(KM,0) KM 
                                     from	LIQUIDACION_COMBUSTIBLE
                                     where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
-                        ", Nothing)
+                                    order   by  NRO_LINEA asc", Nothing)
     End Function
 
     Public Function getRptLiquidacionGeneral(codigo As Integer) As DataTable
@@ -611,7 +655,7 @@ Public Class LiquidacionDAO
 		                                    TOTAL
                                     from	LIQUIDACION_PEAJE
                                     where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
-                        ", Nothing)
+                                    order by NRO_LINEA asc", Nothing)
     End Function
 
     Public Function getRptLiquidacionViajeViatico(codigo As Integer) As DataTable
@@ -721,5 +765,108 @@ Public Class LiquidacionDAO
 		                                    KM 
                                     FROM	LIQUIDACION_COMBUSTIBLE
                                     WHERE	CODIGO_LIQUIDACION=" + CStr(codigo) + "", Nothing)
+    End Function
+
+    Public Function getRptLiquidacionByTrabajador(codigo As String) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	A.CODIGO_LIQUIDACION,
+		                                    A.NUMERO_LIQUIDACION,
+		                                    A.CODIGO_TRABAJADOR,
+		                                    COALESCE(B.NOMBRES_TRABAJADOR,'')+COALESCE(B.APELLIDO_PATERNO_TRABAJADOR,'')+COALESCE(B.APELLIDO_MATERNO_TRABAJADOR,'') TRABAJADOR,
+		                                    A.CODIGO_GUIA,
+		                                    C.DETALLE_GUIA,
+		                                    A.CODIGO_UNIDAD_TRACTO,
+		                                    D.PLACA_UNIDAD TRACTO,
+		                                    A.CODIGO_UNIDAD_SEMITRAILER,
+		                                    E.PLACA_UNIDAD SEMITRAILER,
+		                                    A.ORIGEN_LIQUIDACION,
+		                                    A.DESTINO_LIQUIDACION,
+		                                    A.FECHA_SALIDA,
+		                                    A.FECHA_LLEGADA,
+		                                    A.DINERO_LIQUIDACION,
+		                                    A.PEAJES_LIQUIDACION,
+		                                    A.VIATICOS_LIQUIDACION,
+		                                    A.GUARDIANIA_LIQUIDACION,
+		                                    A.HOSPEDAJE_LIQUIDACION,
+		                                    A.BALANZA_LIQUIDACION,
+		                                    A.OTROS_LIQUIDACION,
+		                                    A.CONSUMO_FISICO_LIQUIDACION,
+		                                    A.CONSUMO_VIRTUAL_LIQUIDACION,
+		                                    A.CODIGO_ESTADO,
+		                                    F.DETALLE_ESTADO ESTADO_LIQUIDACION,
+		                                    A.CARGA,
+		                                    A.PESO,
+		                                    A.UNIDAD_MEDIDA,
+		                                    G.DETALLE_ESTADO DETALLE_UNIDAD
+                                    FROM	LIQUIDACION A
+                                    LEFT	JOIN TRABAJADOR B ON A.CODIGO_TRABAJADOR=B.CODIGO_TRABAJADOR
+                                    LEFT	JOIN GUIA_TRANSPORTISTA C ON A.CODIGO_GUIA=C.CODIGO_GUIA
+                                    LEFT	JOIN UNIDAD D ON D.CODIGO_UNIDAD=A.CODIGO_UNIDAD_TRACTO
+                                    LEFT	JOIN UNIDAD E ON E.CODIGO_UNIDAD=A.CODIGO_UNIDAD_SEMITRAILER
+                                    LEFT	JOIN ESTADO F ON F.CODIGO_ESTADO=A.CODIGO_ESTADO AND F.TIPO_ESTADO=1
+                                    LEFT	JOIN ESTADO G ON G.CODIGO_ESTADO=A.UNIDAD_MEDIDA AND G.TIPO_ESTADO=8
+                                    WHERE	A.CODIGO_TRABAJADOR LIKE '%" + codigo + "%' order	by TRABAJADOR", Nothing)
+    End Function
+
+    Public Function GetLiquidacionPeajeById(liquidacion As Integer, codigo As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("select	A.CODIGO_LIQUIDACION,
+		                            A.CODIGO_PEAJE,
+		                            A.NRO_LINEA,
+		                            A.FECHA_PEAJE,
+		                            A.LUGAR,
+		                            A.EJES,
+		                            A.TOTAL 
+                            from	LIQUIDACION_PEAJE A 
+                            WHERE	A.CODIGO_LIQUIDACION=" + CStr(liquidacion) + " AND CODIGO_PEAJE=" + CStr(codigo) + "", Nothing)
+    End Function
+
+    Public Function GetLiquidacionCombustibleById(liquidacion As Integer, codigo As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	CODIGO_LIQUIDACION,
+		                                    CODIGO_COMBUSTIBLE,
+		                                    NRO_LINEA,
+		                                    FECHA,
+		                                    LUGAR,
+		                                    GALONES,
+		                                    PRECIO_GALON,
+		                                    TOTAL,
+		                                    KM 
+                                    FROM	LIQUIDACION_COMBUSTIBLE A 
+                                    WHERE	A.CODIGO_LIQUIDACION=" + CStr(liquidacion) + " AND A.CODIGO_COMBUSTIBLE=" + CStr(codigo) + "", Nothing)
+    End Function
+    Public Function UpdateLiquidacionPeaje(liquidacion As Integer, peaje As Integer, fechaPeaje As Date,
+                                           lugar As String, ejes As Integer, total As Double,
+                                           nroLinea As Integer) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", liquidacion))
+        params.Add(New SqlParameter("@CODIGO_PEAJE", peaje))
+        params.Add(New SqlParameter("@FECHA_PEAJE", fechaPeaje))
+        params.Add(New SqlParameter("@LUGAR", lugar))
+        params.Add(New SqlParameter("@EJES", ejes))
+        params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@NRO_LINEA", nroLinea))
+
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE updateLiquidacionPeaje  
+                                        @CODIGO_LIQUIDACION,
+                                        @CODIGO_PEAJE,
+                                        @FECHA_PEAJE,
+                                        @LUGAR,
+                                        @EJES,
+                                        @TOTAL,
+                                        @NRO_LINEA 
+                                        ", params)
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
     End Function
 End Class

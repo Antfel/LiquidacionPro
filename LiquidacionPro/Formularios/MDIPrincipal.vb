@@ -18,9 +18,8 @@ Public Class MDIPrincipal
 
     Private Sub LiquidacionesPorEstadoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LiquidacionesPorEstadoToolStripMenuItem.Click
         cerrarVentanas()
-        Dim rptLiquidacionChild As New ChildRptLiquidacionEstado()
-        rptLiquidacionChild.MdiParent = Me
-        rptLiquidacionChild.Show()
+        Dim rptFormLiquidacionByTrabajador As New RptFormLiquidacionByTrabajador()
+        rptFormLiquidacionByTrabajador.Show()
 
     End Sub
 
@@ -85,5 +84,11 @@ Public Class MDIPrincipal
         cerrarVentanas()
         Dim rptFormLiquidacionFacturacion As New RptFormLiquidacionFacturacionDolares()
         rptFormLiquidacionFacturacion.Show()
+    End Sub
+
+    Private Sub GuíasVsLiquidaciónYFacturaciónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GuíasVsLiquidaciónYFacturaciónToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim rptLiquidacionChild As New RptGuiasVsLiquidacionFacturacion()
+        rptLiquidacionChild.Show()
     End Sub
 End Class

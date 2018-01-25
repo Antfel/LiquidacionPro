@@ -149,4 +149,23 @@ left	join ESTADO b on a.CODIGO_ESTADO=b.CODIGO_ESTADO and TIPO_ESTADO=3", Nothin
                                     "WHERE CODIGO_GUIA = @codigo", params)
     End Function
 
+    Public Function getRptGuiaLiquidacionFactura(estados As String) As DataTable
+        Dim params As New List(Of SqlParameter)
+        Return sqlControl.ExecQuery("SELECT	a.CODIGO_GUIA,
+		                                    a.DETALLE_GUIA,
+		                                    b.DETALLE_ESTADO,
+		                                    c.CODIGO_LIQUIDACION,
+		                                    c.NUMERO_LIQUIDACION,
+		                                    f.CODIGO_FACTURA,
+		                                    f.NUMERO_FACTURA
+                                    FROM	GUIA_TRANSPORTISTA a
+                                    LEFT	JOIN ESTADO b ON a.CODIGO_ESTADO=b.CODIGO_ESTADO
+                                    LEFT	JOIN LIQUIDACION c ON c.CODIGO_GUIA=a.CODIGO_GUIA
+                                    LEFT	JOIN DETALLE_FACTURA_GUIA d ON d.CODIGO_GUIA=A.CODIGO_GUIA 
+                                    LEFT	JOIN DETALLE_FACTURA e ON e.CODIGO_DETALLE_FACTURA=d.CODIGO_DETALLE_FACTURA AND d.CODIGO_FACTURA=e.CODIGO_FACTURA
+                                    LEFT	JOIN FACTURA f ON f.CODIGO_FACTURA=e.CODIGO_FACTURA
+                                    WHERE	a.CODIGO_ESTADO IN (" + estados + ")
+                                    ORDER	BY a.DETALLE_GUIA", params)
+    End Function
+
 End Class

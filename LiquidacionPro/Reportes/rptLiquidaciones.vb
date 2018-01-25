@@ -1,8 +1,9 @@
 ﻿Partial Class rptLiquidaciones
-    Partial Public Class dtRptLiquidacionCombustiblePrincipalDetalleDataTable
-        Private Sub dtRptLiquidacionCombustiblePrincipalDetalleDataTable_dtRptLiquidacionCombustiblePrincipalDetalleRowChanging(sender As Object, e As dtRptLiquidacionCombustiblePrincipalDetalleRowChangeEvent) Handles Me.dtRptLiquidacionCombustiblePrincipalDetalleRowChanging
+    Partial Public Class dtRptLiquidacionByTrabajadorDataTable
 
-        End Sub
+    End Class
+
+    Partial Public Class dtRptLiquidacionCombustiblePrincipalDetalleDataTable
 
     End Class
 End Class

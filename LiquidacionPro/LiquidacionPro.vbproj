@@ -191,10 +191,16 @@
     <Compile Include="Formularios\MDIPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios\ChildRptLiquidacionEstado.Designer.vb">
-      <DependentUpon>ChildRptLiquidacionEstado.vb</DependentUpon>
+    <Compile Include="Formularios\RptFormLiquidacionByTrabajador.Designer.vb">
+      <DependentUpon>RptFormLiquidacionByTrabajador.vb</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\ChildRptLiquidacionEstado.vb">
+    <Compile Include="Formularios\RptFormLiquidacionByTrabajador.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\RptGuiasVsLiquidacionFacturacion.Designer.vb">
+      <DependentUpon>RptGuiasVsLiquidacionFacturacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RptGuiasVsLiquidacionFacturacion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\RptFormLiquidacionCombustible.Designer.vb">
@@ -317,8 +323,11 @@
     <EmbeddedResource Include="Formularios\MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\ChildRptLiquidacionEstado.resx">
-      <DependentUpon>ChildRptLiquidacionEstado.vb</DependentUpon>
+    <EmbeddedResource Include="Formularios\RptFormLiquidacionByTrabajador.resx">
+      <DependentUpon>RptFormLiquidacionByTrabajador.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptGuiasVsLiquidacionFacturacion.resx">
+      <DependentUpon>RptGuiasVsLiquidacionFacturacion.vb</DependentUpon>
     </EmbeddedResource>
     <Content Include="Formularios\Reportes\RptLiquidacionGeneralDetalle.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -353,6 +362,9 @@
     <Content Include="Formularios\Reportes\RptLiquidacionFacturacionDetalle.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Formularios\Reportes\RptGuiasVsLiquidacionFacturacion.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Formularios\RptFormLiquidacionCombustible.resx">
       <DependentUpon>RptFormLiquidacionCombustible.vb</DependentUpon>
     </EmbeddedResource>
@@ -368,7 +380,7 @@
     <EmbeddedResource Include="Formularios\RptFormLiquidacionGeneral.resx">
       <DependentUpon>RptFormLiquidacionGeneral.vb</DependentUpon>
     </EmbeddedResource>
-    <Content Include="Formularios\Reportes\RptLiquidacionesEstado.rdlc">
+    <Content Include="Formularios\Reportes\RptLiquidacionVsTrabajador.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Formularios\Reportes\RptLiquidacionGeneral.rdlc">

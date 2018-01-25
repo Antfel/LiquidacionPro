@@ -22,8 +22,8 @@ Partial Class ChildLiquidacionControl
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.cbGuia = New System.Windows.Forms.ComboBox()
         Me.cbCamabaja = New System.Windows.Forms.ComboBox()
@@ -80,6 +80,8 @@ Partial Class ChildLiquidacionControl
         Me.lblFiltro = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.gbPeajes = New System.Windows.Forms.GroupBox()
+        Me.btnInsertarDebajoPeaje = New System.Windows.Forms.Button()
+        Me.btnInsertarArribaPeaje = New System.Windows.Forms.Button()
         Me.btnEliminarPeaje = New System.Windows.Forms.Button()
         Me.btnAgregarPeaje = New System.Windows.Forms.Button()
         Me.dgvPeajes = New System.Windows.Forms.DataGridView()
@@ -120,6 +122,10 @@ Partial Class ChildLiquidacionControl
         Me.Label37 = New System.Windows.Forms.Label()
         Me.cbUnidadMedida = New System.Windows.Forms.ComboBox()
         Me.btnRptLiquidacionCombustible = New System.Windows.Forms.Button()
+        Me.txtCodigoLiquidacionPeaje = New System.Windows.Forms.TextBox()
+        Me.txtCodigoPeaje = New System.Windows.Forms.TextBox()
+        Me.txtNroLineaPeaje = New System.Windows.Forms.TextBox()
+        Me.btnNuevoPeaje = New System.Windows.Forms.Button()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.gbPeajes.SuspendLayout()
@@ -246,23 +252,23 @@ Partial Class ChildLiquidacionControl
         Me.dgvLiquidacion.AllowUserToDeleteRows = False
         Me.dgvLiquidacion.AllowUserToOrderColumns = True
         Me.dgvLiquidacion.AllowUserToResizeRows = False
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvLiquidacion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvLiquidacion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvLiquidacion.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvLiquidacion.DefaultCellStyle = DataGridViewCellStyle2
         Me.dgvLiquidacion.Location = New System.Drawing.Point(10, 462)
         Me.dgvLiquidacion.Name = "dgvLiquidacion"
         Me.dgvLiquidacion.ReadOnly = True
@@ -624,6 +630,13 @@ Partial Class ChildLiquidacionControl
         '
         'gbPeajes
         '
+        Me.gbPeajes.Controls.Add(Me.btnNuevoPeaje)
+        Me.gbPeajes.Controls.Add(Me.Label25)
+        Me.gbPeajes.Controls.Add(Me.txtNroLineaPeaje)
+        Me.gbPeajes.Controls.Add(Me.txtCodigoPeaje)
+        Me.gbPeajes.Controls.Add(Me.btnInsertarDebajoPeaje)
+        Me.gbPeajes.Controls.Add(Me.txtCodigoLiquidacionPeaje)
+        Me.gbPeajes.Controls.Add(Me.btnInsertarArribaPeaje)
         Me.gbPeajes.Controls.Add(Me.btnEliminarPeaje)
         Me.gbPeajes.Controls.Add(Me.btnAgregarPeaje)
         Me.gbPeajes.Controls.Add(Me.dgvPeajes)
@@ -633,20 +646,38 @@ Partial Class ChildLiquidacionControl
         Me.gbPeajes.Controls.Add(Me.txtEjesPeaje)
         Me.gbPeajes.Controls.Add(Me.Label26)
         Me.gbPeajes.Controls.Add(Me.txtLugarPeaje)
-        Me.gbPeajes.Controls.Add(Me.Label25)
         Me.gbPeajes.Controls.Add(Me.dtpFechaHoraPeaje)
         Me.gbPeajes.Controls.Add(Me.txtPeajes)
         Me.gbPeajes.Controls.Add(Me.Label7)
         Me.gbPeajes.Location = New System.Drawing.Point(10, 117)
         Me.gbPeajes.Name = "gbPeajes"
-        Me.gbPeajes.Size = New System.Drawing.Size(392, 220)
+        Me.gbPeajes.Size = New System.Drawing.Size(420, 220)
         Me.gbPeajes.TabIndex = 66
         Me.gbPeajes.TabStop = False
         Me.gbPeajes.Text = "Control de Peajes"
         '
+        'btnInsertarDebajoPeaje
+        '
+        Me.btnInsertarDebajoPeaje.Location = New System.Drawing.Point(387, 122)
+        Me.btnInsertarDebajoPeaje.Name = "btnInsertarDebajoPeaje"
+        Me.btnInsertarDebajoPeaje.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarDebajoPeaje.TabIndex = 1001
+        Me.btnInsertarDebajoPeaje.Text = "i-"
+        Me.btnInsertarDebajoPeaje.UseVisualStyleBackColor = True
+        '
+        'btnInsertarArribaPeaje
+        '
+        Me.btnInsertarArribaPeaje.Location = New System.Drawing.Point(387, 96)
+        Me.btnInsertarArribaPeaje.Name = "btnInsertarArribaPeaje"
+        Me.btnInsertarArribaPeaje.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarArribaPeaje.TabIndex = 1001
+        Me.btnInsertarArribaPeaje.Tag = ""
+        Me.btnInsertarArribaPeaje.Text = "i+"
+        Me.btnInsertarArribaPeaje.UseVisualStyleBackColor = True
+        '
         'btnEliminarPeaje
         '
-        Me.btnEliminarPeaje.Location = New System.Drawing.Point(363, 137)
+        Me.btnEliminarPeaje.Location = New System.Drawing.Point(387, 147)
         Me.btnEliminarPeaje.Name = "btnEliminarPeaje"
         Me.btnEliminarPeaje.Size = New System.Drawing.Size(23, 23)
         Me.btnEliminarPeaje.TabIndex = 71
@@ -655,7 +686,7 @@ Partial Class ChildLiquidacionControl
         '
         'btnAgregarPeaje
         '
-        Me.btnAgregarPeaje.Location = New System.Drawing.Point(363, 107)
+        Me.btnAgregarPeaje.Location = New System.Drawing.Point(387, 24)
         Me.btnAgregarPeaje.Name = "btnAgregarPeaje"
         Me.btnAgregarPeaje.Size = New System.Drawing.Size(23, 23)
         Me.btnAgregarPeaje.TabIndex = 70
@@ -673,7 +704,7 @@ Partial Class ChildLiquidacionControl
         Me.dgvPeajes.ReadOnly = True
         Me.dgvPeajes.RowHeadersVisible = False
         Me.dgvPeajes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvPeajes.Size = New System.Drawing.Size(338, 101)
+        Me.dgvPeajes.Size = New System.Drawing.Size(362, 101)
         Me.dgvPeajes.TabIndex = 8
         '
         'Label28
@@ -756,7 +787,7 @@ Partial Class ChildLiquidacionControl
         Me.gbViaticos.Controls.Add(Me.txtCantidadViatico)
         Me.gbViaticos.Controls.Add(Me.txtViaticos)
         Me.gbViaticos.Controls.Add(Me.Label8)
-        Me.gbViaticos.Location = New System.Drawing.Point(408, 117)
+        Me.gbViaticos.Location = New System.Drawing.Point(446, 117)
         Me.gbViaticos.Name = "gbViaticos"
         Me.gbViaticos.Size = New System.Drawing.Size(392, 220)
         Me.gbViaticos.TabIndex = 72
@@ -871,7 +902,7 @@ Partial Class ChildLiquidacionControl
         Me.gbOtros.Controls.Add(Me.txtDescripcionOtros)
         Me.gbOtros.Controls.Add(Me.txtOtros)
         Me.gbOtros.Controls.Add(Me.Label12)
-        Me.gbOtros.Location = New System.Drawing.Point(807, 117)
+        Me.gbOtros.Location = New System.Drawing.Point(845, 117)
         Me.gbOtros.Name = "gbOtros"
         Me.gbOtros.Size = New System.Drawing.Size(392, 220)
         Me.gbOtros.TabIndex = 78
@@ -1017,6 +1048,39 @@ Partial Class ChildLiquidacionControl
         Me.btnRptLiquidacionCombustible.TabIndex = 113
         Me.btnRptLiquidacionCombustible.Text = "Liquidación de Combustible"
         Me.btnRptLiquidacionCombustible.UseVisualStyleBackColor = True
+        '
+        'txtCodigoLiquidacionPeaje
+        '
+        Me.txtCodigoLiquidacionPeaje.Location = New System.Drawing.Point(7, 20)
+        Me.txtCodigoLiquidacionPeaje.Name = "txtCodigoLiquidacionPeaje"
+        Me.txtCodigoLiquidacionPeaje.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoLiquidacionPeaje.TabIndex = 1001
+        Me.txtCodigoLiquidacionPeaje.Visible = False
+        '
+        'txtCodigoPeaje
+        '
+        Me.txtCodigoPeaje.Location = New System.Drawing.Point(23, 19)
+        Me.txtCodigoPeaje.Name = "txtCodigoPeaje"
+        Me.txtCodigoPeaje.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoPeaje.TabIndex = 1002
+        Me.txtCodigoPeaje.Visible = False
+        '
+        'txtNroLineaPeaje
+        '
+        Me.txtNroLineaPeaje.Location = New System.Drawing.Point(40, 19)
+        Me.txtNroLineaPeaje.Name = "txtNroLineaPeaje"
+        Me.txtNroLineaPeaje.Size = New System.Drawing.Size(10, 20)
+        Me.txtNroLineaPeaje.TabIndex = 1003
+        Me.txtNroLineaPeaje.Visible = False
+        '
+        'btnNuevoPeaje
+        '
+        Me.btnNuevoPeaje.Location = New System.Drawing.Point(387, 50)
+        Me.btnNuevoPeaje.Name = "btnNuevoPeaje"
+        Me.btnNuevoPeaje.Size = New System.Drawing.Size(23, 23)
+        Me.btnNuevoPeaje.TabIndex = 1001
+        Me.btnNuevoPeaje.Text = "N"
+        Me.btnNuevoPeaje.UseVisualStyleBackColor = True
         '
         'ChildLiquidacionControl
         '
@@ -1195,4 +1259,10 @@ Partial Class ChildLiquidacionControl
     Friend WithEvents Label37 As Label
     Friend WithEvents cbUnidadMedida As ComboBox
     Friend WithEvents btnRptLiquidacionCombustible As Button
+    Friend WithEvents btnInsertarArribaPeaje As Button
+    Friend WithEvents btnInsertarDebajoPeaje As Button
+    Friend WithEvents txtNroLineaPeaje As TextBox
+    Friend WithEvents txtCodigoPeaje As TextBox
+    Friend WithEvents txtCodigoLiquidacionPeaje As TextBox
+    Friend WithEvents btnNuevoPeaje As Button
 End Class
