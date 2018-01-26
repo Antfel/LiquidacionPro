@@ -768,8 +768,6 @@ Public Class ChildLiquidacionCombustible
             km = Double.Parse(txtKm.Text)
         End If
 
-
-
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
@@ -797,6 +795,9 @@ Public Class ChildLiquidacionCombustible
                 sqlControl.commitTransaction()
                 cargarLiquidacion()
                 cargarCombustible(CInt(txtCodigoLiquidacion.Text))
+                txtCodigoLiquidacionCombustible.Text = ""
+                txtCodigoCombustible.Text = ""
+                txtNroLinea.Text = ""
                 txtLugarCombustible.Text = ""
                 txtGalonesCombustible.Text = ""
                 txtPrecioGalon.Text = ""
@@ -830,13 +831,15 @@ Public Class ChildLiquidacionCombustible
 
                 Dim linea As Integer
 
-                If dgvCombustible.Rows.Count > 0 Then
-                    Dim fila As Integer
-                    fila = dgvCombustible.Rows.Count + 1
-                    linea = fila * 10000
-                Else
-                    linea = 10000
-                End If
+                'If dgvCombustible.Rows.Count > 0 Then
+                '    Dim fila As Integer
+                '    fila = dgvCombustible.Rows.Count + 1
+                '    linea = fila * 10000
+                'Else
+                '    linea = 10000
+                'End If
+
+                linea = CInt(txtNroLinea.Text)
 
                 liquidacionDAO.UpdateLiquidacionCombustible(CInt(txtCodigoLiquidacionCombustible.Text), CInt(txtCodigoCombustible.Text),
                                                             dtpFechaCombustible.Value, txtLugarCombustible.Text,
@@ -846,6 +849,9 @@ Public Class ChildLiquidacionCombustible
                 sqlControl.commitTransaction()
                 cargarLiquidacion()
                 cargarCombustible(CInt(txtCodigoLiquidacion.Text))
+                txtCodigoLiquidacionCombustible.Text = ""
+                txtCodigoCombustible.Text = ""
+                txtNroLinea.Text = ""
                 txtLugarCombustible.Text = ""
                 txtGalonesCombustible.Text = ""
                 txtPrecioGalon.Text = ""

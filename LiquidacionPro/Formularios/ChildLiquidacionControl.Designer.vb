@@ -22,8 +22,8 @@ Partial Class ChildLiquidacionControl
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.cbGuia = New System.Windows.Forms.ComboBox()
         Me.cbCamabaja = New System.Windows.Forms.ComboBox()
@@ -80,7 +80,12 @@ Partial Class ChildLiquidacionControl
         Me.lblFiltro = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.gbPeajes = New System.Windows.Forms.GroupBox()
+        Me.btnNuevoPeaje = New System.Windows.Forms.Button()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.txtNroLineaPeaje = New System.Windows.Forms.TextBox()
+        Me.txtCodigoPeaje = New System.Windows.Forms.TextBox()
         Me.btnInsertarDebajoPeaje = New System.Windows.Forms.Button()
+        Me.txtCodigoLiquidacionPeaje = New System.Windows.Forms.TextBox()
         Me.btnInsertarArribaPeaje = New System.Windows.Forms.Button()
         Me.btnEliminarPeaje = New System.Windows.Forms.Button()
         Me.btnAgregarPeaje = New System.Windows.Forms.Button()
@@ -91,11 +96,16 @@ Partial Class ChildLiquidacionControl
         Me.txtEjesPeaje = New System.Windows.Forms.TextBox()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.txtLugarPeaje = New System.Windows.Forms.TextBox()
-        Me.Label25 = New System.Windows.Forms.Label()
         Me.dtpFechaHoraPeaje = New System.Windows.Forms.DateTimePicker()
         Me.gbViaticos = New System.Windows.Forms.GroupBox()
+        Me.btnNuevoViatico = New System.Windows.Forms.Button()
+        Me.btnInsertarAbajoViatico = New System.Windows.Forms.Button()
+        Me.btnInsertarArribaViatico = New System.Windows.Forms.Button()
+        Me.txtNroLineaViatico = New System.Windows.Forms.TextBox()
         Me.btnEliminarViatico = New System.Windows.Forms.Button()
+        Me.txtCodigoViatico = New System.Windows.Forms.TextBox()
         Me.btnAgregarViatico = New System.Windows.Forms.Button()
+        Me.txtCodigoLiquidacionViatico = New System.Windows.Forms.TextBox()
         Me.dgvViaticos = New System.Windows.Forms.DataGridView()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -122,10 +132,12 @@ Partial Class ChildLiquidacionControl
         Me.Label37 = New System.Windows.Forms.Label()
         Me.cbUnidadMedida = New System.Windows.Forms.ComboBox()
         Me.btnRptLiquidacionCombustible = New System.Windows.Forms.Button()
-        Me.txtCodigoLiquidacionPeaje = New System.Windows.Forms.TextBox()
-        Me.txtCodigoPeaje = New System.Windows.Forms.TextBox()
-        Me.txtNroLineaPeaje = New System.Windows.Forms.TextBox()
-        Me.btnNuevoPeaje = New System.Windows.Forms.Button()
+        Me.txtCodigoLiquidacionOtro = New System.Windows.Forms.TextBox()
+        Me.txtCodigoOtro = New System.Windows.Forms.TextBox()
+        Me.txtNroLineaOtro = New System.Windows.Forms.TextBox()
+        Me.btnNuevoOtro = New System.Windows.Forms.Button()
+        Me.btnInsertarArribaOtro = New System.Windows.Forms.Button()
+        Me.btnInsertarAbajoOtro = New System.Windows.Forms.Button()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.gbPeajes.SuspendLayout()
@@ -252,23 +264,23 @@ Partial Class ChildLiquidacionControl
         Me.dgvLiquidacion.AllowUserToDeleteRows = False
         Me.dgvLiquidacion.AllowUserToOrderColumns = True
         Me.dgvLiquidacion.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvLiquidacion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvLiquidacion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.dgvLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvLiquidacion.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvLiquidacion.DefaultCellStyle = DataGridViewCellStyle10
         Me.dgvLiquidacion.Location = New System.Drawing.Point(10, 462)
         Me.dgvLiquidacion.Name = "dgvLiquidacion"
         Me.dgvLiquidacion.ReadOnly = True
@@ -656,6 +668,40 @@ Partial Class ChildLiquidacionControl
         Me.gbPeajes.TabStop = False
         Me.gbPeajes.Text = "Control de Peajes"
         '
+        'btnNuevoPeaje
+        '
+        Me.btnNuevoPeaje.Location = New System.Drawing.Point(387, 50)
+        Me.btnNuevoPeaje.Name = "btnNuevoPeaje"
+        Me.btnNuevoPeaje.Size = New System.Drawing.Size(23, 23)
+        Me.btnNuevoPeaje.TabIndex = 1001
+        Me.btnNuevoPeaje.Text = "N"
+        Me.btnNuevoPeaje.UseVisualStyleBackColor = True
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(9, 29)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(65, 13)
+        Me.Label25.TabIndex = 1
+        Me.Label25.Text = "Fecha/Hora"
+        '
+        'txtNroLineaPeaje
+        '
+        Me.txtNroLineaPeaje.Location = New System.Drawing.Point(40, 19)
+        Me.txtNroLineaPeaje.Name = "txtNroLineaPeaje"
+        Me.txtNroLineaPeaje.Size = New System.Drawing.Size(10, 20)
+        Me.txtNroLineaPeaje.TabIndex = 1003
+        Me.txtNroLineaPeaje.Visible = False
+        '
+        'txtCodigoPeaje
+        '
+        Me.txtCodigoPeaje.Location = New System.Drawing.Point(23, 19)
+        Me.txtCodigoPeaje.Name = "txtCodigoPeaje"
+        Me.txtCodigoPeaje.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoPeaje.TabIndex = 1002
+        Me.txtCodigoPeaje.Visible = False
+        '
         'btnInsertarDebajoPeaje
         '
         Me.btnInsertarDebajoPeaje.Location = New System.Drawing.Point(387, 122)
@@ -665,9 +711,17 @@ Partial Class ChildLiquidacionControl
         Me.btnInsertarDebajoPeaje.Text = "i-"
         Me.btnInsertarDebajoPeaje.UseVisualStyleBackColor = True
         '
+        'txtCodigoLiquidacionPeaje
+        '
+        Me.txtCodigoLiquidacionPeaje.Location = New System.Drawing.Point(7, 20)
+        Me.txtCodigoLiquidacionPeaje.Name = "txtCodigoLiquidacionPeaje"
+        Me.txtCodigoLiquidacionPeaje.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoLiquidacionPeaje.TabIndex = 1001
+        Me.txtCodigoLiquidacionPeaje.Visible = False
+        '
         'btnInsertarArribaPeaje
         '
-        Me.btnInsertarArribaPeaje.Location = New System.Drawing.Point(387, 96)
+        Me.btnInsertarArribaPeaje.Location = New System.Drawing.Point(387, 89)
         Me.btnInsertarArribaPeaje.Name = "btnInsertarArribaPeaje"
         Me.btnInsertarArribaPeaje.Size = New System.Drawing.Size(23, 23)
         Me.btnInsertarArribaPeaje.TabIndex = 1001
@@ -677,7 +731,7 @@ Partial Class ChildLiquidacionControl
         '
         'btnEliminarPeaje
         '
-        Me.btnEliminarPeaje.Location = New System.Drawing.Point(387, 147)
+        Me.btnEliminarPeaje.Location = New System.Drawing.Point(387, 156)
         Me.btnEliminarPeaje.Name = "btnEliminarPeaje"
         Me.btnEliminarPeaje.Size = New System.Drawing.Size(23, 23)
         Me.btnEliminarPeaje.TabIndex = 71
@@ -755,15 +809,6 @@ Partial Class ChildLiquidacionControl
         Me.txtLugarPeaje.Size = New System.Drawing.Size(150, 20)
         Me.txtLugarPeaje.TabIndex = 68
         '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(9, 29)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(65, 13)
-        Me.Label25.TabIndex = 1
-        Me.Label25.Text = "Fecha/Hora"
-        '
         'dtpFechaHoraPeaje
         '
         Me.dtpFechaHoraPeaje.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
@@ -774,8 +819,14 @@ Partial Class ChildLiquidacionControl
         '
         'gbViaticos
         '
+        Me.gbViaticos.Controls.Add(Me.btnNuevoViatico)
+        Me.gbViaticos.Controls.Add(Me.btnInsertarAbajoViatico)
+        Me.gbViaticos.Controls.Add(Me.btnInsertarArribaViatico)
+        Me.gbViaticos.Controls.Add(Me.txtNroLineaViatico)
         Me.gbViaticos.Controls.Add(Me.btnEliminarViatico)
+        Me.gbViaticos.Controls.Add(Me.txtCodigoViatico)
         Me.gbViaticos.Controls.Add(Me.btnAgregarViatico)
+        Me.gbViaticos.Controls.Add(Me.txtCodigoLiquidacionViatico)
         Me.gbViaticos.Controls.Add(Me.dgvViaticos)
         Me.gbViaticos.Controls.Add(Me.Label32)
         Me.gbViaticos.Controls.Add(Me.Label31)
@@ -789,28 +840,79 @@ Partial Class ChildLiquidacionControl
         Me.gbViaticos.Controls.Add(Me.Label8)
         Me.gbViaticos.Location = New System.Drawing.Point(446, 117)
         Me.gbViaticos.Name = "gbViaticos"
-        Me.gbViaticos.Size = New System.Drawing.Size(392, 220)
+        Me.gbViaticos.Size = New System.Drawing.Size(416, 220)
         Me.gbViaticos.TabIndex = 72
         Me.gbViaticos.TabStop = False
         Me.gbViaticos.Text = "Viáticos"
         '
+        'btnNuevoViatico
+        '
+        Me.btnNuevoViatico.Location = New System.Drawing.Point(387, 54)
+        Me.btnNuevoViatico.Name = "btnNuevoViatico"
+        Me.btnNuevoViatico.Size = New System.Drawing.Size(23, 23)
+        Me.btnNuevoViatico.TabIndex = 1001
+        Me.btnNuevoViatico.Text = "N"
+        Me.btnNuevoViatico.UseVisualStyleBackColor = True
+        '
+        'btnInsertarAbajoViatico
+        '
+        Me.btnInsertarAbajoViatico.Location = New System.Drawing.Point(387, 122)
+        Me.btnInsertarAbajoViatico.Name = "btnInsertarAbajoViatico"
+        Me.btnInsertarAbajoViatico.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarAbajoViatico.TabIndex = 1001
+        Me.btnInsertarAbajoViatico.Text = "i-"
+        Me.btnInsertarAbajoViatico.UseVisualStyleBackColor = True
+        '
+        'btnInsertarArribaViatico
+        '
+        Me.btnInsertarArribaViatico.Location = New System.Drawing.Point(387, 89)
+        Me.btnInsertarArribaViatico.Name = "btnInsertarArribaViatico"
+        Me.btnInsertarArribaViatico.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarArribaViatico.TabIndex = 1001
+        Me.btnInsertarArribaViatico.Text = "i+"
+        Me.btnInsertarArribaViatico.UseVisualStyleBackColor = True
+        '
+        'txtNroLineaViatico
+        '
+        Me.txtNroLineaViatico.Location = New System.Drawing.Point(44, 26)
+        Me.txtNroLineaViatico.Name = "txtNroLineaViatico"
+        Me.txtNroLineaViatico.Size = New System.Drawing.Size(10, 20)
+        Me.txtNroLineaViatico.TabIndex = 1003
+        Me.txtNroLineaViatico.Visible = False
+        '
         'btnEliminarViatico
         '
-        Me.btnEliminarViatico.Location = New System.Drawing.Point(358, 137)
+        Me.btnEliminarViatico.Location = New System.Drawing.Point(387, 156)
         Me.btnEliminarViatico.Name = "btnEliminarViatico"
         Me.btnEliminarViatico.Size = New System.Drawing.Size(23, 23)
         Me.btnEliminarViatico.TabIndex = 77
         Me.btnEliminarViatico.Text = "-"
         Me.btnEliminarViatico.UseVisualStyleBackColor = True
         '
+        'txtCodigoViatico
+        '
+        Me.txtCodigoViatico.Location = New System.Drawing.Point(27, 26)
+        Me.txtCodigoViatico.Name = "txtCodigoViatico"
+        Me.txtCodigoViatico.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoViatico.TabIndex = 1002
+        Me.txtCodigoViatico.Visible = False
+        '
         'btnAgregarViatico
         '
-        Me.btnAgregarViatico.Location = New System.Drawing.Point(358, 106)
+        Me.btnAgregarViatico.Location = New System.Drawing.Point(387, 29)
         Me.btnAgregarViatico.Name = "btnAgregarViatico"
         Me.btnAgregarViatico.Size = New System.Drawing.Size(23, 23)
         Me.btnAgregarViatico.TabIndex = 76
         Me.btnAgregarViatico.Text = "+"
         Me.btnAgregarViatico.UseVisualStyleBackColor = True
+        '
+        'txtCodigoLiquidacionViatico
+        '
+        Me.txtCodigoLiquidacionViatico.Location = New System.Drawing.Point(10, 26)
+        Me.txtCodigoLiquidacionViatico.Name = "txtCodigoLiquidacionViatico"
+        Me.txtCodigoLiquidacionViatico.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoLiquidacionViatico.TabIndex = 1001
+        Me.txtCodigoLiquidacionViatico.Visible = False
         '
         'dgvViaticos
         '
@@ -823,7 +925,7 @@ Partial Class ChildLiquidacionControl
         Me.dgvViaticos.ReadOnly = True
         Me.dgvViaticos.RowHeadersVisible = False
         Me.dgvViaticos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvViaticos.Size = New System.Drawing.Size(338, 101)
+        Me.dgvViaticos.Size = New System.Drawing.Size(371, 101)
         Me.dgvViaticos.TabIndex = 8
         '
         'Label32
@@ -893,8 +995,14 @@ Partial Class ChildLiquidacionControl
         '
         'gbOtros
         '
+        Me.gbOtros.Controls.Add(Me.btnInsertarAbajoOtro)
+        Me.gbOtros.Controls.Add(Me.txtNroLineaOtro)
+        Me.gbOtros.Controls.Add(Me.btnInsertarArribaOtro)
         Me.gbOtros.Controls.Add(Me.btnEliminarOtros)
+        Me.gbOtros.Controls.Add(Me.btnNuevoOtro)
+        Me.gbOtros.Controls.Add(Me.txtCodigoOtro)
         Me.gbOtros.Controls.Add(Me.btnAgregarOtros)
+        Me.gbOtros.Controls.Add(Me.txtCodigoLiquidacionOtro)
         Me.gbOtros.Controls.Add(Me.dgvOtros)
         Me.gbOtros.Controls.Add(Me.Label34)
         Me.gbOtros.Controls.Add(Me.Label33)
@@ -902,16 +1010,16 @@ Partial Class ChildLiquidacionControl
         Me.gbOtros.Controls.Add(Me.txtDescripcionOtros)
         Me.gbOtros.Controls.Add(Me.txtOtros)
         Me.gbOtros.Controls.Add(Me.Label12)
-        Me.gbOtros.Location = New System.Drawing.Point(845, 117)
+        Me.gbOtros.Location = New System.Drawing.Point(868, 117)
         Me.gbOtros.Name = "gbOtros"
-        Me.gbOtros.Size = New System.Drawing.Size(392, 220)
+        Me.gbOtros.Size = New System.Drawing.Size(437, 220)
         Me.gbOtros.TabIndex = 78
         Me.gbOtros.TabStop = False
         Me.gbOtros.Text = "Otros"
         '
         'btnEliminarOtros
         '
-        Me.btnEliminarOtros.Location = New System.Drawing.Point(355, 137)
+        Me.btnEliminarOtros.Location = New System.Drawing.Point(392, 153)
         Me.btnEliminarOtros.Name = "btnEliminarOtros"
         Me.btnEliminarOtros.Size = New System.Drawing.Size(23, 23)
         Me.btnEliminarOtros.TabIndex = 81
@@ -920,7 +1028,7 @@ Partial Class ChildLiquidacionControl
         '
         'btnAgregarOtros
         '
-        Me.btnAgregarOtros.Location = New System.Drawing.Point(355, 107)
+        Me.btnAgregarOtros.Location = New System.Drawing.Point(392, 21)
         Me.btnAgregarOtros.Name = "btnAgregarOtros"
         Me.btnAgregarOtros.Size = New System.Drawing.Size(23, 23)
         Me.btnAgregarOtros.TabIndex = 80
@@ -938,7 +1046,7 @@ Partial Class ChildLiquidacionControl
         Me.dgvOtros.ReadOnly = True
         Me.dgvOtros.RowHeadersVisible = False
         Me.dgvOtros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvOtros.Size = New System.Drawing.Size(338, 101)
+        Me.dgvOtros.Size = New System.Drawing.Size(376, 101)
         Me.dgvOtros.TabIndex = 4
         '
         'Label34
@@ -1049,44 +1157,62 @@ Partial Class ChildLiquidacionControl
         Me.btnRptLiquidacionCombustible.Text = "Liquidación de Combustible"
         Me.btnRptLiquidacionCombustible.UseVisualStyleBackColor = True
         '
-        'txtCodigoLiquidacionPeaje
+        'txtCodigoLiquidacionOtro
         '
-        Me.txtCodigoLiquidacionPeaje.Location = New System.Drawing.Point(7, 20)
-        Me.txtCodigoLiquidacionPeaje.Name = "txtCodigoLiquidacionPeaje"
-        Me.txtCodigoLiquidacionPeaje.Size = New System.Drawing.Size(10, 20)
-        Me.txtCodigoLiquidacionPeaje.TabIndex = 1001
-        Me.txtCodigoLiquidacionPeaje.Visible = False
+        Me.txtCodigoLiquidacionOtro.Location = New System.Drawing.Point(21, 45)
+        Me.txtCodigoLiquidacionOtro.Name = "txtCodigoLiquidacionOtro"
+        Me.txtCodigoLiquidacionOtro.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoLiquidacionOtro.TabIndex = 1001
+        Me.txtCodigoLiquidacionOtro.Visible = False
         '
-        'txtCodigoPeaje
+        'txtCodigoOtro
         '
-        Me.txtCodigoPeaje.Location = New System.Drawing.Point(23, 19)
-        Me.txtCodigoPeaje.Name = "txtCodigoPeaje"
-        Me.txtCodigoPeaje.Size = New System.Drawing.Size(10, 20)
-        Me.txtCodigoPeaje.TabIndex = 1002
-        Me.txtCodigoPeaje.Visible = False
+        Me.txtCodigoOtro.Location = New System.Drawing.Point(37, 45)
+        Me.txtCodigoOtro.Name = "txtCodigoOtro"
+        Me.txtCodigoOtro.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoOtro.TabIndex = 1002
+        Me.txtCodigoOtro.Visible = False
         '
-        'txtNroLineaPeaje
+        'txtNroLineaOtro
         '
-        Me.txtNroLineaPeaje.Location = New System.Drawing.Point(40, 19)
-        Me.txtNroLineaPeaje.Name = "txtNroLineaPeaje"
-        Me.txtNroLineaPeaje.Size = New System.Drawing.Size(10, 20)
-        Me.txtNroLineaPeaje.TabIndex = 1003
-        Me.txtNroLineaPeaje.Visible = False
+        Me.txtNroLineaOtro.Location = New System.Drawing.Point(53, 45)
+        Me.txtNroLineaOtro.Name = "txtNroLineaOtro"
+        Me.txtNroLineaOtro.Size = New System.Drawing.Size(10, 20)
+        Me.txtNroLineaOtro.TabIndex = 1003
+        Me.txtNroLineaOtro.Visible = False
         '
-        'btnNuevoPeaje
+        'btnNuevoOtro
         '
-        Me.btnNuevoPeaje.Location = New System.Drawing.Point(387, 50)
-        Me.btnNuevoPeaje.Name = "btnNuevoPeaje"
-        Me.btnNuevoPeaje.Size = New System.Drawing.Size(23, 23)
-        Me.btnNuevoPeaje.TabIndex = 1001
-        Me.btnNuevoPeaje.Text = "N"
-        Me.btnNuevoPeaje.UseVisualStyleBackColor = True
+        Me.btnNuevoOtro.Location = New System.Drawing.Point(392, 49)
+        Me.btnNuevoOtro.Name = "btnNuevoOtro"
+        Me.btnNuevoOtro.Size = New System.Drawing.Size(23, 23)
+        Me.btnNuevoOtro.TabIndex = 1001
+        Me.btnNuevoOtro.Text = "N"
+        Me.btnNuevoOtro.UseVisualStyleBackColor = True
+        '
+        'btnInsertarArribaOtro
+        '
+        Me.btnInsertarArribaOtro.Location = New System.Drawing.Point(392, 86)
+        Me.btnInsertarArribaOtro.Name = "btnInsertarArribaOtro"
+        Me.btnInsertarArribaOtro.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarArribaOtro.TabIndex = 1002
+        Me.btnInsertarArribaOtro.Text = "i+"
+        Me.btnInsertarArribaOtro.UseVisualStyleBackColor = True
+        '
+        'btnInsertarAbajoOtro
+        '
+        Me.btnInsertarAbajoOtro.Location = New System.Drawing.Point(392, 118)
+        Me.btnInsertarAbajoOtro.Name = "btnInsertarAbajoOtro"
+        Me.btnInsertarAbajoOtro.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarAbajoOtro.TabIndex = 1003
+        Me.btnInsertarAbajoOtro.Text = "i-"
+        Me.btnInsertarAbajoOtro.UseVisualStyleBackColor = True
         '
         'ChildLiquidacionControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1232, 644)
+        Me.ClientSize = New System.Drawing.Size(1317, 644)
         Me.Controls.Add(Me.btnRptLiquidacionCombustible)
         Me.Controls.Add(Me.cbUnidadMedida)
         Me.Controls.Add(Me.Label37)
@@ -1265,4 +1391,16 @@ Partial Class ChildLiquidacionControl
     Friend WithEvents txtCodigoPeaje As TextBox
     Friend WithEvents txtCodigoLiquidacionPeaje As TextBox
     Friend WithEvents btnNuevoPeaje As Button
+    Friend WithEvents btnNuevoViatico As Button
+    Friend WithEvents btnInsertarAbajoViatico As Button
+    Friend WithEvents btnInsertarArribaViatico As Button
+    Friend WithEvents txtNroLineaViatico As TextBox
+    Friend WithEvents txtCodigoViatico As TextBox
+    Friend WithEvents txtCodigoLiquidacionViatico As TextBox
+    Friend WithEvents btnInsertarAbajoOtro As Button
+    Friend WithEvents txtNroLineaOtro As TextBox
+    Friend WithEvents btnInsertarArribaOtro As Button
+    Friend WithEvents btnNuevoOtro As Button
+    Friend WithEvents txtCodigoOtro As TextBox
+    Friend WithEvents txtCodigoLiquidacionOtro As TextBox
 End Class

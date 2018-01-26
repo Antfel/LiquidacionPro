@@ -383,7 +383,8 @@ Public Class LiquidacionDAO
                                         "@CODIGO_PEAJE ", params)
     End Sub
 
-    Public Function InsertLiquidacionViatico(codigo As Integer, cantidad As Integer, turno As Date, descripcion As String, total As Double) As Integer
+    Public Function InsertLiquidacionViatico(codigo As Integer, cantidad As Integer, turno As Date, descripcion As String, total As Double,
+                                             linea As Integer) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
@@ -391,6 +392,7 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@TURNO", turno))
         params.Add(New SqlParameter("@DESCRIPCION", descripcion))
         params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@NRO_LINEA", linea))
 
 
         Dim dt As DataTable
@@ -399,7 +401,43 @@ Public Class LiquidacionDAO
                                         @CANTIDAD,
                                         @TURNO,
                                         @DESCRIPCION,
-                                        @TOTAL ", params)
+                                        @TOTAL,
+                                        @NRO_LINEA ", params)
+
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+    End Function
+
+    Public Function UpdateLiquidacionViatico(codigo As Integer, viatico As Integer, cantidad As Integer, turno As Date, descripcion As String, total As Double,
+                                             linea As Integer) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
+        params.Add(New SqlParameter("@CODIGO_VIATICO", viatico))
+        params.Add(New SqlParameter("@CANTIDAD", cantidad))
+        params.Add(New SqlParameter("@TURNO", turno))
+        params.Add(New SqlParameter("@DESCRIPCION", descripcion))
+        params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@NRO_LINEA", linea))
+
+
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE updateLiquidacionViatico 
+                                        @CODIGO_LIQUIDACION,
+                                        @CODIGO_VIATICO,
+                                        @CANTIDAD,
+                                        @TURNO,
+                                        @DESCRIPCION,
+                                        @TOTAL,
+                                        @NRO_LINEA ", params)
 
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
@@ -428,28 +466,63 @@ Public Class LiquidacionDAO
 
         Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
 		                                    CODIGO_Viatico,
+                                            NRO_LINEA,
 		                                    CANTIDAD,
 		                                    TURNO,
 		                                    DESCRIPCION,
 		                                    TOTAL 
-                                    from	LIQUIDACION_VIATICO
+                                    from	LIQUIDACION_VIATICO 
                                     where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
-                        ", Nothing)
+                                    order   by NRO_LINEA asc", Nothing)
     End Function
 
-    Public Function InsertLiquidacionOtro(codigo As Integer, descripcion As String, total As Double) As Integer
+    Public Function InsertLiquidacionOtro(codigo As Integer, descripcion As String, total As Double,
+                                          linea As Integer) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
         params.Add(New SqlParameter("@DESCRIPCION", descripcion))
         params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@NRO_LINEA", linea))
 
 
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE insertLiquidacionOtro  
                                         @CODIGO_LIQUIDACION,
                                         @DESCRIPCION,
-                                        @TOTAL ", params)
+                                        @TOTAL,
+                                        @NRO_LINEA ", params)
+
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+    End Function
+
+    Public Function UpdateLiquidacionOtro(codigo As Integer, otro As Integer, descripcion As String, total As Double,
+                                          linea As Integer) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
+        params.Add(New SqlParameter("@CODIGO_OTRO", otro))
+        params.Add(New SqlParameter("@DESCRIPCION", descripcion))
+        params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@NRO_LINEA", linea))
+
+
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE updateLiquidacionOtro  
+                                        @CODIGO_LIQUIDACION,
+                                        @CODIGO_OTRO,
+                                        @DESCRIPCION,
+                                        @TOTAL,
+                                        @NRO_LINEA ", params)
 
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
@@ -566,11 +639,12 @@ Public Class LiquidacionDAO
 
         Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
 		                                    CODIGO_OTRO,
+                                            NRO_LINEA,  
 		                                    DESCRIPCION,
 		                                    TOTAL 
                                     from	LIQUIDACION_OTRO 
                                     where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
-                        ", Nothing)
+                                    order by NRO_LINEA asc", Nothing)
     End Function
 
     Public Function GetLiquidacionCombustibleByIdLiquidacion(codigo As Integer) As DataTable
@@ -668,7 +742,7 @@ Public Class LiquidacionDAO
 		                                    TOTAL
                                     from	LIQUIDACION_VIATICO
                                     where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
-                        ", Nothing)
+                                    order by NRO_LINEA asc ", Nothing)
     End Function
 
     Public Function getRptLiquidacionCombustible(codigo As Integer) As DataTable
@@ -819,6 +893,30 @@ Public Class LiquidacionDAO
 		                            A.TOTAL 
                             from	LIQUIDACION_PEAJE A 
                             WHERE	A.CODIGO_LIQUIDACION=" + CStr(liquidacion) + " AND CODIGO_PEAJE=" + CStr(codigo) + "", Nothing)
+    End Function
+
+    Public Function GetLiquidacionViaticoById(liquidacion As Integer, codigo As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
+		                                    CODIGO_VIATICO,
+		                                    NRO_LINEA,
+		                                    CANTIDAD,
+		                                    TURNO,
+		                                    DESCRIPCION,
+		                                    TOTAL 
+                                    from	LIQUIDACION_VIATICO
+                                    where	CODIGO_LIQUIDACION=" + CStr(liquidacion) + " and CODIGO_VIATICO=" + CStr(codigo) + "", Nothing)
+    End Function
+
+    Public Function GetLiquidacionOtroById(liquidacion As Integer, codigo As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
+		                                    CODIGO_OTRO,
+		                                    NRO_LINEA,
+		                                    DESCRIPCION,
+		                                    TOTAL 
+                                    from	LIQUIDACION_OTRO
+                                    where	CODIGO_LIQUIDACION=" + CStr(liquidacion) + " and CODIGO_OTRO=" + CStr(codigo) + "", Nothing)
     End Function
 
     Public Function GetLiquidacionCombustibleById(liquidacion As Integer, codigo As Integer) As DataTable

@@ -549,8 +549,13 @@ Public Class ChildLiquidacionControl
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
-        Catch ex As Exception
+
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar Guía Registrada. " + ex.Message, "Cargar Guía Registrada",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
             MessageBox.Show("Error al cargar Guía Registrada. " + ex.Message, "Cargar Guía Registrada",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -870,13 +875,15 @@ Public Class ChildLiquidacionControl
 
                 Dim linea As Integer
 
-                If dgvPeajes.Rows.Count > 0 Then
-                    Dim fila As Integer
-                    fila = dgvPeajes.Rows.Count + 1
-                    linea = fila * 10000
-                Else
-                    linea = 10000
-                End If
+                'If dgvPeajes.Rows.Count > 0 Then
+                '    Dim fila As Integer
+                '    fila = dgvPeajes.Rows.Count + 1
+                '    linea = fila * 10000
+                'Else
+                '    linea = 10000
+                'End If
+
+                linea = CInt(txtNroLineaPeaje.Text)
 
                 liquidacionDAO.UpdateLiquidacionPeaje(CInt(txtCodigoLiquidacionPeaje.Text), CInt(txtCodigoPeaje.Text),
                                                       dtpFechaHoraPeaje.Value, txtLugarPeaje.Text, CInt(txtEjesPeaje.Text),
@@ -935,9 +942,9 @@ Public Class ChildLiquidacionControl
             dgvPeajes.Columns(0).Visible = False
             dgvPeajes.Columns(1).Visible = False
             dgvPeajes.Columns(2).Visible = False
-            If dgvPeajes.Rows.Count <> 0 Then
-                dgvPeajes.CurrentCell = dgvPeajes.Item(3, dgvPeajes.Rows.Count - 1)
-            End If
+            'If dgvPeajes.Rows.Count <> 0 Then
+            '    dgvPeajes.CurrentCell = dgvPeajes.Item(3, dgvPeajes.Rows.Count - 1)
+            'End If
 
         Catch ex As SqlException
             sqlControl.rollbackTransaccion()
@@ -977,10 +984,11 @@ Public Class ChildLiquidacionControl
 
             dgvViaticos.Columns(0).Visible = False
             dgvViaticos.Columns(1).Visible = False
+            dgvViaticos.Columns(2).Visible = False
 
-            If dgvViaticos.Rows.Count <> 0 Then
-                dgvViaticos.CurrentCell = dgvViaticos.Item(2, dgvViaticos.Rows.Count - 1)
-            End If
+            'If dgvViaticos.Rows.Count <> 0 Then
+            '    dgvViaticos.CurrentCell = dgvViaticos.Item(3, dgvViaticos.Rows.Count - 1)
+            'End If
         Catch ex As SqlException
             sqlControl.rollbackTransaccion()
             MessageBox.Show("Error al cargar peaje. " + ex.Message, "Cargar Viáticos",
@@ -1075,35 +1083,110 @@ Public Class ChildLiquidacionControl
         sqlControl.setConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
-        Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            liquidacionDAO.setDBcmd()
 
-            liquidacionDAO.InsertLiquidacionViatico(CInt(txtCodigoLiquidacion.Text), CInt(txtCantidadViatico.Text), dtpTurnoViaticos.Value, txtDescripcionViatico.Text, Double.Parse(txtTotalViatico.Text))
-
-            sqlControl.commitTransaction()
-            cargarLiquidacion()
-            cargarViaticos(CInt(txtCodigoLiquidacion.Text))
-            txtCantidadViatico.Text = ""
-            txtDescripcionViatico.Text = ""
-            txtTotalGasto.Text = ""
-            dtpTurnoViaticos.Value = Date.Now
-            txtCantidadViatico.Focus()
-        Catch ex As Exception
-            sqlControl.rollbackTransaccion()
-            MessageBox.Show("Error al agregar peaje. " + ex.Message, "Agregar peaje",
-                             MessageBoxButtons.OK,
-                             MessageBoxIcon.Error)
-        Finally
+        If txtCodigoLiquidacionViatico.Text = Nothing Then
             Try
-                sqlControl.closeConexion()
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                liquidacionDAO.setDBcmd()
+
+                Dim linea As Integer
+
+                If dgvViaticos.Rows.Count > 0 Then
+                    Dim fila As Integer
+                    fila = dgvViaticos.Rows.Count + 1
+                    linea = fila * 10000
+                Else
+                    linea = 10000
+                End If
+
+                liquidacionDAO.InsertLiquidacionViatico(CInt(txtCodigoLiquidacion.Text), CInt(txtCantidadViatico.Text),
+                                                        dtpTurnoViaticos.Value, txtDescripcionViatico.Text,
+                                                        Double.Parse(txtTotalViatico.Text), linea)
+
+                sqlControl.commitTransaction()
+                cargarLiquidacion()
+                cargarViaticos(CInt(txtCodigoLiquidacion.Text))
+                txtCodigoLiquidacionViatico.Text = ""
+                txtCodigoViatico.Text = ""
+                txtNroLineaViatico.Text = ""
+                txtCantidadViatico.Text = ""
+                txtDescripcionViatico.Text = ""
+                txtTotalViatico.Text = ""
+                dtpTurnoViaticos.Value = Date.Now
+                txtCantidadViatico.Focus()
+
+            Catch ex As SqlException
+                sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar viático. " + ex.Message, "Agregar viático",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             Catch ex As Exception
-                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar peaje",
-                             MessageBoxButtons.OK,
-                             MessageBoxIcon.Error)
+                MessageBox.Show("Error al agregar viático. " + ex.Message, "Agregar viático",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar viático",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                End Try
             End Try
-        End Try
+        Else
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                liquidacionDAO.setDBcmd()
+
+                Dim linea As Integer
+
+                'If dgvViaticos.Rows.Count > 0 Then
+                '    Dim fila As Integer
+                '    fila = dgvViaticos.Rows.Count + 1
+                '    linea = fila * 10000
+                'Else
+                '    linea = 10000
+                'End If
+
+                linea = CInt(txtNroLineaViatico.Text)
+
+                liquidacionDAO.UpdateLiquidacionViatico(CInt(txtCodigoLiquidacionViatico.Text), CInt(txtCodigoViatico.Text), CInt(txtCantidadViatico.Text),
+                                                        dtpTurnoViaticos.Value, txtDescripcionViatico.Text,
+                                                        Double.Parse(txtTotalViatico.Text), linea)
+
+                sqlControl.commitTransaction()
+                cargarLiquidacion()
+                cargarViaticos(CInt(txtCodigoLiquidacion.Text))
+                txtCodigoLiquidacionViatico.Text = ""
+                txtCodigoViatico.Text = ""
+                txtNroLineaViatico.Text = ""
+                txtCantidadViatico.Text = ""
+                txtDescripcionViatico.Text = ""
+                txtTotalViatico.Text = ""
+                dtpTurnoViaticos.Value = Date.Now
+                txtCantidadViatico.Focus()
+
+            Catch ex As SQLException
+                sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar viático. " + ex.Message, "Agregar viático",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("Error al agregar viático. " + ex.Message, "Agregar viático",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar viático",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                End Try
+            End Try
+        End If
     End Sub
 
     Private Sub btnEliminarViatico_Click(sender As Object, e As EventArgs) Handles btnEliminarViatico.Click
@@ -1127,16 +1210,29 @@ Public Class ChildLiquidacionControl
             sqlControl.commitTransaction()
             cargarLiquidacion()
             cargarViaticos(CInt(txtCodigoLiquidacion.Text))
-        Catch ex As Exception
+            txtCodigoLiquidacionViatico.Text = ""
+            txtCodigoViatico.Text = ""
+            txtNroLineaViatico.Text = ""
+            txtCantidadViatico.Text = ""
+            txtDescripcionViatico.Text = ""
+            txtTotalViatico.Text = ""
+            dtpTurnoViaticos.Value = Date.Now
+            txtCantidadViatico.Focus()
+
+        Catch ex As SQLException
             sqlControl.rollbackTransaccion()
-            MessageBox.Show("Error al cargar peaje. " + ex.Message, "Cargar peaje",
+            MessageBox.Show("Error al eliminar viático. " + ex.Message, "Eliminar viático",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al eliminar viático. " + ex.Message, "Eliminar viático",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar peaje",
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar viático",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
             End Try
@@ -1169,33 +1265,97 @@ Public Class ChildLiquidacionControl
         sqlControl.setConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
-        Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            liquidacionDAO.setDBcmd()
 
-            liquidacionDAO.InsertLiquidacionOtro(CInt(txtCodigoLiquidacion.Text), txtDescripcionOtros.Text, Double.Parse(txtTotalOtros.Text))
-
-            sqlControl.commitTransaction()
-            cargarLiquidacion()
-            cargarOtros(CInt(txtCodigoLiquidacion.Text))
-            txtDescripcionOtros.Text = ""
-            txtTotalOtros.Text = ""
-            txtDescripcionOtros.Focus()
-        Catch ex As Exception
-            sqlControl.rollbackTransaccion()
-            MessageBox.Show("Error al agregar peaje. " + ex.Message, "Agregar peaje",
-                             MessageBoxButtons.OK,
-                             MessageBoxIcon.Error)
-        Finally
+        If txtCodigoLiquidacionOtro.Text = Nothing Then
             Try
-                sqlControl.closeConexion()
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                liquidacionDAO.setDBcmd()
+
+                Dim linea As Integer
+
+                If dgvOtros.Rows.Count > 0 Then
+                    Dim fila As Integer
+                    fila = dgvOtros.Rows.Count + 1
+                    linea = fila * 10000
+                Else
+                    linea = 10000
+                End If
+
+                liquidacionDAO.InsertLiquidacionOtro(CInt(txtCodigoLiquidacion.Text), txtDescripcionOtros.Text,
+                                                     Double.Parse(txtTotalOtros.Text), linea)
+
+                sqlControl.commitTransaction()
+                cargarLiquidacion()
+                cargarOtros(CInt(txtCodigoLiquidacion.Text))
+
+                txtCodigoLiquidacionOtro.Text = ""
+                txtCodigoOtro.Text = ""
+                txtNroLineaOtro.Text = ""
+                txtDescripcionOtros.Text = ""
+                txtTotalOtros.Text = ""
+                txtDescripcionOtros.Focus()
+
             Catch ex As Exception
-                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar peaje",
-                             MessageBoxButtons.OK,
-                             MessageBoxIcon.Error)
+                sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar otro. " + ex.Message, "Agregar Otros",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Otros",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                End Try
             End Try
-        End Try
+        Else
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                liquidacionDAO.setDBcmd()
+
+                Dim linea As Integer
+
+                'If dgvOtros.Rows.Count > 0 Then
+                '    Dim fila As Integer
+                '    fila = dgvOtros.Rows.Count + 1
+                '    linea = fila * 10000
+                'Else
+                '    linea = 10000
+                'End If
+
+                linea = CInt(txtNroLineaOtro.Text)
+
+                liquidacionDAO.UpdateLiquidacionOtro(CInt(txtCodigoLiquidacionOtro.Text), CInt(txtCodigoOtro.Text), txtDescripcionOtros.Text,
+                                                     Double.Parse(txtTotalOtros.Text), linea)
+
+                sqlControl.commitTransaction()
+                cargarLiquidacion()
+                cargarOtros(CInt(txtCodigoLiquidacion.Text))
+                txtCodigoLiquidacionOtro.Text = ""
+                txtCodigoOtro.Text = ""
+                txtNroLineaOtro.Text = ""
+                txtDescripcionOtros.Text = ""
+                txtTotalOtros.Text = ""
+                txtDescripcionOtros.Focus()
+            Catch ex As Exception
+                sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar otro. " + ex.Message, "Agregar Otros",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Otros",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                End Try
+            End Try
+        End If
+
     End Sub
 
     Sub cargarOtros(codigo As Integer)
@@ -1215,10 +1375,11 @@ Public Class ChildLiquidacionControl
 
             dgvOtros.Columns(0).Visible = False
             dgvOtros.Columns(1).Visible = False
+            dgvOtros.Columns(2).Visible = False
 
-            If dgvOtros.Rows.Count <> 0 Then
-                dgvOtros.CurrentCell = dgvOtros.Item(2, dgvOtros.Rows.Count - 1)
-            End If
+            'If dgvOtros.Rows.Count <> 0 Then
+            '    dgvOtros.CurrentCell = dgvOtros.Item(3, dgvOtros.Rows.Count - 1)
+            'End If
         Catch ex As SqlException
             sqlControl.rollbackTransaccion()
             MessageBox.Show("Error al cargar otros. " + ex.Message, "Cargar Otros",
@@ -1262,6 +1423,9 @@ Public Class ChildLiquidacionControl
             sqlControl.commitTransaction()
             cargarLiquidacion()
             cargarOtros(CInt(txtCodigoLiquidacion.Text))
+            txtCodigoLiquidacionOtro.Text = ""
+            txtCodigoOtro.Text = ""
+            txtNroLineaOtro.Text = ""
             txtDescripcionOtros.Text = ""
             txtTotalOtros.Text = ""
         Catch ex As SqlException
@@ -1523,6 +1687,7 @@ Public Class ChildLiquidacionControl
             'filaSeleccionada = seleccion.Index
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionPeajeById(CInt(txtCodigoLiquidacion.Text), codigo)
+            sqlControl.commitTransaction()
 
             txtCodigoLiquidacionPeaje.Text = dt.Rows(0)(0)
             txtCodigoPeaje.Text = dt.Rows(0)(1)
@@ -1532,11 +1697,13 @@ Public Class ChildLiquidacionControl
             txtEjesPeaje.Text = dt.Rows(0)(5)
             txtTotalPeaje.Text = dt.Rows(0)(6)
 
-
-            sqlControl.commitTransaction()
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
 
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
             MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -1559,5 +1726,472 @@ Public Class ChildLiquidacionControl
         txtLugarPeaje.Text = ""
         txtTotalPeaje.Text = ""
         txtNroLineaPeaje.Text = ""
+    End Sub
+
+    Private Sub btnNuevoViatico_Click(sender As Object, e As EventArgs) Handles btnNuevoViatico.Click
+        txtCodigoLiquidacionViatico.Text = ""
+        txtCodigoViatico.Text = ""
+        txtNroLineaViatico.Text = ""
+        txtCantidadViatico.Text = ""
+        txtDescripcionViatico.Text = ""
+        txtTotalGasto.Text = ""
+        dtpTurnoViaticos.Value = Date.Now
+        txtCantidadViatico.Focus()
+    End Sub
+
+    Private Sub btnInsertarArribaViatico_Click(sender As Object, e As EventArgs) Handles btnInsertarArribaViatico.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar viático",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtCantidadViatico.Text = Nothing Then
+            MessageBox.Show("Debe ingresar cantidad. ", "Agregar viático",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionViatico.Text = Nothing Then
+            MessageBox.Show("Debe ingresar descripción. ", "Agregar viático",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalViatico.Text = Nothing Then
+            MessageBox.Show("Debe ingresar total de viático. ", "Agregar viático",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If dgvViaticos.Rows.Count <= 0 Then
+            MessageBox.Show("Debe existir un registro previo en Viáticos para insertar arriba. ", "Agregar Viático",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = dgvViaticos.SelectedRows(0)
+        Dim nroLinea1 As Integer = seleccion.Cells(2).Value
+        Dim nroLinea2 As Integer
+        Dim linea As Integer
+
+        If seleccion.Index = 0 Then
+            linea = nroLinea1 / 2
+        Else
+            nroLinea2 = dgvViaticos.Rows(seleccion.Index - 1).Cells(2).Value
+            linea = (nroLinea1 + nroLinea2) / 2
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            liquidacionDAO.InsertLiquidacionViatico(CInt(txtCodigoLiquidacion.Text), CInt(txtCantidadViatico.Text),
+                                                        dtpTurnoViaticos.Value, txtDescripcionViatico.Text,
+                                                        Double.Parse(txtTotalViatico.Text), linea)
+
+            sqlControl.commitTransaction()
+            cargarLiquidacion()
+            cargarViaticos(CInt(txtCodigoLiquidacion.Text))
+            txtCodigoLiquidacionViatico.Text = ""
+            txtCodigoViatico.Text = ""
+            txtNroLineaViatico.Text = ""
+            txtCantidadViatico.Text = ""
+            txtDescripcionViatico.Text = ""
+            txtTotalViatico.Text = ""
+            dtpTurnoViaticos.Value = Date.Now
+            txtCantidadViatico.Focus()
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar viático. " + ex.Message, "Agregar Viático",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al agregar viático. " + ex.Message, "Agregar Viático",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Viático",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnInsertarAbajoViatico_Click(sender As Object, e As EventArgs) Handles btnInsertarAbajoViatico.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar viático",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtCantidadViatico.Text = Nothing Then
+            MessageBox.Show("Debe ingresar cantidad. ", "Agregar viático",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionViatico.Text = Nothing Then
+            MessageBox.Show("Debe ingresar descripción. ", "Agregar viático",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalViatico.Text = Nothing Then
+            MessageBox.Show("Debe ingresar total de viático. ", "Agregar viático",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If dgvViaticos.Rows.Count <= 0 Then
+            MessageBox.Show("Debe existir un registro previo en Viáticos para insertar arriba. ", "Agregar Viático",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = dgvViaticos.SelectedRows(0)
+        Dim nroLinea1 As Integer = seleccion.Cells(2).Value
+        Dim nroLinea2 As Integer
+        Dim linea As Integer
+
+        If seleccion.Index = dgvViaticos.Rows.Count - 1 Then
+            Dim fila As Integer
+            fila = dgvViaticos.Rows.Count + 1
+            linea = fila * 10000
+        Else
+            nroLinea2 = dgvViaticos.Rows(seleccion.Index + 1).Cells(2).Value
+            linea = (nroLinea1 + nroLinea2) / 2
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            liquidacionDAO.InsertLiquidacionViatico(CInt(txtCodigoLiquidacion.Text), CInt(txtCantidadViatico.Text),
+                                                        dtpTurnoViaticos.Value, txtDescripcionViatico.Text,
+                                                        Double.Parse(txtTotalViatico.Text), linea)
+
+            sqlControl.commitTransaction()
+            cargarLiquidacion()
+            cargarViaticos(CInt(txtCodigoLiquidacion.Text))
+
+            txtCodigoLiquidacionViatico.Text = ""
+            txtCodigoViatico.Text = ""
+            txtNroLineaViatico.Text = ""
+            txtCantidadViatico.Text = ""
+            txtDescripcionViatico.Text = ""
+            txtTotalViatico.Text = ""
+            dtpTurnoViaticos.Value = Date.Now
+            txtCantidadViatico.Focus()
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar viático. " + ex.Message, "Agregar Viático",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al agregar viático. " + ex.Message, "Agregar Viático",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Viático",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub dgvViaticos_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvViaticos.CellMouseClick
+        cargarViaticoById()
+    End Sub
+    Sub cargarViaticoById()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDao As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDao.setDBcmd()
+
+            Dim seleccion As DataGridViewRow = dgvViaticos.SelectedRows(0)
+            Dim codigo As Integer = seleccion.Cells(1).Value
+            'filaSeleccionada = seleccion.Index
+            Dim dt As DataTable
+            dt = liquidacionDao.GetLiquidacionViaticoById(CInt(txtCodigoLiquidacion.Text), codigo)
+            sqlControl.commitTransaction()
+
+            txtCodigoLiquidacionViatico.Text = dt.Rows(0)(0)
+            txtCodigoViatico.Text = dt.Rows(0)(1)
+            txtNroLineaViatico.Text = dt.Rows(0)(2)
+            txtCantidadViatico.Text = dt.Rows(0)(3)
+            dtpTurnoViaticos.Value = dt.Rows(0)(4)
+            txtDescripcionViatico.Text = dt.Rows(0)(5)
+            txtTotalViatico.Text = dt.Rows(0)(6)
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Liquidación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub dgvOtros_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvOtros.CellMouseClick
+        cargarOtrooById()
+    End Sub
+    Sub cargarOtrooById()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDao As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDao.setDBcmd()
+
+            Dim seleccion As DataGridViewRow = dgvOtros.SelectedRows(0)
+            Dim codigo As Integer = seleccion.Cells(1).Value
+            'filaSeleccionada = seleccion.Index
+            Dim dt As DataTable
+            dt = liquidacionDao.GetLiquidacionOtroById(CInt(txtCodigoLiquidacion.Text), codigo)
+            sqlControl.commitTransaction()
+
+            txtCodigoLiquidacionOtro.Text = dt.Rows(0)(0)
+            txtCodigoOtro.Text = dt.Rows(0)(1)
+            txtNroLineaOtro.Text = dt.Rows(0)(2)
+            txtDescripcionOtros.Text = dt.Rows(0)(3)
+            txtTotalOtros.Text = dt.Rows(0)(4)
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar otro. " + ex.Message, "Cargar Otro",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar otro. " + ex.Message, "Cargar Otro",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Otro",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnInsertarArribaOtro_Click(sender As Object, e As EventArgs) Handles btnInsertarArribaOtro.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar otros",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionOtros.Text = Nothing Then
+            MessageBox.Show("Debe ingresar descripción. ", "Agregar otros",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalOtros.Text = Nothing Then
+            MessageBox.Show("Debe ingresar total. ", "Agregar otros",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If dgvOtros.Rows.Count <= 0 Then
+            MessageBox.Show("Debe existir un registro previo en Otros para insertar arriba. ", "Agregar Otros",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = dgvOtros.SelectedRows(0)
+        Dim nroLinea1 As Integer = seleccion.Cells(2).Value
+        Dim nroLinea2 As Integer
+        Dim linea As Integer
+
+        If seleccion.Index = 0 Then
+            linea = nroLinea1 / 2
+        Else
+            nroLinea2 = dgvOtros.Rows(seleccion.Index - 1).Cells(2).Value
+            linea = (nroLinea1 + nroLinea2) / 2
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            liquidacionDAO.InsertLiquidacionOtro(CInt(txtCodigoLiquidacion.Text), txtDescripcionOtros.Text,
+                                                     Double.Parse(txtTotalOtros.Text), linea)
+
+            sqlControl.commitTransaction()
+            cargarLiquidacion()
+            cargarOtros(CInt(txtCodigoLiquidacion.Text))
+            txtCodigoLiquidacionOtro.Text = ""
+            txtCodigoOtro.Text = ""
+            txtNroLineaOtro.Text = ""
+            txtDescripcionOtros.Text = ""
+            txtTotalOtros.Text = ""
+            txtDescripcionOtros.Focus()
+
+        Catch ex As Exception
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar otro. " + ex.Message, "Agregar Otros",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Otros",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnInsertarAbajoOtro_Click(sender As Object, e As EventArgs) Handles btnInsertarAbajoOtro.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar Otros",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionOtros.Text = Nothing Then
+            MessageBox.Show("Debe ingresar descripción. ", "Agregar Otros",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalOtros.Text = Nothing Then
+            MessageBox.Show("Debe ingresar total. ", "Agregar Otros",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If dgvOtros.Rows.Count <= 0 Then
+            MessageBox.Show("Debe existir un registro previo en Otros para insertar arriba. ", "Agregar Otros",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = dgvOtros.SelectedRows(0)
+        Dim nroLinea1 As Integer = seleccion.Cells(2).Value
+        Dim nroLinea2 As Integer
+        Dim linea As Integer
+
+        If seleccion.Index = dgvOtros.Rows.Count - 1 Then
+            Dim fila As Integer
+            fila = dgvViaticos.Rows.Count + 1
+            linea = fila * 10000
+        Else
+            nroLinea2 = dgvOtros.Rows(seleccion.Index + 1).Cells(2).Value
+            linea = (nroLinea1 + nroLinea2) / 2
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            liquidacionDAO.InsertLiquidacionOtro(CInt(txtCodigoLiquidacion.Text), txtDescripcionOtros.Text,
+                                                     Double.Parse(txtTotalOtros.Text), linea)
+
+            sqlControl.commitTransaction()
+            cargarLiquidacion()
+            cargarOtros(CInt(txtCodigoLiquidacion.Text))
+            txtCodigoLiquidacionOtro.Text = ""
+            txtCodigoOtro.Text = ""
+            txtNroLineaOtro.Text = ""
+            txtDescripcionOtros.Text = ""
+            txtTotalOtros.Text = ""
+            txtDescripcionOtros.Focus()
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar otro. " + ex.Message, "Agregar Otros",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al agregar otro. " + ex.Message, "Agregar Otros",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Otros",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnNuevoOtro_Click(sender As Object, e As EventArgs) Handles btnNuevoOtro.Click
+        txtCodigoLiquidacionOtro.Text = ""
+        txtCodigoOtro.Text = ""
+        txtNroLineaOtro.Text = ""
+        txtDescripcionOtros.Text = ""
+        txtTotalOtros.Text = ""
     End Sub
 End Class
