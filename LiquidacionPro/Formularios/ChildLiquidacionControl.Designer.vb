@@ -22,8 +22,8 @@ Partial Class ChildLiquidacionControl
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.cbGuia = New System.Windows.Forms.ComboBox()
         Me.cbCamabaja = New System.Windows.Forms.ComboBox()
@@ -52,11 +52,8 @@ Partial Class ChildLiquidacionControl
         Me.txtOtros = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.txtBalanza = New System.Windows.Forms.TextBox()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.txtHospedaje = New System.Windows.Forms.TextBox()
-        Me.Label10 = New System.Windows.Forms.Label()
         Me.txtGuardiania = New System.Windows.Forms.TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.txtViaticos = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.txtPeajes = New System.Windows.Forms.TextBox()
@@ -116,8 +113,14 @@ Partial Class ChildLiquidacionControl
         Me.dtpTurnoViaticos = New System.Windows.Forms.DateTimePicker()
         Me.txtCantidadViatico = New System.Windows.Forms.TextBox()
         Me.gbOtros = New System.Windows.Forms.GroupBox()
+        Me.btnInsertarAbajoOtro = New System.Windows.Forms.Button()
+        Me.txtNroLineaOtro = New System.Windows.Forms.TextBox()
+        Me.btnInsertarArribaOtro = New System.Windows.Forms.Button()
         Me.btnEliminarOtros = New System.Windows.Forms.Button()
+        Me.btnNuevoOtro = New System.Windows.Forms.Button()
+        Me.txtCodigoOtro = New System.Windows.Forms.TextBox()
         Me.btnAgregarOtros = New System.Windows.Forms.Button()
+        Me.txtCodigoLiquidacionOtro = New System.Windows.Forms.TextBox()
         Me.dgvOtros = New System.Windows.Forms.DataGridView()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
@@ -132,12 +135,60 @@ Partial Class ChildLiquidacionControl
         Me.Label37 = New System.Windows.Forms.Label()
         Me.cbUnidadMedida = New System.Windows.Forms.ComboBox()
         Me.btnRptLiquidacionCombustible = New System.Windows.Forms.Button()
-        Me.txtCodigoLiquidacionOtro = New System.Windows.Forms.TextBox()
-        Me.txtCodigoOtro = New System.Windows.Forms.TextBox()
-        Me.txtNroLineaOtro = New System.Windows.Forms.TextBox()
-        Me.btnNuevoOtro = New System.Windows.Forms.Button()
-        Me.btnInsertarArribaOtro = New System.Windows.Forms.Button()
-        Me.btnInsertarAbajoOtro = New System.Windows.Forms.Button()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.btnNuevoBalanza = New System.Windows.Forms.Button()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtNroLineaBalanza = New System.Windows.Forms.TextBox()
+        Me.txtCodigoBalanza = New System.Windows.Forms.TextBox()
+        Me.btnInsertarAbajoBalanza = New System.Windows.Forms.Button()
+        Me.txtCodigoLiquidacionBalanza = New System.Windows.Forms.TextBox()
+        Me.btnInsertarArribaBalanza = New System.Windows.Forms.Button()
+        Me.btnEliminarBalanza = New System.Windows.Forms.Button()
+        Me.btnAgregarBalanza = New System.Windows.Forms.Button()
+        Me.dgvBalanza = New System.Windows.Forms.DataGridView()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.txtTotalBalanza = New System.Windows.Forms.TextBox()
+        Me.Label46 = New System.Windows.Forms.Label()
+        Me.txtDescripcionBalanza = New System.Windows.Forms.TextBox()
+        Me.dtpBalanza = New System.Windows.Forms.DateTimePicker()
+        Me.Label47 = New System.Windows.Forms.Label()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.btnNuevoGuardiania = New System.Windows.Forms.Button()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.txtNroLineaGuardiania = New System.Windows.Forms.TextBox()
+        Me.txtCodigoGuardiania = New System.Windows.Forms.TextBox()
+        Me.btnInsertarAbajoGuardiania = New System.Windows.Forms.Button()
+        Me.txtCodigoLiquidacionGuardiania = New System.Windows.Forms.TextBox()
+        Me.btnInsertarArribaGuardiania = New System.Windows.Forms.Button()
+        Me.btnEliminarGuardiania = New System.Windows.Forms.Button()
+        Me.btnAgregarGuardiania = New System.Windows.Forms.Button()
+        Me.dgvGuardiania = New System.Windows.Forms.DataGridView()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.txtTotalGuardiania = New System.Windows.Forms.TextBox()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.txtDescripcionGuardiania = New System.Windows.Forms.TextBox()
+        Me.dtpGuardiania = New System.Windows.Forms.DateTimePicker()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btnNuevoHospedaje = New System.Windows.Forms.Button()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.txtNroLineaHospedaje = New System.Windows.Forms.TextBox()
+        Me.txtCodigoHospedaje = New System.Windows.Forms.TextBox()
+        Me.btnInsertarAbajoHospedaje = New System.Windows.Forms.Button()
+        Me.txtCodigoLiquidacionHospedaje = New System.Windows.Forms.TextBox()
+        Me.btnInsertarArribaHospedaje = New System.Windows.Forms.Button()
+        Me.btnEliminarHospedaje = New System.Windows.Forms.Button()
+        Me.btnAgregarHospedaje = New System.Windows.Forms.Button()
+        Me.dgvHospedaje = New System.Windows.Forms.DataGridView()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.txtTotalHospedaje = New System.Windows.Forms.TextBox()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.txtDescripcionHospedaje = New System.Windows.Forms.TextBox()
+        Me.dtpHospedaje = New System.Windows.Forms.DateTimePicker()
+        Me.Label42 = New System.Windows.Forms.Label()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.gbPeajes.SuspendLayout()
@@ -146,6 +197,15 @@ Partial Class ChildLiquidacionControl
         CType(Me.dgvViaticos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbOtros.SuspendLayout()
         CType(Me.dgvOtros, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
+        CType(Me.dgvBalanza, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox3.SuspendLayout()
+        CType(Me.dgvGuardiania, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
+        CType(Me.dgvHospedaje, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnNuevo
@@ -160,7 +220,7 @@ Partial Class ChildLiquidacionControl
         'cbGuia
         '
         Me.cbGuia.FormattingEnabled = True
-        Me.cbGuia.Location = New System.Drawing.Point(129, 38)
+        Me.cbGuia.Location = New System.Drawing.Point(129, 36)
         Me.cbGuia.Name = "cbGuia"
         Me.cbGuia.Size = New System.Drawing.Size(81, 21)
         Me.cbGuia.TabIndex = 51
@@ -168,7 +228,7 @@ Partial Class ChildLiquidacionControl
         'cbCamabaja
         '
         Me.cbCamabaja.FormattingEnabled = True
-        Me.cbCamabaja.Location = New System.Drawing.Point(340, 64)
+        Me.cbCamabaja.Location = New System.Drawing.Point(340, 60)
         Me.cbCamabaja.Name = "cbCamabaja"
         Me.cbCamabaja.Size = New System.Drawing.Size(100, 21)
         Me.cbCamabaja.TabIndex = 59
@@ -176,7 +236,7 @@ Partial Class ChildLiquidacionControl
         'cbTracto
         '
         Me.cbTracto.FormattingEnabled = True
-        Me.cbTracto.Location = New System.Drawing.Point(340, 38)
+        Me.cbTracto.Location = New System.Drawing.Point(340, 36)
         Me.cbTracto.Name = "cbTracto"
         Me.cbTracto.Size = New System.Drawing.Size(100, 21)
         Me.cbTracto.TabIndex = 53
@@ -192,7 +252,7 @@ Partial Class ChildLiquidacionControl
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(29, 370)
+        Me.Label20.Location = New System.Drawing.Point(29, 372)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(40, 13)
         Me.Label20.TabIndex = 87
@@ -203,7 +263,7 @@ Partial Class ChildLiquidacionControl
         Me.cbEstado.FormattingEnabled = True
         Me.cbEstado.ItemHeight = 13
         Me.cbEstado.Items.AddRange(New Object() {"1", "2"})
-        Me.cbEstado.Location = New System.Drawing.Point(75, 370)
+        Me.cbEstado.Location = New System.Drawing.Point(75, 369)
         Me.cbEstado.Name = "cbEstado"
         Me.cbEstado.Size = New System.Drawing.Size(107, 21)
         Me.cbEstado.TabIndex = 1000
@@ -211,7 +271,7 @@ Partial Class ChildLiquidacionControl
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(22, 64)
+        Me.Label19.Location = New System.Drawing.Point(22, 60)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(38, 13)
         Me.Label19.TabIndex = 86
@@ -219,7 +279,7 @@ Partial Class ChildLiquidacionControl
         '
         'txtDinero
         '
-        Me.txtDinero.Location = New System.Drawing.Point(103, 64)
+        Me.txtDinero.Location = New System.Drawing.Point(103, 60)
         Me.txtDinero.Name = "txtDinero"
         Me.txtDinero.Size = New System.Drawing.Size(107, 20)
         Me.txtDinero.TabIndex = 58
@@ -264,28 +324,28 @@ Partial Class ChildLiquidacionControl
         Me.dgvLiquidacion.AllowUserToDeleteRows = False
         Me.dgvLiquidacion.AllowUserToOrderColumns = True
         Me.dgvLiquidacion.AllowUserToResizeRows = False
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvLiquidacion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle33.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvLiquidacion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle33
         Me.dgvLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvLiquidacion.DefaultCellStyle = DataGridViewCellStyle10
-        Me.dgvLiquidacion.Location = New System.Drawing.Point(10, 462)
+        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle34.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvLiquidacion.DefaultCellStyle = DataGridViewCellStyle34
+        Me.dgvLiquidacion.Location = New System.Drawing.Point(10, 438)
         Me.dgvLiquidacion.Name = "dgvLiquidacion"
         Me.dgvLiquidacion.ReadOnly = True
         Me.dgvLiquidacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvLiquidacion.Size = New System.Drawing.Size(1189, 154)
+        Me.dgvLiquidacion.Size = New System.Drawing.Size(1304, 204)
         Me.dgvLiquidacion.TabIndex = 1000
         '
         'btnAgregarLiquidacion
@@ -299,7 +359,7 @@ Partial Class ChildLiquidacionControl
         '
         'txtCombustibleVirtual
         '
-        Me.txtCombustibleVirtual.Location = New System.Drawing.Point(715, 370)
+        Me.txtCombustibleVirtual.Location = New System.Drawing.Point(836, 369)
         Me.txtCombustibleVirtual.Name = "txtCombustibleVirtual"
         Me.txtCombustibleVirtual.ReadOnly = True
         Me.txtCombustibleVirtual.Size = New System.Drawing.Size(108, 20)
@@ -308,7 +368,7 @@ Partial Class ChildLiquidacionControl
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(644, 370)
+        Me.Label16.Location = New System.Drawing.Point(765, 372)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(66, 13)
         Me.Label16.TabIndex = 81
@@ -317,7 +377,7 @@ Partial Class ChildLiquidacionControl
         'dtpLlegada
         '
         Me.dtpLlegada.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpLlegada.Location = New System.Drawing.Point(739, 64)
+        Me.dtpLlegada.Location = New System.Drawing.Point(739, 60)
         Me.dtpLlegada.Name = "dtpLlegada"
         Me.dtpLlegada.Size = New System.Drawing.Size(150, 20)
         Me.dtpLlegada.TabIndex = 61
@@ -325,7 +385,7 @@ Partial Class ChildLiquidacionControl
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(642, 64)
+        Me.Label15.Location = New System.Drawing.Point(642, 60)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(78, 13)
         Me.Label15.TabIndex = 80
@@ -334,7 +394,7 @@ Partial Class ChildLiquidacionControl
         'dtpSalida
         '
         Me.dtpSalida.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpSalida.Location = New System.Drawing.Point(739, 38)
+        Me.dtpSalida.Location = New System.Drawing.Point(739, 36)
         Me.dtpSalida.Name = "dtpSalida"
         Me.dtpSalida.Size = New System.Drawing.Size(150, 20)
         Me.dtpSalida.TabIndex = 56
@@ -342,7 +402,7 @@ Partial Class ChildLiquidacionControl
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(641, 38)
+        Me.Label6.Location = New System.Drawing.Point(641, 36)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(69, 13)
         Me.Label6.TabIndex = 79
@@ -350,7 +410,7 @@ Partial Class ChildLiquidacionControl
         '
         'txtDestino
         '
-        Me.txtDestino.Location = New System.Drawing.Point(521, 64)
+        Me.txtDestino.Location = New System.Drawing.Point(521, 60)
         Me.txtDestino.Name = "txtDestino"
         Me.txtDestino.Size = New System.Drawing.Size(107, 20)
         Me.txtDestino.TabIndex = 60
@@ -358,7 +418,7 @@ Partial Class ChildLiquidacionControl
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(465, 64)
+        Me.Label14.Location = New System.Drawing.Point(465, 60)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(43, 13)
         Me.Label14.TabIndex = 78
@@ -366,7 +426,7 @@ Partial Class ChildLiquidacionControl
         '
         'txtCombustibleFisico
         '
-        Me.txtCombustibleFisico.Location = New System.Drawing.Point(715, 343)
+        Me.txtCombustibleFisico.Location = New System.Drawing.Point(648, 369)
         Me.txtCombustibleFisico.Name = "txtCombustibleFisico"
         Me.txtCombustibleFisico.ReadOnly = True
         Me.txtCombustibleFisico.Size = New System.Drawing.Size(107, 20)
@@ -375,7 +435,7 @@ Partial Class ChildLiquidacionControl
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(646, 346)
+        Me.Label13.Location = New System.Drawing.Point(579, 372)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(64, 13)
         Me.Label13.TabIndex = 77
@@ -400,51 +460,27 @@ Partial Class ChildLiquidacionControl
         '
         'txtBalanza
         '
-        Me.txtBalanza.Location = New System.Drawing.Point(507, 343)
+        Me.txtBalanza.Location = New System.Drawing.Point(274, 191)
         Me.txtBalanza.Name = "txtBalanza"
+        Me.txtBalanza.ReadOnly = True
         Me.txtBalanza.Size = New System.Drawing.Size(107, 20)
         Me.txtBalanza.TabIndex = 84
         '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(456, 346)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(45, 13)
-        Me.Label11.TabIndex = 75
-        Me.Label11.Text = "Balanza"
-        '
         'txtHospedaje
         '
-        Me.txtHospedaje.Location = New System.Drawing.Point(75, 343)
+        Me.txtHospedaje.Location = New System.Drawing.Point(273, 192)
         Me.txtHospedaje.Name = "txtHospedaje"
+        Me.txtHospedaje.ReadOnly = True
         Me.txtHospedaje.Size = New System.Drawing.Size(107, 20)
         Me.txtHospedaje.TabIndex = 82
         '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(11, 346)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(58, 13)
-        Me.Label10.TabIndex = 72
-        Me.Label10.Text = "Hospedaje"
-        '
         'txtGuardiania
         '
-        Me.txtGuardiania.Location = New System.Drawing.Point(296, 343)
+        Me.txtGuardiania.Location = New System.Drawing.Point(274, 192)
         Me.txtGuardiania.Name = "txtGuardiania"
+        Me.txtGuardiania.ReadOnly = True
         Me.txtGuardiania.Size = New System.Drawing.Size(107, 20)
         Me.txtGuardiania.TabIndex = 83
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(228, 346)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(58, 13)
-        Me.Label9.TabIndex = 68
-        Me.Label9.Text = "Guardiania"
         '
         'txtViaticos
         '
@@ -482,7 +518,7 @@ Partial Class ChildLiquidacionControl
         '
         'txtOrigen
         '
-        Me.txtOrigen.Location = New System.Drawing.Point(521, 38)
+        Me.txtOrigen.Location = New System.Drawing.Point(521, 36)
         Me.txtOrigen.Name = "txtOrigen"
         Me.txtOrigen.Size = New System.Drawing.Size(107, 20)
         Me.txtOrigen.TabIndex = 55
@@ -490,7 +526,7 @@ Partial Class ChildLiquidacionControl
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(465, 38)
+        Me.Label5.Location = New System.Drawing.Point(465, 36)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(38, 13)
         Me.Label5.TabIndex = 57
@@ -499,7 +535,7 @@ Partial Class ChildLiquidacionControl
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(236, 64)
+        Me.Label4.Location = New System.Drawing.Point(236, 60)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(84, 13)
         Me.Label4.TabIndex = 54
@@ -508,7 +544,7 @@ Partial Class ChildLiquidacionControl
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(260, 38)
+        Me.Label3.Location = New System.Drawing.Point(260, 36)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(68, 13)
         Me.Label3.TabIndex = 52
@@ -517,7 +553,7 @@ Partial Class ChildLiquidacionControl
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(7, 38)
+        Me.Label2.Location = New System.Drawing.Point(7, 36)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(116, 13)
         Me.Label2.TabIndex = 48
@@ -534,7 +570,7 @@ Partial Class ChildLiquidacionControl
         '
         'txtTotalGasto
         '
-        Me.txtTotalGasto.Location = New System.Drawing.Point(295, 370)
+        Me.txtTotalGasto.Location = New System.Drawing.Point(261, 369)
         Me.txtTotalGasto.Name = "txtTotalGasto"
         Me.txtTotalGasto.ReadOnly = True
         Me.txtTotalGasto.Size = New System.Drawing.Size(107, 20)
@@ -542,7 +578,7 @@ Partial Class ChildLiquidacionControl
         '
         'txtDiferencia
         '
-        Me.txtDiferencia.Location = New System.Drawing.Point(507, 370)
+        Me.txtDiferencia.Location = New System.Drawing.Point(463, 369)
         Me.txtDiferencia.Name = "txtDiferencia"
         Me.txtDiferencia.ReadOnly = True
         Me.txtDiferencia.Size = New System.Drawing.Size(107, 20)
@@ -551,7 +587,7 @@ Partial Class ChildLiquidacionControl
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(227, 370)
+        Me.Label21.Location = New System.Drawing.Point(193, 372)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(62, 13)
         Me.Label21.TabIndex = 91
@@ -560,7 +596,7 @@ Partial Class ChildLiquidacionControl
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(418, 370)
+        Me.Label22.Location = New System.Drawing.Point(374, 372)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(86, 13)
         Me.Label22.TabIndex = 92
@@ -568,7 +604,7 @@ Partial Class ChildLiquidacionControl
         '
         'txtDiferenciaComb
         '
-        Me.txtDiferenciaComb.Location = New System.Drawing.Point(929, 343)
+        Me.txtDiferenciaComb.Location = New System.Drawing.Point(1047, 369)
         Me.txtDiferenciaComb.Name = "txtDiferenciaComb"
         Me.txtDiferenciaComb.ReadOnly = True
         Me.txtDiferenciaComb.Size = New System.Drawing.Size(74, 20)
@@ -577,7 +613,7 @@ Partial Class ChildLiquidacionControl
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(832, 346)
+        Me.Label23.Location = New System.Drawing.Point(950, 372)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(85, 13)
         Me.Label23.TabIndex = 94
@@ -585,14 +621,14 @@ Partial Class ChildLiquidacionControl
         '
         'txtFiltro
         '
-        Me.txtFiltro.Location = New System.Drawing.Point(250, 26)
+        Me.txtFiltro.Location = New System.Drawing.Point(250, 16)
         Me.txtFiltro.Name = "txtFiltro"
         Me.txtFiltro.Size = New System.Drawing.Size(365, 20)
         Me.txtFiltro.TabIndex = 95
         '
         'btnFiltrar
         '
-        Me.btnFiltrar.Location = New System.Drawing.Point(622, 26)
+        Me.btnFiltrar.Location = New System.Drawing.Point(622, 14)
         Me.btnFiltrar.Name = "btnFiltrar"
         Me.btnFiltrar.Size = New System.Drawing.Size(75, 23)
         Me.btnFiltrar.TabIndex = 96
@@ -601,7 +637,7 @@ Partial Class ChildLiquidacionControl
         '
         'btnDeshacer
         '
-        Me.btnDeshacer.Location = New System.Drawing.Point(703, 26)
+        Me.btnDeshacer.Location = New System.Drawing.Point(703, 14)
         Me.btnDeshacer.Name = "btnDeshacer"
         Me.btnDeshacer.Size = New System.Drawing.Size(75, 23)
         Me.btnDeshacer.TabIndex = 97
@@ -611,7 +647,7 @@ Partial Class ChildLiquidacionControl
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(12, 26)
+        Me.Label24.Location = New System.Drawing.Point(12, 18)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(53, 13)
         Me.Label24.TabIndex = 98
@@ -620,7 +656,7 @@ Partial Class ChildLiquidacionControl
         'lblFiltro
         '
         Me.lblFiltro.AutoSize = True
-        Me.lblFiltro.Location = New System.Drawing.Point(72, 26)
+        Me.lblFiltro.Location = New System.Drawing.Point(72, 18)
         Me.lblFiltro.Name = "lblFiltro"
         Me.lblFiltro.Size = New System.Drawing.Size(112, 13)
         Me.lblFiltro.TabIndex = 99
@@ -633,9 +669,9 @@ Partial Class ChildLiquidacionControl
         Me.GroupBox1.Controls.Add(Me.Label24)
         Me.GroupBox1.Controls.Add(Me.btnFiltrar)
         Me.GroupBox1.Controls.Add(Me.btnDeshacer)
-        Me.GroupBox1.Location = New System.Drawing.Point(10, 397)
+        Me.GroupBox1.Location = New System.Drawing.Point(10, 390)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(789, 59)
+        Me.GroupBox1.Size = New System.Drawing.Size(789, 42)
         Me.GroupBox1.TabIndex = 100
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtros"
@@ -661,7 +697,7 @@ Partial Class ChildLiquidacionControl
         Me.gbPeajes.Controls.Add(Me.dtpFechaHoraPeaje)
         Me.gbPeajes.Controls.Add(Me.txtPeajes)
         Me.gbPeajes.Controls.Add(Me.Label7)
-        Me.gbPeajes.Location = New System.Drawing.Point(10, 117)
+        Me.gbPeajes.Location = New System.Drawing.Point(6, 8)
         Me.gbPeajes.Name = "gbPeajes"
         Me.gbPeajes.Size = New System.Drawing.Size(420, 220)
         Me.gbPeajes.TabIndex = 66
@@ -838,7 +874,7 @@ Partial Class ChildLiquidacionControl
         Me.gbViaticos.Controls.Add(Me.txtCantidadViatico)
         Me.gbViaticos.Controls.Add(Me.txtViaticos)
         Me.gbViaticos.Controls.Add(Me.Label8)
-        Me.gbViaticos.Location = New System.Drawing.Point(446, 117)
+        Me.gbViaticos.Location = New System.Drawing.Point(442, 8)
         Me.gbViaticos.Name = "gbViaticos"
         Me.gbViaticos.Size = New System.Drawing.Size(416, 220)
         Me.gbViaticos.TabIndex = 72
@@ -1010,12 +1046,38 @@ Partial Class ChildLiquidacionControl
         Me.gbOtros.Controls.Add(Me.txtDescripcionOtros)
         Me.gbOtros.Controls.Add(Me.txtOtros)
         Me.gbOtros.Controls.Add(Me.Label12)
-        Me.gbOtros.Location = New System.Drawing.Point(868, 117)
+        Me.gbOtros.Location = New System.Drawing.Point(864, 8)
         Me.gbOtros.Name = "gbOtros"
-        Me.gbOtros.Size = New System.Drawing.Size(437, 220)
+        Me.gbOtros.Size = New System.Drawing.Size(423, 220)
         Me.gbOtros.TabIndex = 78
         Me.gbOtros.TabStop = False
         Me.gbOtros.Text = "Otros"
+        '
+        'btnInsertarAbajoOtro
+        '
+        Me.btnInsertarAbajoOtro.Location = New System.Drawing.Point(392, 118)
+        Me.btnInsertarAbajoOtro.Name = "btnInsertarAbajoOtro"
+        Me.btnInsertarAbajoOtro.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarAbajoOtro.TabIndex = 1003
+        Me.btnInsertarAbajoOtro.Text = "i-"
+        Me.btnInsertarAbajoOtro.UseVisualStyleBackColor = True
+        '
+        'txtNroLineaOtro
+        '
+        Me.txtNroLineaOtro.Location = New System.Drawing.Point(53, 45)
+        Me.txtNroLineaOtro.Name = "txtNroLineaOtro"
+        Me.txtNroLineaOtro.Size = New System.Drawing.Size(10, 20)
+        Me.txtNroLineaOtro.TabIndex = 1003
+        Me.txtNroLineaOtro.Visible = False
+        '
+        'btnInsertarArribaOtro
+        '
+        Me.btnInsertarArribaOtro.Location = New System.Drawing.Point(392, 86)
+        Me.btnInsertarArribaOtro.Name = "btnInsertarArribaOtro"
+        Me.btnInsertarArribaOtro.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarArribaOtro.TabIndex = 1002
+        Me.btnInsertarArribaOtro.Text = "i+"
+        Me.btnInsertarArribaOtro.UseVisualStyleBackColor = True
         '
         'btnEliminarOtros
         '
@@ -1026,6 +1088,23 @@ Partial Class ChildLiquidacionControl
         Me.btnEliminarOtros.Text = "-"
         Me.btnEliminarOtros.UseVisualStyleBackColor = True
         '
+        'btnNuevoOtro
+        '
+        Me.btnNuevoOtro.Location = New System.Drawing.Point(392, 49)
+        Me.btnNuevoOtro.Name = "btnNuevoOtro"
+        Me.btnNuevoOtro.Size = New System.Drawing.Size(23, 23)
+        Me.btnNuevoOtro.TabIndex = 1001
+        Me.btnNuevoOtro.Text = "N"
+        Me.btnNuevoOtro.UseVisualStyleBackColor = True
+        '
+        'txtCodigoOtro
+        '
+        Me.txtCodigoOtro.Location = New System.Drawing.Point(37, 45)
+        Me.txtCodigoOtro.Name = "txtCodigoOtro"
+        Me.txtCodigoOtro.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoOtro.TabIndex = 1002
+        Me.txtCodigoOtro.Visible = False
+        '
         'btnAgregarOtros
         '
         Me.btnAgregarOtros.Location = New System.Drawing.Point(392, 21)
@@ -1034,6 +1113,14 @@ Partial Class ChildLiquidacionControl
         Me.btnAgregarOtros.TabIndex = 80
         Me.btnAgregarOtros.Text = "+"
         Me.btnAgregarOtros.UseVisualStyleBackColor = True
+        '
+        'txtCodigoLiquidacionOtro
+        '
+        Me.txtCodigoLiquidacionOtro.Location = New System.Drawing.Point(21, 45)
+        Me.txtCodigoLiquidacionOtro.Name = "txtCodigoLiquidacionOtro"
+        Me.txtCodigoLiquidacionOtro.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoLiquidacionOtro.TabIndex = 1001
+        Me.txtCodigoLiquidacionOtro.Visible = False
         '
         'dgvOtros
         '
@@ -1052,7 +1139,7 @@ Partial Class ChildLiquidacionControl
         'Label34
         '
         Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(273, 28)
+        Me.Label34.Location = New System.Drawing.Point(273, 55)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(31, 13)
         Me.Label34.TabIndex = 3
@@ -1069,39 +1156,39 @@ Partial Class ChildLiquidacionControl
         '
         'txtTotalOtros
         '
-        Me.txtTotalOtros.Location = New System.Drawing.Point(310, 24)
+        Me.txtTotalOtros.Location = New System.Drawing.Point(310, 51)
         Me.txtTotalOtros.Name = "txtTotalOtros"
         Me.txtTotalOtros.Size = New System.Drawing.Size(76, 20)
         Me.txtTotalOtros.TabIndex = 79
         '
         'txtDescripcionOtros
         '
-        Me.txtDescripcionOtros.Location = New System.Drawing.Point(88, 24)
+        Me.txtDescripcionOtros.Location = New System.Drawing.Point(75, 24)
         Me.txtDescripcionOtros.Name = "txtDescripcionOtros"
-        Me.txtDescripcionOtros.Size = New System.Drawing.Size(155, 20)
+        Me.txtDescripcionOtros.Size = New System.Drawing.Size(311, 20)
         Me.txtDescripcionOtros.TabIndex = 78
         '
         'btnRptLiquidacion
         '
-        Me.btnRptLiquidacion.Location = New System.Drawing.Point(835, 405)
+        Me.btnRptLiquidacion.Location = New System.Drawing.Point(883, 395)
         Me.btnRptLiquidacion.Name = "btnRptLiquidacion"
-        Me.btnRptLiquidacion.Size = New System.Drawing.Size(100, 51)
+        Me.btnRptLiquidacion.Size = New System.Drawing.Size(100, 37)
         Me.btnRptLiquidacion.TabIndex = 104
         Me.btnRptLiquidacion.Text = "Liquidación de viaje general"
         Me.btnRptLiquidacion.UseVisualStyleBackColor = True
         '
         'btnRptLiquidacionDetallado
         '
-        Me.btnRptLiquidacionDetallado.Location = New System.Drawing.Point(955, 405)
+        Me.btnRptLiquidacionDetallado.Location = New System.Drawing.Point(1002, 395)
         Me.btnRptLiquidacionDetallado.Name = "btnRptLiquidacionDetallado"
-        Me.btnRptLiquidacionDetallado.Size = New System.Drawing.Size(100, 51)
+        Me.btnRptLiquidacionDetallado.Size = New System.Drawing.Size(100, 37)
         Me.btnRptLiquidacionDetallado.TabIndex = 105
         Me.btnRptLiquidacionDetallado.Text = "Liquidación de viaje detallado"
         Me.btnRptLiquidacionDetallado.UseVisualStyleBackColor = True
         '
         'txtCarga
         '
-        Me.txtCarga.Location = New System.Drawing.Point(103, 90)
+        Me.txtCarga.Location = New System.Drawing.Point(103, 84)
         Me.txtCarga.Name = "txtCarga"
         Me.txtCarga.Size = New System.Drawing.Size(217, 20)
         Me.txtCarga.TabIndex = 62
@@ -1109,7 +1196,7 @@ Partial Class ChildLiquidacionControl
         'Label35
         '
         Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(10, 90)
+        Me.Label35.Location = New System.Drawing.Point(10, 84)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(35, 13)
         Me.Label35.TabIndex = 107
@@ -1118,7 +1205,7 @@ Partial Class ChildLiquidacionControl
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(340, 90)
+        Me.Label36.Location = New System.Drawing.Point(340, 84)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(31, 13)
         Me.Label36.TabIndex = 108
@@ -1126,7 +1213,7 @@ Partial Class ChildLiquidacionControl
         '
         'txtPeso
         '
-        Me.txtPeso.Location = New System.Drawing.Point(378, 90)
+        Me.txtPeso.Location = New System.Drawing.Point(378, 84)
         Me.txtPeso.Name = "txtPeso"
         Me.txtPeso.Size = New System.Drawing.Size(85, 20)
         Me.txtPeso.TabIndex = 63
@@ -1134,7 +1221,7 @@ Partial Class ChildLiquidacionControl
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Location = New System.Drawing.Point(469, 90)
+        Me.Label37.Location = New System.Drawing.Point(469, 84)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(41, 13)
         Me.Label37.TabIndex = 110
@@ -1143,76 +1230,566 @@ Partial Class ChildLiquidacionControl
         'cbUnidadMedida
         '
         Me.cbUnidadMedida.FormattingEnabled = True
-        Me.cbUnidadMedida.Location = New System.Drawing.Point(521, 90)
+        Me.cbUnidadMedida.Location = New System.Drawing.Point(521, 84)
         Me.cbUnidadMedida.Name = "cbUnidadMedida"
         Me.cbUnidadMedida.Size = New System.Drawing.Size(112, 21)
         Me.cbUnidadMedida.TabIndex = 64
         '
         'btnRptLiquidacionCombustible
         '
-        Me.btnRptLiquidacionCombustible.Location = New System.Drawing.Point(1083, 404)
+        Me.btnRptLiquidacionCombustible.Location = New System.Drawing.Point(1119, 394)
         Me.btnRptLiquidacionCombustible.Name = "btnRptLiquidacionCombustible"
-        Me.btnRptLiquidacionCombustible.Size = New System.Drawing.Size(100, 51)
+        Me.btnRptLiquidacionCombustible.Size = New System.Drawing.Size(100, 38)
         Me.btnRptLiquidacionCombustible.TabIndex = 113
         Me.btnRptLiquidacionCombustible.Text = "Liquidación de Combustible"
         Me.btnRptLiquidacionCombustible.UseVisualStyleBackColor = True
         '
-        'txtCodigoLiquidacionOtro
+        'TabControl1
         '
-        Me.txtCodigoLiquidacionOtro.Location = New System.Drawing.Point(21, 45)
-        Me.txtCodigoLiquidacionOtro.Name = "txtCodigoLiquidacionOtro"
-        Me.txtCodigoLiquidacionOtro.Size = New System.Drawing.Size(10, 20)
-        Me.txtCodigoLiquidacionOtro.TabIndex = 1001
-        Me.txtCodigoLiquidacionOtro.Visible = False
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Location = New System.Drawing.Point(12, 107)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(1302, 257)
+        Me.TabControl1.TabIndex = 1001
         '
-        'txtCodigoOtro
+        'TabPage1
         '
-        Me.txtCodigoOtro.Location = New System.Drawing.Point(37, 45)
-        Me.txtCodigoOtro.Name = "txtCodigoOtro"
-        Me.txtCodigoOtro.Size = New System.Drawing.Size(10, 20)
-        Me.txtCodigoOtro.TabIndex = 1002
-        Me.txtCodigoOtro.Visible = False
+        Me.TabPage1.Controls.Add(Me.gbPeajes)
+        Me.TabPage1.Controls.Add(Me.gbViaticos)
+        Me.TabPage1.Controls.Add(Me.gbOtros)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(1294, 231)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Peajes, Viáticos, Otros"
+        Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'txtNroLineaOtro
+        'TabPage2
         '
-        Me.txtNroLineaOtro.Location = New System.Drawing.Point(53, 45)
-        Me.txtNroLineaOtro.Name = "txtNroLineaOtro"
-        Me.txtNroLineaOtro.Size = New System.Drawing.Size(10, 20)
-        Me.txtNroLineaOtro.TabIndex = 1003
-        Me.txtNroLineaOtro.Visible = False
+        Me.TabPage2.Controls.Add(Me.GroupBox4)
+        Me.TabPage2.Controls.Add(Me.GroupBox3)
+        Me.TabPage2.Controls.Add(Me.GroupBox2)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(1294, 231)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Hospedaje, Guardianía, Balanza"
+        Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'btnNuevoOtro
+        'GroupBox4
         '
-        Me.btnNuevoOtro.Location = New System.Drawing.Point(392, 49)
-        Me.btnNuevoOtro.Name = "btnNuevoOtro"
-        Me.btnNuevoOtro.Size = New System.Drawing.Size(23, 23)
-        Me.btnNuevoOtro.TabIndex = 1001
-        Me.btnNuevoOtro.Text = "N"
-        Me.btnNuevoOtro.UseVisualStyleBackColor = True
+        Me.GroupBox4.Controls.Add(Me.btnNuevoBalanza)
+        Me.GroupBox4.Controls.Add(Me.Label9)
+        Me.GroupBox4.Controls.Add(Me.txtNroLineaBalanza)
+        Me.GroupBox4.Controls.Add(Me.txtCodigoBalanza)
+        Me.GroupBox4.Controls.Add(Me.btnInsertarAbajoBalanza)
+        Me.GroupBox4.Controls.Add(Me.txtCodigoLiquidacionBalanza)
+        Me.GroupBox4.Controls.Add(Me.btnInsertarArribaBalanza)
+        Me.GroupBox4.Controls.Add(Me.btnEliminarBalanza)
+        Me.GroupBox4.Controls.Add(Me.btnAgregarBalanza)
+        Me.GroupBox4.Controls.Add(Me.dgvBalanza)
+        Me.GroupBox4.Controls.Add(Me.Label10)
+        Me.GroupBox4.Controls.Add(Me.txtTotalBalanza)
+        Me.GroupBox4.Controls.Add(Me.Label46)
+        Me.GroupBox4.Controls.Add(Me.txtDescripcionBalanza)
+        Me.GroupBox4.Controls.Add(Me.dtpBalanza)
+        Me.GroupBox4.Controls.Add(Me.Label47)
+        Me.GroupBox4.Controls.Add(Me.txtBalanza)
+        Me.GroupBox4.Location = New System.Drawing.Point(863, 5)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(420, 220)
+        Me.GroupBox4.TabIndex = 69
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Balanza"
         '
-        'btnInsertarArribaOtro
+        'btnNuevoBalanza
         '
-        Me.btnInsertarArribaOtro.Location = New System.Drawing.Point(392, 86)
-        Me.btnInsertarArribaOtro.Name = "btnInsertarArribaOtro"
-        Me.btnInsertarArribaOtro.Size = New System.Drawing.Size(23, 23)
-        Me.btnInsertarArribaOtro.TabIndex = 1002
-        Me.btnInsertarArribaOtro.Text = "i+"
-        Me.btnInsertarArribaOtro.UseVisualStyleBackColor = True
+        Me.btnNuevoBalanza.Location = New System.Drawing.Point(387, 50)
+        Me.btnNuevoBalanza.Name = "btnNuevoBalanza"
+        Me.btnNuevoBalanza.Size = New System.Drawing.Size(23, 23)
+        Me.btnNuevoBalanza.TabIndex = 1001
+        Me.btnNuevoBalanza.Text = "N"
+        Me.btnNuevoBalanza.UseVisualStyleBackColor = True
         '
-        'btnInsertarAbajoOtro
+        'Label9
         '
-        Me.btnInsertarAbajoOtro.Location = New System.Drawing.Point(392, 118)
-        Me.btnInsertarAbajoOtro.Name = "btnInsertarAbajoOtro"
-        Me.btnInsertarAbajoOtro.Size = New System.Drawing.Size(23, 23)
-        Me.btnInsertarAbajoOtro.TabIndex = 1003
-        Me.btnInsertarAbajoOtro.Text = "i-"
-        Me.btnInsertarAbajoOtro.UseVisualStyleBackColor = True
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(9, 29)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(37, 13)
+        Me.Label9.TabIndex = 1
+        Me.Label9.Text = "Fecha"
+        '
+        'txtNroLineaBalanza
+        '
+        Me.txtNroLineaBalanza.Location = New System.Drawing.Point(40, 19)
+        Me.txtNroLineaBalanza.Name = "txtNroLineaBalanza"
+        Me.txtNroLineaBalanza.Size = New System.Drawing.Size(10, 20)
+        Me.txtNroLineaBalanza.TabIndex = 1003
+        Me.txtNroLineaBalanza.Visible = False
+        '
+        'txtCodigoBalanza
+        '
+        Me.txtCodigoBalanza.Location = New System.Drawing.Point(23, 19)
+        Me.txtCodigoBalanza.Name = "txtCodigoBalanza"
+        Me.txtCodigoBalanza.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoBalanza.TabIndex = 1002
+        Me.txtCodigoBalanza.Visible = False
+        '
+        'btnInsertarAbajoBalanza
+        '
+        Me.btnInsertarAbajoBalanza.Location = New System.Drawing.Point(387, 122)
+        Me.btnInsertarAbajoBalanza.Name = "btnInsertarAbajoBalanza"
+        Me.btnInsertarAbajoBalanza.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarAbajoBalanza.TabIndex = 1001
+        Me.btnInsertarAbajoBalanza.Text = "i-"
+        Me.btnInsertarAbajoBalanza.UseVisualStyleBackColor = True
+        '
+        'txtCodigoLiquidacionBalanza
+        '
+        Me.txtCodigoLiquidacionBalanza.Location = New System.Drawing.Point(7, 19)
+        Me.txtCodigoLiquidacionBalanza.Name = "txtCodigoLiquidacionBalanza"
+        Me.txtCodigoLiquidacionBalanza.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoLiquidacionBalanza.TabIndex = 1001
+        Me.txtCodigoLiquidacionBalanza.Visible = False
+        '
+        'btnInsertarArribaBalanza
+        '
+        Me.btnInsertarArribaBalanza.Location = New System.Drawing.Point(387, 89)
+        Me.btnInsertarArribaBalanza.Name = "btnInsertarArribaBalanza"
+        Me.btnInsertarArribaBalanza.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarArribaBalanza.TabIndex = 1001
+        Me.btnInsertarArribaBalanza.Tag = ""
+        Me.btnInsertarArribaBalanza.Text = "i+"
+        Me.btnInsertarArribaBalanza.UseVisualStyleBackColor = True
+        '
+        'btnEliminarBalanza
+        '
+        Me.btnEliminarBalanza.Location = New System.Drawing.Point(387, 156)
+        Me.btnEliminarBalanza.Name = "btnEliminarBalanza"
+        Me.btnEliminarBalanza.Size = New System.Drawing.Size(23, 23)
+        Me.btnEliminarBalanza.TabIndex = 71
+        Me.btnEliminarBalanza.Text = "-"
+        Me.btnEliminarBalanza.UseVisualStyleBackColor = True
+        '
+        'btnAgregarBalanza
+        '
+        Me.btnAgregarBalanza.Location = New System.Drawing.Point(387, 24)
+        Me.btnAgregarBalanza.Name = "btnAgregarBalanza"
+        Me.btnAgregarBalanza.Size = New System.Drawing.Size(23, 23)
+        Me.btnAgregarBalanza.TabIndex = 70
+        Me.btnAgregarBalanza.Text = "+"
+        Me.btnAgregarBalanza.UseVisualStyleBackColor = True
+        '
+        'dgvBalanza
+        '
+        Me.dgvBalanza.AllowUserToAddRows = False
+        Me.dgvBalanza.AllowUserToResizeRows = False
+        Me.dgvBalanza.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvBalanza.Location = New System.Drawing.Point(19, 85)
+        Me.dgvBalanza.MultiSelect = False
+        Me.dgvBalanza.Name = "dgvBalanza"
+        Me.dgvBalanza.ReadOnly = True
+        Me.dgvBalanza.RowHeadersVisible = False
+        Me.dgvBalanza.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvBalanza.Size = New System.Drawing.Size(362, 101)
+        Me.dgvBalanza.TabIndex = 8
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(266, 35)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(31, 13)
+        Me.Label10.TabIndex = 7
+        Me.Label10.Text = "Total"
+        '
+        'txtTotalBalanza
+        '
+        Me.txtTotalBalanza.Location = New System.Drawing.Point(307, 29)
+        Me.txtTotalBalanza.Name = "txtTotalBalanza"
+        Me.txtTotalBalanza.Size = New System.Drawing.Size(73, 20)
+        Me.txtTotalBalanza.TabIndex = 69
+        '
+        'Label46
+        '
+        Me.Label46.AutoSize = True
+        Me.Label46.Location = New System.Drawing.Point(8, 52)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(63, 13)
+        Me.Label46.TabIndex = 3
+        Me.Label46.Text = "Descripción"
+        '
+        'txtDescripcionBalanza
+        '
+        Me.txtDescripcionBalanza.Location = New System.Drawing.Point(77, 52)
+        Me.txtDescripcionBalanza.Name = "txtDescripcionBalanza"
+        Me.txtDescripcionBalanza.Size = New System.Drawing.Size(303, 20)
+        Me.txtDescripcionBalanza.TabIndex = 68
+        '
+        'dtpBalanza
+        '
+        Me.dtpBalanza.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpBalanza.Location = New System.Drawing.Point(77, 25)
+        Me.dtpBalanza.Name = "dtpBalanza"
+        Me.dtpBalanza.Size = New System.Drawing.Size(95, 20)
+        Me.dtpBalanza.TabIndex = 66
+        '
+        'Label47
+        '
+        Me.Label47.AutoSize = True
+        Me.Label47.Location = New System.Drawing.Point(162, 195)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(87, 13)
+        Me.Label47.TabIndex = 62
+        Me.Label47.Text = "Total Guardianía"
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.btnNuevoGuardiania)
+        Me.GroupBox3.Controls.Add(Me.Label40)
+        Me.GroupBox3.Controls.Add(Me.txtNroLineaGuardiania)
+        Me.GroupBox3.Controls.Add(Me.txtCodigoGuardiania)
+        Me.GroupBox3.Controls.Add(Me.btnInsertarAbajoGuardiania)
+        Me.GroupBox3.Controls.Add(Me.txtCodigoLiquidacionGuardiania)
+        Me.GroupBox3.Controls.Add(Me.btnInsertarArribaGuardiania)
+        Me.GroupBox3.Controls.Add(Me.btnEliminarGuardiania)
+        Me.GroupBox3.Controls.Add(Me.btnAgregarGuardiania)
+        Me.GroupBox3.Controls.Add(Me.dgvGuardiania)
+        Me.GroupBox3.Controls.Add(Me.Label43)
+        Me.GroupBox3.Controls.Add(Me.txtTotalGuardiania)
+        Me.GroupBox3.Controls.Add(Me.Label44)
+        Me.GroupBox3.Controls.Add(Me.txtDescripcionGuardiania)
+        Me.GroupBox3.Controls.Add(Me.dtpGuardiania)
+        Me.GroupBox3.Controls.Add(Me.Label45)
+        Me.GroupBox3.Controls.Add(Me.txtGuardiania)
+        Me.GroupBox3.Location = New System.Drawing.Point(437, 5)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(420, 220)
+        Me.GroupBox3.TabIndex = 68
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Guardianía"
+        '
+        'btnNuevoGuardiania
+        '
+        Me.btnNuevoGuardiania.Location = New System.Drawing.Point(387, 50)
+        Me.btnNuevoGuardiania.Name = "btnNuevoGuardiania"
+        Me.btnNuevoGuardiania.Size = New System.Drawing.Size(23, 23)
+        Me.btnNuevoGuardiania.TabIndex = 1001
+        Me.btnNuevoGuardiania.Text = "N"
+        Me.btnNuevoGuardiania.UseVisualStyleBackColor = True
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(9, 29)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(37, 13)
+        Me.Label40.TabIndex = 1
+        Me.Label40.Text = "Fecha"
+        '
+        'txtNroLineaGuardiania
+        '
+        Me.txtNroLineaGuardiania.Location = New System.Drawing.Point(40, 19)
+        Me.txtNroLineaGuardiania.Name = "txtNroLineaGuardiania"
+        Me.txtNroLineaGuardiania.Size = New System.Drawing.Size(10, 20)
+        Me.txtNroLineaGuardiania.TabIndex = 1003
+        Me.txtNroLineaGuardiania.Visible = False
+        '
+        'txtCodigoGuardiania
+        '
+        Me.txtCodigoGuardiania.Location = New System.Drawing.Point(23, 19)
+        Me.txtCodigoGuardiania.Name = "txtCodigoGuardiania"
+        Me.txtCodigoGuardiania.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoGuardiania.TabIndex = 1002
+        Me.txtCodigoGuardiania.Visible = False
+        '
+        'btnInsertarAbajoGuardiania
+        '
+        Me.btnInsertarAbajoGuardiania.Location = New System.Drawing.Point(387, 122)
+        Me.btnInsertarAbajoGuardiania.Name = "btnInsertarAbajoGuardiania"
+        Me.btnInsertarAbajoGuardiania.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarAbajoGuardiania.TabIndex = 1001
+        Me.btnInsertarAbajoGuardiania.Text = "i-"
+        Me.btnInsertarAbajoGuardiania.UseVisualStyleBackColor = True
+        '
+        'txtCodigoLiquidacionGuardiania
+        '
+        Me.txtCodigoLiquidacionGuardiania.Location = New System.Drawing.Point(7, 19)
+        Me.txtCodigoLiquidacionGuardiania.Name = "txtCodigoLiquidacionGuardiania"
+        Me.txtCodigoLiquidacionGuardiania.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoLiquidacionGuardiania.TabIndex = 1001
+        Me.txtCodigoLiquidacionGuardiania.Visible = False
+        '
+        'btnInsertarArribaGuardiania
+        '
+        Me.btnInsertarArribaGuardiania.Location = New System.Drawing.Point(387, 89)
+        Me.btnInsertarArribaGuardiania.Name = "btnInsertarArribaGuardiania"
+        Me.btnInsertarArribaGuardiania.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarArribaGuardiania.TabIndex = 1001
+        Me.btnInsertarArribaGuardiania.Tag = ""
+        Me.btnInsertarArribaGuardiania.Text = "i+"
+        Me.btnInsertarArribaGuardiania.UseVisualStyleBackColor = True
+        '
+        'btnEliminarGuardiania
+        '
+        Me.btnEliminarGuardiania.Location = New System.Drawing.Point(387, 156)
+        Me.btnEliminarGuardiania.Name = "btnEliminarGuardiania"
+        Me.btnEliminarGuardiania.Size = New System.Drawing.Size(23, 23)
+        Me.btnEliminarGuardiania.TabIndex = 71
+        Me.btnEliminarGuardiania.Text = "-"
+        Me.btnEliminarGuardiania.UseVisualStyleBackColor = True
+        '
+        'btnAgregarGuardiania
+        '
+        Me.btnAgregarGuardiania.Location = New System.Drawing.Point(387, 24)
+        Me.btnAgregarGuardiania.Name = "btnAgregarGuardiania"
+        Me.btnAgregarGuardiania.Size = New System.Drawing.Size(23, 23)
+        Me.btnAgregarGuardiania.TabIndex = 70
+        Me.btnAgregarGuardiania.Text = "+"
+        Me.btnAgregarGuardiania.UseVisualStyleBackColor = True
+        '
+        'dgvGuardiania
+        '
+        Me.dgvGuardiania.AllowUserToAddRows = False
+        Me.dgvGuardiania.AllowUserToResizeRows = False
+        Me.dgvGuardiania.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvGuardiania.Location = New System.Drawing.Point(19, 85)
+        Me.dgvGuardiania.MultiSelect = False
+        Me.dgvGuardiania.Name = "dgvGuardiania"
+        Me.dgvGuardiania.ReadOnly = True
+        Me.dgvGuardiania.RowHeadersVisible = False
+        Me.dgvGuardiania.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvGuardiania.Size = New System.Drawing.Size(362, 101)
+        Me.dgvGuardiania.TabIndex = 8
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.Location = New System.Drawing.Point(266, 35)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(31, 13)
+        Me.Label43.TabIndex = 7
+        Me.Label43.Text = "Total"
+        '
+        'txtTotalGuardiania
+        '
+        Me.txtTotalGuardiania.Location = New System.Drawing.Point(307, 29)
+        Me.txtTotalGuardiania.Name = "txtTotalGuardiania"
+        Me.txtTotalGuardiania.Size = New System.Drawing.Size(73, 20)
+        Me.txtTotalGuardiania.TabIndex = 69
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(8, 52)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(63, 13)
+        Me.Label44.TabIndex = 3
+        Me.Label44.Text = "Descripción"
+        '
+        'txtDescripcionGuardiania
+        '
+        Me.txtDescripcionGuardiania.Location = New System.Drawing.Point(77, 52)
+        Me.txtDescripcionGuardiania.Name = "txtDescripcionGuardiania"
+        Me.txtDescripcionGuardiania.Size = New System.Drawing.Size(303, 20)
+        Me.txtDescripcionGuardiania.TabIndex = 68
+        '
+        'dtpGuardiania
+        '
+        Me.dtpGuardiania.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpGuardiania.Location = New System.Drawing.Point(77, 25)
+        Me.dtpGuardiania.Name = "dtpGuardiania"
+        Me.dtpGuardiania.Size = New System.Drawing.Size(95, 20)
+        Me.dtpGuardiania.TabIndex = 66
+        '
+        'Label45
+        '
+        Me.Label45.AutoSize = True
+        Me.Label45.Location = New System.Drawing.Point(162, 195)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(87, 13)
+        Me.Label45.TabIndex = 62
+        Me.Label45.Text = "Total Guardianía"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.btnNuevoHospedaje)
+        Me.GroupBox2.Controls.Add(Me.Label38)
+        Me.GroupBox2.Controls.Add(Me.txtNroLineaHospedaje)
+        Me.GroupBox2.Controls.Add(Me.txtCodigoHospedaje)
+        Me.GroupBox2.Controls.Add(Me.btnInsertarAbajoHospedaje)
+        Me.GroupBox2.Controls.Add(Me.txtCodigoLiquidacionHospedaje)
+        Me.GroupBox2.Controls.Add(Me.btnInsertarArribaHospedaje)
+        Me.GroupBox2.Controls.Add(Me.btnEliminarHospedaje)
+        Me.GroupBox2.Controls.Add(Me.btnAgregarHospedaje)
+        Me.GroupBox2.Controls.Add(Me.dgvHospedaje)
+        Me.GroupBox2.Controls.Add(Me.Label39)
+        Me.GroupBox2.Controls.Add(Me.txtTotalHospedaje)
+        Me.GroupBox2.Controls.Add(Me.Label41)
+        Me.GroupBox2.Controls.Add(Me.txtDescripcionHospedaje)
+        Me.GroupBox2.Controls.Add(Me.dtpHospedaje)
+        Me.GroupBox2.Controls.Add(Me.Label42)
+        Me.GroupBox2.Controls.Add(Me.txtHospedaje)
+        Me.GroupBox2.Location = New System.Drawing.Point(6, 8)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(420, 220)
+        Me.GroupBox2.TabIndex = 67
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Hospedaje"
+        '
+        'btnNuevoHospedaje
+        '
+        Me.btnNuevoHospedaje.Location = New System.Drawing.Point(387, 50)
+        Me.btnNuevoHospedaje.Name = "btnNuevoHospedaje"
+        Me.btnNuevoHospedaje.Size = New System.Drawing.Size(23, 23)
+        Me.btnNuevoHospedaje.TabIndex = 1001
+        Me.btnNuevoHospedaje.Text = "N"
+        Me.btnNuevoHospedaje.UseVisualStyleBackColor = True
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(9, 29)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(37, 13)
+        Me.Label38.TabIndex = 1
+        Me.Label38.Text = "Fecha"
+        '
+        'txtNroLineaHospedaje
+        '
+        Me.txtNroLineaHospedaje.Location = New System.Drawing.Point(40, 19)
+        Me.txtNroLineaHospedaje.Name = "txtNroLineaHospedaje"
+        Me.txtNroLineaHospedaje.Size = New System.Drawing.Size(10, 20)
+        Me.txtNroLineaHospedaje.TabIndex = 1003
+        Me.txtNroLineaHospedaje.Visible = False
+        '
+        'txtCodigoHospedaje
+        '
+        Me.txtCodigoHospedaje.Location = New System.Drawing.Point(23, 19)
+        Me.txtCodigoHospedaje.Name = "txtCodigoHospedaje"
+        Me.txtCodigoHospedaje.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoHospedaje.TabIndex = 1002
+        Me.txtCodigoHospedaje.Visible = False
+        '
+        'btnInsertarAbajoHospedaje
+        '
+        Me.btnInsertarAbajoHospedaje.Location = New System.Drawing.Point(387, 122)
+        Me.btnInsertarAbajoHospedaje.Name = "btnInsertarAbajoHospedaje"
+        Me.btnInsertarAbajoHospedaje.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarAbajoHospedaje.TabIndex = 1001
+        Me.btnInsertarAbajoHospedaje.Text = "i-"
+        Me.btnInsertarAbajoHospedaje.UseVisualStyleBackColor = True
+        '
+        'txtCodigoLiquidacionHospedaje
+        '
+        Me.txtCodigoLiquidacionHospedaje.Location = New System.Drawing.Point(7, 19)
+        Me.txtCodigoLiquidacionHospedaje.Name = "txtCodigoLiquidacionHospedaje"
+        Me.txtCodigoLiquidacionHospedaje.Size = New System.Drawing.Size(10, 20)
+        Me.txtCodigoLiquidacionHospedaje.TabIndex = 1001
+        Me.txtCodigoLiquidacionHospedaje.Visible = False
+        '
+        'btnInsertarArribaHospedaje
+        '
+        Me.btnInsertarArribaHospedaje.Location = New System.Drawing.Point(387, 89)
+        Me.btnInsertarArribaHospedaje.Name = "btnInsertarArribaHospedaje"
+        Me.btnInsertarArribaHospedaje.Size = New System.Drawing.Size(23, 23)
+        Me.btnInsertarArribaHospedaje.TabIndex = 1001
+        Me.btnInsertarArribaHospedaje.Tag = ""
+        Me.btnInsertarArribaHospedaje.Text = "i+"
+        Me.btnInsertarArribaHospedaje.UseVisualStyleBackColor = True
+        '
+        'btnEliminarHospedaje
+        '
+        Me.btnEliminarHospedaje.Location = New System.Drawing.Point(387, 156)
+        Me.btnEliminarHospedaje.Name = "btnEliminarHospedaje"
+        Me.btnEliminarHospedaje.Size = New System.Drawing.Size(23, 23)
+        Me.btnEliminarHospedaje.TabIndex = 71
+        Me.btnEliminarHospedaje.Text = "-"
+        Me.btnEliminarHospedaje.UseVisualStyleBackColor = True
+        '
+        'btnAgregarHospedaje
+        '
+        Me.btnAgregarHospedaje.Location = New System.Drawing.Point(387, 24)
+        Me.btnAgregarHospedaje.Name = "btnAgregarHospedaje"
+        Me.btnAgregarHospedaje.Size = New System.Drawing.Size(23, 23)
+        Me.btnAgregarHospedaje.TabIndex = 70
+        Me.btnAgregarHospedaje.Text = "+"
+        Me.btnAgregarHospedaje.UseVisualStyleBackColor = True
+        '
+        'dgvHospedaje
+        '
+        Me.dgvHospedaje.AllowUserToAddRows = False
+        Me.dgvHospedaje.AllowUserToResizeRows = False
+        Me.dgvHospedaje.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvHospedaje.Location = New System.Drawing.Point(19, 85)
+        Me.dgvHospedaje.MultiSelect = False
+        Me.dgvHospedaje.Name = "dgvHospedaje"
+        Me.dgvHospedaje.ReadOnly = True
+        Me.dgvHospedaje.RowHeadersVisible = False
+        Me.dgvHospedaje.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvHospedaje.Size = New System.Drawing.Size(362, 101)
+        Me.dgvHospedaje.TabIndex = 8
+        '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.Location = New System.Drawing.Point(266, 35)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(31, 13)
+        Me.Label39.TabIndex = 7
+        Me.Label39.Text = "Total"
+        '
+        'txtTotalHospedaje
+        '
+        Me.txtTotalHospedaje.Location = New System.Drawing.Point(307, 29)
+        Me.txtTotalHospedaje.Name = "txtTotalHospedaje"
+        Me.txtTotalHospedaje.Size = New System.Drawing.Size(73, 20)
+        Me.txtTotalHospedaje.TabIndex = 69
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.Location = New System.Drawing.Point(8, 52)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(63, 13)
+        Me.Label41.TabIndex = 3
+        Me.Label41.Text = "Descripción"
+        '
+        'txtDescripcionHospedaje
+        '
+        Me.txtDescripcionHospedaje.Location = New System.Drawing.Point(77, 52)
+        Me.txtDescripcionHospedaje.Name = "txtDescripcionHospedaje"
+        Me.txtDescripcionHospedaje.Size = New System.Drawing.Size(303, 20)
+        Me.txtDescripcionHospedaje.TabIndex = 68
+        '
+        'dtpHospedaje
+        '
+        Me.dtpHospedaje.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpHospedaje.Location = New System.Drawing.Point(77, 25)
+        Me.dtpHospedaje.Name = "dtpHospedaje"
+        Me.dtpHospedaje.Size = New System.Drawing.Size(95, 20)
+        Me.dtpHospedaje.TabIndex = 66
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(163, 195)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(85, 13)
+        Me.Label42.TabIndex = 62
+        Me.Label42.Text = "Total Hospedaje"
         '
         'ChildLiquidacionControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1317, 644)
+        Me.ClientSize = New System.Drawing.Size(1321, 741)
+        Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.btnRptLiquidacionCombustible)
         Me.Controls.Add(Me.cbUnidadMedida)
         Me.Controls.Add(Me.Label37)
@@ -1222,9 +1799,6 @@ Partial Class ChildLiquidacionControl
         Me.Controls.Add(Me.txtCarga)
         Me.Controls.Add(Me.btnRptLiquidacionDetallado)
         Me.Controls.Add(Me.btnRptLiquidacion)
-        Me.Controls.Add(Me.gbOtros)
-        Me.Controls.Add(Me.gbViaticos)
-        Me.Controls.Add(Me.gbPeajes)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label23)
         Me.Controls.Add(Me.txtDiferenciaComb)
@@ -1257,12 +1831,6 @@ Partial Class ChildLiquidacionControl
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.txtCombustibleFisico)
         Me.Controls.Add(Me.Label13)
-        Me.Controls.Add(Me.txtBalanza)
-        Me.Controls.Add(Me.Label11)
-        Me.Controls.Add(Me.txtHospedaje)
-        Me.Controls.Add(Me.Label10)
-        Me.Controls.Add(Me.txtGuardiania)
-        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.txtOrigen)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
@@ -1284,6 +1852,18 @@ Partial Class ChildLiquidacionControl
         Me.gbOtros.ResumeLayout(False)
         Me.gbOtros.PerformLayout()
         CType(Me.dgvOtros, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage2.ResumeLayout(False)
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
+        CType(Me.dgvBalanza, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        CType(Me.dgvGuardiania, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        CType(Me.dgvHospedaje, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1317,11 +1897,8 @@ Partial Class ChildLiquidacionControl
     Friend WithEvents txtOtros As TextBox
     Friend WithEvents Label12 As Label
     Friend WithEvents txtBalanza As TextBox
-    Friend WithEvents Label11 As Label
     Friend WithEvents txtHospedaje As TextBox
-    Friend WithEvents Label10 As Label
     Friend WithEvents txtGuardiania As TextBox
-    Friend WithEvents Label9 As Label
     Friend WithEvents txtViaticos As TextBox
     Friend WithEvents Label8 As Label
     Friend WithEvents txtPeajes As TextBox
@@ -1403,4 +1980,58 @@ Partial Class ChildLiquidacionControl
     Friend WithEvents btnNuevoOtro As Button
     Friend WithEvents txtCodigoOtro As TextBox
     Friend WithEvents txtCodigoLiquidacionOtro As TextBox
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents btnNuevoHospedaje As Button
+    Friend WithEvents Label38 As Label
+    Friend WithEvents txtNroLineaHospedaje As TextBox
+    Friend WithEvents txtCodigoHospedaje As TextBox
+    Friend WithEvents btnInsertarAbajoHospedaje As Button
+    Friend WithEvents txtCodigoLiquidacionHospedaje As TextBox
+    Friend WithEvents btnInsertarArribaHospedaje As Button
+    Friend WithEvents btnEliminarHospedaje As Button
+    Friend WithEvents btnAgregarHospedaje As Button
+    Friend WithEvents dgvHospedaje As DataGridView
+    Friend WithEvents Label39 As Label
+    Friend WithEvents txtTotalHospedaje As TextBox
+    Friend WithEvents Label41 As Label
+    Friend WithEvents txtDescripcionHospedaje As TextBox
+    Friend WithEvents dtpHospedaje As DateTimePicker
+    Friend WithEvents Label42 As Label
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents btnNuevoBalanza As Button
+    Friend WithEvents Label9 As Label
+    Friend WithEvents txtNroLineaBalanza As TextBox
+    Friend WithEvents txtCodigoBalanza As TextBox
+    Friend WithEvents btnInsertarAbajoBalanza As Button
+    Friend WithEvents txtCodigoLiquidacionBalanza As TextBox
+    Friend WithEvents btnInsertarArribaBalanza As Button
+    Friend WithEvents btnEliminarBalanza As Button
+    Friend WithEvents btnAgregarBalanza As Button
+    Friend WithEvents dgvBalanza As DataGridView
+    Friend WithEvents Label10 As Label
+    Friend WithEvents txtTotalBalanza As TextBox
+    Friend WithEvents Label46 As Label
+    Friend WithEvents txtDescripcionBalanza As TextBox
+    Friend WithEvents dtpBalanza As DateTimePicker
+    Friend WithEvents Label47 As Label
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents btnNuevoGuardiania As Button
+    Friend WithEvents Label40 As Label
+    Friend WithEvents txtNroLineaGuardiania As TextBox
+    Friend WithEvents txtCodigoGuardiania As TextBox
+    Friend WithEvents btnInsertarAbajoGuardiania As Button
+    Friend WithEvents txtCodigoLiquidacionGuardiania As TextBox
+    Friend WithEvents btnInsertarArribaGuardiania As Button
+    Friend WithEvents btnEliminarGuardiania As Button
+    Friend WithEvents btnAgregarGuardiania As Button
+    Friend WithEvents dgvGuardiania As DataGridView
+    Friend WithEvents Label43 As Label
+    Friend WithEvents txtTotalGuardiania As TextBox
+    Friend WithEvents Label44 As Label
+    Friend WithEvents txtDescripcionGuardiania As TextBox
+    Friend WithEvents dtpGuardiania As DateTimePicker
+    Friend WithEvents Label45 As Label
 End Class

@@ -967,4 +967,309 @@ Public Class LiquidacionDAO
         End If
 
     End Function
+
+    Public Function UpdateLiquidacionHospedaje(liquidacion As Integer, hospedaje As Integer, fecha As Date,
+                                           descripcion As String, total As Double,
+                                           nroLinea As Integer) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", liquidacion))
+        params.Add(New SqlParameter("@CODIGO_HOSPEDAJE", hospedaje))
+        params.Add(New SqlParameter("@FECHA", fecha))
+        params.Add(New SqlParameter("@DESCRIPCION", descripcion))
+        params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@NRO_LINEA", nroLinea))
+
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE updateLiquidacionHospedaje   
+                                        @CODIGO_LIQUIDACION,
+                                        @CODIGO_HOSPEDAJE,
+                                        @FECHA,
+                                        @DESCRIPCION,
+                                        @TOTAL,
+                                        @NRO_LINEA 
+                                        ", params)
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+    End Function
+
+    Public Function GetLiquidacionHospedajeById(liquidacion As Integer, codigo As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	CODIGO_LIQUIDACION,
+		                                    CODIGO_HOSPEDAJE,
+		                                    NRO_LINEA,
+		                                    FECHA,
+		                                    DESCRIPCION,
+		                                    TOTAL 
+                                    FROM	LIQUIDACION_HOSPEDAJE A 
+                                    WHERE	A.CODIGO_LIQUIDACION=" + CStr(liquidacion) + " AND A.CODIGO_HOSPEDAJE=" + CStr(codigo) + "", Nothing)
+    End Function
+
+
+    Public Function GetLiquidacionHospedajeByIdLiquidacion(codigo As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
+		                                    CODIGO_HOSPEDAJE,
+                                            NRO_LINEA,
+		                                    FECHA,
+		                                    DESCRIPCION,
+		                                    TOTAL  
+                                    from	LIQUIDACION_HOSPEDAJE
+                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
+                                    order   by  NRO_LINEA asc", Nothing)
+    End Function
+
+
+
+    Public Sub deleteLiquidacionHospedajeById(codigo As Integer, hospedaje As Integer)
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
+        params.Add(New SqlParameter("@CODIGO_HOSPEDAJE", hospedaje))
+
+        sqlControl.ExecQuery("EXECUTE deleteLiquidacionHospedaje " +
+                                        "@CODIGO_LIQUIDACION," +
+                                        "@CODIGO_HOSPEDAJE ", params)
+    End Sub
+
+
+
+    Public Function InsertLiquidacionHospedaje(codigo As Integer, fecha As Date, descripcion As String,
+                                               total As Double, linea As Integer) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
+        params.Add(New SqlParameter("@FECHA", fecha))
+        params.Add(New SqlParameter("@DESCRIPCION", descripcion))
+        params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@NRO_LINEA", linea))
+
+
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE insertLiquidacionHospedaje   
+                                        @CODIGO_LIQUIDACION,
+                                        @FECHA,
+                                        @DESCRIPCION,
+                                        @TOTAL,
+                                        @NRO_LINEA ", params)
+
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+    End Function
+
+    Public Function UpdateLiquidacionGuardiania(liquidacion As Integer, guardiania As Integer, fecha As Date,
+                                           descripcion As String, total As Double,
+                                           nroLinea As Integer) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", liquidacion))
+        params.Add(New SqlParameter("@CODIGO_GUARDIANIA", guardiania))
+        params.Add(New SqlParameter("@FECHA", fecha))
+        params.Add(New SqlParameter("@DESCRIPCION", descripcion))
+        params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@NRO_LINEA", nroLinea))
+
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE updateLiquidacionGuardiania    
+                                        @CODIGO_LIQUIDACION,
+                                        @CODIGO_GUARDIANIA,
+                                        @FECHA,
+                                        @DESCRIPCION,
+                                        @TOTAL,
+                                        @NRO_LINEA 
+                                        ", params)
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+    End Function
+
+    Public Function GetLiquidacionGuardianiaById(liquidacion As Integer, codigo As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	CODIGO_LIQUIDACION,
+		                                    CODIGO_GUARDIANIA,
+		                                    NRO_LINEA,
+		                                    FECHA,
+		                                    DESCRIPCION,
+		                                    TOTAL 
+                                    FROM	LIQUIDACION_GUARDIANIA A 
+                                    WHERE	A.CODIGO_LIQUIDACION=" + CStr(liquidacion) + " AND A.CODIGO_GUARDIANIA=" + CStr(codigo) + "", Nothing)
+    End Function
+
+    Public Function GetLiquidacionGuardianiaByIdLiquidacion(codigo As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
+		                                    CODIGO_GUARDIANIA,
+                                            NRO_LINEA,
+		                                    FECHA,
+		                                    DESCRIPCION,
+		                                    TOTAL 
+                                    from	LIQUIDACION_GUARDIANIA 
+                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
+                                    order   by  NRO_LINEA asc", Nothing)
+    End Function
+
+    Public Sub deleteLiquidacionGuardianiaById(codigo As Integer, guardiania As Integer)
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
+        params.Add(New SqlParameter("@CODIGO_GUARDIANIA", guardiania))
+
+        sqlControl.ExecQuery("EXECUTE deleteLiquidacionGuardiania " +
+                                        "@CODIGO_LIQUIDACION," +
+                                        "@CODIGO_GUARDIANIA ", params)
+    End Sub
+
+    Public Function InsertLiquidacionGuardiania(codigo As Integer, fecha As Date, descripcion As String,
+                                               total As Double, linea As Integer) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
+        params.Add(New SqlParameter("@FECHA", fecha))
+        params.Add(New SqlParameter("@DESCRIPCION", descripcion))
+        params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@NRO_LINEA", linea))
+
+
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE insertLiquidacionGuardiania     
+                                        @CODIGO_LIQUIDACION,
+                                        @FECHA,
+                                        @DESCRIPCION,
+                                        @TOTAL,
+                                        @NRO_LINEA ", params)
+
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+    End Function
+
+    Public Function UpdateLiquidacionBalanza(liquidacion As Integer, balanza As Integer, fecha As Date,
+                                          descripcion As String, total As Double,
+                                          nroLinea As Integer) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", liquidacion))
+        params.Add(New SqlParameter("@CODIGO_BALANZA", balanza))
+        params.Add(New SqlParameter("@FECHA", fecha))
+        params.Add(New SqlParameter("@DESCRIPCION", descripcion))
+        params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@NRO_LINEA", nroLinea))
+
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE updateLiquidacionBalanza    
+                                        @CODIGO_LIQUIDACION,
+                                        @CODIGO_BALANZA,
+                                        @FECHA,
+                                        @DESCRIPCION,
+                                        @TOTAL,
+                                        @NRO_LINEA 
+                                        ", params)
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+    End Function
+
+    Public Function GetLiquidacionBalanzaById(liquidacion As Integer, codigo As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	CODIGO_LIQUIDACION,
+		                                    CODIGO_BALANZA,
+		                                    NRO_LINEA,
+		                                    FECHA,
+		                                    DESCRIPCION,
+		                                    TOTAL 
+                                    FROM	LIQUIDACION_BALANZA A 
+                                    WHERE	A.CODIGO_LIQUIDACION=" + CStr(liquidacion) + " AND A.CODIGO_BALANZA=" + CStr(codigo) + "", Nothing)
+    End Function
+
+    Public Function GetLiquidacionBalanzaByIdLiquidacion(codigo As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
+		                                    CODIGO_BALANZA,
+                                            NRO_LINEA,
+		                                    FECHA,
+		                                    DESCRIPCION,
+		                                    TOTAL   
+                                    from	LIQUIDACION_BALANZA  
+                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
+                                    order   by  NRO_LINEA asc", Nothing)
+    End Function
+
+    Public Sub deleteLiquidacionBalanzaById(codigo As Integer, balanza As Integer)
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
+        params.Add(New SqlParameter("@CODIGO_BALANZA", balanza))
+
+        sqlControl.ExecQuery("EXECUTE deleteLiquidacionBalanza " +
+                                        "@CODIGO_LIQUIDACION," +
+                                        "@CODIGO_BALANZA ", params)
+    End Sub
+
+    Public Function InsertLiquidacionBalanza(codigo As Integer, fecha As Date, descripcion As String,
+                                               total As Double, linea As Integer) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
+        params.Add(New SqlParameter("@FECHA", fecha))
+        params.Add(New SqlParameter("@DESCRIPCION", descripcion))
+        params.Add(New SqlParameter("@TOTAL", total))
+        params.Add(New SqlParameter("@NRO_LINEA", linea))
+
+
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("EXECUTE insertLiquidacionBalanza      
+                                        @CODIGO_LIQUIDACION,
+                                        @FECHA,
+                                        @DESCRIPCION,
+                                        @TOTAL,
+                                        @NRO_LINEA ", params)
+
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+    End Function
 End Class

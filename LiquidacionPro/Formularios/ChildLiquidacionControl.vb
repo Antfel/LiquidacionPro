@@ -301,6 +301,9 @@ Public Class ChildLiquidacionControl
             cargarPeajes(CInt(txtCodigoLiquidacion.Text))
             cargarViaticos(CInt(txtCodigoLiquidacion.Text))
             cargarOtros(CInt(txtCodigoLiquidacion.Text))
+            cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
+            cargarGuardiania(CInt(txtCodigoLiquidacion.Text))
+            cargarBalanzas(CInt(txtCodigoLiquidacion.Text))
         End If
 
     End Sub
@@ -747,6 +750,9 @@ Public Class ChildLiquidacionControl
         cargarOtros(-1)
         cargarPeajes(-1)
         cargarViaticos(-1)
+        cargarHospedajes(-1)
+        cargarGuardiania(-1)
+        cargarBalanzas(-1)
 
     End Sub
 
@@ -849,6 +855,7 @@ Public Class ChildLiquidacionControl
                 txtLugarPeaje.Text = ""
                 dtpFechaHoraPeaje.Value = Date.Now
                 dtpFechaHoraPeaje.Focus()
+
             Catch ex As SqlException
                 sqlControl.rollbackTransaccion()
                 MessageBox.Show("Error al agregar peaje. " + ex.Message, "Agregar peaje",
@@ -893,6 +900,7 @@ Public Class ChildLiquidacionControl
 
                 cargarLiquidacion()
                 cargarPeajes(CInt(txtCodigoLiquidacion.Text))
+
                 txtCodigoLiquidacionPeaje.Text = ""
                 txtCodigoPeaje.Text = ""
                 txtNroLineaPeaje.Text = ""
@@ -966,6 +974,125 @@ Public Class ChildLiquidacionControl
         End Try
     End Sub
 
+    Sub cargarHospedajes(codigo As Integer)
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            Dim dt As DataTable
+            dt = liquidacionDAO.GetLiquidacionHospedajeByIdLiquidacion(codigo)
+            sqlControl.commitTransaction()
+
+            dgvHospedaje.DataSource = dt
+
+            dgvHospedaje.Columns(0).Visible = False
+            dgvHospedaje.Columns(1).Visible = False
+            dgvHospedaje.Columns(2).Visible = False
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar Hospedaje. " + ex.Message, "Cargar Hospedaje",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar Hospedaje. " + ex.Message, "Cargar Hospedaje",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Hospedaje",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Sub cargarBalanzas(codigo As Integer)
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            Dim dt As DataTable
+            dt = liquidacionDAO.GetLiquidacionBalanzaByIdLiquidacion(codigo)
+            sqlControl.commitTransaction()
+
+            dgvBalanza.DataSource = dt
+
+            dgvBalanza.Columns(0).Visible = False
+            dgvBalanza.Columns(1).Visible = False
+            dgvBalanza.Columns(2).Visible = False
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar Balanza. " + ex.Message, "Cargar Balanza",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar Balanza. " + ex.Message, "Cargar Balanza",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Balanza",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Sub cargarGuardiania(codigo As Integer)
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            Dim dt As DataTable
+            dt = liquidacionDAO.GetLiquidacionGuardianiaByIdLiquidacion(codigo)
+            sqlControl.commitTransaction()
+
+            dgvGuardiania.DataSource = dt
+
+            dgvGuardiania.Columns(0).Visible = False
+            dgvGuardiania.Columns(1).Visible = False
+            dgvGuardiania.Columns(2).Visible = False
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar Guardiania. " + ex.Message, "Cargar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar Guardiania. " + ex.Message, "Cargar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
     Sub cargarViaticos(codigo As Integer)
 
         Dim sqlControl As New SQLControl
@@ -1025,11 +1152,21 @@ Public Class ChildLiquidacionControl
             sqlControl.beginTransaction()
             liquidacionDAO.setDBcmd()
 
-            liquidacionDAO.deleteLiquidacionPeajeById(CInt(txtCodigoLiquidacion.Text), codigo)
+            liquidacionDAO.deleteLiquidacionPeajeById(CInt(txtCodigoLiquidacionPeaje.Text), codigo)
             sqlControl.commitTransaction()
 
             cargarLiquidacion()
-            cargarPeajes(CInt(txtCodigoLiquidacion.Text))
+            cargarPeajes(CInt(txtCodigoLiquidacionPeaje.Text))
+
+            txtCodigoLiquidacionPeaje.Text = ""
+            txtCodigoPeaje.Text = ""
+            txtNroLineaPeaje.Text = ""
+            txtEjesPeaje.Text = ""
+            txtTotalPeaje.Text = ""
+            txtLugarPeaje.Text = ""
+            dtpFechaHoraPeaje.Value = Date.Now
+            dtpFechaHoraPeaje.Focus()
+
         Catch ex As SQLException
             sqlControl.rollbackTransaccion()
             MessageBox.Show("Error al cargar peaje. " + ex.Message, "Eliminar peaje",
@@ -2193,5 +2330,1230 @@ Public Class ChildLiquidacionControl
         txtNroLineaOtro.Text = ""
         txtDescripcionOtros.Text = ""
         txtTotalOtros.Text = ""
+    End Sub
+
+    Private Sub btnAgregarHospedaje_Click(sender As Object, e As EventArgs) Handles btnAgregarHospedaje.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar Hospedaje",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalHospedaje.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el monto del Hospedaje ", "Agregar Hospedaje",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionHospedaje.Text = Nothing Then
+            MessageBox.Show("Debe ingresar la descripción. ", "Agregar Hospedaje",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+
+        If txtCodigoLiquidacionHospedaje.Text = Nothing Then
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                liquidacionDAO.setDBcmd()
+
+                Dim linea As Integer
+
+                If dgvHospedaje.Rows.Count > 0 Then
+                    Dim fila As Integer
+                    fila = dgvHospedaje.Rows.Count + 1
+                    linea = fila * 10000
+                Else
+                    linea = 10000
+                End If
+
+                liquidacionDAO.InsertLiquidacionHospedaje(CInt(txtCodigoLiquidacion.Text), dtpHospedaje.Value,
+                                                      txtDescripcionHospedaje.Text, Double.Parse(txtTotalHospedaje.Text.ToString),
+                                                        linea)
+
+                sqlControl.commitTransaction()
+
+                cargarLiquidacion()
+                cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
+
+                txtTotalHospedaje.Text = ""
+                txtDescripcionHospedaje.Text = ""
+                dtpHospedaje.Value = Date.Now
+                dtpHospedaje.Focus()
+            Catch ex As SqlException
+                sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar Hospedaje. " + ex.Message, "Agregar Hospedaje",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("Error al agregar Hospedaje. " + ex.Message, "Agregar Hospedaje",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Hospedaje",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                End Try
+            End Try
+        Else
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                liquidacionDAO.setDBcmd()
+
+                Dim linea As Integer
+
+                'If dgvPeajes.Rows.Count > 0 Then
+                '    Dim fila As Integer
+                '    fila = dgvPeajes.Rows.Count + 1
+                '    linea = fila * 10000
+                'Else
+                '    linea = 10000
+                'End If
+
+                linea = CInt(txtNroLineaHospedaje.Text)
+
+                liquidacionDAO.UpdateLiquidacionHospedaje(CInt(txtCodigoLiquidacionHospedaje.Text), CInt(txtCodigoHospedaje.Text),
+                                                      dtpHospedaje.Value, txtDescripcionHospedaje.Text,
+                                                      Double.Parse(txtTotalHospedaje.Text), linea)
+
+                sqlControl.commitTransaction()
+
+                cargarLiquidacion()
+                cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
+
+                txtCodigoLiquidacionHospedaje.Text = ""
+                txtCodigoHospedaje.Text = ""
+                txtNroLineaHospedaje.Text = ""
+                txtDescripcionHospedaje.Text = ""
+                txtTotalHospedaje.Text = ""
+                dtpHospedaje.Value = Date.Now
+                dtpHospedaje.Focus()
+            Catch ex As SqlException
+                sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar Hospedaje. " + ex.Message, "Agregar Hospedaje",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("Error al agregar Hospedaje. " + ex.Message, "Agregar Hospedaje",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Hospedaje",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                End Try
+            End Try
+        End If
+    End Sub
+
+    Private Sub btnNuevoHospedaje_Click(sender As Object, e As EventArgs) Handles btnNuevoHospedaje.Click
+        txtCodigoLiquidacionHospedaje.Text = ""
+        txtCodigoHospedaje.Text = ""
+        txtNroLineaHospedaje.Text = ""
+        txtDescripcionHospedaje.Text = ""
+        txtTotalHospedaje.Text = ""
+        dtpHospedaje.Value = Date.Now
+        dtpHospedaje.Focus()
+    End Sub
+
+    Private Sub btnInsertarArribaHospedaje_Click(sender As Object, e As EventArgs) Handles btnInsertarArribaHospedaje.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar Hospedaje",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalHospedaje.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el monto de Hospedaje. ", "Agregar Hospedaje",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionHospedaje.Text = Nothing Then
+            MessageBox.Show("Debe ingresar la descripción del Hospedaje. ", "Agregar Hospedaje",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If dgvHospedaje.Rows.Count <= 0 Then
+            MessageBox.Show("Debe existir un registro previo en Hospedaje para insertar arriba. ", "Agregar Hospedaje",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = dgvHospedaje.SelectedRows(0)
+        Dim nroLinea1 As Integer = seleccion.Cells(2).Value
+        Dim nroLinea2 As Integer
+        Dim linea As Integer
+
+        If seleccion.Index = 0 Then
+            linea = nroLinea1 / 2
+        Else
+            nroLinea2 = dgvHospedaje.Rows(seleccion.Index - 1).Cells(2).Value
+            linea = (nroLinea1 + nroLinea2) / 2
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+
+            liquidacionDAO.InsertLiquidacionHospedaje(CInt(txtCodigoLiquidacion.Text), dtpHospedaje.Value,
+                                                      txtDescripcionHospedaje.Text, Double.Parse(txtTotalHospedaje.Text.ToString),
+                                                        linea)
+
+            sqlControl.commitTransaction()
+
+            cargarLiquidacion()
+            cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
+
+            txtCodigoLiquidacionHospedaje.Text = ""
+            txtCodigoHospedaje.Text = ""
+            txtNroLineaHospedaje.Text = ""
+            txtDescripcionHospedaje.Text = ""
+            txtTotalHospedaje.Text = ""
+            dtpHospedaje.Value = Date.Now
+            dtpHospedaje.Focus()
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar Hospedaje. " + ex.Message, "Agregar Hospedaje",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al agregar Hospedaje. " + ex.Message, "Agregar Hospedaje",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Hospedaje",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnInsertarAbajoHospedaje_Click(sender As Object, e As EventArgs) Handles btnInsertarAbajoHospedaje.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar Hospedaje",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalHospedaje.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el monto de Hospedaje. ", "Agregar Hospedaje",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionHospedaje.Text = Nothing Then
+            MessageBox.Show("Debe ingresar la descripción del Hospedaje. ", "Agregar Hospedaje",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If dgvHospedaje.Rows.Count <= 0 Then
+            MessageBox.Show("Debe existir un registro previo en Hospedaje para insertar abajo. ", "Agregar Hospedaje",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = dgvHospedaje.SelectedRows(0)
+        Dim nroLinea1 As Integer = seleccion.Cells(2).Value
+        Dim nroLinea2 As Integer
+        Dim linea As Integer
+
+        If seleccion.Index = dgvHospedaje.Rows.Count - 1 Then
+            Dim fila As Integer
+            fila = dgvHospedaje.Rows.Count + 1
+            linea = fila * 10000
+        Else
+            nroLinea2 = dgvHospedaje.Rows(seleccion.Index + 1).Cells(2).Value
+            linea = (nroLinea1 + nroLinea2) / 2
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+
+            liquidacionDAO.InsertLiquidacionHospedaje(CInt(txtCodigoLiquidacion.Text), dtpHospedaje.Value,
+                                                      txtDescripcionHospedaje.Text, Double.Parse(txtTotalHospedaje.Text.ToString),
+                                                        linea)
+
+            sqlControl.commitTransaction()
+
+            cargarLiquidacion()
+            cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
+
+            txtCodigoLiquidacionHospedaje.Text = ""
+            txtCodigoHospedaje.Text = ""
+            txtNroLineaHospedaje.Text = ""
+            txtDescripcionHospedaje.Text = ""
+            txtTotalHospedaje.Text = ""
+            dtpHospedaje.Value = Date.Now
+            dtpHospedaje.Focus()
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar Hospedaje. " + ex.Message, "Agregar Hospedaje",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al agregar Hospedaje. " + ex.Message, "Agregar Hospedaje",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Hospedaje",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnEliminarHospedaje_Click(sender As Object, e As EventArgs) Handles btnEliminarHospedaje.Click
+        If dgvHospedaje.Rows.Count <= 0 Then
+            Return
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            Dim seleccion As DataGridViewRow = dgvHospedaje.SelectedRows(0)
+            Dim codigo As Integer = seleccion.Cells(1).Value
+
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            liquidacionDAO.deleteLiquidacionHospedajeById(CInt(txtCodigoLiquidacionHospedaje.Text), codigo)
+            sqlControl.commitTransaction()
+
+            cargarLiquidacion()
+            cargarHospedajes(CInt(txtCodigoLiquidacionHospedaje.Text))
+
+            txtCodigoLiquidacionHospedaje.Text = ""
+            txtCodigoHospedaje.Text = ""
+            txtNroLineaHospedaje.Text = ""
+            txtDescripcionHospedaje.Text = ""
+            txtTotalHospedaje.Text = ""
+            dtpHospedaje.Value = Date.Now
+            dtpHospedaje.Focus()
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar Hospedaje. " + ex.Message, "Eliminar Hospedaje",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar Hospedaje. " + ex.Message, "Eliminar Hospedaje",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar Hospedaje",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnAgregarGuardiania_Click(sender As Object, e As EventArgs) Handles btnAgregarGuardiania.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar Guardiania",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalGuardiania.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el monto del Hospedaje ", "Agregar Guardiania",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionGuardiania.Text = Nothing Then
+            MessageBox.Show("Debe ingresar la descripción. ", "Agregar Guardiania",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+
+        If txtCodigoLiquidacionGuardiania.Text = Nothing Then
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                liquidacionDAO.setDBcmd()
+
+                Dim linea As Integer
+
+                If dgvGuardiania.Rows.Count > 0 Then
+                    Dim fila As Integer
+                    fila = dgvGuardiania.Rows.Count + 1
+                    linea = fila * 10000
+                Else
+                    linea = 10000
+                End If
+
+                liquidacionDAO.InsertLiquidacionGuardiania(CInt(txtCodigoLiquidacion.Text), dtpGuardiania.Value,
+                                                      txtDescripcionGuardiania.Text, Double.Parse(txtTotalGuardiania.Text.ToString),
+                                                        linea)
+
+                sqlControl.commitTransaction()
+
+                cargarLiquidacion()
+                cargarGuardiania(CInt(txtCodigoLiquidacion.Text))
+
+                txtTotalGuardiania.Text = ""
+                txtDescripcionGuardiania.Text = ""
+                dtpGuardiania.Value = Date.Now
+                dtpGuardiania.Focus()
+            Catch ex As SqlException
+                sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar Guardiania. " + ex.Message, "Agregar Guardiania",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("Error al agregar Guardiania. " + ex.Message, "Agregar Guardiania",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Guardiania",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                End Try
+            End Try
+        Else
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                liquidacionDAO.setDBcmd()
+
+                Dim linea As Integer
+
+                linea = CInt(txtNroLineaGuardiania.Text)
+
+                liquidacionDAO.UpdateLiquidacionGuardiania(CInt(txtCodigoLiquidacionGuardiania.Text), CInt(txtCodigoGuardiania.Text),
+                                                      dtpGuardiania.Value, txtDescripcionGuardiania.Text,
+                                                      Double.Parse(txtTotalGuardiania.Text), linea)
+
+                sqlControl.commitTransaction()
+
+                cargarLiquidacion()
+                cargarGuardiania(CInt(txtCodigoLiquidacionGuardiania.Text))
+
+                txtCodigoLiquidacionGuardiania.Text = ""
+                txtCodigoGuardiania.Text = ""
+                txtNroLineaGuardiania.Text = ""
+                txtDescripcionGuardiania.Text = ""
+                txtTotalGuardiania.Text = ""
+                dtpGuardiania.Value = Date.Now
+                dtpGuardiania.Focus()
+
+            Catch ex As SqlException
+                sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar Guardiania. " + ex.Message, "Agregar Guardiania",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("Error al agregar Guardiania. " + ex.Message, "Agregar Guardiania",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Guardiania",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                End Try
+            End Try
+        End If
+    End Sub
+
+    Private Sub btnNuevoGuardiania_Click(sender As Object, e As EventArgs) Handles btnNuevoGuardiania.Click
+        txtCodigoLiquidacionGuardiania.Text = ""
+        txtCodigoGuardiania.Text = ""
+        txtNroLineaGuardiania.Text = ""
+        txtDescripcionGuardiania.Text = ""
+        txtTotalGuardiania.Text = ""
+        dtpGuardiania.Value = Date.Now
+        dtpGuardiania.Focus()
+    End Sub
+
+    Private Sub btnInsertarArribaGuardiania_Click(sender As Object, e As EventArgs) Handles btnInsertarArribaGuardiania.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar Guardiania",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalGuardiania.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el monto de Guardiania. ", "Agregar Guardiania",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionGuardiania.Text = Nothing Then
+            MessageBox.Show("Debe ingresar la descripción del Guardiania. ", "Agregar Guardiania",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If dgvGuardiania.Rows.Count <= 0 Then
+            MessageBox.Show("Debe existir un registro previo en Guardiania para insertar arriba. ", "Agregar Guardiania",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = dgvGuardiania.SelectedRows(0)
+        Dim nroLinea1 As Integer = seleccion.Cells(2).Value
+        Dim nroLinea2 As Integer
+        Dim linea As Integer
+
+        If seleccion.Index = 0 Then
+            linea = nroLinea1 / 2
+        Else
+            nroLinea2 = dgvGuardiania.Rows(seleccion.Index - 1).Cells(2).Value
+            linea = (nroLinea1 + nroLinea2) / 2
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+
+            liquidacionDAO.InsertLiquidacionGuardiania(CInt(txtCodigoLiquidacion.Text), dtpGuardiania.Value,
+                                                      txtDescripcionGuardiania.Text, Double.Parse(txtTotalGuardiania.Text.ToString),
+                                                        linea)
+
+            sqlControl.commitTransaction()
+
+            cargarLiquidacion()
+            cargarGuardiania(CInt(txtCodigoLiquidacion.Text))
+
+            txtCodigoLiquidacionGuardiania.Text = ""
+            txtCodigoGuardiania.Text = ""
+            txtNroLineaGuardiania.Text = ""
+            txtDescripcionGuardiania.Text = ""
+            txtTotalGuardiania.Text = ""
+            dtpGuardiania.Value = Date.Now
+            dtpGuardiania.Focus()
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar Guardiania. " + ex.Message, "Agregar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al agregar Guardiania. " + ex.Message, "Agregar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnInsertarAbajoGuardiania_Click(sender As Object, e As EventArgs) Handles btnInsertarAbajoGuardiania.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar Guardiania",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalGuardiania.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el monto de Guardiania. ", "Agregar Guardiania",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionGuardiania.Text = Nothing Then
+            MessageBox.Show("Debe ingresar la descripción del Guardiania. ", "Agregar Guardiania",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If dgvGuardiania.Rows.Count <= 0 Then
+            MessageBox.Show("Debe existir un registro previo en Guardiania para insertar abajo. ", "Agregar Guardiania",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = dgvGuardiania.SelectedRows(0)
+        Dim nroLinea1 As Integer = seleccion.Cells(2).Value
+        Dim nroLinea2 As Integer
+        Dim linea As Integer
+
+        If seleccion.Index = dgvGuardiania.Rows.Count - 1 Then
+            Dim fila As Integer
+            fila = dgvGuardiania.Rows.Count + 1
+            linea = fila * 10000
+        Else
+            nroLinea2 = dgvGuardiania.Rows(seleccion.Index + 1).Cells(2).Value
+            linea = (nroLinea1 + nroLinea2) / 2
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+
+            liquidacionDAO.InsertLiquidacionGuardiania(CInt(txtCodigoLiquidacion.Text), dtpGuardiania.Value,
+                                                      txtDescripcionGuardiania.Text, Double.Parse(txtTotalGuardiania.Text.ToString),
+                                                        linea)
+
+            sqlControl.commitTransaction()
+
+            cargarLiquidacion()
+            cargarGuardiania(CInt(txtCodigoLiquidacion.Text))
+
+            txtCodigoLiquidacionGuardiania.Text = ""
+            txtCodigoGuardiania.Text = ""
+            txtNroLineaGuardiania.Text = ""
+            txtDescripcionGuardiania.Text = ""
+            txtTotalGuardiania.Text = ""
+            dtpGuardiania.Value = Date.Now
+            dtpGuardiania.Focus()
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar Guardiania. " + ex.Message, "Agregar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al agregar Guardiania. " + ex.Message, "Agregar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnEliminarGuardiania_Click(sender As Object, e As EventArgs) Handles btnEliminarGuardiania.Click
+        If dgvGuardiania.Rows.Count <= 0 Then
+            Return
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            Dim seleccion As DataGridViewRow = dgvGuardiania.SelectedRows(0)
+            Dim codigo As Integer = seleccion.Cells(1).Value
+
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            liquidacionDAO.deleteLiquidacionGuardianiaById(CInt(txtCodigoLiquidacionGuardiania.Text), codigo)
+            sqlControl.commitTransaction()
+
+            cargarLiquidacion()
+            cargarGuardiania(CInt(txtCodigoLiquidacionGuardiania.Text))
+
+            txtCodigoLiquidacionGuardiania.Text = ""
+            txtCodigoGuardiania.Text = ""
+            txtNroLineaGuardiania.Text = ""
+            txtDescripcionGuardiania.Text = ""
+            txtTotalGuardiania.Text = ""
+            dtpGuardiania.Value = Date.Now
+            dtpGuardiania.Focus()
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar Guardiania. " + ex.Message, "Eliminar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar Guardiania. " + ex.Message, "Eliminar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnAgregarBalanza_Click(sender As Object, e As EventArgs) Handles btnAgregarBalanza.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar Balanza",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalBalanza.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el monto del Balanza ", "Agregar Balanza",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionBalanza.Text = Nothing Then
+            MessageBox.Show("Debe ingresar la descripción. ", "Agregar Balanza",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+
+        If txtCodigoLiquidacionBalanza.Text = Nothing Then
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                liquidacionDAO.setDBcmd()
+
+                Dim linea As Integer
+
+                If dgvBalanza.Rows.Count > 0 Then
+                    Dim fila As Integer
+                    fila = dgvBalanza.Rows.Count + 1
+                    linea = fila * 10000
+                Else
+                    linea = 10000
+                End If
+
+                liquidacionDAO.InsertLiquidacionBalanza(CInt(txtCodigoLiquidacion.Text), dtpBalanza.Value,
+                                                      txtDescripcionBalanza.Text, Double.Parse(txtTotalBalanza.Text.ToString),
+                                                        linea)
+
+                sqlControl.commitTransaction()
+
+                cargarLiquidacion()
+                cargarBalanzas(CInt(txtCodigoLiquidacion.Text))
+
+                txtTotalBalanza.Text = ""
+                txtDescripcionBalanza.Text = ""
+                dtpBalanza.Value = Date.Now
+                dtpBalanza.Focus()
+
+            Catch ex As SqlException
+                sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar Balanza. " + ex.Message, "Agregar Balanza",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("Error al agregar Balanza. " + ex.Message, "Agregar Balanza",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Balanza",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                End Try
+            End Try
+        Else
+            Try
+                sqlControl.openConexion()
+                sqlControl.beginTransaction()
+                liquidacionDAO.setDBcmd()
+
+                Dim linea As Integer
+
+                linea = CInt(txtNroLineaBalanza.Text)
+
+                liquidacionDAO.UpdateLiquidacionBalanza(CInt(txtCodigoLiquidacionBalanza.Text), CInt(txtCodigoBalanza.Text),
+                                                      dtpBalanza.Value, txtDescripcionBalanza.Text,
+                                                      Double.Parse(txtTotalBalanza.Text), linea)
+
+                sqlControl.commitTransaction()
+
+                cargarLiquidacion()
+                cargarBalanzas(CInt(txtCodigoLiquidacionBalanza.Text))
+
+                txtCodigoLiquidacionBalanza.Text = ""
+                txtCodigoBalanza.Text = ""
+                txtNroLineaBalanza.Text = ""
+                txtDescripcionBalanza.Text = ""
+                txtTotalBalanza.Text = ""
+                dtpBalanza.Value = Date.Now
+                dtpBalanza.Focus()
+
+            Catch ex As SqlException
+                sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar Balanza. " + ex.Message, "Agregar Balanza",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("Error al agregar Balanza. " + ex.Message, "Agregar Balanza",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.closeConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Balanza",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                End Try
+            End Try
+        End If
+    End Sub
+
+    Private Sub btnInsertarArribaBalanza_Click(sender As Object, e As EventArgs) Handles btnInsertarArribaBalanza.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar Balanza",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalBalanza.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el monto de Balanza. ", "Agregar Balanza",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionBalanza.Text = Nothing Then
+            MessageBox.Show("Debe ingresar la descripción de Balanza. ", "Agregar Balanza",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If dgvBalanza.Rows.Count <= 0 Then
+            MessageBox.Show("Debe existir un registro previo en Balanza para insertar arriba. ", "Agregar Balanza",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = dgvBalanza.SelectedRows(0)
+        Dim nroLinea1 As Integer = seleccion.Cells(2).Value
+        Dim nroLinea2 As Integer
+        Dim linea As Integer
+
+        If seleccion.Index = 0 Then
+            linea = nroLinea1 / 2
+        Else
+            nroLinea2 = dgvBalanza.Rows(seleccion.Index - 1).Cells(2).Value
+            linea = (nroLinea1 + nroLinea2) / 2
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+
+            liquidacionDAO.InsertLiquidacionBalanza(CInt(txtCodigoLiquidacion.Text), dtpBalanza.Value,
+                                                      txtDescripcionBalanza.Text, Double.Parse(txtTotalBalanza.Text.ToString),
+                                                        linea)
+
+            sqlControl.commitTransaction()
+
+            cargarLiquidacion()
+            cargarBalanzas(CInt(txtCodigoLiquidacion.Text))
+
+            txtCodigoLiquidacionBalanza.Text = ""
+            txtCodigoBalanza.Text = ""
+            txtNroLineaBalanza.Text = ""
+            txtDescripcionBalanza.Text = ""
+            txtTotalBalanza.Text = ""
+            dtpBalanza.Value = Date.Now
+            dtpBalanza.Focus()
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar Balanza. " + ex.Message, "Agregar Balanza",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al agregar Balanza. " + ex.Message, "Agregar Balanza",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Balanza",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnInsertarAbajoBalanza_Click(sender As Object, e As EventArgs) Handles btnInsertarAbajoBalanza.Click
+        If txtCodigoLiquidacion.Text = Nothing Then
+            MessageBox.Show("Debe grabar la Liquidación primero. ", "Agregar Balanza",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtTotalBalanza.Text = Nothing Then
+            MessageBox.Show("Debe ingresar el monto de Balanza. ", "Agregar Balanza",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If txtDescripcionBalanza.Text = Nothing Then
+            MessageBox.Show("Debe ingresar la descripción de Balanza. ", "Agregar Balanza",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If dgvBalanza.Rows.Count <= 0 Then
+            MessageBox.Show("Debe existir un registro previo en Balanza para insertar abajo. ", "Agregar Balanza",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = dgvBalanza.SelectedRows(0)
+        Dim nroLinea1 As Integer = seleccion.Cells(2).Value
+        Dim nroLinea2 As Integer
+        Dim linea As Integer
+
+        If seleccion.Index = dgvBalanza.Rows.Count - 1 Then
+            Dim fila As Integer
+            fila = dgvBalanza.Rows.Count + 1
+            linea = fila * 10000
+        Else
+            nroLinea2 = dgvBalanza.Rows(seleccion.Index + 1).Cells(2).Value
+            linea = (nroLinea1 + nroLinea2) / 2
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+
+            liquidacionDAO.InsertLiquidacionBalanza(CInt(txtCodigoLiquidacion.Text), dtpBalanza.Value,
+                                                      txtDescripcionBalanza.Text, Double.Parse(txtTotalBalanza.Text.ToString),
+                                                        linea)
+
+            sqlControl.commitTransaction()
+
+            cargarLiquidacion()
+            cargarBalanzas(CInt(txtCodigoLiquidacion.Text))
+
+            txtCodigoLiquidacionBalanza.Text = ""
+            txtCodigoBalanza.Text = ""
+            txtNroLineaBalanza.Text = ""
+            txtDescripcionBalanza.Text = ""
+            txtTotalBalanza.Text = ""
+            dtpBalanza.Value = Date.Now
+            dtpBalanza.Focus()
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al agregar Balanza. " + ex.Message, "Agregar Balanza",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al agregar Balanza. " + ex.Message, "Agregar Balanza",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Balanza",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnEliminarBalanza_Click(sender As Object, e As EventArgs) Handles btnEliminarBalanza.Click
+        If dgvBalanza.Rows.Count <= 0 Then
+            Return
+        End If
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            Dim seleccion As DataGridViewRow = dgvBalanza.SelectedRows(0)
+            Dim codigo As Integer = seleccion.Cells(1).Value
+
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            liquidacionDAO.deleteLiquidacionBalanzaById(CInt(txtCodigoLiquidacionBalanza.Text), codigo)
+            sqlControl.commitTransaction()
+
+            cargarLiquidacion()
+            cargarBalanzas(CInt(txtCodigoLiquidacionBalanza.Text))
+
+            txtCodigoLiquidacionBalanza.Text = ""
+            txtCodigoBalanza.Text = ""
+            txtNroLineaBalanza.Text = ""
+            txtDescripcionBalanza.Text = ""
+            txtTotalBalanza.Text = ""
+            dtpBalanza.Value = Date.Now
+            dtpBalanza.Focus()
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar Balanza. " + ex.Message, "Eliminar Balanza",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar Balanza. " + ex.Message, "Eliminar Balanza",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar Guardiania",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Sub cargarHospedajesById()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDao As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDao.setDBcmd()
+
+            Dim seleccion As DataGridViewRow = dgvHospedaje.SelectedRows(0)
+            Dim codigo As Integer = seleccion.Cells(1).Value
+            'filaSeleccionada = seleccion.Index
+            Dim dt As DataTable
+            dt = liquidacionDao.GetLiquidacionHospedajeById(CInt(txtCodigoLiquidacion.Text), codigo)
+            sqlControl.commitTransaction()
+
+            txtCodigoLiquidacionHospedaje.Text = dt.Rows(0)(0)
+            txtCodigoHospedaje.Text = dt.Rows(0)(1)
+            txtNroLineaHospedaje.Text = dt.Rows(0)(2)
+            dtpHospedaje.Value = dt.Rows(0)(3)
+            txtDescripcionHospedaje.Text = dt.Rows(0)(4)
+            txtTotalHospedaje.Text = dt.Rows(0)(5)
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar Hospedaje. " + ex.Message, "Cargar Hospedaje",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar Hospedaje. " + ex.Message, "Cargar Hospedaje",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Hospedaje",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Sub cargarGuardianiasById()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDao As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDao.setDBcmd()
+
+            Dim seleccion As DataGridViewRow = dgvGuardiania.SelectedRows(0)
+            Dim codigo As Integer = seleccion.Cells(1).Value
+            'filaSeleccionada = seleccion.Index
+            Dim dt As DataTable
+            dt = liquidacionDao.GetLiquidacionGuardianiaById(CInt(txtCodigoLiquidacion.Text), codigo)
+            sqlControl.commitTransaction()
+
+            txtCodigoLiquidacionGuardiania.Text = dt.Rows(0)(0)
+            txtCodigoGuardiania.Text = dt.Rows(0)(1)
+            txtNroLineaGuardiania.Text = dt.Rows(0)(2)
+            dtpGuardiania.Value = dt.Rows(0)(3)
+            txtDescripcionGuardiania.Text = dt.Rows(0)(4)
+            txtTotalGuardiania.Text = dt.Rows(0)(5)
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar Guardiania. " + ex.Message, "Cargar Guardiania",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar Guardiania. " + ex.Message, "Cargar Guardiania",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Guardiania",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Sub cargarBalanzasById()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim liquidacionDao As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            liquidacionDao.setDBcmd()
+
+            Dim seleccion As DataGridViewRow = dgvBalanza.SelectedRows(0)
+            Dim codigo As Integer = seleccion.Cells(1).Value
+            'filaSeleccionada = seleccion.Index
+            Dim dt As DataTable
+            dt = liquidacionDao.GetLiquidacionBalanzaById(CInt(txtCodigoLiquidacion.Text), codigo)
+            sqlControl.commitTransaction()
+
+            txtCodigoLiquidacionBalanza.Text = dt.Rows(0)(0)
+            txtCodigoBalanza.Text = dt.Rows(0)(1)
+            txtNroLineaBalanza.Text = dt.Rows(0)(2)
+            dtpBalanza.Value = dt.Rows(0)(3)
+            txtDescripcionBalanza.Text = dt.Rows(0)(4)
+            txtTotalBalanza.Text = dt.Rows(0)(5)
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar Balanza. " + ex.Message, "Cargar Balanza",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar Balanza. " + ex.Message, "Cargar Balanza",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Balanza",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+
+    Private Sub dgvHospedaje_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvHospedaje.CellMouseClick
+        cargarHospedajesById()
+    End Sub
+
+    Private Sub dgvGuardiania_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvGuardiania.CellMouseClick
+        cargarGuardianiasById()
+    End Sub
+
+    Private Sub dgvBalanza_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvBalanza.CellMouseClick
+        cargarBalanzasById()
     End Sub
 End Class
