@@ -506,4 +506,147 @@ Public Class FacturacionDAO
 
     End Function
 
+
+    'Original cabecera
+    'Public Function getRptFacturaDetalleByMoneda(codigoMoneda As Integer) As DataTable
+
+    '    Return sqlControl.ExecQuery("SELECT	a.CODIGO_FACTURA,
+    '                                  b.CODIGO_DETALLE_FACTURA,
+    '                                  a.NUMERO_FACTURA,
+    '                                  a.FECHA_FACTURA,
+    '                                  a.TOTAL_FACTURA,
+    '                                  c.SIMBOLO,
+    '                                  b.PRECIO_UNITARIO
+    '                                FROM	FACTURA a
+    '                                inner	join DETALLE_FACTURA b on a.CODIGO_FACTURA=b.CODIGO_FACTURA
+    '                                inner	join MONEDA c on a.CODIGO_MONEDA=c.CODIGO_MONEDA 
+    '                                where   a.CODIGO_MONEDA=" + CStr(codigoMoneda) + " and a.CODIGO_ESTADO<>15
+    '                                order	by a.CODIGO_FACTURA, b.CODIGO_DETALLE_FACTURA asc",
+    '                                 Nothing)
+
+    'End Function
+
+    Public Function getRptFacturaDetalleByMoneda(codigoMoneda As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	a.CODIGO_FACTURA,
+    		b.CODIGO_DETALLE_FACTURA,
+    		a.NUMERO_FACTURA,
+    		a.FECHA_FACTURA,
+    		a.TOTAL_FACTURA,
+    		g.SIMBOLO,
+    		b.PRECIO_UNITARIO,
+    		sum(round(coalesce(e.TOTAL_GASTO_COMBUSTIBLE,0)+coalesce(e.PEAJES_LIQUIDACION,0)+
+    		coalesce(e.VIATICOS_LIQUIDACION,0)+coalesce(e.GUARDIANIA_LIQUIDACION,0)+coalesce(e.HOSPEDAJE_LIQUIDACION,0)+
+    		coalesce(e.BALANZA_LIQUIDACION,0)+coalesce(e.OTROS_LIQUIDACION,0),3)) TOTAL_GASTO
+    FROM	FACTURA a
+    left	JOIN DETALLE_FACTURA b ON a.CODIGO_FACTURA=b.CODIGO_FACTURA
+    left	JOIN DETALLE_FACTURA_GUIA c on a.CODIGO_FACTURA=b.CODIGO_FACTURA and b.CODIGO_DETALLE_FACTURA=c.CODIGO_DETALLE_FACTURA 
+    left	join GUIA_TRANSPORTISTA d on c.CODIGO_GUIA=d.CODIGO_GUIA
+    left	join LIQUIDACION e on d.CODIGO_GUIA=e.CODIGO_GUIA
+    left	join UNIDAD f on f.CODIGO_UNIDAD=e.CODIGO_UNIDAD_TRACTO
+    inner	join MONEDA g on g.CODIGO_MONEDA=a.CODIGO_MONEDA
+    where	a.CODIGO_ESTADO<>15 and a.CODIGO_MONEDA=0
+    group	by a.CODIGO_FACTURA,b.CODIGO_DETALLE_FACTURA,a.NUMERO_FACTURA,a.FECHA_FACTURA,a.TOTAL_FACTURA,g.SIMBOLO,b.PRECIO_UNITARIO 
+    order	by a.CODIGO_FACTURA,b.CODIGO_DETALLE_FACTURA",
+                                     Nothing)
+
+    End Function
+
+    Public Function getRptFacturaDetalleByClienteFecha(codigoMoneda As Integer, codigoCliente As Integer,
+                                                       flagFecha As Boolean, inicio As Date, fin As Date) As DataTable
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_MONEDA", codigoMoneda))
+
+        Dim cadenaCliente As String
+
+        If codigoCliente = -1 Then
+            cadenaCliente = ""
+        Else
+            cadenaCliente = " and a.CODIGO_CLIENTE=" + CStr(codigoCliente)
+        End If
+
+        Dim cadenaFecha As String
+        If flagFecha Then
+            params.Add(New SqlParameter("@FECHA_INICIO", inicio))
+            params.Add(New SqlParameter("@FECHA_FIN", fin))
+            cadenaFecha = "and cast(cast(a.FECHA_FACTURA as date) as datetime) between cast(cast(@FECHA_INICIO as date) as datetime) and cast(cast(@FECHA_FIN as date) as datetime) "
+        Else
+            cadenaFecha = ""
+        End If
+        'params.Add(New SqlParameter("@PLACA_UNIDAD3", placa_unidad))
+
+        Return sqlControl.ExecQuery("SELECT	a.CODIGO_FACTURA,
+    		                        b.CODIGO_DETALLE_FACTURA,
+    		                        a.NUMERO_FACTURA,
+    		                        a.FECHA_FACTURA,
+    		                        a.TOTAL_FACTURA,
+    		                        g.SIMBOLO,
+    		                        b.PRECIO_UNITARIO,
+    		                        sum(round(coalesce(e.TOTAL_GASTO_COMBUSTIBLE,0)+coalesce(e.PEAJES_LIQUIDACION,0)+
+    		                        coalesce(e.VIATICOS_LIQUIDACION,0)+coalesce(e.GUARDIANIA_LIQUIDACION,0)+coalesce(e.HOSPEDAJE_LIQUIDACION,0)+
+    		                        coalesce(e.BALANZA_LIQUIDACION,0)+coalesce(e.OTROS_LIQUIDACION,0),3)) TOTAL_GASTO
+                            FROM	FACTURA a
+                            left	JOIN DETALLE_FACTURA b ON a.CODIGO_FACTURA=b.CODIGO_FACTURA
+                            left	JOIN DETALLE_FACTURA_GUIA c on a.CODIGO_FACTURA=b.CODIGO_FACTURA and b.CODIGO_DETALLE_FACTURA=c.CODIGO_DETALLE_FACTURA 
+                            left	join GUIA_TRANSPORTISTA d on c.CODIGO_GUIA=d.CODIGO_GUIA
+                            left	join LIQUIDACION e on d.CODIGO_GUIA=e.CODIGO_GUIA
+                            left	join UNIDAD f on f.CODIGO_UNIDAD=e.CODIGO_UNIDAD_TRACTO
+                            inner	join MONEDA g on g.CODIGO_MONEDA=a.CODIGO_MONEDA
+                            where	a.CODIGO_ESTADO<>15 and a.CODIGO_MONEDA=@CODIGO_MONEDA
+                                    " + cadenaCliente + "
+                                    " + cadenaFecha + "
+                            group	by a.CODIGO_FACTURA,b.CODIGO_DETALLE_FACTURA,a.NUMERO_FACTURA,a.FECHA_FACTURA,a.TOTAL_FACTURA,g.SIMBOLO,b.PRECIO_UNITARIO 
+                            order	by a.CODIGO_FACTURA,b.CODIGO_DETALLE_FACTURA",
+                                                             params)
+
+    End Function
+
+    Public Function getRptFacturaDetalleByMonedaAndId(codigo_factura As Integer, factura_detalle As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	a.CODIGO_FACTURA,
+		                                    f.PLACA_UNIDAD,
+		                                    d.DETALLE_GUIA,
+		                                    e.PEAJES_LIQUIDACION,
+		                                    e.VIATICOS_LIQUIDACION,
+		                                    e.GUARDIANIA_LIQUIDACION,
+		                                    e.HOSPEDAJE_LIQUIDACION,
+		                                    e.BALANZA_LIQUIDACION,
+		                                    e.OTROS_LIQUIDACION,
+		                                    e.CONSUMO_FISICO_LIQUIDACION,
+		                                    round(coalesce(e.TOTAL_GASTO_COMBUSTIBLE,0)+coalesce(e.PEAJES_LIQUIDACION,0)+
+		                                    coalesce(e.VIATICOS_LIQUIDACION,0)+coalesce(e.GUARDIANIA_LIQUIDACION,0)+coalesce(e.HOSPEDAJE_LIQUIDACION,0)+
+		                                    coalesce(e.BALANZA_LIQUIDACION,0)+coalesce(e.OTROS_LIQUIDACION,0),3) TOTAL_GASTO,
+		                                    case when e.CONSUMO_FISICO_LIQUIDACION<>0 then coalesce(e.TOTAL_GASTO_COMBUSTIBLE,0)/e.CONSUMO_FISICO_LIQUIDACION else 0 end 'PRECIO_COMBUSTIBLE',
+                                            e.ORIGEN_LIQUIDACION,
+                                            e.DESTINO_LIQUIDACION 
+                                    FROM	FACTURA a
+                                    inner	JOIN DETALLE_FACTURA b ON a.CODIGO_FACTURA=b.CODIGO_FACTURA
+                                    inner	JOIN DETALLE_FACTURA_GUIA c on a.CODIGO_FACTURA=b.CODIGO_FACTURA and b.CODIGO_DETALLE_FACTURA=c.CODIGO_DETALLE_FACTURA 
+                                    inner	join GUIA_TRANSPORTISTA d on c.CODIGO_GUIA=d.CODIGO_GUIA
+                                    inner	join LIQUIDACION e on d.CODIGO_GUIA=e.CODIGO_GUIA
+                                    inner	join UNIDAD f on f.CODIGO_UNIDAD=e.CODIGO_UNIDAD_TRACTO
+                                    where	a.CODIGO_FACTURA=" + CStr(codigo_factura) + " and b.CODIGO_DETALLE_FACTURA=" + CStr(factura_detalle),
+                                     Nothing)
+
+    End Function
+
+    Public Function getRptFacturaDetalleByMonedaGastoTotal(codigoFactura As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	a.CODIGO_FACTURA,
+                                            a.TOTAL_FACTURA,
+		                                    sum(round(coalesce(e.TOTAL_GASTO_COMBUSTIBLE,0)+coalesce(e.PEAJES_LIQUIDACION,0)+
+		                                    coalesce(e.VIATICOS_LIQUIDACION,0)+coalesce(e.GUARDIANIA_LIQUIDACION,0)+coalesce(e.HOSPEDAJE_LIQUIDACION,0)+
+		                                    coalesce(e.BALANZA_LIQUIDACION,0)+coalesce(e.OTROS_LIQUIDACION,0),3)) TOTAL_GASTO
+                                    FROM	FACTURA a
+                                    inner	JOIN DETALLE_FACTURA b ON a.CODIGO_FACTURA=b.CODIGO_FACTURA
+                                    inner	JOIN DETALLE_FACTURA_GUIA c on a.CODIGO_FACTURA=b.CODIGO_FACTURA and b.CODIGO_DETALLE_FACTURA=c.CODIGO_DETALLE_FACTURA 
+                                    inner	join GUIA_TRANSPORTISTA d on c.CODIGO_GUIA=d.CODIGO_GUIA
+                                    inner	join LIQUIDACION e on d.CODIGO_GUIA=e.CODIGO_GUIA
+                                    inner	join UNIDAD f on f.CODIGO_UNIDAD=e.CODIGO_UNIDAD_TRACTO
+                                    where	a.CODIGO_FACTURA=" + CStr(codigoFactura) + "
+                                    group by a.CODIGO_FACTURA, a.TOTAL_FACTURA",
+                                     Nothing)
+
+    End Function
 End Class

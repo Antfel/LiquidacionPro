@@ -91,4 +91,16 @@ Public Class MDIPrincipal
         Dim rptLiquidacionChild As New RptGuiasVsLiquidacionFacturacion()
         rptLiquidacionChild.Show()
     End Sub
+
+    Private Sub FacturacionTestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturacionTestToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim rptFormFacturaDetalleByMoneda As New RptFormFacturaDetalleByMoneda()
+        rptFormFacturaDetalleByMoneda.Show()
+    End Sub
+
+    Private Sub FacturasPorClienteFechaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturasPorClienteFechaToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim rptFormFacturaDetalleByClienteFecha As New RptFormFacturaDetalleByClienteFecha()
+        rptFormFacturaDetalleByClienteFecha.Show()
+    End Sub
 End Class
