@@ -5,7 +5,7 @@ Public Class ChildLiquidacionCombustible
     Dim columnaFiltro As Integer = -1
     Dim source1 As New BindingSource()
     Dim nombreColumnaFiltro As String
-    Dim filaSeleccionada As Integer = -1
+    'Dim filaSeleccionada As Integer = -1
 
     Private Sub ChildLiquidacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actualizarListaLiquidacion()
@@ -208,7 +208,7 @@ Public Class ChildLiquidacionCombustible
 
             Dim seleccion As DataGridViewRow = dgvLiquidacion.SelectedRows(0)
             Dim codigo As Integer = seleccion.Cells(0).Value
-            filaSeleccionada = seleccion.Index
+            'filaSeleccionada = seleccion.Index
 
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionById(codigo)
@@ -304,6 +304,8 @@ Public Class ChildLiquidacionCombustible
             dt = liquidacionDao.GetAllLiquidacion()
             sqlControl.commitTransaction()
 
+            Dim filtro As String = source1.Filter
+
             dgvLiquidacion.DataSource = dt
 
             dgvLiquidacion.Columns(2).Visible = False
@@ -312,13 +314,31 @@ Public Class ChildLiquidacionCombustible
             dgvLiquidacion.Columns(8).Visible = False
             dgvLiquidacion.Columns(23).Visible = False
 
-            dgvLiquidacion.MultiSelect = False
-            dgvLiquidacion.RowHeadersVisible = False
-
-
-            If filaSeleccionada <> -1 Then
-                dgvLiquidacion.CurrentCell = dgvLiquidacion.Item(0, filaSeleccionada)
+            If filtro <> Nothing Then
+                source1.DataSource = dgvLiquidacion.DataSource
+                source1.Filter = filtro
+                dgvLiquidacion.Refresh()
             End If
+
+            If txtCodigoLiquidacion.Text <> Nothing Then
+                Dim rowIndex As Integer = -1
+                For Each row As DataGridViewRow In dgvLiquidacion.Rows
+                    If row.Cells(0).Value.ToString().Equals(txtCodigoLiquidacion.Text) Then
+                        rowIndex = row.Index
+                        Exit For
+                    End If
+                Next
+
+                If rowIndex <> -1 Then
+                    dgvLiquidacion.CurrentCell = dgvLiquidacion.Item(0, rowIndex)
+                End If
+
+            End If
+
+
+            'If filaSeleccionada <> -1 Then
+            '    dgvLiquidacion.CurrentCell = dgvLiquidacion.Item(0, filaSeleccionada)
+            'End If
 
         Catch ex As SqlException
             sqlControl.rollbackTransaccion()

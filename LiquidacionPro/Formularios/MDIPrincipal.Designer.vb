@@ -42,8 +42,10 @@ Partial Class MDIPrincipal
         Me.FacturaciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacturaciónVsLiquidaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturacionTestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuíasDeTransportistaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturasPorClienteFechaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -143,7 +145,7 @@ Partial Class MDIPrincipal
         '
         'FacturaciónToolStripMenuItem1
         '
-        Me.FacturaciónToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturaciónVsLiquidaciónToolStripMenuItem, Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem})
+        Me.FacturaciónToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturaciónVsLiquidaciónToolStripMenuItem, Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem, Me.FacturacionTestToolStripMenuItem, Me.FacturasPorClienteFechaToolStripMenuItem})
         Me.FacturaciónToolStripMenuItem1.Name = "FacturaciónToolStripMenuItem1"
         Me.FacturaciónToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
         Me.FacturaciónToolStripMenuItem1.Text = "Facturación"
@@ -160,6 +162,12 @@ Partial Class MDIPrincipal
         Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
         Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem.Text = "Facturación vs Liquidación - Dólares"
         '
+        'FacturacionTestToolStripMenuItem
+        '
+        Me.FacturacionTestToolStripMenuItem.Name = "FacturacionTestToolStripMenuItem"
+        Me.FacturacionTestToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
+        Me.FacturacionTestToolStripMenuItem.Text = "Facturacion Test"
+        '
         'GuíasDeTransportistaToolStripMenuItem1
         '
         Me.GuíasDeTransportistaToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem})
@@ -172,6 +180,12 @@ Partial Class MDIPrincipal
         Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem.Name = "GuíasVsLiquidaciónYFacturaciónToolStripMenuItem"
         Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem.Text = "Guías Vs Liquidación y Facturación"
+        '
+        'FacturasPorClienteFechaToolStripMenuItem
+        '
+        Me.FacturasPorClienteFechaToolStripMenuItem.Name = "FacturasPorClienteFechaToolStripMenuItem"
+        Me.FacturasPorClienteFechaToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
+        Me.FacturasPorClienteFechaToolStripMenuItem.Text = "Facturas por Cliente Fecha"
         '
         'MDIPrincipal
         '
@@ -212,4 +226,6 @@ Partial Class MDIPrincipal
     Friend WithEvents FacturaciónVsLiquidaciónDólaresToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GuíasDeTransportistaToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GuíasVsLiquidaciónYFacturaciónToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FacturacionTestToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FacturasPorClienteFechaToolStripMenuItem As ToolStripMenuItem
 End Class

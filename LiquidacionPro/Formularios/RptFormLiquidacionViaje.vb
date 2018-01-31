@@ -161,22 +161,9 @@ Public Class RptFormLiquidacionViaje
     Sub cargarReporteGeneral()
 
         Dim dt As DataTable = getiquidacionGeneral(codigo)
-        'ReportViewer1.Reset()
-        'ReportViewer1.ProcessingMode = ProcessingMode.Local
-        'ReportViewer1.LocalReport.ReportPath = "C:\Users\rasec\source\repos\LiquidacionPro\LiquidacionPro\Formularios\Reportes\RptLiquidacionGeneral.rdlc"
-        'Dim rds As New ReportDataSource("DataSet1", dt)
-        'ReportViewer1.LocalReport.DataSources.Clear()
-        'ReportViewer1.LocalReport.DataSources.Add(rds)
-        ''ReportViewer1.LocalReport.Refresh()
-        'ReportViewer1.Refresh()
-
-
 
         ReportViewer1.ProcessingMode = ProcessingMode.Local
         ReportViewer1.LocalReport.ReportPath = "Formularios/Reportes/RptLiquidacionViajeCabecera.rdlc"
-        'Dim rds As New ReportDataSource
-        'rds.Name = "DataSet1"
-        'rds.Value = dt
         Dim rds As New ReportDataSource("DataSet1", dt)
         ReportViewer1.LocalReport.DataSources.Add(rds)
         AddHandler ReportViewer1.LocalReport.SubreportProcessing, AddressOf subReporteViajeViatico
