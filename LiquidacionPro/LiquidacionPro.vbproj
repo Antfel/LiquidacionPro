@@ -347,6 +347,7 @@
     <Content Include="Formularios\Reportes\RptTest.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Formularios\Reportes\RptFacturaCuentasPorCobrar.rdlc" />
     <EmbeddedResource Include="Formularios\RptFormFacturaDetalleClienteFecha.resx">
       <DependentUpon>RptFormFacturaDetalleClienteFecha.vb</DependentUpon>
     </EmbeddedResource>
