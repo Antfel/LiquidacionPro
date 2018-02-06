@@ -1,4 +1,5 @@
-﻿Imports System.Drawing.Printing
+﻿Imports System.Data.SqlClient
+Imports System.Drawing.Printing
 Imports System.Globalization
 
 Public Class RptPrintFactura
@@ -47,23 +48,25 @@ Public Class RptPrintFactura
 
     Private Sub PrintDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
 
-        'MessageBox.Show(e.PageSettings.PrintableArea.ToString)
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
         Try
-            Dim dtFacturaCabeceraTableAdapter As New rptLiquidacionesTableAdapters.dtRptFacturaCabeceraTableAdapter
+
+
+            Dim facturacionDao As New FacturacionDAO(sqlControl)
+
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            facturacionDao.setDBcmd()
+
             Dim dtc As DataTable
-            dtc = dtFacturaCabeceraTableAdapter.GetData(nroFactura)
+            dtc = facturacionDao.getPrintRptFacturaCabecera(nroFactura)
 
-            Dim dtFacturaDetalleTableAdapter As New rptLiquidacionesTableAdapters.dtRptFacturaDetalleTableAdapter
             Dim dtd As DataTable
-            dtd = dtFacturaDetalleTableAdapter.GetData(nroFactura)
+            dtd = facturacionDao.getPrintRptFacturaDetalle(nroFactura)
 
-            Dim dtFacturaGuiaTableAdapter As New rptLiquidacionesTableAdapters.dtRptFacturaGuiaTableAdapter
             Dim dtg As DataTable
-
-            Dim dtFacturaRemitenteTableAdapter As New rptLiquidacionesTableAdapters.dtRptFacturaRemitenteTableAdapter
             Dim dtr As DataTable
-
-            Dim dtFacturaUnidadTableAdapter As New rptLiquidacionesTableAdapters.dtRptFacturaUnidadTableAdapter
             Dim dtu As DataTable
 
             Dim FONT As New Font("Abadi MT", 10, FontStyle.Regular)
@@ -103,47 +106,6 @@ Public Class RptPrintFactura
                     e.Graphics.DrawString(simbolo + (Double.Parse(dtd.Rows.Item(i)(0)) * Double.Parse(dtd.Rows.Item(i)(3))).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, cordy)
 
                     text = "SERVICIO DE TRANSPORTE"
-                    'If (dtd.Rows.Item(i)(8) <> "") Then
-                    '    If (dtd.Rows.Item(i)(8) <> "INTEGRAL ESPECIAL" And dtd.Rows.Item(i)(8) <> "INTEGRAL") Then
-                    '        text = text + " EN " + dtd.Rows.Item(i)(8)
-                    '    Else
-                    '        text = text + dtd.Rows.Item(i)(8)
-                    '    End If
-                    'End If
-                    'If (dtd.Rows.Item(i)(17) <> "NULL") Then
-                    '    text = text + " DE " + dtd.Rows.Item(i)(17)
-                    'End If
-                    'text = "SERVICIO DE TRANSPORTE "
-                    'Select Case CInt(dtd.Rows.Item(i)(19))
-                    '    Case 18
-                    '        text = "SERVICIO DE TRANSPORTE "
-                    '    Case 19
-                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
-                    '    Case 20
-                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
-                    '    Case 21
-                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
-                    '    Case 22
-                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
-                    '    Case 23
-                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
-                    '    Case 24
-                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
-                    '    Case 25
-                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
-                    '    Case 26
-                    '        text = text + "EN " + dtd.Rows.Item(i)(8)
-                    '    Case 27
-                    '        text = text + dtd.Rows.Item(i)(8)
-                    '    Case 28
-                    '        text = text + dtd.Rows.Item(i)(8)
-                    '    Case 29
-                    '        text = dtd.Rows.Item(i)(8)
-                    '    Case 30
-                    '        text = dtd.Rows.Item(i)(8)
-                    '    Case 31
-                    '        text = dtd.Rows.Item(i)(8)
-                    'End Select
 
                     If CInt(dtd.Rows.Item(i)(19)) <> 0 Then
                         text = dtd.Rows.Item(i)(20)
@@ -153,9 +115,9 @@ Public Class RptPrintFactura
                         text = text + " DE " + dtd.Rows.Item(i)(17)
                     End If
 
-                    dtg = dtFacturaGuiaTableAdapter.GetData(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
-                    dtr = dtFacturaRemitenteTableAdapter.GetData(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
-                    dtu = dtFacturaUnidadTableAdapter.GetData(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
+                    dtg = facturacionDao.getPrintRptFacturaGuia(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
+                    dtr = facturacionDao.getPrintRptFacturaRemitente(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
+                    dtu = facturacionDao.getPrintRptFacturaUnidad(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
 
                     If (dtg.Rows.Count <> 0 Or dtr.Rows.Count <> 0 Or dtu.Rows.Count <> 0) Then
                         text = text + " SEGUN GUIA DE REMISION:"
@@ -237,16 +199,6 @@ Public Class RptPrintFactura
                     SUBTOTAL = SUBTOTAL + Double.Parse(dtd.Rows.Item(i)(0)) * Double.Parse(dtd.Rows.Item(i)(3))
                 Next
             ElseIf (PUNTEROIMPR = 1) Then
-                'For I As Integer = 0 To DataGridView1.Rows.Count - 1
-                '    e.Graphics.DrawString(DataGridView1.Rows(I).Cells(0).Value, FONT, Brushes.Black, 45, cordy)
-                '    e.Graphics.DrawString(DataGridView1.Rows(I).Cells(1).Value, FONT, Brushes.Black, 90, cordy)
-                '    If DataGridView1.Rows(I).Cells(2).Value <> "" Then
-                '        e.Graphics.DrawString(simbolo + Double.Parse(DataGridView1.Rows(I).Cells(2).Value).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 565, cordy)
-                '        e.Graphics.DrawString(simbolo + (Double.Parse(DataGridView1.Rows(I).Cells(0).Value) * Double.Parse(DataGridView1.Rows(I).Cells(2).Value)).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, cordy)
-                '        SUBTOTAL = SUBTOTAL + Double.Parse(DataGridView1.Rows(I).Cells(0).Value) * Double.Parse(DataGridView1.Rows(I).Cells(2).Value)
-                '    End If
-                '    cordy = cordy + (salto * 2)
-                'Next
             End If
             IGV = SUBTOTAL * 0.18
             TOTAL = SUBTOTAL + IGV
@@ -255,9 +207,21 @@ Public Class RptPrintFactura
             e.Graphics.DrawString(simbolo + IGV.ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, 1080)
             e.Graphics.DrawString(simbolo + TOTAL.ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, 1110)
             e.Graphics.DrawString(NUMBERF.DecimalLetras(TOTAL.ToString("0.00", CultureInfo.InvariantCulture)) + " " + moneda, FONT, Brushes.Black, 60, 1045)
+            sqlControl.commitTransaction()
+        Catch excp As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error en la transacción. " + excp.Message, "Cargar datos factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch excp As Exception
+            MessageBox.Show("Error en la escritura de datos. " + excp.Message, "Cargar datos factura",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Finally
+            If sqlControl.getDBcon.State = ConnectionState.Open Then
+                sqlControl.closeConexion()
+            End If
 
-        Catch ex As Exception
-            Console.WriteLine(ex.Message)
         End Try
 
 
@@ -295,42 +259,6 @@ Public Class RptPrintFactura
         End If
     End Sub
     Private WithEvents docToPrint As New Printing.PrintDocument
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'PUNTEROIMPR = 0
-        'PrintDialog1.PrinterSettings = PrintDocument1.PrinterSettings
-        'If PrintDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
-        '    PrintDocument1.PrinterSettings = PrintDialog1.PrinterSettings
-        '    PrintDocument1.Print()
-        'End If
-
-
-        'Me.PrintPreviewControl1 = New PrintPreviewControl
-
-        ' Set location, name, and dock style for PrintPreviewControl1.
-        'Me.PrintPreviewControl1.Location = New Point(88, 150)
-
-        'PrintDocument1.DefaultPageSettings.PaperSize = New PaperSize("Custom", 827, 1210)
-        'Me.PrintPreviewControl1.Name = "PrintPreviewControl1"
-        'Me.PrintPreviewControl1.Dock = DockStyle.Fill
-
-        ' Set the Document property to the PrintDocument 
-        ' For which the PrintPage event has been handled.
-        'Me.PrintPreviewControl1.Document = PrintDocument1
-
-        ' Set the zoom to 25 percent.
-        'Me.PrintPreviewControl1.Zoom = 1
-
-        ' Set the document name. This will show be displayed when 
-        ' the document Is loading into the control.
-        'Me.PrintPreviewControl1.Document.DocumentName = "c:\athmsg.log"
-
-        ' Set the UseAntiAlias property to true so fonts are smoothed
-        ' by the operating system.
-        'Me.PrintPreviewControl1.UseAntiAlias = True
-
-        '    Add the control to the form.
-        'Me.Controls.Add(Me.PrintPreviewControl1)
-    End Sub
 
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         PrintDialog1.PrinterSettings = PrintDocument1.PrinterSettings

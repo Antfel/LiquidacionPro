@@ -77,37 +77,34 @@ Public Class Correlativo_NumeroDAO
         End If
     End Function
 
-    'Public Function updateCorrelativoNumero(codigo_correlativo As Integer, serie As String) As DataTable
+    Public Function GetValidaSerieNroFactura(nroFactura As String, serie As String) As Integer
 
+        Dim dt As DataTable
 
+        dt = sqlControl.ExecQuery("select count(*) from FACTURA
+                                    where	NUMERO_FACTURA='" + nroFactura + "' and SERIE_FACTURA='" + serie + "' and CODIGO_ESTADO=16", Nothing)
 
-    '    Dim dt As DataTable
-
-    '    dt = sqlControl.ExecQuery("select		CODIGO_CORRELATIVO,
-    '                                   SERIE,
-    '                                   ULTIMO_USADO
-    '                                from		CORRELATIVO_NUMERO
-    '                                where		CODIGO_CORRELATIVO=" + CStr(codigo_correlativo) + "
-    '                                   and SERIE='" + serie + "'
-    '                                order by	codigo_correlativo asc", Nothing)
-    '    Return dt
-
-    'End Function
+        If dt.Rows.Count > 0 Then
+            Return CInt(dt.Rows.Item(0).Item(0))
+        Else
+            Return 0
+        End If
+    End Function
 
     Public Function updateCorrelativoNumero(codigo_correlativo As Integer, serie As String,
                                                       ultimo As String) As Integer
 
         Dim params As New List(Of SqlParameter)
-        params.Add(New SqlParameter("@CODIGO_CORRELATIVO", codigo_correlativo))
-        params.Add(New SqlParameter("@SERIE", serie))
-        params.Add(New SqlParameter("@ULTIMO_USADO", ultimo))
+        params.Add(New SqlParameter("@CODIGO_CORRELATIVO1", codigo_correlativo))
+        params.Add(New SqlParameter("@SERIE1", serie))
+        params.Add(New SqlParameter("@ULTIMO_USADO1", ultimo))
 
         Dim dt As DataTable
 
         dt = sqlControl.ExecQuery("EXECUTE updateCorrelativoNumero 
-                                        @CODIGO_CORRELATIVO,
-                                        @SERIE,
-                                        @ULTIMO_USADO", params)
+                                        @CODIGO_CORRELATIVO1,
+                                        @SERIE1,
+                                        @ULTIMO_USADO1", params)
 
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then

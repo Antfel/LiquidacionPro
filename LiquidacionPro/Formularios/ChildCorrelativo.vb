@@ -1,4 +1,6 @@
-﻿Public Class ChildCorrelativo
+﻿Imports System.Data.SqlClient
+
+Public Class ChildCorrelativo
     Private Sub ChildCorrelativo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cargarCorrelativo()
     End Sub
@@ -148,18 +150,31 @@
             flag = correlativo_numero.updateCorrelativoNumero(codigo, serie, ultimo)
             sqlControl.commitTransaction()
             If flag > 0 Then
-                MsgBox("Grabación exitosa.")
+                MessageBox.Show("Grabación exitosa", "Grabar correlativo",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
             Else
-                MsgBox("Verifique la numeración.")
+                MessageBox.Show("Verifique la numeración", "Grabar correlativo",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End If
-        Catch ex As Exception
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al grabar. " + ex.Message, "Grabar correlativo",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al grabar. " + ex.Message, "Grabar correlativo",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
                 cargarCorrelativoNumero()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Grabar correlativo",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             End Try
 
         End Try

@@ -1,4 +1,6 @@
-﻿Public Class ChildBusquedaFactura
+﻿Imports System.Data.SqlClient
+
+Public Class ChildBusquedaFactura
     Dim columnaFiltro As Integer = -1
     Dim source1 As New BindingSource()
     Dim nombreColumnaFiltro As String
@@ -20,27 +22,34 @@
             Dim dtFactura As DataTable
 
             dtFactura = facturacionDao.getAllFacturas()
-            dgvFacturas.DataSource = dtFactura
-
             sqlControl.commitTransaction()
 
+            dgvFacturas.DataSource = dtFactura
+
             dgvFacturas.Columns(9).Visible = False
+            dgvFacturas.Columns(14).Visible = False
 
             dgvFacturas.MultiSelect = False
             dgvFacturas.RowHeadersVisible = False
 
-        Catch ex As Exception
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar lista de facturas. ", "Cargar lista de facturas",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar lista de facturas. ", "Cargar lista de facturas",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-
+                MessageBox.Show("Error al cerrar conexión. ", "Cargar lista de facturas",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             End Try
         End Try
-
-
-
 
     End Sub
 
@@ -52,11 +61,13 @@
             facturacionLibreChild.MdiParent = Me.MdiParent
             facturacionLibreChild.setCodifoFactura(CType(dgvFacturas.SelectedRows.Item(0).Cells(0).Value.ToString, Integer))
             facturacionLibreChild.Show()
+            Me.Dispose()
         Else
             Dim facturacionChild As New ChildFacturacion
             facturacionChild.MdiParent = Me.MdiParent
             facturacionChild.setCodifoFactura(CType(dgvFacturas.SelectedRows.Item(0).Cells(0).Value.ToString, Integer))
             facturacionChild.Show()
+            Me.Dispose()
         End If
 
     End Sub
@@ -134,15 +145,93 @@
 
             sqlControl.commitTransaction()
 
-        Catch ex As Exception
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+        Catch ex As Exception
+
         Finally
             Try
                 sqlControl.closeConexion()
             Catch ex As Exception
-                MsgBox("No se pudo establecer la conexion con el servidor.")
+
             End Try
         End Try
         cargarDatosFactura()
+    End Sub
+
+    Private Sub btnCopiar_Click(sender As Object, e As EventArgs) Handles btnCopiar.Click
+        Dim seleccion As DataGridViewRow = dgvFacturas.SelectedRows(0)
+        Dim codigo As Integer = seleccion.Cells(0).Value
+        Dim serie As String = seleccion.Cells(1).Value
+        Dim estado As Int16 = seleccion.Cells(14).Value
+
+
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+        Dim facturacionDAO As New FacturacionDAO(sqlControl)
+        Dim correlativoDao As New Correlativo_NumeroDAO(sqlControl)
+
+
+        If estado = 15 Then
+            Dim confirm As Integer = MessageBox.Show("La factura está anulada, se realizará una copia activa de la misma. ¿Desea proceder?", "Copiar Factura",
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Information)
+            If confirm = 6 Then
+            Else
+                Return
+            End If
+        End If
+
+
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            facturacionDAO.setDBcmd()
+
+            Dim correlativo As String = correlativoDao.GetSiguienteCorrelativo(1, serie)
+
+            If correlativoDao.GetValidaSerieNroFactura(correlativo, serie) Then
+                MessageBox.Show("Existe una factura con el nro: " + serie + "-" + correlativo + ". Verifique el siguiente correlativo a usar en la vista de correlativos.", "Copiar Factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+                Return
+            End If
+
+            Dim resp As Integer = MessageBox.Show("Se realizará una copia con el siguiente nro. de Factura: " + serie + "-" + correlativo + ". ¿Desea proceder?", "Copiar Factura",
+                                 MessageBoxButtons.YesNo,
+                                 MessageBoxIcon.Information)
+
+            If resp = 6 Then
+                correlativoDao.updateCorrelativoNumero(1, serie, correlativo)
+                facturacionDAO.CopiarFactura(codigo, serie, correlativo)
+            Else
+
+            End If
+
+            sqlControl.commitTransaction()
+
+        Catch ex As SqlException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al copiar factura. " + ex.Message, "Copiar Factura",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al copiar factura. " + ex.Message, "Copiar Factura",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error)
+        Finally
+            Try
+                If sqlControl.getDBcon.State = ConnectionState.Open Then
+                    sqlControl.closeConexion()
+                End If
+
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar conexión", "Copiar Factura",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+            End Try
+            cargarDatosFactura()
+        End Try
     End Sub
 End Class

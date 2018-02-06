@@ -1,4 +1,6 @@
-﻿Public Class ChildFacturacion
+﻿Imports System.Data.SqlClient
+
+Public Class ChildFacturacion
     Dim gvDetalle As New DataGridView
     Dim data As DataTable
     Dim correlativoFactura As String
@@ -28,17 +30,51 @@
             facturacionDao.setDBcmd()
 
             dtCabeceraFactura = facturacionDao.getFacturaById(codigo_Factura)
+            sqlControl.commitTransaction()
 
-            cbRazonSocial.SelectedValue = dtCabeceraFactura.Rows(0).Item(3).ToString
-            txtPrecioFactura.Text = dtCabeceraFactura.Rows(0).Item(4).ToString
-            cbMoneda.SelectedValue = dtCabeceraFactura.Rows(0).Item(5)
-            dtFecha.Value = CType(dtCabeceraFactura.Rows(0).Item(6), Date)
             txtNroSerie.Text = dtCabeceraFactura.Rows(0).Item(1).ToString
             lbNroFactura.Text = dtCabeceraFactura.Rows(0).Item(2).ToString
+            cbRazonSocial.SelectedValue = dtCabeceraFactura.Rows(0).Item(3).ToString
+            txtPrecioFactura.Text = dtCabeceraFactura.Rows(0).Item(4).ToString
 
-            sqlControl.commitTransaction()
-        Catch ex As Exception
+            txtIgv.Text = Double.Parse(dtCabeceraFactura.Rows(0).Item(4)) * 0.18
+            txtTotalFactura.Text = Double.Parse(txtIgv.Text) + Double.Parse(txtPrecioFactura.Text)
+
+
+
+            cbMoneda.SelectedValue = dtCabeceraFactura.Rows(0).Item(5)
+            dtFecha.Value = CType(dtCabeceraFactura.Rows(0).Item(6), Date)
+            If dtCabeceraFactura.Rows(0).Item(8) IsNot DBNull.Value Then
+                dtpRecepcion.Enabled = True
+                dtpRecepcion.Value = CType(dtCabeceraFactura.Rows(0).Item(8), Date)
+                chbxRecepcion.Checked = True
+            End If
+            If dtCabeceraFactura.Rows(0).Item(9) IsNot DBNull.Value Then
+                dtpVencimiento.Enabled = True
+                dtpVencimiento.Value = CType(dtCabeceraFactura.Rows(0).Item(9), Date)
+                chbxVencimiento.Checked = True
+            End If
+            If dtCabeceraFactura.Rows(0).Item(10) IsNot DBNull.Value Then
+                dtpPago.Enabled = True
+                dtpPago.Value = CType(dtCabeceraFactura.Rows(0).Item(10), Date)
+                chbxPago.Checked = True
+            End If
+            If dtCabeceraFactura.Rows(0).Item(11) IsNot DBNull.Value Then
+                dtpCompromiso.Enabled = True
+                dtpCompromiso.Value = CType(dtCabeceraFactura.Rows(0).Item(11), Date)
+                chbxCompromiso.Checked = True
+            End If
+
+            txtPorcentajeDetraccion.Text = dtCabeceraFactura.Rows(0).Item(12)
+            txtMontoDetraccion.Text = dtCabeceraFactura.Rows(0).Item(13)
+
+
+        Catch ex As SqlException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos de factura. " + ex.Message, "Cargar datos factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
             MessageBox.Show("Error al cargar datos de factura. " + ex.Message, "Cargar datos factura",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -293,102 +329,9 @@
         End Try
     End Sub
 
-
-    'Private Sub Button3_Click_1(sender As Object, e As EventArgs)
-    '    If CType(cbGuia.SelectedValue, Integer) <> -1 And cbGuia.Text <> "" Then
-    '        Dim sqlControl As New SQLControl
-    '        sqlControl.setConnection()
-
-    '        Dim facturacionDao As New FacturacionDAO(sqlControl)
-    '        Try
-    '            sqlControl.openConexion()
-    '            sqlControl.beginTransaction()
-    '            facturacionDao.setDBcmd()
-
-    '            facturacionDao.InsertFacturaDetalleGuia(codigo_Detalle, codigo_Factura, CType(cbGuia.SelectedValue, Integer))
-
-    '            sqlControl.commitTransaction()
-    '            cbGuia.SelectedIndex = -1
-    '        Catch ex As Exception
-    '            sqlControl.rollbackTransaccion()
-    '            MessageBox.Show("Error al ingresar transpostista. " + ex.Message, "Agregar guía transportista",
-    '                             MessageBoxButtons.OK,
-    '                             MessageBoxIcon.Error)
-    '        Finally
-    '            Try
-    '                sqlControl.closeConexion()
-    '            Catch ex As Exception
-    '                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar guía transportista",
-    '                             MessageBoxButtons.OK,
-    '                             MessageBoxIcon.Error)
-    '            End Try
-    '        End Try
-
-    '        cargarGuiasTransportistas()
-
-    '    End If
-
-    'End Sub
-
-    'Private Sub Button2_Click_1(sender As Object, e As EventArgs)
-    '    Dim sqlControl As New SQLControl
-    '    sqlControl.setConnection()
-
-    '    Dim facturacionDao As New FacturacionDAO(sqlControl)
-    '    Try
-    '        sqlControl.openConexion()
-    '        sqlControl.beginTransaction()
-    '        facturacionDao.setDBcmd()
-
-    '        facturacionDao.InsertFacturaDetalleRemitente(codigo_Detalle, codigo_Factura, txtRemitente.Text)
-
-    '        sqlControl.commitTransaction()
-    '        txtRemitente.Text = ""
-    '    Catch ex As Exception
-    '        sqlControl.rollbackTransaccion()
-    '        MessageBox.Show("Error al ingresar remitente. " + ex.Message, "Cargar datos factura",
-    '                             MessageBoxButtons.OK,
-    '                             MessageBoxIcon.Error)
-    '    Finally
-    '        Try
-    '            sqlControl.closeConexion()
-    '        Catch ex As Exception
-    '            MsgBox("No se pudo establecer la conexion con el servidor.")
-    '        End Try
-    '    End Try
-
-    '    cargarGuiasRemitente()
-    'End Sub
-
-
-    'Private Sub Button7_Click_1(sender As Object, e As EventArgs)
-    '    Dim sqlControl As New SQLControl
-    '    sqlControl.setConnection()
-
-    '    Dim facturacionDao As New FacturacionDAO(sqlControl)
-    '    Try
-    '        sqlControl.openConexion()
-    '        sqlControl.beginTransaction()
-    '        facturacionDao.setDBcmd()
-
-    '        facturacionDao.InsertFacturaDetalleUnidad(codigo_Detalle, codigo_Factura, cbTracto.Text)
-
-    '        sqlControl.commitTransaction()
-    '        cbTracto.SelectedIndex = -1
-    '    Catch ex As Exception
-    '        sqlControl.rollbackTransaccion()
-    '    Finally
-    '        Try
-    '            sqlControl.closeConexion()
-    '        Catch ex As Exception
-    '            MsgBox("No se pudo establecer la conexion con el servidor.")
-    '        End Try
-    '    End Try
-
-    '    cargarPlacasDetalle()
-    'End Sub
-
     Private Sub Button6_Click_1(sender As Object, e As EventArgs) Handles btnActualizar.Click
+        GuardarCabeceraFactura()
+        BloquearBotones()
 
         If cbAccionGuia.SelectedIndex = -1 Then
             MessageBox.Show("Seleccionar un Item.", "Agregar Detalle",
@@ -445,18 +388,6 @@
             Else
                 obs = txtObservaciones.Text
             End If
-
-            'If txtOrigen.Text = Nothing Then
-            '    origen = ""
-            'Else
-            '    origen = txtOrigen.Text
-            'End If
-
-            'If txtDestino.Text = Nothing Then
-            '    destino = ""
-            'Else
-            '    destino = txtDestino.Text
-            'End If
 
             If cbOrigen.Text = Nothing Then
                 origen = ""
@@ -569,6 +500,20 @@
             sqlControl.beginTransaction()
             correlativoDao.setDBcmd()
 
+            Dim porcentaje_detraccion As Double, monto_detraccion As Double
+            If txtPorcentajeDetraccion.Text = Nothing Then
+                porcentaje_detraccion = 0
+            Else
+                porcentaje_detraccion = Double.Parse(txtPorcentajeDetraccion.Text)
+            End If
+
+            If txtMontoDetraccion.Text = Nothing Then
+                monto_detraccion = 0
+            Else
+                monto_detraccion = Double.Parse(txtMontoDetraccion.Text)
+            End If
+
+            calcularDetraccion()
             If codigo_Factura < 0 Then
                 correlativoDao.updateCorrelativoNumero(1, txtNroSerie.Text, correlativoFactura)
 
@@ -581,7 +526,12 @@
                                          CType(cbMoneda.SelectedValue, Integer),
                                          16,
                                          dtFecha.Value,
-                                         34)
+                                         34, chbxRecepcion.Checked, dtpRecepcion.Value,
+                                             chbxVencimiento.Checked, dtpVencimiento.Value,
+                                             chbxPago.Checked, dtpPago.Value,
+                                             chbxCompromiso.Checked, dtpCompromiso.Value,
+                                             porcentaje_detraccion,
+                                                              monto_detraccion)
                 'Fin - Ingreso de la Cabecera de la Factura
             Else
                 facturacionDao.UpdateFactura(codigo_Factura, txtNroSerie.Text,
@@ -590,19 +540,28 @@
                                          CType(txtPrecioFactura.Text, Long),
                                          CType(cbMoneda.SelectedValue, Integer),
                                          16,
-                                         dtFecha.Value)
+                                         dtFecha.Value, chbxRecepcion.Checked, dtpRecepcion.Value,
+                                             chbxVencimiento.Checked, dtpVencimiento.Value,
+                                             chbxPago.Checked, dtpPago.Value,
+                                             chbxCompromiso.Checked, dtpCompromiso.Value,
+                                             porcentaje_detraccion, monto_detraccion)
             End If
 
+            sqlControl.commitTransaction()
 
             txtNroSerie.Enabled = False
             cbRazonSocial.Enabled = False
             cbMoneda.Enabled = False
             dtFecha.Enabled = False
             btnRazonSocial.Enabled = False
-            btnGuardarCabecera.Enabled = False
-            sqlControl.commitTransaction()
-        Catch ex As Exception
+            'btnGuardarCabecera.Enabled = False
+
+        Catch ex As SQLException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al grabar datos de factura. " + ex.Message, "Grabar datos factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
             MessageBox.Show("Error al grabar datos de factura. " + ex.Message, "Grabar datos factura",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -1023,7 +982,7 @@
 
     Private Sub btnGuardarCabecera_Click_1(sender As Object, e As EventArgs) Handles btnGuardarCabecera.Click
         GuardarCabeceraFactura()
-        cargarDetalleFactura()
+        'cargarDetalleFactura()
         BloquearBotones()
     End Sub
 
@@ -1360,5 +1319,56 @@
             End Try
 
         End Try
+    End Sub
+
+    Private Sub chbxRecepcion_CheckedChanged(sender As Object, e As EventArgs) Handles chbxRecepcion.CheckedChanged
+        If chbxRecepcion.Checked Then
+            dtpRecepcion.Enabled = True
+        Else
+            dtpRecepcion.Enabled = False
+        End If
+    End Sub
+
+    Private Sub chbxVencimiento_CheckedChanged(sender As Object, e As EventArgs) Handles chbxVencimiento.CheckedChanged
+        If chbxVencimiento.Checked Then
+            dtpVencimiento.Enabled = True
+        Else
+            dtpVencimiento.Enabled = False
+        End If
+    End Sub
+
+    Private Sub chbxPago_CheckedChanged(sender As Object, e As EventArgs) Handles chbxPago.CheckedChanged
+        If chbxPago.Checked Then
+            dtpPago.Enabled = True
+        Else
+            dtpPago.Enabled = False
+        End If
+    End Sub
+
+    Private Sub chbxCompromiso_CheckedChanged(sender As Object, e As EventArgs) Handles chbxCompromiso.CheckedChanged
+        If chbxCompromiso.Checked Then
+            dtpCompromiso.Enabled = True
+        Else
+            dtpCompromiso.Enabled = False
+        End If
+    End Sub
+
+    Private Sub txtPorcentajeDetraccion_Leave(sender As Object, e As EventArgs) Handles txtPorcentajeDetraccion.Leave
+        calcularDetraccion()
+    End Sub
+
+    Sub calcularDetraccion()
+        Dim porcentaje As Double, monto As Double, total As Double
+        If txtPorcentajeDetraccion.Text = Nothing Then
+
+        Else
+            If txtPrecioFactura.Text = Nothing Then
+            Else
+                porcentaje = Double.Parse(txtPorcentajeDetraccion.Text)
+                total = Double.Parse(txtPrecioFactura.Text)
+                monto = (porcentaje / 100) * total
+                txtMontoDetraccion.Text = Math.Round(monto, 2)
+            End If
+        End If
     End Sub
 End Class

@@ -33,6 +33,7 @@ Partial Class ChildBusquedaFactura
         Me.btnFiltrar = New System.Windows.Forms.Button()
         Me.btnDeshacer = New System.Windows.Forms.Button()
         Me.btnAnular = New System.Windows.Forms.Button()
+        Me.btnCopiar = New System.Windows.Forms.Button()
         CType(Me.dgvFacturas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -53,27 +54,27 @@ Partial Class ChildBusquedaFactura
         '
         'btnVer
         '
-        Me.btnVer.Location = New System.Drawing.Point(662, 455)
+        Me.btnVer.Location = New System.Drawing.Point(685, 455)
         Me.btnVer.Name = "btnVer"
-        Me.btnVer.Size = New System.Drawing.Size(163, 45)
+        Me.btnVer.Size = New System.Drawing.Size(101, 34)
         Me.btnVer.TabIndex = 1
         Me.btnVer.Text = "Ver"
         Me.btnVer.UseVisualStyleBackColor = True
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(378, 455)
+        Me.Button1.Location = New System.Drawing.Point(472, 455)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(136, 45)
+        Me.Button1.Size = New System.Drawing.Size(101, 34)
         Me.Button1.TabIndex = 2
         Me.Button1.Text = "Nueva Factura por Servicios"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(520, 455)
+        Me.Button3.Location = New System.Drawing.Point(579, 455)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(136, 45)
+        Me.Button3.Size = New System.Drawing.Size(101, 34)
         Me.Button3.TabIndex = 6
         Me.Button3.Text = "Nueva Factura Libre"
         Me.Button3.UseVisualStyleBackColor = True
@@ -144,11 +145,21 @@ Partial Class ChildBusquedaFactura
         Me.btnAnular.Text = "Anular Factura"
         Me.btnAnular.UseVisualStyleBackColor = True
         '
+        'btnCopiar
+        '
+        Me.btnCopiar.Location = New System.Drawing.Point(1138, 96)
+        Me.btnCopiar.Name = "btnCopiar"
+        Me.btnCopiar.Size = New System.Drawing.Size(75, 23)
+        Me.btnCopiar.TabIndex = 103
+        Me.btnCopiar.Text = "Copiar"
+        Me.btnCopiar.UseVisualStyleBackColor = True
+        '
         'ChildBusquedaFactura
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 524)
+        Me.Controls.Add(Me.btnCopiar)
         Me.Controls.Add(Me.btnAnular)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button3)
@@ -176,4 +187,5 @@ Partial Class ChildBusquedaFactura
     Friend WithEvents btnFiltrar As Button
     Friend WithEvents btnDeshacer As Button
     Friend WithEvents btnAnular As Button
+    Friend WithEvents btnCopiar As Button
 End Class
