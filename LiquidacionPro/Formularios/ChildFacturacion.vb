@@ -35,7 +35,7 @@ Public Class ChildFacturacion
             txtNroSerie.Text = dtCabeceraFactura.Rows(0).Item(1).ToString
             lbNroFactura.Text = dtCabeceraFactura.Rows(0).Item(2).ToString
             cbRazonSocial.SelectedValue = dtCabeceraFactura.Rows(0).Item(3).ToString
-            txtPrecioFactura.Text = dtCabeceraFactura.Rows(0).Item(4).ToString
+            txtPrecioFactura.Text = dtCabeceraFactura.Rows(0).Item(4)
 
             txtIgv.Text = Double.Parse(dtCabeceraFactura.Rows(0).Item(4)) * 0.18
             txtTotalFactura.Text = Double.Parse(txtIgv.Text) + Double.Parse(txtPrecioFactura.Text)
