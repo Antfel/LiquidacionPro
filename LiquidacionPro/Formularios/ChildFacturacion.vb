@@ -37,10 +37,8 @@ Public Class ChildFacturacion
             cbRazonSocial.SelectedValue = dtCabeceraFactura.Rows(0).Item(3).ToString
             txtPrecioFactura.Text = dtCabeceraFactura.Rows(0).Item(4)
 
-            txtIgv.Text = Double.Parse(dtCabeceraFactura.Rows(0).Item(4)) * 0.18
-            txtTotalFactura.Text = Double.Parse(txtIgv.Text) + Double.Parse(txtPrecioFactura.Text)
-
-
+            txtIgv.Text = Math.Round(Double.Parse(dtCabeceraFactura.Rows(0).Item(4)) * 0.18, 2)
+            txtTotalFactura.Text = Math.Round(Double.Parse(txtIgv.Text) + Double.Parse(txtPrecioFactura.Text), 2)
 
             cbMoneda.SelectedValue = dtCabeceraFactura.Rows(0).Item(5)
             dtFecha.Value = CType(dtCabeceraFactura.Rows(0).Item(6), Date)
