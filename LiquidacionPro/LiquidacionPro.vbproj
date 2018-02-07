@@ -191,6 +191,12 @@
     <Compile Include="Formularios\MDIPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\RptFormFacturaCuentasPorCobrar.Designer.vb">
+      <DependentUpon>RptFormFacturaCuentasPorCobrar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RptFormFacturaCuentasPorCobrar.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\RptFormFacturaDetalleClienteFecha.Designer.vb">
       <DependentUpon>RptFormFacturaDetalleClienteFecha.vb</DependentUpon>
     </Compile>
@@ -344,10 +350,12 @@
     <Content Include="Formularios\Reportes\RptFacturaDetalleByMonedaGasto.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Formularios\Reportes\RptTest.rdlc">
+    <Content Include="Formularios\Reportes\RptFacturaCuentasPorCobrar.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Formularios\Reportes\RptFacturaCuentasPorCobrar.rdlc" />
+    <EmbeddedResource Include="Formularios\RptFormFacturaCuentasPorCobrar.resx">
+      <DependentUpon>RptFormFacturaCuentasPorCobrar.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\RptFormFacturaDetalleClienteFecha.resx">
       <DependentUpon>RptFormFacturaDetalleClienteFecha.vb</DependentUpon>
     </EmbeddedResource>

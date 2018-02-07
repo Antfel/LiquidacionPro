@@ -841,7 +841,53 @@ Public Class LiquidacionDAO
                                     WHERE	CODIGO_LIQUIDACION=" + CStr(codigo) + " ORDER BY NRO_LINEA ASC", Nothing)
     End Function
 
-    Public Function getRptLiquidacionByTrabajador(codigo As String) As DataTable
+    Public Function getRptLiquidacionByTrabajador(codigo As Integer, chbxInicio As Boolean, f_inicio As Date,
+                                                  chbxFinal As Boolean, f_final As Date) As DataTable
+
+        Dim params As New List(Of SqlParameter)
+
+        Dim whereFecha As String
+        whereFecha = ""
+        Dim whereTrabajador As String
+        whereTrabajador = ""
+
+        If codigo = -1 Then
+            whereTrabajador = ""
+        Else
+            whereTrabajador = " where A.CODIGO_TRABAJADOR=" + CStr(codigo)
+        End If
+
+        If chbxInicio And Not chbxFinal Then
+            params.Add(New SqlParameter("@FECHA_INICIO", f_inicio))
+            whereFecha = " (cast(cast(A.FECHA_SALIDA as date) as datetime) >= cast(cast( @FECHA_INICIO as date) as datetime)) "
+        End If
+
+        If chbxFinal And Not chbxInicio Then
+            params.Add(New SqlParameter("@FECHA_FIN", f_final))
+            whereFecha = " (cast(cast(A.FECHA_SALIDA as date) as datetime) <= cast(cast( @FECHA_FIN as date) as datetime)) "
+        End If
+
+        If chbxInicio And chbxFinal Then
+            params.Add(New SqlParameter("@FECHA_INICIO", f_inicio))
+            params.Add(New SqlParameter("@FECHA_FIN", f_final))
+            whereFecha = " (cast(cast(A.FECHA_SALIDA as date) as datetime) between cast(cast( @FECHA_INICIO as date) as datetime) and cast(cast( @FECHA_FIN as date) as datetime)) "
+        End If
+
+        If codigo = -1 Then
+            If whereFecha = "" Then
+
+            Else
+                whereFecha = " WHERE " + whereFecha
+            End If
+
+        Else
+            If whereFecha = "" Then
+
+            Else
+                whereFecha = " AND " + whereFecha
+            End If
+
+        End If
 
         Return sqlControl.ExecQuery("SELECT	A.CODIGO_LIQUIDACION,
 		                                    A.NUMERO_LIQUIDACION,
@@ -879,7 +925,9 @@ Public Class LiquidacionDAO
                                     LEFT	JOIN UNIDAD E ON E.CODIGO_UNIDAD=A.CODIGO_UNIDAD_SEMITRAILER
                                     LEFT	JOIN ESTADO F ON F.CODIGO_ESTADO=A.CODIGO_ESTADO AND F.TIPO_ESTADO=1
                                     LEFT	JOIN ESTADO G ON G.CODIGO_ESTADO=A.UNIDAD_MEDIDA AND G.TIPO_ESTADO=8
-                                    WHERE	A.CODIGO_TRABAJADOR LIKE '%" + codigo + "%' order	by TRABAJADOR", Nothing)
+                                    " + whereTrabajador + " 
+                                    " + whereFecha + "    
+                                    order	by TRABAJADOR", params)
     End Function
 
     Public Function GetLiquidacionPeajeById(liquidacion As Integer, codigo As Integer) As DataTable

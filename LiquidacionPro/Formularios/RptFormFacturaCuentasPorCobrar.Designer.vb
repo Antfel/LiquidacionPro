@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class RptFormLiquidacionByTrabajador
+Partial Class RptFormFacturaCuentasPorCobrar
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -24,8 +24,6 @@ Partial Class RptFormLiquidacionByTrabajador
     Private Sub InitializeComponent()
         Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.cbTrabajador = New System.Windows.Forms.ComboBox()
         Me.btnBuscar = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -33,21 +31,23 @@ Partial Class RptFormLiquidacionByTrabajador
         Me.chbxInicio = New System.Windows.Forms.CheckBox()
         Me.dtpFinal = New System.Windows.Forms.DateTimePicker()
         Me.dtpInicio = New System.Windows.Forms.DateTimePicker()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cbCliente = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ReportViewer1
         '
-        Me.ReportViewer1.Location = New System.Drawing.Point(0, 88)
+        Me.ReportViewer1.Location = New System.Drawing.Point(0, 83)
         Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.ServerReport.BearerToken = Nothing
-        Me.ReportViewer1.Size = New System.Drawing.Size(802, 258)
+        Me.ReportViewer1.Size = New System.Drawing.Size(840, 338)
         Me.ReportViewer1.TabIndex = 0
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.cbTrabajador)
+        Me.GroupBox1.Controls.Add(Me.cbCliente)
         Me.GroupBox1.Controls.Add(Me.btnBuscar)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
@@ -55,29 +55,12 @@ Partial Class RptFormLiquidacionByTrabajador
         Me.GroupBox1.Controls.Add(Me.chbxInicio)
         Me.GroupBox1.Controls.Add(Me.dtpFinal)
         Me.GroupBox1.Controls.Add(Me.dtpInicio)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 9)
+        Me.GroupBox1.Location = New System.Drawing.Point(13, 4)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(711, 73)
-        Me.GroupBox1.TabIndex = 2
+        Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtros"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(212, 19)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(58, 13)
-        Me.Label3.TabIndex = 8
-        Me.Label3.Text = "Trabajador"
-        '
-        'cbTrabajador
-        '
-        Me.cbTrabajador.FormattingEnabled = True
-        Me.cbTrabajador.Location = New System.Drawing.Point(276, 17)
-        Me.cbTrabajador.Name = "cbTrabajador"
-        Me.cbTrabajador.Size = New System.Drawing.Size(310, 21)
-        Me.cbTrabajador.TabIndex = 7
         '
         'btnBuscar
         '
@@ -142,16 +125,32 @@ Partial Class RptFormLiquidacionByTrabajador
         Me.dtpInicio.Size = New System.Drawing.Size(96, 20)
         Me.dtpInicio.TabIndex = 0
         '
-        'RptFormLiquidacionByTrabajador
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(212, 19)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(39, 13)
+        Me.Label3.TabIndex = 8
+        Me.Label3.Text = "Cliente"
+        '
+        'cbCliente
+        '
+        Me.cbCliente.FormattingEnabled = True
+        Me.cbCliente.Location = New System.Drawing.Point(257, 17)
+        Me.cbCliente.Name = "cbCliente"
+        Me.cbCliente.Size = New System.Drawing.Size(310, 21)
+        Me.cbCliente.TabIndex = 7
+        '
+        'RptFormFacturaCuentasPorCobrar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(802, 346)
+        Me.ClientSize = New System.Drawing.Size(840, 421)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ReportViewer1)
-        Me.Name = "RptFormLiquidacionByTrabajador"
-        Me.Text = "Liquidacion por Trabajador"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.Name = "RptFormFacturaCuentasPorCobrar"
+        Me.Text = "RptFormFacturaCuentasPorCobrar"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -160,13 +159,13 @@ Partial Class RptFormLiquidacionByTrabajador
 
     Friend WithEvents ReportViewer1 As Microsoft.Reporting.WinForms.ReportViewer
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents cbTrabajador As ComboBox
-    Friend WithEvents btnBuscar As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents chbxFinal As CheckBox
     Friend WithEvents chbxInicio As CheckBox
     Friend WithEvents dtpFinal As DateTimePicker
     Friend WithEvents dtpInicio As DateTimePicker
+    Friend WithEvents btnBuscar As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents cbCliente As ComboBox
 End Class

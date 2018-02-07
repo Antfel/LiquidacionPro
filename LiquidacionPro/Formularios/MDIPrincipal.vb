@@ -92,7 +92,7 @@ Public Class MDIPrincipal
         rptLiquidacionChild.Show()
     End Sub
 
-    Private Sub FacturacionTestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturacionTestToolStripMenuItem.Click
+    Private Sub FacturacionTestToolStripMenuItem_Click(sender As Object, e As EventArgs) 
         cerrarVentanas()
         Dim rptFormFacturaDetalleByMoneda As New RptFormFacturaDetalleByMoneda()
         rptFormFacturaDetalleByMoneda.Show()
@@ -102,5 +102,11 @@ Public Class MDIPrincipal
         cerrarVentanas()
         Dim rptFormFacturaDetalleByClienteFecha As New RptFormFacturaDetalleByClienteFecha()
         rptFormFacturaDetalleByClienteFecha.Show()
+    End Sub
+
+    Private Sub CuentasPorCobrarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CuentasPorCobrarToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim rptFormFacturaCuentasPorCobrar As New RptFormFacturaCuentasPorCobrar()
+        rptFormFacturaCuentasPorCobrar.Show()
     End Sub
 End Class
