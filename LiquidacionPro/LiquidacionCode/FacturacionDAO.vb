@@ -834,4 +834,62 @@ Public Class FacturacionDAO
 		                                    and CODIGO_DETALLE_FACTURA=" + CStr(codigo_detalle) + "",
                                      Nothing)
     End Function
+
+    Public Function getRptFacturaCuentasPorCobrar(chbxInicio As Boolean, fecha_inicio As Date,
+                                                  chbxFinal As Boolean, fecha_fin As Date, cliente As Integer) As DataTable
+
+        Dim whereFecha As String, whereCliente As String
+        whereFecha = ""
+        whereCliente = ""
+
+        Dim params As New List(Of SqlParameter)
+        If chbxInicio And Not chbxFinal Then
+            params.Add(New SqlParameter("@FECHA_INICIO", fecha_inicio))
+            whereFecha = " AND (cast(cast(A.FECHA_FACTURA as date) as datetime) >= cast(cast( @FECHA_INICIO as date) as datetime)) "
+        End If
+
+        If chbxFinal And Not chbxInicio Then
+            params.Add(New SqlParameter("@FECHA_FIN", fecha_fin))
+            whereFecha = " AND (cast(cast(A.FECHA_FACTURA as date) as datetime) <= cast(cast( @FECHA_FIN as date) as datetime)) "
+        End If
+
+        If chbxInicio And chbxFinal Then
+            params.Add(New SqlParameter("@FECHA_INICIO", fecha_inicio))
+            params.Add(New SqlParameter("@FECHA_FIN", fecha_fin))
+            whereFecha = " AND (cast(cast(A.FECHA_FACTURA as date) as datetime) between cast(cast( @FECHA_INICIO as date) as datetime) and cast(cast( @FECHA_FIN as date) as datetime)) "
+        End If
+
+        If cliente = -1 Then
+            whereCliente = ""
+        Else
+            whereCliente = " and a.CODIGO_CLIENTE=" + CStr(cliente)
+        End If
+
+        Return sqlControl.ExecQuery("SELECT	A.CODIGO_FACTURA,
+		                                    A.SERIE_FACTURA,
+		                                    A.NUMERO_FACTURA,
+		                                    A.FECHA_FACTURA,
+		                                    A.CODIGO_CLIENTE,
+		                                    B.RAZON_CLIENTE,
+		                                    COALESCE(MAX(D.ORIGEN),'')+' - '+COALESCE(MAX(D.DESTINO),'') RUTA,
+		                                    A.TOTAL_FACTURA,
+		                                    A.CODIGO_MONEDA,
+		                                    C.DETALLE_MONEDA,
+		                                    C.SIMBOLO,
+		                                    A.FECHA_COMPROMISO,
+                                            coalesce(A.MONTO_DETRACCION,0) MONTO_DETRACCION,
+                                            TOTAL_FACTURA-coalesce(MONTO_DETRACCION,0) TOTAL_DETRACCION
+                                    FROM	FACTURA A
+                                    LEFT	JOIN CLIENTE B ON A.CODIGO_CLIENTE=B.CODIGO_CLIENTE
+                                    LEFT	JOIN MONEDA C ON A.CODIGO_MONEDA=C.CODIGO_MONEDA  
+                                    LEFT	JOIN DETALLE_FACTURA D on A.CODIGO_FACTURA=D.CODIGO_FACTURA
+                                    where   FECHA_PAGO IS NULL AND A.CODIGO_ESTADO<>15  
+                                    " + whereFecha + "
+                                    " + whereCliente + "
+                                    GROUP	BY A.CODIGO_FACTURA,A.SERIE_FACTURA,A.NUMERO_FACTURA,A.FECHA_FACTURA,A.CODIGO_CLIENTE,
+		                                    B.RAZON_CLIENTE,A.TOTAL_FACTURA,A.CODIGO_MONEDA,C.DETALLE_MONEDA,C.SIMBOLO,A.FECHA_COMPROMISO,MONTO_DETRACCION,
+		                                    TOTAL_FACTURA -coalesce(MONTO_DETRACCION,0)  
+                                    ORDER	BY CODIGO_CLIENTE,SERIE_FACTURA,NUMERO_FACTURA",
+                                     params)
+    End Function
 End Class

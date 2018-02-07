@@ -68,7 +68,8 @@ Public Class TrabajadorDAO
 		                                    a.CODIGO_ESTADO_TRABAJADOR,
 		                                    c.DETALLE_ESTADO ESTADO,
 		                                    a.SEXO SEXO_COD,
-		                                    case when SEXO='M' then 'Masculino' else 'Femenino' end SEXO
+		                                    case when SEXO='M' then 'Masculino' else 'Femenino' end SEXO,
+                                            coalesce(a.APELLIDO_PATERNO_TRABAJADOR,'')+' '+coalesce(a.APELLIDO_MATERNO_TRABAJADOR,'')+' '+a.NOMBRES_TRABAJADOR NOMBRE_COMPLETO 
                                     from	TRABAJADOR a
                                     left	join CARGO_TRABAJADOR b on a.CODIGO_CARGO_TRABAJADOR=b.CODIGO_CARGO_TRABAJADOR
                                     left	join ESTADO c on c.CODIGO_ESTADO=a.CODIGO_ESTADO_TRABAJADOR and TIPO_ESTADO=2", Nothing)

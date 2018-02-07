@@ -302,6 +302,26 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="dtRptFacturaCuentasPorCobrar" msprop:Generator_TableClassName="dtRptFacturaCuentasPorCobrarDataTable" msprop:Generator_TableVarName="tabledtRptFacturaCuentasPorCobrar" msprop:Generator_RowChangedName="dtRptFacturaCuentasPorCobrarRowChanged" msprop:Generator_TablePropName="dtRptFacturaCuentasPorCobrar" msprop:Generator_RowDeletingName="dtRptFacturaCuentasPorCobrarRowDeleting" msprop:Generator_RowChangingName="dtRptFacturaCuentasPorCobrarRowChanging" msprop:Generator_RowEvHandlerName="dtRptFacturaCuentasPorCobrarRowChangeEventHandler" msprop:Generator_RowDeletedName="dtRptFacturaCuentasPorCobrarRowDeleted" msprop:Generator_RowClassName="dtRptFacturaCuentasPorCobrarRow" msprop:Generator_UserTableName="dtRptFacturaCuentasPorCobrar" msprop:Generator_RowEvArgName="dtRptFacturaCuentasPorCobrarRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CODIGO_FACTURA" msprop:Generator_ColumnVarNameInTable="columnCODIGO_FACTURA" msprop:Generator_ColumnPropNameInRow="CODIGO_FACTURA" msprop:Generator_ColumnPropNameInTable="CODIGO_FACTURAColumn" msprop:Generator_UserColumnName="CODIGO_FACTURA" type="xs:long" minOccurs="0" />
+              <xs:element name="SERIE_FACTURA" msprop:Generator_ColumnVarNameInTable="columnSERIE_FACTURA" msprop:Generator_ColumnPropNameInRow="SERIE_FACTURA" msprop:Generator_ColumnPropNameInTable="SERIE_FACTURAColumn" msprop:Generator_UserColumnName="SERIE_FACTURA" type="xs:string" minOccurs="0" />
+              <xs:element name="NUMERO_FACTURA" msprop:Generator_ColumnVarNameInTable="columnNUMERO_FACTURA" msprop:Generator_ColumnPropNameInRow="NUMERO_FACTURA" msprop:Generator_ColumnPropNameInTable="NUMERO_FACTURAColumn" msprop:Generator_UserColumnName="NUMERO_FACTURA" type="xs:string" minOccurs="0" />
+              <xs:element name="FECHA_FACTURA" msprop:Generator_ColumnVarNameInTable="columnFECHA_FACTURA" msprop:Generator_ColumnPropNameInRow="FECHA_FACTURA" msprop:Generator_ColumnPropNameInTable="FECHA_FACTURAColumn" msprop:Generator_UserColumnName="FECHA_FACTURA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CODIGO_CLIENTE" msprop:Generator_ColumnVarNameInTable="columnCODIGO_CLIENTE" msprop:Generator_ColumnPropNameInRow="CODIGO_CLIENTE" msprop:Generator_ColumnPropNameInTable="CODIGO_CLIENTEColumn" msprop:Generator_UserColumnName="CODIGO_CLIENTE" type="xs:long" minOccurs="0" />
+              <xs:element name="RAZON_CLIENTE" msprop:Generator_ColumnVarNameInTable="columnRAZON_CLIENTE" msprop:Generator_ColumnPropNameInRow="RAZON_CLIENTE" msprop:Generator_ColumnPropNameInTable="RAZON_CLIENTEColumn" msprop:Generator_UserColumnName="RAZON_CLIENTE" type="xs:string" minOccurs="0" />
+              <xs:element name="RUTA" msprop:Generator_ColumnVarNameInTable="columnRUTA" msprop:Generator_ColumnPropNameInRow="RUTA" msprop:Generator_ColumnPropNameInTable="RUTAColumn" msprop:Generator_UserColumnName="RUTA" type="xs:string" minOccurs="0" />
+              <xs:element name="TOTAL_FACTURA" msprop:Generator_ColumnVarNameInTable="columnTOTAL_FACTURA" msprop:Generator_ColumnPropNameInRow="TOTAL_FACTURA" msprop:Generator_ColumnPropNameInTable="TOTAL_FACTURAColumn" msprop:Generator_UserColumnName="TOTAL_FACTURA" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CODIGO_MONEDA" msprop:Generator_ColumnVarNameInTable="columnCODIGO_MONEDA" msprop:Generator_ColumnPropNameInRow="CODIGO_MONEDA" msprop:Generator_ColumnPropNameInTable="CODIGO_MONEDAColumn" msprop:Generator_UserColumnName="CODIGO_MONEDA" type="xs:long" minOccurs="0" />
+              <xs:element name="DETALLE_MONEDA" msprop:Generator_ColumnVarNameInTable="columnDETALLE_MONEDA" msprop:Generator_ColumnPropNameInRow="DETALLE_MONEDA" msprop:Generator_ColumnPropNameInTable="DETALLE_MONEDAColumn" msprop:Generator_UserColumnName="DETALLE_MONEDA" type="xs:string" minOccurs="0" />
+              <xs:element name="SIMBOLO" msprop:Generator_ColumnVarNameInTable="columnSIMBOLO" msprop:Generator_ColumnPropNameInRow="SIMBOLO" msprop:Generator_ColumnPropNameInTable="SIMBOLOColumn" msprop:Generator_UserColumnName="SIMBOLO" type="xs:string" minOccurs="0" />
+              <xs:element name="FECHA_COMPROMISO" msprop:Generator_ColumnVarNameInTable="columnFECHA_COMPROMISO" msprop:Generator_ColumnPropNameInRow="FECHA_COMPROMISO" msprop:Generator_ColumnPropNameInTable="FECHA_COMPROMISOColumn" msprop:Generator_UserColumnName="FECHA_COMPROMISO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="MONTO_DETRACCION" msprop:Generator_ColumnVarNameInTable="columnMONTO_DETRACCION" msprop:Generator_ColumnPropNameInRow="MONTO_DETRACCION" msprop:Generator_ColumnPropNameInTable="MONTO_DETRACCIONColumn" msprop:Generator_UserColumnName="MONTO_DETRACCION" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTAL_DETRACCION" msprop:Generator_ColumnVarNameInTable="columnTOTAL_DETRACCION" msprop:Generator_ColumnPropNameInRow="TOTAL_DETRACCION" msprop:Generator_ColumnPropNameInTable="TOTAL_DETRACCIONColumn" msprop:Generator_UserColumnName="TOTAL_DETRACCION" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>
