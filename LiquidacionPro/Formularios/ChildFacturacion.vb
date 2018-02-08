@@ -7,7 +7,11 @@ Public Class ChildFacturacion
     Dim codigo_Factura As Integer = -1
     Dim codigo_Detalle As Integer = -1
     Dim cargandoDatosActualizar As Integer = -1
+    Private childBusquedaFactura As ChildBusquedaFactura
 
+    Public Sub setChildBusquedaFactura(childBusquedaFactura As ChildBusquedaFactura)
+        Me.childBusquedaFactura = childBusquedaFactura
+    End Sub
     Public Sub setCodifoFactura(codigoFactura As Integer)
         codigo_Factura = codigoFactura
     End Sub
@@ -82,6 +86,7 @@ Public Class ChildFacturacion
                 obtenerDatosCliente()
                 cargarDetalleFactura()
                 BloquearBotones()
+                childBusquedaFactura.cargarDatosFactura()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos factura",
                                  MessageBoxButtons.OK,
@@ -428,7 +433,7 @@ Public Class ChildFacturacion
             End Try
         End Try
 
-        cargarDetalleFactura()
+        'cargarDetalleFactura()
         BloquearDetalle()
         BloquearBotones()
         cargarDatosFactura()
@@ -553,7 +558,7 @@ Public Class ChildFacturacion
             dtFecha.Enabled = False
             btnRazonSocial.Enabled = False
             'btnGuardarCabecera.Enabled = False
-
+            childBusquedaFactura.cargarDatosFactura()
         Catch ex As SQLException
             sqlControl.rollbackTransaccion()
             MessageBox.Show("Error al grabar datos de factura. " + ex.Message, "Grabar datos factura",
@@ -713,7 +718,7 @@ Public Class ChildFacturacion
             End Try
         End Try
 
-        cargarDetalleFactura()
+        'cargarDetalleFactura()
         BloquearDetalle()
         BloquearBotones()
         cargarDatosFactura()

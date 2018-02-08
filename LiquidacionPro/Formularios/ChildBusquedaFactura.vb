@@ -9,7 +9,7 @@ Public Class ChildBusquedaFactura
         cargarDatosFactura()
     End Sub
 
-    Private Sub cargarDatosFactura()
+    Public Sub cargarDatosFactura()
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
 
@@ -26,11 +26,24 @@ Public Class ChildBusquedaFactura
 
             dgvFacturas.DataSource = dtFactura
 
-            dgvFacturas.Columns(9).Visible = False
-            dgvFacturas.Columns(14).Visible = False
+            dgvFacturas.Columns(11).Visible = False
+            dgvFacturas.Columns(16).Visible = False
 
-            dgvFacturas.MultiSelect = False
-            dgvFacturas.RowHeadersVisible = False
+            dgvFacturas.Columns(0).Width = 55
+            dgvFacturas.Columns(1).Width = 50
+            dgvFacturas.Columns(2).Width = 70
+            dgvFacturas.Columns(3).Width = 75
+            dgvFacturas.Columns(4).Width = 250
+            dgvFacturas.Columns(5).Width = 85
+            dgvFacturas.Columns(6).Width = 70
+            dgvFacturas.Columns(13).Width = 85
+            dgvFacturas.Columns(14).Width = 85
+            dgvFacturas.Columns(15).Width = 85
+            dgvFacturas.Columns(17).Width = 85
+
+            dgvFacturas.Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgvFacturas.Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            dgvFacturas.Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
         Catch ex As SqlException
             sqlControl.rollbackTransaccion()
@@ -55,19 +68,21 @@ Public Class ChildBusquedaFactura
 
     Private Sub btnVer_Click(sender As Object, e As EventArgs) Handles btnVer.Click
         Dim seleccion As DataGridViewRow = dgvFacturas.SelectedRows(0)
-        Dim codigo As Integer = seleccion.Cells(9).Value
+        Dim codigo As Integer = seleccion.Cells(11).Value
         If codigo = 33 Then
             Dim facturacionLibreChild As New ChildFacturaLibre
             facturacionLibreChild.MdiParent = Me.MdiParent
             facturacionLibreChild.setCodifoFactura(CType(dgvFacturas.SelectedRows.Item(0).Cells(0).Value.ToString, Integer))
+            facturacionLibreChild.setChildBusquedaFactura(Me)
             facturacionLibreChild.Show()
-            Me.Dispose()
+            'Me.Dispose()
         Else
             Dim facturacionChild As New ChildFacturacion
             facturacionChild.MdiParent = Me.MdiParent
             facturacionChild.setCodifoFactura(CType(dgvFacturas.SelectedRows.Item(0).Cells(0).Value.ToString, Integer))
+            facturacionChild.setChildBusquedaFactura(Me)
             facturacionChild.Show()
-            Me.Dispose()
+            'Me.Dispose()
         End If
 
     End Sub

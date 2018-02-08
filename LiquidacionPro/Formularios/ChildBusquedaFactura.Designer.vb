@@ -48,6 +48,7 @@ Partial Class ChildBusquedaFactura
         Me.dgvFacturas.MultiSelect = False
         Me.dgvFacturas.Name = "dgvFacturas"
         Me.dgvFacturas.ReadOnly = True
+        Me.dgvFacturas.RowHeadersVisible = False
         Me.dgvFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvFacturas.Size = New System.Drawing.Size(1282, 304)
         Me.dgvFacturas.TabIndex = 0

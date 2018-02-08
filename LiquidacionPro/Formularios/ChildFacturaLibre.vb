@@ -8,6 +8,12 @@ Public Class ChildFacturaLibre
     'Dim codigo_Detalle As Integer = -1
     Private cargandoDatosActualizar As Integer
 
+    Private childBusquedaFactura As ChildBusquedaFactura
+
+    Public Sub setChildBusquedaFactura(childBusquedaFactura As ChildBusquedaFactura)
+        Me.childBusquedaFactura = childBusquedaFactura
+    End Sub
+
     Private Sub btnRazonSocial_Click(sender As Object, e As EventArgs) Handles btnRazonSocial.Click
         obtenerDatosCliente()
     End Sub
@@ -314,6 +320,7 @@ Public Class ChildFacturaLibre
             btnRazonSocial.Enabled = False
             BloquearCabecera()
             BloquearDetalle()
+            childBusquedaFactura.cargarDatosFactura()
         Catch ex As SqlException
             sqlControl.rollbackTransaccion()
             MessageBox.Show("Error al grabar datos de factura. " + ex.Message, "Grabar datos factura",
@@ -416,7 +423,7 @@ Public Class ChildFacturaLibre
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             End Try
-            cargarDetalleFactura()
+            'cargarDetalleFactura()
             cargarDatosFactura()
             limpiar()
         End Try
@@ -527,6 +534,7 @@ Public Class ChildFacturaLibre
                 obtenerDatosCliente()
                 cargarDetalleFactura()
                 BloquearBotones()
+                childBusquedaFactura.cargarDatosFactura()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión." + ex.Message, "Validación",
                                  MessageBoxButtons.OK,
@@ -572,7 +580,7 @@ Public Class ChildFacturaLibre
             End Try
         End Try
 
-        cargarDetalleFactura()
+        'cargarDetalleFactura()
         'BloquearDetalle()
         BloquearBotones()
         cargarDatosFactura()

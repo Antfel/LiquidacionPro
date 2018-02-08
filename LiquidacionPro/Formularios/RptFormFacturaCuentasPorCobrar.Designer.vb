@@ -24,6 +24,8 @@ Partial Class RptFormFacturaCuentasPorCobrar
     Private Sub InitializeComponent()
         Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cbCliente = New System.Windows.Forms.ComboBox()
         Me.btnBuscar = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -31,8 +33,6 @@ Partial Class RptFormFacturaCuentasPorCobrar
         Me.chbxInicio = New System.Windows.Forms.CheckBox()
         Me.dtpFinal = New System.Windows.Forms.DateTimePicker()
         Me.dtpInicio = New System.Windows.Forms.DateTimePicker()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.cbCliente = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -42,7 +42,7 @@ Partial Class RptFormFacturaCuentasPorCobrar
         Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.ServerReport.BearerToken = Nothing
         Me.ReportViewer1.Size = New System.Drawing.Size(840, 338)
-        Me.ReportViewer1.TabIndex = 0
+        Me.ReportViewer1.TabIndex = 10
         '
         'GroupBox1
         '
@@ -62,12 +62,29 @@ Partial Class RptFormFacturaCuentasPorCobrar
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtros"
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(212, 19)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(39, 13)
+        Me.Label3.TabIndex = 8
+        Me.Label3.Text = "Cliente"
+        '
+        'cbCliente
+        '
+        Me.cbCliente.FormattingEnabled = True
+        Me.cbCliente.Location = New System.Drawing.Point(257, 17)
+        Me.cbCliente.Name = "cbCliente"
+        Me.cbCliente.Size = New System.Drawing.Size(310, 21)
+        Me.cbCliente.TabIndex = 4
+        '
         'btnBuscar
         '
         Me.btnBuscar.Location = New System.Drawing.Point(630, 21)
         Me.btnBuscar.Name = "btnBuscar"
         Me.btnBuscar.Size = New System.Drawing.Size(75, 23)
-        Me.btnBuscar.TabIndex = 6
+        Me.btnBuscar.TabIndex = 5
         Me.btnBuscar.Text = "Buscar"
         Me.btnBuscar.UseVisualStyleBackColor = True
         '
@@ -124,23 +141,6 @@ Partial Class RptFormFacturaCuentasPorCobrar
         Me.dtpInicio.Name = "dtpInicio"
         Me.dtpInicio.Size = New System.Drawing.Size(96, 20)
         Me.dtpInicio.TabIndex = 0
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(212, 19)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(39, 13)
-        Me.Label3.TabIndex = 8
-        Me.Label3.Text = "Cliente"
-        '
-        'cbCliente
-        '
-        Me.cbCliente.FormattingEnabled = True
-        Me.cbCliente.Location = New System.Drawing.Point(257, 17)
-        Me.cbCliente.Name = "cbCliente"
-        Me.cbCliente.Size = New System.Drawing.Size(310, 21)
-        Me.cbCliente.TabIndex = 7
         '
         'RptFormFacturaCuentasPorCobrar
         '
