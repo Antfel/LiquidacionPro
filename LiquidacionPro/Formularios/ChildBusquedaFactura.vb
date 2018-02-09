@@ -90,6 +90,7 @@ Public Class ChildBusquedaFactura
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim facturacionChild As New ChildFacturacion
         facturacionChild.MdiParent = Me.MdiParent
+        facturacionChild.setChildBusquedaFactura(Me)
         facturacionChild.Show()
         Me.Dispose()
     End Sub
@@ -105,6 +106,7 @@ Public Class ChildBusquedaFactura
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Dim facturaLibreChild As New ChildFacturaLibre
         facturaLibreChild.MdiParent = Me.MdiParent
+        facturaLibreChild.setChildBusquedaFactura(Me)
         facturaLibreChild.Show()
         Me.Dispose()
     End Sub
@@ -178,7 +180,7 @@ Public Class ChildBusquedaFactura
         Dim seleccion As DataGridViewRow = dgvFacturas.SelectedRows(0)
         Dim codigo As Integer = seleccion.Cells(0).Value
         Dim serie As String = seleccion.Cells(1).Value
-        Dim estado As Int16 = seleccion.Cells(14).Value
+        Dim estado As Int16 = seleccion.Cells(16).Value
 
 
         Dim sqlControl As New SQLControl

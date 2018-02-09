@@ -281,6 +281,8 @@ Public Class ChildFacturacion
         Else
             txtNroSerie.Text = "001"
             ObtenerCorrelativo()
+            txtMontoDetraccion.Text = "0.00"
+            txtPorcentajeDetraccion.Text = "0.00"
 
         End If
         cargarDireccionesPrevias()
@@ -561,7 +563,7 @@ Public Class ChildFacturacion
             childBusquedaFactura.cargarDatosFactura()
         Catch ex As SQLException
             sqlControl.rollbackTransaccion()
-            MessageBox.Show("Error al grabar datos de factura. " + ex.Message, "Grabar datos factura",
+            MessageBox.Show("Error al grabar datos de factura. SQL. " + ex.Message, "Grabar datos factura",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
         Catch ex As Exception
@@ -811,13 +813,13 @@ Public Class ChildFacturacion
                 Dim dataGuias As New DataTable
 
                 dataGuias = facturacionDao.getGuiasByDetalle(codigo_Detalle)
-
-                tbTransportista.DataSource = dataGuias
-
                 sqlControl.commitTransaction()
 
-            Catch ex As Exception
+                tbTransportista.DataSource = dataGuias
+            Catch ex As SqlException
                 sqlControl.rollbackTransaccion()
+            Catch ex As Exception
+
             Finally
                 Try
                     sqlControl.closeConexion()
@@ -1019,8 +1021,12 @@ Public Class ChildFacturacion
 
                 sqlControl.commitTransaction()
                 cbGuia.SelectedIndex = -1
-            Catch ex As Exception
+            Catch ex As SQLException
                 sqlControl.rollbackTransaccion()
+                MessageBox.Show("Error al agregar transportista. " + ex.Message, "Agregar transportista",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Catch ex As Exception
                 MessageBox.Show("Error al agregar transportista. " + ex.Message, "Agregar transportista",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
