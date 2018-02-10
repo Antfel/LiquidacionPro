@@ -61,6 +61,10 @@ Public Class ChildFacturacion
                 dtpPago.Value = CType(dtCabeceraFactura.Rows(0).Item(10), Date)
                 chbxPago.Checked = True
             End If
+            If dtCabeceraFactura.Rows(0).Item(14) IsNot DBNull.Value Then
+                cbBancoPago.Enabled = True
+                cbBancoPago.SelectedValue = CInt(dtCabeceraFactura.Rows(0).Item(14))
+            End If
             If dtCabeceraFactura.Rows(0).Item(11) IsNot DBNull.Value Then
                 dtpCompromiso.Enabled = True
                 dtpCompromiso.Value = CType(dtCabeceraFactura.Rows(0).Item(11), Date)
@@ -69,6 +73,7 @@ Public Class ChildFacturacion
 
             txtPorcentajeDetraccion.Text = dtCabeceraFactura.Rows(0).Item(12)
             txtMontoDetraccion.Text = dtCabeceraFactura.Rows(0).Item(13)
+
 
 
         Catch ex As SqlException
@@ -274,6 +279,7 @@ Public Class ChildFacturacion
         actualizarDatosCliente()
         cargarTiposDeServicio()
         actualizarDatosMoneda()
+        cargarBancos()
         If codigo_Factura <> -1 Then
             cargarDatosFactura()
             cargandoDatosActualizar = 0
@@ -294,6 +300,48 @@ Public Class ChildFacturacion
 
     End Sub
 
+    Sub cargarBancos()
+        Dim sqlControl As New SQLControl
+        sqlControl.setConnection()
+
+
+        Dim bancoDao As New BancoDAO(sqlControl)
+        Try
+            sqlControl.openConexion()
+            sqlControl.beginTransaction()
+            bancoDao.setDBcmd()
+
+            Dim dt As DataTable
+
+            dt = bancoDao.GetAllBanco()
+            sqlControl.commitTransaction()
+
+            With cbBancoPago
+                .DataSource = dt
+                .DisplayMember = "ABREVIATURA"
+                .ValueMember = "CODIGO_BANCO"
+                .SelectedIndex = -1
+            End With
+
+        Catch ex As SQLException
+            sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al cargar datos de Banco. " + ex.Message, "Cargar datos de Banco",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar datos de Banco. " + ex.Message, "Cargar datos de Banco",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.closeConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos de Banco",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnRazonSocial.Click
         obtenerDatosCliente()
     End Sub
@@ -505,7 +553,7 @@ Public Class ChildFacturacion
             sqlControl.beginTransaction()
             correlativoDao.setDBcmd()
 
-            Dim porcentaje_detraccion As Double, monto_detraccion As Double
+            Dim porcentaje_detraccion As Double, monto_detraccion As Double, banco As Integer
             If txtPorcentajeDetraccion.Text = Nothing Then
                 porcentaje_detraccion = 0
             Else
@@ -516,6 +564,12 @@ Public Class ChildFacturacion
                 monto_detraccion = 0
             Else
                 monto_detraccion = Double.Parse(txtMontoDetraccion.Text)
+            End If
+
+            If cbBancoPago.SelectedIndex < 0 Then
+                banco = -1
+            Else
+                banco = cbBancoPago.SelectedValue
             End If
 
             calcularDetraccion()
@@ -536,7 +590,7 @@ Public Class ChildFacturacion
                                              chbxPago.Checked, dtpPago.Value,
                                              chbxCompromiso.Checked, dtpCompromiso.Value,
                                              porcentaje_detraccion,
-                                                              monto_detraccion)
+                                                              monto_detraccion, banco)
                 'Fin - Ingreso de la Cabecera de la Factura
             Else
                 facturacionDao.UpdateFactura(codigo_Factura, txtNroSerie.Text,
@@ -549,7 +603,7 @@ Public Class ChildFacturacion
                                              chbxVencimiento.Checked, dtpVencimiento.Value,
                                              chbxPago.Checked, dtpPago.Value,
                                              chbxCompromiso.Checked, dtpCompromiso.Value,
-                                             porcentaje_detraccion, monto_detraccion)
+                                             porcentaje_detraccion, monto_detraccion, banco)
             End If
 
             sqlControl.commitTransaction()
@@ -1353,8 +1407,10 @@ Public Class ChildFacturacion
     Private Sub chbxPago_CheckedChanged(sender As Object, e As EventArgs) Handles chbxPago.CheckedChanged
         If chbxPago.Checked Then
             dtpPago.Enabled = True
+            cbBancoPago.Enabled = True
         Else
             dtpPago.Enabled = False
+            cbBancoPago.Enabled = False
         End If
     End Sub
 
@@ -1383,5 +1439,137 @@ Public Class ChildFacturacion
                 txtMontoDetraccion.Text = Math.Round(monto, 2)
             End If
         End If
+    End Sub
+
+    Private Sub Label20_Click(sender As Object, e As EventArgs) Handles Label20.Click
+
+    End Sub
+
+    Private Sub txtTotalFactura_TextChanged(sender As Object, e As EventArgs) Handles txtTotalFactura.TextChanged
+
+    End Sub
+
+    Private Sub txtIgv_TextChanged(sender As Object, e As EventArgs) Handles txtIgv.TextChanged
+
+    End Sub
+
+    Private Sub cbDestino_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbDestino.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cbOrigen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbOrigen.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub txtCantidad_TextChanged(sender As Object, e As EventArgs) Handles txtCantidad.TextChanged
+
+    End Sub
+
+    Private Sub Label30_Click(sender As Object, e As EventArgs) Handles Label30.Click
+
+    End Sub
+
+    Private Sub txtConfVehicular_TextChanged(sender As Object, e As EventArgs) Handles txtConfVehicular.TextChanged
+
+    End Sub
+
+    Private Sub Label29_Click(sender As Object, e As EventArgs) Handles Label29.Click
+
+    End Sub
+
+    Private Sub txtValorReferencial_TextChanged(sender As Object, e As EventArgs) Handles txtValorReferencial.TextChanged
+
+    End Sub
+
+    Private Sub Label28_Click(sender As Object, e As EventArgs) Handles Label28.Click
+
+    End Sub
+
+    Private Sub txtPrecioUnitario_TextChanged(sender As Object, e As EventArgs) Handles txtPrecioUnitario.TextChanged
+
+    End Sub
+
+    Private Sub Label26_Click(sender As Object, e As EventArgs) Handles Label26.Click
+
+    End Sub
+
+    Private Sub txtOrigen_TextChanged(sender As Object, e As EventArgs) Handles txtOrigen.TextChanged
+
+    End Sub
+
+    Private Sub Label24_Click(sender As Object, e As EventArgs) Handles Label24.Click
+
+    End Sub
+
+    Private Sub txtObservaciones_TextChanged(sender As Object, e As EventArgs) Handles txtObservaciones.TextChanged
+
+    End Sub
+
+    Private Sub Label27_Click(sender As Object, e As EventArgs) Handles Label27.Click
+
+    End Sub
+
+    Private Sub txtDestino_TextChanged(sender As Object, e As EventArgs) Handles txtDestino.TextChanged
+
+    End Sub
+
+    Private Sub Label25_Click(sender As Object, e As EventArgs) Handles Label25.Click
+
+    End Sub
+
+    Private Sub tbPlaca_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles tbPlaca.CellContentClick
+
+    End Sub
+
+    Private Sub cbTracto_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbTracto.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub Label18_Click(sender As Object, e As EventArgs) Handles Label18.Click
+
+    End Sub
+
+    Private Sub tbRemitente_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles tbRemitente.CellContentClick
+
+    End Sub
+
+    Private Sub txtRemitente_TextChanged(sender As Object, e As EventArgs) Handles txtRemitente.TextChanged
+
+    End Sub
+
+    Private Sub Label17_Click(sender As Object, e As EventArgs) Handles Label17.Click
+
+    End Sub
+
+    Private Sub cbGuia_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbGuia.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub tbTransportista_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles tbTransportista.CellContentClick
+
+    End Sub
+
+    Private Sub Label16_Click(sender As Object, e As EventArgs) Handles Label16.Click
+
+    End Sub
+
+    Private Sub txtPrecioFactura_TextChanged(sender As Object, e As EventArgs) Handles txtPrecioFactura.TextChanged
+
+    End Sub
+
+    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
+
+    End Sub
+
+    Private Sub txtDescripcionDetalle_TextChanged(sender As Object, e As EventArgs) Handles txtDescripcionDetalle.TextChanged
+
+    End Sub
+
+    Private Sub cbTipoServicio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbTipoServicio.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub Label21_Click(sender As Object, e As EventArgs) Handles Label21.Click
+
     End Sub
 End Class
