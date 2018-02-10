@@ -68,7 +68,7 @@ Public Class ChildLiquidacionCombustible
     Private Sub btnAgregarLiquidacion_Click(sender As Object, e As EventArgs) Handles btnAgregarLiquidacion.Click
 
         Dim tanque As Double, salida As Double, llegada As Double, recorrido As Double, llegaLima As Double, virtual As Double,
-            ajuste As Double, cargaDetalle As String, rutaDetalle As String, pesoDetalle As String
+            ajuste As Double, cargaDetalle As String, rutaDetalle As String, pesoDetalle As String, distancia As Double
 
         If txtTanque.Text = Nothing Then
             tanque = 0
@@ -130,6 +130,12 @@ Public Class ChildLiquidacionCombustible
             pesoDetalle = txtPesoDetalle.Text
         End If
 
+        If txtDistancia.Text = Nothing Then
+            distancia = 0
+        Else
+            distancia = Double.Parse(txtDistancia.Text)
+        End If
+
         Dim sqlControl As New SQLControl
         sqlControl.setConnection()
 
@@ -151,7 +157,7 @@ Public Class ChildLiquidacionCombustible
 
                 correla = liquidacionDao.UpdateLiquidacionCabeceraCombustible(CInt(txtCodigoLiquidacion.Text), tanque, salida, llegada,
                                                                       recorrido, llegaLima, virtual,
-                                                                      rutaDetalle, cargaDetalle, ajuste, pesoDetalle)
+                                                                      rutaDetalle, cargaDetalle, ajuste, pesoDetalle, distancia)
 
 
                 If correla >= 0 Then
@@ -267,6 +273,7 @@ Public Class ChildLiquidacionCombustible
             txtTotalGalones.Text = dt.Rows(0)(40)
 
             txtPesoDetalle.Text = dt.Rows(0)(41)
+            txtDistancia.Text = dt.Rows(0)(42)
 
             sqlControl.commitTransaction()
         Catch ex As SqlException

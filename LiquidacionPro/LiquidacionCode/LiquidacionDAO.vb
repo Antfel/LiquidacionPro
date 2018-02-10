@@ -122,7 +122,8 @@ Public Class LiquidacionDAO
                                     coalesce(a.CARGA_DETALLE,''),
                                     coalesce(a.AJUSTE_GALONES,0),
                                     coalesce(a.TOTAL_GALONES,0),
-                                    coalesce(a.PESO_DESCRIPCION,'') 
+                                    coalesce(a.PESO_DESCRIPCION,''),
+                                    coalesce(a.DISTANCIA,0) 
                         from		LIQUIDACION a
                         LEFT JOIN	UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
                         LEFT JOIN	UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD
@@ -286,7 +287,8 @@ Public Class LiquidacionDAO
 
     Public Function UpdateLiquidacionCabeceraCombustible(codigo As String, tanque As Double, salida As Double, llegada As Double,
                                                  recorrido As Double, galonesLlega As Double, virtual As Double,
-                                                 rutaDetalle As String, cargaDetalle As String, ajuste As Double, pesoDescripcion As String) As Integer
+                                                 rutaDetalle As String, cargaDetalle As String, ajuste As Double, pesoDescripcion As String,
+                                                         distancia As Double) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
@@ -300,6 +302,7 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@CARGA_DETALLE", cargaDetalle))
         params.Add(New SqlParameter("@AJUSTE_GALONES", ajuste))
         params.Add(New SqlParameter("@PESO_DESCRIPCION", pesoDescripcion))
+        params.Add(New SqlParameter("@DISTANCIA", distancia))
 
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE updateLiquidacionCabeceraCombustible  
@@ -313,7 +316,8 @@ Public Class LiquidacionDAO
                                         @RUTA_DETALLE,
                                         @CARGA_DETALLE,
                                         @AJUSTE_GALONES,
-                                        @PESO_DESCRIPCION 
+                                        @PESO_DESCRIPCION,
+                                        @DISTANCIA 
                                         ", params)
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
@@ -821,7 +825,8 @@ Public Class LiquidacionDAO
 		                                    a.CONSUMO_VIRTUAL_LIQUIDACION,
 		                                    a.CONSUMO_FISICO_LIQUIDACION,
                                             (CASE WHEN a.AJUSTE_GALONES<0 THEN (a.AJUSTE_GALONES*-1) ELSE COALESCE(a.AJUSTE_GALONES,0) END) AJUSTE_GALONES,
-                                            a.TOTAL_GALONES 
+                                            a.TOTAL_GALONES,
+                                            a.DISTANCIA 
                                     FROM	LIQUIDACION a 
                                     LEFT	JOIN UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
                                     LEFT	JOIN UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD

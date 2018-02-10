@@ -1616,7 +1616,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -1719,10 +1718,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=(Fields!CONSUMO_FISICO_LIQUIDACION.Value-Fields!CONSUMO_VIRTUAL_LIQUIDACION.Value)*100/Fields!CONSUMO_VIRTUAL_LIQUIDACION.Value</Value>
+                              <Value>=Round((Fields!CONSUMO_FISICO_LIQUIDACION.Value-Fields!CONSUMO_VIRTUAL_LIQUIDACION.Value)*100/Fields!CONSUMO_VIRTUAL_LIQUIDACION.Value, System.MidPointRounding.AwayFromZero)</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
-                                <Format>#,0.00;(#,0.00)</Format>
+                                <Format>#,0;(#,0)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1743,6 +1742,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -2002,6 +2002,75 @@
                 </TablixCell>
               </TablixCells>
             </TablixRow>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox7">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>DISTANCIA</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox7</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="DISTANCIA">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!DISTANCIA.Value</Value>
+                              <Style>
+                                <Format>0;(0)</Format>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>DISTANCIA</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
@@ -2018,6 +2087,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixMember>
           </TablixMembers>
@@ -2025,7 +2095,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>10.05099cm</Top>
         <Left>10.78907cm</Left>
-        <Height>1.8cm</Height>
+        <Height>2.4cm</Height>
         <Width>5.4624cm</Width>
         <ZIndex>12</ZIndex>
         <Style>
@@ -2306,6 +2376,10 @@
         </Field>
         <Field Name="TOTAL_GALONES">
           <DataField>TOTAL_GALONES</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="DISTANCIA">
+          <DataField>DISTANCIA</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>

@@ -3142,6 +3142,8 @@ Partial Public Class rptLiquidaciones
         
         Private columnTOTAL_GALONES As Global.System.Data.DataColumn
         
+        Private columnDISTANCIA As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -3330,6 +3332,14 @@ Partial Public Class rptLiquidaciones
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DISTANCIAColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDISTANCIA
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -3385,9 +3395,10 @@ Partial Public Class rptLiquidaciones
                     ByVal CONSUMO_VIRTUAL_LIQUIDACION As Decimal,  _
                     ByVal CONSUMO_FISICO_LIQUIDACION As Decimal,  _
                     ByVal AJUSTE_GALONES As Decimal,  _
-                    ByVal TOTAL_GALONES As Decimal) As dtRptLiquidacionCombustiblePrincipalRow
+                    ByVal TOTAL_GALONES As Decimal,  _
+                    ByVal DISTANCIA As Decimal) As dtRptLiquidacionCombustiblePrincipalRow
             Dim rowdtRptLiquidacionCombustiblePrincipalRow As dtRptLiquidacionCombustiblePrincipalRow = CType(Me.NewRow,dtRptLiquidacionCombustiblePrincipalRow)
-            Dim columnValuesArray() As Object = New Object() {CODIGO_LIQUIDACION, FECHA_SALIDA, FECHA_LLEGADA, CODIGO_UNIDAD_TRACTO, TRACTO, CODIGO_UNIDAD_SEMITRAILER, SEMITRAILER, CODIGO_TRABAJADOR, TRABAJADOR, RUTA_DETALLE, CARGA_DETALLE, PESO_DESCRIPCION, KM_SALIDA, KM_LLEGADA, KM_RECORRIDO, CONSUMO_VIRTUAL_LIQUIDACION, CONSUMO_FISICO_LIQUIDACION, AJUSTE_GALONES, TOTAL_GALONES}
+            Dim columnValuesArray() As Object = New Object() {CODIGO_LIQUIDACION, FECHA_SALIDA, FECHA_LLEGADA, CODIGO_UNIDAD_TRACTO, TRACTO, CODIGO_UNIDAD_SEMITRAILER, SEMITRAILER, CODIGO_TRABAJADOR, TRABAJADOR, RUTA_DETALLE, CARGA_DETALLE, PESO_DESCRIPCION, KM_SALIDA, KM_LLEGADA, KM_RECORRIDO, CONSUMO_VIRTUAL_LIQUIDACION, CONSUMO_FISICO_LIQUIDACION, AJUSTE_GALONES, TOTAL_GALONES, DISTANCIA}
             rowdtRptLiquidacionCombustiblePrincipalRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdtRptLiquidacionCombustiblePrincipalRow)
             Return rowdtRptLiquidacionCombustiblePrincipalRow
@@ -3429,6 +3440,7 @@ Partial Public Class rptLiquidaciones
             Me.columnCONSUMO_FISICO_LIQUIDACION = MyBase.Columns("CONSUMO_FISICO_LIQUIDACION")
             Me.columnAJUSTE_GALONES = MyBase.Columns("AJUSTE_GALONES")
             Me.columnTOTAL_GALONES = MyBase.Columns("TOTAL_GALONES")
+            Me.columnDISTANCIA = MyBase.Columns("DISTANCIA")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3472,6 +3484,8 @@ Partial Public Class rptLiquidaciones
             MyBase.Columns.Add(Me.columnAJUSTE_GALONES)
             Me.columnTOTAL_GALONES = New Global.System.Data.DataColumn("TOTAL_GALONES", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTOTAL_GALONES)
+            Me.columnDISTANCIA = New Global.System.Data.DataColumn("DISTANCIA", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDISTANCIA)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9835,6 +9849,22 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DISTANCIA() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionCombustiblePrincipal.DISTANCIAColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'DISTANCIA' de la tabla 'dtRptLiquidacionCombustiblePrinci"& _ 
+                            "pal' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionCombustiblePrincipal.DISTANCIAColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsCODIGO_LIQUIDACIONNull() As Boolean
             Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.CODIGO_LIQUIDACIONColumn)
         End Function
@@ -10059,6 +10089,18 @@ Partial Public Class rptLiquidaciones
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetTOTAL_GALONESNull()
             Me(Me.tabledtRptLiquidacionCombustiblePrincipal.TOTAL_GALONESColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDISTANCIANull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionCombustiblePrincipal.DISTANCIAColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDISTANCIANull()
+            Me(Me.tabledtRptLiquidacionCombustiblePrincipal.DISTANCIAColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
