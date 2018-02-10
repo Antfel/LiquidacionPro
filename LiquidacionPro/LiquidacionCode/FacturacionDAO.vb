@@ -162,7 +162,7 @@ Public Class FacturacionDAO
 
     End Function
 
-    Public Function InsertFactura(serie_factura As String, numero_factura As String, codigo_cliente As Integer, total_factura As Long,
+    Public Function InsertFactura(serie_factura As String, numero_factura As String, codigo_cliente As Integer, total_factura As Double,
                              codigo_moneda As Integer, codigo_estado As Integer, fecha_factura As Date, tipo_factura As Integer,
                                   chbxRecep As Boolean, fecha_recepcion As Date, chbxVencimiento As Boolean, fecha_vencimiento As Date,
                              chbxPago As Boolean, fecha_pago As Date, chbxCompromiso As Boolean, fecha_compromiso As Date, porcentaje_detraccion As Double,

@@ -642,8 +642,12 @@ Public Class ChildFacturacion
 
             sqlControl.commitTransaction()
             btnImprimir.Enabled = True
-        Catch ex As Exception
+        Catch ex As SQLException
             sqlControl.rollbackTransaccion()
+            MessageBox.Show("Error al guardar datos de detalle factura. " + ex.Message, "Guardar datos de detalle factura",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
             MessageBox.Show("Error al guardar datos de detalle factura. " + ex.Message, "Guardar datos de detalle factura",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
