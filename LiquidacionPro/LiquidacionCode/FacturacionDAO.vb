@@ -107,7 +107,8 @@ Public Class FacturacionDAO
                                             "FECHA_PAGO, " +
                                             "FECHA_COMPROMISO, " +
                                             "coalesce(PORCENTAJE_DETRACCION,0), " +
-                                            "coalesce(MONTO_DETRACCION,0)  " +
+                                            "coalesce(MONTO_DETRACCION,0),  " +
+                                            "CODIGO_BANCO  " +
                                             "from factura " +
                                             "where CODIGO_FACTURA=" + CStr(codigo), Nothing)
     End Function
@@ -166,7 +167,7 @@ Public Class FacturacionDAO
                              codigo_moneda As Integer, codigo_estado As Integer, fecha_factura As Date, tipo_factura As Integer,
                                   chbxRecep As Boolean, fecha_recepcion As Date, chbxVencimiento As Boolean, fecha_vencimiento As Date,
                              chbxPago As Boolean, fecha_pago As Date, chbxCompromiso As Boolean, fecha_compromiso As Date, porcentaje_detraccion As Double,
-                                  monto_detraccion As Double) As Integer
+                                  monto_detraccion As Double, banco As Integer) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@SERIE_FACTURA", serie_factura))
@@ -206,6 +207,12 @@ Public Class FacturacionDAO
 
         params.Add(New SqlParameter("@MONTO_DETRACCION", monto_detraccion))
 
+        If banco = -1 Then
+            params.Add(New SqlParameter("@CODIGO_BANCO", DBNull.Value))
+        Else
+            params.Add(New SqlParameter("@CODIGO_BANCO", banco))
+        End If
+
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE insertFacturaCabecera " +
                                         "@SERIE_FACTURA," +
@@ -221,7 +228,8 @@ Public Class FacturacionDAO
                                         "@FECHA_PAGO, " +
                                         "@FECHA_COMPROMISO, " +
                                         "@PORCENTAJE_DETRACCION, " +
-                                        "@MONTO_DETRACCION ", params)
+                                        "@MONTO_DETRACCION, " +
+                                        "@CODIGO_BANCO ", params)
         If dt.Rows.Count > 0 Then
             Return CInt(dt.Rows.Item(0).Item(0))
         Else
@@ -233,7 +241,7 @@ Public Class FacturacionDAO
                              total_factura As Long, codigo_moneda As Integer, codigo_estado As Integer, fecha_factura As Date,
                              chbxRecep As Boolean, fecha_recepcion As Date, chbxVencimiento As Boolean, fecha_vencimiento As Date,
                              chbxPago As Boolean, fecha_pago As Date, chbxCompromiso As Boolean, fecha_compromiso As Date, porcentaje_detraccion As Double,
-                             monto_detraccion As Double)
+                             monto_detraccion As Double, banco As Integer)
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
@@ -274,6 +282,12 @@ Public Class FacturacionDAO
 
         params.Add(New SqlParameter("@MONTO_DETRACCION", monto_detraccion))
 
+        If banco = -1 Then
+            params.Add(New SqlParameter("@CODIGO_BANCO", DBNull.Value))
+        Else
+            params.Add(New SqlParameter("@CODIGO_BANCO", banco))
+        End If
+
         sqlControl.ExecQuery("EXECUTE updateFacturaCabecera " +
                                         "@CODIGO_FACTURA," +
                                         "@SERIE_FACTURA," +
@@ -288,7 +302,8 @@ Public Class FacturacionDAO
                                         "@FECHA_PAGO, " +
                                         "@FECHA_COMPROMISO, " +
                                         "@PORCENTAJE_DETRACCION," +
-                                        "@MONTO_DETRACCION ", params)
+                                        "@MONTO_DETRACCION, " +
+                                        "@CODIGO_BANCO ", params)
     End Sub
 
     Public Sub UpdateFacturaEstado(codigo_factura As Integer, codigo_estado As Integer)

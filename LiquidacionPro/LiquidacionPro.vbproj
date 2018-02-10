@@ -269,6 +269,7 @@
     <Compile Include="Formularios\RptPrintFacturaLibre.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LiquidacionCode\BancoDAO.vb" />
     <Compile Include="LiquidacionCode\CargoTrabajadorDAO.vb" />
     <Compile Include="LiquidacionCode\Correlativo_NumeroDAO.vb" />
     <Compile Include="LiquidacionCode\EstadoDAO.vb" />

@@ -77,6 +77,8 @@ Partial Class ChildFacturaLibre
         Me.Label18 = New System.Windows.Forms.Label()
         Me.txtMontoDetraccion = New System.Windows.Forms.TextBox()
         Me.txtPorcentajeDetraccion = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.cbBancoPago = New System.Windows.Forms.ComboBox()
         CType(Me.dgvDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -94,7 +96,7 @@ Partial Class ChildFacturaLibre
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.DodgerBlue
-        Me.Panel2.Location = New System.Drawing.Point(31, 219)
+        Me.Panel2.Location = New System.Drawing.Point(31, 235)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1253, 3)
         Me.Panel2.TabIndex = 30
@@ -205,7 +207,7 @@ Partial Class ChildFacturaLibre
         Me.dgvDetalle.AllowUserToDeleteRows = False
         Me.dgvDetalle.AllowUserToResizeRows = False
         Me.dgvDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvDetalle.Location = New System.Drawing.Point(214, 302)
+        Me.dgvDetalle.Location = New System.Drawing.Point(214, 318)
         Me.dgvDetalle.MultiSelect = False
         Me.dgvDetalle.Name = "dgvDetalle"
         Me.dgvDetalle.ReadOnly = True
@@ -216,28 +218,28 @@ Partial Class ChildFacturaLibre
         '
         'txtCantidad
         '
-        Me.txtCantidad.Location = New System.Drawing.Point(214, 264)
+        Me.txtCantidad.Location = New System.Drawing.Point(214, 280)
         Me.txtCantidad.Name = "txtCantidad"
         Me.txtCantidad.Size = New System.Drawing.Size(100, 20)
         Me.txtCantidad.TabIndex = 7
         '
         'txtDescripcion
         '
-        Me.txtDescripcion.Location = New System.Drawing.Point(337, 264)
+        Me.txtDescripcion.Location = New System.Drawing.Point(337, 280)
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(587, 20)
         Me.txtDescripcion.TabIndex = 8
         '
         'txtPrecioUnitario
         '
-        Me.txtPrecioUnitario.Location = New System.Drawing.Point(939, 264)
+        Me.txtPrecioUnitario.Location = New System.Drawing.Point(939, 280)
         Me.txtPrecioUnitario.Name = "txtPrecioUnitario"
         Me.txtPrecioUnitario.Size = New System.Drawing.Size(100, 20)
         Me.txtPrecioUnitario.TabIndex = 9
         '
         'txtSubtotal
         '
-        Me.txtSubtotal.Location = New System.Drawing.Point(939, 477)
+        Me.txtSubtotal.Location = New System.Drawing.Point(939, 493)
         Me.txtSubtotal.Name = "txtSubtotal"
         Me.txtSubtotal.ReadOnly = True
         Me.txtSubtotal.Size = New System.Drawing.Size(100, 20)
@@ -245,7 +247,7 @@ Partial Class ChildFacturaLibre
         '
         'txtIGV
         '
-        Me.txtIGV.Location = New System.Drawing.Point(939, 503)
+        Me.txtIGV.Location = New System.Drawing.Point(939, 519)
         Me.txtIGV.Name = "txtIGV"
         Me.txtIGV.ReadOnly = True
         Me.txtIGV.Size = New System.Drawing.Size(100, 20)
@@ -253,7 +255,7 @@ Partial Class ChildFacturaLibre
         '
         'txtTotal
         '
-        Me.txtTotal.Location = New System.Drawing.Point(939, 529)
+        Me.txtTotal.Location = New System.Drawing.Point(939, 545)
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.ReadOnly = True
         Me.txtTotal.Size = New System.Drawing.Size(100, 20)
@@ -262,7 +264,7 @@ Partial Class ChildFacturaLibre
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(214, 245)
+        Me.Label2.Location = New System.Drawing.Point(214, 261)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(49, 13)
         Me.Label2.TabIndex = 38
@@ -271,7 +273,7 @@ Partial Class ChildFacturaLibre
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(337, 244)
+        Me.Label9.Location = New System.Drawing.Point(337, 260)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(63, 13)
         Me.Label9.TabIndex = 39
@@ -280,7 +282,7 @@ Partial Class ChildFacturaLibre
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(939, 243)
+        Me.Label10.Location = New System.Drawing.Point(939, 259)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(76, 13)
         Me.Label10.TabIndex = 40
@@ -289,7 +291,7 @@ Partial Class ChildFacturaLibre
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(863, 480)
+        Me.Label11.Location = New System.Drawing.Point(863, 496)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(46, 13)
         Me.Label11.TabIndex = 41
@@ -298,7 +300,7 @@ Partial Class ChildFacturaLibre
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(884, 506)
+        Me.Label12.Location = New System.Drawing.Point(884, 522)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(25, 13)
         Me.Label12.TabIndex = 42
@@ -307,7 +309,7 @@ Partial Class ChildFacturaLibre
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(878, 532)
+        Me.Label13.Location = New System.Drawing.Point(878, 548)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(31, 13)
         Me.Label13.TabIndex = 43
@@ -315,7 +317,7 @@ Partial Class ChildFacturaLibre
         '
         'btnGrabar
         '
-        Me.btnGrabar.Location = New System.Drawing.Point(1074, 264)
+        Me.btnGrabar.Location = New System.Drawing.Point(1074, 280)
         Me.btnGrabar.Name = "btnGrabar"
         Me.btnGrabar.Size = New System.Drawing.Size(75, 23)
         Me.btnGrabar.TabIndex = 10
@@ -324,7 +326,7 @@ Partial Class ChildFacturaLibre
         '
         'btnEliminar
         '
-        Me.btnEliminar.Location = New System.Drawing.Point(1074, 323)
+        Me.btnEliminar.Location = New System.Drawing.Point(1074, 339)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(75, 23)
         Me.btnEliminar.TabIndex = 12
@@ -333,7 +335,7 @@ Partial Class ChildFacturaLibre
         '
         'btnNuevo
         '
-        Me.btnNuevo.Location = New System.Drawing.Point(1074, 294)
+        Me.btnNuevo.Location = New System.Drawing.Point(1074, 310)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
         Me.btnNuevo.TabIndex = 11
@@ -342,7 +344,7 @@ Partial Class ChildFacturaLibre
         '
         'btnImprimir
         '
-        Me.btnImprimir.Location = New System.Drawing.Point(456, 482)
+        Me.btnImprimir.Location = New System.Drawing.Point(456, 498)
         Me.btnImprimir.Name = "btnImprimir"
         Me.btnImprimir.Size = New System.Drawing.Size(203, 61)
         Me.btnImprimir.TabIndex = 44
@@ -398,6 +400,8 @@ Partial Class ChildFacturaLibre
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label23)
+        Me.GroupBox1.Controls.Add(Me.cbBancoPago)
         Me.GroupBox1.Controls.Add(Me.chbxCompromiso)
         Me.GroupBox1.Controls.Add(Me.Label17)
         Me.GroupBox1.Controls.Add(Me.dtpCompromiso)
@@ -412,7 +416,7 @@ Partial Class ChildFacturaLibre
         Me.GroupBox1.Controls.Add(Me.dtpRecepcion)
         Me.GroupBox1.Location = New System.Drawing.Point(27, 152)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(780, 53)
+        Me.GroupBox1.Size = New System.Drawing.Size(780, 77)
         Me.GroupBox1.TabIndex = 1039
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Fechas"
@@ -447,7 +451,7 @@ Partial Class ChildFacturaLibre
         'chbxPago
         '
         Me.chbxPago.AutoSize = True
-        Me.chbxPago.Location = New System.Drawing.Point(543, 26)
+        Me.chbxPago.Location = New System.Drawing.Point(173, 53)
         Me.chbxPago.Name = "chbxPago"
         Me.chbxPago.Size = New System.Drawing.Size(15, 14)
         Me.chbxPago.TabIndex = 1040
@@ -474,7 +478,7 @@ Partial Class ChildFacturaLibre
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(402, 25)
+        Me.Label14.Location = New System.Drawing.Point(34, 53)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(32, 13)
         Me.Label14.TabIndex = 5
@@ -502,7 +506,7 @@ Partial Class ChildFacturaLibre
         '
         Me.dtpPago.Enabled = False
         Me.dtpPago.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpPago.Location = New System.Drawing.Point(440, 23)
+        Me.dtpPago.Location = New System.Drawing.Point(72, 51)
         Me.dtpPago.Name = "dtpPago"
         Me.dtpPago.Size = New System.Drawing.Size(97, 20)
         Me.dtpPago.TabIndex = 2
@@ -527,7 +531,7 @@ Partial Class ChildFacturaLibre
         '
         'txtCodigoDetalle
         '
-        Me.txtCodigoDetalle.Location = New System.Drawing.Point(131, 264)
+        Me.txtCodigoDetalle.Location = New System.Drawing.Point(131, 280)
         Me.txtCodigoDetalle.Name = "txtCodigoDetalle"
         Me.txtCodigoDetalle.Size = New System.Drawing.Size(46, 20)
         Me.txtCodigoDetalle.TabIndex = 1040
@@ -578,6 +582,24 @@ Partial Class ChildFacturaLibre
         Me.txtPorcentajeDetraccion.Name = "txtPorcentajeDetraccion"
         Me.txtPorcentajeDetraccion.Size = New System.Drawing.Size(77, 20)
         Me.txtPorcentajeDetraccion.TabIndex = 0
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(201, 51)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(38, 13)
+        Me.Label23.TabIndex = 1048
+        Me.Label23.Text = "Banco"
+        '
+        'cbBancoPago
+        '
+        Me.cbBancoPago.Enabled = False
+        Me.cbBancoPago.FormattingEnabled = True
+        Me.cbBancoPago.Location = New System.Drawing.Point(269, 51)
+        Me.cbBancoPago.Name = "cbBancoPago"
+        Me.cbBancoPago.Size = New System.Drawing.Size(172, 21)
+        Me.cbBancoPago.TabIndex = 1047
         '
         'ChildFacturaLibre
         '
@@ -691,4 +713,6 @@ Partial Class ChildFacturaLibre
     Friend WithEvents Label18 As Label
     Friend WithEvents txtMontoDetraccion As TextBox
     Friend WithEvents txtPorcentajeDetraccion As TextBox
+    Friend WithEvents Label23 As Label
+    Friend WithEvents cbBancoPago As ComboBox
 End Class

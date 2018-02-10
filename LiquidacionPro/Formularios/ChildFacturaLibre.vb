@@ -258,7 +258,7 @@ Public Class ChildFacturaLibre
             sqlControl.beginTransaction()
             correlativoDao.setDBcmd()
 
-            Dim porcentaje_detraccion As Double, monto_detraccion As Double
+            Dim porcentaje_detraccion As Double, monto_detraccion As Double, banco As Integer
             If txtPorcentajeDetraccion.Text = Nothing Then
                 porcentaje_detraccion = 0
             Else
@@ -269,6 +269,12 @@ Public Class ChildFacturaLibre
                 monto_detraccion = 0
             Else
                 monto_detraccion = Double.Parse(txtMontoDetraccion.Text)
+            End If
+
+            If cbBancoPago.SelectedIndex < 0 Then
+                banco = -1
+            Else
+                banco = cbBancoPago.SelectedValue
             End If
 
             calcularDetraccion()
@@ -293,7 +299,7 @@ Public Class ChildFacturaLibre
                                          chbxVencimiento.Checked, dtpVencimiento.Value,
                                          chbxPago.Checked, dtpPago.Value,
                                          chbxCompromiso.Checked, dtpCompromiso.Value,
-                                                              porcentaje_detraccion, monto_detraccion)
+                                                              porcentaje_detraccion, monto_detraccion, banco)
                 'Fin - Ingreso de la Cabecera de la Factura
             Else
                 facturacionDao.UpdateFactura(codigo_Factura, txtNroSerie.Text,
@@ -307,7 +313,7 @@ Public Class ChildFacturaLibre
                                          chbxVencimiento.Checked, dtpVencimiento.Value,
                                          chbxPago.Checked, dtpPago.Value,
                                          chbxCompromiso.Checked, dtpCompromiso.Value,
-                                             porcentaje_detraccion, monto_detraccion)
+                                             porcentaje_detraccion, monto_detraccion, banco)
             End If
 
 
@@ -509,6 +515,12 @@ Public Class ChildFacturaLibre
                 dtpPago.Value = CType(dtCabeceraFactura.Rows(0).Item(10), Date)
                 chbxPago.Checked = True
             End If
+
+            If dtCabeceraFactura.Rows(0).Item(14) IsNot DBNull.Value Then
+                cbBancoPago.Enabled = True
+                cbBancoPago.SelectedValue = CInt(dtCabeceraFactura.Rows(0).Item(14))
+            End If
+
             If dtCabeceraFactura.Rows(0).Item(11) IsNot DBNull.Value Then
                 dtpCompromiso.Enabled = True
                 dtpCompromiso.Value = CType(dtCabeceraFactura.Rows(0).Item(11), Date)
@@ -683,8 +695,10 @@ Public Class ChildFacturaLibre
     Private Sub chbxPago_CheckedChanged(sender As Object, e As EventArgs) Handles chbxPago.CheckedChanged
         If chbxPago.Checked Then
             dtpPago.Enabled = True
+            cbBancoPago.Enabled = True
         Else
             dtpPago.Enabled = False
+            cbBancoPago.Enabled = False
         End If
     End Sub
 
