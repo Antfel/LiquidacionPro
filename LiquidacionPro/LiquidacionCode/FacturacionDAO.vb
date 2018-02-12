@@ -53,8 +53,8 @@ Public Class FacturacionDAO
                                                 convert(varchar(10),a.FECHA_VENCIMIENTO,103) 'FECHA VENCIMIENTO',
                                                 convert(varchar(10),a.FECHA_PAGO,103)  'FECHA PAGO',
                                                 a.CODIGO_ESTADO,
-                                                convert(varchar(10),a.FECHA_COMPROMISO,103)  'FECHA COMPROMISO' 
-                                                 
+                                                convert(varchar(10),a.FECHA_COMPROMISO,103)  'FECHA COMPROMISO',
+                                                f.NOMBRE_BANCO  'NOMBRE BANCO' 
                                     from FACTURA a 
                                     LEFT JOIN CLIENTE b 
                                     on a.CODIGO_CLIENTE=b.CODIGO_CLIENTE
@@ -64,6 +64,7 @@ Public Class FacturacionDAO
                                     on a.CODIGO_ESTADO = d.CODIGO_ESTADO
                                     LEFT JOIN ESTADO e
                                     on a.TIPO_FACTURA=e.CODIGO_ESTADO and e.TIPO_ESTADO=7 
+                                    LEFT JOIN BANCO f on f.CODIGO_BANCO=a.CODIGO_BANCO  
                                     order by a.NUMERO_FACTURA", Nothing)
     End Function
 
