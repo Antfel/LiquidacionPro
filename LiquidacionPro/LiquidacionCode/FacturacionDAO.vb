@@ -45,7 +45,7 @@ Public Class FacturacionDAO
 	                                            c.DETALLE_MONEDA 'MONEDA',
                                                 cast(round(a.TOTAL_FACTURA,2) as numeric(9,2)) 'SUB TOTAL',
                                                 cast(round(a.TOTAL_FACTURA*0.18,2) as numeric(9,2)) 'IGV',
-	                                            cast(round(a.TOTAL_FACTURA*1.18,1) as numeric(9,2)) 'TOTAL FACTURA',
+	                                            cast(round(a.TOTAL_FACTURA*1.18,2) as numeric(9,2)) 'TOTAL FACTURA',
 	                                            d.DETALLE_ESTADO 'ESTADO FACTURA',
                                                 a.TIPO_FACTURA 'CODIGO TIPO',
                                                 e.DETALLE_ESTADO 'TIPO FACTURA',
