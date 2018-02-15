@@ -109,4 +109,9 @@ Public Class MDIPrincipal
         Dim rptFormFacturaCuentasPorCobrar As New RptFormFacturaCuentasPorCobrar()
         rptFormFacturaCuentasPorCobrar.Show()
     End Sub
+
+    Private Sub TEstToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TEstToolStripMenuItem.Click
+        Dim rptFormFacturaCuentasPorCobrar As New ChildLiquidacion()
+        rptFormFacturaCuentasPorCobrar.Show()
+    End Sub
 End Class
