@@ -299,4 +299,33 @@ Public Class GuiaDAO
                                     ORDER	BY a.DETALLE_GUIA", params)
     End Function
 
+    Public Function getRptAllGuia() As DataTable
+        Return sqlControl.ExecQuery("select	a.CODIGO_GUIA CODIGO,
+		                                    a.DETALLE_GUIA 'DETALLE',
+		                                    a.CODIGO_ESTADO,
+		                                    a.FECHA_LIQUIDACION 'FECHA LIQUIDACION',
+		                                    a.FECHA_FACTURACION 'FECHA FACTURACION',
+		                                    b.DETALLE_ESTADO 'ESTADO',
+		                                    convert(varchar(10),a.FECHA_GUIA,103) 'FECHA GUIA',
+		                                    a.CODIGO_UNIDAD_TRACTO,
+		                                    c.PLACA_UNIDAD 'TRACTO',
+		                                    a.CODIGO_UNIDAD_SEMITRAILER,
+		                                    d.PLACA_UNIDAD 'SEMI TRAILER',
+		                                    a.CODIGO_TRABAJADOR,
+		                                    coalesce(e.APELLIDO_PATERNO_TRABAJADOR,'')+' '+coalesce(e.APELLIDO_MATERNO_TRABAJADOR,'')+' '+coalesce(e.NOMBRES_TRABAJADOR,'') 'TRABAJADOR',
+		                                    a.CARGA,
+		                                    a.NA,
+		                                    a.CANTIDAD,
+		                                    a.CODIGO_CLIENTE,
+		                                    f.RAZON_CLIENTE 'RAZON SOCIAL',
+		                                    a.ORIGEN,
+		                                    a.DESTINO 
+                                    from	GUIA_TRANSPORTISTA a
+                                    left	join ESTADO b on a.CODIGO_ESTADO=b.CODIGO_ESTADO and TIPO_ESTADO=3
+                                    left	join UNIDAD c on a.CODIGO_UNIDAD_TRACTO=c.CODIGO_UNIDAD
+                                    left	join unidad d on a.CODIGO_UNIDAD_SEMITRAILER=d.CODIGO_UNIDAD
+                                    left	join TRABAJADOR e on e.CODIGO_TRABAJADOR=a.CODIGO_TRABAJADOR
+                                    left	join CLIENTE f on a.CODIGO_CLIENTE=f.CODIGO_CLIENTE", Nothing)
+
+    End Function
 End Class
