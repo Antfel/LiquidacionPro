@@ -199,8 +199,10 @@ Partial Class ChildLiquidacion
         Me.dgvLiquidacion.AllowUserToOrderColumns = True
         Me.dgvLiquidacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvLiquidacion.Location = New System.Drawing.Point(28, 296)
+        Me.dgvLiquidacion.MultiSelect = False
         Me.dgvLiquidacion.Name = "dgvLiquidacion"
         Me.dgvLiquidacion.ReadOnly = True
+        Me.dgvLiquidacion.RowHeadersVisible = False
         Me.dgvLiquidacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvLiquidacion.Size = New System.Drawing.Size(977, 212)
         Me.dgvLiquidacion.TabIndex = 83

@@ -188,9 +188,6 @@ Public Class ChildLiquidacion
             dgvLiquidacion.Columns(8).Visible = False
             dgvLiquidacion.Columns(23).Visible = False
 
-            dgvLiquidacion.MultiSelect = False
-            dgvLiquidacion.RowHeadersVisible = False
-
         Catch ex As Exception
             sqlControl.rollbackTransaccion()
         Finally
