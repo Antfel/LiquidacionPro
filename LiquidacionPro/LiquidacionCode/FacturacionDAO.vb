@@ -910,4 +910,20 @@ Public Class FacturacionDAO
                                     ORDER	BY CODIGO_CLIENTE,SERIE_FACTURA,NUMERO_FACTURA",
                                      params)
     End Function
+
+    Public Function getNroFacturasByActualizado(actualizado As Integer) As DataTable
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@ACTUALIZADO", actualizado))
+
+        Return sqlControl.ExecQuery("select '0'+SERIE_FACTURA+'-'+substring(NUMERO_FACTURA,3,10) NRO_FACTURA 
+                                    from    FACTURA 
+                                    where   coalesce(ACTUALIZADO,0)=@ACTUALIZADO
+                                    and     CODIGO_ESTADO=16",
+                                     params)
+    End Function
+
+    Public Function ejecutarQueryBatch(queryBatch As String) As DataTable
+        Return sqlControl.ExecQuery(queryBatch, Nothing)
+    End Function
 End Class

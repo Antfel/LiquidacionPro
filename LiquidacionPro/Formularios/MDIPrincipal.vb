@@ -111,7 +111,24 @@ Public Class MDIPrincipal
     End Sub
 
     Private Sub TEstToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TEstToolStripMenuItem.Click
-        Dim rptFormFacturaCuentasPorCobrar As New ChildLiquidacion()
-        rptFormFacturaCuentasPorCobrar.Show()
+
+    End Sub
+
+    Private Sub ComunicaciónBDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ComunicaciónBDToolStripMenuItem.Click
+        Dim configuracionForm As New ConfiguracionForm
+        configuracionForm.ShowDialog()
+
+        Dim cadena As String = configuracionForm.getValor
+
+        If cadena = "sistemas123" Then
+            Dim moduloComunicacionBD As New ModuloComunicacionBD()
+            moduloComunicacionBD.MdiParent = Me
+            moduloComunicacionBD.Show()
+        Else
+            MessageBox.Show("No tiene acceso.", "Validación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
+        End If
+
     End Sub
 End Class

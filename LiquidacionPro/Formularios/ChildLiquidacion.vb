@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports Npgsql
 
 Public Class ChildLiquidacion
 
@@ -501,28 +502,21 @@ Public Class ChildLiquidacion
 
         Try
             Dim b As Boolean = sqlControl.openConexion()
-            Console.WriteLine("open ")
-            'sqlControl.beginTransaction()
-            Dim dt As DataTable = sqlControl.ExecQuery("select * from tipodecambio")
-            'sqlControl.commitTransaction()
-            If dt IsNot Nothing Then
-                Console.WriteLine("filas: " + dt.Rows.Count.ToString)
-            Else
-                Console.WriteLine("nothing: ")
-            End If
+            Dim params As New List(Of NpgsqlParameter)
+            params.Add(New NpgsqlParameter("@tipo", 69))
+
+            Dim dt As DataTable = sqlControl.ExecQuery("select * from tipodecambio where ""i_CodTipoCambio""=@tipo", params)
+
 
         Catch ex As SqlException
             'sqlControl.rollbackTransaccion()
-            Console.WriteLine("SQL. " + ex.Message)
 
         Catch ex As Exception
-            Console.WriteLine("catch. " + ex.Message)
+
         Finally
             Try
                 sqlControl.closeConexion()
-                Console.WriteLine("close ")
             Catch ex As Exception
-                Console.WriteLine("close. " + ex.Message)
             End Try
         End Try
     End Sub

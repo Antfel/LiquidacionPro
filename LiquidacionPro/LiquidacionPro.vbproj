@@ -129,6 +129,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContasolCode\RutinasPostgreSQL.vb" />
     <Compile Include="Formularios\ChildClientes.Designer.vb">
       <DependentUpon>ChildClientes.vb</DependentUpon>
     </Compile>
@@ -183,6 +184,12 @@
     <Compile Include="Formularios\ChildTrabajador.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\ConfiguracionForm.Designer.vb">
+      <DependentUpon>ConfiguracionForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ConfiguracionForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\formatDate.vb" />
     <Compile Include="Formularios\formatNUMBER.vb" />
     <Compile Include="Formularios\ChildBusquedaFactura.Designer.vb">
@@ -195,6 +202,12 @@
       <DependentUpon>MDIPrincipal.vb</DependentUpon>
     </Compile>
     <Compile Include="Formularios\MDIPrincipal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ModuloComunicacionBD.Designer.vb">
+      <DependentUpon>ModuloComunicacionBD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ModuloComunicacionBD.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\RptFormFacturaCuentasPorCobrar.Designer.vb">
@@ -346,6 +359,9 @@
     <EmbeddedResource Include="Formularios\ChildTrabajador.resx">
       <DependentUpon>ChildTrabajador.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ConfiguracionForm.resx">
+      <DependentUpon>ConfiguracionForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.vb</DependentUpon>
     </EmbeddedResource>
@@ -361,6 +377,9 @@
     <Content Include="Formularios\Reportes\RptFacturaCuentasPorCobrar.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Formularios\ModuloComunicacionBD.resx">
+      <DependentUpon>ModuloComunicacionBD.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\RptFormFacturaCuentasPorCobrar.resx">
       <DependentUpon>RptFormFacturaCuentasPorCobrar.vb</DependentUpon>
     </EmbeddedResource>
