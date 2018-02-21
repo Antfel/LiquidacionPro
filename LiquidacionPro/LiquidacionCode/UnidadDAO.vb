@@ -7,31 +7,31 @@ Public Class UnidadDAO
 
     Public Sub New(sqlControl As SQLControl)
         Me.sqlControl = sqlControl
-        Me.DBcon = sqlControl.getDBcon
+        Me.DBcon = sqlControl.GetDBcon
     End Sub
 
     Public Sub setDBcmd()
-        Me.DBcmd = sqlControl.getDBcmd
+        Me.DBcmd = sqlControl.GetDBcmd
     End Sub
 
     Public Function openConexion() As Boolean
-        Return sqlControl.openConexion()
+        Return sqlControl.OpenConexion()
     End Function
 
     Public Function closeConexion() As Boolean
-        Return sqlControl.closeConexion()
+        Return sqlControl.CloseConexion()
     End Function
 
     Public Sub beginTransaction()
-        sqlControl.beginTransaction()
+        sqlControl.BeginTransaction()
     End Sub
 
     Public Sub commitTransacction()
-        sqlControl.commitTransaction()
+        sqlControl.CommitTransaction()
     End Sub
 
     Public Sub rollbackTransaccion()
-        sqlControl.rollbackTransaccion()
+        sqlControl.RollbackTransaccion()
     End Sub
 
     Public Function getUnidadTractos() As DataTable

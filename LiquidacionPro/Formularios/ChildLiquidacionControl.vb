@@ -25,18 +25,18 @@ Public Class ChildLiquidacionControl
 
     Sub cargarUnidadMedida()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim unidadMedidaDAO As New UnidadMedidaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             unidadMedidaDAO.setDBcmd()
 
             Dim dt As DataTable
 
             dt = unidadMedidaDAO.getAllUnidadMedida
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbUnidadMedida
                 .DataSource = dt
@@ -46,7 +46,7 @@ Public Class ChildLiquidacionControl
             End With
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Unidad Medida. " + ex.Message, "Cargar Unidad Medida",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -56,7 +56,7 @@ Public Class ChildLiquidacionControl
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Unidad Medida",
                                 MessageBoxButtons.OK,
@@ -207,14 +207,14 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
 
         If txtCodigoLiquidacion.Text = Nothing Then
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDao.setDBcmd()
                 Dim correla As Integer
 
@@ -229,7 +229,7 @@ Public Class ChildLiquidacionControl
                                              otros, fisico,
                                              virtual, cbEstado.SelectedValue, carga, peso, cbUnidadMedida.SelectedValue)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
                 If correla >= 0 Then
                     txtCodigoLiquidacion.Text = CStr(correla)
@@ -239,7 +239,7 @@ Public Class ChildLiquidacionControl
                 End If
 
             Catch excep As SQLException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
 
                 MessageBox.Show("Error al grabar Liquidación. " + excep.Message, "Agregar Liquidaciones",
                                  MessageBoxButtons.OK,
@@ -250,7 +250,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Liquidaciones",
                                  MessageBoxButtons.OK,
@@ -259,8 +259,8 @@ Public Class ChildLiquidacionControl
             End Try
         Else
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDao.setDBcmd()
 
                 Dim correla As Integer
@@ -271,7 +271,7 @@ Public Class ChildLiquidacionControl
                                          guardiania, hospedaje, balanza,
                                          otros, fisico, virtual,
                                          cbEstado.SelectedValue, carga, peso, cbUnidadMedida.SelectedValue)
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
                 If correla >= 0 Then
                     MessageBox.Show("Liquidación actualizada correctamente", "Agregar Liquidaciones",
@@ -280,7 +280,7 @@ Public Class ChildLiquidacionControl
                 End If
 
             Catch excep As SQLException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al actualizar Liquidación. " + excep.Message, "Agregar Liquidaciones",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -290,9 +290,9 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
-                    sqlControl.rollbackTransaccion()
+                    sqlControl.RollbackTransaccion()
                     MessageBox.Show("Error al cerrar Conexión. " + ex.Message, "Agregar Liquidaciones",
                                      MessageBoxButtons.OK,
                                      MessageBoxIcon.Error)
@@ -329,12 +329,12 @@ Public Class ChildLiquidacionControl
 
     Sub cargarLiquidacion()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvLiquidacion.SelectedRows(0)
@@ -343,7 +343,7 @@ Public Class ChildLiquidacionControl
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionById(codigo)
             'Console.WriteLine(CStr(filaSeleccionada))
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             txtCodigoLiquidacion.Text = dt.Rows(0)(0)
             txtNroLiquidacion.Text = dt.Rows(0)(1)
@@ -387,7 +387,7 @@ Public Class ChildLiquidacionControl
                 cbUnidadMedida.SelectedIndex = 0
             End If
         Catch ex As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -397,7 +397,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
@@ -408,18 +408,18 @@ Public Class ChildLiquidacionControl
 
     Private Sub actualizarListaLiquidacion()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim dt As DataTable
 
             dt = liquidacionDao.GetAllLiquidacion()
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             'Se salva el filtro previo
             Dim filtro As String = source1.Filter
@@ -454,7 +454,7 @@ Public Class ChildLiquidacionControl
             End If
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar liquidaciones. " + ex.Message, "Cargar Liquidaciones",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -464,7 +464,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Liquidaciones",
                                  MessageBoxButtons.OK,
@@ -476,19 +476,19 @@ Public Class ChildLiquidacionControl
     End Sub
     Private Sub actualizarDatosTrabajador()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim trabajadorDao As New TrabajadorDAO(sqlControl)
         Try
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             trabajadorDao.setDBcmd()
 
             Dim dtTrabajador As DataTable
 
             dtTrabajador = trabajadorDao.GetConductor
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbTrabajador
                 .DataSource = dtTrabajador
@@ -501,7 +501,7 @@ Public Class ChildLiquidacionControl
             End With
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar trabajador. " + ex.Message, "Cargar Datos Trabajador",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -511,7 +511,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Datos Trabajador",
                                  MessageBoxButtons.OK,
@@ -522,17 +522,17 @@ Public Class ChildLiquidacionControl
 
     Private Sub actualizarDatosGuia()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             guiaDao.setDBcmd()
             Dim dtGuia As DataTable
 
             dtGuia = guiaDao.getGuiaPendLiquidacion
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbGuia
                 .DataSource = dtGuia
@@ -545,7 +545,7 @@ Public Class ChildLiquidacionControl
             End With
 
         Catch ex As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar guías. " + ex.Message, "Cargar Guías",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -555,7 +555,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Guías",
                                  MessageBoxButtons.OK,
@@ -567,17 +567,17 @@ Public Class ChildLiquidacionControl
 
     Private Sub actualizarDatosGuiaRegistrada(cod_guia As Integer)
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             guiaDao.setDBcmd()
             Dim dtGuia As DataTable
 
             dtGuia = guiaDao.getGuiaByCodigo(cod_guia)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbGuia
                 .DataSource = dtGuia
@@ -590,7 +590,7 @@ Public Class ChildLiquidacionControl
             End With
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Guía Registrada. " + ex.Message, "Cargar Guía Registrada",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -600,7 +600,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Guía Registrada",
                                  MessageBoxButtons.OK,
@@ -612,18 +612,18 @@ Public Class ChildLiquidacionControl
 
     Private Sub actualizarDatosTracto()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim unidadDao As New UnidadDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             unidadDao.setDBcmd()
 
             Dim dtUnidad As DataTable
 
             dtUnidad = unidadDao.getUnidadTractos()
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbTracto
                 .DataSource = dtUnidad
@@ -636,7 +636,7 @@ Public Class ChildLiquidacionControl
             End With
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
 
             MessageBox.Show("Error al cargar tractos. " + ex.Message, "Cargar Tractos",
                                  MessageBoxButtons.OK,
@@ -647,7 +647,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Tractos",
                                  MessageBoxButtons.OK,
@@ -660,18 +660,18 @@ Public Class ChildLiquidacionControl
 
     Private Sub actualizarDatosSemiTrailer()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim unidadDao As New UnidadDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             unidadDao.setDBcmd()
 
             Dim dtUnidad As DataTable
 
             dtUnidad = unidadDao.getUnidadSemiTrailer
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbCamabaja
                 .DataSource = dtUnidad
@@ -684,7 +684,7 @@ Public Class ChildLiquidacionControl
             End With
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar semitrailer. " + ex.Message, "Cargar Semitrailer",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -694,7 +694,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Semitrailer",
                                  MessageBoxButtons.OK,
@@ -706,18 +706,18 @@ Public Class ChildLiquidacionControl
 
     Private Sub actualizarEstados()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim estadoDao As New EstadoDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             estadoDao.setDBcmd()
 
             Dim dtEstado As DataTable
 
             dtEstado = estadoDao.getEstados
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbEstado
                 .DataSource = dtEstado
@@ -729,7 +729,7 @@ Public Class ChildLiquidacionControl
                 .SelectedValue = 1
             End With
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar estados. " + ex.Message, "Cargar Estados",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -739,7 +739,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Estados",
                                 MessageBoxButtons.OK,
@@ -857,14 +857,14 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
         If txtCodigoLiquidacionPeaje.Text = Nothing Then
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -881,7 +881,7 @@ Public Class ChildLiquidacionControl
                                                       txtLugarPeaje.Text, CInt(txtEjesPeaje.Text), Double.Parse(txtTotalPeaje.Text.ToString),
                                                         linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
                 cargarLiquidacion()
                 cargarPeajes(CInt(txtCodigoLiquidacion.Text))
@@ -893,7 +893,7 @@ Public Class ChildLiquidacionControl
                 dtpFechaHoraPeaje.Focus()
 
             Catch ex As SqlException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar peaje. " + ex.Message, "Agregar peaje",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -903,7 +903,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar peaje",
                                  MessageBoxButtons.OK,
@@ -912,8 +912,8 @@ Public Class ChildLiquidacionControl
             End Try
         Else
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -932,7 +932,7 @@ Public Class ChildLiquidacionControl
                                                       dtpFechaHoraPeaje.Value, txtLugarPeaje.Text, CInt(txtEjesPeaje.Text),
                                                       Double.Parse(txtTotalPeaje.Text), txtNroLineaPeaje.Text)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
                 cargarLiquidacion()
                 cargarPeajes(CInt(txtCodigoLiquidacion.Text))
@@ -946,7 +946,7 @@ Public Class ChildLiquidacionControl
                 dtpFechaHoraPeaje.Value = Date.Now
                 dtpFechaHoraPeaje.Focus()
             Catch ex As SqlException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar peaje. " + ex.Message, "Agregar peaje",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -956,7 +956,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar peaje",
                                  MessageBoxButtons.OK,
@@ -970,16 +970,16 @@ Public Class ChildLiquidacionControl
     Sub cargarPeajes(codigo As Integer)
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             Dim dt As DataTable
             dt = liquidacionDAO.GetLiquidacionPeajeByIdLiquidacion(codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             dgvPeajes.DataSource = dt
 
@@ -988,7 +988,7 @@ Public Class ChildLiquidacionControl
             dgvPeajes.Columns(2).Visible = False
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar peaje. " + ex.Message, "Cargar peaje",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -998,7 +998,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar peaje",
                              MessageBoxButtons.OK,
@@ -1010,16 +1010,16 @@ Public Class ChildLiquidacionControl
     Sub cargarHospedajes(codigo As Integer)
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             Dim dt As DataTable
             dt = liquidacionDAO.GetLiquidacionHospedajeByIdLiquidacion(codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             dgvHospedaje.DataSource = dt
 
@@ -1028,7 +1028,7 @@ Public Class ChildLiquidacionControl
             dgvHospedaje.Columns(2).Visible = False
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Hospedaje. " + ex.Message, "Cargar Hospedaje",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -1038,7 +1038,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Hospedaje",
                              MessageBoxButtons.OK,
@@ -1050,16 +1050,16 @@ Public Class ChildLiquidacionControl
     Sub cargarBalanzas(codigo As Integer)
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             Dim dt As DataTable
             dt = liquidacionDAO.GetLiquidacionBalanzaByIdLiquidacion(codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             dgvBalanza.DataSource = dt
 
@@ -1068,7 +1068,7 @@ Public Class ChildLiquidacionControl
             dgvBalanza.Columns(2).Visible = False
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Balanza. " + ex.Message, "Cargar Balanza",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -1078,7 +1078,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Balanza",
                              MessageBoxButtons.OK,
@@ -1090,16 +1090,16 @@ Public Class ChildLiquidacionControl
     Sub cargarGuardiania(codigo As Integer)
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             Dim dt As DataTable
             dt = liquidacionDAO.GetLiquidacionGuardianiaByIdLiquidacion(codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             dgvGuardiania.DataSource = dt
 
@@ -1108,7 +1108,7 @@ Public Class ChildLiquidacionControl
             dgvGuardiania.Columns(2).Visible = False
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Guardiania. " + ex.Message, "Cargar Guardiania",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -1118,7 +1118,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Guardiania",
                              MessageBoxButtons.OK,
@@ -1129,16 +1129,16 @@ Public Class ChildLiquidacionControl
     Sub cargarViaticos(codigo As Integer)
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             Dim dt As DataTable
             dt = liquidacionDAO.GetLiquidacionViaticoByIdLiquidacion(codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             dgvViaticos.DataSource = dt
 
@@ -1147,7 +1147,7 @@ Public Class ChildLiquidacionControl
             dgvViaticos.Columns(2).Visible = False
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar peaje. " + ex.Message, "Cargar Viáticos",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -1157,7 +1157,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Viáticos",
                              MessageBoxButtons.OK,
@@ -1172,18 +1172,18 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
             Dim seleccion As DataGridViewRow = dgvPeajes.SelectedRows(0)
             Dim codigo As Integer = seleccion.Cells(1).Value
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.deleteLiquidacionPeajeById(CInt(txtCodigoLiquidacionPeaje.Text), codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             cargarLiquidacion()
             cargarPeajes(CInt(txtCodigoLiquidacionPeaje.Text))
@@ -1198,7 +1198,7 @@ Public Class ChildLiquidacionControl
             dtpFechaHoraPeaje.Focus()
 
         Catch ex As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar peaje. " + ex.Message, "Eliminar peaje",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -1208,7 +1208,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar peaje",
                              MessageBoxButtons.OK,
@@ -1247,14 +1247,14 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
         If txtCodigoLiquidacionViatico.Text = Nothing Then
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -1271,7 +1271,7 @@ Public Class ChildLiquidacionControl
                                                         dtpTurnoViaticos.Value, txtDescripcionViatico.Text,
                                                         Double.Parse(txtTotalViatico.Text), linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
                 cargarLiquidacion()
                 cargarViaticos(CInt(txtCodigoLiquidacion.Text))
                 txtCodigoLiquidacionViatico.Text = ""
@@ -1284,7 +1284,7 @@ Public Class ChildLiquidacionControl
                 txtCantidadViatico.Focus()
 
             Catch ex As SqlException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar viático. " + ex.Message, "Agregar viático",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -1294,7 +1294,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar viático",
                                  MessageBoxButtons.OK,
@@ -1303,8 +1303,8 @@ Public Class ChildLiquidacionControl
             End Try
         Else
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -1323,7 +1323,7 @@ Public Class ChildLiquidacionControl
                                                         dtpTurnoViaticos.Value, txtDescripcionViatico.Text,
                                                         Double.Parse(txtTotalViatico.Text), linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
                 cargarLiquidacion()
                 cargarViaticos(CInt(txtCodigoLiquidacion.Text))
                 txtCodigoLiquidacionViatico.Text = ""
@@ -1336,7 +1336,7 @@ Public Class ChildLiquidacionControl
                 txtCantidadViatico.Focus()
 
             Catch ex As SQLException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar viático. " + ex.Message, "Agregar viático",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -1346,7 +1346,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar viático",
                                  MessageBoxButtons.OK,
@@ -1362,19 +1362,19 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
             Dim seleccion As DataGridViewRow = dgvViaticos.SelectedRows(0)
             Dim codigo As Integer = seleccion.Cells(1).Value
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.deleteLiquidacionViaticoById(CInt(txtCodigoLiquidacion.Text), codigo)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             cargarLiquidacion()
             cargarViaticos(CInt(txtCodigoLiquidacion.Text))
             txtCodigoLiquidacionViatico.Text = ""
@@ -1387,7 +1387,7 @@ Public Class ChildLiquidacionControl
             txtCantidadViatico.Focus()
 
         Catch ex As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al eliminar viático. " + ex.Message, "Eliminar viático",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -1397,7 +1397,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar viático",
                              MessageBoxButtons.OK,
@@ -1429,14 +1429,14 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
         If txtCodigoLiquidacionOtro.Text = Nothing Then
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -1452,7 +1452,7 @@ Public Class ChildLiquidacionControl
                 liquidacionDAO.InsertLiquidacionOtro(CInt(txtCodigoLiquidacion.Text), txtDescripcionOtros.Text,
                                                      Double.Parse(txtTotalOtros.Text), linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
                 cargarLiquidacion()
                 cargarOtros(CInt(txtCodigoLiquidacion.Text))
 
@@ -1464,13 +1464,13 @@ Public Class ChildLiquidacionControl
                 txtDescripcionOtros.Focus()
 
             Catch ex As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar otro. " + ex.Message, "Agregar Otros",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Otros",
                                  MessageBoxButtons.OK,
@@ -1479,8 +1479,8 @@ Public Class ChildLiquidacionControl
             End Try
         Else
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -1498,7 +1498,7 @@ Public Class ChildLiquidacionControl
                 liquidacionDAO.UpdateLiquidacionOtro(CInt(txtCodigoLiquidacionOtro.Text), CInt(txtCodigoOtro.Text), txtDescripcionOtros.Text,
                                                      Double.Parse(txtTotalOtros.Text), linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
                 cargarLiquidacion()
                 cargarOtros(CInt(txtCodigoLiquidacion.Text))
                 txtCodigoLiquidacionOtro.Text = ""
@@ -1508,13 +1508,13 @@ Public Class ChildLiquidacionControl
                 txtTotalOtros.Text = ""
                 txtDescripcionOtros.Focus()
             Catch ex As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar otro. " + ex.Message, "Agregar Otros",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Otros",
                                  MessageBoxButtons.OK,
@@ -1528,16 +1528,16 @@ Public Class ChildLiquidacionControl
     Sub cargarOtros(codigo As Integer)
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             Dim dt As DataTable
             dt = liquidacionDAO.GetLiquidacionOtroByIdLiquidacion(codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             dgvOtros.DataSource = dt
 
             dgvOtros.Columns(0).Visible = False
@@ -1545,7 +1545,7 @@ Public Class ChildLiquidacionControl
             dgvOtros.Columns(2).Visible = False
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar otros. " + ex.Message, "Cargar Otros",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -1555,7 +1555,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Otros",
                              MessageBoxButtons.OK,
@@ -1570,7 +1570,7 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
@@ -1578,13 +1578,13 @@ Public Class ChildLiquidacionControl
             Dim seleccion As DataGridViewRow = dgvOtros.SelectedRows(0)
             Dim codigo As Integer = seleccion.Cells(1).Value
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.deleteLiquidacionOtroById(CInt(txtCodigoLiquidacion.Text), codigo)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             cargarLiquidacion()
             cargarOtros(CInt(txtCodigoLiquidacion.Text))
             txtCodigoLiquidacionOtro.Text = ""
@@ -1593,7 +1593,7 @@ Public Class ChildLiquidacionControl
             txtDescripcionOtros.Text = ""
             txtTotalOtros.Text = ""
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al eliminar otro. " + ex.Message, "Eliminar otro",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -1603,7 +1603,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar otro",
                              MessageBoxButtons.OK,
@@ -1698,12 +1698,12 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
 
@@ -1711,7 +1711,7 @@ Public Class ChildLiquidacionControl
                                                   txtLugarPeaje.Text, CInt(txtEjesPeaje.Text), Double.Parse(txtTotalPeaje.Text.ToString),
                                                     linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             cargarLiquidacion()
             cargarPeajes(CInt(txtCodigoLiquidacion.Text))
@@ -1721,7 +1721,7 @@ Public Class ChildLiquidacionControl
             dtpFechaHoraPeaje.Value = Date.Now
             dtpFechaHoraPeaje.Focus()
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar peaje. " + ex.Message, "Agregar peaje",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -1731,7 +1731,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar peaje",
                              MessageBoxButtons.OK,
@@ -1790,12 +1790,12 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
 
@@ -1803,7 +1803,7 @@ Public Class ChildLiquidacionControl
                                                   txtLugarPeaje.Text, CInt(txtEjesPeaje.Text), Double.Parse(txtTotalPeaje.Text.ToString),
                                                     linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             cargarLiquidacion()
             cargarPeajes(CInt(txtCodigoLiquidacion.Text))
@@ -1813,7 +1813,7 @@ Public Class ChildLiquidacionControl
             dtpFechaHoraPeaje.Value = Date.Now
             dtpFechaHoraPeaje.Focus()
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar peaje. " + ex.Message, "Agregar peaje",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -1823,7 +1823,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar peaje",
                              MessageBoxButtons.OK,
@@ -1838,12 +1838,12 @@ Public Class ChildLiquidacionControl
 
     Sub cargarPeajeById()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvPeajes.SelectedRows(0)
@@ -1851,7 +1851,7 @@ Public Class ChildLiquidacionControl
             'filaSeleccionada = seleccion.Index
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionPeajeById(CInt(txtCodigoLiquidacion.Text), codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             txtCodigoLiquidacionPeaje.Text = dt.Rows(0)(0)
             txtCodigoPeaje.Text = dt.Rows(0)(1)
@@ -1862,7 +1862,7 @@ Public Class ChildLiquidacionControl
             txtTotalPeaje.Text = dt.Rows(0)(6)
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -1873,7 +1873,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
@@ -1952,20 +1952,20 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.InsertLiquidacionViatico(CInt(txtCodigoLiquidacion.Text), CInt(txtCantidadViatico.Text),
                                                         dtpTurnoViaticos.Value, txtDescripcionViatico.Text,
                                                         Double.Parse(txtTotalViatico.Text), linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             cargarLiquidacion()
             cargarViaticos(CInt(txtCodigoLiquidacion.Text))
             txtCodigoLiquidacionViatico.Text = ""
@@ -1977,7 +1977,7 @@ Public Class ChildLiquidacionControl
             dtpTurnoViaticos.Value = Date.Now
             txtCantidadViatico.Focus()
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar viático. " + ex.Message, "Agregar Viático",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -1987,7 +1987,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Viático",
                                  MessageBoxButtons.OK,
@@ -2047,20 +2047,20 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.InsertLiquidacionViatico(CInt(txtCodigoLiquidacion.Text), CInt(txtCantidadViatico.Text),
                                                         dtpTurnoViaticos.Value, txtDescripcionViatico.Text,
                                                         Double.Parse(txtTotalViatico.Text), linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             cargarLiquidacion()
             cargarViaticos(CInt(txtCodigoLiquidacion.Text))
 
@@ -2074,7 +2074,7 @@ Public Class ChildLiquidacionControl
             txtCantidadViatico.Focus()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar viático. " + ex.Message, "Agregar Viático",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -2084,7 +2084,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Viático",
                                  MessageBoxButtons.OK,
@@ -2098,12 +2098,12 @@ Public Class ChildLiquidacionControl
     End Sub
     Sub cargarViaticoById()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvViaticos.SelectedRows(0)
@@ -2111,7 +2111,7 @@ Public Class ChildLiquidacionControl
             'filaSeleccionada = seleccion.Index
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionViaticoById(CInt(txtCodigoLiquidacion.Text), codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             txtCodigoLiquidacionViatico.Text = dt.Rows(0)(0)
             txtCodigoViatico.Text = dt.Rows(0)(1)
@@ -2122,7 +2122,7 @@ Public Class ChildLiquidacionControl
             txtTotalViatico.Text = dt.Rows(0)(6)
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -2132,7 +2132,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
@@ -2146,12 +2146,12 @@ Public Class ChildLiquidacionControl
     End Sub
     Sub cargarOtrooById()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvOtros.SelectedRows(0)
@@ -2159,7 +2159,7 @@ Public Class ChildLiquidacionControl
             'filaSeleccionada = seleccion.Index
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionOtroById(CInt(txtCodigoLiquidacion.Text), codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             txtCodigoLiquidacionOtro.Text = dt.Rows(0)(0)
             txtCodigoOtro.Text = dt.Rows(0)(1)
@@ -2168,7 +2168,7 @@ Public Class ChildLiquidacionControl
             txtTotalOtros.Text = dt.Rows(0)(4)
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar otro. " + ex.Message, "Cargar Otro",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -2178,7 +2178,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Otro",
                                  MessageBoxButtons.OK,
@@ -2229,18 +2229,18 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.InsertLiquidacionOtro(CInt(txtCodigoLiquidacion.Text), txtDescripcionOtros.Text,
                                                      Double.Parse(txtTotalOtros.Text), linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             cargarLiquidacion()
             cargarOtros(CInt(txtCodigoLiquidacion.Text))
             txtCodigoLiquidacionOtro.Text = ""
@@ -2251,13 +2251,13 @@ Public Class ChildLiquidacionControl
             txtDescripcionOtros.Focus()
 
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar otro. " + ex.Message, "Agregar Otros",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Otros",
                                 MessageBoxButtons.OK,
@@ -2310,18 +2310,18 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.InsertLiquidacionOtro(CInt(txtCodigoLiquidacion.Text), txtDescripcionOtros.Text,
                                                      Double.Parse(txtTotalOtros.Text), linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             cargarLiquidacion()
             cargarOtros(CInt(txtCodigoLiquidacion.Text))
             txtCodigoLiquidacionOtro.Text = ""
@@ -2332,7 +2332,7 @@ Public Class ChildLiquidacionControl
             txtDescripcionOtros.Focus()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar otro. " + ex.Message, "Agregar Otros",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -2342,7 +2342,7 @@ Public Class ChildLiquidacionControl
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Otros",
                                 MessageBoxButtons.OK,
@@ -2382,14 +2382,14 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
         If txtCodigoLiquidacionHospedaje.Text = Nothing Then
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -2406,7 +2406,7 @@ Public Class ChildLiquidacionControl
                                                       txtDescripcionHospedaje.Text, Double.Parse(txtTotalHospedaje.Text.ToString),
                                                         linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
                 cargarLiquidacion()
                 cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
@@ -2416,7 +2416,7 @@ Public Class ChildLiquidacionControl
                 dtpHospedaje.Value = Date.Now
                 dtpHospedaje.Focus()
             Catch ex As SqlException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar Hospedaje. " + ex.Message, "Agregar Hospedaje",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -2426,7 +2426,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Hospedaje",
                                  MessageBoxButtons.OK,
@@ -2435,8 +2435,8 @@ Public Class ChildLiquidacionControl
             End Try
         Else
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -2455,7 +2455,7 @@ Public Class ChildLiquidacionControl
                                                       dtpHospedaje.Value, txtDescripcionHospedaje.Text,
                                                       Double.Parse(txtTotalHospedaje.Text), linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
                 cargarLiquidacion()
                 cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
@@ -2468,7 +2468,7 @@ Public Class ChildLiquidacionControl
                 dtpHospedaje.Value = Date.Now
                 dtpHospedaje.Focus()
             Catch ex As SqlException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar Hospedaje. " + ex.Message, "Agregar Hospedaje",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -2478,7 +2478,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Hospedaje",
                                  MessageBoxButtons.OK,
@@ -2540,12 +2540,12 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
 
@@ -2553,7 +2553,7 @@ Public Class ChildLiquidacionControl
                                                       txtDescripcionHospedaje.Text, Double.Parse(txtTotalHospedaje.Text.ToString),
                                                         linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             cargarLiquidacion()
             cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
@@ -2567,7 +2567,7 @@ Public Class ChildLiquidacionControl
             dtpHospedaje.Focus()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar Hospedaje. " + ex.Message, "Agregar Hospedaje",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -2577,7 +2577,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Hospedaje",
                              MessageBoxButtons.OK,
@@ -2630,12 +2630,12 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
 
@@ -2643,7 +2643,7 @@ Public Class ChildLiquidacionControl
                                                       txtDescripcionHospedaje.Text, Double.Parse(txtTotalHospedaje.Text.ToString),
                                                         linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             cargarLiquidacion()
             cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
@@ -2657,7 +2657,7 @@ Public Class ChildLiquidacionControl
             dtpHospedaje.Focus()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar Hospedaje. " + ex.Message, "Agregar Hospedaje",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -2667,7 +2667,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Hospedaje",
                              MessageBoxButtons.OK,
@@ -2682,18 +2682,18 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
             Dim seleccion As DataGridViewRow = dgvHospedaje.SelectedRows(0)
             Dim codigo As Integer = seleccion.Cells(1).Value
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.deleteLiquidacionHospedajeById(CInt(txtCodigoLiquidacionHospedaje.Text), codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             cargarLiquidacion()
             cargarHospedajes(CInt(txtCodigoLiquidacionHospedaje.Text))
@@ -2707,7 +2707,7 @@ Public Class ChildLiquidacionControl
             dtpHospedaje.Focus()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Hospedaje. " + ex.Message, "Eliminar Hospedaje",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -2717,7 +2717,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar Hospedaje",
                              MessageBoxButtons.OK,
@@ -2749,14 +2749,14 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
         If txtCodigoLiquidacionGuardiania.Text = Nothing Then
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -2773,7 +2773,7 @@ Public Class ChildLiquidacionControl
                                                       txtDescripcionGuardiania.Text, Double.Parse(txtTotalGuardiania.Text.ToString),
                                                         linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
                 cargarLiquidacion()
                 cargarGuardiania(CInt(txtCodigoLiquidacion.Text))
@@ -2783,7 +2783,7 @@ Public Class ChildLiquidacionControl
                 dtpGuardiania.Value = Date.Now
                 dtpGuardiania.Focus()
             Catch ex As SqlException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar Guardiania. " + ex.Message, "Agregar Guardiania",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -2793,7 +2793,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Guardiania",
                                  MessageBoxButtons.OK,
@@ -2802,8 +2802,8 @@ Public Class ChildLiquidacionControl
             End Try
         Else
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -2814,7 +2814,7 @@ Public Class ChildLiquidacionControl
                                                       dtpGuardiania.Value, txtDescripcionGuardiania.Text,
                                                       Double.Parse(txtTotalGuardiania.Text), linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
                 cargarLiquidacion()
                 cargarGuardiania(CInt(txtCodigoLiquidacionGuardiania.Text))
@@ -2828,7 +2828,7 @@ Public Class ChildLiquidacionControl
                 dtpGuardiania.Focus()
 
             Catch ex As SqlException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar Guardiania. " + ex.Message, "Agregar Guardiania",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -2838,7 +2838,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Guardiania",
                                  MessageBoxButtons.OK,
@@ -2900,12 +2900,12 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
 
@@ -2913,7 +2913,7 @@ Public Class ChildLiquidacionControl
                                                       txtDescripcionGuardiania.Text, Double.Parse(txtTotalGuardiania.Text.ToString),
                                                         linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             cargarLiquidacion()
             cargarGuardiania(CInt(txtCodigoLiquidacion.Text))
@@ -2927,7 +2927,7 @@ Public Class ChildLiquidacionControl
             dtpGuardiania.Focus()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar Guardiania. " + ex.Message, "Agregar Guardiania",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -2937,7 +2937,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Guardiania",
                              MessageBoxButtons.OK,
@@ -2990,12 +2990,12 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
 
@@ -3003,7 +3003,7 @@ Public Class ChildLiquidacionControl
                                                       txtDescripcionGuardiania.Text, Double.Parse(txtTotalGuardiania.Text.ToString),
                                                         linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             cargarLiquidacion()
             cargarGuardiania(CInt(txtCodigoLiquidacion.Text))
@@ -3017,7 +3017,7 @@ Public Class ChildLiquidacionControl
             dtpGuardiania.Focus()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar Guardiania. " + ex.Message, "Agregar Guardiania",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -3027,7 +3027,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Guardiania",
                              MessageBoxButtons.OK,
@@ -3042,18 +3042,18 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
             Dim seleccion As DataGridViewRow = dgvGuardiania.SelectedRows(0)
             Dim codigo As Integer = seleccion.Cells(1).Value
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.deleteLiquidacionGuardianiaById(CInt(txtCodigoLiquidacionGuardiania.Text), codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             cargarLiquidacion()
             cargarGuardiania(CInt(txtCodigoLiquidacionGuardiania.Text))
@@ -3067,7 +3067,7 @@ Public Class ChildLiquidacionControl
             dtpGuardiania.Focus()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Guardiania. " + ex.Message, "Eliminar Guardiania",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -3077,7 +3077,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar Guardiania",
                              MessageBoxButtons.OK,
@@ -3109,14 +3109,14 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
         If txtCodigoLiquidacionBalanza.Text = Nothing Then
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -3133,7 +3133,7 @@ Public Class ChildLiquidacionControl
                                                       txtDescripcionBalanza.Text, Double.Parse(txtTotalBalanza.Text.ToString),
                                                         linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
                 cargarLiquidacion()
                 cargarBalanzas(CInt(txtCodigoLiquidacion.Text))
@@ -3144,7 +3144,7 @@ Public Class ChildLiquidacionControl
                 dtpBalanza.Focus()
 
             Catch ex As SqlException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar Balanza. " + ex.Message, "Agregar Balanza",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -3154,7 +3154,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Balanza",
                                  MessageBoxButtons.OK,
@@ -3163,8 +3163,8 @@ Public Class ChildLiquidacionControl
             End Try
         Else
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -3175,7 +3175,7 @@ Public Class ChildLiquidacionControl
                                                       dtpBalanza.Value, txtDescripcionBalanza.Text,
                                                       Double.Parse(txtTotalBalanza.Text), linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
                 cargarLiquidacion()
                 cargarBalanzas(CInt(txtCodigoLiquidacionBalanza.Text))
@@ -3189,7 +3189,7 @@ Public Class ChildLiquidacionControl
                 dtpBalanza.Focus()
 
             Catch ex As SqlException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar Balanza. " + ex.Message, "Agregar Balanza",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -3199,7 +3199,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Balanza",
                                  MessageBoxButtons.OK,
@@ -3251,12 +3251,12 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
 
@@ -3264,7 +3264,7 @@ Public Class ChildLiquidacionControl
                                                       txtDescripcionBalanza.Text, Double.Parse(txtTotalBalanza.Text.ToString),
                                                         linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             cargarLiquidacion()
             cargarBalanzas(CInt(txtCodigoLiquidacion.Text))
@@ -3278,7 +3278,7 @@ Public Class ChildLiquidacionControl
             dtpBalanza.Focus()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar Balanza. " + ex.Message, "Agregar Balanza",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -3288,7 +3288,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Balanza",
                              MessageBoxButtons.OK,
@@ -3341,12 +3341,12 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
 
@@ -3354,7 +3354,7 @@ Public Class ChildLiquidacionControl
                                                       txtDescripcionBalanza.Text, Double.Parse(txtTotalBalanza.Text.ToString),
                                                         linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             cargarLiquidacion()
             cargarBalanzas(CInt(txtCodigoLiquidacion.Text))
@@ -3368,7 +3368,7 @@ Public Class ChildLiquidacionControl
             dtpBalanza.Focus()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar Balanza. " + ex.Message, "Agregar Balanza",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -3378,7 +3378,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar Balanza",
                              MessageBoxButtons.OK,
@@ -3393,18 +3393,18 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
             Dim seleccion As DataGridViewRow = dgvBalanza.SelectedRows(0)
             Dim codigo As Integer = seleccion.Cells(1).Value
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.deleteLiquidacionBalanzaById(CInt(txtCodigoLiquidacionBalanza.Text), codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             cargarLiquidacion()
             cargarBalanzas(CInt(txtCodigoLiquidacionBalanza.Text))
@@ -3418,7 +3418,7 @@ Public Class ChildLiquidacionControl
             dtpBalanza.Focus()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Balanza. " + ex.Message, "Eliminar Balanza",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -3428,7 +3428,7 @@ Public Class ChildLiquidacionControl
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar Guardiania",
                              MessageBoxButtons.OK,
@@ -3439,12 +3439,12 @@ Public Class ChildLiquidacionControl
 
     Sub cargarHospedajesById()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvHospedaje.SelectedRows(0)
@@ -3452,7 +3452,7 @@ Public Class ChildLiquidacionControl
             'filaSeleccionada = seleccion.Index
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionHospedajeById(CInt(txtCodigoLiquidacion.Text), codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             txtCodigoLiquidacionHospedaje.Text = dt.Rows(0)(0)
             txtCodigoHospedaje.Text = dt.Rows(0)(1)
@@ -3462,7 +3462,7 @@ Public Class ChildLiquidacionControl
             txtTotalHospedaje.Text = dt.Rows(0)(5)
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Hospedaje. " + ex.Message, "Cargar Hospedaje",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -3473,7 +3473,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Hospedaje",
                                  MessageBoxButtons.OK,
@@ -3484,12 +3484,12 @@ Public Class ChildLiquidacionControl
 
     Sub cargarGuardianiasById()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvGuardiania.SelectedRows(0)
@@ -3497,7 +3497,7 @@ Public Class ChildLiquidacionControl
             'filaSeleccionada = seleccion.Index
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionGuardianiaById(CInt(txtCodigoLiquidacion.Text), codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             txtCodigoLiquidacionGuardiania.Text = dt.Rows(0)(0)
             txtCodigoGuardiania.Text = dt.Rows(0)(1)
@@ -3507,7 +3507,7 @@ Public Class ChildLiquidacionControl
             txtTotalGuardiania.Text = dt.Rows(0)(5)
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Guardiania. " + ex.Message, "Cargar Guardiania",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -3518,7 +3518,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Guardiania",
                                  MessageBoxButtons.OK,
@@ -3529,12 +3529,12 @@ Public Class ChildLiquidacionControl
 
     Sub cargarBalanzasById()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvBalanza.SelectedRows(0)
@@ -3542,7 +3542,7 @@ Public Class ChildLiquidacionControl
             'filaSeleccionada = seleccion.Index
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionBalanzaById(CInt(txtCodigoLiquidacion.Text), codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             txtCodigoLiquidacionBalanza.Text = dt.Rows(0)(0)
             txtCodigoBalanza.Text = dt.Rows(0)(1)
@@ -3552,7 +3552,7 @@ Public Class ChildLiquidacionControl
             txtTotalBalanza.Text = dt.Rows(0)(5)
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Balanza. " + ex.Message, "Cargar Balanza",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -3563,7 +3563,7 @@ Public Class ChildLiquidacionControl
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Balanza",
                                  MessageBoxButtons.OK,

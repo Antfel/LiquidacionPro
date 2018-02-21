@@ -46,9 +46,9 @@ Partial Class MDIPrincipal
         Me.CuentasPorCobrarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuíasDeTransportistaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TEstToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdministraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComunicaciónBDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GuíasControlDeViajesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -128,7 +128,7 @@ Partial Class MDIPrincipal
         '
         'ReportesToolStripMenuItem
         '
-        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem1, Me.FacturaciónToolStripMenuItem1, Me.GuíasDeTransportistaToolStripMenuItem1, Me.TEstToolStripMenuItem})
+        Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem1, Me.FacturaciónToolStripMenuItem1, Me.GuíasDeTransportistaToolStripMenuItem1})
         Me.ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem"
         Me.ReportesToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.ReportesToolStripMenuItem.Text = "Reportes"
@@ -179,7 +179,7 @@ Partial Class MDIPrincipal
         '
         'GuíasDeTransportistaToolStripMenuItem1
         '
-        Me.GuíasDeTransportistaToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem})
+        Me.GuíasDeTransportistaToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem, Me.GuíasControlDeViajesToolStripMenuItem})
         Me.GuíasDeTransportistaToolStripMenuItem1.Name = "GuíasDeTransportistaToolStripMenuItem1"
         Me.GuíasDeTransportistaToolStripMenuItem1.Size = New System.Drawing.Size(191, 22)
         Me.GuíasDeTransportistaToolStripMenuItem1.Text = "Guías de Transportista"
@@ -189,12 +189,6 @@ Partial Class MDIPrincipal
         Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem.Name = "GuíasVsLiquidaciónYFacturaciónToolStripMenuItem"
         Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem.Text = "Guías Vs Liquidación y Facturación"
-        '
-        'TEstToolStripMenuItem
-        '
-        Me.TEstToolStripMenuItem.Name = "TEstToolStripMenuItem"
-        Me.TEstToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
-        Me.TEstToolStripMenuItem.Text = "TEst"
         '
         'AdministraciónToolStripMenuItem
         '
@@ -208,6 +202,12 @@ Partial Class MDIPrincipal
         Me.ComunicaciónBDToolStripMenuItem.Name = "ComunicaciónBDToolStripMenuItem"
         Me.ComunicaciónBDToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.ComunicaciónBDToolStripMenuItem.Text = "Comunicación BD"
+        '
+        'GuíasControlDeViajesToolStripMenuItem
+        '
+        Me.GuíasControlDeViajesToolStripMenuItem.Name = "GuíasControlDeViajesToolStripMenuItem"
+        Me.GuíasControlDeViajesToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
+        Me.GuíasControlDeViajesToolStripMenuItem.Text = "Guías - Control de Viajes"
         '
         'MDIPrincipal
         '
@@ -250,7 +250,7 @@ Partial Class MDIPrincipal
     Friend WithEvents GuíasVsLiquidaciónYFacturaciónToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents FacturasPorClienteFechaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CuentasPorCobrarToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents TEstToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AdministraciónToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ComunicaciónBDToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GuíasControlDeViajesToolStripMenuItem As ToolStripMenuItem
 End Class

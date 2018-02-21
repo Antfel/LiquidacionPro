@@ -7,34 +7,34 @@ Public Class FacturacionDAO
 
     Public Sub New(sqlControl As SQLControl)
         Me.sqlControl = sqlControl
-        Me.DBcon = sqlControl.getDBcon
+        Me.DBcon = sqlControl.GetDBcon
     End Sub
 
-    Public Sub setDBcmd()
-        Me.DBcmd = sqlControl.getDBcmd
+    Public Sub SetDBcmd()
+        Me.DBcmd = sqlControl.GetDBcmd
     End Sub
 
-    Public Function openConexion() As Boolean
-        Return sqlControl.openConexion()
+    Public Function OpenConexion() As Boolean
+        Return sqlControl.OpenConexion()
     End Function
 
-    Public Function closeConexion() As Boolean
-        Return sqlControl.closeConexion()
+    Public Function CloseConexion() As Boolean
+        Return sqlControl.CloseConexion()
     End Function
 
-    Public Sub beginTransaction()
-        sqlControl.beginTransaction()
+    Public Sub BeginTransaction()
+        sqlControl.BeginTransaction()
     End Sub
 
-    Public Sub commitTransacction()
-        sqlControl.commitTransaction()
+    Public Sub CommitTransacction()
+        sqlControl.CommitTransaction()
     End Sub
 
-    Public Sub rollbackTransaccion()
-        sqlControl.rollbackTransaccion()
+    Public Sub RollbackTransaccion()
+        sqlControl.RollbackTransaccion()
     End Sub
 
-    Public Function getAllFacturas() As DataTable
+    Public Function GetAllFacturas() As DataTable
 
         Return sqlControl.ExecQuery("select		a.CODIGO_FACTURA CODIGO, 
 	                                            a.SERIE_FACTURA SERIE,  
@@ -68,7 +68,7 @@ Public Class FacturacionDAO
                                     order by a.NUMERO_FACTURA", Nothing)
     End Function
 
-    Public Function getAllFacturasFiltro(Filtro As String) As DataTable
+    Public Function GetAllFacturasFiltro(Filtro As String) As DataTable
 
         Return sqlControl.ExecQuery("select     a.CODIGO_FACTURA CODIGO, 
 	                                            a.SERIE_FACTURA SERIE,  
@@ -93,7 +93,7 @@ Public Class FacturacionDAO
                                      where b.RAZON_CLIENTE LIKE '%'+'" + Filtro + "'+'%'", Nothing)
     End Function
 
-    Public Function getFacturaById(codigo As Integer) As DataTable
+    Public Function GetFacturaById(codigo As Integer) As DataTable
 
         Return sqlControl.ExecQuery("select CODIGO_FACTURA," +
                                             "SERIE_FACTURA," +
@@ -113,7 +113,7 @@ Public Class FacturacionDAO
                                             "from factura " +
                                             "where CODIGO_FACTURA=" + CStr(codigo), Nothing)
     End Function
-    Public Function getDetalleFacturaByIdDetalle(codigo_detalle As Integer) As DataTable
+    Public Function GetDetalleFacturaByIdDetalle(codigo_detalle As Integer) As DataTable
 
         Return sqlControl.ExecQuery("select TIPO_SERVICIO,
                                     DESCRIPCION,
@@ -419,7 +419,7 @@ Public Class FacturacionDAO
 
     End Sub
 
-    Public Function getGuiasByDetalle(codigoDetalle As Integer) As DataTable
+    Public Function GetGuiasByDetalle(codigoDetalle As Integer) As DataTable
 
         Return sqlControl.ExecQuery("select a.CODIGO_GUIA,
 	                                b.DETALLE_GUIA from DETALLE_FACTURA_GUIA a 
@@ -445,7 +445,7 @@ Public Class FacturacionDAO
                                         "@CODIGO_GUIA1 ", params)
     End Sub
 
-    Public Sub deleteFacturaDetalleGuia(codigo_detalle_factura As Integer, codigo_factura As Integer,
+    Public Sub DeleteFacturaDetalleGuia(codigo_detalle_factura As Integer, codigo_factura As Integer,
                                         codigo_guia As Integer)
 
         Dim params As New List(Of SqlParameter)
@@ -459,7 +459,7 @@ Public Class FacturacionDAO
                                         "@CODIGO_GUIA ", params)
     End Sub
 
-    Public Sub deleteFacturaDetalle(codigo_detalle_factura As Integer, codigo_factura As Integer)
+    Public Sub DeleteFacturaDetalle(codigo_detalle_factura As Integer, codigo_factura As Integer)
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
@@ -484,7 +484,7 @@ Public Class FacturacionDAO
                                         "@GUIA_REMITENTE2 ", params)
     End Sub
 
-    Public Sub deleteFacturaDetalleRemitente(codigo_detalle_factura As Integer, codigo_factura As Integer,
+    Public Sub DeleteFacturaDetalleRemitente(codigo_detalle_factura As Integer, codigo_factura As Integer,
                                         codigo_factura_remitente As Integer)
 
         Dim params As New List(Of SqlParameter)
@@ -498,7 +498,7 @@ Public Class FacturacionDAO
                                         "@CODIGO_FACTURA_REMITENTE ", params)
     End Sub
 
-    Public Function getRemitentesByDetalle(codigoDetalle As Integer) As DataTable
+    Public Function GetRemitentesByDetalle(codigoDetalle As Integer) As DataTable
 
         Return sqlControl.ExecQuery("SELECT     CODIGO_FACTURA_REMITENTE,
                                                 GUIA_REMITENTE 
@@ -531,7 +531,7 @@ Public Class FacturacionDAO
         End If
     End Function
 
-    Public Sub deleteFacturaDetalleUnidad(codigo_detalle_factura As Integer, codigo_factura As Integer,
+    Public Sub DeleteFacturaDetalleUnidad(codigo_detalle_factura As Integer, codigo_factura As Integer,
                                             codigo_factura_guia As Integer)
 
         Dim params As New List(Of SqlParameter)
@@ -545,7 +545,7 @@ Public Class FacturacionDAO
                                         "@CODIGO_FACTURA_GUIA ", params)
     End Sub
 
-    Public Function getPlacaByDetalle(codigoDetalle As Integer) As DataTable
+    Public Function GetPlacaByDetalle(codigoDetalle As Integer) As DataTable
 
         Return sqlControl.ExecQuery("SELECT CODIGO_FACTURA_GUIA, 
                                             PLACA_UNIDAD  
@@ -556,7 +556,7 @@ Public Class FacturacionDAO
 
     End Function
 
-    Public Function getOrigenDestino() As DataTable
+    Public Function GetOrigenDestino() As DataTable
 
         Return sqlControl.ExecQuery("select	distinct cast(ROW_NUMBER()  OVER(ORDER BY direccion ASC) as varchar(10)) AS ITEM,
 		                                    DIRECCION from (
@@ -573,7 +573,7 @@ Public Class FacturacionDAO
     End Function
 
 
-    Public Function getRptLiquidacionFacturacionCabeceraAll(codigoMoneda As Integer) As DataTable
+    Public Function GetRptLiquidacionFacturacionCabeceraAll(codigoMoneda As Integer) As DataTable
 
         Return sqlControl.ExecQuery("SELECT	a.CODIGO_FACTURA,
 		                                    a.NUMERO_FACTURA,
@@ -587,7 +587,7 @@ Public Class FacturacionDAO
 
     End Function
 
-    Public Function getRptLiquidacionFacturacionDetalle(codigo_factura As Integer) As DataTable
+    Public Function GetRptLiquidacionFacturacionDetalle(codigo_factura As Integer) As DataTable
 
         Return sqlControl.ExecQuery("SELECT	a.CODIGO_FACTURA,
 		                                    f.PLACA_UNIDAD,
@@ -645,7 +645,7 @@ Public Class FacturacionDAO
 
     'End Function
 
-    Public Function getRptFacturaDetalleByMoneda(codigoMoneda As Integer) As DataTable
+    Public Function GetRptFacturaDetalleByMoneda(codigoMoneda As Integer) As DataTable
 
         Return sqlControl.ExecQuery("SELECT	a.CODIGO_FACTURA,
     		b.CODIGO_DETALLE_FACTURA,
@@ -671,7 +671,7 @@ Public Class FacturacionDAO
 
     End Function
 
-    Public Function getRptFacturaDetalleByClienteFecha(codigoMoneda As Integer, codigoCliente As Integer,
+    Public Function GetRptFacturaDetalleByClienteFecha(codigoMoneda As Integer, codigoCliente As Integer,
                                                        flagFecha As Boolean, inicio As Date, fin As Date) As DataTable
 
         Dim params As New List(Of SqlParameter)
@@ -721,7 +721,7 @@ Public Class FacturacionDAO
 
     End Function
 
-    Public Function getRptFacturaDetalleByMonedaAndId(codigo_factura As Integer, factura_detalle As Integer) As DataTable
+    Public Function GetRptFacturaDetalleByMonedaAndId(codigo_factura As Integer, factura_detalle As Integer) As DataTable
 
         Return sqlControl.ExecQuery("SELECT	a.CODIGO_FACTURA,
 		                                    f.PLACA_UNIDAD,
@@ -750,7 +750,7 @@ Public Class FacturacionDAO
 
     End Function
 
-    Public Function getRptFacturaDetalleByMonedaGastoTotal(codigoFactura As Integer) As DataTable
+    Public Function GetRptFacturaDetalleByMonedaGastoTotal(codigoFactura As Integer) As DataTable
 
         Return sqlControl.ExecQuery("SELECT	a.CODIGO_FACTURA,
                                             a.TOTAL_FACTURA,
@@ -769,7 +769,7 @@ Public Class FacturacionDAO
 
     End Function
 
-    Public Function getPrintRptFacturaCabecera(codigo_factura As Integer) As DataTable
+    Public Function GetPrintRptFacturaCabecera(codigo_factura As Integer) As DataTable
         Return sqlControl.ExecQuery("select	    b.RAZON_CLIENTE,
 			                                    b.DIRECCION_CLIENTE,
 			                                    b.RUC_CLIENTE,
@@ -788,7 +788,7 @@ Public Class FacturacionDAO
                                      Nothing)
     End Function
 
-    Public Function getPrintRptFacturaDetalle(codigo_factura As Integer) As DataTable
+    Public Function GetPrintRptFacturaDetalle(codigo_factura As Integer) As DataTable
         Return sqlControl.ExecQuery("select	coalesce(b.CANTIDAD,0) CANTIDAD,
 		                                    coalesce(b.CONF_VEHICULAR,'') CONF_VEHICULAR,
 		                                    coalesce(b.OBSERVACION,'') OBSERVACION,
@@ -819,7 +819,7 @@ Public Class FacturacionDAO
                                      Nothing)
     End Function
 
-    Public Function getPrintRptFacturaGuia(codigo_factura As Integer, codigo_detalle As Integer) As DataTable
+    Public Function GetPrintRptFacturaGuia(codigo_factura As Integer, codigo_detalle As Integer) As DataTable
         Return sqlControl.ExecQuery("select	a.CODIGO_FACTURA,
 		                                    a.CODIGO_DETALLE_FACTURA,
 		                                    b.CODIGO_GUIA,
@@ -831,7 +831,7 @@ Public Class FacturacionDAO
                                      Nothing)
     End Function
 
-    Public Function getPrintRptFacturaRemitente(codigo_factura As Integer, codigo_detalle As Integer) As DataTable
+    Public Function GetPrintRptFacturaRemitente(codigo_factura As Integer, codigo_detalle As Integer) As DataTable
         Return sqlControl.ExecQuery("select	CODIGO_FACTURA,
 		                                    CODIGO_DETALLE_FACTURA,
 		                                    GUIA_REMITENTE,
@@ -842,7 +842,7 @@ Public Class FacturacionDAO
                                      Nothing)
     End Function
 
-    Public Function getPrintRptFacturaUnidad(codigo_factura As Integer, codigo_detalle As Integer) As DataTable
+    Public Function GetPrintRptFacturaUnidad(codigo_factura As Integer, codigo_detalle As Integer) As DataTable
         Return sqlControl.ExecQuery("select	CODIGO_FACTURA,
 		                                    CODIGO_DETALLE_FACTURA,
 		                                    PLACA_UNIDAD,
@@ -853,7 +853,7 @@ Public Class FacturacionDAO
                                      Nothing)
     End Function
 
-    Public Function getRptFacturaCuentasPorCobrar(chbxInicio As Boolean, fecha_inicio As Date,
+    Public Function GetRptFacturaCuentasPorCobrar(chbxInicio As Boolean, fecha_inicio As Date,
                                                   chbxFinal As Boolean, fecha_fin As Date, cliente As Integer) As DataTable
 
         Dim whereFecha As String, whereCliente As String
@@ -911,7 +911,7 @@ Public Class FacturacionDAO
                                      params)
     End Function
 
-    Public Function getNroFacturasByActualizado(actualizado As Integer) As DataTable
+    Public Function GetNroFacturasByActualizado(actualizado As Integer) As DataTable
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@ACTUALIZADO", actualizado))
@@ -923,7 +923,7 @@ Public Class FacturacionDAO
                                      params)
     End Function
 
-    Public Function ejecutarQueryBatch(queryBatch As String) As DataTable
+    Public Function EjecutarQueryBatch(queryBatch As String) As DataTable
         Return sqlControl.ExecQuery(queryBatch, Nothing)
     End Function
 End Class

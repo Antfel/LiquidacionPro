@@ -24,17 +24,17 @@ Public Class ChildFacturacion
 
     Private Sub cargarDatosFactura()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDao As New FacturacionDAO(sqlControl)
         Dim dtCabeceraFactura As DataTable
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDao.SetDBcmd()
 
-            dtCabeceraFactura = facturacionDao.getFacturaById(codigo_Factura)
-            sqlControl.commitTransaction()
+            dtCabeceraFactura = facturacionDao.GetFacturaById(codigo_Factura)
+            sqlControl.CommitTransaction()
 
             txtNroSerie.Text = dtCabeceraFactura.Rows(0).Item(1).ToString
             lbNroFactura.Text = dtCabeceraFactura.Rows(0).Item(2).ToString
@@ -77,7 +77,7 @@ Public Class ChildFacturacion
 
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos de factura. " + ex.Message, "Cargar datos factura",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -87,7 +87,7 @@ Public Class ChildFacturacion
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
                 obtenerDatosCliente()
                 cargarDetalleFactura()
                 BloquearBotones()
@@ -103,13 +103,13 @@ Public Class ChildFacturacion
     Private Sub actualizarDatosCliente()
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim clienteDao As New ClienteDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
 
             clienteDao.setDBcmd()
 
@@ -127,16 +127,16 @@ Public Class ChildFacturacion
 
             End With
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar cliente. " + ex.Message, "Cargar datos de cliente",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos de cliente",
                                 MessageBoxButtons.OK,
@@ -148,12 +148,12 @@ Public Class ChildFacturacion
 
     Private Sub actualizarDatosTracto()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim unidadDao As New UnidadDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             unidadDao.setDBcmd()
 
             Dim dtUnidad As DataTable
@@ -169,15 +169,15 @@ Public Class ChildFacturacion
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos del tracto. " + ex.Message, "Cargar datos de tracto",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos de tracto",
                                 MessageBoxButtons.OK,
@@ -190,13 +190,13 @@ Public Class ChildFacturacion
 
     Private Sub actualizarDatosMoneda()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim monedaDao As New MonedaDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             monedaDao.setDBcmd()
 
             Dim dtMoneda As DataTable
@@ -209,15 +209,15 @@ Public Class ChildFacturacion
                 .ValueMember = "CODIGO_MONEDA"
                 .SelectedIndex = -1
             End With
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos moneda. " + ex.Message, "Cargar datos moneda",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos moneda",
                                  MessageBoxButtons.OK,
@@ -230,12 +230,12 @@ Public Class ChildFacturacion
 
     Private Sub actualizarDatosGuia()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             guiaDao.setDBcmd()
 
             Dim dtGuia As DataTable
@@ -251,15 +251,15 @@ Public Class ChildFacturacion
                 .AutoCompleteSource = AutoCompleteSource.ListItems
                 .SelectedIndex = -1
             End With
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos de guía. " + ex.Message, "Cargar datos guías",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar datos guías",
                                  MessageBoxButtons.OK,
@@ -302,19 +302,19 @@ Public Class ChildFacturacion
 
     Sub cargarBancos()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
 
         Dim bancoDao As New BancoDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             bancoDao.setDBcmd()
 
             Dim dt As DataTable
 
             dt = bancoDao.GetAllBanco()
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbBancoPago
                 .DataSource = dt
@@ -324,7 +324,7 @@ Public Class ChildFacturacion
             End With
 
         Catch ex As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos de Banco. " + ex.Message, "Cargar datos de Banco",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -334,7 +334,7 @@ Public Class ChildFacturacion
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos de Banco",
                                  MessageBoxButtons.OK,
@@ -348,13 +348,13 @@ Public Class ChildFacturacion
 
     Private Sub obtenerDatosCliente()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
 
         Dim clienteDao As New ClienteDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             clienteDao.setDBcmd()
 
             Dim dtClente As DataTable
@@ -365,15 +365,15 @@ Public Class ChildFacturacion
             txtDireccion.Text = dtClente.Rows.Item(0)(3).ToString.ToUpper
             txtTelefono.Text = dtClente.Rows.Item(0)(4).ToString
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos de cliente. " + ex.Message, "Cargar datos de cliente",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos de cliente",
                                  MessageBoxButtons.OK,
@@ -408,13 +408,13 @@ Public Class ChildFacturacion
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDao As New FacturacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDao.SetDBcmd()
 
             Dim descripcionDetalle As String, confVehi As String, valorRef As Double, obs As String, origen As String, destino As String
 
@@ -466,16 +466,16 @@ Public Class ChildFacturacion
                                                 origen,
                                                 destino)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             cargandoDatosActualizar = 0
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al grabar datos del detalle. " + ex.Message, "Actualizar detalle item",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Actualizar detalle item",
                                  MessageBoxButtons.OK,
@@ -543,14 +543,14 @@ Public Class ChildFacturacion
 
     Private Sub GuardarCabeceraFactura()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDao As New FacturacionDAO(sqlControl)
         Dim correlativoDao As New Correlativo_NumeroDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             correlativoDao.setDBcmd()
 
             Dim porcentaje_detraccion As Double, monto_detraccion As Double, banco As Integer
@@ -606,7 +606,7 @@ Public Class ChildFacturacion
                                              porcentaje_detraccion, monto_detraccion, banco)
             End If
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             txtNroSerie.Enabled = False
             cbRazonSocial.Enabled = False
@@ -616,7 +616,7 @@ Public Class ChildFacturacion
             'btnGuardarCabecera.Enabled = False
             childBusquedaFactura.cargarDatosFactura()
         Catch ex As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al grabar datos de factura. SQL. " + ex.Message, "Grabar datos factura",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -626,7 +626,7 @@ Public Class ChildFacturacion
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Grabar datos factura",
                                  MessageBoxButtons.OK,
@@ -637,15 +637,15 @@ Public Class ChildFacturacion
 
     Private Sub cargarDetalleFactura()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDao As New FacturacionDAO(sqlControl)
 
         Try
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDao.SetDBcmd()
 
             Dim dataDetalle As DataTable = facturacionDao.getDetalleFacturaByCodigoFactura(codigo_Factura)
 
@@ -655,15 +655,15 @@ Public Class ChildFacturacion
                 .ValueMember = "CODIGO_DETALLE_FACTURA"
                 .SelectedIndex = -1
             End With
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos de detalle factura. " + ex.Message, "Cargar datos detalle factura",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cargar datos de detalle factura. " + ex.Message, "Cargar datos detalle factura",
                                  MessageBoxButtons.OK,
@@ -674,14 +674,14 @@ Public Class ChildFacturacion
 
     Private Sub guardarDetalleFactura()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDao As New FacturacionDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDao.SetDBcmd()
 
             codigo_Detalle = facturacionDao.InsertFacturaDetalle(codigo_Factura,
                                                                  0,
@@ -694,10 +694,10 @@ Public Class ChildFacturacion
                                                                  "",
                                                                  "")
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             btnImprimir.Enabled = True
         Catch ex As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al guardar datos de detalle factura. " + ex.Message, "Guardar datos de detalle factura",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -707,7 +707,7 @@ Public Class ChildFacturacion
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cargar datos de detalle factura. " + ex.Message, "Guardar datos detalle factura",
                                  MessageBoxButtons.OK,
@@ -719,24 +719,24 @@ Public Class ChildFacturacion
 
     Private Sub ObtenerCorrelativo()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim correlativoDao As New Correlativo_NumeroDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             correlativoDao.setDBcmd()
 
             correlativoFactura = correlativoDao.GetSiguienteCorrelativo(1, txtNroSerie.Text)
             lbNroFactura.Text = correlativoFactura
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MsgBox("No se pudo establecer la conexion con el servidor.")
             End Try
@@ -756,23 +756,23 @@ Public Class ChildFacturacion
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDao As New FacturacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDao.SetDBcmd()
 
-            facturacionDao.deleteFacturaDetalle(codigo_Detalle, codigo_Factura)
+            facturacionDao.DeleteFacturaDetalle(codigo_Detalle, codigo_Factura)
 
-            facturacionDao.commitTransacction()
+            facturacionDao.CommitTransacction()
 
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MsgBox("No se pudo establecer la conexion con el servidor.")
             End Try
@@ -859,28 +859,28 @@ Public Class ChildFacturacion
     Private Sub cargarGuiasTransportistas()
         If codigo_Detalle <> -1 Then
             Dim sqlControl As New SQLControl
-            sqlControl.setConnection()
+            sqlControl.SetConnection()
 
 
             Dim facturacionDao As New FacturacionDAO(sqlControl)
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
-                facturacionDao.setDBcmd()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
+                facturacionDao.SetDBcmd()
 
                 Dim dataGuias As New DataTable
 
-                dataGuias = facturacionDao.getGuiasByDetalle(codigo_Detalle)
-                sqlControl.commitTransaction()
+                dataGuias = facturacionDao.GetGuiasByDetalle(codigo_Detalle)
+                sqlControl.CommitTransaction()
 
                 tbTransportista.DataSource = dataGuias
             Catch ex As SqlException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
             Catch ex As Exception
 
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MsgBox("No se pudo establecer la conexion con el servidor.")
                 End Try
@@ -892,27 +892,27 @@ Public Class ChildFacturacion
     Private Sub cargarGuiasRemitente()
         If codigo_Detalle <> -1 Then
             Dim sqlControl As New SQLControl
-            sqlControl.setConnection()
+            sqlControl.SetConnection()
 
             Dim facturacionDao As New FacturacionDAO(sqlControl)
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
-                facturacionDao.setDBcmd()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
+                facturacionDao.SetDBcmd()
 
                 Dim dataGuias As New DataTable
 
-                dataGuias = facturacionDao.getRemitentesByDetalle(codigo_Detalle)
+                dataGuias = facturacionDao.GetRemitentesByDetalle(codigo_Detalle)
 
                 tbRemitente.DataSource = dataGuias
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
             Catch ex As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MsgBox("No se pudo establecer la conexion con el servidor.")
                 End Try
@@ -924,13 +924,13 @@ Public Class ChildFacturacion
 
     Private Sub cargarTiposDeServicio()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim tipoServicioDao As New TipoServicioDAO(sqlControl)
         Dim dataTipoServicio As DataTable
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             tipoServicioDao.setDBcmd()
 
             dataTipoServicio = tipoServicioDao.getTiposDeServicio()
@@ -941,12 +941,12 @@ Public Class ChildFacturacion
                 .DisplayMember = "DETALLE_ESTADO"
                 .SelectedIndex = -1
             End With
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MsgBox("Cargar Tipo Servicio. " + ex.Message)
             End Try
@@ -957,27 +957,27 @@ Public Class ChildFacturacion
     Private Sub cargarPlacasDetalle()
         If codigo_Detalle <> -1 Then
             Dim sqlControl As New SQLControl
-            sqlControl.setConnection()
+            sqlControl.SetConnection()
 
             Dim facturacionDao As New FacturacionDAO(sqlControl)
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
-                facturacionDao.setDBcmd()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
+                facturacionDao.SetDBcmd()
 
                 Dim dataPlacas As New DataTable
 
-                dataPlacas = facturacionDao.getPlacaByDetalle(codigo_Detalle)
+                dataPlacas = facturacionDao.GetPlacaByDetalle(codigo_Detalle)
 
                 tbPlaca.DataSource = dataPlacas
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
             Catch ex As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MsgBox("No se pudo establecer la conexion con el servidor.")
                 End Try
@@ -1001,16 +1001,16 @@ Public Class ChildFacturacion
 
     Private Sub cargarDatosDetalleFactura()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDao As New FacturacionDAO(sqlControl)
         Dim datDetalle As DataTable
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDao.SetDBcmd()
 
-            datDetalle = facturacionDao.getDetalleFacturaByIdDetalle(codigo_Detalle)
+            datDetalle = facturacionDao.GetDetalleFacturaByIdDetalle(codigo_Detalle)
 
             If datDetalle.Rows.Count > 0 Then
                 cbTipoServicio.SelectedValue = datDetalle.Rows(0).Item(0)
@@ -1024,17 +1024,17 @@ Public Class ChildFacturacion
                 cbOrigen.Text = datDetalle.Rows(0).Item(6).ToString
                 cbDestino.Text = datDetalle.Rows(0).Item(7).ToString
                 txtObservaciones.Text = datDetalle.Rows(0).Item(8).ToString
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
             End If
 
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos detalle. " + ex.Message, "Cargar datos detalleee",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar datos detalleeeeee",
                  MessageBoxButtons.OK,
@@ -1067,20 +1067,20 @@ Public Class ChildFacturacion
 
         If CType(cbGuia.SelectedValue, Integer) <> -1 And cbGuia.Text <> "" Then
             Dim sqlControl As New SQLControl
-            sqlControl.setConnection()
+            sqlControl.SetConnection()
 
             Dim facturacionDao As New FacturacionDAO(sqlControl)
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
-                facturacionDao.setDBcmd()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
+                facturacionDao.SetDBcmd()
 
                 facturacionDao.InsertFacturaDetalleGuia(codigo_Detalle, codigo_Factura, CType(cbGuia.SelectedValue, Integer))
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
                 cbGuia.SelectedIndex = -1
             Catch ex As SQLException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar transportista. " + ex.Message, "Agregar transportista",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -1090,7 +1090,7 @@ Public Class ChildFacturacion
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar transportista",
                                  MessageBoxButtons.OK,
@@ -1117,25 +1117,25 @@ Public Class ChildFacturacion
 
         If seleccion.Index > -1 Then
             Dim sqlControl As New SQLControl
-            sqlControl.setConnection()
+            sqlControl.SetConnection()
 
             Dim facturacionDao As New FacturacionDAO(sqlControl)
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
-                facturacionDao.setDBcmd()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
+                facturacionDao.SetDBcmd()
 
-                facturacionDao.deleteFacturaDetalleGuia(codigo_Detalle, codigo_Factura, codigo)
+                facturacionDao.DeleteFacturaDetalleGuia(codigo_Detalle, codigo_Factura, codigo)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
             Catch ex As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al eliminar transportista. " + ex.Message, "Eliminar transportista",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar transportista",
                  MessageBoxButtons.OK,
@@ -1164,26 +1164,26 @@ Public Class ChildFacturacion
             Return
         End If
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDao As New FacturacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDao.SetDBcmd()
 
             facturacionDao.InsertFacturaDetalleRemitente(codigo_Detalle, codigo_Factura, txtRemitente.Text)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             txtRemitente.Text = ""
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar remitente. " + ex.Message, "Agregar remitente",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Agregar remitente",
                              MessageBoxButtons.OK,
@@ -1211,26 +1211,26 @@ Public Class ChildFacturacion
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDao As New FacturacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDao.SetDBcmd()
 
             facturacionDao.InsertFacturaDetalleUnidad(codigo_Detalle, codigo_Factura, cbTracto.Text)
             cbTracto.SelectedIndex = -1
             cbTracto.Text = Nothing
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al grabar unidad. " + ex.Message, "Agregar unidad",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar unidad. " + ex.Message, "Agregar unidad",
                  MessageBoxButtons.OK,
@@ -1255,25 +1255,25 @@ Public Class ChildFacturacion
 
         If seleccion.Index > -1 Then
             Dim sqlControl As New SQLControl
-            sqlControl.setConnection()
+            sqlControl.SetConnection()
 
             Dim facturacionDao As New FacturacionDAO(sqlControl)
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
-                facturacionDao.setDBcmd()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
+                facturacionDao.SetDBcmd()
 
-                facturacionDao.deleteFacturaDetalleUnidad(codigo_Detalle, codigo_Factura, codigo)
+                facturacionDao.DeleteFacturaDetalleUnidad(codigo_Detalle, codigo_Factura, codigo)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
             Catch ex As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al eliminar unidad. " + ex.Message, "Eliminar unidad",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Eliminar unidad",
                                  MessageBoxButtons.OK,
@@ -1300,25 +1300,25 @@ Public Class ChildFacturacion
 
         If seleccion.Index > -1 Then
             Dim sqlControl As New SQLControl
-            sqlControl.setConnection()
+            sqlControl.SetConnection()
 
             Dim facturacionDao As New FacturacionDAO(sqlControl)
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
-                facturacionDao.setDBcmd()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
+                facturacionDao.SetDBcmd()
 
-                facturacionDao.deleteFacturaDetalleRemitente(codigo_Detalle, codigo_Factura, codigo)
+                facturacionDao.DeleteFacturaDetalleRemitente(codigo_Detalle, codigo_Factura, codigo)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
             Catch ex As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al eliminar remitente. " + ex.Message, "Eliminar remitente",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Eliminar remitente",
                                  MessageBoxButtons.OK,
@@ -1334,19 +1334,19 @@ Public Class ChildFacturacion
     Private Sub cargarDireccionesPrevias()
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDAO As New FacturacionDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
 
-            facturacionDAO.setDBcmd()
+            facturacionDAO.SetDBcmd()
 
             Dim dtOrigen, dtDestino As DataTable
-            dtOrigen = facturacionDAO.getOrigenDestino
-            dtDestino = facturacionDAO.getOrigenDestino
+            dtOrigen = facturacionDAO.GetOrigenDestino
+            dtDestino = facturacionDAO.GetOrigenDestino
             With cbOrigen
                 .DataSource = dtOrigen
                 .DisplayMember = "DIRECCION"
@@ -1369,16 +1369,16 @@ Public Class ChildFacturacion
 
             End With
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar direcciones. " + ex.Message, "Cargar direcciones",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar direcciones",
                                 MessageBoxButtons.OK,

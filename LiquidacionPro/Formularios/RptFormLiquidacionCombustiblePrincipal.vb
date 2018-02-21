@@ -28,21 +28,21 @@ Public Class RptFormLiquidacionCombustiblePrincipal
     Function getiquidacionPrincipal(codigo As Integer) As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
         dt = Nothing
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             dt = liquidacionDAO.getRptLiquidacionCombustiblePrincipal(codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             Return dt
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("No se pudo cargar la liquidación. " + ex.Message, "Cargar Liquidación",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Error)
@@ -50,7 +50,7 @@ Public Class RptFormLiquidacionCombustiblePrincipal
         Finally
 
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("No se pudo cerrar la conexión. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
@@ -76,21 +76,21 @@ Public Class RptFormLiquidacionCombustiblePrincipal
     Function getiquidacionCombustiblePrincipalDetalle(codigo As Integer) As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
         dt = Nothing
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             dt = liquidacionDAO.getRptLiquidacionCombustiblePrincipalDetalle(codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             Return dt
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("No se pudo cargar la liquidación detalle. " + ex.Message, "Cargar Liquidación",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Error)
@@ -98,7 +98,7 @@ Public Class RptFormLiquidacionCombustiblePrincipal
         Finally
 
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("No se pudo cerrar la conexión. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,

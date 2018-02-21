@@ -110,7 +110,7 @@ Public Class MDIPrincipal
         rptFormFacturaCuentasPorCobrar.Show()
     End Sub
 
-    Private Sub TEstToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TEstToolStripMenuItem.Click
+    Private Sub TEstToolStripMenuItem_Click(sender As Object, e As EventArgs)
 
     End Sub
 
@@ -130,5 +130,11 @@ Public Class MDIPrincipal
                                  MessageBoxIcon.Exclamation)
         End If
 
+    End Sub
+
+    Private Sub GuíasControlDeViajesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GuíasControlDeViajesToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim rptFormGuiaControlViaje As New RptFormGuiaControlViaje()
+        rptFormGuiaControlViaje.Show()
     End Sub
 End Class

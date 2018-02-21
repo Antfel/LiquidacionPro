@@ -38,15 +38,15 @@ Public Class RptFormFacturaCuentasPorCobrar
     Function getFacturaCuentasPorCobrar() As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDAO As New FacturacionDAO(sqlControl)
 
         dt = Nothing
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDAO.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDAO.SetDBcmd()
 
             Dim cliente As Integer
             If cbCliente.SelectedIndex < 0 Then
@@ -55,11 +55,11 @@ Public Class RptFormFacturaCuentasPorCobrar
                 cliente = cbCliente.SelectedValue
             End If
 
-            dt = facturacionDAO.getRptFacturaCuentasPorCobrar(chbxInicio.Checked, dtpInicio.Value, chbxFinal.Checked, dtpFinal.Value, cliente)
-            sqlControl.commitTransaction()
+            dt = facturacionDAO.GetRptFacturaCuentasPorCobrar(chbxInicio.Checked, dtpInicio.Value, chbxFinal.Checked, dtpFinal.Value, cliente)
+            sqlControl.CommitTransaction()
             Return dt
         Catch ex As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("No se pudo cargar la Facturas. " + ex.Message, "Cargar Facturas",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Error)
@@ -67,7 +67,7 @@ Public Class RptFormFacturaCuentasPorCobrar
         Finally
 
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("No se pudo cerrar la conexión. " + ex.Message, "Cargar Facturas",
                                  MessageBoxButtons.OK,
@@ -111,19 +111,19 @@ Public Class RptFormFacturaCuentasPorCobrar
 
     Sub cargarClientes()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim clienteDao As New ClienteDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
 
             clienteDao.setDBcmd()
 
             Dim dtCliente As DataTable
             dtCliente = clienteDao.GetClientes
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbCliente
                 .DataSource = dtCliente
@@ -138,7 +138,7 @@ Public Class RptFormFacturaCuentasPorCobrar
 
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar cliente. " + ex.Message, "Cargar datos de cliente",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -148,7 +148,7 @@ Public Class RptFormFacturaCuentasPorCobrar
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos de cliente",
                                 MessageBoxButtons.OK,

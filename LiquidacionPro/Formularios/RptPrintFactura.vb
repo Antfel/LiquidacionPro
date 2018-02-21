@@ -49,21 +49,21 @@ Public Class RptPrintFactura
     Private Sub PrintDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Try
 
 
             Dim facturacionDao As New FacturacionDAO(sqlControl)
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDao.SetDBcmd()
 
             Dim dtc As DataTable
-            dtc = facturacionDao.getPrintRptFacturaCabecera(nroFactura)
+            dtc = facturacionDao.GetPrintRptFacturaCabecera(nroFactura)
 
             Dim dtd As DataTable
-            dtd = facturacionDao.getPrintRptFacturaDetalle(nroFactura)
+            dtd = facturacionDao.GetPrintRptFacturaDetalle(nroFactura)
 
             Dim dtg As DataTable
             Dim dtr As DataTable
@@ -115,9 +115,9 @@ Public Class RptPrintFactura
                         text = text + " DE " + dtd.Rows.Item(i)(17)
                     End If
 
-                    dtg = facturacionDao.getPrintRptFacturaGuia(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
-                    dtr = facturacionDao.getPrintRptFacturaRemitente(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
-                    dtu = facturacionDao.getPrintRptFacturaUnidad(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
+                    dtg = facturacionDao.GetPrintRptFacturaGuia(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
+                    dtr = facturacionDao.GetPrintRptFacturaRemitente(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
+                    dtu = facturacionDao.GetPrintRptFacturaUnidad(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
 
                     If (dtg.Rows.Count <> 0 Or dtr.Rows.Count <> 0 Or dtu.Rows.Count <> 0) Then
                         text = text + " SEGUN GUIA DE REMISION:"
@@ -207,9 +207,9 @@ Public Class RptPrintFactura
             e.Graphics.DrawString(simbolo + IGV.ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, 1080)
             e.Graphics.DrawString(simbolo + TOTAL.ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, 1110)
             e.Graphics.DrawString(NUMBERF.DecimalLetras(TOTAL.ToString("0.00", CultureInfo.InvariantCulture)) + " " + moneda, FONT, Brushes.Black, 60, 1045)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch excp As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error en la transacción. " + excp.Message, "Cargar datos factura",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -218,8 +218,8 @@ Public Class RptPrintFactura
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
         Finally
-            If sqlControl.getDBcon.State = ConnectionState.Open Then
-                sqlControl.closeConexion()
+            If sqlControl.GetDBcon.State = ConnectionState.Open Then
+                sqlControl.CloseConexion()
             End If
 
         End Try

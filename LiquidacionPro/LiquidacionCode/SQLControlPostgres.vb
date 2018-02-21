@@ -16,26 +16,34 @@ Public Class SQLControlPostgres
 
     End Sub
 
-    Public Sub setConnection()
+    Public Sub SetConnection()
         con = New NpgsqlConnection()
-        'con.ConnectionString = "Server=rad-laptop;Port=5432;Database=20518904427;User Id=postgres;Password=sistemas;"
-        con.ConnectionString = "Server=localhost;Port=5432;Database=20518904427;User Id=readuser;Password=12345678;"
+        con.ConnectionString = "Server=minos;Port=5432;Database=20518904427;User Id=postgres;Password=sistemas;"
+        'con.ConnectionString = "Server=localhost;Port=5432;Database=20518904427;User Id=readuser;Password=12345678;"
     End Sub
 
-    Public Function openConexion() As Boolean
+    Public Function OpenConexion() As Boolean
         Try
             con.Open()
             Return True
         Catch ex As Exception
+            MessageBox.Show("Error al abrir la conexión. " + ex.Message, "Open Conexión",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             Return False
         End Try
     End Function
 
-    Public Function closeConexion() As Boolean
+    Public Function CloseConexion() As Boolean
         Try
-            con.Close()
+            If con.State = ConnectionState.Open Then
+                con.Close()
+            End If
             Return True
         Catch ex As Exception
+            MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cerrar Conexión",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -55,9 +63,9 @@ Public Class SQLControlPostgres
     '    transaction.Rollback()
     'End Sub
 
-    'Public Function getDBcon() As SqlConnection
-    '    Return DBcon
-    'End Function
+    Public Function GetDBcon() As NpgsqlConnection
+        Return con
+    End Function
 
     'Public Function getDBcmd() As SqlCommand
     '    Return DBcmd

@@ -25,18 +25,18 @@ Public Class ChildLiquidacionCombustible
 
     Sub cargarUnidadMedida()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim unidadMedidaDAO As New UnidadMedidaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             unidadMedidaDAO.setDBcmd()
 
             Dim dt As DataTable
 
             dt = unidadMedidaDAO.getAllUnidadMedida
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbUnidadMedida
                 .DataSource = dt
@@ -46,7 +46,7 @@ Public Class ChildLiquidacionCombustible
             End With
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos Unidad de Medida. " + ex.Message, "Cargar Unidad de Medida",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -56,7 +56,7 @@ Public Class ChildLiquidacionCombustible
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Unidad de Medida",
                                 MessageBoxButtons.OK,
@@ -137,7 +137,7 @@ Public Class ChildLiquidacionCombustible
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
 
@@ -149,8 +149,8 @@ Public Class ChildLiquidacionCombustible
 
         Else
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDao.setDBcmd()
 
                 Dim correla As Integer
@@ -165,17 +165,17 @@ Public Class ChildLiquidacionCombustible
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Information)
                 End If
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
             Catch excep As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al actualizar Liquidación. " + excep.Message, "Agregar Liquidaciones",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
-                    sqlControl.rollbackTransaccion()
+                    sqlControl.RollbackTransaccion()
                     MessageBox.Show("Error al cerrar Conexión. " + ex.Message, "Agregar Liquidaciones",
                                      MessageBoxButtons.OK,
                                      MessageBoxIcon.Error)
@@ -204,12 +204,12 @@ Public Class ChildLiquidacionCombustible
 
     Sub cargarLiquidacion()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvLiquidacion.SelectedRows(0)
@@ -275,9 +275,9 @@ Public Class ChildLiquidacionCombustible
             txtPesoDetalle.Text = dt.Rows(0)(41)
             txtDistancia.Text = dt.Rows(0)(42)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos de Liquidación. " + ex.Message, "Cargar Liquidación",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -287,7 +287,7 @@ Public Class ChildLiquidacionCombustible
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Liquidación",
                                 MessageBoxButtons.OK,
@@ -298,18 +298,18 @@ Public Class ChildLiquidacionCombustible
 
     Private Sub actualizarListaLiquidacion()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim dt As DataTable
 
             dt = liquidacionDao.GetAllLiquidacion()
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             Dim filtro As String = source1.Filter
 
@@ -348,7 +348,7 @@ Public Class ChildLiquidacionCombustible
             'End If
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar lista Liquidación. " + ex.Message, "Cargar Lista Liquidación",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -358,7 +358,7 @@ Public Class ChildLiquidacionCombustible
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Lista Liquidación",
                                  MessageBoxButtons.OK,
@@ -370,19 +370,19 @@ Public Class ChildLiquidacionCombustible
     End Sub
     Private Sub actualizarDatosTrabajador()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim trabajadorDao As New TrabajadorDAO(sqlControl)
         Try
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             trabajadorDao.setDBcmd()
 
             Dim dtTrabajador As DataTable
 
             dtTrabajador = trabajadorDao.GetConductor
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbTrabajador
                 .DataSource = dtTrabajador
@@ -395,7 +395,7 @@ Public Class ChildLiquidacionCombustible
             End With
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos Trabajador. " + ex.Message, "Cargar Datos Trabajador",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -405,7 +405,7 @@ Public Class ChildLiquidacionCombustible
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Datos Trabajador",
                                  MessageBoxButtons.OK,
@@ -416,17 +416,17 @@ Public Class ChildLiquidacionCombustible
 
     Private Sub actualizarDatosGuia()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             guiaDao.setDBcmd()
             Dim dtGuia As DataTable
 
             dtGuia = guiaDao.getGuiaPendLiquidacion
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbGuia
                 .DataSource = dtGuia
@@ -439,7 +439,7 @@ Public Class ChildLiquidacionCombustible
             End With
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos guía. " + ex.Message, "Cargar Datos Guía",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -449,7 +449,7 @@ Public Class ChildLiquidacionCombustible
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Datos Guía",
                                  MessageBoxButtons.OK,
@@ -461,17 +461,17 @@ Public Class ChildLiquidacionCombustible
 
     Private Sub actualizarDatosGuiaRegistrada(cod_guia As Integer)
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             guiaDao.setDBcmd()
             Dim dtGuia As DataTable
 
             dtGuia = guiaDao.getGuiaByCodigo(cod_guia)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbGuia
                 .DataSource = dtGuia
@@ -483,13 +483,13 @@ Public Class ChildLiquidacionCombustible
                 .SelectedIndex = -1
             End With
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Guía Registrada. " + ex.Message, "Cargar Guía Registrada",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Guía Registrada",
                                  MessageBoxButtons.OK,
@@ -501,18 +501,18 @@ Public Class ChildLiquidacionCombustible
 
     Private Sub actualizarDatosTracto()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim unidadDao As New UnidadDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             unidadDao.setDBcmd()
 
             Dim dtUnidad As DataTable
 
             dtUnidad = unidadDao.getUnidadTractos()
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbTracto
                 .DataSource = dtUnidad
@@ -524,7 +524,7 @@ Public Class ChildLiquidacionCombustible
                 .SelectedIndex = -1
             End With
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos Tracto. " + ex.Message, "Cargar Datos Tracto",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -534,7 +534,7 @@ Public Class ChildLiquidacionCombustible
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Datos Tracto",
                                  MessageBoxButtons.OK,
@@ -547,18 +547,18 @@ Public Class ChildLiquidacionCombustible
 
     Private Sub actualizarDatosSemiTrailer()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim unidadDao As New UnidadDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             unidadDao.setDBcmd()
 
             Dim dtUnidad As DataTable
 
             dtUnidad = unidadDao.getUnidadSemiTrailer
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbCamabaja
                 .DataSource = dtUnidad
@@ -571,7 +571,7 @@ Public Class ChildLiquidacionCombustible
             End With
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos Semitrailer. " + ex.Message, "Cargar Datos Semitrailer",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -581,7 +581,7 @@ Public Class ChildLiquidacionCombustible
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Datos Semitrailer",
                                 MessageBoxButtons.OK,
@@ -593,18 +593,18 @@ Public Class ChildLiquidacionCombustible
 
     Private Sub actualizarEstados()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim estadoDao As New EstadoDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             estadoDao.setDBcmd()
 
             Dim dtEstado As DataTable
 
             dtEstado = estadoDao.getEstados
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbEstado
                 .DataSource = dtEstado
@@ -616,7 +616,7 @@ Public Class ChildLiquidacionCombustible
                 .SelectedValue = 1
             End With
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar datos Estado Liquidación. " + ex.Message, "Cargar Estado Liquidación",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -626,7 +626,7 @@ Public Class ChildLiquidacionCombustible
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Estado Liquidación",
                                 MessageBoxButtons.OK,
@@ -708,16 +708,16 @@ Public Class ChildLiquidacionCombustible
 
     Sub cargarCombustible(codigo As Integer)
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             Dim dt As DataTable
             dt = liquidacionDAO.GetLiquidacionCombustibleByIdLiquidacion(codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             dgvCombustible.DataSource = dt
 
@@ -726,7 +726,7 @@ Public Class ChildLiquidacionCombustible
             dgvCombustible.Columns(2).Visible = False
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Combustible. " + ex.Message, "Cargar Combustible",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
@@ -736,7 +736,7 @@ Public Class ChildLiquidacionCombustible
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Combustible",
                              MessageBoxButtons.OK,
@@ -796,13 +796,13 @@ Public Class ChildLiquidacionCombustible
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
         If txtCodigoLiquidacionCombustible.Text = Nothing Then
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -819,7 +819,7 @@ Public Class ChildLiquidacionCombustible
                                                             txtLugarCombustible.Text, Double.Parse(txtGalonesCombustible.Text),
                                                             Double.Parse(txtPrecioGalon.Text), gastoCombustible, km, linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
                 cargarLiquidacion()
                 cargarCombustible(CInt(txtCodigoLiquidacion.Text))
                 txtCodigoLiquidacionCombustible.Text = ""
@@ -833,7 +833,7 @@ Public Class ChildLiquidacionCombustible
                 txtKm.Text = ""
                 txtLugarCombustible.Focus()
             Catch ex As SqlException
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -843,7 +843,7 @@ Public Class ChildLiquidacionCombustible
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar combustible",
                                  MessageBoxButtons.OK,
@@ -852,8 +852,8 @@ Public Class ChildLiquidacionCombustible
             End Try
         Else
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDAO.setDBcmd()
 
                 Dim linea As Integer
@@ -873,7 +873,7 @@ Public Class ChildLiquidacionCombustible
                                                             Double.Parse(txtGalonesCombustible.Text), Double.Parse(txtPrecioGalon.Text),
                                                             gastoCombustible, km, linea)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
                 cargarLiquidacion()
                 cargarCombustible(CInt(txtCodigoLiquidacion.Text))
                 txtCodigoLiquidacionCombustible.Text = ""
@@ -887,13 +887,13 @@ Public Class ChildLiquidacionCombustible
                 txtKm.Text = ""
                 txtLugarCombustible.Focus()
             Catch ex As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar combustible",
                                  MessageBoxButtons.OK,
@@ -909,7 +909,7 @@ Public Class ChildLiquidacionCombustible
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
         Try
@@ -917,13 +917,13 @@ Public Class ChildLiquidacionCombustible
             Dim seleccion As DataGridViewRow = dgvCombustible.SelectedRows(0)
             Dim codigo As Integer = seleccion.Cells(1).Value
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.deleteLiquidacionCombustibleById(CInt(txtCodigoLiquidacion.Text), codigo)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             cargarLiquidacion()
             cargarCombustible(CInt(txtCodigoLiquidacion.Text))
             txtCodigoLiquidacionCombustible.Text = ""
@@ -937,13 +937,13 @@ Public Class ChildLiquidacionCombustible
             dtpFechaCombustible.Value = Date.Now
 
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al eliminar combustible. " + ex.Message, "Eliminar combustible",
                              MessageBoxButtons.OK,
                              MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Eliminar combustible",
                              MessageBoxButtons.OK,
@@ -1019,12 +1019,12 @@ Public Class ChildLiquidacionCombustible
     End Sub
     Sub cargarCombustibleById()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvCombustible.SelectedRows(0)
@@ -1032,7 +1032,7 @@ Public Class ChildLiquidacionCombustible
             'filaSeleccionada = seleccion.Index
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionCombustibleById(CInt(txtCodigoLiquidacion.Text), codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             txtCodigoLiquidacionCombustible.Text = dt.Rows(0)(0)
             txtCodigoCombustible.Text = dt.Rows(0)(1)
@@ -1045,7 +1045,7 @@ Public Class ChildLiquidacionCombustible
             txtKm.Text = dt.Rows(0)(8)
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -1055,7 +1055,7 @@ Public Class ChildLiquidacionCombustible
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
@@ -1135,20 +1135,20 @@ Public Class ChildLiquidacionCombustible
 
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.InsertLiquidacionCombustible(CInt(txtCodigoLiquidacion.Text), dtpFechaCombustible.Value,
                                                             txtLugarCombustible.Text, Double.Parse(txtGalonesCombustible.Text),
                                                             Double.Parse(txtPrecioGalon.Text), gastoCombustible, km, linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             cargarLiquidacion()
             cargarCombustible(CInt(txtCodigoLiquidacion.Text))
             txtCodigoLiquidacionCombustible.Text = ""
@@ -1162,7 +1162,7 @@ Public Class ChildLiquidacionCombustible
             dtpFechaCombustible.Value = Date.Now
             txtLugarCombustible.Focus()
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -1172,7 +1172,7 @@ Public Class ChildLiquidacionCombustible
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar combustible",
                                 MessageBoxButtons.OK,
@@ -1254,20 +1254,20 @@ Public Class ChildLiquidacionCombustible
         End If
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             liquidacionDAO.InsertLiquidacionCombustible(CInt(txtCodigoLiquidacion.Text), dtpFechaCombustible.Value,
                                                             txtLugarCombustible.Text, Double.Parse(txtGalonesCombustible.Text),
                                                             Double.Parse(txtPrecioGalon.Text), gastoCombustible, km, linea)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             cargarLiquidacion()
             cargarCombustible(CInt(txtCodigoLiquidacion.Text))
             txtCodigoLiquidacionCombustible.Text = ""
@@ -1281,7 +1281,7 @@ Public Class ChildLiquidacionCombustible
             dtpFechaCombustible.Value = Date.Now
             txtLugarCombustible.Focus()
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al agregar combustible. " + ex.Message, "Agregar combustible",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -1291,7 +1291,7 @@ Public Class ChildLiquidacionCombustible
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Agregar combustible",
                                 MessageBoxButtons.OK,

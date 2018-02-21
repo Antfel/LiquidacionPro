@@ -14,48 +14,56 @@ Public Class SQLControl
 
     End Sub
 
-    Public Sub setConnection()
-        DBcon.ConnectionString = "Server=SERVCONT; Database=TRANSCAR;User=sa; Pwd=Louisse98;"
+    Public Sub SetConnection()
+        DBcon.ConnectionString = "Server=minos; Database=TRANSCAR;User=sa; Pwd=Louisse98;"
     End Sub
 
-    Public Function openConexion() As Boolean
+    Public Function OpenConexion() As Boolean
         Try
             DBcon.Open()
             Return True
         Catch ex As Exception
+            MessageBox.Show("Error al abrir conexión. " + ex.Message, "Open Conexión",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             Return False
         End Try
     End Function
 
-    Public Function closeConexion() As Boolean
+    Public Function CloseConexion() As Boolean
         Try
-            DBcon.Close()
+            If DBcon.State = ConnectionState.Open Then
+                DBcon.Close()
+            End If
             Return True
         Catch ex As Exception
+            MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Close Conexión",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
             Return False
         End Try
     End Function
 
-    Public Sub beginTransaction()
+    Public Sub BeginTransaction()
         DBcmd = DBcon.CreateCommand()
         transaction = DBcon.BeginTransaction("trans")
         DBcmd.Connection = DBcon
         DBcmd.Transaction = transaction
     End Sub
 
-    Public Sub commitTransaction()
+    Public Sub CommitTransaction()
         transaction.Commit()
     End Sub
 
-    Public Sub rollbackTransaccion()
+    Public Sub RollbackTransaccion()
         transaction.Rollback()
     End Sub
 
-    Public Function getDBcon() As SqlConnection
+    Public Function GetDBcon() As SqlConnection
         Return DBcon
     End Function
 
-    Public Function getDBcmd() As SqlCommand
+    Public Function GetDBcmd() As SqlCommand
         Return DBcmd
     End Function
 
@@ -67,12 +75,9 @@ Public Class SQLControl
         Dim DBDA As SqlDataAdapter
 
         Try
-            'DBcon.Open()
-            'DBcmd = New SqlCommand(Query, DBcon)
             DBcmd.CommandText = Query
             If Not params Is Nothing Then
                 params.ForEach(Sub(p) DBcmd.Parameters.Add(p))
-                'Params.Clear()
             End If
 
             DBT = New DataTable
@@ -84,9 +89,6 @@ Public Class SQLControl
             MsgBox(Exception, MsgBoxStyle.Critical, "Exception: ")
             Return Nothing
         Finally
-            If DBcon.State = ConnectionState.Open Then
-                'DBcon.Close()
-            End If
         End Try
     End Function
 
