@@ -10,12 +10,12 @@
     End Sub
     Sub cargarTrabajadores()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim trabajadorDAO As New TrabajadorDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             trabajadorDAO.setDBcmd()
 
             Dim dt As DataTable
@@ -29,15 +29,15 @@
             dgvTrabajadores.Columns(10).Visible = False
             dgvTrabajadores.Columns(12).Visible = False
             dgvTrabajadores.Columns(14).Visible = False
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar trabajadores. " + ex.Message, "Cargar trabajadores",
                      MessageBoxButtons.OK,
                      MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar trabajadores",
                      MessageBoxButtons.OK,
@@ -48,12 +48,12 @@
     End Sub
     Sub cargarEstadoTrabajador()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim estadoDAO As New EstadoDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             estadoDAO.setDBcmd()
 
             Dim dt As DataTable
@@ -66,15 +66,15 @@
                 .ValueMember = "CODIGO_ESTADO"
                 .SelectedValue = 4
             End With
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar estado de trabajador. " + ex.Message, "Cargar estado trabajador",
                      MessageBoxButtons.OK,
                      MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar estado trabajador",
                      MessageBoxButtons.OK,
@@ -85,12 +85,12 @@
 
     Sub cargarCargoTrabajador()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim cargoTrabajadorDAO As New CargoTrabajadorDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             cargoTrabajadorDAO.setDBcmd()
 
             Dim dt As DataTable
@@ -103,15 +103,15 @@
                 .ValueMember = "CODIGO_CARGO_TRABAJADOR"
                 .SelectedValue = 0
             End With
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar cargo de trabajadores. " + ex.Message, "Cargar cargo de trabajadores",
                      MessageBoxButtons.OK,
                      MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar cargo de trabajadores",
                      MessageBoxButtons.OK,
@@ -122,14 +122,14 @@
 
     Private Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim trabajadorDAO As New TrabajadorDAO(sqlControl)
 
         If txtCodigo.Text = Nothing Then
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 trabajadorDAO.setDBcmd()
                 Dim correla As Integer
 
@@ -196,16 +196,16 @@
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Information)
                 End If
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
             Catch excep As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
 
                 MessageBox.Show("Error al grabar Trabajador. " + excep.Message, "Agregar Trabajador",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
                     MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Agregar Trabajador",
                                  MessageBoxButtons.OK,
@@ -214,8 +214,8 @@
             End Try
         Else
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 trabajadorDAO.setDBcmd()
                 Dim correla As Integer
 
@@ -283,17 +283,17 @@
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Information)
                 End If
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
             Catch excep As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al actualizar Trabajador. " + excep.Message, "Agregar Trabajador",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
-                    sqlControl.rollbackTransaccion()
+                    sqlControl.RollbackTransaccion()
                     MessageBox.Show("Error al cerrar Conexión. " + ex.Message, "Agregar Trabajador",
                                      MessageBoxButtons.OK,
                                      MessageBoxIcon.Error)
@@ -362,12 +362,12 @@
 
     Private Sub dgvTrabajadores_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvTrabajadores.CellMouseClick
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim trabajadorDAO As New TrabajadorDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             trabajadorDAO.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvTrabajadores.SelectedRows(0)
@@ -400,15 +400,15 @@
             End If
 
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar los datos del trabajador. " + ex.Message, "Cargar Datos Trabajador",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Exclamation)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Datos Trabajador",
                                  MessageBoxButtons.OK,

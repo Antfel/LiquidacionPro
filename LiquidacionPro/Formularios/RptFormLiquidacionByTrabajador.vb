@@ -7,19 +7,19 @@ Public Class RptFormLiquidacionByTrabajador
 
     Sub cargarTrabajador()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim trabajadorDAO As New TrabajadorDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
 
             trabajadorDAO.setDBcmd()
 
             Dim dt As DataTable
             dt = trabajadorDAO.getAllTrabajador
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbTrabajador
                 .DataSource = dt
@@ -34,7 +34,7 @@ Public Class RptFormLiquidacionByTrabajador
 
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar trabajadores. " + ex.Message, "Cargar datos de trabajadores",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -44,7 +44,7 @@ Public Class RptFormLiquidacionByTrabajador
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos de trabajadores",
                                 MessageBoxButtons.OK,
@@ -85,14 +85,14 @@ Public Class RptFormLiquidacionByTrabajador
     Function getLiquidacionByTrabajador() As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
 
         dt = Nothing
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDAO.setDBcmd()
 
             Dim codigo As Integer
@@ -104,10 +104,10 @@ Public Class RptFormLiquidacionByTrabajador
 
             dt = liquidacionDAO.getRptLiquidacionByTrabajador(codigo, chbxInicio.Checked, dtpInicio.Value,
                                                               chbxFinal.Checked, dtpFinal.Value)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             Return dt
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("No se pudo cargar la liquidación. " + ex.Message, "Cargar Liquidación",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Error)
@@ -115,7 +115,7 @@ Public Class RptFormLiquidacionByTrabajador
         Finally
 
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("No se pudo cerrar la conexión. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,

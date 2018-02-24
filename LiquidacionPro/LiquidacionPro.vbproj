@@ -228,6 +228,12 @@
     <Compile Include="Formularios\RptFormFacturaDetalleByMoneda.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\RptFormGuiaControlViaje.Designer.vb">
+      <DependentUpon>RptFormGuiaControlViaje.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\RptFormGuiaControlViaje.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\RptFormLiquidacionByTrabajador.Designer.vb">
       <DependentUpon>RptFormLiquidacionByTrabajador.vb</DependentUpon>
     </Compile>
@@ -380,6 +386,9 @@
     <EmbeddedResource Include="Formularios\ModuloComunicacionBD.resx">
       <DependentUpon>ModuloComunicacionBD.vb</DependentUpon>
     </EmbeddedResource>
+    <Content Include="Formularios\Reportes\RptGuiasControl.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Formularios\RptFormFacturaCuentasPorCobrar.resx">
       <DependentUpon>RptFormFacturaCuentasPorCobrar.vb</DependentUpon>
     </EmbeddedResource>
@@ -388,6 +397,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\RptFormFacturaDetalleByMoneda.resx">
       <DependentUpon>RptFormFacturaDetalleByMoneda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\RptFormGuiaControlViaje.resx">
+      <DependentUpon>RptFormGuiaControlViaje.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\RptFormLiquidacionByTrabajador.resx">
       <DependentUpon>RptFormLiquidacionByTrabajador.vb</DependentUpon>

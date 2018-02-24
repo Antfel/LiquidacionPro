@@ -7,31 +7,31 @@ Public Class GuiaDAO
 
     Public Sub New(sqlControl As SQLControl)
         Me.sqlControl = sqlControl
-        Me.DBcon = sqlControl.getDBcon
+        Me.DBcon = sqlControl.GetDBcon
     End Sub
 
     Public Sub setDBcmd()
-        Me.DBcmd = sqlControl.getDBcmd
+        Me.DBcmd = sqlControl.GetDBcmd
     End Sub
 
     Public Function openConexion() As Boolean
-        Return sqlControl.openConexion()
+        Return sqlControl.OpenConexion()
     End Function
 
     Public Function closeConexion() As Boolean
-        Return sqlControl.closeConexion()
+        Return sqlControl.CloseConexion()
     End Function
 
     Public Sub beginTransaction()
-        sqlControl.beginTransaction()
+        sqlControl.BeginTransaction()
     End Sub
 
     Public Sub commitTransacction()
-        sqlControl.commitTransaction()
+        sqlControl.CommitTransaction()
     End Sub
 
     Public Sub rollbackTransaccion()
-        sqlControl.rollbackTransaccion()
+        sqlControl.RollbackTransaccion()
     End Sub
 
     Public Function getGuiaPendLiquidacion() As DataTable
@@ -299,7 +299,7 @@ Public Class GuiaDAO
                                     ORDER	BY a.DETALLE_GUIA", params)
     End Function
 
-    Public Function getRptAllGuia() As DataTable
+    Public Function GetRptAllGuia() As DataTable
         Return sqlControl.ExecQuery("select	a.CODIGO_GUIA CODIGO,
 		                                    a.DETALLE_GUIA 'DETALLE',
 		                                    a.CODIGO_ESTADO,
@@ -326,6 +326,108 @@ Public Class GuiaDAO
                                     left	join unidad d on a.CODIGO_UNIDAD_SEMITRAILER=d.CODIGO_UNIDAD
                                     left	join TRABAJADOR e on e.CODIGO_TRABAJADOR=a.CODIGO_TRABAJADOR
                                     left	join CLIENTE f on a.CODIGO_CLIENTE=f.CODIGO_CLIENTE", Nothing)
+
+    End Function
+
+    Public Function GetRptGuiaControlViaje(cliente As Integer, trabajador As Integer, origen As String, destino As String,
+                                           fecha As Date, bfecha As Boolean, tracto As Integer, semitrailer As Integer) As DataTable
+
+        Dim whereClienteString, whereTrabajadorString, whereOrigenString, whereDestinoString,
+            whereTractoString, whereSemitrailerString, whereFechaString, whereString As String
+
+        whereClienteString = ""
+        whereTrabajadorString = ""
+        whereOrigenString = ""
+        whereDestinoString = ""
+        whereTractoString = ""
+        whereSemitrailerString = ""
+        whereFechaString = ""
+        whereString = ""
+
+        Dim params As New List(Of SqlParameter)
+
+        If cliente <> -1 Then
+            params.Add(New SqlParameter("@cliente", cliente))
+            whereClienteString = " and a.CODIGO_CLIENTE=@cliente "
+        Else
+            whereClienteString = ""
+        End If
+
+        If trabajador <> -1 Then
+            params.Add(New SqlParameter("@trabajador", trabajador))
+            whereTrabajadorString = " and a.CODIGO_TRABAJADOR=@trabajador "
+        Else
+            whereTrabajadorString = ""
+        End If
+
+        If origen <> "" Then
+            params.Add(New SqlParameter("@origen", origen))
+            whereOrigenString = " and a.ORIGEN like '%@origen%' "
+        Else
+            whereOrigenString = ""
+        End If
+
+        If destino <> "" Then
+            params.Add(New SqlParameter("@destino", destino))
+            whereDestinoString = " and a.DESTINO like '%@destino%' "
+        Else
+            whereDestinoString = ""
+        End If
+
+        If tracto <> -1 Then
+            params.Add(New SqlParameter("@tracto", tracto))
+            whereTractoString = " and a.CODIGO_UNIDAD_TRACTO=@tracto "
+        Else
+            whereTractoString = ""
+        End If
+
+        If semitrailer <> -1 Then
+            params.Add(New SqlParameter("@semitrailer", semitrailer))
+            whereSemitrailerString = " and a.CODIGO_UNIDAD_SEMITRAILER=@semitrailer "
+        Else
+            whereSemitrailerString = ""
+        End If
+
+        If bfecha Then
+            params.Add(New SqlParameter("@fecha", fecha))
+            whereFechaString = " and a.FECHA_GUIA=@fecha "
+        Else
+            whereFechaString = ""
+        End If
+
+        whereString = whereClienteString + whereTrabajadorString + whereOrigenString + whereDestinoString + whereTractoString + whereSemitrailerString + whereFechaString
+
+        If whereString <> "" Then
+            whereString = "where " + whereString.Substring(4, whereString.Length - 4)
+        End If
+
+        Return sqlControl.ExecQuery("select	a.CODIGO_GUIA CODIGO,
+		                                    a.DETALLE_GUIA 'DETALLE',
+		                                    a.CODIGO_ESTADO,
+		                                    a.FECHA_LIQUIDACION,
+		                                    a.FECHA_FACTURACION,
+		                                    b.DETALLE_ESTADO 'ESTADO',
+		                                    a.FECHA_GUIA,
+		                                    a.CODIGO_UNIDAD_TRACTO,
+		                                    c.PLACA_UNIDAD 'TRACTO',
+		                                    a.CODIGO_UNIDAD_SEMITRAILER,
+		                                    d.PLACA_UNIDAD 'SEMI_TRAILER',
+		                                    a.CODIGO_TRABAJADOR,
+		                                    coalesce(e.APELLIDO_PATERNO_TRABAJADOR,'')+' '+coalesce(e.NOMBRES_TRABAJADOR,'') 'TRABAJADOR',
+		                                    a.CARGA,
+		                                    a.NA, 
+		                                    a.CANTIDAD, 
+		                                    a.CODIGO_CLIENTE, 
+		                                    f.RAZON_CLIENTE, 
+		                                    a.ORIGEN, 
+		                                    a.DESTINO  
+                                    from	GUIA_TRANSPORTISTA a 
+                                    left	join ESTADO b on a.CODIGO_ESTADO=b.CODIGO_ESTADO and TIPO_ESTADO=3 
+                                    left	join UNIDAD c on a.CODIGO_UNIDAD_TRACTO=c.CODIGO_UNIDAD 
+                                    left	join unidad d on a.CODIGO_UNIDAD_SEMITRAILER=d.CODIGO_UNIDAD 
+                                    left	join TRABAJADOR e on e.CODIGO_TRABAJADOR=a.CODIGO_TRABAJADOR 
+                                    left	join CLIENTE f on a.CODIGO_CLIENTE=f.CODIGO_CLIENTE 
+                                     " + whereString + "", params)
 
     End Function
 End Class

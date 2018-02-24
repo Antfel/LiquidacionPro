@@ -7,6 +7,7 @@ Public Class ModuloComunicacionBD
         Dim dt As DataTable = getNroFacturasByActualizado(0)
 
         Dim nroFacturas As String = ""
+
         If dt IsNot Nothing Then
             If dt.Rows.Count > 0 Then
                 For Each row As DataRow In dt.Rows
@@ -14,6 +15,7 @@ Public Class ModuloComunicacionBD
                 Next row
             End If
         End If
+
         If nroFacturas <> "" Then
             nroFacturas = nroFacturas.Substring(0, nroFacturas.Length - 1)
 
@@ -57,17 +59,20 @@ Public Class ModuloComunicacionBD
 
     Public Function ejecutarQueryBatch(queryBatch As String) As DataTable
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim dt As DataTable = Nothing
         Dim facturacionDao As New FacturacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
-            dt = facturacionDao.ejecutarQueryBatch(queryBatch)
-            sqlControl.commitTransaction()
+            If sqlControl.OpenConexion() Then
+                sqlControl.BeginTransaction()
+                facturacionDao.SetDBcmd()
+                dt = facturacionDao.EjecutarQueryBatch(queryBatch)
+                sqlControl.CommitTransaction()
+            End If
+
+
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error SQL. " + ex.Message, "ejecutarQueryBatch",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -77,7 +82,7 @@ Public Class ModuloComunicacionBD
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
 
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. ", "ejecutarQueryBatch",
@@ -90,17 +95,19 @@ Public Class ModuloComunicacionBD
 
     Public Function getNroFacturasByActualizado(actualizado As Integer) As DataTable
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Dim dt As DataTable = Nothing
         Dim facturacionDao As New FacturacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
-            dt = facturacionDao.getNroFacturasByActualizado(actualizado)
-            sqlControl.commitTransaction()
+            If sqlControl.OpenConexion() Then
+                sqlControl.BeginTransaction()
+                facturacionDao.SetDBcmd()
+                dt = facturacionDao.GetNroFacturasByActualizado(actualizado)
+                sqlControl.CommitTransaction()
+            End If
+
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error SQL. " + ex.Message, "getNroFacturasByActualizado",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -110,8 +117,9 @@ Public Class ModuloComunicacionBD
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
-
+                If sqlControl.GetDBcon.State = ConnectionState.Open Then
+                    sqlControl.CloseConexion()
+                End If
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. ", "getNroFacturasByActualizados",
                                 MessageBoxButtons.OK,
@@ -123,12 +131,13 @@ Public Class ModuloComunicacionBD
 
     Public Function getDatosVentaPgSQL(nroFacturas As String) As DataTable
         Dim sqlControlPostgres As New SQLControlPostgres
-        sqlControlPostgres.setConnection()
+        sqlControlPostgres.SetConnection()
         Dim dt As DataTable = Nothing
         Dim rutinas As New RutinasPostgreSQL(sqlControlPostgres)
         Try
-            sqlControlPostgres.openConexion()
-            dt = rutinas.getDatosVentasByNroFacturas(nroFacturas)
+            If (sqlControlPostgres.OpenConexion()) Then
+                dt = rutinas.GetDatosVentasByNroFacturas(nroFacturas)
+            End If
 
         Catch ex As NpgsqlException
             MessageBox.Show("Error SQL. " + ex.Message, "getDatosVentaPgSQL",
@@ -140,7 +149,9 @@ Public Class ModuloComunicacionBD
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControlPostgres.closeConexion()
+                If sqlControlPostgres.GetDBcon.State = ConnectionState.Open Then
+                    sqlControlPostgres.CloseConexion()
+                End If
 
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. ", "getDatosVentaPgSQL",

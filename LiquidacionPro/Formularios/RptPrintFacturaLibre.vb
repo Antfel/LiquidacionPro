@@ -42,20 +42,20 @@ Public Class RptPrintFacturaLibre
 
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles PrintDocument1.PrintPage
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
         Try
 
             Dim facturacionDao As New FacturacionDAO(SQLControl)
 
-            SQLControl.openConexion()
-            SQLControl.beginTransaction()
-            facturacionDao.setDBcmd()
+            SQLControl.OpenConexion()
+            SQLControl.BeginTransaction()
+            facturacionDao.SetDBcmd()
 
             Dim dtc As DataTable
-            dtc = facturacionDao.getPrintRptFacturaCabecera(nroFactura)
+            dtc = facturacionDao.GetPrintRptFacturaCabecera(nroFactura)
 
             Dim dtd As DataTable
-            dtd = facturacionDao.getPrintRptFacturaDetalle(nroFactura)
+            dtd = facturacionDao.GetPrintRptFacturaDetalle(nroFactura)
 
             Dim FONT As New Font("Abadi MT", 10, FontStyle.Regular)
             Dim moneda, simbolo As String
@@ -107,7 +107,7 @@ Public Class RptPrintFacturaLibre
 
 
         Catch excp As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error en la transacción. " + excp.Message, "Cargar datos factura",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -116,8 +116,8 @@ Public Class RptPrintFacturaLibre
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
         Finally
-            If sqlControl.getDBcon.State = ConnectionState.Open Then
-                sqlControl.closeConexion()
+            If sqlControl.GetDBcon.State = ConnectionState.Open Then
+                sqlControl.CloseConexion()
             End If
         End Try
 

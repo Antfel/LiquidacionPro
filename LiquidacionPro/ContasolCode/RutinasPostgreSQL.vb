@@ -7,7 +7,7 @@ Public Class RutinasPostgreSQL
     Public Sub New(sqlControlPostgres As SQLControlPostgres)
         Me.sqlControlPostgres = sqlControlPostgres
     End Sub
-    Public Function getDatosVentasByNroFacturas(nroFacturas As String) As DataTable
+    Public Function GetDatosVentasByNroFacturas(nroFacturas As String) As DataTable
 
 
         Return sqlControlPostgres.ExecQuery("select	   ""v_IdVenta"",

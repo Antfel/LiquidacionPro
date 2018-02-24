@@ -9,12 +9,12 @@
 
     Sub cargarClientes()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim clienteDAO As New ClienteDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             clienteDAO.setDBcmd()
 
             Dim dt As DataTable
@@ -22,16 +22,16 @@
             dt = clienteDAO.GetAllClientes()
             dgvListaClientes.DataSource = dt
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("No se pudo cargar la lista de clientes. " + ex.Message, "Cargar Clientes",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("No se pudo cerrar la conexión. " + ex.Message, "Cargar Clientes",
                                  MessageBoxButtons.OK,
@@ -78,12 +78,12 @@
 
     Private Sub dgvListaClientes_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvListaClientes.CellMouseClick
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim clienteDAO As New ClienteDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             clienteDAO.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvListaClientes.SelectedRows(0)
@@ -99,15 +99,15 @@
             txtDireccion.Text = dt.Rows(0)(3)
             txtTelefono.Text = dt.Rows(0)(4)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Cliente. " + ex.Message, "Seleccionar",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Exclamation)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cargar cerrar la conexión. " + ex.Message, "Seleccionar",
                                  MessageBoxButtons.OK,
@@ -131,14 +131,14 @@
 
     Private Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim clienteDAO As New ClienteDAO(sqlControl)
 
         If txtCodigo.Text = Nothing Then
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 clienteDAO.setDBcmd()
                 Dim correla As Integer
 
@@ -150,24 +150,24 @@
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Information)
                 End If
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
             Catch excep As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
 
                 MessageBox.Show("Error al grabar cliente. " + excep.Message, "Agregar Clientes",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
 
                 End Try
             End Try
         Else
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 clienteDAO.setDBcmd()
 
                 Dim correla As Integer
@@ -181,17 +181,17 @@
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Information)
                 End If
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
             Catch excep As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al actualizar cliente. " + excep.Message, "Agregar Clientes",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
-                    sqlControl.rollbackTransaccion()
+                    sqlControl.RollbackTransaccion()
                     MessageBox.Show("Error al cerrar Conexión. " + ex.Message, "Agregar Clientes",
                                      MessageBoxButtons.OK,
                                      MessageBoxIcon.Error)

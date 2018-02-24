@@ -6,12 +6,12 @@ Public Class RptGuiasVsLiquidacionFacturacion
 
     Private Sub actualizarEstados()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim estadoDao As New EstadoGuiaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             estadoDao.setDBcmd()
 
             Dim dtEstado As DataTable
@@ -22,13 +22,13 @@ Public Class RptGuiasVsLiquidacionFacturacion
             clbEstadoGuia.DisplayMember = "DETALLE_ESTADO"
             clbEstadoGuia.ValueMember = "CODIGO_ESTADO"
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
 
             End Try
@@ -76,21 +76,21 @@ Public Class RptGuiasVsLiquidacionFacturacion
     Function getiquidacionEstadoGuia(estados As String) As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
 
         dt = Nothing
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             guiaDao.setDBcmd()
 
             dt = guiaDao.getRptGuiaLiquidacionFactura(estados)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             Return dt
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("No se pudo cargar la liquidación. " + ex.Message, "Cargar Liquidación",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Error)
@@ -98,7 +98,7 @@ Public Class RptGuiasVsLiquidacionFacturacion
         Finally
 
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("No se pudo cerrar la conexión. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,

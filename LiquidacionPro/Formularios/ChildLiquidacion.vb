@@ -23,14 +23,14 @@ Public Class ChildLiquidacion
 
     Private Sub btnAgregarLiquidacion_Click(sender As Object, e As EventArgs) Handles btnAgregarLiquidacion.Click
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
 
         If txtCodigoLiquidacion.Text = Nothing Then
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDao.setDBcmd()
                 Dim correla As Integer
 
@@ -49,24 +49,24 @@ Public Class ChildLiquidacion
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Information)
                 End If
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
             Catch excep As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
 
                 MessageBox.Show("Error al grabar Liquidación. " + excep.Message, "Agregar Liquidaciones",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
 
                 End Try
             End Try
         Else
             Try
-                sqlControl.openConexion()
-                sqlControl.beginTransaction()
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
                 liquidacionDao.setDBcmd()
 
                 Dim correla As Integer
@@ -85,17 +85,17 @@ Public Class ChildLiquidacion
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Information)
                 End If
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
             Catch excep As Exception
-                sqlControl.rollbackTransaccion()
+                sqlControl.RollbackTransaccion()
                 MessageBox.Show("Error al actualizar Liquidación. " + excep.Message, "Agregar Liquidaciones",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
             Finally
                 Try
-                    sqlControl.closeConexion()
+                    sqlControl.CloseConexion()
                 Catch ex As Exception
-                    sqlControl.rollbackTransaccion()
+                    sqlControl.RollbackTransaccion()
                     MessageBox.Show("Error al cerrar Conexión. " + ex.Message, "Agregar Liquidaciones",
                                      MessageBoxButtons.OK,
                                      MessageBoxIcon.Error)
@@ -111,12 +111,12 @@ Public Class ChildLiquidacion
 
     Private Sub dgvLiquidacion_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvLiquidacion.CellMouseClick
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvLiquidacion.SelectedRows(0)
@@ -124,7 +124,7 @@ Public Class ChildLiquidacion
 
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionById(codigo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             txtCodigoLiquidacion.Text = dt.Rows(0)(0)
             txtNroLiquidacion.Text = dt.Rows(0)(1)
@@ -152,10 +152,10 @@ Public Class ChildLiquidacion
             txtDiferenciaComb.Text = dt.Rows(0)(27)
 
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
 
             End Try
@@ -168,12 +168,12 @@ Public Class ChildLiquidacion
 
     Private Sub actualizarListaLiquidacion()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim liquidacionDao As New LiquidacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             liquidacionDao.setDBcmd()
 
             Dim dt As DataTable
@@ -181,7 +181,7 @@ Public Class ChildLiquidacion
             dt = liquidacionDao.GetAllLiquidacion()
             dgvLiquidacion.DataSource = dt
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             dgvLiquidacion.Columns(2).Visible = False
             dgvLiquidacion.Columns(4).Visible = False
@@ -190,10 +190,10 @@ Public Class ChildLiquidacion
             dgvLiquidacion.Columns(23).Visible = False
 
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
 
             End Try
@@ -203,20 +203,20 @@ Public Class ChildLiquidacion
     End Sub
     Private Sub actualizarDatosTrabajador()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim trabajadorDao As New TrabajadorDAO(sqlControl)
         Try
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             trabajadorDao.setDBcmd()
 
             Dim dtTrabajador As DataTable
 
             dtTrabajador = trabajadorDao.GetConductor
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbTrabajador
                 .DataSource = dtTrabajador
@@ -228,10 +228,10 @@ Public Class ChildLiquidacion
                 .SelectedIndex = -1
             End With
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
 
             End Try
@@ -240,17 +240,17 @@ Public Class ChildLiquidacion
 
     Private Sub actualizarDatosGuia()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             guiaDao.setDBcmd()
             Dim dtGuia As DataTable
 
             dtGuia = guiaDao.getGuiaPendLiquidacion
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbGuia
                 .DataSource = dtGuia
@@ -262,10 +262,10 @@ Public Class ChildLiquidacion
                 .SelectedIndex = -1
             End With
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
 
             End Try
@@ -275,17 +275,17 @@ Public Class ChildLiquidacion
 
     Private Sub actualizarDatosGuiaRegistrada(cod_guia As Integer)
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             guiaDao.setDBcmd()
             Dim dtGuia As DataTable
 
             dtGuia = guiaDao.getGuiaByCodigo(cod_guia)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbGuia
                 .DataSource = dtGuia
@@ -297,13 +297,13 @@ Public Class ChildLiquidacion
                 .SelectedIndex = -1
             End With
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Guía Registrada. " + ex.Message, "Cargar Guía Registrada",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Guía Registrada",
                                  MessageBoxButtons.OK,
@@ -315,18 +315,18 @@ Public Class ChildLiquidacion
 
     Private Sub actualizarDatosTracto()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim unidadDao As New UnidadDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             unidadDao.setDBcmd()
 
             Dim dtUnidad As DataTable
 
             dtUnidad = unidadDao.getUnidadTractos()
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbTracto
                 .DataSource = dtUnidad
@@ -338,10 +338,10 @@ Public Class ChildLiquidacion
                 .SelectedIndex = -1
             End With
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
 
             End Try
@@ -352,19 +352,19 @@ Public Class ChildLiquidacion
 
     Private Sub actualizarDatosSemiTrailer()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim unidadDao As New UnidadDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             unidadDao.setDBcmd()
 
             Dim dtUnidad As DataTable
 
             dtUnidad = unidadDao.getUnidadSemiTrailer
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbCamabaja
                 .DataSource = dtUnidad
@@ -376,10 +376,10 @@ Public Class ChildLiquidacion
                 .SelectedIndex = -1
             End With
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
 
             End Try
@@ -389,18 +389,18 @@ Public Class ChildLiquidacion
 
     Private Sub actualizarEstados()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim estadoDao As New EstadoDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             estadoDao.setDBcmd()
 
             Dim dtEstado As DataTable
 
             dtEstado = estadoDao.getEstados
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbEstado
                 .DataSource = dtEstado
@@ -412,10 +412,10 @@ Public Class ChildLiquidacion
                 .SelectedValue = 1
             End With
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
 
             End Try
@@ -498,10 +498,10 @@ Public Class ChildLiquidacion
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim sqlControl As New SQLControlPostgres
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Try
-            Dim b As Boolean = sqlControl.openConexion()
+            Dim b As Boolean = sqlControl.OpenConexion()
             Dim params As New List(Of NpgsqlParameter)
             params.Add(New NpgsqlParameter("@tipo", 69))
 
@@ -515,7 +515,7 @@ Public Class ChildLiquidacion
 
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
             End Try
         End Try

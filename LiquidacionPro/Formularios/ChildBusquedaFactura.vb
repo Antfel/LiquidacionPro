@@ -11,18 +11,18 @@ Public Class ChildBusquedaFactura
 
     Public Sub cargarDatosFactura()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDao As New FacturacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDao.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDao.SetDBcmd()
 
             Dim dtFactura As DataTable
 
-            dtFactura = facturacionDao.getAllFacturas()
-            sqlControl.commitTransaction()
+            dtFactura = facturacionDao.GetAllFacturas()
+            sqlControl.CommitTransaction()
 
             dgvFacturas.DataSource = dtFactura
 
@@ -46,7 +46,7 @@ Public Class ChildBusquedaFactura
             dgvFacturas.Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar lista de facturas. ", "Cargar lista de facturas",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -56,7 +56,7 @@ Public Class ChildBusquedaFactura
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. ", "Cargar lista de facturas",
                                 MessageBoxButtons.OK,
@@ -150,25 +150,25 @@ Public Class ChildBusquedaFactura
         Dim codigo As Integer = seleccion.Cells(0).Value
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDAO As New FacturacionDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDAO.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDAO.SetDBcmd()
 
             facturacionDAO.UpdateFacturaEstado(codigo, 15)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Catch ex As Exception
 
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
 
             End Try
@@ -184,7 +184,7 @@ Public Class ChildBusquedaFactura
 
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDAO As New FacturacionDAO(sqlControl)
         Dim correlativoDao As New Correlativo_NumeroDAO(sqlControl)
@@ -202,9 +202,9 @@ Public Class ChildBusquedaFactura
 
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDAO.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDAO.SetDBcmd()
 
             Dim correlativo As String = correlativoDao.GetSiguienteCorrelativo(1, serie)
 
@@ -226,10 +226,10 @@ Public Class ChildBusquedaFactura
 
             End If
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al copiar factura. " + ex.Message, "Copiar Factura",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -239,8 +239,8 @@ Public Class ChildBusquedaFactura
                     MessageBoxIcon.Error)
         Finally
             Try
-                If sqlControl.getDBcon.State = ConnectionState.Open Then
-                    sqlControl.closeConexion()
+                If sqlControl.GetDBcon.State = ConnectionState.Open Then
+                    sqlControl.CloseConexion()
                 End If
 
             Catch ex As Exception

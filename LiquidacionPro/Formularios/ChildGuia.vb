@@ -15,18 +15,18 @@ Public Class ChildGuia
 
     Private Sub cargarDatosTracto()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim unidadDao As New UnidadDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             unidadDao.setDBcmd()
 
             Dim dtUnidad As DataTable
 
             dtUnidad = unidadDao.getUnidadTractos()
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbTracto
                 .DataSource = dtUnidad
@@ -39,7 +39,7 @@ Public Class ChildGuia
             End With
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
 
             MessageBox.Show("Error al cargar tractos. " + ex.Message, "Cargar Tractos",
                                  MessageBoxButtons.OK,
@@ -50,7 +50,7 @@ Public Class ChildGuia
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Tractos",
                                  MessageBoxButtons.OK,
@@ -63,18 +63,18 @@ Public Class ChildGuia
 
     Private Sub cargarDatosSemiTrailer()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim unidadDao As New UnidadDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             unidadDao.setDBcmd()
 
             Dim dtUnidad As DataTable
 
             dtUnidad = unidadDao.getUnidadSemiTrailer
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbCamabaja
                 .DataSource = dtUnidad
@@ -87,7 +87,7 @@ Public Class ChildGuia
             End With
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar semitrailer. " + ex.Message, "Cargar Semitrailer",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -97,7 +97,7 @@ Public Class ChildGuia
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Semitrailer",
                                  MessageBoxButtons.OK,
@@ -109,19 +109,19 @@ Public Class ChildGuia
 
     Private Sub cargarDatosTrabajador()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim trabajadorDao As New TrabajadorDAO(sqlControl)
         Try
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             trabajadorDao.setDBcmd()
 
             Dim dtTrabajador As DataTable
 
             dtTrabajador = trabajadorDao.GetConductor
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbTrabajador
                 .DataSource = dtTrabajador
@@ -134,7 +134,7 @@ Public Class ChildGuia
             End With
 
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar trabajador. " + ex.Message, "Cargar Datos Trabajador",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -144,7 +144,7 @@ Public Class ChildGuia
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Datos Trabajador",
                                  MessageBoxButtons.OK,
@@ -155,13 +155,13 @@ Public Class ChildGuia
     Private Sub cargarDatosCliente()
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim clienteDao As New ClienteDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
 
             clienteDao.setDBcmd()
 
@@ -179,9 +179,9 @@ Public Class ChildGuia
 
             End With
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch ex As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar cliente. " + ex.Message, "Cargar datos de cliente",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -191,7 +191,7 @@ Public Class ChildGuia
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar datos de cliente",
                                 MessageBoxButtons.OK,
@@ -203,18 +203,18 @@ Public Class ChildGuia
 
     Sub cargarGuias()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             guiaDao.setDBcmd()
 
             Dim dt As DataTable
 
             dt = guiaDao.GetAllGuia
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             'Se salva el filtro previo
             Dim filtro As String = source1.Filter
@@ -268,7 +268,7 @@ Public Class ChildGuia
             End If
 
         Catch ex As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Guías. " + ex.Message, "Cargar Guías",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -278,7 +278,7 @@ Public Class ChildGuia
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
 
             End Try
@@ -287,18 +287,18 @@ Public Class ChildGuia
 
     Private Sub cargarEstadoGuia()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim estadoDao As New EstadoGuiaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             estadoDao.setDBcmd()
 
             Dim dtEstado As DataTable
 
             dtEstado = estadoDao.getEstados
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             With cbEstado
                 .DataSource = dtEstado
@@ -310,7 +310,7 @@ Public Class ChildGuia
                 .SelectedIndex = -1
             End With
         Catch ex As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Estado Guías. " + ex.Message, "Cargar Estado Guías",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -320,7 +320,7 @@ Public Class ChildGuia
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
                 cbEstado.SelectedValue = 17
             Catch ex As Exception
 
@@ -354,12 +354,12 @@ Public Class ChildGuia
 
     Sub cargaGuiaByCodigo()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             guiaDao.setDBcmd()
 
             Dim seleccion As DataGridViewRow = dgvGuias.SelectedRows(0)
@@ -369,7 +369,7 @@ Public Class ChildGuia
 
             dt = guiaDao.getGuiaByCodigo(codigo)
 
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
 
             txtCodigo.Text = dt.Rows(0)(0)
             txtDetalle.Text = dt.Rows(0)(1)
@@ -432,7 +432,7 @@ Public Class ChildGuia
             txtDestino.Text = dt.Rows.Item(0)(19)
 
         Catch ex As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar Guía. SQL. " + ex.Message, "Cargar Guía",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error)
@@ -442,8 +442,8 @@ Public Class ChildGuia
                                 MessageBoxIcon.Error)
         Finally
             Try
-                If sqlControl.getDBcon.State = ConnectionState.Open Then
-                    sqlControl.closeConexion()
+                If sqlControl.GetDBcon.State = ConnectionState.Open Then
+                    sqlControl.CloseConexion()
                 End If
 
             Catch ex As Exception
@@ -456,129 +456,130 @@ Public Class ChildGuia
     End Sub
     Private Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim guiaDao As New GuiaDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            guiaDao.setDBcmd()
+            If sqlControl.OpenConexion() Then
+                sqlControl.BeginTransaction()
+                guiaDao.setDBcmd()
 
-            Dim correla As Integer
+                Dim correla As Integer
 
-            Dim fliqui As Date, ffactura As Date, tracto As Integer, semitrailer As Integer, trabajador As Integer, carga As String, na As String, cantidad As String, cliente As Integer,
-                    origen As String, destino
+                Dim fliqui As Date, ffactura As Date, tracto As Integer, semitrailer As Integer, trabajador As Integer, carga As String, na As String, cantidad As String, cliente As Integer,
+                        origen As String, destino
 
-            If txtDetalle.Text = Nothing Then
-                MessageBox.Show("Debe ingresar un Nro. de Guía.", "Grabar Guía",
-                                 MessageBoxButtons.OK,
-                                 MessageBoxIcon.Information)
-                Return
-            End If
-
-            If chkbLiquidacion.Checked = True Then
-                fliqui = dtpLiquidacion.Value
-            Else
-                fliqui = Nothing
-            End If
-
-            If chkbFacturacion.Checked = True Then
-                ffactura = dtpLiquidacion.Value
-            Else
-                ffactura = Nothing
-            End If
-
-            If cbTracto.SelectedIndex < 0 Then
-                tracto = -1
-            Else
-                tracto = cbTracto.SelectedValue
-            End If
-
-            If cbCamabaja.SelectedIndex < 0 Then
-                semitrailer = -1
-            Else
-                semitrailer = cbCamabaja.SelectedValue
-            End If
-
-            If cbTrabajador.SelectedIndex < 0 Then
-                trabajador = -1
-            Else
-                trabajador = cbTrabajador.SelectedValue
-            End If
-
-            If txtCarga.Text = Nothing Then
-                carga = ""
-            Else
-                carga = txtCarga.Text
-            End If
-
-            If txtNa.Text = Nothing Then
-                na = ""
-            Else
-                na = txtNa.Text
-            End If
-
-            If txtCantidad.Text = Nothing Then
-                cantidad = ""
-            Else
-                cantidad = txtCantidad.Text
-            End If
-
-            If cbRazonSocial.SelectedIndex < 0 Then
-                cliente = -1
-            Else
-                cliente = cbRazonSocial.SelectedValue
-            End If
-
-            If txtOrigen.Text = Nothing Then
-                origen = ""
-            Else
-                origen = txtOrigen.Text
-            End If
-
-            If txtDestino.Text = Nothing Then
-                destino = ""
-            Else
-                destino = txtDestino.Text
-            End If
-
-            If txtCodigo.Text = Nothing Then
-                correla = guiaDao.InsertGuia(txtDetalle.Text, cbEstado.SelectedValue,
-                                             fliqui, ffactura, dtpFechaGuia.Value, tracto, semitrailer, trabajador,
-                                             carga, na, cantidad, cliente, origen, destino)
-
-                If correla >= 0 Then
-                    txtCodigo.Text = CStr(correla)
-                    MessageBox.Show("Guía grabada correctamente.", "Grabar Guía",
-                                 MessageBoxButtons.OK,
-                                 MessageBoxIcon.Information)
-                Else
-                    MessageBox.Show("Verificar los datos de la Guía a ingresar.", "Grabar Guía",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Exclamation)
-                End If
-            Else
-                correla = guiaDao.UpdatetGuia(CInt(txtCodigo.Text), txtDetalle.Text, cbEstado.SelectedValue,
-                                             fliqui, ffactura, dtpFechaGuia.Value, tracto, semitrailer, trabajador,
-                                             carga, na, cantidad, cliente, origen, destino)
-
-                If correla >= 0 Then
-                    MessageBox.Show("Guía actualizada correctamente.", "Actualizar Guía",
-                                 MessageBoxButtons.OK,
-                                 MessageBoxIcon.Information)
-                Else
-                    MessageBox.Show("Verificar los datos de la Guía a actualizar.", "Actualizar Guía",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Exclamation)
+                If txtDetalle.Text = Nothing Then
+                    MessageBox.Show("Debe ingresar un Nro. de Guía.", "Grabar Guía",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information)
+                    Return
                 End If
 
-            End If
+                If chkbLiquidacion.Checked = True Then
+                    fliqui = dtpLiquidacion.Value
+                Else
+                    fliqui = Nothing
+                End If
 
-            sqlControl.commitTransaction()
-            cargarGuias()
+                If chkbFacturacion.Checked = True Then
+                    ffactura = dtpLiquidacion.Value
+                Else
+                    ffactura = Nothing
+                End If
+
+                If cbTracto.SelectedIndex < 0 Then
+                    tracto = -1
+                Else
+                    tracto = cbTracto.SelectedValue
+                End If
+
+                If cbCamabaja.SelectedIndex < 0 Then
+                    semitrailer = -1
+                Else
+                    semitrailer = cbCamabaja.SelectedValue
+                End If
+
+                If cbTrabajador.SelectedIndex < 0 Then
+                    trabajador = -1
+                Else
+                    trabajador = cbTrabajador.SelectedValue
+                End If
+
+                If txtCarga.Text = Nothing Then
+                    carga = ""
+                Else
+                    carga = txtCarga.Text
+                End If
+
+                If txtNa.Text = Nothing Then
+                    na = ""
+                Else
+                    na = txtNa.Text
+                End If
+
+                If txtCantidad.Text = Nothing Then
+                    cantidad = ""
+                Else
+                    cantidad = txtCantidad.Text
+                End If
+
+                If cbRazonSocial.SelectedIndex < 0 Then
+                    cliente = -1
+                Else
+                    cliente = cbRazonSocial.SelectedValue
+                End If
+
+                If txtOrigen.Text = Nothing Then
+                    origen = ""
+                Else
+                    origen = txtOrigen.Text
+                End If
+
+                If txtDestino.Text = Nothing Then
+                    destino = ""
+                Else
+                    destino = txtDestino.Text
+                End If
+
+                If txtCodigo.Text = Nothing Then
+                    correla = guiaDao.InsertGuia(txtDetalle.Text, cbEstado.SelectedValue,
+                                                 fliqui, ffactura, dtpFechaGuia.Value, tracto, semitrailer, trabajador,
+                                                 carga, na, cantidad, cliente, origen, destino)
+
+                    If correla >= 0 Then
+                        txtCodigo.Text = CStr(correla)
+                        MessageBox.Show("Guía grabada correctamente.", "Grabar Guía",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information)
+                    Else
+                        MessageBox.Show("Verificar los datos de la Guía a ingresar.", "Grabar Guía",
+                                   MessageBoxButtons.OK,
+                                   MessageBoxIcon.Exclamation)
+                    End If
+                Else
+                    correla = guiaDao.UpdatetGuia(CInt(txtCodigo.Text), txtDetalle.Text, cbEstado.SelectedValue,
+                                                 fliqui, ffactura, dtpFechaGuia.Value, tracto, semitrailer, trabajador,
+                                                 carga, na, cantidad, cliente, origen, destino)
+
+                    If correla >= 0 Then
+                        MessageBox.Show("Guía actualizada correctamente.", "Actualizar Guía",
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Information)
+                    Else
+                        MessageBox.Show("Verificar los datos de la Guía a actualizar.", "Actualizar Guía",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Exclamation)
+                    End If
+
+                End If
+
+                sqlControl.CommitTransaction()
+                cargarGuias()
+            End If
         Catch excep As SQLException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al grabar Guía. SQL. " + excep.Message, "Grabar Guía",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -588,7 +589,7 @@ Public Class ChildGuia
                                 MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Grabar Guía",
                                 MessageBoxButtons.OK,

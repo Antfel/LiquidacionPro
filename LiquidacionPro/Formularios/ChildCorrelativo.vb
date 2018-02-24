@@ -8,19 +8,19 @@ Public Class ChildCorrelativo
     Sub cargarCorrelativo()
 
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim correlativo As New Correlativo_NumeroDAO(sqlControl)
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             correlativo.setDBcmd()
 
             Dim dt As DataTable = correlativo.GetAllCorrelativo
             dgvCorrelativo.DataSource = dt
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
         Catch excep As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
                 correlativo.closeConexion()
@@ -37,13 +37,13 @@ Public Class ChildCorrelativo
 
     Sub cargarCorrelativoNumero()
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim correlativoNumero As New Correlativo_NumeroDAO(sqlControl)
 
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             correlativoNumero.setDBcmd()
 
             If dgvCorrelativo.CurrentRow.Index > -1 Then
@@ -55,7 +55,7 @@ Public Class ChildCorrelativo
 
                 dt = correlativoNumero.GetAllCorrelativoNumeroByCorrelativo(codigo)
 
-                sqlControl.commitTransaction()
+                sqlControl.CommitTransaction()
 
                 txtCorrealtivo.Text = CStr(codigo)
                 txtDescripcion.Text = descripcion
@@ -69,10 +69,10 @@ Public Class ChildCorrelativo
 
             End If
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch exp As Exception
             End Try
 
@@ -122,7 +122,7 @@ Public Class ChildCorrelativo
 
     Private Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
         Dim sqlControl As New SQLControl
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim correlativo_numero As New Correlativo_NumeroDAO(sqlControl)
 
@@ -133,8 +133,8 @@ Public Class ChildCorrelativo
 
         Try
 
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
             correlativo_numero.setDBcmd()
 
             Dim flag As Integer
@@ -148,7 +148,7 @@ Public Class ChildCorrelativo
             ultimo = txtUltimoUsado.Text
 
             flag = correlativo_numero.updateCorrelativoNumero(codigo, serie, ultimo)
-            sqlControl.commitTransaction()
+            sqlControl.CommitTransaction()
             If flag > 0 Then
                 MessageBox.Show("Grabación exitosa", "Grabar correlativo",
                                  MessageBoxButtons.OK,
@@ -159,7 +159,7 @@ Public Class ChildCorrelativo
                                  MessageBoxIcon.Error)
             End If
         Catch ex As SqlException
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al grabar. " + ex.Message, "Grabar correlativo",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -169,7 +169,7 @@ Public Class ChildCorrelativo
                                  MessageBoxIcon.Error)
         Finally
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
                 cargarCorrelativoNumero()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Grabar correlativo",

@@ -22,21 +22,21 @@ Public Class RptFormFacturaDetalleByMoneda
     Function getLiquidacionFacturacionCabecera() As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDAO As New FacturacionDAO(sqlControl)
 
         dt = Nothing
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDAO.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDAO.SetDBcmd()
 
-            dt = facturacionDAO.getRptFacturaDetalleByMoneda(0)
-            sqlControl.commitTransaction()
+            dt = facturacionDAO.GetRptFacturaDetalleByMoneda(0)
+            sqlControl.CommitTransaction()
             Return dt
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("No se pudo cargar la liquidación. " + ex.Message, "Cargar Liquidación",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Error)
@@ -44,7 +44,7 @@ Public Class RptFormFacturaDetalleByMoneda
         Finally
 
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("No se pudo cerrar la conexión. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
@@ -70,21 +70,21 @@ Public Class RptFormFacturaDetalleByMoneda
     Function getLiquidacionFacturacionDetalle(codigo As Integer, detalle As Integer) As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
-        sqlControl.setConnection()
+        sqlControl.SetConnection()
 
         Dim facturacionDAO As New FacturacionDAO(sqlControl)
 
         dt = Nothing
         Try
-            sqlControl.openConexion()
-            sqlControl.beginTransaction()
-            facturacionDAO.setDBcmd()
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            facturacionDAO.SetDBcmd()
 
-            dt = facturacionDAO.getRptFacturaDetalleByMonedaAndId(codigo, detalle)
-            sqlControl.commitTransaction()
+            dt = facturacionDAO.GetRptFacturaDetalleByMonedaAndId(codigo, detalle)
+            sqlControl.CommitTransaction()
             Return dt
         Catch ex As Exception
-            sqlControl.rollbackTransaccion()
+            sqlControl.RollbackTransaccion()
             MessageBox.Show("No se pudo cargar la liquidación detalle. " + ex.Message, "Cargar Liquidación",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Error)
@@ -92,7 +92,7 @@ Public Class RptFormFacturaDetalleByMoneda
         Finally
 
             Try
-                sqlControl.closeConexion()
+                sqlControl.CloseConexion()
             Catch ex As Exception
                 MessageBox.Show("No se pudo cerrar la conexión. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
