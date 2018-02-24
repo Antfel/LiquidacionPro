@@ -72,7 +72,7 @@ Public Class ChildFacturaLibre
             'txtDescripcion.Enabled = False
             'txtPrecioUnitario.Enabled = False
         Else
-            txtNroSerie.Text = "001"
+            txtNroSerie.Text = "0001"
             txtNroSerie.ReadOnly = True
             ObtenerCorrelativo()
             btnGrabar.Enabled = False

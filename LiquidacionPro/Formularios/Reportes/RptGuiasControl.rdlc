@@ -881,7 +881,7 @@
           <Top>2.35162cm</Top>
           <Left>11.45328cm</Left>
           <Height>0.72637cm</Height>
-          <Width>5.96604cm</Width>
+          <Width>6.63271cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -923,9 +923,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>ExecutionTime</rd:DefaultName>
+          <Top>0cm</Top>
           <Left>2.5cm</Left>
           <Height>0.41479cm</Height>
-          <Width>2.5cm</Width>
+          <Width>1.44167cm</Width>
           <Style>
             <Border />
             <PaddingLeft>2pt</PaddingLeft>
@@ -951,6 +952,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox17</rd:DefaultName>
+          <Top>0cm</Top>
           <Left>0.3175cm</Left>
           <Height>0.41479cm</Height>
           <Width>2.07667cm</Width>
