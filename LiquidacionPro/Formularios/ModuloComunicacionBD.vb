@@ -29,7 +29,8 @@ Public Class ModuloComunicacionBD
 		                                    FECHA_VENCIMIENTO=cast( '" + row.Item(9).ToString + "' as datetime),
 		                                    AFECTA_DETRACCION=" + row.Item(7).ToString + ",
 		                                    PORCENTAJE_DETRACCION=" + row.Item(8).ToString + ",
-                                            MONTO_DETRACCION=" + CStr((Double.Parse(row.Item(8)) / 100 * Double.Parse(row.Item(10)))) + "
+                                            MONTO_DETRACCION=" + CStr((Double.Parse(row.Item(8)) / 100 * Double.Parse(row.Item(10)))) + ", 
+                                            ID_MONEDA=" + row.Item(5).ToString + " 
                                     where	CODIGO_ESTADO=16 
                                     AND		'0'+SERIE_FACTURA+'-'+substring(NUMERO_FACTURA,3,10)='" + row.Item(1) + "-" + row.Item(2) + "'
                                      "
