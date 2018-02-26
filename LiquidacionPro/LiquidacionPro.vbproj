@@ -178,6 +178,12 @@
     <Compile Include="Formularios\ChildLiquidacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\ChildOrdenServicio.Designer.vb">
+      <DependentUpon>ChildOrdenServicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildOrdenServicio.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\ChildTrabajador.Designer.vb">
       <DependentUpon>ChildTrabajador.vb</DependentUpon>
     </Compile>
@@ -302,6 +308,7 @@
     <Compile Include="LiquidacionCode\FacturacionDAO.vb" />
     <Compile Include="LiquidacionCode\GuiaDAO.vb" />
     <Compile Include="LiquidacionCode\MonedaDAO.vb" />
+    <Compile Include="LiquidacionCode\OrdenServicioDAO.vb" />
     <Compile Include="LiquidacionCode\SQLControlPostgres.vb" />
     <Compile Include="LiquidacionCode\TipoServicioDAO.vb" />
     <Compile Include="LiquidacionCode\TrabajadorDAO.vb" />
@@ -361,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ChildLiquidacion.resx">
       <DependentUpon>ChildLiquidacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ChildOrdenServicio.resx">
+      <DependentUpon>ChildOrdenServicio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ChildTrabajador.resx">
       <DependentUpon>ChildTrabajador.vb</DependentUpon>

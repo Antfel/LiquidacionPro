@@ -285,7 +285,7 @@ Public Class ChildFacturacion
             cargandoDatosActualizar = 0
 
         Else
-            txtNroSerie.Text = "001"
+            txtNroSerie.Text = "0001"
             ObtenerCorrelativo()
             txtMontoDetraccion.Text = "0.00"
             txtPorcentajeDetraccion.Text = "0.00"

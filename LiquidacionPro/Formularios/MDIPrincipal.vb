@@ -137,4 +137,11 @@ Public Class MDIPrincipal
         Dim rptFormGuiaControlViaje As New RptFormGuiaControlViaje()
         rptFormGuiaControlViaje.Show()
     End Sub
+
+    Private Sub OrdenDeServicioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OrdenDeServicioToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim childOrdenServicio As New ChildOrdenServicio()
+        childOrdenServicio.MdiParent = Me
+        childOrdenServicio.Show()
+    End Sub
 End Class
