@@ -21,7 +21,7 @@ Public Class RutinasPostgreSQL
                                                         ""d_ValorVenta"" 
                                             from		venta 
                                             where		""i_Eliminado""=0
-                                            and			""v_SerieDocumento""||'-'||""v_CorrelativoDocumento"" in (" + nroFacturas + ")", Nothing)
+                                            and			""v_SerieDocumento""||'-'||""v_CorrelativoDocumento"" in (" + nroFacturas + ") ", Nothing)
 
 
     End Function
