@@ -874,6 +874,8 @@ Public Class ChildFacturacion
                 sqlControl.CommitTransaction()
 
                 tbTransportista.DataSource = dataGuias
+                tbTransportista.Columns(0).Visible = False
+
             Catch ex As SqlException
                 sqlControl.RollbackTransaccion()
             Catch ex As Exception
@@ -903,13 +905,15 @@ Public Class ChildFacturacion
                 Dim dataGuias As New DataTable
 
                 dataGuias = facturacionDao.GetRemitentesByDetalle(codigo_Detalle)
-
+                sqlControl.CommitTransaction()
                 tbRemitente.DataSource = dataGuias
 
-                sqlControl.CommitTransaction()
+                tbRemitente.Columns(0).Visible = False
 
-            Catch ex As Exception
+            Catch ex As SQLException
                 sqlControl.RollbackTransaccion()
+            Catch ex As Exception
+
             Finally
                 Try
                     sqlControl.CloseConexion()
@@ -968,13 +972,15 @@ Public Class ChildFacturacion
                 Dim dataPlacas As New DataTable
 
                 dataPlacas = facturacionDao.GetPlacaByDetalle(codigo_Detalle)
-
+                sqlControl.CommitTransaction()
                 tbPlaca.DataSource = dataPlacas
 
-                sqlControl.CommitTransaction()
+                tbPlaca.Columns(0).Visible = False
 
-            Catch ex As Exception
+            Catch ex As SQLException
                 sqlControl.RollbackTransaccion()
+            Catch ex As Exception
+
             Finally
                 Try
                     sqlControl.CloseConexion()
