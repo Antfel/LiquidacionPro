@@ -23,6 +23,7 @@ Public Class RutinasPostgreSQL
                                             where		""i_Eliminado""=0
                                             and			""v_SerieDocumento""||'-'||""v_CorrelativoDocumento"" in (" + nroFacturas + ")", Nothing)
 
+
     End Function
 
 End Class
