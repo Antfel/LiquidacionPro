@@ -84,6 +84,8 @@ Partial Class ChildFacturacion
         Me.cbOrigen = New System.Windows.Forms.ComboBox()
         Me.cbDestino = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.cbBancoPago = New System.Windows.Forms.ComboBox()
         Me.chbxCompromiso = New System.Windows.Forms.CheckBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.dtpCompromiso = New System.Windows.Forms.DateTimePicker()
@@ -105,9 +107,6 @@ Partial Class ChildFacturacion
         Me.txtTotalFactura = New System.Windows.Forms.TextBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.cbBancoPago = New System.Windows.Forms.ComboBox()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.Label23 = New System.Windows.Forms.Label()
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbRemitente, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbPlaca, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -685,6 +684,24 @@ Partial Class ChildFacturacion
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Fechas"
         '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(201, 49)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(38, 13)
+        Me.Label23.TabIndex = 1045
+        Me.Label23.Text = "Banco"
+        '
+        'cbBancoPago
+        '
+        Me.cbBancoPago.Enabled = False
+        Me.cbBancoPago.FormattingEnabled = True
+        Me.cbBancoPago.Location = New System.Drawing.Point(269, 49)
+        Me.cbBancoPago.Name = "cbBancoPago"
+        Me.cbBancoPago.Size = New System.Drawing.Size(172, 21)
+        Me.cbBancoPago.TabIndex = 1044
+        '
         'chbxCompromiso
         '
         Me.chbxCompromiso.AutoSize = True
@@ -873,39 +890,11 @@ Partial Class ChildFacturacion
         Me.Label21.TabIndex = 1043
         Me.Label21.Text = "IGV (18%)"
         '
-        'cbBancoPago
-        '
-        Me.cbBancoPago.Enabled = False
-        Me.cbBancoPago.FormattingEnabled = True
-        Me.cbBancoPago.Location = New System.Drawing.Point(269, 49)
-        Me.cbBancoPago.Name = "cbBancoPago"
-        Me.cbBancoPago.Size = New System.Drawing.Size(172, 21)
-        Me.cbBancoPago.TabIndex = 1044
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(0, 0)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(45, 13)
-        Me.Label22.TabIndex = 1044
-        Me.Label22.Text = "Label22"
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(201, 49)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(38, 13)
-        Me.Label23.TabIndex = 1045
-        Me.Label23.Text = "Banco"
-        '
         'ChildFacturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 682)
-        Me.Controls.Add(Me.Label22)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.Label20)
         Me.Controls.Add(Me.txtTotalFactura)
@@ -1073,5 +1062,4 @@ Partial Class ChildFacturacion
     Friend WithEvents Label21 As Label
     Friend WithEvents Label23 As Label
     Friend WithEvents cbBancoPago As ComboBox
-    Friend WithEvents Label22 As Label
 End Class

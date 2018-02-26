@@ -422,11 +422,11 @@ Public Class FacturacionDAO
     Public Function GetGuiasByDetalle(codigoDetalle As Integer) As DataTable
 
         Return sqlControl.ExecQuery("select a.CODIGO_GUIA,
-	                                b.DETALLE_GUIA from DETALLE_FACTURA_GUIA a 
-                                    LEFT JOIN GUIA_TRANSPORTISTA b 
-                                    ON a.CODIGO_GUIA = b.CODIGO_GUIA
-                                    where 
-                                    CODIGO_DETALLE_FACTURA =" + CStr(codigoDetalle),
+	                                        b.DETALLE_GUIA 
+                                    from    DETALLE_FACTURA_GUIA a 
+                                    LEFT    JOIN GUIA_TRANSPORTISTA b ON a.CODIGO_GUIA = b.CODIGO_GUIA
+                                    where   CODIGO_DETALLE_FACTURA =" + CStr(codigoDetalle) + "   
+                                    order   by a.CODIGO_DETALLE_GUIA asc ",
                                     Nothing)
 
     End Function
@@ -827,7 +827,8 @@ Public Class FacturacionDAO
                                     from	DETALLE_FACTURA_GUIA a
                                     left	join GUIA_TRANSPORTISTA b on a.CODIGO_GUIA=b.CODIGO_GUIA
                                     where	CODIGO_FACTURA=" + CStr(codigo_factura) + "
-		                                    and CODIGO_DETALLE_FACTURA=" + CStr(codigo_detalle) + "",
+		                                    and CODIGO_DETALLE_FACTURA=" + CStr(codigo_detalle) + "  
+                                    order   by a.CODIGO_DETALLE_GUIA asc ",
                                      Nothing)
     End Function
 
