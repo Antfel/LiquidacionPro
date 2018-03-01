@@ -63,6 +63,8 @@ Partial Class ChildGuia
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
+        Me.txtComentario = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
         CType(Me.dgvGuias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -71,13 +73,13 @@ Partial Class ChildGuia
         '
         Me.dgvGuias.AllowUserToAddRows = False
         Me.dgvGuias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvGuias.Location = New System.Drawing.Point(15, 175)
+        Me.dgvGuias.Location = New System.Drawing.Point(15, 193)
         Me.dgvGuias.MultiSelect = False
         Me.dgvGuias.Name = "dgvGuias"
         Me.dgvGuias.ReadOnly = True
         Me.dgvGuias.RowHeadersVisible = False
         Me.dgvGuias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvGuias.Size = New System.Drawing.Size(1217, 308)
+        Me.dgvGuias.Size = New System.Drawing.Size(1217, 290)
         Me.dgvGuias.TabIndex = 0
         '
         'txtCodigo
@@ -216,7 +218,7 @@ Partial Class ChildGuia
         Me.GroupBox1.Controls.Add(Me.Label24)
         Me.GroupBox1.Controls.Add(Me.btnFiltrar)
         Me.GroupBox1.Controls.Add(Me.btnDeshacer)
-        Me.GroupBox1.Location = New System.Drawing.Point(15, 110)
+        Me.GroupBox1.Location = New System.Drawing.Point(15, 128)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(789, 59)
         Me.GroupBox1.TabIndex = 102
@@ -431,11 +433,29 @@ Partial Class ChildGuia
         Me.Label16.TabIndex = 124
         Me.Label16.Text = "Destino"
         '
+        'txtComentario
+        '
+        Me.txtComentario.Location = New System.Drawing.Point(107, 107)
+        Me.txtComentario.Name = "txtComentario"
+        Me.txtComentario.Size = New System.Drawing.Size(492, 20)
+        Me.txtComentario.TabIndex = 125
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(41, 107)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(60, 13)
+        Me.Label13.TabIndex = 126
+        Me.Label13.Text = "Comentario"
+        '
         'ChildGuia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1276, 495)
+        Me.ClientSize = New System.Drawing.Size(1012, 495)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.txtComentario)
         Me.Controls.Add(Me.Label16)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.Label14)
@@ -524,4 +544,6 @@ Partial Class ChildGuia
     Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label
     Friend WithEvents Label16 As Label
+    Friend WithEvents txtComentario As TextBox
+    Friend WithEvents Label13 As Label
 End Class

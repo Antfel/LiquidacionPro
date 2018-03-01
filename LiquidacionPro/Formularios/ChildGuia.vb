@@ -345,7 +345,7 @@ Public Class ChildGuia
         txtCantidad.Text = ""
         txtOrigen.Text = ""
         txtDestino.Text = ""
-
+        txtComentario.Text = ""
     End Sub
 
     Private Sub dgvGuias_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvGuias.CellMouseClick
@@ -468,7 +468,7 @@ Public Class ChildGuia
                 Dim correla As Integer
 
                 Dim fliqui As Date, ffactura As Date, tracto As Integer, semitrailer As Integer, trabajador As Integer, carga As String, na As String, cantidad As String, cliente As Integer,
-                        origen As String, destino
+                        origen As String, destino As String, comentario As String
 
                 If txtDetalle.Text = Nothing Then
                     MessageBox.Show("Debe ingresar un Nro. de Guía.", "Grabar Guía",
@@ -543,10 +543,16 @@ Public Class ChildGuia
                     destino = txtDestino.Text
                 End If
 
+                If txtComentario.Text = Nothing Then
+                    comentario = ""
+                Else
+                    comentario = txtComentario.Text
+                End If
+
                 If txtCodigo.Text = Nothing Then
                     correla = guiaDao.InsertGuia(txtDetalle.Text, cbEstado.SelectedValue,
                                                  fliqui, ffactura, dtpFechaGuia.Value, tracto, semitrailer, trabajador,
-                                                 carga, na, cantidad, cliente, origen, destino)
+                                                 carga, na, cantidad, cliente, origen, destino, comentario)
 
                     If correla >= 0 Then
                         txtCodigo.Text = CStr(correla)
@@ -561,7 +567,7 @@ Public Class ChildGuia
                 Else
                     correla = guiaDao.UpdatetGuia(CInt(txtCodigo.Text), txtDetalle.Text, cbEstado.SelectedValue,
                                                  fliqui, ffactura, dtpFechaGuia.Value, tracto, semitrailer, trabajador,
-                                                 carga, na, cantidad, cliente, origen, destino)
+                                                 carga, na, cantidad, cliente, origen, destino, comentario)
 
                     If correla >= 0 Then
                         MessageBox.Show("Guía actualizada correctamente.", "Actualizar Guía",

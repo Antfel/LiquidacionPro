@@ -46,7 +46,7 @@ Public Class GuiaDAO
                                 estado As Integer, fechaLiquidacion As Date, fechaFacturacion As Date,
                                 fechaGuia As Date, tracto As Integer, semitrailer As Integer,
                                 trabajador As Integer, carga As String, na As String, cantidad As String,
-                                cliente As Integer, origen As String, destino As String) As Integer
+                                cliente As Integer, origen As String, destino As String, comentario As String) As Integer
 
 
         Dim params As New List(Of SqlParameter)
@@ -97,6 +97,8 @@ Public Class GuiaDAO
 
         params.Add(New SqlParameter("@ORIGEN", origen))
         params.Add(New SqlParameter("@DESTINO", destino))
+        params.Add(New SqlParameter("@COMENTARIO", comentario))
+
 
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE insertGuia " +
@@ -113,7 +115,8 @@ Public Class GuiaDAO
                                         "@CANTIDAD, " +
                                         "@CODIGO_CLIENTE, " +
                                         "@ORIGEN, " +
-                                        "@DESTINO ", params)
+                                        "@DESTINO, " +
+                                        "@COMENTARIO ", params)
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
                 Return CInt(dt.Rows.Item(0).Item(0))
@@ -130,7 +133,7 @@ Public Class GuiaDAO
                                 estado As Integer, fechaLiquidacion As Date, fechaFacturacion As Date,
                                 fechaGuia As Date, tracto As Integer, semitrailer As Integer,
                                 trabajador As Integer, carga As String, na As String, cantidad As String,
-                                cliente As Integer, origen As String, destino As String) As Integer
+                                cliente As Integer, origen As String, destino As String, comentario As String) As Integer
 
 
         Dim params As New List(Of SqlParameter)
@@ -182,6 +185,7 @@ Public Class GuiaDAO
 
         params.Add(New SqlParameter("@ORIGEN", origen))
         params.Add(New SqlParameter("@DESTINO", destino))
+        params.Add(New SqlParameter("@COMENTARIO", comentario))
 
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE updateGuia " +
@@ -199,7 +203,8 @@ Public Class GuiaDAO
                                         "@CANTIDAD, " +
                                         "@CODIGO_CLIENTE, " +
                                         "@ORIGEN, " +
-                                        "@DESTINO ", params)
+                                        "@DESTINO, " +
+                                        "@COMENTARIO ", params)
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
                 Return CInt(dt.Rows.Item(0).Item(0))
@@ -238,7 +243,8 @@ Public Class GuiaDAO
 		                                    a.CODIGO_CLIENTE,
 		                                    f.RAZON_CLIENTE 'RAZON SOCIAL',
 		                                    a.ORIGEN,
-		                                    a.DESTINO 
+		                                    a.DESTINO,
+                                            a.COMENTARIO 
                                     from	GUIA_TRANSPORTISTA a
                                     left	join ESTADO b on a.CODIGO_ESTADO=b.CODIGO_ESTADO and TIPO_ESTADO=3
                                     left	join UNIDAD c on a.CODIGO_UNIDAD_TRACTO=c.CODIGO_UNIDAD
@@ -269,8 +275,9 @@ Public Class GuiaDAO
 		                                    coalesce(a.CANTIDAD,'') CANTIDAD,
 		                                    a.CODIGO_CLIENTE,
 		                                    f.RAZON_CLIENTE 'RAZON SOCIAL',
-		                                    coalesce(a.ORIGEN,'')ORIGEN, 
-		                                    coalesce(a.DESTINO,'')  DESTINO 
+		                                    coalesce(a.ORIGEN,'')ORIGEN,  
+		                                    coalesce(a.DESTINO,'')  DESTINO, 
+                                            coalesce(a.COMENTARIO,'')  COMENTARIO  
                                     from	GUIA_TRANSPORTISTA a 
                                     left	join ESTADO b on a.CODIGO_ESTADO=b.CODIGO_ESTADO and TIPO_ESTADO=3 
                                     left	join UNIDAD c on a.CODIGO_UNIDAD_TRACTO=c.CODIGO_UNIDAD 
@@ -420,7 +427,8 @@ Public Class GuiaDAO
 		                                    a.CODIGO_CLIENTE, 
 		                                    f.RAZON_CLIENTE, 
 		                                    a.ORIGEN, 
-		                                    a.DESTINO  
+		                                    a.DESTINO,
+                                            a.COMENTARIO 
                                     from	GUIA_TRANSPORTISTA a 
                                     left	join ESTADO b on a.CODIGO_ESTADO=b.CODIGO_ESTADO and TIPO_ESTADO=3 
                                     left	join UNIDAD c on a.CODIGO_UNIDAD_TRACTO=c.CODIGO_UNIDAD 

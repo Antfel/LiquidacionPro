@@ -7811,6 +7811,8 @@ Partial Public Class rptLiquidaciones
         
         Private columnDESTINO As Global.System.Data.DataColumn
         
+        Private columnCOMENTARIO As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -8007,6 +8009,14 @@ Partial Public Class rptLiquidaciones
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property COMENTARIOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCOMENTARIO
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -8063,9 +8073,10 @@ Partial Public Class rptLiquidaciones
                     ByVal CODIGO_CLIENTE As Long,  _
                     ByVal RAZON_CLIENTE As String,  _
                     ByVal ORIGEN As String,  _
-                    ByVal DESTINO As String) As dtRptGuiaControlViajeRow
+                    ByVal DESTINO As String,  _
+                    ByVal COMENTARIO As String) As dtRptGuiaControlViajeRow
             Dim rowdtRptGuiaControlViajeRow As dtRptGuiaControlViajeRow = CType(Me.NewRow,dtRptGuiaControlViajeRow)
-            Dim columnValuesArray() As Object = New Object() {CODIGO, DETALLE, CODIGO_ESTADO, FECHA_LIQUIDACION, FECHA_FACTURACION, ESTADO, FECHA_GUIA, CODIGO_UNIDAD_TRACTO, TRACTO, CODIGO_UNIDAD_SEMITRAILER, SEMI_TRAILER, CODIGO_TRABAJADOR, TRABAJADOR, CARGA, NA, CANTIDAD, CODIGO_CLIENTE, RAZON_CLIENTE, ORIGEN, DESTINO}
+            Dim columnValuesArray() As Object = New Object() {CODIGO, DETALLE, CODIGO_ESTADO, FECHA_LIQUIDACION, FECHA_FACTURACION, ESTADO, FECHA_GUIA, CODIGO_UNIDAD_TRACTO, TRACTO, CODIGO_UNIDAD_SEMITRAILER, SEMI_TRAILER, CODIGO_TRABAJADOR, TRABAJADOR, CARGA, NA, CANTIDAD, CODIGO_CLIENTE, RAZON_CLIENTE, ORIGEN, DESTINO, COMENTARIO}
             rowdtRptGuiaControlViajeRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdtRptGuiaControlViajeRow)
             Return rowdtRptGuiaControlViajeRow
@@ -8108,6 +8119,7 @@ Partial Public Class rptLiquidaciones
             Me.columnRAZON_CLIENTE = MyBase.Columns("RAZON_CLIENTE")
             Me.columnORIGEN = MyBase.Columns("ORIGEN")
             Me.columnDESTINO = MyBase.Columns("DESTINO")
+            Me.columnCOMENTARIO = MyBase.Columns("COMENTARIO")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8153,6 +8165,8 @@ Partial Public Class rptLiquidaciones
             MyBase.Columns.Add(Me.columnORIGEN)
             Me.columnDESTINO = New Global.System.Data.DataColumn("DESTINO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDESTINO)
+            Me.columnCOMENTARIO = New Global.System.Data.DataColumn("COMENTARIO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCOMENTARIO)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -14674,6 +14688,22 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property COMENTARIO() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptGuiaControlViaje.COMENTARIOColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'COMENTARIO' de la tabla 'dtRptGuiaControlViaje' es DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptGuiaControlViaje.COMENTARIOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsCODIGONull() As Boolean
             Return Me.IsNull(Me.tabledtRptGuiaControlViaje.CODIGOColumn)
         End Function
@@ -14910,6 +14940,18 @@ Partial Public Class rptLiquidaciones
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetDESTINONull()
             Me(Me.tabledtRptGuiaControlViaje.DESTINOColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCOMENTARIONull() As Boolean
+            Return Me.IsNull(Me.tabledtRptGuiaControlViaje.COMENTARIOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCOMENTARIONull()
+            Me(Me.tabledtRptGuiaControlViaje.COMENTARIOColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
