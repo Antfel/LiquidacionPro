@@ -143,7 +143,7 @@ Partial Class ChildBusquedaFactura
         Me.btnAnular.Name = "btnAnular"
         Me.btnAnular.Size = New System.Drawing.Size(75, 23)
         Me.btnAnular.TabIndex = 102
-        Me.btnAnular.Text = "Anular Factura"
+        Me.btnAnular.Text = "."
         Me.btnAnular.UseVisualStyleBackColor = True
         '
         'btnCopiar

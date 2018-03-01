@@ -4,6 +4,7 @@ Public Class ChildBusquedaFactura
     Dim columnaFiltro As Integer = -1
     Dim source1 As New BindingSource()
     Dim nombreColumnaFiltro As String
+    Dim facturaSeleccion As Integer
 
     Private Sub ChildBusquedaFactura_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cargarDatosFactura()
@@ -23,6 +24,8 @@ Public Class ChildBusquedaFactura
 
             dtFactura = facturacionDao.GetAllFacturas()
             sqlControl.CommitTransaction()
+
+            Dim filtro As String = source1.Filter
 
             dgvFacturas.DataSource = dtFactura
 
@@ -44,6 +47,28 @@ Public Class ChildBusquedaFactura
             dgvFacturas.Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             dgvFacturas.Columns(8).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             dgvFacturas.Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+            If filtro <> Nothing Then
+                source1.DataSource = dgvFacturas.DataSource
+                source1.Filter = filtro
+                dgvFacturas.Refresh()
+            End If
+
+            If facturaSeleccion > 0 Then
+                Dim rowIndex As Integer = -1
+                For Each row As DataGridViewRow In dgvFacturas.Rows
+                    If row.Cells(0).Value.ToString().Equals(facturaSeleccion.ToString) Then
+                        rowIndex = row.Index
+                        Exit For
+                    End If
+                Next
+
+                If rowIndex <> -1 Then
+                    dgvFacturas.CurrentCell = dgvFacturas.Item(0, rowIndex)
+                Else
+                End If
+            Else
+            End If
 
         Catch ex As SqlException
             sqlControl.RollbackTransaccion()
@@ -148,6 +173,7 @@ Public Class ChildBusquedaFactura
     Private Sub btnAnular_Click(sender As Object, e As EventArgs) Handles btnAnular.Click
         Dim seleccion As DataGridViewRow = dgvFacturas.SelectedRows(0)
         Dim codigo As Integer = seleccion.Cells(0).Value
+        Dim estado As Integer = seleccion.Cells(16).Value
 
         Dim sqlControl As New SQLControl
         sqlControl.SetConnection()
@@ -158,10 +184,15 @@ Public Class ChildBusquedaFactura
             sqlControl.BeginTransaction()
             facturacionDAO.SetDBcmd()
 
-            facturacionDAO.UpdateFacturaEstado(codigo, 15)
+            If estado = 16 Then
+                facturacionDAO.UpdateFacturaEstado(codigo, 15)
+                btnAnular.Text = "Activar"
+            ElseIf estado = 15 Then
+                facturacionDAO.UpdateFacturaEstado(codigo, 16)
+                btnAnular.Text = "Anular"
+            End If
 
             sqlControl.CommitTransaction()
-
         Catch ex As SqlException
             sqlControl.RollbackTransaccion()
         Catch ex As Exception
@@ -250,5 +281,24 @@ Public Class ChildBusquedaFactura
             End Try
             cargarDatosFactura()
         End Try
+    End Sub
+
+    Private Sub dgvFacturas_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvFacturas.CellMouseClick
+        Dim seleccion As DataGridViewRow = dgvFacturas.SelectedRows(0)
+
+        If seleccion.Index < 0 Then
+            Return
+        End If
+
+        Dim estado As Int16 = seleccion.Cells(16).Value
+        facturaSeleccion = seleccion.Cells(0).Value
+
+        If estado = 15 Then
+            'anulado
+            btnAnular.Text = "Activar"
+        ElseIf estado = 16 Then
+            'facturado
+            btnAnular.Text = "Anular"
+        End If
     End Sub
 End Class
