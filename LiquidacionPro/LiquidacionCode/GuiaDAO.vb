@@ -397,7 +397,7 @@ Public Class GuiaDAO
 
         If bfecha Then
             params.Add(New SqlParameter("@fecha", fecha))
-            whereFechaString = " and a.FECHA_GUIA=@fecha "
+            whereFechaString = " and cast(cast(a.FECHA_GUIA as date) as datetime)=cast(cast(@fecha as date) as datetime) "
         Else
             whereFechaString = ""
         End If
