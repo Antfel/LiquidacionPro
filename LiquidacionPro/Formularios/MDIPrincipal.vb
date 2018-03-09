@@ -144,4 +144,12 @@ Public Class MDIPrincipal
         childOrdenServicio.MdiParent = Me
         childOrdenServicio.Show()
     End Sub
+
+    Private Sub AsignacionDeServicioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AsignacionDeServicioToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim childBusquedaAsignaciones As New ChildBusquedaAsignaciones()
+        childBusquedaAsignaciones.MdiParent = Me
+        childBusquedaAsignaciones.Show()
+    End Sub
+
 End Class
