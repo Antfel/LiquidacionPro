@@ -59,18 +59,14 @@ Public Class ChildFacturaLibre
         txtDireccion.ReadOnly = True
         txtTelefono.ReadOnly = True
         txtTotal.Text = "0.00"
+        txtSubtotal.Text = "0.00"
+        txtIGV.Text = "0.00"
         actualizarDatosCliente()
         actualizarDatosMoneda()
         If codigo_Factura <> -1 Then
             cargarDatosFactura()
             cargandoDatosActualizar = 0
-            'btnGrabar.Enabled = False
-            'btnNuevo.Enabled = False
-            'btnEliminar.Enabled = False
             txtNroSerie.ReadOnly = True
-            'txtCantidad.Enabled = False
-            'txtDescripcion.Enabled = False
-            'txtPrecioUnitario.Enabled = False
         Else
             txtNroSerie.Text = "0001"
             txtNroSerie.ReadOnly = True
@@ -262,13 +258,13 @@ Public Class ChildFacturaLibre
             If txtPorcentajeDetraccion.Text = Nothing Then
                 porcentaje_detraccion = 0
             Else
-                porcentaje_detraccion = Double.Parse(txtPorcentajeDetraccion.Text)
+                porcentaje_detraccion = CType(txtPorcentajeDetraccion.Text, Double)
             End If
 
             If txtMontoDetraccion.Text = Nothing Then
                 monto_detraccion = 0
             Else
-                monto_detraccion = Double.Parse(txtMontoDetraccion.Text)
+                monto_detraccion = CType(txtMontoDetraccion.Text, Double)
             End If
 
             If cbBancoPago.SelectedIndex < 0 Then
@@ -291,7 +287,7 @@ Public Class ChildFacturaLibre
                 codigo_Factura = facturacionDao.InsertFactura(txtNroSerie.Text,
                                          lbNroFactura.Text,
                                          CType(cbRazonSocial.SelectedValue, Integer),
-                                         CType(0, Long),
+                                         CType(0, Double),
                                          CType(cbMoneda.SelectedValue, Integer),
                                          16,
                                          dtFecha.Value,
@@ -348,13 +344,14 @@ Public Class ChildFacturaLibre
     End Sub
 
     Private Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
-        Dim cantidad As Integer, precio As Double
+        Dim cantidad As Integer, precio, subtotal, igv, total As Double
 
         If txtCantidad.Text = Nothing Then
             cantidad = 0
         Else
             cantidad = Integer.Parse(txtCantidad.Text)
         End If
+
         If txtDescripcion.Text = Nothing Then
             MessageBox.Show("Ingresar Descripción.", "Validación",
                                  MessageBoxButtons.OK,
@@ -364,8 +361,12 @@ Public Class ChildFacturaLibre
         If txtPrecioUnitario.Text = Nothing Then
             precio = 0
         Else
-            precio = txtPrecioUnitario.Text
+            precio = CType(txtPrecioUnitario.Text, Double)
         End If
+
+        subtotal = CType(txtSubtotalDetalle.Text, Double)
+        igv = CType(txtIgvDetalle.Text, Double)
+        total = CType(txtTotalDetalle.Text, Double)
 
         Dim sqlControl As New SQLControl
         sqlControl.SetConnection()
@@ -388,8 +389,10 @@ Public Class ChildFacturaLibre
                                                 "",
                                                 precio,
                                                 "",
-                                                ""
-                                                )
+                                                "",
+                                                subtotal,
+                                                igv,
+                                                total)
 
             Else
 
@@ -402,8 +405,10 @@ Public Class ChildFacturaLibre
                                                 "",
                                                 precio,
                                                 "",
-                                                ""
-                                                )
+                                                "",
+                                                subtotal,
+                                                igv,
+                                                total)
 
             End If
 
@@ -450,6 +455,8 @@ Public Class ChildFacturaLibre
             facturacionDao.SetDBcmd()
 
             Dim dataDetalle As DataTable = facturacionDao.getAllDetalleFacturaByCodigoFactura(codigo_Factura)
+            sqlControl.CommitTransaction()
+
             dgvDetalle.DataSource = dataDetalle
 
             dgvDetalle.Columns(0).Visible = False
@@ -457,17 +464,18 @@ Public Class ChildFacturaLibre
             dgvDetalle.Columns(2).Visible = False
             dgvDetalle.Columns(5).Visible = False
             dgvDetalle.Columns(6).Visible = False
-            dgvDetalle.Columns(8).Visible = False
-            dgvDetalle.Columns(9).Visible = False
-            dgvDetalle.Columns(10).Visible = False
+            dgvDetalle.Columns(11).Visible = False
+            dgvDetalle.Columns(12).Visible = False
+            dgvDetalle.Columns(13).Visible = False
 
             dgvDetalle.Columns(3).Width = 80
             dgvDetalle.Columns(4).Width = 625
             dgvDetalle.Columns(7).Width = 100
 
-            sqlControl.CommitTransaction()
-        Catch ex As Exception
+        Catch ex As SqlException
             sqlControl.RollbackTransaccion()
+        Catch ex As Exception
+
         Finally
             Try
                 sqlControl.CloseConexion()
@@ -492,9 +500,11 @@ Public Class ChildFacturaLibre
             sqlControl.CommitTransaction()
 
             cbRazonSocial.SelectedValue = dtCabeceraFactura.Rows(0).Item(3).ToString
-            txtIGV.Text = Double.Parse(dtCabeceraFactura.Rows(0).Item(4)) * 0.18
-            txtSubtotal.Text = dtCabeceraFactura.Rows(0).Item(4)
-            txtTotal.Text = Double.Parse(txtIGV.Text) + Double.Parse(txtSubtotal.Text)
+
+            txtSubtotal.Text = dtCabeceraFactura.Rows(0).Item(16)
+            txtIGV.Text = dtCabeceraFactura.Rows(0).Item(15)
+            txtTotal.Text = dtCabeceraFactura.Rows(0).Item(4)
+
             cbMoneda.SelectedValue = dtCabeceraFactura.Rows(0).Item(5)
             dtFecha.Value = CType(dtCabeceraFactura.Rows(0).Item(6), Date)
             txtNroSerie.Text = dtCabeceraFactura.Rows(0).Item(1).ToString
@@ -619,7 +629,12 @@ Public Class ChildFacturaLibre
             txtDescripcion.Text = datDetalle.Rows(0).Item(1).ToString
             txtCantidad.Text = datDetalle.Rows(0).Item(2).ToString
             txtPrecioUnitario.Text = datDetalle.Rows(0).Item(5).ToString
-            txtCodigoDetalle.Text = datDetalle.Rows(0).Item(9).ToString
+
+            txtSubtotalDetalle.Text = datDetalle.Rows(0).Item(6).ToString
+            txtIgvDetalle.Text = datDetalle.Rows(0).Item(7).ToString
+            txtTotalDetalle.Text = datDetalle.Rows(0).Item(8).ToString
+
+            txtCodigoDetalle.Text = datDetalle.Rows(0).Item(12).ToString
 
         Catch ex As SqlException
             sqlControl.RollbackTransaccion()
@@ -645,10 +660,6 @@ Public Class ChildFacturaLibre
     End Sub
 
     Private Sub dgvDetalle_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvDetalle.CellMouseClick
-        'Dim seleccion As DataGridViewRow = dgvDetalle.SelectedRows(0)
-        'Dim codigo As Integer = seleccion.Cells(1).Value
-
-        'codigo_Detalle = codigo
         cargarDatosDetalleFactura()
     End Sub
 
@@ -661,6 +672,9 @@ Public Class ChildFacturaLibre
         txtDescripcion.Text = ""
         txtPrecioUnitario.Text = ""
         txtCodigoDetalle.Text = ""
+        txtSubtotalDetalle.Text = ""
+        txtIgvDetalle.Text = ""
+        txtTotalDetalle.Text = ""
     End Sub
 
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
@@ -719,13 +733,41 @@ Public Class ChildFacturaLibre
         If txtPorcentajeDetraccion.Text = Nothing Then
 
         Else
-            If txtSubtotal.Text = Nothing Then
+            If txtTotal.Text = Nothing Then
             Else
-                porcentaje = Double.Parse(txtPorcentajeDetraccion.Text)
-                total = Double.Parse(txtSubtotal.Text)
+                porcentaje = CType(txtPorcentajeDetraccion.Text, Double)
+                total = CType(txtTotal.Text, Double)
                 monto = (porcentaje / 100) * total
                 txtMontoDetraccion.Text = Math.Round(monto, 2)
             End If
         End If
+    End Sub
+
+    Private Sub txtCantidad_Leave(sender As Object, e As EventArgs) Handles txtCantidad.Leave
+        setearMontosDetalle()
+    End Sub
+    Sub setearMontosDetalle()
+        If txtCantidad.Text IsNot Nothing Then
+            If txtPrecioUnitario.Text IsNot Nothing Then
+                Dim cantidad, precio, subtotal, igv, total As Double
+                cantidad = CType(txtCantidad.Text, Double)
+                precio = CType(txtPrecioUnitario.Text, Double)
+
+                subtotal = cantidad * precio
+                igv = subtotal * 0.18
+                total = subtotal + igv
+
+                txtSubtotalDetalle.Text = Math.Round(subtotal, 2)
+                txtIgvDetalle.Text = Math.Round(igv, 2)
+                txtTotalDetalle.Text = Math.Round(total, 2)
+
+            End If
+        Else
+
+        End If
+    End Sub
+
+    Private Sub txtPrecioUnitario_Leave(sender As Object, e As EventArgs) Handles txtPrecioUnitario.Leave
+        setearMontosDetalle()
     End Sub
 End Class

@@ -92,13 +92,15 @@ Public Class RptPrintFacturaLibre
                 If dtd.Rows.Item(i)(3) <> 0 Then
                     e.Graphics.DrawString(simbolo + Double.Parse(dtd.Rows.Item(i)(3)).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 565, cordy)
                     e.Graphics.DrawString(simbolo + (Double.Parse(dtd.Rows.Item(i)(0)) * Double.Parse(dtd.Rows.Item(i)(3))).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, cordy)
-                    SUBTOTAL = SUBTOTAL + Double.Parse(dtd.Rows.Item(i)(0)) * Double.Parse(dtd.Rows.Item(i)(3))
+                    'SUBTOTAL = SUBTOTAL + Double.Parse(dtd.Rows.Item(i)(0)) * Double.Parse(dtd.Rows.Item(i)(3))
                 End If
                 cordy = cordy + (salto * 2)
             Next
 
-            IGV = SUBTOTAL * 0.18
-            TOTAL = SUBTOTAL + IGV
+            TOTAL = CType(dtc.Rows.Item(0)(5), Double)
+            SUBTOTAL = CType(dtc.Rows.Item(0)(7), Double)
+            IGV = CType(dtc.Rows.Item(0)(8), Double)
+
             e.Graphics.DrawString(simbolo + SUBTOTAL.ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, 1050)
             e.Graphics.DrawString("18", FONT, Brushes.Black, 635, 1080)
             e.Graphics.DrawString(simbolo + IGV.ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, 1080)

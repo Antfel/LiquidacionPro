@@ -99,14 +99,20 @@ Partial Class ChildFacturacion
         Me.dtpVencimiento = New System.Windows.Forms.DateTimePicker()
         Me.dtpRecepcion = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label19 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.txtMontoDetraccion = New System.Windows.Forms.TextBox()
         Me.txtPorcentajeDetraccion = New System.Windows.Forms.TextBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.txtMontoDetraccion = New System.Windows.Forms.TextBox()
         Me.txtIgv = New System.Windows.Forms.TextBox()
         Me.txtTotalFactura = New System.Windows.Forms.TextBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
+        Me.txtSubtotalDetalle = New System.Windows.Forms.TextBox()
+        Me.txtIgvDetalle = New System.Windows.Forms.TextBox()
+        Me.txtTotalDetalle = New System.Windows.Forms.TextBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label32 = New System.Windows.Forms.Label()
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbRemitente, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbPlaca, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,7 +178,7 @@ Partial Class ChildFacturacion
         Me.txtTelefono.Location = New System.Drawing.Point(590, 123)
         Me.txtTelefono.Name = "txtTelefono"
         Me.txtTelefono.Size = New System.Drawing.Size(142, 20)
-        Me.txtTelefono.TabIndex = 50
+        Me.txtTelefono.TabIndex = 1000
         '
         'txtDireccion
         '
@@ -194,7 +200,7 @@ Partial Class ChildFacturacion
         Me.txtRUC.Location = New System.Drawing.Point(590, 83)
         Me.txtRUC.Name = "txtRUC"
         Me.txtRUC.Size = New System.Drawing.Size(142, 20)
-        Me.txtRUC.TabIndex = 30
+        Me.txtRUC.TabIndex = 1000
         '
         'cbMoneda
         '
@@ -225,7 +231,7 @@ Partial Class ChildFacturacion
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(643, 248)
+        Me.Label15.Location = New System.Drawing.Point(64, 275)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(151, 13)
         Me.Label15.TabIndex = 1000
@@ -270,7 +276,7 @@ Partial Class ChildFacturacion
         Me.btnActualizar.Location = New System.Drawing.Point(843, 474)
         Me.btnActualizar.Name = "btnActualizar"
         Me.btnActualizar.Size = New System.Drawing.Size(119, 35)
-        Me.btnActualizar.TabIndex = 290
+        Me.btnActualizar.TabIndex = 300
         Me.btnActualizar.Text = "ACTUALIZAR"
         Me.btnActualizar.UseVisualStyleBackColor = True
         '
@@ -295,7 +301,7 @@ Partial Class ChildFacturacion
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(44, 536)
+        Me.Label2.Location = New System.Drawing.Point(44, 533)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(85, 13)
         Me.Label2.TabIndex = 1000
@@ -314,7 +320,7 @@ Partial Class ChildFacturacion
         Me.btnNuevo.Location = New System.Drawing.Point(975, 474)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(126, 35)
-        Me.btnNuevo.TabIndex = 300
+        Me.btnNuevo.TabIndex = 310
         Me.btnNuevo.Text = "NUEVO"
         Me.btnNuevo.UseVisualStyleBackColor = True
         '
@@ -323,14 +329,14 @@ Partial Class ChildFacturacion
         Me.btnEliminar.Location = New System.Drawing.Point(1116, 474)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(126, 35)
-        Me.btnEliminar.TabIndex = 310
+        Me.btnEliminar.TabIndex = 320
         Me.btnEliminar.Text = "ELIMINAR"
         Me.btnEliminar.UseVisualStyleBackColor = True
         '
         'cbGuia
         '
         Me.cbGuia.FormattingEnabled = True
-        Me.cbGuia.Location = New System.Drawing.Point(169, 285)
+        Me.cbGuia.Location = New System.Drawing.Point(169, 297)
         Me.cbGuia.MaxLength = 11
         Me.cbGuia.Name = "cbGuia"
         Me.cbGuia.Size = New System.Drawing.Size(100, 21)
@@ -342,7 +348,7 @@ Partial Class ChildFacturacion
         Me.tbTransportista.AllowUserToDeleteRows = False
         Me.tbTransportista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.tbTransportista.ColumnHeadersVisible = False
-        Me.tbTransportista.Location = New System.Drawing.Point(67, 315)
+        Me.tbTransportista.Location = New System.Drawing.Point(67, 327)
         Me.tbTransportista.MultiSelect = False
         Me.tbTransportista.Name = "tbTransportista"
         Me.tbTransportista.ReadOnly = True
@@ -355,7 +361,7 @@ Partial Class ChildFacturacion
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(64, 288)
+        Me.Label16.Location = New System.Drawing.Point(64, 300)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(98, 13)
         Me.Label16.TabIndex = 1006
@@ -363,7 +369,7 @@ Partial Class ChildFacturacion
         '
         'btnAgregarTransportista
         '
-        Me.btnAgregarTransportista.Location = New System.Drawing.Point(246, 342)
+        Me.btnAgregarTransportista.Location = New System.Drawing.Point(246, 354)
         Me.btnAgregarTransportista.Name = "btnAgregarTransportista"
         Me.btnAgregarTransportista.Size = New System.Drawing.Size(23, 23)
         Me.btnAgregarTransportista.TabIndex = 140
@@ -372,7 +378,7 @@ Partial Class ChildFacturacion
         '
         'btnEliminarTransportista
         '
-        Me.btnEliminarTransportista.Location = New System.Drawing.Point(246, 371)
+        Me.btnEliminarTransportista.Location = New System.Drawing.Point(246, 383)
         Me.btnEliminarTransportista.Name = "btnEliminarTransportista"
         Me.btnEliminarTransportista.Size = New System.Drawing.Size(23, 23)
         Me.btnEliminarTransportista.TabIndex = 150
@@ -385,7 +391,7 @@ Partial Class ChildFacturacion
         Me.tbRemitente.AllowUserToDeleteRows = False
         Me.tbRemitente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.tbRemitente.ColumnHeadersVisible = False
-        Me.tbRemitente.Location = New System.Drawing.Point(311, 316)
+        Me.tbRemitente.Location = New System.Drawing.Point(311, 328)
         Me.tbRemitente.MultiSelect = False
         Me.tbRemitente.Name = "tbRemitente"
         Me.tbRemitente.ReadOnly = True
@@ -396,7 +402,7 @@ Partial Class ChildFacturacion
         '
         'txtRemitente
         '
-        Me.txtRemitente.Location = New System.Drawing.Point(405, 286)
+        Me.txtRemitente.Location = New System.Drawing.Point(405, 298)
         Me.txtRemitente.MaxLength = 20
         Me.txtRemitente.Name = "txtRemitente"
         Me.txtRemitente.Size = New System.Drawing.Size(111, 20)
@@ -405,7 +411,7 @@ Partial Class ChildFacturacion
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(308, 289)
+        Me.Label17.Location = New System.Drawing.Point(308, 301)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(70, 13)
         Me.Label17.TabIndex = 1011
@@ -413,7 +419,7 @@ Partial Class ChildFacturacion
         '
         'btnAgregarRemitente
         '
-        Me.btnAgregarRemitente.Location = New System.Drawing.Point(493, 343)
+        Me.btnAgregarRemitente.Location = New System.Drawing.Point(493, 355)
         Me.btnAgregarRemitente.Name = "btnAgregarRemitente"
         Me.btnAgregarRemitente.Size = New System.Drawing.Size(23, 23)
         Me.btnAgregarRemitente.TabIndex = 170
@@ -422,7 +428,7 @@ Partial Class ChildFacturacion
         '
         'btnEliminarRemitente
         '
-        Me.btnEliminarRemitente.Location = New System.Drawing.Point(493, 372)
+        Me.btnEliminarRemitente.Location = New System.Drawing.Point(493, 384)
         Me.btnEliminarRemitente.Name = "btnEliminarRemitente"
         Me.btnEliminarRemitente.Size = New System.Drawing.Size(23, 23)
         Me.btnEliminarRemitente.TabIndex = 180
@@ -435,7 +441,7 @@ Partial Class ChildFacturacion
         Me.tbPlaca.AllowUserToDeleteRows = False
         Me.tbPlaca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.tbPlaca.ColumnHeadersVisible = False
-        Me.tbPlaca.Location = New System.Drawing.Point(557, 316)
+        Me.tbPlaca.Location = New System.Drawing.Point(557, 328)
         Me.tbPlaca.MultiSelect = False
         Me.tbPlaca.Name = "tbPlaca"
         Me.tbPlaca.ReadOnly = True
@@ -447,7 +453,7 @@ Partial Class ChildFacturacion
         'cbTracto
         '
         Me.cbTracto.FormattingEnabled = True
-        Me.cbTracto.Location = New System.Drawing.Point(601, 286)
+        Me.cbTracto.Location = New System.Drawing.Point(601, 298)
         Me.cbTracto.MaxLength = 20
         Me.cbTracto.Name = "cbTracto"
         Me.cbTracto.Size = New System.Drawing.Size(144, 21)
@@ -456,7 +462,7 @@ Partial Class ChildFacturacion
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(554, 289)
+        Me.Label18.Location = New System.Drawing.Point(554, 301)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(41, 13)
         Me.Label18.TabIndex = 1016
@@ -464,7 +470,7 @@ Partial Class ChildFacturacion
         '
         'btnAgregarPlaca
         '
-        Me.btnAgregarPlaca.Location = New System.Drawing.Point(719, 343)
+        Me.btnAgregarPlaca.Location = New System.Drawing.Point(719, 355)
         Me.btnAgregarPlaca.Name = "btnAgregarPlaca"
         Me.btnAgregarPlaca.Size = New System.Drawing.Size(23, 23)
         Me.btnAgregarPlaca.TabIndex = 200
@@ -473,7 +479,7 @@ Partial Class ChildFacturacion
         '
         'btnEliminarPlaca
         '
-        Me.btnEliminarPlaca.Location = New System.Drawing.Point(719, 372)
+        Me.btnEliminarPlaca.Location = New System.Drawing.Point(719, 384)
         Me.btnEliminarPlaca.Name = "btnEliminarPlaca"
         Me.btnEliminarPlaca.Size = New System.Drawing.Size(23, 23)
         Me.btnEliminarPlaca.TabIndex = 210
@@ -482,15 +488,15 @@ Partial Class ChildFacturacion
         '
         'txtCantidad
         '
-        Me.txtCantidad.Location = New System.Drawing.Point(778, 315)
+        Me.txtCantidad.Location = New System.Drawing.Point(760, 315)
         Me.txtCantidad.Name = "txtCantidad"
-        Me.txtCantidad.Size = New System.Drawing.Size(54, 20)
-        Me.txtCantidad.TabIndex = 220
+        Me.txtCantidad.Size = New System.Drawing.Size(70, 20)
+        Me.txtCantidad.TabIndex = 240
         '
         'Label30
         '
         Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(775, 299)
+        Me.Label30.Location = New System.Drawing.Point(763, 299)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(62, 13)
         Me.Label30.TabIndex = 1024
@@ -499,15 +505,15 @@ Partial Class ChildFacturacion
         'txtConfVehicular
         '
         Me.txtConfVehicular.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtConfVehicular.Location = New System.Drawing.Point(851, 315)
+        Me.txtConfVehicular.Location = New System.Drawing.Point(831, 246)
         Me.txtConfVehicular.Name = "txtConfVehicular"
         Me.txtConfVehicular.Size = New System.Drawing.Size(77, 20)
-        Me.txtConfVehicular.TabIndex = 230
+        Me.txtConfVehicular.TabIndex = 220
         '
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(848, 298)
+        Me.Label29.Location = New System.Drawing.Point(763, 248)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(67, 13)
         Me.Label29.TabIndex = 1025
@@ -515,15 +521,15 @@ Partial Class ChildFacturacion
         '
         'txtValorReferencial
         '
-        Me.txtValorReferencial.Location = New System.Drawing.Point(946, 314)
+        Me.txtValorReferencial.Location = New System.Drawing.Point(994, 245)
         Me.txtValorReferencial.Name = "txtValorReferencial"
         Me.txtValorReferencial.Size = New System.Drawing.Size(77, 20)
-        Me.txtValorReferencial.TabIndex = 240
+        Me.txtValorReferencial.TabIndex = 230
         '
         'Label28
         '
         Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(943, 298)
+        Me.Label28.Location = New System.Drawing.Point(931, 248)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(57, 13)
         Me.Label28.TabIndex = 1026
@@ -531,19 +537,18 @@ Partial Class ChildFacturacion
         '
         'txtPrecioUnitario
         '
-        Me.txtPrecioUnitario.Location = New System.Drawing.Point(1040, 314)
+        Me.txtPrecioUnitario.Location = New System.Drawing.Point(876, 315)
         Me.txtPrecioUnitario.Name = "txtPrecioUnitario"
-        Me.txtPrecioUnitario.Size = New System.Drawing.Size(77, 20)
+        Me.txtPrecioUnitario.Size = New System.Drawing.Size(70, 20)
         Me.txtPrecioUnitario.TabIndex = 250
         '
         'Label26
         '
-        Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(1037, 299)
+        Me.Label26.Location = New System.Drawing.Point(878, 287)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(64, 13)
+        Me.Label26.Size = New System.Drawing.Size(75, 26)
         Me.Label26.TabIndex = 1027
-        Me.Label26.Text = "PRE. UNIT."
+        Me.Label26.Text = "PRE. UNIT. (Sin IGV)"
         '
         'txtOrigen
         '
@@ -551,13 +556,13 @@ Partial Class ChildFacturacion
         Me.txtOrigen.Location = New System.Drawing.Point(1293, 392)
         Me.txtOrigen.Name = "txtOrigen"
         Me.txtOrigen.Size = New System.Drawing.Size(16, 20)
-        Me.txtOrigen.TabIndex = 260
+        Me.txtOrigen.TabIndex = 10000
         Me.txtOrigen.Visible = False
         '
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(775, 342)
+        Me.Label24.Location = New System.Drawing.Point(764, 342)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(49, 13)
         Me.Label24.TabIndex = 1028
@@ -566,15 +571,15 @@ Partial Class ChildFacturacion
         'txtObservaciones
         '
         Me.txtObservaciones.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtObservaciones.Location = New System.Drawing.Point(778, 443)
+        Me.txtObservaciones.Location = New System.Drawing.Point(760, 443)
         Me.txtObservaciones.Name = "txtObservaciones"
-        Me.txtObservaciones.Size = New System.Drawing.Size(504, 20)
-        Me.txtObservaciones.TabIndex = 280
+        Me.txtObservaciones.Size = New System.Drawing.Size(522, 20)
+        Me.txtObservaciones.TabIndex = 290
         '
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(775, 427)
+        Me.Label27.Location = New System.Drawing.Point(763, 427)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(84, 13)
         Me.Label27.TabIndex = 1029
@@ -586,13 +591,13 @@ Partial Class ChildFacturacion
         Me.txtDestino.Location = New System.Drawing.Point(1293, 359)
         Me.txtDestino.Name = "txtDestino"
         Me.txtDestino.Size = New System.Drawing.Size(16, 20)
-        Me.txtDestino.TabIndex = 270
+        Me.txtDestino.TabIndex = 10000
         Me.txtDestino.Visible = False
         '
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(775, 381)
+        Me.Label25.Location = New System.Drawing.Point(763, 381)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(55, 13)
         Me.Label25.TabIndex = 1030
@@ -648,18 +653,18 @@ Partial Class ChildFacturacion
         'cbOrigen
         '
         Me.cbOrigen.FormattingEnabled = True
-        Me.cbOrigen.Location = New System.Drawing.Point(778, 358)
+        Me.cbOrigen.Location = New System.Drawing.Point(760, 358)
         Me.cbOrigen.Name = "cbOrigen"
-        Me.cbOrigen.Size = New System.Drawing.Size(504, 21)
-        Me.cbOrigen.TabIndex = 1036
+        Me.cbOrigen.Size = New System.Drawing.Size(522, 21)
+        Me.cbOrigen.TabIndex = 260
         '
         'cbDestino
         '
         Me.cbDestino.FormattingEnabled = True
-        Me.cbDestino.Location = New System.Drawing.Point(778, 397)
+        Me.cbDestino.Location = New System.Drawing.Point(760, 397)
         Me.cbDestino.Name = "cbDestino"
-        Me.cbDestino.Size = New System.Drawing.Size(504, 21)
-        Me.cbDestino.TabIndex = 1037
+        Me.cbDestino.Size = New System.Drawing.Size(522, 21)
+        Me.cbDestino.TabIndex = 270
         '
         'GroupBox1
         '
@@ -812,25 +817,14 @@ Partial Class ChildFacturacion
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.Label19)
         Me.GroupBox2.Controls.Add(Me.Label14)
-        Me.GroupBox2.Controls.Add(Me.txtMontoDetraccion)
         Me.GroupBox2.Controls.Add(Me.txtPorcentajeDetraccion)
         Me.GroupBox2.Location = New System.Drawing.Point(843, 152)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(330, 53)
+        Me.GroupBox2.Size = New System.Drawing.Size(180, 53)
         Me.GroupBox2.TabIndex = 1039
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Detracción"
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(186, 26)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(37, 13)
-        Me.Label19.TabIndex = 3
-        Me.Label19.Text = "Monto"
         '
         'Label14
         '
@@ -841,20 +835,29 @@ Partial Class ChildFacturacion
         Me.Label14.TabIndex = 2
         Me.Label14.Text = "Porcentaje"
         '
-        'txtMontoDetraccion
-        '
-        Me.txtMontoDetraccion.Location = New System.Drawing.Point(230, 22)
-        Me.txtMontoDetraccion.Name = "txtMontoDetraccion"
-        Me.txtMontoDetraccion.ReadOnly = True
-        Me.txtMontoDetraccion.Size = New System.Drawing.Size(77, 20)
-        Me.txtMontoDetraccion.TabIndex = 1
-        '
         'txtPorcentajeDetraccion
         '
         Me.txtPorcentajeDetraccion.Location = New System.Drawing.Point(85, 23)
         Me.txtPorcentajeDetraccion.Name = "txtPorcentajeDetraccion"
         Me.txtPorcentajeDetraccion.Size = New System.Drawing.Size(77, 20)
         Me.txtPorcentajeDetraccion.TabIndex = 0
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(247, 533)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(59, 13)
+        Me.Label19.TabIndex = 3
+        Me.Label19.Text = "Detracción"
+        '
+        'txtMontoDetraccion
+        '
+        Me.txtMontoDetraccion.Location = New System.Drawing.Point(313, 533)
+        Me.txtMontoDetraccion.Name = "txtMontoDetraccion"
+        Me.txtMontoDetraccion.ReadOnly = True
+        Me.txtMontoDetraccion.Size = New System.Drawing.Size(77, 20)
+        Me.txtMontoDetraccion.TabIndex = 1042
         '
         'txtIgv
         '
@@ -875,7 +878,7 @@ Partial Class ChildFacturacion
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(45, 484)
+        Me.Label20.Location = New System.Drawing.Point(45, 481)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(50, 13)
         Me.Label20.TabIndex = 1042
@@ -884,19 +887,78 @@ Partial Class ChildFacturacion
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(45, 510)
+        Me.Label21.Location = New System.Drawing.Point(45, 507)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(54, 13)
         Me.Label21.TabIndex = 1043
         Me.Label21.Text = "IGV (18%)"
+        '
+        'txtSubtotalDetalle
+        '
+        Me.txtSubtotalDetalle.Location = New System.Drawing.Point(988, 315)
+        Me.txtSubtotalDetalle.Name = "txtSubtotalDetalle"
+        Me.txtSubtotalDetalle.ReadOnly = True
+        Me.txtSubtotalDetalle.Size = New System.Drawing.Size(70, 20)
+        Me.txtSubtotalDetalle.TabIndex = 10001
+        '
+        'txtIgvDetalle
+        '
+        Me.txtIgvDetalle.Location = New System.Drawing.Point(1103, 315)
+        Me.txtIgvDetalle.Name = "txtIgvDetalle"
+        Me.txtIgvDetalle.ReadOnly = True
+        Me.txtIgvDetalle.Size = New System.Drawing.Size(70, 20)
+        Me.txtIgvDetalle.TabIndex = 10002
+        '
+        'txtTotalDetalle
+        '
+        Me.txtTotalDetalle.Location = New System.Drawing.Point(1211, 315)
+        Me.txtTotalDetalle.Name = "txtTotalDetalle"
+        Me.txtTotalDetalle.ReadOnly = True
+        Me.txtTotalDetalle.Size = New System.Drawing.Size(70, 20)
+        Me.txtTotalDetalle.TabIndex = 10003
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(991, 299)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(46, 13)
+        Me.Label22.TabIndex = 10005
+        Me.Label22.Text = "Subtotal"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(1106, 298)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(25, 13)
+        Me.Label31.TabIndex = 10006
+        Me.Label31.Text = "IGV"
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(1214, 297)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(31, 13)
+        Me.Label32.TabIndex = 10007
+        Me.Label32.Text = "Total"
         '
         'ChildFacturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 682)
+        Me.Controls.Add(Me.Label32)
+        Me.Controls.Add(Me.Label31)
+        Me.Controls.Add(Me.Label22)
+        Me.Controls.Add(Me.txtTotalDetalle)
+        Me.Controls.Add(Me.txtIgvDetalle)
+        Me.Controls.Add(Me.txtSubtotalDetalle)
+        Me.Controls.Add(Me.Label19)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.Label20)
+        Me.Controls.Add(Me.txtMontoDetraccion)
         Me.Controls.Add(Me.txtTotalFactura)
         Me.Controls.Add(Me.txtIgv)
         Me.Controls.Add(Me.GroupBox2)
@@ -1062,4 +1124,10 @@ Partial Class ChildFacturacion
     Friend WithEvents Label21 As Label
     Friend WithEvents Label23 As Label
     Friend WithEvents cbBancoPago As ComboBox
+    Friend WithEvents txtSubtotalDetalle As TextBox
+    Friend WithEvents txtIgvDetalle As TextBox
+    Friend WithEvents txtTotalDetalle As TextBox
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label31 As Label
+    Friend WithEvents Label32 As Label
 End Class

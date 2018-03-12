@@ -39,10 +39,10 @@ Public Class ChildFacturacion
             txtNroSerie.Text = dtCabeceraFactura.Rows(0).Item(1).ToString
             lbNroFactura.Text = dtCabeceraFactura.Rows(0).Item(2).ToString
             cbRazonSocial.SelectedValue = dtCabeceraFactura.Rows(0).Item(3).ToString
-            txtPrecioFactura.Text = dtCabeceraFactura.Rows(0).Item(4)
+            txtPrecioFactura.Text = dtCabeceraFactura.Rows(0).Item(16)
 
-            txtIgv.Text = Math.Round(Double.Parse(dtCabeceraFactura.Rows(0).Item(4)) * 0.18, 2)
-            txtTotalFactura.Text = Math.Round(Double.Parse(txtIgv.Text) + Double.Parse(txtPrecioFactura.Text), 2)
+            txtIgv.Text = dtCabeceraFactura.Rows(0).Item(15)
+            txtTotalFactura.Text = dtCabeceraFactura.Rows(0).Item(4)
 
             cbMoneda.SelectedValue = dtCabeceraFactura.Rows(0).Item(5)
             dtFecha.Value = CType(dtCabeceraFactura.Rows(0).Item(6), Date)
@@ -73,8 +73,6 @@ Public Class ChildFacturacion
 
             txtPorcentajeDetraccion.Text = dtCabeceraFactura.Rows(0).Item(12)
             txtMontoDetraccion.Text = dtCabeceraFactura.Rows(0).Item(13)
-
-
 
         Catch ex As SqlException
             sqlControl.RollbackTransaccion()
@@ -276,6 +274,8 @@ Public Class ChildFacturacion
         txtDireccion.ReadOnly = True
         txtTelefono.ReadOnly = True
         txtPrecioFactura.Text = "0.00"
+        txtIgv.Text = "0.00"
+        txtTotalFactura.Text = "0.00"
         actualizarDatosCliente()
         cargarTiposDeServicio()
         actualizarDatosMoneda()
@@ -416,7 +416,8 @@ Public Class ChildFacturacion
             sqlControl.BeginTransaction()
             facturacionDao.SetDBcmd()
 
-            Dim descripcionDetalle As String, confVehi As String, valorRef As Double, obs As String, origen As String, destino As String
+            Dim descripcionDetalle As String, confVehi As String, valorRef As Double, obs As String, origen As String, destino As String,
+                subtotal As Double, igv As Double, total As Double
 
             If txtDescripcionDetalle.Text = Nothing Then
                 descripcionDetalle = ""
@@ -454,6 +455,24 @@ Public Class ChildFacturacion
                 destino = cbDestino.Text
             End If
 
+            If txtSubtotalDetalle.Text = Nothing Then
+                subtotal = 0
+            Else
+                subtotal = CType(txtSubtotalDetalle.Text, Double)
+            End If
+
+            If txtIgvDetalle.Text = Nothing Then
+                igv = 0
+            Else
+                igv = CType(txtIgvDetalle.Text, Double)
+            End If
+
+            If txtTotalDetalle.Text = Nothing Then
+                total = 0
+            Else
+                total = CType(txtTotalDetalle.Text, Double)
+            End If
+
             facturacionDao.UpdateFacturaDetalle(codigo_Detalle,
                                                 codigo_Factura,
                                                 CType(cbTipoServicio.SelectedValue, Integer),
@@ -464,7 +483,10 @@ Public Class ChildFacturacion
                                                 obs,
                                                 CType(txtPrecioUnitario.Text, Double),
                                                 origen,
-                                                destino)
+                                                destino,
+                                                subtotal,
+                                                igv,
+                                                total)
 
             sqlControl.CommitTransaction()
             cargandoDatosActualizar = 0
@@ -557,13 +579,13 @@ Public Class ChildFacturacion
             If txtPorcentajeDetraccion.Text = Nothing Then
                 porcentaje_detraccion = 0
             Else
-                porcentaje_detraccion = Double.Parse(txtPorcentajeDetraccion.Text)
+                porcentaje_detraccion = CType(txtPorcentajeDetraccion.Text, Double)
             End If
 
             If txtMontoDetraccion.Text = Nothing Then
                 monto_detraccion = 0
             Else
-                monto_detraccion = Double.Parse(txtMontoDetraccion.Text)
+                monto_detraccion = CType(txtMontoDetraccion.Text, Double)
             End If
 
             If cbBancoPago.SelectedIndex < 0 Then
@@ -574,36 +596,42 @@ Public Class ChildFacturacion
 
             calcularDetraccion()
             If codigo_Factura < 0 Then
-                correlativoDao.updateCorrelativoNumero(1, txtNroSerie.Text, correlativoFactura)
+                If correlativoDao.GetValidaSerieNroFactura(lbNroFactura.Text, txtNroSerie.Text) Then
+                    MessageBox.Show("Existe una factura con el Nro. de Serie y Nro. de Correlativo. ", "Grabar datos factura",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
+                    Return
+                End If
 
+                correlativoDao.updateCorrelativoNumero(1, txtNroSerie.Text, correlativoFactura)
 
                 'Inicio - Ingreso de la Cabecera de la Factura
                 codigo_Factura = facturacionDao.InsertFactura(txtNroSerie.Text,
                                          lbNroFactura.Text,
                                          CType(cbRazonSocial.SelectedValue, Integer),
-                                         CType(txtPrecioFactura.Text, Long),
+                                         CType(txtTotalFactura.Text, Double),
                                          CType(cbMoneda.SelectedValue, Integer),
                                          16,
                                          dtFecha.Value,
                                          34, chbxRecepcion.Checked, dtpRecepcion.Value,
-                                             chbxVencimiento.Checked, dtpVencimiento.Value,
-                                             chbxPago.Checked, dtpPago.Value,
-                                             chbxCompromiso.Checked, dtpCompromiso.Value,
-                                             porcentaje_detraccion,
-                                                              monto_detraccion, banco)
+                                         chbxVencimiento.Checked, dtpVencimiento.Value,
+                                         chbxPago.Checked, dtpPago.Value,
+                                         chbxCompromiso.Checked, dtpCompromiso.Value,
+                                         porcentaje_detraccion,
+                                         monto_detraccion, banco)
                 'Fin - Ingreso de la Cabecera de la Factura
             Else
                 facturacionDao.UpdateFactura(codigo_Factura, txtNroSerie.Text,
                                          lbNroFactura.Text,
                                          CType(cbRazonSocial.SelectedValue, Integer),
-                                         CType(txtPrecioFactura.Text, Long),
+                                         CType(txtTotalFactura.Text, Double),
                                          CType(cbMoneda.SelectedValue, Integer),
                                          16,
                                          dtFecha.Value, chbxRecepcion.Checked, dtpRecepcion.Value,
-                                             chbxVencimiento.Checked, dtpVencimiento.Value,
-                                             chbxPago.Checked, dtpPago.Value,
-                                             chbxCompromiso.Checked, dtpCompromiso.Value,
-                                             porcentaje_detraccion, monto_detraccion, banco)
+                                         chbxVencimiento.Checked, dtpVencimiento.Value,
+                                         chbxPago.Checked, dtpPago.Value,
+                                         chbxCompromiso.Checked, dtpCompromiso.Value,
+                                         porcentaje_detraccion, monto_detraccion, banco)
             End If
 
             sqlControl.CommitTransaction()
@@ -692,7 +720,10 @@ Public Class ChildFacturacion
                                                                  "",
                                                                  CType(0.00, Double),
                                                                  "",
-                                                                 "")
+                                                                 "",
+                                                                 CType(0.00, Double),
+                                                                 CType(0.00, Double),
+                                                                 CType(0.00, Double))
 
             sqlControl.CommitTransaction()
             btnImprimir.Enabled = True
@@ -1025,11 +1056,14 @@ Public Class ChildFacturacion
                 txtConfVehicular.Text = datDetalle.Rows(0).Item(3).ToString
                 txtValorReferencial.Text = datDetalle.Rows(0).Item(4).ToString
                 txtPrecioUnitario.Text = datDetalle.Rows(0).Item(5).ToString
-                'txtOrigen.Text = datDetalle.Rows(0).Item(6).ToString
-                'txtDestino.Text = datDetalle.Rows(0).Item(7).ToString
-                cbOrigen.Text = datDetalle.Rows(0).Item(6).ToString
-                cbDestino.Text = datDetalle.Rows(0).Item(7).ToString
-                txtObservaciones.Text = datDetalle.Rows(0).Item(8).ToString
+                txtSubtotalDetalle.Text = datDetalle.Rows(0).Item(6).ToString
+                txtIgvDetalle.Text = datDetalle.Rows(0).Item(7).ToString
+                txtTotalDetalle.Text = datDetalle.Rows(0).Item(8).ToString
+                cbOrigen.Text = datDetalle.Rows(0).Item(9).ToString
+                cbDestino.Text = datDetalle.Rows(0).Item(10).ToString
+                txtObservaciones.Text = datDetalle.Rows(0).Item(11).ToString
+
+
                 sqlControl.CommitTransaction()
             End If
 
@@ -1437,145 +1471,42 @@ Public Class ChildFacturacion
         If txtPorcentajeDetraccion.Text = Nothing Then
 
         Else
-            If txtPrecioFactura.Text = Nothing Then
+            If txtTotalFactura.Text = Nothing Then
             Else
-                porcentaje = Double.Parse(txtPorcentajeDetraccion.Text)
-                total = Double.Parse(txtPrecioFactura.Text)
-                monto = (porcentaje / 100) * total
+                porcentaje = CType(txtPorcentajeDetraccion.Text, Double)
+                total = CType(txtTotalFactura.Text, Double)
+                monto = (porcentaje / 100.0) * total
                 txtMontoDetraccion.Text = Math.Round(monto, 2)
             End If
         End If
     End Sub
 
-    Private Sub Label20_Click(sender As Object, e As EventArgs) Handles Label20.Click
-
+    Private Sub txtCantidad_Leave(sender As Object, e As EventArgs) Handles txtCantidad.Leave
+        setearMontosDetalle()
     End Sub
 
-    Private Sub txtTotalFactura_TextChanged(sender As Object, e As EventArgs) Handles txtTotalFactura.TextChanged
+    Sub setearMontosDetalle()
+        If txtCantidad.Text IsNot Nothing Then
+            If txtPrecioUnitario.Text IsNot Nothing Then
+                Dim cantidad, precio, subtotal, igv, total As Double
+                cantidad = CType(txtCantidad.Text, Double)
+                precio = CType(txtPrecioUnitario.Text, Double)
 
+                subtotal = cantidad * precio
+                igv = subtotal * 0.18
+                total = subtotal + igv
+
+                txtSubtotalDetalle.Text = Math.Round(subtotal, 2)
+                txtIgvDetalle.Text = Math.Round(igv, 2)
+                txtTotalDetalle.Text = Math.Round(total, 2)
+
+            End If
+        Else
+
+        End If
     End Sub
 
-    Private Sub txtIgv_TextChanged(sender As Object, e As EventArgs) Handles txtIgv.TextChanged
-
-    End Sub
-
-    Private Sub cbDestino_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbDestino.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub cbOrigen_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbOrigen.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub txtCantidad_TextChanged(sender As Object, e As EventArgs) Handles txtCantidad.TextChanged
-
-    End Sub
-
-    Private Sub Label30_Click(sender As Object, e As EventArgs) Handles Label30.Click
-
-    End Sub
-
-    Private Sub txtConfVehicular_TextChanged(sender As Object, e As EventArgs) Handles txtConfVehicular.TextChanged
-
-    End Sub
-
-    Private Sub Label29_Click(sender As Object, e As EventArgs) Handles Label29.Click
-
-    End Sub
-
-    Private Sub txtValorReferencial_TextChanged(sender As Object, e As EventArgs) Handles txtValorReferencial.TextChanged
-
-    End Sub
-
-    Private Sub Label28_Click(sender As Object, e As EventArgs) Handles Label28.Click
-
-    End Sub
-
-    Private Sub txtPrecioUnitario_TextChanged(sender As Object, e As EventArgs) Handles txtPrecioUnitario.TextChanged
-
-    End Sub
-
-    Private Sub Label26_Click(sender As Object, e As EventArgs) Handles Label26.Click
-
-    End Sub
-
-    Private Sub txtOrigen_TextChanged(sender As Object, e As EventArgs) Handles txtOrigen.TextChanged
-
-    End Sub
-
-    Private Sub Label24_Click(sender As Object, e As EventArgs) Handles Label24.Click
-
-    End Sub
-
-    Private Sub txtObservaciones_TextChanged(sender As Object, e As EventArgs) Handles txtObservaciones.TextChanged
-
-    End Sub
-
-    Private Sub Label27_Click(sender As Object, e As EventArgs) Handles Label27.Click
-
-    End Sub
-
-    Private Sub txtDestino_TextChanged(sender As Object, e As EventArgs) Handles txtDestino.TextChanged
-
-    End Sub
-
-    Private Sub Label25_Click(sender As Object, e As EventArgs) Handles Label25.Click
-
-    End Sub
-
-    Private Sub tbPlaca_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles tbPlaca.CellContentClick
-
-    End Sub
-
-    Private Sub cbTracto_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbTracto.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub Label18_Click(sender As Object, e As EventArgs) Handles Label18.Click
-
-    End Sub
-
-    Private Sub tbRemitente_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles tbRemitente.CellContentClick
-
-    End Sub
-
-    Private Sub txtRemitente_TextChanged(sender As Object, e As EventArgs) Handles txtRemitente.TextChanged
-
-    End Sub
-
-    Private Sub Label17_Click(sender As Object, e As EventArgs) Handles Label17.Click
-
-    End Sub
-
-    Private Sub cbGuia_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbGuia.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub tbTransportista_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles tbTransportista.CellContentClick
-
-    End Sub
-
-    Private Sub Label16_Click(sender As Object, e As EventArgs) Handles Label16.Click
-
-    End Sub
-
-    Private Sub txtPrecioFactura_TextChanged(sender As Object, e As EventArgs) Handles txtPrecioFactura.TextChanged
-
-    End Sub
-
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
-
-    End Sub
-
-    Private Sub txtDescripcionDetalle_TextChanged(sender As Object, e As EventArgs) Handles txtDescripcionDetalle.TextChanged
-
-    End Sub
-
-    Private Sub cbTipoServicio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbTipoServicio.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub Label21_Click(sender As Object, e As EventArgs) Handles Label21.Click
-
+    Private Sub txtPrecioUnitario_Leave(sender As Object, e As EventArgs) Handles txtPrecioUnitario.Leave
+        setearMontosDetalle()
     End Sub
 End Class

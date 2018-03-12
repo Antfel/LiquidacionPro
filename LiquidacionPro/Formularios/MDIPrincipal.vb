@@ -144,4 +144,11 @@ Public Class MDIPrincipal
         childOrdenServicio.MdiParent = Me
         childOrdenServicio.Show()
     End Sub
+
+    Private Sub FacturasVsPagosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturasVsPagosToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim rptFormFacturaPago As New RptFormFacturaPago()
+        rptFormFacturaPago.MdiParent = Me
+        rptFormFacturaPago.Show()
+    End Sub
 End Class

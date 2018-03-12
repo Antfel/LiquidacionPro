@@ -59,6 +59,8 @@ Partial Class ChildFacturaLibre
         Me.lbNroFactura = New System.Windows.Forms.Label()
         Me.btnGuardarCabecera = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.cbBancoPago = New System.Windows.Forms.ComboBox()
         Me.chbxCompromiso = New System.Windows.Forms.CheckBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.dtpCompromiso = New System.Windows.Forms.DateTimePicker()
@@ -73,12 +75,16 @@ Partial Class ChildFacturaLibre
         Me.dtpRecepcion = New System.Windows.Forms.DateTimePicker()
         Me.txtCodigoDetalle = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label19 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.txtMontoDetraccion = New System.Windows.Forms.TextBox()
         Me.txtPorcentajeDetraccion = New System.Windows.Forms.TextBox()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.cbBancoPago = New System.Windows.Forms.ComboBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.txtMontoDetraccion = New System.Windows.Forms.TextBox()
+        Me.txtSubtotalDetalle = New System.Windows.Forms.TextBox()
+        Me.txtIgvDetalle = New System.Windows.Forms.TextBox()
+        Me.txtTotalDetalle = New System.Windows.Forms.TextBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
         CType(Me.dgvDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -207,34 +213,34 @@ Partial Class ChildFacturaLibre
         Me.dgvDetalle.AllowUserToDeleteRows = False
         Me.dgvDetalle.AllowUserToResizeRows = False
         Me.dgvDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvDetalle.Location = New System.Drawing.Point(214, 318)
+        Me.dgvDetalle.Location = New System.Drawing.Point(116, 318)
         Me.dgvDetalle.MultiSelect = False
         Me.dgvDetalle.Name = "dgvDetalle"
         Me.dgvDetalle.ReadOnly = True
         Me.dgvDetalle.RowHeadersVisible = False
         Me.dgvDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvDetalle.Size = New System.Drawing.Size(825, 154)
+        Me.dgvDetalle.Size = New System.Drawing.Size(923, 154)
         Me.dgvDetalle.TabIndex = 31
         '
         'txtCantidad
         '
-        Me.txtCantidad.Location = New System.Drawing.Point(214, 280)
+        Me.txtCantidad.Location = New System.Drawing.Point(117, 283)
         Me.txtCantidad.Name = "txtCantidad"
-        Me.txtCantidad.Size = New System.Drawing.Size(100, 20)
+        Me.txtCantidad.Size = New System.Drawing.Size(52, 20)
         Me.txtCantidad.TabIndex = 7
         '
         'txtDescripcion
         '
-        Me.txtDescripcion.Location = New System.Drawing.Point(337, 280)
+        Me.txtDescripcion.Location = New System.Drawing.Point(175, 283)
         Me.txtDescripcion.Name = "txtDescripcion"
-        Me.txtDescripcion.Size = New System.Drawing.Size(587, 20)
+        Me.txtDescripcion.Size = New System.Drawing.Size(559, 20)
         Me.txtDescripcion.TabIndex = 8
         '
         'txtPrecioUnitario
         '
-        Me.txtPrecioUnitario.Location = New System.Drawing.Point(939, 280)
+        Me.txtPrecioUnitario.Location = New System.Drawing.Point(740, 282)
         Me.txtPrecioUnitario.Name = "txtPrecioUnitario"
-        Me.txtPrecioUnitario.Size = New System.Drawing.Size(100, 20)
+        Me.txtPrecioUnitario.Size = New System.Drawing.Size(70, 20)
         Me.txtPrecioUnitario.TabIndex = 9
         '
         'txtSubtotal
@@ -264,7 +270,7 @@ Partial Class ChildFacturaLibre
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(214, 261)
+        Me.Label2.Location = New System.Drawing.Point(120, 264)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(49, 13)
         Me.Label2.TabIndex = 38
@@ -273,7 +279,7 @@ Partial Class ChildFacturaLibre
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(337, 260)
+        Me.Label9.Location = New System.Drawing.Point(179, 263)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(63, 13)
         Me.Label9.TabIndex = 39
@@ -281,17 +287,16 @@ Partial Class ChildFacturaLibre
         '
         'Label10
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(939, 259)
+        Me.Label10.Location = New System.Drawing.Point(739, 250)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(76, 13)
+        Me.Label10.Size = New System.Drawing.Size(82, 26)
         Me.Label10.TabIndex = 40
-        Me.Label10.Text = "Precio Unitario"
+        Me.Label10.Text = "Precio Unitario (Sin IGV)"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(863, 496)
+        Me.Label11.Location = New System.Drawing.Point(863, 493)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(46, 13)
         Me.Label11.TabIndex = 41
@@ -300,7 +305,7 @@ Partial Class ChildFacturaLibre
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(884, 522)
+        Me.Label12.Location = New System.Drawing.Point(884, 519)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(25, 13)
         Me.Label12.TabIndex = 42
@@ -309,7 +314,7 @@ Partial Class ChildFacturaLibre
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(878, 548)
+        Me.Label13.Location = New System.Drawing.Point(878, 545)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(31, 13)
         Me.Label13.TabIndex = 43
@@ -421,6 +426,24 @@ Partial Class ChildFacturaLibre
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Fechas"
         '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(201, 51)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(38, 13)
+        Me.Label23.TabIndex = 1048
+        Me.Label23.Text = "Banco"
+        '
+        'cbBancoPago
+        '
+        Me.cbBancoPago.Enabled = False
+        Me.cbBancoPago.FormattingEnabled = True
+        Me.cbBancoPago.Location = New System.Drawing.Point(269, 51)
+        Me.cbBancoPago.Name = "cbBancoPago"
+        Me.cbBancoPago.Size = New System.Drawing.Size(172, 21)
+        Me.cbBancoPago.TabIndex = 1047
+        '
         'chbxCompromiso
         '
         Me.chbxCompromiso.AutoSize = True
@@ -531,7 +554,7 @@ Partial Class ChildFacturaLibre
         '
         'txtCodigoDetalle
         '
-        Me.txtCodigoDetalle.Location = New System.Drawing.Point(131, 280)
+        Me.txtCodigoDetalle.Location = New System.Drawing.Point(37, 247)
         Me.txtCodigoDetalle.Name = "txtCodigoDetalle"
         Me.txtCodigoDetalle.Size = New System.Drawing.Size(46, 20)
         Me.txtCodigoDetalle.TabIndex = 1040
@@ -539,25 +562,14 @@ Partial Class ChildFacturaLibre
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.Label19)
         Me.GroupBox2.Controls.Add(Me.Label18)
-        Me.GroupBox2.Controls.Add(Me.txtMontoDetraccion)
         Me.GroupBox2.Controls.Add(Me.txtPorcentajeDetraccion)
         Me.GroupBox2.Location = New System.Drawing.Point(819, 152)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(330, 53)
+        Me.GroupBox2.Size = New System.Drawing.Size(180, 53)
         Me.GroupBox2.TabIndex = 1041
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Detracción"
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(186, 26)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(37, 13)
-        Me.Label19.TabIndex = 3
-        Me.Label19.Text = "Monto"
         '
         'Label18
         '
@@ -568,14 +580,6 @@ Partial Class ChildFacturaLibre
         Me.Label18.TabIndex = 2
         Me.Label18.Text = "Porcentaje"
         '
-        'txtMontoDetraccion
-        '
-        Me.txtMontoDetraccion.Location = New System.Drawing.Point(230, 22)
-        Me.txtMontoDetraccion.Name = "txtMontoDetraccion"
-        Me.txtMontoDetraccion.ReadOnly = True
-        Me.txtMontoDetraccion.Size = New System.Drawing.Size(77, 20)
-        Me.txtMontoDetraccion.TabIndex = 1
-        '
         'txtPorcentajeDetraccion
         '
         Me.txtPorcentajeDetraccion.Location = New System.Drawing.Point(85, 23)
@@ -583,29 +587,87 @@ Partial Class ChildFacturaLibre
         Me.txtPorcentajeDetraccion.Size = New System.Drawing.Size(77, 20)
         Me.txtPorcentajeDetraccion.TabIndex = 0
         '
-        'Label23
+        'Label19
         '
-        Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(201, 51)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(38, 13)
-        Me.Label23.TabIndex = 1048
-        Me.Label23.Text = "Banco"
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(1071, 545)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(59, 13)
+        Me.Label19.TabIndex = 1043
+        Me.Label19.Text = "Detracción"
         '
-        'cbBancoPago
+        'txtMontoDetraccion
         '
-        Me.cbBancoPago.Enabled = False
-        Me.cbBancoPago.FormattingEnabled = True
-        Me.cbBancoPago.Location = New System.Drawing.Point(269, 51)
-        Me.cbBancoPago.Name = "cbBancoPago"
-        Me.cbBancoPago.Size = New System.Drawing.Size(172, 21)
-        Me.cbBancoPago.TabIndex = 1047
+        Me.txtMontoDetraccion.Location = New System.Drawing.Point(1136, 545)
+        Me.txtMontoDetraccion.Name = "txtMontoDetraccion"
+        Me.txtMontoDetraccion.ReadOnly = True
+        Me.txtMontoDetraccion.Size = New System.Drawing.Size(77, 20)
+        Me.txtMontoDetraccion.TabIndex = 1042
+        '
+        'txtSubtotalDetalle
+        '
+        Me.txtSubtotalDetalle.Location = New System.Drawing.Point(816, 282)
+        Me.txtSubtotalDetalle.Name = "txtSubtotalDetalle"
+        Me.txtSubtotalDetalle.ReadOnly = True
+        Me.txtSubtotalDetalle.Size = New System.Drawing.Size(70, 20)
+        Me.txtSubtotalDetalle.TabIndex = 1044
+        '
+        'txtIgvDetalle
+        '
+        Me.txtIgvDetalle.Location = New System.Drawing.Point(892, 282)
+        Me.txtIgvDetalle.Name = "txtIgvDetalle"
+        Me.txtIgvDetalle.ReadOnly = True
+        Me.txtIgvDetalle.Size = New System.Drawing.Size(70, 20)
+        Me.txtIgvDetalle.TabIndex = 1045
+        '
+        'txtTotalDetalle
+        '
+        Me.txtTotalDetalle.Location = New System.Drawing.Point(968, 282)
+        Me.txtTotalDetalle.Name = "txtTotalDetalle"
+        Me.txtTotalDetalle.ReadOnly = True
+        Me.txtTotalDetalle.Size = New System.Drawing.Size(70, 20)
+        Me.txtTotalDetalle.TabIndex = 1046
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(819, 264)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(46, 13)
+        Me.Label20.TabIndex = 1047
+        Me.Label20.Text = "Subtotal"
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(895, 263)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(25, 13)
+        Me.Label21.TabIndex = 1048
+        Me.Label21.Text = "IGV"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(972, 263)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(31, 13)
+        Me.Label22.TabIndex = 1049
+        Me.Label22.Text = "Total"
         '
         'ChildFacturaLibre
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 581)
+        Me.Controls.Add(Me.Label22)
+        Me.Controls.Add(Me.Label21)
+        Me.Controls.Add(Me.Label20)
+        Me.Controls.Add(Me.txtTotalDetalle)
+        Me.Controls.Add(Me.txtIgvDetalle)
+        Me.Controls.Add(Me.txtSubtotalDetalle)
+        Me.Controls.Add(Me.Label19)
+        Me.Controls.Add(Me.txtMontoDetraccion)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.txtCodigoDetalle)
         Me.Controls.Add(Me.GroupBox1)
@@ -709,10 +771,16 @@ Partial Class ChildFacturaLibre
     Friend WithEvents Label17 As Label
     Friend WithEvents dtpCompromiso As DateTimePicker
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Label19 As Label
     Friend WithEvents Label18 As Label
-    Friend WithEvents txtMontoDetraccion As TextBox
     Friend WithEvents txtPorcentajeDetraccion As TextBox
     Friend WithEvents Label23 As Label
     Friend WithEvents cbBancoPago As ComboBox
+    Friend WithEvents Label19 As Label
+    Friend WithEvents txtMontoDetraccion As TextBox
+    Friend WithEvents txtSubtotalDetalle As TextBox
+    Friend WithEvents txtIgvDetalle As TextBox
+    Friend WithEvents txtTotalDetalle As TextBox
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label21 As Label
+    Friend WithEvents Label22 As Label
 End Class
