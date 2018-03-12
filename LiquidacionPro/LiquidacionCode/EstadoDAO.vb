@@ -42,6 +42,8 @@ Public Class EstadoDAO
         Return sqlControl.ExecQuery("SELECT CODIGO_ESTADO,DETALLE_ESTADO from ESTADO where TIPO_ESTADO = 2", Nothing)
     End Function
 
-
+    Public Function getEstadoAsignacion() As DataTable
+        Return sqlControl.ExecQuery("SELECT CODIGO_ESTADO,DETALLE_ESTADO from ESTADO where TIPO_ESTADO = 9", Nothing)
+    End Function
 
 End Class
