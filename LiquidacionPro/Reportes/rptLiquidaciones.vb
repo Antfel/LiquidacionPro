@@ -1,4 +1,7 @@
 ﻿Partial Class rptLiquidaciones
+    Partial Public Class dtRptFacturaVsPagoDataTable
+    End Class
+
     Partial Public Class dtRptFacturaCuentasPorCobrarDataTable
 
     End Class

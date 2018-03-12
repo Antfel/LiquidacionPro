@@ -43,9 +43,9 @@ Public Class FacturacionDAO
 	                                            b.RAZON_CLIENTE 'RAZON SOCIAL',
 	                                            convert(varchar(10),a.FECHA_FACTURA,103) 'FECHA FACTURA',
 	                                            c.DETALLE_MONEDA 'MONEDA',
-                                                cast(round(a.TOTAL_FACTURA,2) as numeric(9,2)) 'SUB TOTAL',
-                                                cast(round(a.TOTAL_FACTURA*0.18,2) as numeric(9,2)) 'IGV',
-	                                            cast(round(a.TOTAL_FACTURA*1.18,2) as numeric(9,2)) 'TOTAL FACTURA',
+                                                cast(round(a.SUBTOTAL,2) as numeric(9,2)) 'SUB TOTAL',
+                                                cast(round(a.IGV,2) as numeric(9,2)) 'IGV',
+	                                            cast(round(a.TOTAL_FACTURA,2) as numeric(9,2)) 'TOTAL FACTURA',
 	                                            d.DETALLE_ESTADO 'ESTADO FACTURA',
                                                 a.TIPO_FACTURA 'CODIGO TIPO',
                                                 e.DETALLE_ESTADO 'TIPO FACTURA',
@@ -68,38 +68,13 @@ Public Class FacturacionDAO
                                     order by a.NUMERO_FACTURA", Nothing)
     End Function
 
-    Public Function GetAllFacturasFiltro(Filtro As String) As DataTable
-
-        Return sqlControl.ExecQuery("select     a.CODIGO_FACTURA CODIGO, 
-	                                            a.SERIE_FACTURA SERIE,  
-	                                            a.NUMERO_FACTURA 'NRO. FACTURA',
-	                                            b.RUC_CLIENTE RUC,
-	                                            b.RAZON_CLIENTE 'RAZON SOCIAL',
-	                                            CAST(a.FECHA_FACTURA as date) 'FECHA FACTURA',
-	                                            c.DETALLE_MONEDA 'MONEDA',
-	                                            a.TOTAL_FACTURA 'TOTAL FACTURA',
-	                                            d.DETALLE_ESTADO 'ESTADO FACTURA',
-                                                a.TIPO_FACTURA 'CODIGO TIPO',
-                                                e.DETALLE_ESTADO 'TIPO FACTURA' 
-                                     from FACTURA a 
-                                     LEFT JOIN CLIENTE b 
-                                     on a.CODIGO_CLIENTE=b.CODIGO_CLIENTE
-                                     LEFT JOIN MONEDA c 
-                                     on a.CODIGO_MONEDA = c.CODIGO_MONEDA
-                                     LEFT JOIN ESTADO d 
-                                     on a.CODIGO_ESTADO = d.CODIGO_ESTADO 
-                                     LEFT JOIN ESTADO e 
-                                     on a.TIPO_FACTURA=e.CODIGO_ESTADO and e.TIPO_ESTADO=7 
-                                     where b.RAZON_CLIENTE LIKE '%'+'" + Filtro + "'+'%'", Nothing)
-    End Function
-
     Public Function GetFacturaById(codigo As Integer) As DataTable
 
         Return sqlControl.ExecQuery("select CODIGO_FACTURA," +
                                             "SERIE_FACTURA," +
                                             "NUMERO_FACTURA," +
                                             "CODIGO_CLIENTE," +
-                                            "TOTAL_FACTURA," +
+                                            "coalesce(TOTAL_FACTURA,0) TOTAL_FACTURA," +
                                             "CODIGO_MONEDA," +
                                             "FECHA_FACTURA," +
                                             "CODIGO_ESTADO, " +
@@ -109,7 +84,9 @@ Public Class FacturacionDAO
                                             "FECHA_COMPROMISO, " +
                                             "coalesce(PORCENTAJE_DETRACCION,0), " +
                                             "coalesce(MONTO_DETRACCION,0),  " +
-                                            "CODIGO_BANCO  " +
+                                            "CODIGO_BANCO,  " +
+                                            "coalesce(IGV,0)IGV," +
+                                            "coalesce(SUBTOTAL,0) SUBTOTAL " +
                                             "from factura " +
                                             "where CODIGO_FACTURA=" + CStr(codigo), Nothing)
     End Function
@@ -121,12 +98,15 @@ Public Class FacturacionDAO
                                     CONF_VEHICULAR,
                                     VALOR_REFERENCIAL,
                                     PRECIO_UNITARIO,
+                                    PRECIO_SUBTOTAL,
+                                    IGV,
+                                    TOTAL,
                                     ORIGEN,
                                     DESTINO,
                                     OBSERVACION,
                                     CODIGO_DETALLE_FACTURA 
-                                    from DETALLE_FACTURA
-                                    WHERE 
+                                    from DETALLE_FACTURA 
+                                    WHERE  
                                     CODIGO_DETALLE_FACTURA =" + CStr(codigo_detalle),
                                      Nothing)
 
@@ -154,6 +134,9 @@ Public Class FacturacionDAO
                                     CONF_VEHICULAR,
                                     VALOR_REFERENCIAL,
                                     PRECIO_UNITARIO 'PRECIO UNITARIO',
+                                    PRECIO_SUBTOTAL 'SUBTOTAL',
+                                    IGV 'IGV',
+                                    TOTAL 'TOTAL',
                                     ORIGEN,
                                     DESTINO,
                                     OBSERVACION  
@@ -239,7 +222,7 @@ Public Class FacturacionDAO
     End Function
 
     Public Sub UpdateFactura(codigo_factura As Integer, serie_factura As String, numero_factura As String, codigo_cliente As Integer,
-                             total_factura As Long, codigo_moneda As Integer, codigo_estado As Integer, fecha_factura As Date,
+                             total_factura As Double, codigo_moneda As Integer, codigo_estado As Integer, fecha_factura As Date,
                              chbxRecep As Boolean, fecha_recepcion As Date, chbxVencimiento As Boolean, fecha_vencimiento As Date,
                              chbxPago As Boolean, fecha_pago As Date, chbxCompromiso As Boolean, fecha_compromiso As Date, porcentaje_detraccion As Double,
                              monto_detraccion As Double, banco As Integer)
@@ -335,7 +318,7 @@ Public Class FacturacionDAO
                                     tipo_servicio As Integer, descripcion As String,
                                          cantidad As Integer, conf_vehi As String,
                                          valor_ref As Double, obs As String, precio_unitario As Double,
-                                         origen As String, destino As String) As Integer
+                                         origen As String, destino As String, subtotal As Double, igv As Double, total As Double) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
@@ -354,6 +337,9 @@ Public Class FacturacionDAO
         params.Add(New SqlParameter("@PRECIO_UNITARIO", precio_unitario))
         params.Add(New SqlParameter("@ORIGEN", origen))
         params.Add(New SqlParameter("@DESTINO", destino))
+        params.Add(New SqlParameter("@SUBTOTAL", subtotal))
+        params.Add(New SqlParameter("@IGV", igv))
+        params.Add(New SqlParameter("@TOTAL", total))
 
         Dim dt As DataTable
 
@@ -367,7 +353,10 @@ Public Class FacturacionDAO
                                         "@OBSERVACION," +
                                         "@PRECIO_UNITARIO," +
                                         "@ORIGEN," +
-                                        "@DESTINO", params)
+                                        "@DESTINO," +
+                                        "@SUBTOTAL," +
+                                        "@IGV," +
+                                        "@TOTAL ", params)
 
         If dt.Rows.Count > 0 Then
             Return CInt(dt.Rows.Item(0).Item(0))
@@ -380,12 +369,12 @@ Public Class FacturacionDAO
                                     tipo_servicio As Integer, descripcion As String,
                                          cantidad As Integer, conf_vehi As String,
                                          valor_ref As Double, obs As String, precio_unitario As Double,
-                                         origen As String, destino As String)
-
+                                         origen As String, destino As String, subtotal As Double, igv As Double, total As Double)
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
+
         If tipo_servicio < 0 Then
             params.Add(New SqlParameter("@TIPO_SERVICIO", DBNull.Value))
         Else
@@ -401,6 +390,9 @@ Public Class FacturacionDAO
         params.Add(New SqlParameter("@PRECIO_UNITARIO", precio_unitario))
         params.Add(New SqlParameter("@ORIGEN", origen))
         params.Add(New SqlParameter("@DESTINO", destino))
+        params.Add(New SqlParameter("@SUBTOTAL", subtotal))
+        params.Add(New SqlParameter("@IGV", igv))
+        params.Add(New SqlParameter("@TOTAL", total))
 
         Dim dt As DataTable
 
@@ -415,7 +407,10 @@ Public Class FacturacionDAO
                                         "@OBSERVACION," +
                                         "@PRECIO_UNITARIO," +
                                         "@ORIGEN," +
-                                        "@DESTINO", params)
+                                        "@DESTINO," +
+                                        "@SUBTOTAL," +
+                                        "@IGV," +
+                                        "@TOTAL ", params)
 
     End Sub
 
@@ -777,8 +772,8 @@ Public Class FacturacionDAO
 			                                    c.DETALLE_MONEDA,
 			                                    a.TOTAL_FACTURA,
 			                                    0 TOTAL_FACTURA_LETRA,
-			                                    a.TOTAL_FACTURA*0.18 SUBTOTAL,
-			                                    a.TOTAL_FACTURA*0.82 IGV,
+			                                    a.SUBTOTAL,
+			                                    a.IGV,
 			                                    a.CODIGO_FACTURA,				    
                                                 a.CODIGO_MONEDA 
                                     from	FACTURA a
@@ -924,7 +919,36 @@ Public Class FacturacionDAO
                                      params)
     End Function
 
-    Public Function EjecutarQueryBatch(queryBatch As String) As DataTable
-        Return sqlControl.ExecQuery(queryBatch, Nothing)
+    Public Function SetLimpiarFacturasByMesPeriodo(mes As String, periodo As String) As DataTable
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@MES", mes))
+        params.Add(New SqlParameter("@PERIODO", periodo))
+
+        Return sqlControl.ExecQuery("delete	FACTURA_PAGO 
+		                            where	MES_VENTA like '%'+@MES+'%' 
+				                            and PERIODO_VENTA=@PERIODO ",
+                                     params)
+    End Function
+
+    Public Function GetRptFacturaVsPago(mes As String, periodo As String, opcion As Integer, cliente As Integer) As DataTable
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@mes", mes))
+        params.Add(New SqlParameter("@periodo", periodo))
+        params.Add(New SqlParameter("@opcion", opcion))
+        params.Add(New SqlParameter("@cliente", cliente))
+        Console.WriteLine("sql param " + cliente.ToString)
+        Return sqlControl.ExecQuery("exec uspRptFacturaVsPagos @mes,@periodo,@opcion,@cliente ",
+                                     params)
+    End Function
+
+    Public Function GetMesPeriodoDescripcion(periodo As String) As DataTable
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@periodo", periodo))
+
+        Return sqlControl.ExecQuery("select MES, NOMBRE from PERIODO where PERIODO=@periodo order by MES asc",
+                                     params)
     End Function
 End Class

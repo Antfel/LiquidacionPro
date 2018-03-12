@@ -66,7 +66,7 @@ Public Class ModuloComunicacionBD
             If sqlControl.OpenConexion() Then
                 sqlControl.BeginTransaction()
                 facturacionDao.SetDBcmd()
-                dt = facturacionDao.EjecutarQueryBatch(queryBatch)
+                dt = sqlControl.ExecQuery(queryBatch, Nothing)
                 sqlControl.CommitTransaction()
             End If
 

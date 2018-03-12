@@ -73,4 +73,40 @@ Public Class OrdenServicioDAO
         End If
 
     End Function
+    Public Function getOrdenServicioCombo() As DataTable
+        Return sqlControl.ExecQuery("select	CODIGO_ORDEN_SERVICIO,
+		                                    NUMERO
+                                    from    ORDEN_SERVICIO 
+                                    order	by CODIGO_ORDEN_SERVICIO asc", Nothing)
+    End Function
+    Public Function getDetalleOrdenServicios(codigoOrden As Integer) As DataTable
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_ORDEN", codigoOrden))
+
+        Return sqlControl.ExecQuery("SELECT	a.CODIGO_ORDEN_SERVICIO_DETALLE,
+		                                    b.DETALLE_ESTADO
+                                     FROM ORDEN_SERVICIO_DETALLE a
+                                     LEFT JOIN ESTADO b ON a.CODIGO_TIPO_SERVICIO = b.CODIGO_ESTADO
+                                     WHERE a.CODIGO_ORDEN_SERVICIO = @CODIGO_ORDEN", params)
+
+    End Function
+
+    Public Function getDatosDetalleOrden(codigoDetalleOrden As Integer) As DataTable
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_DETALLE_ORDEN", codigoDetalleOrden))
+
+        Return sqlControl.ExecQuery("SELECT  b.DETALLE_ESTADO 'TIPO_SERVICIO',
+		                                     a.ALTO_CARGA 'ALTO',
+		                                     a.ANCHO_CARGA 'ANCHO',
+		                                     a.LARGO_CARGA 'LARGO',
+		                                     a.PESO_CARGA 'PESO',
+		                                     a.OBSERVACION_DETALLE_SERVICIO 'OBSERVACION'
+                                    FROM ORDEN_SERVICIO_DETALLE a
+                                    LEFT JOIN ESTADO b ON a.CODIGO_TIPO_SERVICIO = b.CODIGO_ESTADO
+                                    WHERE a.CODIGO_ORDEN_SERVICIO_DETALLE = @CODIGO_DETALLE_ORDEN", params)
+
+    End Function
+
 End Class

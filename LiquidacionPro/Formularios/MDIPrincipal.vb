@@ -1,7 +1,7 @@
 ﻿Imports System.Windows.Forms
 
 Public Class MDIPrincipal
-    Private Sub LiquidacionesToolStripMenuItem_Click(sender As Object, e As EventArgs) 
+    Private Sub LiquidacionesToolStripMenuItem_Click(sender As Object, e As EventArgs)
         cerrarVentanas()
         Dim liquidacionChild As New ChildLiquidacion()
         liquidacionChild.MdiParent = Me
@@ -92,7 +92,7 @@ Public Class MDIPrincipal
         rptLiquidacionChild.Show()
     End Sub
 
-    Private Sub FacturacionTestToolStripMenuItem_Click(sender As Object, e As EventArgs) 
+    Private Sub FacturacionTestToolStripMenuItem_Click(sender As Object, e As EventArgs)
         cerrarVentanas()
         Dim rptFormFacturaDetalleByMoneda As New RptFormFacturaDetalleByMoneda()
         rptFormFacturaDetalleByMoneda.Show()
@@ -143,5 +143,20 @@ Public Class MDIPrincipal
         Dim childOrdenServicio As New ChildOrdenServicio()
         childOrdenServicio.MdiParent = Me
         childOrdenServicio.Show()
+    End Sub
+
+    Private Sub AsignacionDeServicioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AsignacionDeServicioToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim childBusquedaAsignaciones As New ChildBusquedaAsignaciones()
+        childBusquedaAsignaciones.MdiParent = Me
+        childBusquedaAsignaciones.Show()
+    End Sub
+
+
+    Private Sub FacturasVsPagosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturasVsPagosToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim rptFormFacturaPago As New RptFormFacturaPago()
+        rptFormFacturaPago.MdiParent = Me
+        rptFormFacturaPago.Show()
     End Sub
 End Class

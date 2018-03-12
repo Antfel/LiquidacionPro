@@ -350,6 +350,23 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="dtRptFacturaVsPago" msprop:Generator_TableClassName="dtRptFacturaVsPagoDataTable" msprop:Generator_TableVarName="tabledtRptFacturaVsPago" msprop:Generator_RowChangedName="dtRptFacturaVsPagoRowChanged" msprop:Generator_TablePropName="dtRptFacturaVsPago" msprop:Generator_RowDeletingName="dtRptFacturaVsPagoRowDeleting" msprop:Generator_RowChangingName="dtRptFacturaVsPagoRowChanging" msprop:Generator_RowEvHandlerName="dtRptFacturaVsPagoRowChangeEventHandler" msprop:Generator_RowDeletedName="dtRptFacturaVsPagoRowDeleted" msprop:Generator_RowClassName="dtRptFacturaVsPagoRow" msprop:Generator_UserTableName="dtRptFacturaVsPago" msprop:Generator_RowEvArgName="dtRptFacturaVsPagoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NroDocumento" msprop:Generator_ColumnVarNameInTable="columnNroDocumento" msprop:Generator_ColumnPropNameInRow="NroDocumento" msprop:Generator_ColumnPropNameInTable="NroDocumentoColumn" msprop:Generator_UserColumnName="NroDocumento" type="xs:string" minOccurs="0" />
+              <xs:element name="FechaFactura" msprop:Generator_ColumnVarNameInTable="columnFechaFactura" msprop:Generator_ColumnPropNameInRow="FechaFactura" msprop:Generator_ColumnPropNameInTable="FechaFacturaColumn" msprop:Generator_UserColumnName="FechaFactura" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Soles" msprop:Generator_ColumnVarNameInTable="columnSoles" msprop:Generator_ColumnPropNameInRow="Soles" msprop:Generator_ColumnPropNameInTable="SolesColumn" msprop:Generator_UserColumnName="Soles" type="xs:double" minOccurs="0" />
+              <xs:element name="Dolares" msprop:Generator_ColumnVarNameInTable="columnDolares" msprop:Generator_ColumnPropNameInRow="Dolares" msprop:Generator_ColumnPropNameInTable="DolaresColumn" msprop:Generator_UserColumnName="Dolares" type="xs:double" minOccurs="0" />
+              <xs:element name="Moneda" msprop:Generator_ColumnVarNameInTable="columnMoneda" msprop:Generator_ColumnPropNameInRow="Moneda" msprop:Generator_ColumnPropNameInTable="MonedaColumn" msprop:Generator_UserColumnName="Moneda" type="xs:short" minOccurs="0" />
+              <xs:element name="TotalFacturaSoles" msprop:Generator_ColumnVarNameInTable="columnTotalFacturaSoles" msprop:Generator_ColumnPropNameInRow="TotalFacturaSoles" msprop:Generator_ColumnPropNameInTable="TotalFacturaSolesColumn" msprop:Generator_UserColumnName="TotalFacturaSoles" type="xs:double" minOccurs="0" />
+              <xs:element name="TotalFacturaDolares" msprop:Generator_ColumnVarNameInTable="columnTotalFacturaDolares" msprop:Generator_ColumnPropNameInRow="TotalFacturaDolares" msprop:Generator_ColumnPropNameInTable="TotalFacturaDolaresColumn" msprop:Generator_UserColumnName="TotalFacturaDolares" type="xs:double" minOccurs="0" />
+              <xs:element name="DiferenciaSoles" msprop:Generator_ColumnVarNameInTable="columnDiferenciaSoles" msprop:Generator_ColumnPropNameInRow="DiferenciaSoles" msprop:Generator_ColumnPropNameInTable="DiferenciaSolesColumn" msprop:Generator_UserColumnName="DiferenciaSoles" type="xs:double" minOccurs="0" />
+              <xs:element name="DiferenciaDolares" msprop:Generator_ColumnVarNameInTable="columnDiferenciaDolares" msprop:Generator_ColumnPropNameInRow="DiferenciaDolares" msprop:Generator_ColumnPropNameInTable="DiferenciaDolaresColumn" msprop:Generator_UserColumnName="DiferenciaDolares" type="xs:double" minOccurs="0" />
+              <xs:element name="RazonSocial" msprop:Generator_ColumnVarNameInTable="columnRazonSocial" msprop:Generator_ColumnPropNameInRow="RazonSocial" msprop:Generator_ColumnPropNameInTable="RazonSocialColumn" msprop:Generator_UserColumnName="RazonSocial" type="xs:string" minOccurs="0" />
+              <xs:element name="RucCliente" msprop:Generator_ColumnVarNameInTable="columnRucCliente" msprop:Generator_ColumnPropNameInRow="RucCliente" msprop:Generator_ColumnPropNameInTable="RucClienteColumn" msprop:Generator_UserColumnName="RucCliente" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>
