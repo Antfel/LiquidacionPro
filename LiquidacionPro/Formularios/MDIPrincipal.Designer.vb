@@ -37,7 +37,6 @@ Partial Class MDIPrincipal
         Me.LiquidaciónControlToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidaciónDeCombustibleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdenDeServicioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AsignacionDeServicioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiquidacionesPorEstadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -46,12 +45,13 @@ Partial Class MDIPrincipal
         Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacturasPorClienteFechaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CuentasPorCobrarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FacturasVsPagosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuíasDeTransportistaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuíasControlDeViajesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdministraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComunicaciónBDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturaVsPagoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AsignacionDeServicioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -129,6 +129,12 @@ Partial Class MDIPrincipal
         Me.LiquidaciónDeCombustibleToolStripMenuItem.Size = New System.Drawing.Size(223, 22)
         Me.LiquidaciónDeCombustibleToolStripMenuItem.Text = "Liquidación de Combustible"
         '
+        'OrdenDeServicioToolStripMenuItem
+        '
+        Me.OrdenDeServicioToolStripMenuItem.Name = "OrdenDeServicioToolStripMenuItem"
+        Me.OrdenDeServicioToolStripMenuItem.Size = New System.Drawing.Size(223, 22)
+        Me.OrdenDeServicioToolStripMenuItem.Text = "Orden de Servicio"
+        '
         'ReportesToolStripMenuItem
         '
         Me.ReportesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LiquidacionesToolStripMenuItem1, Me.FacturaciónToolStripMenuItem1, Me.GuíasDeTransportistaToolStripMenuItem1})
@@ -151,7 +157,7 @@ Partial Class MDIPrincipal
         '
         'FacturaciónToolStripMenuItem1
         '
-        Me.FacturaciónToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturaciónVsLiquidaciónToolStripMenuItem, Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem, Me.FacturasPorClienteFechaToolStripMenuItem, Me.CuentasPorCobrarToolStripMenuItem, Me.FacturasVsPagosToolStripMenuItem})
+        Me.FacturaciónToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturaciónVsLiquidaciónToolStripMenuItem, Me.FacturaciónVsLiquidaciónDólaresToolStripMenuItem, Me.FacturasPorClienteFechaToolStripMenuItem, Me.CuentasPorCobrarToolStripMenuItem, Me.FacturaVsPagoToolStripMenuItem})
         Me.FacturaciónToolStripMenuItem1.Name = "FacturaciónToolStripMenuItem1"
         Me.FacturaciónToolStripMenuItem1.Size = New System.Drawing.Size(190, 22)
         Me.FacturaciónToolStripMenuItem1.Text = "Facturación"
@@ -184,12 +190,6 @@ Partial Class MDIPrincipal
         Me.CuentasPorCobrarToolStripMenuItem.Text = "Cuentas por Cobrar"
         Me.CuentasPorCobrarToolStripMenuItem.Visible = False
         '
-        'FacturasVsPagosToolStripMenuItem
-        '
-        Me.FacturasVsPagosToolStripMenuItem.Name = "FacturasVsPagosToolStripMenuItem"
-        Me.FacturasVsPagosToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
-        Me.FacturasVsPagosToolStripMenuItem.Text = "Facturas vs Pagos"
-        '
         'GuíasDeTransportistaToolStripMenuItem1
         '
         Me.GuíasDeTransportistaToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GuíasVsLiquidaciónYFacturaciónToolStripMenuItem, Me.GuíasControlDeViajesToolStripMenuItem})
@@ -221,6 +221,18 @@ Partial Class MDIPrincipal
         Me.ComunicaciónBDToolStripMenuItem.Name = "ComunicaciónBDToolStripMenuItem"
         Me.ComunicaciónBDToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.ComunicaciónBDToolStripMenuItem.Text = "Comunicación BD"
+        '
+        'FacturaVsPagoToolStripMenuItem
+        '
+        Me.FacturaVsPagoToolStripMenuItem.Name = "FacturaVsPagoToolStripMenuItem"
+        Me.FacturaVsPagoToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
+        Me.FacturaVsPagoToolStripMenuItem.Text = "Factura vs Pago"
+        '
+        'AsignacionDeServicioToolStripMenuItem
+        '
+        Me.AsignacionDeServicioToolStripMenuItem.Name = "AsignacionDeServicioToolStripMenuItem"
+        Me.AsignacionDeServicioToolStripMenuItem.Size = New System.Drawing.Size(223, 22)
+        Me.AsignacionDeServicioToolStripMenuItem.Text = "Asignacion de Servicio"
         '
         'MDIPrincipal
         '
@@ -267,4 +279,6 @@ Partial Class MDIPrincipal
     Friend WithEvents ComunicaciónBDToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GuíasControlDeViajesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OrdenDeServicioToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AsignacionDeServicioToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FacturaVsPagoToolStripMenuItem As ToolStripMenuItem
 End Class

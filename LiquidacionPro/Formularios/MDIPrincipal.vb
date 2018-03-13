@@ -152,11 +152,20 @@ Public Class MDIPrincipal
         childBusquedaAsignaciones.Show()
     End Sub
 
-
-    Private Sub FacturasVsPagosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturasVsPagosToolStripMenuItem.Click
+    Private Sub FacturaVsPagoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturaVsPagoToolStripMenuItem.Click
         cerrarVentanas()
         Dim rptFormFacturaPago As New RptFormFacturaPago()
         rptFormFacturaPago.MdiParent = Me
         rptFormFacturaPago.Show()
     End Sub
+
+    'Private Sub AsignacionDeServicioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AsignacionDeServicioToolStripMenuItem.Click
+    '    
+
+    'End Sub
+
+
+    'Private Sub FacturasVsPagosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturasVsPagosToolStripMenuItem.Click
+
+    'End Sub
 End Class
