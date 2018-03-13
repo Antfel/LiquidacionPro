@@ -35,19 +35,21 @@ Public Class OrdenServicioDAO
     End Sub
 
     Public Function GetAllOrdenServicio() As DataTable
-        Return sqlControl.ExecQuery("select	CODIGO_ORDEN_SERVICIO,
-		                                    FECHA,
-		                                    NUMERO,
-		                                    IGV_INCLUYE,
-		                                    SUBTOTAL,
-		                                    IGV,
-		                                    TOTAL,
-		                                    ORIGEN,
-		                                    DESTINO,
-		                                    CODIGO_CLIENTE,
-		                                    CODIGO_MONEDA
-                                    from    ORDEN_SERVICIO 
-                                    order	by CODIGO_ORDEN_SERVICIO asc", Nothing)
+        Return sqlControl.ExecQuery("select	a.CODIGO_ORDEN_SERVICIO 'Codigo Orden',
+		                             convert(varchar(10),a.FECHA ,103) 'Fecha Orden',
+		                             a.NUMERO 'Nro Orden',
+		                             b.RAZON_CLIENTE 'Cliente',
+		                             a.ORIGEN 'Origen',
+		                             a.DESTINO 'Destino',
+		                             c.DETALLE_MONEDA 'Moneda',
+		                             'Incluye IGV' = CASE WHEN a.IGV_INCLUYE=0 THEN 'No' ELSE 'Si'END,
+		                             a.SUBTOTAL 'Sub Total',
+		                             a.IGV 'Monto IGV',
+		                             a.TOTAL 'Total'
+                                from    ORDEN_SERVICIO a
+                                LEFT JOIN CLIENTE b ON a.CODIGO_CLIENTE = b.CODIGO_CLIENTE
+                                LEFT JOIN MONEDA c ON a.CODIGO_MONEDA = c.CODIGO_MONEDA
+                                order	by CODIGO_ORDEN_SERVICIO asc", Nothing)
 
     End Function
 

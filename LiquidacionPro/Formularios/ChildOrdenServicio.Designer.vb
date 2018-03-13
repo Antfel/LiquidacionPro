@@ -369,9 +369,18 @@ Partial Class ChildOrdenServicio
         '
         'dgvOrdenServicio
         '
+        Me.dgvOrdenServicio.AllowUserToAddRows = False
+        Me.dgvOrdenServicio.AllowUserToDeleteRows = False
+        Me.dgvOrdenServicio.AllowUserToResizeColumns = False
+        Me.dgvOrdenServicio.AllowUserToResizeRows = False
         Me.dgvOrdenServicio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvOrdenServicio.Location = New System.Drawing.Point(9, 20)
+        Me.dgvOrdenServicio.MultiSelect = False
         Me.dgvOrdenServicio.Name = "dgvOrdenServicio"
+        Me.dgvOrdenServicio.ReadOnly = True
+        Me.dgvOrdenServicio.RowHeadersVisible = False
+        Me.dgvOrdenServicio.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgvOrdenServicio.ShowEditingIcon = False
         Me.dgvOrdenServicio.Size = New System.Drawing.Size(934, 219)
         Me.dgvOrdenServicio.TabIndex = 0
         '
