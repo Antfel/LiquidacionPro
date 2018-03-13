@@ -457,4 +457,12 @@ Public Class RptFormFacturaPago
         End Try
         Return dt
     End Function
+
+    Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
+        cbCliente.SelectedIndex = -1
+        cbMes.SelectedIndex = -1
+        txtPeriodo.Text = Date.Now.Year.ToString
+        rbtn1.Checked = True
+
+    End Sub
 End Class

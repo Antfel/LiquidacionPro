@@ -530,6 +530,10 @@ Public Class ChildFacturacion
         cbTracto.SelectedIndex = -1
         cbGuia.SelectedIndex = -1
         txtRemitente.Text = ""
+        txtSubtotalDetalle.Text = ""
+        txtIgvDetalle.Text = ""
+        txtTotalDetalle.Text = ""
+
 
     End Sub
 

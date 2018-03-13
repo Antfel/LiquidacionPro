@@ -25,6 +25,8 @@ Partial Class RptFormFacturaPago
         Me.btnVerificarPeriodo = New System.Windows.Forms.Button()
         Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cbCliente = New System.Windows.Forms.ComboBox()
         Me.rbtn4 = New System.Windows.Forms.RadioButton()
         Me.rbtn3 = New System.Windows.Forms.RadioButton()
         Me.rbtn2 = New System.Windows.Forms.RadioButton()
@@ -34,8 +36,6 @@ Partial Class RptFormFacturaPago
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cbMes = New System.Windows.Forms.ComboBox()
         Me.btnLimpiar = New System.Windows.Forms.Button()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.cbCliente = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -74,6 +74,23 @@ Partial Class RptFormFacturaPago
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filtro"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(347, 18)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(39, 13)
+        Me.Label3.TabIndex = 10
+        Me.Label3.Text = "Cliente"
+        '
+        'cbCliente
+        '
+        Me.cbCliente.FormattingEnabled = True
+        Me.cbCliente.Location = New System.Drawing.Point(392, 16)
+        Me.cbCliente.Name = "cbCliente"
+        Me.cbCliente.Size = New System.Drawing.Size(310, 21)
+        Me.cbCliente.TabIndex = 9
         '
         'rbtn4
         '
@@ -162,23 +179,6 @@ Partial Class RptFormFacturaPago
         Me.btnLimpiar.TabIndex = 3
         Me.btnLimpiar.Text = "Limpiar"
         Me.btnLimpiar.UseVisualStyleBackColor = True
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(347, 18)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(39, 13)
-        Me.Label3.TabIndex = 10
-        Me.Label3.Text = "Cliente"
-        '
-        'cbCliente
-        '
-        Me.cbCliente.FormattingEnabled = True
-        Me.cbCliente.Location = New System.Drawing.Point(392, 16)
-        Me.cbCliente.Name = "cbCliente"
-        Me.cbCliente.Size = New System.Drawing.Size(310, 21)
-        Me.cbCliente.TabIndex = 9
         '
         'RptFormFacturaPago
         '
