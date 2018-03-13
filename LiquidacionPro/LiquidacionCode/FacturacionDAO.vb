@@ -793,23 +793,24 @@ Public Class FacturacionDAO
 		                                    a.CODIGO_FACTURA,
 		                                    b.CODIGO_DETALLE_FACTURA,
 		                                    coalesce(e.DETALLE_ESTADO,'')DETALLE_ESTADO ,
-		                                    c.RAZON_CLIENTE,
-		                                    c.DIRECCION_CLIENTE,
-		                                    c.RUC_CLIENTE,
-		                                    c.TELEFONO_CLIENTE,
-		                                    a.TOTAL_FACTURA,
+		                                    '',
+		                                    '',
+		                                    '',
+		                                    '',
+		                                    0,
 		                                    d.DETALLE_MONEDA,
-		                                    0 NRO_LETRA,
+		                                    0,
 		                                    a.FECHA_FACTURA,
 		                                    coalesce(b.DESCRIPCION,'')DESCRIPCION,
 		                                    coalesce(b.VALOR_REFERENCIAL,0) VALOR_REFERENCIAL,
 		                                    coalesce(b.TIPO_SERVICIO,0) TIPO_SERVICIO,
-		                                    coalesce(e.DETALLE_ESTADO_COMPLETO,'') DETALLE_ESTADO_COMPLETO 
-                                    from	FACTURA a
-                                    left	join DETALLE_FACTURA b on a.CODIGO_FACTURA=b.CODIGO_FACTURA
-                                    left	join CLIENTE c on c.CODIGO_CLIENTE=a.CODIGO_CLIENTE
-                                    left	join MONEDA d on d.CODIGO_MONEDA=a.CODIGO_MONEDA
-                                    left	join ESTADO e on e.CODIGO_ESTADO=b.TIPO_SERVICIO and e.TIPO_ESTADO=6
+		                                    coalesce(e.DETALLE_ESTADO_COMPLETO,'') DETALLE_ESTADO_COMPLETO,
+                                            coalesce(b.PRECIO_SUBTOTAL ,0)  PRECIO_SUBTOTAL 
+                                    from	FACTURA a 
+                                    left	join DETALLE_FACTURA b on a.CODIGO_FACTURA=b.CODIGO_FACTURA 
+                                    left	join CLIENTE c on c.CODIGO_CLIENTE=a.CODIGO_CLIENTE 
+                                    left	join MONEDA d on d.CODIGO_MONEDA=a.CODIGO_MONEDA 
+                                    left	join ESTADO e on e.CODIGO_ESTADO=b.TIPO_SERVICIO and e.TIPO_ESTADO=6 
                                     where	a.CODIGO_FACTURA=" + CStr(codigo_factura) + "",
                                      Nothing)
     End Function
@@ -834,7 +835,8 @@ Public Class FacturacionDAO
                                             CODIGO_FACTURA_REMITENTE 
                                     from	DETALLE_FACTURA_REMITENTE
                                     where	CODIGO_FACTURA=" + CStr(codigo_factura) + " 
-		                                    and CODIGO_DETALLE_FACTURA=" + CStr(codigo_detalle) + "",
+		                                    and CODIGO_DETALLE_FACTURA=" + CStr(codigo_detalle) + " 
+                                    order   by CODIGO_FACTURA_REMITENTE asc",
                                      Nothing)
     End Function
 
@@ -845,7 +847,8 @@ Public Class FacturacionDAO
                                             CODIGO_FACTURA_GUIA 
                                     from	DETALLE_FACTURA_UNIDAD
                                     where	CODIGO_FACTURA=" + CStr(codigo_factura) + "
-		                                    and CODIGO_DETALLE_FACTURA=" + CStr(codigo_detalle) + "",
+		                                    and CODIGO_DETALLE_FACTURA=" + CStr(codigo_detalle) + " 
+                                    order   by CODIGO_FACTURA_GUIA asc",
                                      Nothing)
     End Function
 

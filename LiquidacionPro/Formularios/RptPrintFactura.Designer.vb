@@ -85,6 +85,7 @@ Partial Class RptPrintFactura
         Me.Controls.Add(Me.Button1)
         Me.Name = "RptPrintFactura"
         Me.Text = "RptPrintFactura"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ResumeLayout(False)
 
     End Sub

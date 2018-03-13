@@ -101,9 +101,14 @@ Public Class RptPrintFactura
             If (PUNTEROIMPR = 0) Then
                 For i As Integer = 0 To dtd.Rows.Count - 1
                     Dim PRNGX As Integer = 0
+                    'e.Graphics.DrawString(dtd.Rows.Item(i)(0), FONT, Brushes.Black, 45, cordy)
+                    'e.Graphics.DrawString(simbolo + Double.Parse(dtd.Rows.Item(i)(3)).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 565, cordy)
+                    'e.Graphics.DrawString(simbolo + (Double.Parse(dtd.Rows.Item(i)(0)) * Double.Parse(dtd.Rows.Item(i)(3))).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, cordy)
+
                     e.Graphics.DrawString(dtd.Rows.Item(i)(0), FONT, Brushes.Black, 45, cordy)
                     e.Graphics.DrawString(simbolo + Double.Parse(dtd.Rows.Item(i)(3)).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 565, cordy)
-                    e.Graphics.DrawString(simbolo + (Double.Parse(dtd.Rows.Item(i)(0)) * Double.Parse(dtd.Rows.Item(i)(3))).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, cordy)
+                    e.Graphics.DrawString(simbolo + (Double.Parse(dtd.Rows.Item(i)(21))).ToString("0.00", CultureInfo.InvariantCulture), FONT, Brushes.Black, 670, cordy)
+
 
                     text = "SERVICIO DE TRANSPORTE"
 
@@ -269,5 +274,9 @@ Public Class RptPrintFactura
             PrintDocument1.PrinterSettings = PrintDialog1.PrinterSettings
             PrintDocument1.Print()
         End If
+    End Sub
+
+    Private Sub PrintPreviewControl1_Click(sender As Object, e As EventArgs) Handles PrintPreviewControl1.Click
+
     End Sub
 End Class
