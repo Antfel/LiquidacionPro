@@ -22,14 +22,20 @@ Partial Class ChildOrdenServicio
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.txtCodigo = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.btnAbajo = New System.Windows.Forms.Button()
-        Me.btnArriba = New System.Windows.Forms.Button()
-        Me.btnEliminarDetalle = New System.Windows.Forms.Button()
-        Me.btnAgregarDetalle = New System.Windows.Forms.Button()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtTotal = New System.Windows.Forms.TextBox()
+        Me.txtIgv = New System.Windows.Forms.TextBox()
+        Me.chbxIgv = New System.Windows.Forms.CheckBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btnAbajo = New System.Windows.Forms.Button()
         Me.dgvDetalleOrdenServicio = New System.Windows.Forms.DataGridView()
+        Me.btnArriba = New System.Windows.Forms.Button()
+        Me.btnAgregarDetalle = New System.Windows.Forms.Button()
+        Me.btnEliminarDetalle = New System.Windows.Forms.Button()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -55,12 +61,17 @@ Partial Class ChildOrdenServicio
         Me.btnDeshacer = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.dgvOrdenServicio = New System.Windows.Forms.DataGridView()
+        Me.cmsDetalle = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvDetalleOrdenServicio, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         CType(Me.dgvOrdenServicio, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.cmsDetalle.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtCodigo
@@ -69,14 +80,15 @@ Partial Class ChildOrdenServicio
         Me.txtCodigo.Name = "txtCodigo"
         Me.txtCodigo.ReadOnly = True
         Me.txtCodigo.Size = New System.Drawing.Size(100, 20)
-        Me.txtCodigo.TabIndex = 0
+        Me.txtCodigo.TabIndex = 1000
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.btnAbajo)
-        Me.GroupBox1.Controls.Add(Me.btnArriba)
-        Me.GroupBox1.Controls.Add(Me.btnEliminarDetalle)
-        Me.GroupBox1.Controls.Add(Me.btnAgregarDetalle)
+        Me.GroupBox1.Controls.Add(Me.Label10)
+        Me.GroupBox1.Controls.Add(Me.Label9)
+        Me.GroupBox1.Controls.Add(Me.txtTotal)
+        Me.GroupBox1.Controls.Add(Me.txtIgv)
+        Me.GroupBox1.Controls.Add(Me.chbxIgv)
         Me.GroupBox1.Controls.Add(Me.GroupBox2)
         Me.GroupBox1.Controls.Add(Me.btnNuevo)
         Me.GroupBox1.Controls.Add(Me.Label8)
@@ -98,56 +110,81 @@ Partial Class ChildOrdenServicio
         Me.GroupBox1.Controls.Add(Me.txtCodigo)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(889, 225)
+        Me.GroupBox1.Size = New System.Drawing.Size(882, 255)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Datos Generales"
         '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(370, 75)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(31, 13)
+        Me.Label10.TabIndex = 1005
+        Me.Label10.Text = "Total"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(198, 72)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(22, 13)
+        Me.Label9.TabIndex = 1004
+        Me.Label9.Text = "Igv"
+        '
+        'txtTotal
+        '
+        Me.txtTotal.Location = New System.Drawing.Point(412, 72)
+        Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.ReadOnly = True
+        Me.txtTotal.Size = New System.Drawing.Size(100, 20)
+        Me.txtTotal.TabIndex = 1003
+        '
+        'txtIgv
+        '
+        Me.txtIgv.Location = New System.Drawing.Point(239, 72)
+        Me.txtIgv.Name = "txtIgv"
+        Me.txtIgv.ReadOnly = True
+        Me.txtIgv.Size = New System.Drawing.Size(100, 20)
+        Me.txtIgv.TabIndex = 1002
+        '
+        'chbxIgv
+        '
+        Me.chbxIgv.AutoSize = True
+        Me.chbxIgv.Checked = True
+        Me.chbxIgv.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chbxIgv.Location = New System.Drawing.Point(381, 45)
+        Me.chbxIgv.Name = "chbxIgv"
+        Me.chbxIgv.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.chbxIgv.Size = New System.Drawing.Size(113, 17)
+        Me.chbxIgv.TabIndex = 6
+        Me.chbxIgv.Text = "Precio incluye IGV"
+        Me.chbxIgv.UseVisualStyleBackColor = True
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.btnAbajo)
+        Me.GroupBox2.Controls.Add(Me.dgvDetalleOrdenServicio)
+        Me.GroupBox2.Controls.Add(Me.btnArriba)
+        Me.GroupBox2.Controls.Add(Me.btnAgregarDetalle)
+        Me.GroupBox2.Controls.Add(Me.btnEliminarDetalle)
+        Me.GroupBox2.Location = New System.Drawing.Point(9, 98)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(864, 148)
+        Me.GroupBox2.TabIndex = 18
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Detalle de la Carga"
+        '
         'btnAbajo
         '
-        Me.btnAbajo.Location = New System.Drawing.Point(752, 181)
+        Me.btnAbajo.Location = New System.Drawing.Point(834, 110)
         Me.btnAbajo.Name = "btnAbajo"
         Me.btnAbajo.Size = New System.Drawing.Size(24, 23)
         Me.btnAbajo.TabIndex = 22
         Me.btnAbajo.Text = "b"
         Me.btnAbajo.UseVisualStyleBackColor = True
-        '
-        'btnArriba
-        '
-        Me.btnArriba.Location = New System.Drawing.Point(752, 90)
-        Me.btnArriba.Name = "btnArriba"
-        Me.btnArriba.Size = New System.Drawing.Size(24, 23)
-        Me.btnArriba.TabIndex = 21
-        Me.btnArriba.Text = "a"
-        Me.btnArriba.UseVisualStyleBackColor = True
-        '
-        'btnEliminarDetalle
-        '
-        Me.btnEliminarDetalle.Location = New System.Drawing.Point(752, 151)
-        Me.btnEliminarDetalle.Name = "btnEliminarDetalle"
-        Me.btnEliminarDetalle.Size = New System.Drawing.Size(24, 23)
-        Me.btnEliminarDetalle.TabIndex = 20
-        Me.btnEliminarDetalle.Text = "-"
-        Me.btnEliminarDetalle.UseVisualStyleBackColor = True
-        '
-        'btnAgregarDetalle
-        '
-        Me.btnAgregarDetalle.Location = New System.Drawing.Point(751, 121)
-        Me.btnAgregarDetalle.Name = "btnAgregarDetalle"
-        Me.btnAgregarDetalle.Size = New System.Drawing.Size(25, 23)
-        Me.btnAgregarDetalle.TabIndex = 19
-        Me.btnAgregarDetalle.Text = "+"
-        Me.btnAgregarDetalle.UseVisualStyleBackColor = True
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.dgvDetalleOrdenServicio)
-        Me.GroupBox2.Location = New System.Drawing.Point(9, 71)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(736, 148)
-        Me.GroupBox2.TabIndex = 18
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Detalle de la Carga"
+        Me.btnAbajo.Visible = False
         '
         'dgvDetalleOrdenServicio
         '
@@ -155,8 +192,38 @@ Partial Class ChildOrdenServicio
         Me.dgvDetalleOrdenServicio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDetalleOrdenServicio.Location = New System.Drawing.Point(6, 19)
         Me.dgvDetalleOrdenServicio.Name = "dgvDetalleOrdenServicio"
-        Me.dgvDetalleOrdenServicio.Size = New System.Drawing.Size(724, 123)
+        Me.dgvDetalleOrdenServicio.Size = New System.Drawing.Size(821, 123)
         Me.dgvDetalleOrdenServicio.TabIndex = 0
+        '
+        'btnArriba
+        '
+        Me.btnArriba.Location = New System.Drawing.Point(834, 19)
+        Me.btnArriba.Name = "btnArriba"
+        Me.btnArriba.Size = New System.Drawing.Size(24, 23)
+        Me.btnArriba.TabIndex = 21
+        Me.btnArriba.Text = "a"
+        Me.btnArriba.UseVisualStyleBackColor = True
+        Me.btnArriba.Visible = False
+        '
+        'btnAgregarDetalle
+        '
+        Me.btnAgregarDetalle.Location = New System.Drawing.Point(833, 50)
+        Me.btnAgregarDetalle.Name = "btnAgregarDetalle"
+        Me.btnAgregarDetalle.Size = New System.Drawing.Size(25, 23)
+        Me.btnAgregarDetalle.TabIndex = 19
+        Me.btnAgregarDetalle.Text = "+"
+        Me.btnAgregarDetalle.UseVisualStyleBackColor = True
+        Me.btnAgregarDetalle.Visible = False
+        '
+        'btnEliminarDetalle
+        '
+        Me.btnEliminarDetalle.Location = New System.Drawing.Point(834, 80)
+        Me.btnEliminarDetalle.Name = "btnEliminarDetalle"
+        Me.btnEliminarDetalle.Size = New System.Drawing.Size(24, 23)
+        Me.btnEliminarDetalle.TabIndex = 20
+        Me.btnEliminarDetalle.Text = "-"
+        Me.btnEliminarDetalle.UseVisualStyleBackColor = True
+        Me.btnEliminarDetalle.Visible = False
         '
         'btnNuevo
         '
@@ -179,7 +246,7 @@ Partial Class ChildOrdenServicio
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(360, 45)
+        Me.Label7.Location = New System.Drawing.Point(6, 72)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(37, 13)
         Me.Label7.TabIndex = 15
@@ -217,14 +284,14 @@ Partial Class ChildOrdenServicio
         Me.btnGrabar.Location = New System.Drawing.Point(717, 45)
         Me.btnGrabar.Name = "btnGrabar"
         Me.btnGrabar.Size = New System.Drawing.Size(75, 23)
-        Me.btnGrabar.TabIndex = 11
+        Me.btnGrabar.TabIndex = 9
         Me.btnGrabar.Text = "Grabar"
         Me.btnGrabar.UseVisualStyleBackColor = True
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(360, 19)
+        Me.Label3.Location = New System.Drawing.Point(370, 19)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(37, 13)
         Me.Label3.TabIndex = 10
@@ -251,10 +318,10 @@ Partial Class ChildOrdenServicio
         'dtpFecha
         '
         Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFecha.Location = New System.Drawing.Point(403, 19)
+        Me.dtpFecha.Location = New System.Drawing.Point(412, 18)
         Me.dtpFecha.Name = "dtpFecha"
-        Me.dtpFecha.Size = New System.Drawing.Size(100, 20)
-        Me.dtpFecha.TabIndex = 7
+        Me.dtpFecha.Size = New System.Drawing.Size(97, 20)
+        Me.dtpFecha.TabIndex = 2
         '
         'cbMoneda
         '
@@ -262,7 +329,7 @@ Partial Class ChildOrdenServicio
         Me.cbMoneda.Location = New System.Drawing.Point(575, 45)
         Me.cbMoneda.Name = "cbMoneda"
         Me.cbMoneda.Size = New System.Drawing.Size(108, 21)
-        Me.cbMoneda.TabIndex = 6
+        Me.cbMoneda.TabIndex = 7
         '
         'cbCliente
         '
@@ -270,35 +337,36 @@ Partial Class ChildOrdenServicio
         Me.cbCliente.Location = New System.Drawing.Point(575, 18)
         Me.cbCliente.Name = "cbCliente"
         Me.cbCliente.Size = New System.Drawing.Size(298, 21)
-        Me.cbCliente.TabIndex = 5
+        Me.cbCliente.TabIndex = 3
         '
         'txtDestino
         '
         Me.txtDestino.Location = New System.Drawing.Point(239, 45)
         Me.txtDestino.Name = "txtDestino"
         Me.txtDestino.Size = New System.Drawing.Size(100, 20)
-        Me.txtDestino.TabIndex = 4
+        Me.txtDestino.TabIndex = 5
         '
         'txtOrigen
         '
         Me.txtOrigen.Location = New System.Drawing.Point(56, 45)
         Me.txtOrigen.Name = "txtOrigen"
         Me.txtOrigen.Size = New System.Drawing.Size(100, 20)
-        Me.txtOrigen.TabIndex = 3
+        Me.txtOrigen.TabIndex = 4
         '
         'txtPrecio
         '
-        Me.txtPrecio.Location = New System.Drawing.Point(403, 45)
+        Me.txtPrecio.Location = New System.Drawing.Point(55, 72)
         Me.txtPrecio.Name = "txtPrecio"
         Me.txtPrecio.Size = New System.Drawing.Size(100, 20)
-        Me.txtPrecio.TabIndex = 2
+        Me.txtPrecio.TabIndex = 8
         '
         'txtNumero
         '
         Me.txtNumero.Location = New System.Drawing.Point(239, 19)
         Me.txtNumero.Name = "txtNumero"
+        Me.txtNumero.ReadOnly = True
         Me.txtNumero.Size = New System.Drawing.Size(100, 20)
-        Me.txtNumero.TabIndex = 1
+        Me.txtNumero.TabIndex = 10000
         '
         'GroupBox3
         '
@@ -307,7 +375,7 @@ Partial Class ChildOrdenServicio
         Me.GroupBox3.Controls.Add(Me.Label24)
         Me.GroupBox3.Controls.Add(Me.btnFiltrar)
         Me.GroupBox3.Controls.Add(Me.btnDeshacer)
-        Me.GroupBox3.Location = New System.Drawing.Point(12, 243)
+        Me.GroupBox3.Location = New System.Drawing.Point(12, 272)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(789, 59)
         Me.GroupBox3.TabIndex = 103
@@ -360,9 +428,9 @@ Partial Class ChildOrdenServicio
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.dgvOrdenServicio)
-        Me.GroupBox4.Location = New System.Drawing.Point(12, 309)
+        Me.GroupBox4.Location = New System.Drawing.Point(12, 337)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(949, 251)
+        Me.GroupBox4.Size = New System.Drawing.Size(949, 253)
         Me.GroupBox4.TabIndex = 104
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Lista de Servicios"
@@ -384,11 +452,35 @@ Partial Class ChildOrdenServicio
         Me.dgvOrdenServicio.Size = New System.Drawing.Size(934, 219)
         Me.dgvOrdenServicio.TabIndex = 0
         '
+        'cmsDetalle
+        '
+        Me.cmsDetalle.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolStripMenuItem2, Me.ToolStripMenuItem3})
+        Me.cmsDetalle.Name = "cmsDetalle"
+        Me.cmsDetalle.Size = New System.Drawing.Size(149, 70)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(148, 22)
+        Me.ToolStripMenuItem1.Text = "Insertar Arriba"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(148, 22)
+        Me.ToolStripMenuItem2.Text = "Insertar Abajo"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(148, 22)
+        Me.ToolStripMenuItem3.Text = "Eliminar"
+        '
         'ChildOrdenServicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(973, 690)
+        Me.ClientSize = New System.Drawing.Size(973, 617)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox1)
@@ -403,6 +495,7 @@ Partial Class ChildOrdenServicio
         Me.GroupBox3.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         CType(Me.dgvOrdenServicio, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.cmsDetalle.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -440,4 +533,13 @@ Partial Class ChildOrdenServicio
     Friend WithEvents btnDeshacer As Button
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents dgvOrdenServicio As DataGridView
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents txtTotal As TextBox
+    Friend WithEvents txtIgv As TextBox
+    Friend WithEvents chbxIgv As CheckBox
+    Friend WithEvents cmsDetalle As ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem3 As ToolStripMenuItem
 End Class

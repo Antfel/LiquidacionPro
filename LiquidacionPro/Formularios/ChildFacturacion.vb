@@ -283,7 +283,7 @@ Public Class ChildFacturacion
         If codigo_Factura <> -1 Then
             cargarDatosFactura()
             cargandoDatosActualizar = 0
-
+            txtNroSerie.ReadOnly = True
         Else
             txtNroSerie.Text = "0001"
             ObtenerCorrelativo()
@@ -556,15 +556,15 @@ Public Class ChildFacturacion
     End Sub
 
     Private Sub txtNroSerie_KeyDown(sender As Object, e As KeyEventArgs)
-        If e.KeyCode = Keys.Enter And Not txtNroSerie.Text.Equals("") Then
-            ObtenerCorrelativo()
-        End If
+        'If e.KeyCode = Keys.Enter And Not txtNroSerie.Text.Equals("") Then
+        '    ObtenerCorrelativo()
+        'End If
     End Sub
 
     Private Sub txtNroSerie_Leave(sender As Object, e As EventArgs)
-        If Not txtNroSerie.Text.Equals("") Then
-            ObtenerCorrelativo()
-        End If
+        'If Not txtNroSerie.Text.Equals("") Then
+        '    ObtenerCorrelativo()
+        'End If
     End Sub
 
     Private Sub GuardarCabeceraFactura()
@@ -972,7 +972,7 @@ Public Class ChildFacturacion
             sqlControl.BeginTransaction()
             tipoServicioDao.setDBcmd()
 
-            dataTipoServicio = tipoServicioDao.getTiposDeServicio()
+            dataTipoServicio = tipoServicioDao.GetTiposDeServicio()
 
             With cbTipoServicio
                 .DataSource = dataTipoServicio
