@@ -8361,6 +8361,10 @@ Partial Public Class rptLiquidaciones
         
         Private columnRucCliente As Global.System.Data.DataColumn
         
+        Private columnFechaRecepcion As Global.System.Data.DataColumn
+        
+        Private columnFechaVencimiento As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -8485,6 +8489,22 @@ Partial Public Class rptLiquidaciones
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property FechaRecepcionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFechaRecepcion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property FechaVencimientoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFechaVencimiento
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -8521,9 +8541,9 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AdddtRptFacturaVsPagoRow(ByVal NroDocumento As String, ByVal FechaFactura As Date, ByVal Soles As Double, ByVal Dolares As Double, ByVal Moneda As Short, ByVal TotalFacturaSoles As Double, ByVal TotalFacturaDolares As Double, ByVal DiferenciaSoles As Double, ByVal DiferenciaDolares As Double, ByVal RazonSocial As String, ByVal RucCliente As String) As dtRptFacturaVsPagoRow
+        Public Overloads Function AdddtRptFacturaVsPagoRow(ByVal NroDocumento As String, ByVal FechaFactura As Date, ByVal Soles As Double, ByVal Dolares As Double, ByVal Moneda As Short, ByVal TotalFacturaSoles As Double, ByVal TotalFacturaDolares As Double, ByVal DiferenciaSoles As Double, ByVal DiferenciaDolares As Double, ByVal RazonSocial As String, ByVal RucCliente As String, ByVal FechaRecepcion As Date, ByVal FechaVencimiento As Date) As dtRptFacturaVsPagoRow
             Dim rowdtRptFacturaVsPagoRow As dtRptFacturaVsPagoRow = CType(Me.NewRow,dtRptFacturaVsPagoRow)
-            Dim columnValuesArray() As Object = New Object() {NroDocumento, FechaFactura, Soles, Dolares, Moneda, TotalFacturaSoles, TotalFacturaDolares, DiferenciaSoles, DiferenciaDolares, RazonSocial, RucCliente}
+            Dim columnValuesArray() As Object = New Object() {NroDocumento, FechaFactura, Soles, Dolares, Moneda, TotalFacturaSoles, TotalFacturaDolares, DiferenciaSoles, DiferenciaDolares, RazonSocial, RucCliente, FechaRecepcion, FechaVencimiento}
             rowdtRptFacturaVsPagoRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdtRptFacturaVsPagoRow)
             Return rowdtRptFacturaVsPagoRow
@@ -8557,6 +8577,8 @@ Partial Public Class rptLiquidaciones
             Me.columnDiferenciaDolares = MyBase.Columns("DiferenciaDolares")
             Me.columnRazonSocial = MyBase.Columns("RazonSocial")
             Me.columnRucCliente = MyBase.Columns("RucCliente")
+            Me.columnFechaRecepcion = MyBase.Columns("FechaRecepcion")
+            Me.columnFechaVencimiento = MyBase.Columns("FechaVencimiento")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8584,6 +8606,10 @@ Partial Public Class rptLiquidaciones
             MyBase.Columns.Add(Me.columnRazonSocial)
             Me.columnRucCliente = New Global.System.Data.DataColumn("RucCliente", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRucCliente)
+            Me.columnFechaRecepcion = New Global.System.Data.DataColumn("FechaRecepcion", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFechaRecepcion)
+            Me.columnFechaVencimiento = New Global.System.Data.DataColumn("FechaVencimiento", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFechaVencimiento)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -15560,6 +15586,38 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property FechaRecepcion() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptFacturaVsPago.FechaRecepcionColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'FechaRecepcion' de la tabla 'dtRptFacturaVsPago' es DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptFacturaVsPago.FechaRecepcionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property FechaVencimiento() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptFacturaVsPago.FechaVencimientoColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'FechaVencimiento' de la tabla 'dtRptFacturaVsPago' es DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptFacturaVsPago.FechaVencimientoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNroDocumentoNull() As Boolean
             Return Me.IsNull(Me.tabledtRptFacturaVsPago.NroDocumentoColumn)
         End Function
@@ -15688,6 +15746,30 @@ Partial Public Class rptLiquidaciones
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetRucClienteNull()
             Me(Me.tabledtRptFacturaVsPago.RucClienteColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsFechaRecepcionNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptFacturaVsPago.FechaRecepcionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetFechaRecepcionNull()
+            Me(Me.tabledtRptFacturaVsPago.FechaRecepcionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsFechaVencimientoNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptFacturaVsPago.FechaVencimientoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetFechaVencimientoNull()
+            Me(Me.tabledtRptFacturaVsPago.FechaVencimientoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
