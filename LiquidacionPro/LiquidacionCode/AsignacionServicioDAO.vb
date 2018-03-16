@@ -157,7 +157,7 @@ Public Class AsignacionServicioDAO
                                      FROM ASIGNACION_SERVICIO a 
                                      LEFT JOIN ORDEN_SERVICIO b ON a.CODIGO_ORDEN_SERVICIO = b.CODIGO_ORDEN_SERVICIO
                                      LEFT JOIN ESTADO c ON c.CODIGO_ESTADO = a.ESTADO_ASIGNACION
-                                     WHERE a.ESTADO_ASIGNACION = 39", Nothing)
+                                     WHERE a.ESTADO_ASIGNACION = 40", Nothing)
 
     End Function
 
