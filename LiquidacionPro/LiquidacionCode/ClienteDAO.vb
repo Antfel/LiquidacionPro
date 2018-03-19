@@ -4,7 +4,6 @@ Public Class ClienteDAO
     Dim DBcon As SqlConnection
     Dim DBcmd As SqlCommand
     Dim sqlControl As SQLControl
-
     Public Sub New(sqlControl As SQLControl)
         Me.sqlControl = sqlControl
         Me.DBcon = sqlControl.GetDBcon
