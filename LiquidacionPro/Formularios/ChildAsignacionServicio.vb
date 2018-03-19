@@ -88,7 +88,7 @@ Public Class ChildAsignacionServicio
                 txtOrdenServicio.Text = dt.Rows(0)(4)
                 txtObservacion.Text = dt.Rows(0)(2)
                 cbEstado.SelectedValue = dt.Rows(0)(3)
-                dtFechaAsignacion.Value = dt.Rows(0)(1)
+                If dt.Rows(0)(1) Is DBNull.Value Then dtFechaAsignacion.Value = "" : dtFechaAsignacion.Value = dt.Rows(0)(1)
                 txtOrigen.Text = dt.Rows(0)(5)
                 txtDestino.Text = dt.Rows(0)(6)
                 codigoOrden = dt.Rows(0)(0)
@@ -390,7 +390,11 @@ Public Class ChildAsignacionServicio
             txtOrdenServicio.Text = dt.Rows(0)(4)
             txtObservacion.Text = dt.Rows(0)(2)
             cbEstado.SelectedValue = dt.Rows(0)(3)
-            dtFechaAsignacion.Value = dt.Rows(0)(1)
+            If dt.Rows(0)(1) Is DBNull.Value Then
+
+            Else
+                dtFechaAsignacion.Value = dt.Rows(0)(1)
+            End If
             txtOrigen.Text = dt.Rows(0)(5)
             txtDestino.Text = dt.Rows(0)(6)
             codigoOrden = dt.Rows(0)(0)

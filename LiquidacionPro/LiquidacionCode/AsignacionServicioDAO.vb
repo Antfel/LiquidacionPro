@@ -137,7 +137,7 @@ Public Class AsignacionServicioDAO
 
         Return sqlControl.ExecQuery("SELECT	a.CODIGO_ASIGNACION 'codigo asignacion',
 		                                    a.FECHA_ASIGNACION 'fecha asignacion',
-		                                    a.OBSERVACION_ASIGNACION 'observacion',
+		                                    COALESCE(a.OBSERVACION_ASIGNACION,'') 'observacion',
 		                                    a.ESTADO_ASIGNACION 'estado',
 		                                    b.NUMERO 'numero orden',
 											b.ORIGEN 'Origen',
@@ -157,7 +157,7 @@ Public Class AsignacionServicioDAO
                                      FROM ASIGNACION_SERVICIO a 
                                      LEFT JOIN ORDEN_SERVICIO b ON a.CODIGO_ORDEN_SERVICIO = b.CODIGO_ORDEN_SERVICIO
                                      LEFT JOIN ESTADO c ON c.CODIGO_ESTADO = a.ESTADO_ASIGNACION
-                                     WHERE a.ESTADO_ASIGNACION = 37", Nothing)
+                                     WHERE a.ESTADO_ASIGNACION = 40", Nothing)
 
     End Function
 

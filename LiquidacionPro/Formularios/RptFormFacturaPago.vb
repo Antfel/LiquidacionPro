@@ -141,7 +141,7 @@ Public Class RptFormFacturaPago
         If cbMes.SelectedIndex < 0 Then
             paramList.Add(New ReportParameter("mes", "Todos", True))
         Else
-            paramList.Add(New ReportParameter("mes", cbMes.SelectedItem.ToString, True))
+            paramList.Add(New ReportParameter("mes", mes, True))
         End If
 
         paramList.Add(New ReportParameter("periodo", txtPeriodo.Text, True))
