@@ -59,7 +59,33 @@ Public Class RutinasPostgreSQL
 		                                                and a.""i_EsDestino""='0'  
 		                                                and d.""v_Mes"" like '%'||@MES||'%'  
 		                                                and d.""v_Periodo""=@PERIODO  
-                                                order 	by a.""v_NroDocumento""  ", params)
+                                                union   all 
+                                                select 	a.""v_IdDiarioDetalle"",
+		                                                a.""v_IdDiario"",
+		                                                a.""v_Naturaleza"",
+		                                                a.""d_Importe"",
+		                                                a.""d_Cambio"",
+		                                                b.""i_IdMoneda"",
+		                                                b.""d_TipoCambio"",
+		                                                rtrim(ltrim(a.""v_NroDocumentoRef"")),
+		                                                b.""v_Periodo"",
+		                                                b.""v_Mes"",
+		                                                to_char(b.""t_Fecha"", 'MM/DD/YYYY') ""v_Fecha_Pago"",
+		                                                b.""i_IdTipoDocumento"",
+		                                                c.""v_Nombre"",
+		                                                d.""d_TipoCambio"" ""d_TipoCambio_Venta"",
+		                                                d.""i_IdMoneda"" ""i_IdMoneda_Venta"",
+		                                                d.""v_Periodo"" ""v_Periodo_Venta"",
+		                                                d.""v_Mes"" ""v_Mes_Venta"",
+		                                                to_char(d.""t_FechaRegistro"", 'MM/DD/YYYY') ""v_Fecha_Venta""
+                                                from	diariodetalle a 
+                                                inner	join diario b on a.""v_IdDiario""=b.""v_IdDiario""  
+                                                left	join documento c on b.""i_IdTipoDocumento""=c.""i_CodigoDocumento"" 
+                                                inner	join venta d on d.""v_SerieDocumento""||'-'||d.""v_CorrelativoDocumento""=ltrim(rtrim(a.""v_NroDocumentoRef"")) and d.""i_Eliminado""=0 
+                                                where 	a.""i_Eliminado""=0 
+		                                                and a.""v_Naturaleza""='H'  
+		                                                and b.""i_IdTipoDocumento""=337 
+                                                order 	by 8 asc  ", params)
 
 
     End Function

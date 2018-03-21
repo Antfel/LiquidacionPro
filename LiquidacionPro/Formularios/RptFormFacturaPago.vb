@@ -39,7 +39,7 @@ Public Class RptFormFacturaPago
         End If
 
         Dim limpiaFacturas As Integer
-        'Limpiando los pagos anteriores del Mes y Periodo
+        'Limpiando los pagos anteriores del Mes y Periodo, y todas las notas de crédito
         limpiaFacturas = SetLimpiarFacturasByMesPeriodo(mes, periodo)
 
         'Resultado exitoso
@@ -68,7 +68,8 @@ Public Class RptFormFacturaPago
                                         MONEDA_VENTA,
                                         PERIODO_VENTA,
                                         MES_VENTA,
-                                        FECHA_VENTA)
+                                        FECHA_VENTA,
+                                        ID_TIPO_DOCUMENTO)
                                         values
                                         (" + row.Item(3).ToString + ",
                                          " + row.Item(4).ToString + ",
@@ -83,7 +84,8 @@ Public Class RptFormFacturaPago
                                          " + row.Item(14).ToString + ",
                                          '" + row.Item(15).ToString + "',
                                          '" + row.Item(16).ToString + "',
-                                         cast('" + row.Item(17).ToString + "' as datetime) )"
+                                         cast('" + row.Item(17).ToString + "' as datetime) , 
+                                         " + row.Item(11).ToString + " )"
                     Next
 
                     If queryBatch <> "" Then
@@ -252,6 +254,7 @@ Public Class RptFormFacturaPago
                 sqlControl.BeginTransaction()
                 facturacionDao.SetDBcmd()
                 facturacionDao.SetLimpiarFacturasByMesPeriodo(mes, periodo)
+                facturacionDao.SetLimpiarNotasCreditoAll()
                 sqlControl.CommitTransaction()
                 flag = 1
             End If

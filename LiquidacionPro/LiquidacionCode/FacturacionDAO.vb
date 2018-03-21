@@ -934,6 +934,13 @@ Public Class FacturacionDAO
                                      params)
     End Function
 
+    Public Function SetLimpiarNotasCreditoAll() As DataTable
+
+        Return sqlControl.ExecQuery("delete	FACTURA_PAGO 
+		                            where	ID_TIPO_DOCUMENTO=337 ",
+                                     Nothing)
+    End Function
+
     Public Function GetRptFacturaVsPago(mes As String, periodo As String, opcion As Integer, cliente As Integer) As DataTable
 
         Dim params As New List(Of SqlParameter)
