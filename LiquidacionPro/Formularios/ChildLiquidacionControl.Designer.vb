@@ -189,6 +189,8 @@ Partial Class ChildLiquidacionControl
         Me.txtDescripcionHospedaje = New System.Windows.Forms.TextBox()
         Me.dtpHospedaje = New System.Windows.Forms.DateTimePicker()
         Me.Label42 = New System.Windows.Forms.Label()
+        Me.txtVuelto = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
         CType(Me.dgvLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.gbPeajes.SuspendLayout()
@@ -361,7 +363,7 @@ Partial Class ChildLiquidacionControl
         '
         'txtCombustibleVirtual
         '
-        Me.txtCombustibleVirtual.Location = New System.Drawing.Point(836, 369)
+        Me.txtCombustibleVirtual.Location = New System.Drawing.Point(997, 369)
         Me.txtCombustibleVirtual.Name = "txtCombustibleVirtual"
         Me.txtCombustibleVirtual.ReadOnly = True
         Me.txtCombustibleVirtual.Size = New System.Drawing.Size(108, 20)
@@ -370,7 +372,7 @@ Partial Class ChildLiquidacionControl
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(765, 372)
+        Me.Label16.Location = New System.Drawing.Point(926, 372)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(66, 13)
         Me.Label16.TabIndex = 81
@@ -428,7 +430,7 @@ Partial Class ChildLiquidacionControl
         '
         'txtCombustibleFisico
         '
-        Me.txtCombustibleFisico.Location = New System.Drawing.Point(648, 369)
+        Me.txtCombustibleFisico.Location = New System.Drawing.Point(809, 369)
         Me.txtCombustibleFisico.Name = "txtCombustibleFisico"
         Me.txtCombustibleFisico.ReadOnly = True
         Me.txtCombustibleFisico.Size = New System.Drawing.Size(107, 20)
@@ -437,7 +439,7 @@ Partial Class ChildLiquidacionControl
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(579, 372)
+        Me.Label13.Location = New System.Drawing.Point(740, 372)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(64, 13)
         Me.Label13.TabIndex = 77
@@ -606,7 +608,7 @@ Partial Class ChildLiquidacionControl
         '
         'txtDiferenciaComb
         '
-        Me.txtDiferenciaComb.Location = New System.Drawing.Point(1047, 369)
+        Me.txtDiferenciaComb.Location = New System.Drawing.Point(1208, 369)
         Me.txtDiferenciaComb.Name = "txtDiferenciaComb"
         Me.txtDiferenciaComb.ReadOnly = True
         Me.txtDiferenciaComb.Size = New System.Drawing.Size(74, 20)
@@ -615,7 +617,7 @@ Partial Class ChildLiquidacionControl
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(950, 372)
+        Me.Label23.Location = New System.Drawing.Point(1111, 372)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(85, 13)
         Me.Label23.TabIndex = 94
@@ -1786,11 +1788,29 @@ Partial Class ChildLiquidacionControl
         Me.Label42.TabIndex = 62
         Me.Label42.Text = "Total Hospedaje"
         '
+        'txtVuelto
+        '
+        Me.txtVuelto.Location = New System.Drawing.Point(627, 369)
+        Me.txtVuelto.Name = "txtVuelto"
+        Me.txtVuelto.Size = New System.Drawing.Size(100, 20)
+        Me.txtVuelto.TabIndex = 1002
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(584, 372)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(37, 13)
+        Me.Label11.TabIndex = 1003
+        Me.Label11.Text = "Vuelto"
+        '
         'ChildLiquidacionControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1321, 741)
+        Me.ClientSize = New System.Drawing.Size(1276, 807)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.txtVuelto)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.btnRptLiquidacionCombustible)
         Me.Controls.Add(Me.cbUnidadMedida)
@@ -2036,4 +2056,6 @@ Partial Class ChildLiquidacionControl
     Friend WithEvents txtDescripcionGuardiania As TextBox
     Friend WithEvents dtpGuardiania As DateTimePicker
     Friend WithEvents Label45 As Label
+    Friend WithEvents txtVuelto As TextBox
+    Friend WithEvents Label11 As Label
 End Class

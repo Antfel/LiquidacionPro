@@ -981,6 +981,8 @@ Partial Public Class rptLiquidaciones
         
         Private columnCONSUMO_VIRTUAL_LIQUIDACION As Global.System.Data.DataColumn
         
+        Private columnVUELTO As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -1289,6 +1291,14 @@ Partial Public Class rptLiquidaciones
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property VUELTOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnVUELTO
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1359,9 +1369,10 @@ Partial Public Class rptLiquidaciones
                     ByVal GALONES_LLEGA As Decimal,  _
                     ByVal NOMBRE_UNIDAD_MEDIDA As String,  _
                     ByVal CONSUMO_FISICO_LIQUIDACION As Decimal,  _
-                    ByVal CONSUMO_VIRTUAL_LIQUIDACION As Decimal) As dtRptLiquidacionGeneralRow
+                    ByVal CONSUMO_VIRTUAL_LIQUIDACION As Decimal,  _
+                    ByVal VUELTO As Decimal) As dtRptLiquidacionGeneralRow
             Dim rowdtRptLiquidacionGeneralRow As dtRptLiquidacionGeneralRow = CType(Me.NewRow,dtRptLiquidacionGeneralRow)
-            Dim columnValuesArray() As Object = New Object() {CODIGO_LIQUIDACION, NUMERO_LIQUIDACION, CODIGO_TRABAJADOR, TRABAJADOR, CODIGO_GUIA, DETALLE_GUIA, CODIGO_UNIDAD_TRACTO, TRACTO, CODIGO_UNIDAD_SEMITRAILER, SEMITRAILER, ORIGEN_LIQUIDACION, DESTINO_LIQUIDACION, FECHA_SALIDA, FECHA_LLEGADA, DINERO_LIQUIDACION, PEAJES_LIQUIDACION, VIATICOS_LIQUIDACION, GUARDIANIA_LIQUIDACION, HOSPEDAJE_LIQUIDACION, BALANZA_LIQUIDACION, OTROS_LIQUIDACION, CODIGO_ESTADO, CARGA, PESO, UNIDAD_MEDIDA, TANQUE, KM_SALIDA, KM_LLEGADA, KM_RECORRIDO, TOTAL_GASTO_COMBUSTIBLE, GALONES_LLEGA, NOMBRE_UNIDAD_MEDIDA, CONSUMO_FISICO_LIQUIDACION, CONSUMO_VIRTUAL_LIQUIDACION}
+            Dim columnValuesArray() As Object = New Object() {CODIGO_LIQUIDACION, NUMERO_LIQUIDACION, CODIGO_TRABAJADOR, TRABAJADOR, CODIGO_GUIA, DETALLE_GUIA, CODIGO_UNIDAD_TRACTO, TRACTO, CODIGO_UNIDAD_SEMITRAILER, SEMITRAILER, ORIGEN_LIQUIDACION, DESTINO_LIQUIDACION, FECHA_SALIDA, FECHA_LLEGADA, DINERO_LIQUIDACION, PEAJES_LIQUIDACION, VIATICOS_LIQUIDACION, GUARDIANIA_LIQUIDACION, HOSPEDAJE_LIQUIDACION, BALANZA_LIQUIDACION, OTROS_LIQUIDACION, CODIGO_ESTADO, CARGA, PESO, UNIDAD_MEDIDA, TANQUE, KM_SALIDA, KM_LLEGADA, KM_RECORRIDO, TOTAL_GASTO_COMBUSTIBLE, GALONES_LLEGA, NOMBRE_UNIDAD_MEDIDA, CONSUMO_FISICO_LIQUIDACION, CONSUMO_VIRTUAL_LIQUIDACION, VUELTO}
             rowdtRptLiquidacionGeneralRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdtRptLiquidacionGeneralRow)
             Return rowdtRptLiquidacionGeneralRow
@@ -1418,6 +1429,7 @@ Partial Public Class rptLiquidaciones
             Me.columnNOMBRE_UNIDAD_MEDIDA = MyBase.Columns("NOMBRE_UNIDAD_MEDIDA")
             Me.columnCONSUMO_FISICO_LIQUIDACION = MyBase.Columns("CONSUMO_FISICO_LIQUIDACION")
             Me.columnCONSUMO_VIRTUAL_LIQUIDACION = MyBase.Columns("CONSUMO_VIRTUAL_LIQUIDACION")
+            Me.columnVUELTO = MyBase.Columns("VUELTO")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1491,6 +1503,8 @@ Partial Public Class rptLiquidaciones
             MyBase.Columns.Add(Me.columnCONSUMO_FISICO_LIQUIDACION)
             Me.columnCONSUMO_VIRTUAL_LIQUIDACION = New Global.System.Data.DataColumn("CONSUMO_VIRTUAL_LIQUIDACION", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCONSUMO_VIRTUAL_LIQUIDACION)
+            Me.columnVUELTO = New Global.System.Data.DataColumn("VUELTO", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVUELTO)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9296,6 +9310,21 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property VUELTO() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionGeneral.VUELTOColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'VUELTO' de la tabla 'dtRptLiquidacionGeneral' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionGeneral.VUELTOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsCODIGO_LIQUIDACIONNull() As Boolean
             Return Me.IsNull(Me.tabledtRptLiquidacionGeneral.CODIGO_LIQUIDACIONColumn)
         End Function
@@ -9700,6 +9729,18 @@ Partial Public Class rptLiquidaciones
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetCONSUMO_VIRTUAL_LIQUIDACIONNull()
             Me(Me.tabledtRptLiquidacionGeneral.CONSUMO_VIRTUAL_LIQUIDACIONColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsVUELTONull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionGeneral.VUELTOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetVUELTONull()
+            Me(Me.tabledtRptLiquidacionGeneral.VUELTOColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
