@@ -287,6 +287,15 @@ Public Class GuiaDAO
                                     WHERE   CODIGO_GUIA = @codigo", params)
     End Function
 
+    Public Function getGuiaByCodigoCb(codigo As Integer) As DataTable
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@codigo", codigo))
+        Return sqlControl.ExecQuery("select	a.CODIGO_GUIA,
+		                                    a.DETALLE_GUIA   
+                                    from	GUIA_TRANSPORTISTA a  
+                                    WHERE   a.CODIGO_GUIA = @codigo", params)
+    End Function
+
     Public Function getRptGuiaLiquidacionFactura(estados As String) As DataTable
         Dim params As New List(Of SqlParameter)
         Return sqlControl.ExecQuery("SELECT	a.CODIGO_GUIA,

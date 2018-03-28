@@ -1429,7 +1429,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>2.24896cm</Height>
+      <Height>2.96334cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1483,9 +1483,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox20</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>10.08154cm</Left>
+          <Left>9.44656cm</Left>
           <Height>0.6cm</Height>
-          <Width>4.19334cm</Width>
+          <Width>4.82832cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -1513,9 +1513,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox21</rd:DefaultName>
           <Top>0.84695cm</Top>
-          <Left>10.08154cm</Left>
+          <Left>9.44656cm</Left>
           <Height>0.6cm</Height>
-          <Width>4.19334cm</Width>
+          <Width>4.82832cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -1578,9 +1578,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox23</rd:DefaultName>
           <Top>1.5175cm</Top>
-          <Left>10.10328cm</Left>
+          <Left>9.44656cm</Left>
           <Height>0.6cm</Height>
-          <Width>4.1716cm</Width>
+          <Width>4.82832cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>
@@ -1612,9 +1612,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox24</rd:DefaultName>
           <Top>1.5175cm</Top>
-          <Left>14.27488cm</Left>
+          <Left>14.34544cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.64112cm</Width>
+          <Width>2.57056cm</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
@@ -1625,6 +1625,70 @@
             <PaddingTop>2pt</PaddingTop>
             <PaddingBottom>2pt</PaddingBottom>
             <rd:FormatSymbolCulture>es-PE</rd:FormatSymbolCulture>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox16">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Fields!VUELTO.Value-(Fields!DINERO_LIQUIDACION.Value-(Fields!PEAJES_LIQUIDACION.Value+Fields!VIATICOS_LIQUIDACION.Value+Fields!GUARDIANIA_LIQUIDACION.Value+Fields!HOSPEDAJE_LIQUIDACION.Value+Fields!BALANZA_LIQUIDACION.Value+Fields!OTROS_LIQUIDACION.Value))</Value>
+                  <Style>
+                    <Format>#,0.00;(#,0.00)</Format>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox16</rd:DefaultName>
+          <Top>2.18806cm</Top>
+          <Left>14.34544cm</Left>
+          <Height>0.6cm</Height>
+          <Width>2.54882cm</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox17">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>FAVOR (+), EN CONTRA (-)</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox17</rd:DefaultName>
+          <Top>2.18806cm</Top>
+          <Left>9.44656cm</Left>
+          <Height>0.6cm</Height>
+          <Width>4.82832cm</Width>
+          <ZIndex>7</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
       </ReportItems>
@@ -1796,10 +1860,14 @@
           <DataField>CONSUMO_VIRTUAL_LIQUIDACION</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="VUELTO">
+          <DataField>VUELTO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>rptLiquidaciones</rd:DataSetName>
-        <rd:SchemaPath>D:\Proyecto Facturacion\LiquidacionPro\LiquidacionPro\Reportes\rptLiquidaciones.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Rad\source\repos\LiquidacionPro\LiquidacionPro\Reportes\rptLiquidaciones.xsd</rd:SchemaPath>
         <rd:TableName>dtRptLiquidacionGeneral</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

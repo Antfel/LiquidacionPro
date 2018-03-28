@@ -470,7 +470,7 @@ Public Class ChildLiquidacionCombustible
             guiaDao.setDBcmd()
             Dim dtGuia As DataTable
 
-            dtGuia = guiaDao.getGuiaByCodigo(cod_guia)
+            dtGuia = guiaDao.getGuiaByCodigoCb(cod_guia)
             sqlControl.CommitTransaction()
 
             With cbGuia

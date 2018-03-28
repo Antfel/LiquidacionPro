@@ -114,7 +114,7 @@ Public Class ChildLiquidacionControl
             End If
         End If
         Dim origen As String, destino As String, dinero As Double, peaje As Double, viatico As Double, guardiania As Double, hospedaje As Double, balanza As Double,
-            otros As Double, fisico As Double, virtual As Double, carga As String, peso As Double
+            otros As Double, fisico As Double, virtual As Double, carga As String, peso As Double, vuelto As Double
 
         If txtOrigen.Text = Nothing Then
             origen = ""
@@ -131,55 +131,55 @@ Public Class ChildLiquidacionControl
         If txtDinero.Text = Nothing Then
             dinero = 0
         Else
-            dinero = Double.Parse(txtDinero.Text)
+            dinero = CType(txtDinero.Text, Double)
         End If
 
         If txtPeajes.Text = Nothing Then
             peaje = 0
         Else
-            peaje = Double.Parse(txtPeajes.Text)
+            peaje = CType(txtPeajes.Text, Double)
         End If
 
         If txtViaticos.Text = Nothing Then
             viatico = 0
         Else
-            viatico = Double.Parse(txtViaticos.Text)
+            viatico = CType(txtViaticos.Text, Double)
         End If
 
         If txtGuardiania.Text = Nothing Then
             guardiania = 0
         Else
-            guardiania = Double.Parse(txtGuardiania.Text)
+            guardiania = CType(txtGuardiania.Text, Double)
         End If
 
         If txtHospedaje.Text = Nothing Then
             hospedaje = 0
         Else
-            hospedaje = Double.Parse(txtHospedaje.Text)
+            hospedaje = CType(txtHospedaje.Text, Double)
         End If
 
         If txtBalanza.Text = Nothing Then
             balanza = 0
         Else
-            balanza = Double.Parse(txtBalanza.Text)
+            balanza = CType(txtBalanza.Text, Double)
         End If
 
         If txtOtros.Text = Nothing Then
             otros = 0
         Else
-            otros = Double.Parse(txtOtros.Text)
+            otros = CType(txtOtros.Text, Double)
         End If
 
         If txtCombustibleFisico.Text = Nothing Then
             fisico = 0
         Else
-            fisico = Double.Parse(txtCombustibleFisico.Text)
+            fisico = CType(txtCombustibleFisico.Text, Double)
         End If
 
         If txtCombustibleVirtual.Text = Nothing Then
             virtual = 0
         Else
-            virtual = Double.Parse(txtCombustibleVirtual.Text)
+            virtual = CType(txtCombustibleVirtual.Text, Double)
         End If
 
         If txtCarga.Text = Nothing Then
@@ -191,19 +191,26 @@ Public Class ChildLiquidacionControl
         If txtPeso.Text = Nothing Then
             peso = 0
         Else
-            peso = Double.Parse(txtPeso.Text)
+            peso = CType(txtPeso.Text, Double)
         End If
 
         If cbGuia.SelectedIndex < 0 Then
             guia = -1
         Else
-            guia = cbGuia.SelectedValue
+            Console.WriteLine("inserup : " + cbGuia.SelectedValue.ToString)
+            guia = CType(cbGuia.SelectedValue, Integer)
         End If
 
         If cbCamabaja.SelectedIndex < 0 Then
             camabaja = -1
         Else
-            camabaja = cbCamabaja.SelectedValue
+            camabaja = CType(cbCamabaja.SelectedValue, Integer)
+        End If
+
+        If txtVuelto.Text = Nothing Then
+            vuelto = 0
+        Else
+            vuelto = CType(txtVuelto.Text, Double)
         End If
 
         Dim sqlControl As New SQLControl
@@ -227,7 +234,7 @@ Public Class ChildLiquidacionControl
                                              dinero, peaje, viatico,
                                              guardiania, hospedaje, balanza,
                                              otros, fisico,
-                                             virtual, cbEstado.SelectedValue, carga, peso, cbUnidadMedida.SelectedValue)
+                                             virtual, cbEstado.SelectedValue, carga, peso, cbUnidadMedida.SelectedValue, vuelto)
 
                 sqlControl.CommitTransaction()
 
@@ -270,7 +277,7 @@ Public Class ChildLiquidacionControl
                                          dinero, peaje, viatico,
                                          guardiania, hospedaje, balanza,
                                          otros, fisico, virtual,
-                                         cbEstado.SelectedValue, carga, peso, cbUnidadMedida.SelectedValue)
+                                         cbEstado.SelectedValue, carga, peso, cbUnidadMedida.SelectedValue, vuelto)
                 sqlControl.CommitTransaction()
 
                 If correla >= 0 Then
@@ -317,12 +324,12 @@ Public Class ChildLiquidacionControl
     Private Sub dgvLiquidacion_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvLiquidacion.CellMouseClick
         cargarLiquidacion()
         If txtCodigoLiquidacion.Text IsNot Nothing Then
-            cargarPeajes(CInt(txtCodigoLiquidacion.Text))
-            cargarViaticos(CInt(txtCodigoLiquidacion.Text))
-            cargarOtros(CInt(txtCodigoLiquidacion.Text))
-            cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
-            cargarGuardiania(CInt(txtCodigoLiquidacion.Text))
-            cargarBalanzas(CInt(txtCodigoLiquidacion.Text))
+            'cargarPeajes(CInt(txtCodigoLiquidacion.Text))
+            'cargarViaticos(CInt(txtCodigoLiquidacion.Text))
+            'cargarOtros(CInt(txtCodigoLiquidacion.Text))
+            'cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
+            'cargarGuardiania(CInt(txtCodigoLiquidacion.Text))
+            'cargarBalanzas(CInt(txtCodigoLiquidacion.Text))
         End If
 
     End Sub
@@ -342,17 +349,17 @@ Public Class ChildLiquidacionControl
             'filaSeleccionada = seleccion.Index
             Dim dt As DataTable
             dt = liquidacionDao.GetLiquidacionById(codigo)
-            'Console.WriteLine(CStr(filaSeleccionada))
             sqlControl.CommitTransaction()
 
             txtCodigoLiquidacion.Text = dt.Rows(0)(0)
             txtNroLiquidacion.Text = dt.Rows(0)(1)
             cbTrabajador.SelectedValue = dt.Rows(0)(2)
             If dt.Rows(0)(4) IsNot DBNull.Value Then
-                actualizarDatosGuiaRegistrada(CInt(dt.Rows(0)(4)))
-                cbGuia.SelectedValue = dt.Rows(0)(4)
+                cbGuia.SelectedValue = actualizarDatosGuiaRegistrada(CInt(dt.Rows(0)(4)))
+                If cbGuia.Items.Count > 0 Then
+                    cbGuia.SelectedValue = dt.Rows(0)(4)
+                End If
             End If
-
 
             cbTracto.SelectedValue = dt.Rows(0)(6)
             txtOrigen.Text = dt.Rows(0)(10)
@@ -386,6 +393,8 @@ Public Class ChildLiquidacionControl
             Else
                 cbUnidadMedida.SelectedIndex = 0
             End If
+
+            txtVuelto.Text = dt.Rows(0)(43)
         Catch ex As SQLException
             sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
@@ -565,7 +574,7 @@ Public Class ChildLiquidacionControl
 
     End Sub
 
-    Private Sub actualizarDatosGuiaRegistrada(cod_guia As Integer)
+    Private Function actualizarDatosGuiaRegistrada(cod_guia As Integer) As Integer
         Dim sqlControl As New SQLControl
         sqlControl.SetConnection()
 
@@ -576,25 +585,28 @@ Public Class ChildLiquidacionControl
             guiaDao.setDBcmd()
             Dim dtGuia As DataTable
 
-            dtGuia = guiaDao.getGuiaByCodigo(cod_guia)
+            dtGuia = guiaDao.getGuiaByCodigoCb(cod_guia)
             sqlControl.CommitTransaction()
-
             With cbGuia
                 .DataSource = dtGuia
                 .DisplayMember = "DETALLE_GUIA"
                 .ValueMember = "CODIGO_GUIA"
                 .DropDownStyle = ComboBoxStyle.Simple
-                .AutoCompleteMode = AutoCompleteMode.Suggest
-                .AutoCompleteSource = AutoCompleteSource.ListItems
-                .SelectedIndex = -1
+                '.AutoCompleteMode = AutoCompleteMode.Suggest
+                '.AutoCompleteSource = AutoCompleteSource.ListItems
             End With
 
+            Return dtGuia.Rows(0)(0)
+
         Catch ex As SqlException
+
             sqlControl.RollbackTransaccion()
+            Return -1
             MessageBox.Show("Error al cargar Guía Registrada. " + ex.Message, "Cargar Guía Registrada",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
         Catch ex As Exception
+            Return -1
             MessageBox.Show("Error al cargar Guía Registrada. " + ex.Message, "Cargar Guía Registrada",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Error)
@@ -608,7 +620,7 @@ Public Class ChildLiquidacionControl
             End Try
         End Try
 
-    End Sub
+    End Function
 
     Private Sub actualizarDatosTracto()
         Dim sqlControl As New SQLControl

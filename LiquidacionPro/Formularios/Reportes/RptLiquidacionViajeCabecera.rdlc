@@ -1026,7 +1026,7 @@
         <Top>0.69697cm</Top>
         <Left>0.28787cm</Left>
         <Height>3.02645cm</Height>
-        <Width>17.50187cm</Width>
+        <Width>17.50186cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -1777,7 +1777,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>DINERO_LIQUIDACION2</rd:DefaultName>
@@ -1854,7 +1856,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox23</rd:DefaultName>
@@ -1889,7 +1893,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ENTREGA VUELTO</Value>
+                              <Value>DIFERENCIA</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1928,7 +1932,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox28</rd:DefaultName>
@@ -1999,11 +2005,15 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
-                              <Style />
+                              <Value>=Fields!VUELTO.Value-(Fields!DINERO_LIQUIDACION.Value-(Fields!PEAJES_LIQUIDACION.Value+Fields!VIATICOS_LIQUIDACION.Value+Fields!GUARDIANIA_LIQUIDACION.Value+Fields!HOSPEDAJE_LIQUIDACION.Value+Fields!BALANZA_LIQUIDACION.Value+Fields!OTROS_LIQUIDACION.Value))</Value>
+                              <Style>
+                                <Format>'S/.'#,0.00;('S/.'#,0.00)</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox36</rd:DefaultName>
@@ -2022,6 +2032,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-PE</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -2276,10 +2287,14 @@
           <DataField>CONSUMO_VIRTUAL_LIQUIDACION</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="VUELTO">
+          <DataField>VUELTO</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>rptLiquidaciones</rd:DataSetName>
-        <rd:SchemaPath>D:\Proyecto Facturacion\LiquidacionPro\LiquidacionPro\Reportes\rptLiquidaciones.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Rad\source\repos\LiquidacionPro\LiquidacionPro\Reportes\rptLiquidaciones.xsd</rd:SchemaPath>
         <rd:TableName>dtRptLiquidacionGeneral</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

@@ -66,7 +66,10 @@ Public Class LiquidacionDAO
 			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0)) 'TOTAL GASTO',
 			                        (coalesce(a.DINERO_LIQUIDACION,0)-(coalesce(a.PEAJES_LIQUIDACION,0)+coalesce(a.VIATICOS_LIQUIDACION,0)+coalesce(a.GUARDIANIA_LIQUIDACION,0)+
 			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0))) 'DIFERENCIA GASTO',
-                                    a.CONSUMO_FISICO_LIQUIDACION-a.CONSUMO_VIRTUAL_LIQUIDACION 'DIFERENCIA CONSUMO'      
+                                    a.CONSUMO_FISICO_LIQUIDACION-a.CONSUMO_VIRTUAL_LIQUIDACION 'DIFERENCIA CONSUMO',
+                                    coalesce(a.VUELTO,0) VUELTO,
+                                    (coalesce(a.VUELTO,0)-(coalesce(a.DINERO_LIQUIDACION,0)-(coalesce(a.PEAJES_LIQUIDACION,0)+coalesce(a.VIATICOS_LIQUIDACION,0)+coalesce(a.GUARDIANIA_LIQUIDACION,0)+
+			                        coalesce(a.HOSPEDAJE_LIQUIDACION,0)+coalesce(a.BALANZA_LIQUIDACION,0)+coalesce(a.OTROS_LIQUIDACION,0))) ) 'FAVOR/CONTRA' 
                         from		LIQUIDACION a
                         LEFT JOIN	UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
                         LEFT JOIN	UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD
@@ -123,7 +126,8 @@ Public Class LiquidacionDAO
                                     coalesce(a.AJUSTE_GALONES,0),
                                     coalesce(a.TOTAL_GALONES,0),
                                     coalesce(a.PESO_DESCRIPCION,''),
-                                    coalesce(a.DISTANCIA,0) 
+                                    coalesce(a.DISTANCIA,0),
+                                    coalesce(a.VUELTO,0) 
                         from		LIQUIDACION a
                         LEFT JOIN	UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
                         LEFT JOIN	UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD
@@ -140,7 +144,7 @@ Public Class LiquidacionDAO
                                  dinero As Double, peajes As Double, viaticos As Double,
                                  guardiania As Double, hospedaje As Double, balanaza As Double,
                                  otros As Double, fisico As Double, virtual As Double,
-                                 estado As Object, carga As String, peso As Double, unidadMedida As Object) As Integer
+                                 estado As Object, carga As String, peso As Double, unidadMedida As Object, vuelto As Double) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@NUMERO_LIQUIDACION", nroLiquidacion))
@@ -176,6 +180,7 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@CARGA", carga))
         params.Add(New SqlParameter("@PESO", peso))
         params.Add(New SqlParameter("@UNIDAD_MEDIDA", unidadMedida))
+        params.Add(New SqlParameter("@VUELTO", vuelto))
 
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE insertLiquidacion 
@@ -200,7 +205,8 @@ Public Class LiquidacionDAO
                                         @CODIGO_ESTADO,
                                         @CARGA,
                                         @PESO,
-                                        @UNIDAD_MEDIDA ", params)
+                                        @UNIDAD_MEDIDA,
+                                        @VUELTO ", params)
 
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
@@ -221,7 +227,7 @@ Public Class LiquidacionDAO
                                  dinero As Double, peajes As Double, viaticos As Double,
                                  guardiania As Double, hospedaje As Double, balanaza As Double,
                                  otros As Double, fisico As Double, virtual As Double,
-                                 estado As Object, carga As String, peso As Double, unidadMedida As Object) As Integer
+                                 estado As Object, carga As String, peso As Double, unidadMedida As Object, vuelto As Double) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo))
@@ -247,6 +253,7 @@ Public Class LiquidacionDAO
         params.Add(New SqlParameter("@CARGA", carga))
         params.Add(New SqlParameter("@PESO", peso))
         params.Add(New SqlParameter("@UNIDAD_MEDIDA", unidadMedida))
+        params.Add(New SqlParameter("@VUELTO", vuelto))
 
         Dim dt As DataTable
         dt = sqlControl.ExecQuery("EXECUTE updateLiquidacion 
@@ -272,7 +279,8 @@ Public Class LiquidacionDAO
                                         @CODIGO_ESTADO,
                                         @CARGA,
                                         @PESO,
-                                        @UNIDAD_MEDIDA ", params)
+                                        @UNIDAD_MEDIDA,
+                                        @VUELTO ", params)
         If Not dt Is Nothing Then
             If dt.Rows.Count > 0 Then
                 Return CInt(dt.Rows.Item(0).Item(0))
@@ -701,7 +709,8 @@ Public Class LiquidacionDAO
                                             coalesce(a.GALONES_LLEGA,0)GALONES_LLEGA,
                                             coalesce(f.DETALLE_ESTADO,'') NOMBRE_UNIDAD_MEDIDA,
                                             coalesce(a.CONSUMO_FISICO_LIQUIDACION,0) CONSUMO_FISICO_LIQUIDACION,
-                                            coalesce(a.CONSUMO_VIRTUAL_LIQUIDACION,0)  CONSUMO_VIRTUAL_LIQUIDACION 
+                                            coalesce(a.CONSUMO_VIRTUAL_LIQUIDACION,0)  CONSUMO_VIRTUAL_LIQUIDACION,
+                                            coalesce(a.VUELTO,0) VUELTO 
                                     from	LIQUIDACION a 
                                     left	join TRABAJADOR b on a.CODIGO_TRABAJADOR=b.CODIGO_TRABAJADOR 
                                     left	join GUIA_TRANSPORTISTA c on c.CODIGO_GUIA=a.CODIGO_GUIA 

@@ -51,6 +51,7 @@
               <xs:element name="NOMBRE_UNIDAD_MEDIDA" msprop:Generator_ColumnVarNameInTable="columnNOMBRE_UNIDAD_MEDIDA" msprop:Generator_ColumnPropNameInRow="NOMBRE_UNIDAD_MEDIDA" msprop:Generator_ColumnPropNameInTable="NOMBRE_UNIDAD_MEDIDAColumn" msprop:Generator_UserColumnName="NOMBRE_UNIDAD_MEDIDA" type="xs:string" minOccurs="0" />
               <xs:element name="CONSUMO_FISICO_LIQUIDACION" msprop:Generator_ColumnVarNameInTable="columnCONSUMO_FISICO_LIQUIDACION" msprop:Generator_ColumnPropNameInRow="CONSUMO_FISICO_LIQUIDACION" msprop:Generator_ColumnPropNameInTable="CONSUMO_FISICO_LIQUIDACIONColumn" msprop:Generator_UserColumnName="CONSUMO_FISICO_LIQUIDACION" type="xs:decimal" minOccurs="0" />
               <xs:element name="CONSUMO_VIRTUAL_LIQUIDACION" msprop:Generator_ColumnVarNameInTable="columnCONSUMO_VIRTUAL_LIQUIDACION" msprop:Generator_ColumnPropNameInRow="CONSUMO_VIRTUAL_LIQUIDACION" msprop:Generator_ColumnPropNameInTable="CONSUMO_VIRTUAL_LIQUIDACIONColumn" msprop:Generator_UserColumnName="CONSUMO_VIRTUAL_LIQUIDACION" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VUELTO" msprop:Generator_ColumnVarNameInTable="columnVUELTO" msprop:Generator_ColumnPropNameInRow="VUELTO" msprop:Generator_ColumnPropNameInTable="VUELTOColumn" msprop:Generator_UserColumnName="VUELTO" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
