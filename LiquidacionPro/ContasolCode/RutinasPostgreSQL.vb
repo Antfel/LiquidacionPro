@@ -105,9 +105,9 @@ Public Class RutinasPostgreSQL
 		                                                when e.""i_IdTipoPersona""=1 then (case when e.""v_ApeMaterno""<>'' then e.""v_ApePaterno""||' '||e.""v_ApeMaterno""||' '||e.""v_PrimerNombre""
 						                                                else e.""v_RazonSocial"" end)
 		                                                 end ""v_RazonSocial"",
-	                                                case 	when b.""i_IdTipoDocumento""=1 then b.""v_NroDocumento""
-		                                                when b.""i_IdTipoDocumento""=3 then b.""v_NroDocumento""
-		                                                when b.""i_IdTipoDocumento""=7 then b.""v_NroDocumentoRef"" end ""i_IdTipoDocumento"",
+	                                                case 	when b.""i_IdTipoDocumento""=1 then rtrim(ltrim(b.""v_NroDocumento""))
+		                                                when b.""i_IdTipoDocumento""=3 then rtrim(ltrim(b.""v_NroDocumento""))
+		                                                when b.""i_IdTipoDocumento""=7 then rtrim(ltrim(b.""v_NroDocumentoRef"")) end ""i_IdTipoDocumento"",
 	                                                case	when b.""v_Naturaleza""='D' then
 						                                                case	when a.""i_IdMoneda""=1 then b.""d_Importe""
 							                                                when a.""i_IdMoneda""=2 then b.""d_Cambio"" end 
@@ -141,9 +141,9 @@ Public Class RutinasPostgreSQL
 		                                                when e.""i_IdTipoPersona""=1 then case when e.""v_ApeMaterno""<>'' then e.""v_ApePaterno""||' '||e.""v_ApeMaterno""||' '||e.""v_PrimerNombre""
 						                                                else e.""v_RazonSocial"" end 
 	                                                end,
-	                                                case 	when b.""i_IdTipoDocumento""=1 then b.""v_NroDocumento""
-		                                                when b.""i_IdTipoDocumento""=3 then b.""v_NroDocumento""
-		                                                when b.""i_IdTipoDocumento""=7 then b.""v_NroDocumentoRef"" end ""i_IdTipoDocumento"",
+	                                                case 	when b.""i_IdTipoDocumento""=1 then rtrim(ltrim(b.""v_NroDocumento""))
+		                                                when b.""i_IdTipoDocumento""=3 then rtrim(ltrim(b.""v_NroDocumento""))
+		                                                when b.""i_IdTipoDocumento""=7 then rtrim(ltrim(b.""v_NroDocumentoRef"")) end ""i_IdTipoDocumento"",
 	                                                case	when b.""v_Naturaleza""='D' then
 						                                                case	when a.""i_IdMoneda""=1 then b.""d_Importe""
 							                                                when a.""i_IdMoneda""=2 then b.""d_Cambio"" end 
