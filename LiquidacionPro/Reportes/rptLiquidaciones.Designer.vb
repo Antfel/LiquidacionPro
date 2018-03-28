@@ -9785,6 +9785,21 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property VUELTO() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptLiquidacionGeneral.VUELTOColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'VUELTO' de la tabla 'dtRptLiquidacionGeneral' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptLiquidacionGeneral.VUELTOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsCODIGO_LIQUIDACIONNull() As Boolean
             Return Me.IsNull(Me.tabledtRptLiquidacionGeneral.CODIGO_LIQUIDACIONColumn)
         End Function
@@ -10190,6 +10205,18 @@ Partial Public Class rptLiquidaciones
         Public Sub SetCONSUMO_VIRTUAL_LIQUIDACIONNull()
             Me(Me.tabledtRptLiquidacionGeneral.CONSUMO_VIRTUAL_LIQUIDACIONColumn) = Global.System.Convert.DBNull
         End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsVUELTONull() As Boolean
+            Return Me.IsNull(Me.tabledtRptLiquidacionGeneral.VUELTOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetVUELTONull()
+            Me(Me.tabledtRptLiquidacionGeneral.VUELTOColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
     
     '''<summary>
@@ -10268,21 +10295,6 @@ Partial Public Class rptLiquidaciones
             End Get
             Set
                 Me(Me.tabledtRptLiquidacionGeneralDetalle.TOTALColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property VUELTO() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tabledtRptLiquidacionGeneral.VUELTOColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'VUELTO' de la tabla 'dtRptLiquidacionGeneral' es DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tabledtRptLiquidacionGeneral.VUELTOColumn) = value
             End Set
         End Property
         
@@ -10828,18 +10840,6 @@ Partial Public Class rptLiquidaciones
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetTOTALNull()
             Me(Me.tabledtRptLiquidacionViajeOtro.TOTALColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsVUELTONull() As Boolean
-            Return Me.IsNull(Me.tabledtRptLiquidacionGeneral.VUELTOColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetVUELTONull()
-            Me(Me.tabledtRptLiquidacionGeneral.VUELTOColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

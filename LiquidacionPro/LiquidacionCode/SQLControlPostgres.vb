@@ -19,7 +19,7 @@ Public Class SQLControlPostgres
     Public Sub SetConnection()
         con = New NpgsqlConnection()
         'con.ConnectionString = "Server=minos;Port=5432;Database=20518904427;User Id=postgres;Password=sistemas;"
-        con.ConnectionString = "Server=192.168.1.11;Port=5432;Database=20518904427;User Id=readuser;Password=12345678;"
+        con.ConnectionString = "Server=192.168.5.101;Port=5432;Database=20518904427;User Id=readuser;Password=12345678;"
     End Sub
 
     Public Function OpenConexion() As Boolean
