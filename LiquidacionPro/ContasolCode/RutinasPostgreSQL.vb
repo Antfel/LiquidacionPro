@@ -42,14 +42,14 @@ Public Class RutinasPostgreSQL
 		                                                a.""v_NroDocumento"",
 		                                                b.""v_Periodo"",
 		                                                b.""v_Mes"",
-                                                        to_char(b.""t_FechaRegistro"", 'MM/DD/YYYY') ""v_Fecha_Pago"",
+                                                        to_char(b.""t_FechaRegistro"", 'DD/MM/YYYY') ""v_Fecha_Pago"",
 		                                                b.""i_IdTipoDocumento"",
 		                                                c.""v_Nombre"",
 		                                                d.""d_TipoCambio"" ""d_TipoCambio_Venta"",
 		                                                d.""i_IdMoneda"" ""i_IdMoneda_Venta"",
 		                                                d.""v_Periodo"" ""v_Periodo_Venta"",
 		                                                d.""v_Mes"" ""v_Mes_Venta"",
-		                                                to_char(d.""t_FechaRegistro"", 'MM/DD/YYYY') ""v_Fecha_Venta"" 
+		                                                to_char(d.""t_FechaRegistro"", 'DD/MM/YYYY') ""v_Fecha_Venta"" 
                                                 from	tesoreriadetalle a 
                                                 inner	join tesoreria b on a.""v_IdTesoreria""=b.""v_IdTesoreria""  
                                                 left	join documento c on b.""i_IdTipoDocumento""=c.""i_CodigoDocumento"" 
@@ -70,14 +70,14 @@ Public Class RutinasPostgreSQL
 		                                                rtrim(ltrim(a.""v_NroDocumentoRef"")),
 		                                                b.""v_Periodo"",
 		                                                b.""v_Mes"",
-		                                                to_char(b.""t_Fecha"", 'MM/DD/YYYY') ""v_Fecha_Pago"",
+		                                                to_char(b.""t_Fecha"", 'DD/MM/YYYY') ""v_Fecha_Pago"",
 		                                                b.""i_IdTipoDocumento"",
 		                                                c.""v_Nombre"",
 		                                                d.""d_TipoCambio"" ""d_TipoCambio_Venta"",
 		                                                d.""i_IdMoneda"" ""i_IdMoneda_Venta"",
 		                                                d.""v_Periodo"" ""v_Periodo_Venta"",
 		                                                d.""v_Mes"" ""v_Mes_Venta"",
-		                                                to_char(d.""t_FechaRegistro"", 'MM/DD/YYYY') ""v_Fecha_Venta""
+		                                                to_char(d.""t_FechaRegistro"", 'DD/MM/YYYY') ""v_Fecha_Venta""
                                                 from	diariodetalle a 
                                                 inner	join diario b on a.""v_IdDiario""=b.""v_IdDiario""  
                                                 left	join documento c on b.""i_IdTipoDocumento""=c.""i_CodigoDocumento"" 
@@ -86,6 +86,94 @@ Public Class RutinasPostgreSQL
 		                                                and a.""v_Naturaleza""='H'  
 		                                                and b.""i_IdTipoDocumento""=337 
                                                 order 	by 8 asc  ", params)
+
+
+    End Function
+
+    Public Function GetFacturasPagosAll() As DataTable
+
+        Return sqlControlPostgres.ExecQuery("select	aa.""v_NroDocIdentificacion"",
+	                                                aa.""v_RazonSocial"",
+	                                                aa.""i_IdTipoDocumento"",
+	                                                sum(""DEBE_SOLES""),
+	                                                sum(""HABER_SOLES""),
+	                                                sum(""DEBE_DOLARES""), 
+	                                                sum(""HABER_DOLARES"")
+                                                from (
+                                                select	e.""v_NroDocIdentificacion"",
+	                                                case 	when e.""i_IdTipoPersona""=2 then e.""v_RazonSocial""
+		                                                when e.""i_IdTipoPersona""=1 then (case when e.""v_ApeMaterno""<>'' then e.""v_ApePaterno""||' '||e.""v_ApeMaterno""||' '||e.""v_PrimerNombre""
+						                                                else e.""v_RazonSocial"" end)
+		                                                 end ""v_RazonSocial"",
+	                                                case 	when b.""i_IdTipoDocumento""=1 then b.""v_NroDocumento""
+		                                                when b.""i_IdTipoDocumento""=3 then b.""v_NroDocumento""
+		                                                when b.""i_IdTipoDocumento""=7 then b.""v_NroDocumentoRef"" end ""i_IdTipoDocumento"",
+	                                                case	when b.""v_Naturaleza""='D' then
+						                                                case	when a.""i_IdMoneda""=1 then b.""d_Importe""
+							                                                when a.""i_IdMoneda""=2 then b.""d_Cambio"" end 
+		                                                when b.""v_Naturaleza""='H' then 0 end ""DEBE_SOLES"",
+
+	                                                case	when b.""v_Naturaleza""='H' then
+						                                                case	when a.""i_IdMoneda""=1 then b.""d_Importe""
+							                                                when a.""i_IdMoneda""=2 then b.""d_Cambio"" end 
+		                                                when b.""v_Naturaleza""='D' then 0 end ""HABER_SOLES"",
+		
+	                                                case	when b.""v_Naturaleza""='D' then
+						                                                case	when a.""i_IdMoneda""=1 then b.""d_Cambio""
+							                                                when a.""i_IdMoneda""=2 then b.""d_Importe"" end 
+		                                                when b.""v_Naturaleza""='H' then 0 end ""DEBE_DOLARES"",
+		
+	                                                case	when b.""v_Naturaleza""='H' then
+						                                                case	when a.""i_IdMoneda""=1 then b.""d_Cambio""
+							                                                when a.""i_IdMoneda""=2 then b.""d_Importe"" end 
+		                                                when b.""v_Naturaleza""='D' then 0 end ""HABER_DOLARES""
+                                                from	diario a
+                                                inner 	join diariodetalle b on a.""v_IdDiario""=b.""v_IdDiario""
+                                                inner	join documento c on c.""i_CodigoDocumento""=a.""i_IdTipoDocumento""
+                                                inner	join documento d on d.""i_CodigoDocumento""=b.""i_IdTipoDocumento""
+                                                left	join cliente e on e.""v_IdCliente""=b.""v_IdCliente""
+                                                where	b.""v_NroCuenta""='1212101'
+                                                and	a.""i_Eliminado""=0
+                                                and	b.""i_Eliminado""=0
+                                                union 	all
+                                                select 	e.""v_NroDocIdentificacion"",
+	                                                case 	when e.""i_IdTipoPersona""=2 then e.""v_RazonSocial""
+		                                                when e.""i_IdTipoPersona""=1 then case when e.""v_ApeMaterno""<>'' then e.""v_ApePaterno""||' '||e.""v_ApeMaterno""||' '||e.""v_PrimerNombre""
+						                                                else e.""v_RazonSocial"" end 
+	                                                end,
+	                                                case 	when b.""i_IdTipoDocumento""=1 then b.""v_NroDocumento""
+		                                                when b.""i_IdTipoDocumento""=3 then b.""v_NroDocumento""
+		                                                when b.""i_IdTipoDocumento""=7 then b.""v_NroDocumentoRef"" end ""i_IdTipoDocumento"",
+	                                                case	when b.""v_Naturaleza""='D' then
+						                                                case	when a.""i_IdMoneda""=1 then b.""d_Importe""
+							                                                when a.""i_IdMoneda""=2 then b.""d_Cambio"" end 
+		                                                when b.""v_Naturaleza""='H' then 0 end ""DEBE_SOLES"",
+
+	                                                case	when b.""v_Naturaleza""='H' then
+						                                                case	when a.""i_IdMoneda""=1 then b.""d_Importe""
+							                                                when a.""i_IdMoneda""=2 then b.""d_Cambio"" end 
+		                                                when b.""v_Naturaleza""='D' then 0 end ""HABER_SOLES"",
+		
+	                                                case	when b.""v_Naturaleza""='D' then
+						                                                case	when a.""i_IdMoneda""=1 then b.""d_Cambio""
+							                                                when a.""i_IdMoneda""=2 then b.""d_Importe"" end 
+		                                                when b.""v_Naturaleza""='H' then 0 end ""DEBE_DOLARES"",
+		
+	                                                case	when b.""v_Naturaleza""='H' then
+						                                                case	when a.""i_IdMoneda""=1 then b.""d_Cambio""
+							                                                when a.""i_IdMoneda""=2 then b.""d_Importe"" end 
+		                                                when b.""v_Naturaleza""='D' then 0 end ""HABER_DOLARES""
+                                                from 	tesoreria a
+                                                inner	join tesoreriadetalle b on a.""v_IdTesoreria""=b.""v_IdTesoreria""
+                                                inner	join documento c on c.""i_CodigoDocumento""=a.""i_IdTipoDocumento""
+                                                inner	join documento d on d.""i_CodigoDocumento""=b.""i_IdTipoDocumento""
+                                                left	join cliente e on e.""v_IdCliente""=b.""v_IdCliente""
+                                                where	b.""v_NroCuenta""='1212101'
+                                                and	a.""i_Eliminado""=0
+                                                and	b.""i_Eliminado""=0
+                                                ) aa
+                                                group	by aa.""v_NroDocIdentificacion"",aa.""v_RazonSocial"",""i_IdTipoDocumento""
+                                                order 	by 2,3 asc ", Nothing)
 
 
     End Function

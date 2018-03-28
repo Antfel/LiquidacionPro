@@ -428,6 +428,9 @@
     <Content Include="Formularios\Reportes\RptFacturaVsPago.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Formularios\Reportes\RptFacturaVsAbono.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Formularios\RptFormFacturaCuentasPorCobrar.resx">
       <DependentUpon>RptFormFacturaCuentasPorCobrar.vb</DependentUpon>
     </EmbeddedResource>

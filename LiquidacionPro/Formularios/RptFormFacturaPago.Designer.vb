@@ -44,7 +44,7 @@ Partial Class RptFormFacturaPago
         Me.btnVerificarPeriodo.Location = New System.Drawing.Point(740, 12)
         Me.btnVerificarPeriodo.Name = "btnVerificarPeriodo"
         Me.btnVerificarPeriodo.Size = New System.Drawing.Size(71, 23)
-        Me.btnVerificarPeriodo.TabIndex = 0
+        Me.btnVerificarPeriodo.TabIndex = 8
         Me.btnVerificarPeriodo.Text = "Consultar"
         Me.btnVerificarPeriodo.UseVisualStyleBackColor = True
         '
@@ -54,7 +54,7 @@ Partial Class RptFormFacturaPago
         Me.ReportViewer1.Name = "ReportViewer1"
         Me.ReportViewer1.ServerReport.BearerToken = Nothing
         Me.ReportViewer1.Size = New System.Drawing.Size(405, 249)
-        Me.ReportViewer1.TabIndex = 1
+        Me.ReportViewer1.TabIndex = 12
         '
         'GroupBox1
         '
@@ -90,7 +90,7 @@ Partial Class RptFormFacturaPago
         Me.cbCliente.Location = New System.Drawing.Point(392, 16)
         Me.cbCliente.Name = "cbCliente"
         Me.cbCliente.Size = New System.Drawing.Size(310, 21)
-        Me.cbCliente.TabIndex = 9
+        Me.cbCliente.TabIndex = 7
         '
         'rbtn4
         '
@@ -98,7 +98,7 @@ Partial Class RptFormFacturaPago
         Me.rbtn4.Location = New System.Drawing.Point(255, 38)
         Me.rbtn4.Name = "rbtn4"
         Me.rbtn4.Size = New System.Drawing.Size(76, 17)
-        Me.rbtn4.TabIndex = 7
+        Me.rbtn4.TabIndex = 6
         Me.rbtn4.TabStop = True
         Me.rbtn4.Text = "Cancelado"
         Me.rbtn4.UseVisualStyleBackColor = True
@@ -109,7 +109,7 @@ Partial Class RptFormFacturaPago
         Me.rbtn3.Location = New System.Drawing.Point(158, 38)
         Me.rbtn3.Name = "rbtn3"
         Me.rbtn3.Size = New System.Drawing.Size(100, 17)
-        Me.rbtn3.TabIndex = 6
+        Me.rbtn3.TabIndex = 4
         Me.rbtn3.TabStop = True
         Me.rbtn3.Text = "Saldo en contra"
         Me.rbtn3.UseVisualStyleBackColor = True
@@ -132,7 +132,7 @@ Partial Class RptFormFacturaPago
         Me.rbtn1.Location = New System.Drawing.Point(158, 15)
         Me.rbtn1.Name = "rbtn1"
         Me.rbtn1.Size = New System.Drawing.Size(84, 17)
-        Me.rbtn1.TabIndex = 4
+        Me.rbtn1.TabIndex = 3
         Me.rbtn1.TabStop = True
         Me.rbtn1.Text = "Mostrar todo"
         Me.rbtn1.UseVisualStyleBackColor = True
@@ -143,7 +143,7 @@ Partial Class RptFormFacturaPago
         Me.txtPeriodo.MaxLength = 4
         Me.txtPeriodo.Name = "txtPeriodo"
         Me.txtPeriodo.Size = New System.Drawing.Size(97, 20)
-        Me.txtPeriodo.TabIndex = 3
+        Me.txtPeriodo.TabIndex = 2
         '
         'Label2
         '
@@ -169,14 +169,14 @@ Partial Class RptFormFacturaPago
         Me.cbMes.Location = New System.Drawing.Point(50, 15)
         Me.cbMes.Name = "cbMes"
         Me.cbMes.Size = New System.Drawing.Size(97, 21)
-        Me.cbMes.TabIndex = 0
+        Me.cbMes.TabIndex = 1
         '
         'btnLimpiar
         '
         Me.btnLimpiar.Location = New System.Drawing.Point(817, 12)
         Me.btnLimpiar.Name = "btnLimpiar"
         Me.btnLimpiar.Size = New System.Drawing.Size(75, 23)
-        Me.btnLimpiar.TabIndex = 3
+        Me.btnLimpiar.TabIndex = 9
         Me.btnLimpiar.Text = "Limpiar"
         Me.btnLimpiar.UseVisualStyleBackColor = True
         '

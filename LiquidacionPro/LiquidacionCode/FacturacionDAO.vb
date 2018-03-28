@@ -941,6 +941,12 @@ Public Class FacturacionDAO
                                      Nothing)
     End Function
 
+    Public Function LimpiarFacturaAbonoAll() As DataTable
+
+        Return sqlControl.ExecQuery("delete	FACTURA_ABONO ",
+                                     Nothing)
+    End Function
+
     Public Function GetRptFacturaVsPago(mes As String, periodo As String, opcion As Integer, cliente As Integer) As DataTable
 
         Dim params As New List(Of SqlParameter)
@@ -948,8 +954,18 @@ Public Class FacturacionDAO
         params.Add(New SqlParameter("@periodo", periodo))
         params.Add(New SqlParameter("@opcion", opcion))
         params.Add(New SqlParameter("@cliente", cliente))
-        Console.WriteLine("sql param " + cliente.ToString)
         Return sqlControl.ExecQuery("exec uspRptFacturaVsPagos @mes,@periodo,@opcion,@cliente ",
+                                     params)
+    End Function
+
+    Public Function GetRptFacturaVsAbono(mes As String, periodo As String, opcion As Integer, cliente As Integer) As DataTable
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@mes", mes))
+        params.Add(New SqlParameter("@periodo", periodo))
+        params.Add(New SqlParameter("@opcion", opcion))
+        params.Add(New SqlParameter("@cliente", cliente))
+        Return sqlControl.ExecQuery("exec uspRptFacturaVsAbono @mes,@periodo,@opcion,@cliente ",
                                      params)
     End Function
 

@@ -20,7 +20,16 @@ Public Class RptFormFacturaPago
             Return
         End If
 
-        periodo = txtPeriodo.Text
+        Try
+            periodo = txtPeriodo.Text
+        Catch ex As Exception
+            MessageBox.Show("Ingresar Periodo válido.", "Cargar Reporte",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
+            Return
+        End Try
+
+
 
         If rbtn1.Checked = True Then
             opcion = 0
@@ -40,7 +49,7 @@ Public Class RptFormFacturaPago
 
         Dim limpiaFacturas As Integer
         'Limpiando los pagos anteriores del Mes y Periodo, y todas las notas de crédito
-        limpiaFacturas = SetLimpiarFacturasByMesPeriodo(mes, periodo)
+        limpiaFacturas = LimpiarFacturaAbonoAll()
 
         'Resultado exitoso
         If limpiaFacturas = 1 Then
@@ -48,74 +57,68 @@ Public Class RptFormFacturaPago
             Dim queryBatch As String = ""
 
             'Se obtiene del sistema contable, todos los pagos realizados de las facturas en el periodo indicado
-            dt = GetFacturasPagoByMesPeriodo(mes, periodo)
+            dt = GetFacturasPagosAll()
+
             If dt IsNot Nothing Then
                 If dt.Rows.Count > 0 Then
                     For Each row As DataRow In dt.Rows
 
                         'Se arma un query para insertar todos los pagos por factura en el periodo indicado
-                        queryBatch += "insert into FACTURA_PAGO
-                                        (IMPORTE,
-                                        CAMBIO,
-                                        MONEDA,
-                                        TIPO_CAMBIO,
+                        queryBatch += "insert into FACTURA_ABONO 
+                                        (RUC,
+                                        RAZON_SOCIAL,
                                         NRO_DOCUMENTO,
-                                        PERIODO,
-                                        MES,
-                                        FECHA_PAGO,
-                                        NOMBRE,
-                                        TIPO_CAMBIO_VENTA,
-                                        MONEDA_VENTA,
-                                        PERIODO_VENTA,
-                                        MES_VENTA,
-                                        FECHA_VENTA,
-                                        ID_TIPO_DOCUMENTO)
+                                        DEBE_SOLES,
+                                        HABER_SOLES,
+                                        DEBE_DOLARES,
+                                        HABER_DOLARES)
                                         values
-                                        (" + row.Item(3).ToString + ",
+                                        ('" + row.Item(0).ToString + "',
+                                         '" + row.Item(1).ToString.Replace("'", "''") + "',
+                                         '" + row.Item(2).ToString + "',
+                                         " + row.Item(3).ToString + ",
                                          " + row.Item(4).ToString + ",
                                          " + row.Item(5).ToString + ",
-                                         " + row.Item(6).ToString + ",
-                                         '" + row.Item(7).ToString + "',
-                                         '" + row.Item(8).ToString + "',
-                                         '" + row.Item(9).ToString + "',
-                                         cast('" + row.Item(10).ToString + "' as datetime),
-                                         '" + row.Item(12).ToString + "',
-                                         " + row.Item(13).ToString + ",
-                                         " + row.Item(14).ToString + ",
-                                         '" + row.Item(15).ToString + "',
-                                         '" + row.Item(16).ToString + "',
-                                         cast('" + row.Item(17).ToString + "' as datetime) , 
-                                         " + row.Item(11).ToString + " )"
+                                         " + row.Item(6).ToString + ") "
                     Next
 
                     If queryBatch <> "" Then
                         Dim dt2 As DataTable = ejecutarQueryBatch(queryBatch)
                         If dt2 IsNot Nothing Then
-                            queryBatch = "  UPDATE
-                                                Table_A 
-                                            SET 
-                                                Table_A.TIPO_CAMBIO = Table_B.TIPO_CAMBIO_VENTA, 
-	                                            Table_A.ID_MONEDA = Table_B.MONEDA_VENTA 
-                                            FROM 
-                                                FACTURA AS Table_A 
-                                                INNER JOIN (select	distinct 
-						                                            NRO_DOCUMENTO,
-						                                            TIPO_CAMBIO_VENTA,
-						                                            MONEDA_VENTA  
-				                                            from	FACTURA_PAGO) AS Table_B 
-                                                    ON Table_A.NRO_DOCUMENTO = Table_B.NRO_DOCUMENTO 
-                                            where Table_A.CODIGO_ESTADO=16 "
-                            dt2 = ejecutarQueryBatch(queryBatch)
-
-                            If dt2 IsNot Nothing Then
-                                cargarReporte(mes, periodo, opcion, cliente)
-                            End If
-                        Else
-                            MessageBox.Show("No se ejecutaron comandos.", "Actualizar Facturas",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Exclamation)
+                            cargarReporte(mes, periodo, opcion, cliente)
                         End If
                     End If
+
+
+
+                    'If queryBatch <> "" Then
+                    '    Dim dt2 As DataTable = ejecutarQueryBatch(queryBatch)
+                    '    If dt2 IsNot Nothing Then
+                    '        queryBatch = "  UPDATE
+                    '                            Table_A 
+                    '                        SET 
+                    '                            Table_A.TIPO_CAMBIO = Table_B.TIPO_CAMBIO_VENTA, 
+                    '                         Table_A.ID_MONEDA = Table_B.MONEDA_VENTA 
+                    '                        FROM 
+                    '                            FACTURA AS Table_A 
+                    '                            INNER JOIN (select	distinct 
+                    '                              NRO_DOCUMENTO,
+                    '                              TIPO_CAMBIO_VENTA,
+                    '                              MONEDA_VENTA  
+                    '                            from	FACTURA_PAGO) AS Table_B 
+                    '                                ON Table_A.NRO_DOCUMENTO = Table_B.NRO_DOCUMENTO 
+                    '                        where Table_A.CODIGO_ESTADO=16 "
+                    '        dt2 = ejecutarQueryBatch(queryBatch)
+
+                    '        If dt2 IsNot Nothing Then
+                    '            cargarReporte(mes, periodo, opcion, cliente)
+                    '        End If
+                    '    Else
+                    '        MessageBox.Show("No se ejecutaron comandos.", "Actualizar Facturas",
+                    '                MessageBoxButtons.OK,
+                    '                MessageBoxIcon.Exclamation)
+                    '    End If
+                    'End If
 
                 End If
             End If
@@ -151,17 +154,16 @@ Public Class RptFormFacturaPago
         If cliente = -1 Then
             paramList.Add(New ReportParameter("cliente", " ", True))
         Else
-            paramList.Add(New ReportParameter("cliente", cbCliente.SelectedItem.ToString, True))
+            Dim drv As DataRowView = cbCliente.SelectedItem
+            paramList.Add(New ReportParameter("cliente", drv.Item(2).ToString, True))
         End If
 
         Dim dt As DataTable = GetReporte(mes, periodo, opcion, cliente)
 
         ReportViewer1.Reset()
         ReportViewer1.ProcessingMode = ProcessingMode.Local
-        ReportViewer1.LocalReport.ReportPath = "Formularios/Reportes/RptFacturaVsPago.rdlc"
+        ReportViewer1.LocalReport.ReportPath = "Formularios/Reportes/RptFacturaVsAbono.rdlc"
         ReportViewer1.Refresh()
-
-
 
         ReportViewer1.LocalReport.SetParameters(paramList)
         Dim rds As New ReportDataSource("DataSet1", dt)
@@ -210,14 +212,14 @@ Public Class RptFormFacturaPago
         Return dt
     End Function
 
-    Public Function GetFacturasPagoByMesPeriodo(mes As String, periodo As String) As DataTable
+    Public Function GetFacturasPagosAll() As DataTable
         Dim sqlControlPostgres As New SQLControlPostgres
         sqlControlPostgres.SetConnection()
         Dim dt As DataTable = Nothing
         Dim rutinas As New RutinasPostgreSQL(sqlControlPostgres)
         Try
             If (sqlControlPostgres.OpenConexion()) Then
-                dt = rutinas.GetFacturasPagoByMesPeriodo(mes, periodo)
+                dt = rutinas.GetFacturasPagosAll
             End If
 
         Catch ex As NpgsqlException
@@ -243,7 +245,7 @@ Public Class RptFormFacturaPago
         Return dt
     End Function
 
-    Public Function SetLimpiarFacturasByMesPeriodo(mes As String, periodo As String) As Integer
+    Public Function LimpiarFacturaAbonoAll() As Integer
         Dim sqlControl As New SQLControl
         sqlControl.SetConnection()
         Dim flag As Integer = -1
@@ -253,8 +255,9 @@ Public Class RptFormFacturaPago
             If sqlControl.OpenConexion() Then
                 sqlControl.BeginTransaction()
                 facturacionDao.SetDBcmd()
-                facturacionDao.SetLimpiarFacturasByMesPeriodo(mes, periodo)
-                facturacionDao.SetLimpiarNotasCreditoAll()
+                'facturacionDao.SetLimpiarFacturasByMesPeriodo(mes, periodo)
+                'facturacionDao.SetLimpiarNotasCreditoAll()
+                facturacionDao.LimpiarFacturaAbonoAll()
                 sqlControl.CommitTransaction()
                 flag = 1
             End If
@@ -434,7 +437,7 @@ Public Class RptFormFacturaPago
             If sqlControl.OpenConexion() Then
                 sqlControl.BeginTransaction()
                 facturacionDao.SetDBcmd()
-                dt = facturacionDao.GetRptFacturaVsPago(mes, periodo, opcion, cliente)
+                dt = facturacionDao.GetRptFacturaVsAbono(mes, periodo, opcion, cliente)
                 sqlControl.CommitTransaction()
             End If
 
