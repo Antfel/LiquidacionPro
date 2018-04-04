@@ -1490,24 +1490,31 @@ Public Class ChildFacturacion
     End Sub
 
     Sub setearMontosDetalle()
-        If txtCantidad.Text IsNot Nothing Then
-            If txtPrecioUnitario.Text IsNot Nothing Then
-                Dim cantidad, precio, subtotal, igv, total As Double
-                cantidad = CType(txtCantidad.Text, Double)
-                precio = CType(txtPrecioUnitario.Text, Double)
+        Try
+            If txtCantidad.Text <> Nothing Then
+                If txtPrecioUnitario.Text <> Nothing Then
+                    Dim cantidad, precio, subtotal, igv, total As Double
+                    cantidad = CType(txtCantidad.Text, Double)
+                    precio = CType(txtPrecioUnitario.Text, Double)
 
-                subtotal = cantidad * precio
-                igv = subtotal * 0.18
-                total = subtotal + igv
+                    subtotal = cantidad * precio
+                    igv = subtotal * 0.18
+                    total = subtotal + igv
 
-                txtSubtotalDetalle.Text = Math.Round(subtotal, 2)
-                txtIgvDetalle.Text = Math.Round(igv, 2)
-                txtTotalDetalle.Text = Math.Round(total, 2)
+                    txtSubtotalDetalle.Text = Math.Round(subtotal, 2)
+                    txtIgvDetalle.Text = Math.Round(igv, 2)
+                    txtTotalDetalle.Text = Math.Round(total, 2)
+
+                End If
+            Else
 
             End If
-        Else
+        Catch ex As Exception
+            MessageBox.Show("Ingresar el precio unitario o la cantidad. " + ex.Message, "Montos detalle",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Exclamation)
+        End Try
 
-        End If
     End Sub
 
     Private Sub txtPrecioUnitario_Leave(sender As Object, e As EventArgs) Handles txtPrecioUnitario.Leave
