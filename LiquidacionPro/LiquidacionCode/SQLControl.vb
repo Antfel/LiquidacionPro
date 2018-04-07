@@ -9,7 +9,6 @@ Public Class SQLControl
     'Public Exception As String
     Private transaction As SqlTransaction
 
-
     Public Sub New()
 
     End Sub
