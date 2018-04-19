@@ -8826,6 +8826,16 @@ Partial Public Class rptLiquidaciones
         
         Private columnDiferenciaDolares As Global.System.Data.DataColumn
         
+        Private columnPorcentajeDetraccion As Global.System.Data.DataColumn
+        
+        Private columnMontoDetraccion As Global.System.Data.DataColumn
+        
+        Private columnMontoNeto As Global.System.Data.DataColumn
+        
+        Private columnOrigen As Global.System.Data.DataColumn
+        
+        Private columnDestino As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -8982,6 +8992,46 @@ Partial Public Class rptLiquidaciones
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PorcentajeDetraccionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPorcentajeDetraccion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MontoDetraccionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMontoDetraccion
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MontoNetoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMontoNeto
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property OrigenColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOrigen
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DestinoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDestino
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -9018,9 +9068,29 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AdddtRptFacturaVsAbonoRow(ByVal NroDocumento As String, ByVal FechaFactura As Date, ByVal TotalSoles As Decimal, ByVal TotalDolares As Decimal, ByVal Moneda As Short, ByVal DebeSoles As Decimal, ByVal HaberSoles As Decimal, ByVal DebeDolares As Decimal, ByVal HaberDolares As Decimal, ByVal RazonSocial As String, ByVal RucCliente As String, ByVal FechaRecepcion As Date, ByVal FechaVencimiento As Date, ByVal DiferenciaSoles As Decimal, ByVal DiferenciaDolares As Decimal) As dtRptFacturaVsAbonoRow
+        Public Overloads Function AdddtRptFacturaVsAbonoRow( _
+                    ByVal NroDocumento As String,  _
+                    ByVal FechaFactura As Date,  _
+                    ByVal TotalSoles As Decimal,  _
+                    ByVal TotalDolares As Decimal,  _
+                    ByVal Moneda As Short,  _
+                    ByVal DebeSoles As Decimal,  _
+                    ByVal HaberSoles As Decimal,  _
+                    ByVal DebeDolares As Decimal,  _
+                    ByVal HaberDolares As Decimal,  _
+                    ByVal RazonSocial As String,  _
+                    ByVal RucCliente As String,  _
+                    ByVal FechaRecepcion As Date,  _
+                    ByVal FechaVencimiento As Date,  _
+                    ByVal DiferenciaSoles As Decimal,  _
+                    ByVal DiferenciaDolares As Decimal,  _
+                    ByVal PorcentajeDetraccion As Decimal,  _
+                    ByVal MontoDetraccion As Decimal,  _
+                    ByVal MontoNeto As Decimal,  _
+                    ByVal Origen As String,  _
+                    ByVal Destino As String) As dtRptFacturaVsAbonoRow
             Dim rowdtRptFacturaVsAbonoRow As dtRptFacturaVsAbonoRow = CType(Me.NewRow,dtRptFacturaVsAbonoRow)
-            Dim columnValuesArray() As Object = New Object() {NroDocumento, FechaFactura, TotalSoles, TotalDolares, Moneda, DebeSoles, HaberSoles, DebeDolares, HaberDolares, RazonSocial, RucCliente, FechaRecepcion, FechaVencimiento, DiferenciaSoles, DiferenciaDolares}
+            Dim columnValuesArray() As Object = New Object() {NroDocumento, FechaFactura, TotalSoles, TotalDolares, Moneda, DebeSoles, HaberSoles, DebeDolares, HaberDolares, RazonSocial, RucCliente, FechaRecepcion, FechaVencimiento, DiferenciaSoles, DiferenciaDolares, PorcentajeDetraccion, MontoDetraccion, MontoNeto, Origen, Destino}
             rowdtRptFacturaVsAbonoRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdtRptFacturaVsAbonoRow)
             Return rowdtRptFacturaVsAbonoRow
@@ -9058,6 +9128,11 @@ Partial Public Class rptLiquidaciones
             Me.columnFechaVencimiento = MyBase.Columns("FechaVencimiento")
             Me.columnDiferenciaSoles = MyBase.Columns("DiferenciaSoles")
             Me.columnDiferenciaDolares = MyBase.Columns("DiferenciaDolares")
+            Me.columnPorcentajeDetraccion = MyBase.Columns("PorcentajeDetraccion")
+            Me.columnMontoDetraccion = MyBase.Columns("MontoDetraccion")
+            Me.columnMontoNeto = MyBase.Columns("MontoNeto")
+            Me.columnOrigen = MyBase.Columns("Origen")
+            Me.columnDestino = MyBase.Columns("Destino")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9093,6 +9168,16 @@ Partial Public Class rptLiquidaciones
             MyBase.Columns.Add(Me.columnDiferenciaSoles)
             Me.columnDiferenciaDolares = New Global.System.Data.DataColumn("DiferenciaDolares", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDiferenciaDolares)
+            Me.columnPorcentajeDetraccion = New Global.System.Data.DataColumn("PorcentajeDetraccion", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPorcentajeDetraccion)
+            Me.columnMontoDetraccion = New Global.System.Data.DataColumn("MontoDetraccion", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMontoDetraccion)
+            Me.columnMontoNeto = New Global.System.Data.DataColumn("MontoNeto", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMontoNeto)
+            Me.columnOrigen = New Global.System.Data.DataColumn("Origen", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOrigen)
+            Me.columnDestino = New Global.System.Data.DataColumn("Destino", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDestino)
             Me.columnTotalSoles.Caption = "Soles"
             Me.columnTotalDolares.Caption = "Dolares"
             Me.columnDebeSoles.Caption = "TotalFacturaSoles"
@@ -16541,6 +16626,83 @@ Partial Public Class rptLiquidaciones
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property PorcentajeDetraccion() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptFacturaVsAbono.PorcentajeDetraccionColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'PorcentajeDetraccion' de la tabla 'dtRptFacturaVsAbono' e"& _ 
+                            "s DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptFacturaVsAbono.PorcentajeDetraccionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MontoDetraccion() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptFacturaVsAbono.MontoDetraccionColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'MontoDetraccion' de la tabla 'dtRptFacturaVsAbono' es DBN"& _ 
+                            "ull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptFacturaVsAbono.MontoDetraccionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MontoNeto() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptFacturaVsAbono.MontoNetoColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'MontoNeto' de la tabla 'dtRptFacturaVsAbono' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptFacturaVsAbono.MontoNetoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Origen() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptFacturaVsAbono.OrigenColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Origen' de la tabla 'dtRptFacturaVsAbono' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptFacturaVsAbono.OrigenColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Destino() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledtRptFacturaVsAbono.DestinoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Destino' de la tabla 'dtRptFacturaVsAbono' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledtRptFacturaVsAbono.DestinoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsNroDocumentoNull() As Boolean
             Return Me.IsNull(Me.tabledtRptFacturaVsAbono.NroDocumentoColumn)
         End Function
@@ -16717,6 +16879,66 @@ Partial Public Class rptLiquidaciones
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetDiferenciaDolaresNull()
             Me(Me.tabledtRptFacturaVsAbono.DiferenciaDolaresColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPorcentajeDetraccionNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptFacturaVsAbono.PorcentajeDetraccionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPorcentajeDetraccionNull()
+            Me(Me.tabledtRptFacturaVsAbono.PorcentajeDetraccionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMontoDetraccionNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptFacturaVsAbono.MontoDetraccionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMontoDetraccionNull()
+            Me(Me.tabledtRptFacturaVsAbono.MontoDetraccionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMontoNetoNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptFacturaVsAbono.MontoNetoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMontoNetoNull()
+            Me(Me.tabledtRptFacturaVsAbono.MontoNetoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsOrigenNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptFacturaVsAbono.OrigenColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetOrigenNull()
+            Me(Me.tabledtRptFacturaVsAbono.OrigenColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDestinoNull() As Boolean
+            Return Me.IsNull(Me.tabledtRptFacturaVsAbono.DestinoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDestinoNull()
+            Me(Me.tabledtRptFacturaVsAbono.DestinoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
