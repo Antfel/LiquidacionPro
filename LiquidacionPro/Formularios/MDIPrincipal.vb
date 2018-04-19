@@ -1,4 +1,6 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Deployment.Application
+Imports System.Windows.Forms
+Imports System.Xml
 
 Public Class MDIPrincipal
     Private Sub LiquidacionesToolStripMenuItem_Click(sender As Object, e As EventArgs)
@@ -157,6 +159,18 @@ Public Class MDIPrincipal
         Dim rptFormFacturaPago As New RptFormFacturaPago()
         rptFormFacturaPago.MdiParent = Me
         rptFormFacturaPago.Show()
+    End Sub
+
+    Private Sub MDIPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            Dim m_xmld = New XmlDocument()
+            m_xmld.Load(Application.ExecutablePath & ".manifest")
+            Me.Text = "Principal v" & m_xmld.ChildNodes.Item(1).ChildNodes.Item(0).Attributes.GetNamedItem("version").Value
+        Catch ex As Exception
+            Me.Text = "Principal"
+        Finally
+        End Try
+
     End Sub
 
     'Private Sub AsignacionDeServicioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AsignacionDeServicioToolStripMenuItem.Click

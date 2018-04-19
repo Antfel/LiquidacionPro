@@ -82,6 +82,7 @@ Public Class RptFormFacturaPago
                                          " + row.Item(6).ToString + ") "
                     Next
 
+
                     If queryBatch <> "" Then
                         Dim dt2 As DataTable = ejecutarQueryBatch(queryBatch)
                         If dt2 IsNot Nothing Then

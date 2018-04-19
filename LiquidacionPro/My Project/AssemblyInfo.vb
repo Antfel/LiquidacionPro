@@ -8,12 +8,12 @@ Imports System.Runtime.InteropServices
 
 ' Revisar los valores de los atributos del ensamblado
 
-<Assembly: AssemblyTitle("LiquidacionPro")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("LiquidacionPro")>
+<Assembly: AssemblyTitle("Sistema Scaramutti")>
+<Assembly: AssemblyDescription("Sistema de Gestión Administrativa")>
+<Assembly: AssemblyCompany("Transportes Scaramutti")>
+<Assembly: AssemblyProduct("Sistema Scaramutti")>
 <Assembly: AssemblyCopyright("Copyright ©  2017")>
-<Assembly: AssemblyTrademark("")>
+<Assembly: AssemblyTrademark("Transportes Scaramutti")>
 
 <Assembly: ComVisible(False)>
 
