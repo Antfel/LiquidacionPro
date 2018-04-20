@@ -212,6 +212,12 @@
     <Compile Include="Formularios\ChildTrabajador.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\ChildUsuario.Designer.vb">
+      <DependentUpon>ChildUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\ConfiguracionForm.Designer.vb">
       <DependentUpon>ConfiguracionForm.vb</DependentUpon>
     </Compile>
@@ -224,6 +230,12 @@
       <DependentUpon>ChildBusquedaFactura.vb</DependentUpon>
     </Compile>
     <Compile Include="Formularios\ChildBusquedaFactura.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmLogin.Designer.vb">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\MDIPrincipal.Designer.vb">
@@ -339,6 +351,7 @@
     <Compile Include="LiquidacionCode\GuiaDAO.vb" />
     <Compile Include="LiquidacionCode\MonedaDAO.vb" />
     <Compile Include="LiquidacionCode\OrdenServicioDAO.vb" />
+    <Compile Include="LiquidacionCode\RolDAO.vb" />
     <Compile Include="LiquidacionCode\SQLControlPostgres.vb" />
     <Compile Include="LiquidacionCode\TipoServicioDAO.vb" />
     <Compile Include="LiquidacionCode\TrabajadorDAO.vb" />
@@ -347,6 +360,7 @@
     <Compile Include="LiquidacionCode\SQLControl.vb" />
     <Compile Include="LiquidacionCode\UnidadDAO.vb" />
     <Compile Include="LiquidacionCode\UnidadMedidaDAO.vb" />
+    <Compile Include="LiquidacionCode\UsuarioDAO.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -411,8 +425,14 @@
     <EmbeddedResource Include="Formularios\ChildTrabajador.resx">
       <DependentUpon>ChildTrabajador.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ChildUsuario.resx">
+      <DependentUpon>ChildUsuario.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ConfiguracionForm.resx">
       <DependentUpon>ConfiguracionForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmLogin.resx">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.vb</DependentUpon>
@@ -565,6 +585,7 @@
     <Content Include="Imagenes\logo_ts.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\logo_ts.png" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

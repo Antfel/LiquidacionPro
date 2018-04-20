@@ -173,6 +173,13 @@ Public Class MDIPrincipal
 
     End Sub
 
+    Private Sub UsuariosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UsuariosToolStripMenuItem.Click
+        cerrarVentanas()
+        Dim childUsuario As New ChildUsuario()
+        childUsuario.MdiParent = Me
+        childUsuario.Show()
+    End Sub
+
     'Private Sub AsignacionDeServicioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AsignacionDeServicioToolStripMenuItem.Click
     '    
 

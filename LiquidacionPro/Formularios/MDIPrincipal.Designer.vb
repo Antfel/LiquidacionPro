@@ -52,6 +52,7 @@ Partial Class MDIPrincipal
         Me.GuíasControlDeViajesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdministraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComunicaciónBDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UsuariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -223,7 +224,7 @@ Partial Class MDIPrincipal
         '
         'AdministraciónToolStripMenuItem
         '
-        Me.AdministraciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComunicaciónBDToolStripMenuItem})
+        Me.AdministraciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ComunicaciónBDToolStripMenuItem, Me.UsuariosToolStripMenuItem})
         Me.AdministraciónToolStripMenuItem.Name = "AdministraciónToolStripMenuItem"
         Me.AdministraciónToolStripMenuItem.Size = New System.Drawing.Size(100, 20)
         Me.AdministraciónToolStripMenuItem.Text = "Administración"
@@ -233,6 +234,12 @@ Partial Class MDIPrincipal
         Me.ComunicaciónBDToolStripMenuItem.Name = "ComunicaciónBDToolStripMenuItem"
         Me.ComunicaciónBDToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.ComunicaciónBDToolStripMenuItem.Text = "Comunicación BD"
+        '
+        'UsuariosToolStripMenuItem
+        '
+        Me.UsuariosToolStripMenuItem.Name = "UsuariosToolStripMenuItem"
+        Me.UsuariosToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.UsuariosToolStripMenuItem.Text = "Usuarios"
         '
         'MDIPrincipal
         '
@@ -281,4 +288,5 @@ Partial Class MDIPrincipal
     Friend WithEvents OrdenDeServicioToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AsignacionDeServicioToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents FacturaVsPagoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UsuariosToolStripMenuItem As ToolStripMenuItem
 End Class
