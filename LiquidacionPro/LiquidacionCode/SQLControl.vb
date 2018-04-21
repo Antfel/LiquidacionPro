@@ -14,8 +14,10 @@ Public Class SQLControl
     End Sub
 
     Public Sub SetConnection()
-        'DBcon.ConnectionString = "Server=MINOS; Database=TRANSCAR2;User=sa; Pwd=Louisse98;"
-        DBcon.ConnectionString = "Server=SERVCONT; Database=TRANSCAR;User=sa; Pwd=Louisse98;"
+        'Publicado
+        DBcon.ConnectionString = "Server=168.232.165.32; Database=TRANSCAR;User=sa; Pwd=Louisse98;"
+        'Local
+        'DBcon.ConnectionString = "Server=SERVCONT; Database=TRANSCAR;User=sa; Pwd=Louisse98;"
     End Sub
 
     Public Function OpenConexion() As Boolean
