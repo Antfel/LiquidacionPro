@@ -322,7 +322,7 @@ Public Class ChildFacturaLibre
             btnRazonSocial.Enabled = False
             BloquearCabecera()
             BloquearDetalle()
-            childBusquedaFactura.cargarDatosFactura()
+            'childBusquedaFactura.cargarDatosFactura()
         Catch ex As SqlException
             sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al grabar datos de factura. " + ex.Message, "Grabar datos factura",
@@ -556,7 +556,7 @@ Public Class ChildFacturaLibre
                 obtenerDatosCliente()
                 cargarDetalleFactura()
                 BloquearBotones()
-                childBusquedaFactura.cargarDatosFactura()
+                'childBusquedaFactura.cargarDatosFactura()
             Catch ex As Exception
                 MessageBox.Show("Error al cerrar conexión." + ex.Message, "Validación",
                                  MessageBoxButtons.OK,
@@ -769,5 +769,9 @@ Public Class ChildFacturaLibre
 
     Private Sub txtPrecioUnitario_Leave(sender As Object, e As EventArgs) Handles txtPrecioUnitario.Leave
         setearMontosDetalle()
+    End Sub
+
+    Private Sub ChildFacturaLibre_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        childBusquedaFactura.cargarDatosFactura()
     End Sub
 End Class
