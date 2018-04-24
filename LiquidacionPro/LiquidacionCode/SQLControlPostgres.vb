@@ -21,7 +21,7 @@ Public Class SQLControlPostgres
         'Publicado
         con.ConnectionString = "Server=168.232.165.32;Port=5432;Database=20518904427;User Id=postgres;Password=P@$$w0rd;"
         'Local
-        'con.ConnectionString = "Server=192.168.5.101;Port=5432;Database=20518904427;User Id=postgres;Password=P@$$w0rd;"
+        'con.ConnectionString = "Server=192.168.1.11;Port=5432;Database=20518904427;User Id=readuser;Password=12345678;"
     End Sub
 
     Public Function OpenConexion() As Boolean

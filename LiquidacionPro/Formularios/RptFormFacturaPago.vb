@@ -47,87 +47,19 @@ Public Class RptFormFacturaPago
             cliente = cbCliente.SelectedValue
         End If
 
-        Dim limpiaFacturas As Integer
-        'Limpiando los pagos anteriores del Mes y Periodo, y todas las notas de crédito
-        limpiaFacturas = LimpiarFacturaAbonoAll()
-
-        'Resultado exitoso
-        If limpiaFacturas = 1 Then
-            Dim dt As DataTable = Nothing
-            Dim queryBatch As String = ""
-
-            'Se obtiene del sistema contable, todos los pagos realizados de las facturas en el periodo indicado
-            dt = GetFacturasPagosAll()
-
-            If dt IsNot Nothing Then
-                If dt.Rows.Count > 0 Then
-                    For Each row As DataRow In dt.Rows
-
-                        'Se arma un query para insertar todos los pagos por factura en el periodo indicado
-                        queryBatch += "insert into FACTURA_ABONO 
-                                        (RUC,
-                                        RAZON_SOCIAL,
-                                        NRO_DOCUMENTO,
-                                        DEBE_SOLES,
-                                        HABER_SOLES,
-                                        DEBE_DOLARES,
-                                        HABER_DOLARES)
-                                        values
-                                        ('" + row.Item(0).ToString + "',
-                                         '" + row.Item(1).ToString.Replace("'", "''") + "',
-                                         '" + row.Item(2).ToString + "',
-                                         " + row.Item(3).ToString + ",
-                                         " + row.Item(4).ToString + ",
-                                         " + row.Item(5).ToString + ",
-                                         " + row.Item(6).ToString + ") "
-                    Next
+        Try
+            cargarReporte(mes, periodo, opcion, cliente)
+        Catch ex As SqlException
+            MessageBox.Show("Error al verificar datos en los pagos. SQL. " + ex.Message, "Validación",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al verificar datos en los pagos. " + ex.Message, "Validación",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error)
+        End Try
 
 
-                    If queryBatch <> "" Then
-                        Dim dt2 As DataTable = ejecutarQueryBatch(queryBatch)
-                        If dt2 IsNot Nothing Then
-                            cargarReporte(mes, periodo, opcion, cliente)
-                        End If
-                    End If
-
-
-
-                    'If queryBatch <> "" Then
-                    '    Dim dt2 As DataTable = ejecutarQueryBatch(queryBatch)
-                    '    If dt2 IsNot Nothing Then
-                    '        queryBatch = "  UPDATE
-                    '                            Table_A 
-                    '                        SET 
-                    '                            Table_A.TIPO_CAMBIO = Table_B.TIPO_CAMBIO_VENTA, 
-                    '                         Table_A.ID_MONEDA = Table_B.MONEDA_VENTA 
-                    '                        FROM 
-                    '                            FACTURA AS Table_A 
-                    '                            INNER JOIN (select	distinct 
-                    '                              NRO_DOCUMENTO,
-                    '                              TIPO_CAMBIO_VENTA,
-                    '                              MONEDA_VENTA  
-                    '                            from	FACTURA_PAGO) AS Table_B 
-                    '                                ON Table_A.NRO_DOCUMENTO = Table_B.NRO_DOCUMENTO 
-                    '                        where Table_A.CODIGO_ESTADO=16 "
-                    '        dt2 = ejecutarQueryBatch(queryBatch)
-
-                    '        If dt2 IsNot Nothing Then
-                    '            cargarReporte(mes, periodo, opcion, cliente)
-                    '        End If
-                    '    Else
-                    '        MessageBox.Show("No se ejecutaron comandos.", "Actualizar Facturas",
-                    '                MessageBoxButtons.OK,
-                    '                MessageBoxIcon.Exclamation)
-                    '    End If
-                    'End If
-
-                End If
-            End If
-        Else
-            MessageBox.Show("Error al verificar datos en los pagos. ", "Verificar Periodo",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Error)
-        End If
     End Sub
 
     Sub cargarReporte(mes As String, periodo As String, opcion As Integer, cliente As Integer)
@@ -172,10 +104,6 @@ Public Class RptFormFacturaPago
         'AddHandler ReportViewer1.LocalReport.SubreportProcessing, AddressOf subReporteLiquidacionFacturacionDetalle
 
         ReportViewer1.RefreshReport()
-
-        'MessageBox.Show("Trabajo culminado.", "Actualizar Facturas",
-        '                             MessageBoxButtons.OK,
-        '                             MessageBoxIcon.Information)
     End Sub
     Public Function ejecutarQueryBatch(queryBatch As String) As DataTable
         Dim sqlControl As New SQLControl
@@ -323,6 +251,7 @@ Public Class RptFormFacturaPago
         cargarMes()
         cargarClientes()
         txtPeriodo.Text = Date.Now.Year.ToString
+        CargarFechaACtualizacion()
     End Sub
 
     Sub cargarClientes()
@@ -471,5 +400,155 @@ Public Class RptFormFacturaPago
         txtPeriodo.Text = Date.Now.Year.ToString
         rbtn1.Checked = True
 
+    End Sub
+
+    Private Sub btnActualizar_Click(sender As Object, e As EventArgs) Handles btnActualizar.Click
+        'Pase de información
+        Dim limpiaFacturas As Integer
+        'Limpiando los pagos anteriores del Mes y Periodo, y todas las notas de crédito
+        limpiaFacturas = LimpiarFacturaAbonoAll()
+
+        'Resultado exitoso
+        If limpiaFacturas = 1 Then
+            Dim dt As DataTable = Nothing
+            Dim queryBatch As String = ""
+
+            'Se obtiene del sistema contable, todos los pagos realizados de las facturas en el periodo indicado
+            dt = GetFacturasPagosAll()
+
+            If dt IsNot Nothing Then
+                If dt.Rows.Count > 0 Then
+                    For Each row As DataRow In dt.Rows
+
+                        'Se arma un query para insertar todos los pagos por factura en el periodo indicado
+                        queryBatch += "insert into FACTURA_ABONO 
+                                        (RUC,
+                                        RAZON_SOCIAL,
+                                        NRO_DOCUMENTO,
+                                        DEBE_SOLES,
+                                        HABER_SOLES,
+                                        DEBE_DOLARES,
+                                        HABER_DOLARES)
+                                        values
+                                        ('" + row.Item(0).ToString + "',
+                                         '" + row.Item(1).ToString.Replace("'", "''") + "',
+                                         '" + row.Item(2).ToString + "',
+                                         " + row.Item(3).ToString + ",
+                                         " + row.Item(4).ToString + ",
+                                         " + row.Item(5).ToString + ",
+                                         " + row.Item(6).ToString + ") "
+                    Next
+
+                    If queryBatch <> "" Then
+                        Dim dt2 As DataTable = ejecutarQueryBatch(queryBatch)
+                        If dt2 IsNot Nothing Then
+                            ActualizarFecha()
+                            MessageBox.Show("Actualizado con éxito. ", "Actualización",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Information)
+                        End If
+                    End If
+
+                End If
+            End If
+        Else
+            MessageBox.Show("Error al verificar datos en los pagos. ", "Verificar Periodo",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error)
+        End If
+    End Sub
+
+    Sub CargarFechaActualizacion()
+        Dim sqlControl As New SQLControl
+        sqlControl.SetConnection()
+        Dim dt As DataTable = Nothing
+        Dim facturacionDao As New FacturacionDAO(sqlControl)
+        Dim fecha As Date
+        fecha = Date.Now
+        Dim usuario As String
+        usuario = ""
+        Try
+            If sqlControl.OpenConexion() Then
+                sqlControl.BeginTransaction()
+                facturacionDao.SetDBcmd()
+                dt = facturacionDao.GetUltimaFechaActualizacion()
+                sqlControl.CommitTransaction()
+                If dt IsNot Nothing Then
+                    If dt.Rows.Count > 0 Then
+                        If dt.Rows(0)(0) IsNot DBNull.Value Then
+                            lblActualizado.Text = CType(dt.Rows(0)(0), Date).ToString("dd/MM/yyyy hh:mm:ss")
+                        Else
+                            lblActualizado.Text = "No actualizado"
+                        End If
+
+                    End If
+                Else
+                    lblActualizado.Text = "No actualizado"
+                End If
+            End If
+
+        Catch ex As SqlException
+            sqlControl.RollbackTransaccion()
+            MessageBox.Show("Error SQL. " + ex.Message, "GetReporte",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error. " + ex.Message, "GetReporte",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Finally
+            Try
+                If sqlControl.GetDBcon.State = ConnectionState.Open Then
+                    sqlControl.CloseConexion()
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar conexión. ", "GetReporte",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+            End Try
+        End Try
+    End Sub
+    Sub ActualizarFecha()
+        Dim sqlControl As New SQLControl
+        sqlControl.SetConnection()
+        Dim flag As Integer = -1
+        Dim facturacionDao As New FacturacionDAO(sqlControl)
+        Dim fecha As Date
+        fecha = Date.Now
+        Dim usuario As String
+        usuario = ""
+        Try
+            If sqlControl.OpenConexion() Then
+                sqlControl.BeginTransaction()
+                facturacionDao.SetDBcmd()
+                flag = facturacionDao.InsertFacturaAbonoActualizacion(usuario, fecha)
+                sqlControl.CommitTransaction()
+                If flag > 0 Then
+                    lblActualizado.Text = fecha.ToString("dd/MM/yyyy hh:mm:ss")
+                Else
+
+                End If
+            End If
+
+        Catch ex As SqlException
+            sqlControl.RollbackTransaccion()
+            MessageBox.Show("Error SQL. " + ex.Message, "GetReporte",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error. " + ex.Message, "GetReporte",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+        Finally
+            Try
+                If sqlControl.GetDBcon.State = ConnectionState.Open Then
+                    sqlControl.CloseConexion()
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar conexión. ", "GetReporte",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
+            End Try
+        End Try
     End Sub
 End Class

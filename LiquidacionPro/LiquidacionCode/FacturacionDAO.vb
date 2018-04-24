@@ -977,4 +977,26 @@ Public Class FacturacionDAO
         Return sqlControl.ExecQuery("select MES, NOMBRE from PERIODO where PERIODO=@periodo order by MES asc",
                                      params)
     End Function
+
+    Public Function GetUltimaFechaActualizacion() As DataTable
+        Return sqlControl.ExecQuery("select max(FECHA_GENERA) from FACTURA_ABONO_ACTUALIZACION ",
+                                     Nothing)
+    End Function
+    Public Function InsertFacturaAbonoActualizacion(usuario As String, fecha As date) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@USUARIO", usuario))
+        params.Add(New SqlParameter("@FECHA", fecha))
+
+        Dim dt As DataTable
+
+        dt = sqlControl.ExecQuery("insert into FACTURA_ABONO_ACTUALIZACION(USUARIO_GENERA, FECHA_GENERA) 
+                                    values (@USUARIO, @FECHA) SELECT SCOPE_IDENTITY(); ", params)
+
+        If dt.Rows.Count > 0 Then
+            Return CInt(dt.Rows.Item(0).Item(0))
+        Else
+            Return -1
+        End If
+    End Function
 End Class

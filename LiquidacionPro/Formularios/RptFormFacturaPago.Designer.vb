@@ -36,6 +36,9 @@ Partial Class RptFormFacturaPago
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cbMes = New System.Windows.Forms.ComboBox()
         Me.btnLimpiar = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblActualizado = New System.Windows.Forms.Label()
+        Me.btnActualizar = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -180,11 +183,40 @@ Partial Class RptFormFacturaPago
         Me.btnLimpiar.Text = "Limpiar"
         Me.btnLimpiar.UseVisualStyleBackColor = True
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(740, 42)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(79, 13)
+        Me.Label4.TabIndex = 13
+        Me.Label4.Text = "Actualizado al: "
+        '
+        'lblActualizado
+        '
+        Me.lblActualizado.AutoSize = True
+        Me.lblActualizado.Location = New System.Drawing.Point(817, 42)
+        Me.lblActualizado.Name = "lblActualizado"
+        Me.lblActualizado.Size = New System.Drawing.Size(0, 13)
+        Me.lblActualizado.TabIndex = 14
+        '
+        'btnActualizar
+        '
+        Me.btnActualizar.Location = New System.Drawing.Point(931, 32)
+        Me.btnActualizar.Name = "btnActualizar"
+        Me.btnActualizar.Size = New System.Drawing.Size(75, 23)
+        Me.btnActualizar.TabIndex = 15
+        Me.btnActualizar.Text = "Actualizar datos"
+        Me.btnActualizar.UseVisualStyleBackColor = True
+        '
         'RptFormFacturaPago
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(899, 335)
+        Me.ClientSize = New System.Drawing.Size(1018, 335)
+        Me.Controls.Add(Me.btnActualizar)
+        Me.Controls.Add(Me.lblActualizado)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.btnLimpiar)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ReportViewer1)
@@ -195,6 +227,7 @@ Partial Class RptFormFacturaPago
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -212,4 +245,7 @@ Partial Class RptFormFacturaPago
     Friend WithEvents rbtn1 As RadioButton
     Friend WithEvents Label3 As Label
     Friend WithEvents cbCliente As ComboBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents lblActualizado As Label
+    Friend WithEvents btnActualizar As Button
 End Class

@@ -88,7 +88,7 @@ Public Class SQLControl
             Return DBT
         Catch ex As Exception
             Exception = "ExecQuery Error: " & vbNewLine & ex.Message
-            MsgBox(Exception, MsgBoxStyle.Critical, "Exception: ")
+            MsgBox(Exception, MsgBoxStyle.Critical, "ExecQuery: ")
             Return Nothing
         Finally
         End Try
