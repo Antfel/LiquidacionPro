@@ -171,6 +171,20 @@ Public Class ChildUnidad
 
         Dim codigo As Integer, placa As String, tipo As Integer, ejes As Integer
 
+        If txtPlaca.Text = Nothing Then
+            MessageBox.Show("Ingresar una placa. ", "Validación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        If cbTipoUnidad.SelectedIndex < 0 Then
+            MessageBox.Show("Seleccionar un Tipo de Unidad. ", "Validación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
+            Return
+        End If
+
         Try
             If txtCodigo.Text = Nothing Then
                 codigo = 0
@@ -252,5 +266,12 @@ Public Class ChildUnidad
 
 
         End Try
+    End Sub
+
+    Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
+        txtCodigo.Text = ""
+        txtPlaca.Text = ""
+        cbTipoUnidad.SelectedIndex = -1
+        txtEjes.Text = ""
     End Sub
 End Class

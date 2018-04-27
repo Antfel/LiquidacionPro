@@ -28,11 +28,11 @@ Partial Class ChildUnidad
         Me.txtEjes = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.btnGrabar = New System.Windows.Forms.Button()
         Me.btnNuevo = New System.Windows.Forms.Button()
+        Me.btnGrabar = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblFiltro = New System.Windows.Forms.Label()
         Me.txtFiltro = New System.Windows.Forms.TextBox()
@@ -103,32 +103,14 @@ Partial Class ChildUnidad
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Datos Generales"
         '
-        'Label2
+        'btnNuevo
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(16, 59)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(34, 13)
-        Me.Label2.TabIndex = 5
-        Me.Label2.Text = "Placa"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(250, 31)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(65, 13)
-        Me.Label3.TabIndex = 6
-        Me.Label3.Text = "Tipo Unidad"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(253, 59)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(50, 13)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "Nro. Ejes"
+        Me.btnNuevo.Location = New System.Drawing.Point(493, 55)
+        Me.btnNuevo.Name = "btnNuevo"
+        Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
+        Me.btnNuevo.TabIndex = 9
+        Me.btnNuevo.Text = "Nuevo"
+        Me.btnNuevo.UseVisualStyleBackColor = True
         '
         'btnGrabar
         '
@@ -139,14 +121,32 @@ Partial Class ChildUnidad
         Me.btnGrabar.Text = "Grabar"
         Me.btnGrabar.UseVisualStyleBackColor = True
         '
-        'btnNuevo
+        'Label4
         '
-        Me.btnNuevo.Location = New System.Drawing.Point(493, 55)
-        Me.btnNuevo.Name = "btnNuevo"
-        Me.btnNuevo.Size = New System.Drawing.Size(75, 23)
-        Me.btnNuevo.TabIndex = 9
-        Me.btnNuevo.Text = "Nuevo"
-        Me.btnNuevo.UseVisualStyleBackColor = True
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(253, 59)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(50, 13)
+        Me.Label4.TabIndex = 7
+        Me.Label4.Text = "Nro. Ejes"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(250, 31)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(65, 13)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "Tipo Unidad"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(16, 59)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(34, 13)
+        Me.Label2.TabIndex = 5
+        Me.Label2.Text = "Placa"
         '
         'GroupBox2
         '
