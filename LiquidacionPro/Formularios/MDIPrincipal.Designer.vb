@@ -53,6 +53,7 @@ Partial Class MDIPrincipal
         Me.AdministraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComunicaciónBDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UnidadesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -83,7 +84,7 @@ Partial Class MDIPrincipal
         '
         'ToolStripMenuItem1
         '
-        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturaciónToolStripMenuItem, Me.GuíasDeTransportistaToolStripMenuItem, Me.CorrelativosToolStripMenuItem, Me.ClientesToolStripMenuItem, Me.TrabajadorToolStripMenuItem, Me.LiquidaciónControlToolStripMenuItem, Me.LiquidaciónDeCombustibleToolStripMenuItem, Me.OrdenDeServicioToolStripMenuItem, Me.AsignacionDeServicioToolStripMenuItem})
+        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FacturaciónToolStripMenuItem, Me.GuíasDeTransportistaToolStripMenuItem, Me.CorrelativosToolStripMenuItem, Me.ClientesToolStripMenuItem, Me.TrabajadorToolStripMenuItem, Me.LiquidaciónControlToolStripMenuItem, Me.LiquidaciónDeCombustibleToolStripMenuItem, Me.OrdenDeServicioToolStripMenuItem, Me.AsignacionDeServicioToolStripMenuItem, Me.UnidadesToolStripMenuItem})
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(66, 20)
         Me.ToolStripMenuItem1.Text = "Procesos"
@@ -241,6 +242,12 @@ Partial Class MDIPrincipal
         Me.UsuariosToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.UsuariosToolStripMenuItem.Text = "Usuarios"
         '
+        'UnidadesToolStripMenuItem
+        '
+        Me.UnidadesToolStripMenuItem.Name = "UnidadesToolStripMenuItem"
+        Me.UnidadesToolStripMenuItem.Size = New System.Drawing.Size(223, 22)
+        Me.UnidadesToolStripMenuItem.Text = "Unidades"
+        '
         'MDIPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -289,4 +296,5 @@ Partial Class MDIPrincipal
     Friend WithEvents AsignacionDeServicioToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents FacturaVsPagoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UsuariosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UnidadesToolStripMenuItem As ToolStripMenuItem
 End Class

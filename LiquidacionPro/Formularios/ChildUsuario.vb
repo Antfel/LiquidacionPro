@@ -250,7 +250,6 @@ Public Class ChildUsuario
 
             rol = cbRol.SelectedValue
 
-            Console.WriteLine("datos: " + cbEstado.SelectedValue.ToString)
             estado = cbEstado.SelectedValue
 
             Dim sqlControl As New SQLControl

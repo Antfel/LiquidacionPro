@@ -37,7 +37,6 @@ Public Class EstadoDAO
     Public Function getEstados() As DataTable
         Return sqlControl.ExecQuery("SELECT CODIGO_ESTADO,DETALLE_ESTADO from ESTADO where TIPO_ESTADO = 1", Nothing)
     End Function
-
     Public Function getEstadoTrabajador() As DataTable
         Return sqlControl.ExecQuery("SELECT CODIGO_ESTADO,DETALLE_ESTADO from ESTADO where TIPO_ESTADO = 2", Nothing)
     End Function

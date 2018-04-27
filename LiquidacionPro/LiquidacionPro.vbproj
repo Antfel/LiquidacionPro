@@ -212,6 +212,12 @@
     <Compile Include="Formularios\ChildTrabajador.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\ChildUnidad.Designer.vb">
+      <DependentUpon>ChildUnidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ChildUnidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\ChildUsuario.Designer.vb">
       <DependentUpon>ChildUsuario.vb</DependentUpon>
     </Compile>
@@ -424,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ChildTrabajador.resx">
       <DependentUpon>ChildTrabajador.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ChildUnidad.resx">
+      <DependentUpon>ChildUnidad.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ChildUsuario.resx">
       <DependentUpon>ChildUsuario.vb</DependentUpon>
