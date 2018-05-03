@@ -1143,7 +1143,7 @@ Public Class ChildFacturacion
             End Try
 
             cargarGuiasTransportistas()
-            actualizarDatosGuia()
+            'actualizarDatosGuia()
         End If
     End Sub
 
@@ -1188,7 +1188,7 @@ Public Class ChildFacturacion
             End Try
 
             cargarGuiasTransportistas()
-            actualizarDatosGuia()
+            'actualizarDatosGuia()
         End If
     End Sub
 
