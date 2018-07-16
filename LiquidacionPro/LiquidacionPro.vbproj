@@ -140,6 +140,7 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="ContasolCode\RutinasPostgreSQL.vb" />
+    <Compile Include="Entidades\FacturaClass.vb" />
     <Compile Include="Formularios\ChildAsignacionServicio.Designer.vb">
       <DependentUpon>ChildAsignacionServicio.vb</DependentUpon>
     </Compile>

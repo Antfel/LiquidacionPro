@@ -982,7 +982,7 @@ Public Class FacturacionDAO
         Return sqlControl.ExecQuery("select max(FECHA_GENERA) from FACTURA_ABONO_ACTUALIZACION ",
                                      Nothing)
     End Function
-    Public Function InsertFacturaAbonoActualizacion(usuario As String, fecha As date) As Integer
+    Public Function InsertFacturaAbonoActualizacion(usuario As String, fecha As Date) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@USUARIO", usuario))
@@ -998,5 +998,13 @@ Public Class FacturacionDAO
         Else
             Return -1
         End If
+    End Function
+
+    '--------------------------------------------------------------------------------------------------------------
+    'Inicio de pruebas en micro servicios
+
+    Public Function GetAllFactura() As Integer
+
+        Return 1
     End Function
 End Class
