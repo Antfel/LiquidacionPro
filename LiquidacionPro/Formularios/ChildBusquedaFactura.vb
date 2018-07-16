@@ -11,6 +11,8 @@ Public Class ChildBusquedaFactura
     End Sub
 
     Public Sub cargarDatosFactura()
+
+
         Dim sqlControl As New SQLControl
         sqlControl.SetConnection()
 
