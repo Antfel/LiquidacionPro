@@ -7,7 +7,36 @@ Public Class ChildBusquedaFactura
     Dim facturaSeleccion As Integer
 
     Private Sub ChildBusquedaFactura_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cargarDatosFactura()
+        'cargarDatosFactura()
+        CargarFacturas()
+    End Sub
+
+    Public Sub CargarFacturas()
+        Dim dao As New FacturaDao()
+        Dim lista As New List(Of FacturaClass)
+
+        Dim t As Task = New Task(Sub()
+                                     lista = dao.GetFacturas().Result
+                                 End Sub)
+        t.Start()
+
+        t.Wait()
+
+        Me.LlenarTabla(lista)
+
+    End Sub
+
+
+    Delegate Sub llenarTablaCallBack(lista As List(Of FacturaClass))
+
+    Public Sub LlenarTabla(lista As List(Of FacturaClass))
+        If Me.dgvFacturas.InvokeRequired Then
+            Dim d As New llenarTablaCallBack(AddressOf LlenarTabla)
+            Me.Invoke(d, New Object() {lista})
+        Else
+            dgvFacturas.DataSource = lista
+        End If
+
     End Sub
 
     Public Sub cargarDatosFactura()
