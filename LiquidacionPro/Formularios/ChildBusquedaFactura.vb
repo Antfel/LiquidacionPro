@@ -7,8 +7,8 @@ Public Class ChildBusquedaFactura
     Dim facturaSeleccion As Integer
 
     Private Sub ChildBusquedaFactura_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'cargarDatosFactura()
-        CargarFacturas()
+        cargarDatosFactura()
+        'CargarFacturas()
     End Sub
 
     Public Sub CargarFacturas()
