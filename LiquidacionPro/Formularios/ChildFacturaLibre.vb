@@ -392,7 +392,8 @@ Public Class ChildFacturaLibre
                                                 "",
                                                 subtotal,
                                                 igv,
-                                                total)
+                                                total,
+                                                0)
 
             Else
 
@@ -408,7 +409,8 @@ Public Class ChildFacturaLibre
                                                 "",
                                                 subtotal,
                                                 igv,
-                                                total)
+                                                total,
+                                                0)
 
             End If
 

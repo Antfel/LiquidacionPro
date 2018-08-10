@@ -357,6 +357,7 @@
     <Compile Include="LiquidacionCode\GuiaDAO.vb" />
     <Compile Include="LiquidacionCode\MonedaDAO.vb" />
     <Compile Include="LiquidacionCode\OrdenServicioDAO.vb" />
+    <Compile Include="LiquidacionCode\PrioridadServicioDAO.vb" />
     <Compile Include="LiquidacionCode\RolDAO.vb" />
     <Compile Include="LiquidacionCode\SQLControlPostgres.vb" />
     <Compile Include="LiquidacionCode\TipoServicioDAO.vb" />

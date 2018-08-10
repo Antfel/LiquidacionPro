@@ -113,6 +113,7 @@ Partial Class ChildFacturacion
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
+        Me.cbPrioridad = New System.Windows.Forms.ComboBox()
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbRemitente, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbPlaca, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -239,7 +240,7 @@ Partial Class ChildFacturacion
         '
         'txtDescripcionDetalle
         '
-        Me.txtDescripcionDetalle.Location = New System.Drawing.Point(494, 245)
+        Me.txtDescripcionDetalle.Location = New System.Drawing.Point(456, 245)
         Me.txtDescripcionDetalle.Name = "txtDescripcionDetalle"
         Me.txtDescripcionDetalle.Size = New System.Drawing.Size(143, 20)
         Me.txtDescripcionDetalle.TabIndex = 120
@@ -248,7 +249,7 @@ Partial Class ChildFacturacion
         '
         Me.cbTipoServicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbTipoServicio.FormattingEnabled = True
-        Me.cbTipoServicio.Location = New System.Drawing.Point(295, 245)
+        Me.cbTipoServicio.Location = New System.Drawing.Point(280, 245)
         Me.cbTipoServicio.Name = "cbTipoServicio"
         Me.cbTipoServicio.Size = New System.Drawing.Size(170, 21)
         Me.cbTipoServicio.TabIndex = 110
@@ -256,7 +257,7 @@ Partial Class ChildFacturacion
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(183, 248)
+        Me.Label13.Location = New System.Drawing.Point(168, 248)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(106, 13)
         Me.Label13.TabIndex = 1000
@@ -944,11 +945,21 @@ Partial Class ChildFacturacion
         Me.Label32.TabIndex = 10007
         Me.Label32.Text = "Total"
         '
+        'cbPrioridad
+        '
+        Me.cbPrioridad.Enabled = False
+        Me.cbPrioridad.FormattingEnabled = True
+        Me.cbPrioridad.Location = New System.Drawing.Point(605, 244)
+        Me.cbPrioridad.Name = "cbPrioridad"
+        Me.cbPrioridad.Size = New System.Drawing.Size(152, 21)
+        Me.cbPrioridad.TabIndex = 10008
+        '
         'ChildFacturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 682)
+        Me.Controls.Add(Me.cbPrioridad)
         Me.Controls.Add(Me.Label32)
         Me.Controls.Add(Me.Label31)
         Me.Controls.Add(Me.Label22)
@@ -1130,4 +1141,5 @@ Partial Class ChildFacturacion
     Friend WithEvents Label22 As Label
     Friend WithEvents Label31 As Label
     Friend WithEvents Label32 As Label
+    Friend WithEvents cbPrioridad As ComboBox
 End Class

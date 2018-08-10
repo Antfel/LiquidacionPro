@@ -104,7 +104,8 @@ Public Class FacturacionDAO
                                     ORIGEN,
                                     DESTINO,
                                     OBSERVACION,
-                                    CODIGO_DETALLE_FACTURA 
+                                    CODIGO_DETALLE_FACTURA,
+                                    PRIORIDAD
                                     from DETALLE_FACTURA 
                                     WHERE  
                                     CODIGO_DETALLE_FACTURA =" + CStr(codigo_detalle),
@@ -318,7 +319,7 @@ Public Class FacturacionDAO
                                     tipo_servicio As Integer, descripcion As String,
                                          cantidad As Integer, conf_vehi As String,
                                          valor_ref As Double, obs As String, precio_unitario As Double,
-                                         origen As String, destino As String, subtotal As Double, igv As Double, total As Double) As Integer
+                                         origen As String, destino As String, subtotal As Double, igv As Double, total As Double, prioridad As Integer) As Integer
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_FACTURA", codigo_factura))
@@ -340,6 +341,12 @@ Public Class FacturacionDAO
         params.Add(New SqlParameter("@SUBTOTAL", subtotal))
         params.Add(New SqlParameter("@IGV", igv))
         params.Add(New SqlParameter("@TOTAL", total))
+
+        If tipo_servicio < 0 Then
+            params.Add(New SqlParameter("@PRIORIDAD", DBNull.Value))
+        Else
+            params.Add(New SqlParameter("@PRIORIDAD", prioridad))
+        End If
 
         Dim dt As DataTable
 
@@ -356,7 +363,8 @@ Public Class FacturacionDAO
                                         "@DESTINO," +
                                         "@SUBTOTAL," +
                                         "@IGV," +
-                                        "@TOTAL ", params)
+                                        "@TOTAL," +
+                                        "@PRIORIDAD", params)
 
         If dt.Rows.Count > 0 Then
             Return CInt(dt.Rows.Item(0).Item(0))
@@ -369,7 +377,7 @@ Public Class FacturacionDAO
                                     tipo_servicio As Integer, descripcion As String,
                                          cantidad As Integer, conf_vehi As String,
                                          valor_ref As Double, obs As String, precio_unitario As Double,
-                                         origen As String, destino As String, subtotal As Double, igv As Double, total As Double)
+                                         origen As String, destino As String, subtotal As Double, igv As Double, total As Double, prioridad As Integer)
 
         Dim params As New List(Of SqlParameter)
         params.Add(New SqlParameter("@CODIGO_DETALLE_FACTURA", codigo_detalle_factura))
@@ -380,7 +388,6 @@ Public Class FacturacionDAO
         Else
             params.Add(New SqlParameter("@TIPO_SERVICIO", tipo_servicio))
         End If
-
 
         params.Add(New SqlParameter("@DESCRIPCION", descripcion))
         params.Add(New SqlParameter("@CANTIDAD", cantidad))
@@ -393,6 +400,12 @@ Public Class FacturacionDAO
         params.Add(New SqlParameter("@SUBTOTAL", subtotal))
         params.Add(New SqlParameter("@IGV", igv))
         params.Add(New SqlParameter("@TOTAL", total))
+
+        If prioridad < 0 Then
+            params.Add(New SqlParameter("@PRIORIDAD", DBNull.Value))
+        Else
+            params.Add(New SqlParameter("@PRIORIDAD", prioridad))
+        End If
 
         Dim dt As DataTable
 
@@ -410,14 +423,15 @@ Public Class FacturacionDAO
                                         "@DESTINO," +
                                         "@SUBTOTAL," +
                                         "@IGV," +
-                                        "@TOTAL ", params)
+                                        "@TOTAL," +
+                                        "@PRIORIDAD", params)
 
     End Sub
 
     Public Function GetGuiasByDetalle(codigoDetalle As Integer) As DataTable
 
         Return sqlControl.ExecQuery("select a.CODIGO_GUIA,
-	                                        b.DETALLE_GUIA 
+                                            b.DETALLE_GUIA 
                                     from    DETALLE_FACTURA_GUIA a 
                                     LEFT    JOIN GUIA_TRANSPORTISTA b ON a.CODIGO_GUIA = b.CODIGO_GUIA
                                     where   CODIGO_DETALLE_FACTURA =" + CStr(codigoDetalle) + "   

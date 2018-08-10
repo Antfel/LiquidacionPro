@@ -225,6 +225,37 @@ Public Class ChildFacturacion
         End Try
 
     End Sub
+    Private Sub cargarPrioridad()
+        Dim sqlControl As New SQLControl
+        sqlControl.SetConnection()
+
+        Dim prioridadServicioDao As New PrioridadServicioDAO(sqlControl)
+        Dim dataPrioridad As DataTable
+        Try
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            prioridadServicioDao.setDBcmd()
+
+            dataPrioridad = prioridadServicioDao.GetPrioridadDeServicio
+
+            With cbPrioridad
+                .DataSource = dataPrioridad
+                .ValueMember = "CODIGO_ESTADO"
+                .DisplayMember = "DETALLE_ESTADO"
+                .SelectedIndex = -1
+            End With
+            sqlControl.CommitTransaction()
+        Catch ex As Exception
+            sqlControl.RollbackTransaccion()
+        Finally
+            Try
+                sqlControl.CloseConexion()
+            Catch ex As Exception
+                MsgBox("Cargar Prioridad. " + ex.Message)
+            End Try
+        End Try
+
+    End Sub
 
     Private Sub actualizarDatosGuia()
         Dim sqlControl As New SQLControl
@@ -278,6 +309,7 @@ Public Class ChildFacturacion
         txtTotalFactura.Text = "0.00"
         actualizarDatosCliente()
         cargarTiposDeServicio()
+        cargarPrioridad()
         actualizarDatosMoneda()
         cargarBancos()
         If codigo_Factura <> -1 Then
@@ -486,7 +518,8 @@ Public Class ChildFacturacion
                                                 destino,
                                                 subtotal,
                                                 igv,
-                                                total)
+                                                total,
+                                                CType(cbPrioridad.SelectedValue, Integer))
 
             sqlControl.CommitTransaction()
             cargandoDatosActualizar = 0
@@ -727,7 +760,8 @@ Public Class ChildFacturacion
                                                                  "",
                                                                  CType(0.00, Double),
                                                                  CType(0.00, Double),
-                                                                 CType(0.00, Double))
+                                                                 CType(0.00, Double),
+                                                                 0)
 
             sqlControl.CommitTransaction()
             btnImprimir.Enabled = True
@@ -835,6 +869,7 @@ Public Class ChildFacturacion
     Private Sub BloquearDetalle()
         If codigo_Factura = -1 Then
             cbTipoServicio.Enabled = False
+            cbPrioridad.Enabled = False
             txtDescripcionDetalle.Enabled = False
             cbGuia.Enabled = False
             txtRemitente.Enabled = False
@@ -864,6 +899,7 @@ Public Class ChildFacturacion
 
         Else
             cbTipoServicio.Enabled = True
+            cbPrioridad.Enabled = True
             txtDescripcionDetalle.Enabled = True
             cbGuia.Enabled = True
             txtRemitente.Enabled = True
@@ -1066,6 +1102,7 @@ Public Class ChildFacturacion
                 cbOrigen.Text = datDetalle.Rows(0).Item(9).ToString
                 cbDestino.Text = datDetalle.Rows(0).Item(10).ToString
                 txtObservaciones.Text = datDetalle.Rows(0).Item(11).ToString
+                cbPrioridad.SelectedValue = datDetalle.Rows(0).Item(12).ToString
 
 
                 sqlControl.CommitTransaction()
