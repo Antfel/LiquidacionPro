@@ -26,7 +26,6 @@ Public Class ChildBusquedaFactura
 
     End Sub
 
-
     Delegate Sub llenarTablaCallBack(lista As List(Of FacturaClass))
 
     Public Sub LlenarTabla(lista As List(Of FacturaClass))
