@@ -566,6 +566,7 @@ Public Class ChildFacturacion
         txtSubtotalDetalle.Text = ""
         txtIgvDetalle.Text = ""
         txtTotalDetalle.Text = ""
+        cbPrioridad.SelectedIndex = -1
 
 
     End Sub
