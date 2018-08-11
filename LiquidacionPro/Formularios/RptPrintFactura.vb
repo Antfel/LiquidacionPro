@@ -124,6 +124,10 @@ Public Class RptPrintFactura
                     dtr = facturacionDao.GetPrintRptFacturaRemitente(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
                     dtu = facturacionDao.GetPrintRptFacturaUnidad(dtd.Rows.Item(i)(6), dtd.Rows.Item(i)(7))
 
+                    If (dtd.Rows.Item(i)(22) <> 0) Then
+                        text = text + " " + dtd.Rows.Item(i)(23)
+                    End If
+
                     If (dtg.Rows.Count <> 0 Or dtr.Rows.Count <> 0 Or dtu.Rows.Count <> 0) Then
                         text = text + " SEGUN GUIA DE REMISION:"
                     End If

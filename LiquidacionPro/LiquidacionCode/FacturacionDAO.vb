@@ -105,7 +105,7 @@ Public Class FacturacionDAO
                                     DESTINO,
                                     OBSERVACION,
                                     CODIGO_DETALLE_FACTURA,
-                                    PRIORIDAD
+                                    coalesce(PRIORIDAD,0 ) 
                                     from DETALLE_FACTURA 
                                     WHERE  
                                     CODIGO_DETALLE_FACTURA =" + CStr(codigo_detalle),
@@ -819,12 +819,15 @@ Public Class FacturacionDAO
 		                                    coalesce(b.VALOR_REFERENCIAL,0) VALOR_REFERENCIAL,
 		                                    coalesce(b.TIPO_SERVICIO,0) TIPO_SERVICIO,
 		                                    coalesce(e.DETALLE_ESTADO_COMPLETO,'') DETALLE_ESTADO_COMPLETO,
-                                            coalesce(b.PRECIO_SUBTOTAL ,0)  PRECIO_SUBTOTAL 
+                                            coalesce(b.PRECIO_SUBTOTAL ,0)  PRECIO_SUBTOTAL,
+                                            coalesce(b.PRIORIDAD,0) PRIORIDAD,
+                                            coalesce(f.DETALLE_ESTADO_COMPLETO,'') PRIORIDAD_DETALLE
                                     from	FACTURA a 
                                     left	join DETALLE_FACTURA b on a.CODIGO_FACTURA=b.CODIGO_FACTURA 
                                     left	join CLIENTE c on c.CODIGO_CLIENTE=a.CODIGO_CLIENTE 
                                     left	join MONEDA d on d.CODIGO_MONEDA=a.CODIGO_MONEDA 
                                     left	join ESTADO e on e.CODIGO_ESTADO=b.TIPO_SERVICIO and e.TIPO_ESTADO=6 
+                                    left	join ESTADO f on f.CODIGO_ESTADO=b.PRIORIDAD and f.TIPO_ESTADO=10  
                                     where	a.CODIGO_FACTURA=" + CStr(codigo_factura) + "",
                                      Nothing)
     End Function

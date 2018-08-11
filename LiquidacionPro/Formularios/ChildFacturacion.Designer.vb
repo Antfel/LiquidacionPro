@@ -22,6 +22,7 @@ Partial Class ChildFacturacion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -114,6 +115,8 @@ Partial Class ChildFacturacion
         Me.Label31 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.cbPrioridad = New System.Windows.Forms.ComboBox()
+        Me.BtnLimpiaPrioridad = New System.Windows.Forms.Button()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.tbTransportista, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbRemitente, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbPlaca, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -506,7 +509,7 @@ Partial Class ChildFacturacion
         'txtConfVehicular
         '
         Me.txtConfVehicular.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtConfVehicular.Location = New System.Drawing.Point(831, 246)
+        Me.txtConfVehicular.Location = New System.Drawing.Point(908, 246)
         Me.txtConfVehicular.Name = "txtConfVehicular"
         Me.txtConfVehicular.Size = New System.Drawing.Size(77, 20)
         Me.txtConfVehicular.TabIndex = 220
@@ -514,7 +517,7 @@ Partial Class ChildFacturacion
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(763, 248)
+        Me.Label29.Location = New System.Drawing.Point(840, 248)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(67, 13)
         Me.Label29.TabIndex = 1025
@@ -522,7 +525,7 @@ Partial Class ChildFacturacion
         '
         'txtValorReferencial
         '
-        Me.txtValorReferencial.Location = New System.Drawing.Point(994, 245)
+        Me.txtValorReferencial.Location = New System.Drawing.Point(1071, 245)
         Me.txtValorReferencial.Name = "txtValorReferencial"
         Me.txtValorReferencial.Size = New System.Drawing.Size(77, 20)
         Me.txtValorReferencial.TabIndex = 230
@@ -530,7 +533,7 @@ Partial Class ChildFacturacion
         'Label28
         '
         Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(931, 248)
+        Me.Label28.Location = New System.Drawing.Point(1008, 248)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(57, 13)
         Me.Label28.TabIndex = 1026
@@ -947,6 +950,7 @@ Partial Class ChildFacturacion
         '
         'cbPrioridad
         '
+        Me.cbPrioridad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbPrioridad.Enabled = False
         Me.cbPrioridad.FormattingEnabled = True
         Me.cbPrioridad.Location = New System.Drawing.Point(605, 244)
@@ -954,11 +958,22 @@ Partial Class ChildFacturacion
         Me.cbPrioridad.Size = New System.Drawing.Size(152, 21)
         Me.cbPrioridad.TabIndex = 10008
         '
+        'BtnLimpiaPrioridad
+        '
+        Me.BtnLimpiaPrioridad.Location = New System.Drawing.Point(764, 244)
+        Me.BtnLimpiaPrioridad.Name = "BtnLimpiaPrioridad"
+        Me.BtnLimpiaPrioridad.Size = New System.Drawing.Size(30, 23)
+        Me.BtnLimpiaPrioridad.TabIndex = 10009
+        Me.BtnLimpiaPrioridad.Text = "<-"
+        Me.ToolTip1.SetToolTip(Me.BtnLimpiaPrioridad, "Limpiar Prioridad")
+        Me.BtnLimpiaPrioridad.UseVisualStyleBackColor = True
+        '
         'ChildFacturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1321, 682)
+        Me.Controls.Add(Me.BtnLimpiaPrioridad)
         Me.Controls.Add(Me.cbPrioridad)
         Me.Controls.Add(Me.Label32)
         Me.Controls.Add(Me.Label31)
@@ -1142,4 +1157,6 @@ Partial Class ChildFacturacion
     Friend WithEvents Label31 As Label
     Friend WithEvents Label32 As Label
     Friend WithEvents cbPrioridad As ComboBox
+    Friend WithEvents BtnLimpiaPrioridad As Button
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

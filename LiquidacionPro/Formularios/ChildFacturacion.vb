@@ -1102,7 +1102,10 @@ Public Class ChildFacturacion
                 cbOrigen.Text = datDetalle.Rows(0).Item(9).ToString
                 cbDestino.Text = datDetalle.Rows(0).Item(10).ToString
                 txtObservaciones.Text = datDetalle.Rows(0).Item(11).ToString
-                cbPrioridad.SelectedValue = datDetalle.Rows(0).Item(12).ToString
+                If datDetalle.Rows(0).Item(13) <> 0 Then
+                    cbPrioridad.SelectedValue = datDetalle.Rows(0).Item(13)
+                End If
+
 
 
                 sqlControl.CommitTransaction()
@@ -1560,5 +1563,10 @@ Public Class ChildFacturacion
 
     Private Sub ChildFacturacion_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         childBusquedaFactura.cargarDatosFactura()
+    End Sub
+
+    Private Sub BtnLimpiaPrioridad_Click(sender As Object, e As EventArgs) Handles BtnLimpiaPrioridad.Click
+        cbPrioridad.SelectedIndex = -1
+
     End Sub
 End Class
