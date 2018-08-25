@@ -324,12 +324,12 @@ Public Class ChildLiquidacionControl
     Private Sub dgvLiquidacion_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvLiquidacion.CellMouseClick
         cargarLiquidacion()
         If txtCodigoLiquidacion.Text IsNot Nothing Then
-            'cargarPeajes(CInt(txtCodigoLiquidacion.Text))
-            'cargarViaticos(CInt(txtCodigoLiquidacion.Text))
-            'cargarOtros(CInt(txtCodigoLiquidacion.Text))
-            'cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
-            'cargarGuardiania(CInt(txtCodigoLiquidacion.Text))
-            'cargarBalanzas(CInt(txtCodigoLiquidacion.Text))
+            cargarPeajes(CInt(txtCodigoLiquidacion.Text))
+            cargarViaticos(CInt(txtCodigoLiquidacion.Text))
+            cargarOtros(CInt(txtCodigoLiquidacion.Text))
+            cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
+            cargarGuardiania(CInt(txtCodigoLiquidacion.Text))
+            cargarBalanzas(CInt(txtCodigoLiquidacion.Text))
         End If
 
     End Sub
