@@ -1334,4 +1334,61 @@ Public Class LiquidacionDAO
         End If
 
     End Function
+
+    Public Function InsertLiquidacionRelacion(codigo_rela As Integer, codigo_liq As Integer, nro_liquidacion As String) As Integer
+
+        Dim params As New List(Of SqlParameter)
+        params.Add(New SqlParameter("@CODIGO_RELACION", codigo_rela))
+        params.Add(New SqlParameter("@CODIGO_LIQUIDACION", codigo_liq))
+        params.Add(New SqlParameter("@NUMERO_LIQUIDACION", nro_liquidacion))
+
+        Dim dt As DataTable
+        dt = sqlControl.ExecQuery("insert liquidacion_relacion (CODIGO_RELACION,
+                                                                CODIGO_LIQUIDACION,
+                                                                NUMERO_LIQUIDACION)
+                                        values
+                                        (@CODIGO_RELACION, 
+                                        @CODIGO_LIQUIDACION, 
+                                        @NUMERO_LIQUIDACION) ", params)
+
+        If Not dt Is Nothing Then
+            If dt.Rows.Count > 0 Then
+                Return CInt(dt.Rows.Item(0).Item(0))
+            Else
+                Return -1
+            End If
+        Else
+            Return -1
+        End If
+
+    End Function
+
+    Public Function GetLiquidacionesRelacionadas(liquidacion As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("SELECT	CODIGO_RELACION,
+		                                    CODIGO_LIQUIDACION,
+		                                    NUMERO_LIQUIDACION 'NRO LIQUIDACION' 
+                                    FROM	LIQUIDACION_RELACION 
+                                    WHERE	CODIGO_RELACION = ( SELECT  CODIGO_RELACION 
+                                                                FROM    LIQUIDACION_RELACION  
+                                                                WHERE   CODIGO_LIQUIDACION = " + CStr(liquidacion) + ")", Nothing)
+    End Function
+
+    Public Function GetNextLiquidacionesRelacionadas() As DataTable
+
+        Return sqlControl.ExecQuery("SELECT COALESCE(MAX(CODIGO_RELACION),0)+1 FROM LIQUIDACION_RELACION ", Nothing)
+    End Function
+
+    Public Sub DeleteLiquidacionRelacion(cod_rela As Integer, cod_liq As Integer)
+
+        sqlControl.ExecQuery("delete    liquidacion_relacion 
+                            where       codigo_relacion=" + CStr(cod_rela) + " 
+                                        and codigo_liquidacion=" + CStr(cod_liq), Nothing)
+    End Sub
+
+    Public Function GetValidarLiquidacionRelacionada(cod_liq As Integer) As DataTable
+
+        Return sqlControl.ExecQuery("select * from LIQUIDACION_RELACION
+                                where CODIGO_LIQUIDACION = " + CStr(cod_liq) + "", Nothing)
+    End Function
 End Class

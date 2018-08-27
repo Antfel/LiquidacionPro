@@ -1,5 +1,9 @@
 ﻿Public Class FrmLogin
     Private Sub btnLogear_Click(sender As Object, e As EventArgs) Handles btnLogear.Click
+        Logear()
+    End Sub
+
+    Sub Logear()
         Dim sqlControl As New SQLControl
         sqlControl.SetConnection()
 
@@ -31,5 +35,11 @@
 
             End Try
         End Try
+    End Sub
+    Private Sub txtPass_KeyDown(sender As Object, e As KeyEventArgs) Handles txtPass.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Logear()
+        End If
+
     End Sub
 End Class

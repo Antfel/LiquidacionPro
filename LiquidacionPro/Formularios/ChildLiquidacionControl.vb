@@ -8,6 +8,7 @@ Public Class ChildLiquidacionControl
     'Dim filaSeleccionada As Integer = -1
     Private Sub ChildLiquidacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actualizarListaLiquidacion()
+        CargarLiquidaciones()
         actualizarDatosTrabajador()
         actualizarDatosGuia()
         actualizarDatosTracto()
@@ -330,7 +331,49 @@ Public Class ChildLiquidacionControl
             cargarHospedajes(CInt(txtCodigoLiquidacion.Text))
             cargarGuardiania(CInt(txtCodigoLiquidacion.Text))
             cargarBalanzas(CInt(txtCodigoLiquidacion.Text))
+            CargarLiquidacionesRelacionadas(CInt(txtCodigoLiquidacion.Text))
         End If
+
+    End Sub
+
+    Private Sub CargarLiquidacionesRelacionadas(codigo As Integer)
+        Dim sqlControl As New SQLControl
+        sqlControl.SetConnection()
+        Dim liquidacionDAO As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            liquidacionDAO.setDBcmd()
+
+            Dim dt As DataTable
+            dt = liquidacionDAO.GetLiquidacionesRelacionadas(codigo)
+            sqlControl.CommitTransaction()
+
+            DgvLiqRelacionadas.DataSource = dt
+
+            DgvLiqRelacionadas.Columns(0).Visible = False
+            DgvLiqRelacionadas.Columns(1).Visible = False
+
+            DgvLiqRelacionadas.Columns(2).Width = 150
+
+        Catch ex As SqlException
+            sqlControl.RollbackTransaccion()
+            MessageBox.Show("Error al cargar Liquidaciones Relacionadas. " + ex.Message, "Cargar Liquidaciones Relacionadas",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar Liquidaciones Relacionadas. " + ex.Message, "Cargar Liquidaciones Relacionadas",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.CloseConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar la conexión. " + ex.Message, "Cargar Liquidaciones Relacionadas",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Error)
+            End Try
+        End Try
 
     End Sub
 
@@ -359,6 +402,8 @@ Public Class ChildLiquidacionControl
                 If cbGuia.Items.Count > 0 Then
                     cbGuia.SelectedValue = dt.Rows(0)(4)
                 End If
+            Else
+                actualizarDatosGuia()
             End If
 
             cbTracto.SelectedValue = dt.Rows(0)(6)
@@ -367,6 +412,8 @@ Public Class ChildLiquidacionControl
 
             If dt.Rows(0)(8) IsNot DBNull.Value Then
                 cbCamabaja.SelectedValue = dt.Rows(0)(8)
+            Else
+                actualizarDatosSemiTrailer()
             End If
 
             txtDestino.Text = dt.Rows(0)(11)
@@ -395,7 +442,8 @@ Public Class ChildLiquidacionControl
             End If
 
             txtVuelto.Text = dt.Rows(0)(43)
-        Catch ex As SQLException
+            CbLiquidaciones.SelectedIndex = -1
+        Catch ex As SqlException
             sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar liquidación. " + ex.Message, "Cargar Liquidación",
                                  MessageBoxButtons.OK,
@@ -461,7 +509,6 @@ Public Class ChildLiquidacionControl
                 End If
 
             End If
-
         Catch ex As SqlException
             sqlControl.RollbackTransaccion()
             MessageBox.Show("Error al cargar liquidaciones. " + ex.Message, "Cargar Liquidaciones",
@@ -3594,5 +3641,184 @@ Public Class ChildLiquidacionControl
 
     Private Sub dgvBalanza_CellMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgvBalanza.CellMouseClick
         cargarBalanzasById()
+    End Sub
+
+    Private Sub CargarLiquidaciones()
+        Dim sqlControl As New SQLControl
+        sqlControl.SetConnection()
+
+        Dim liquidacionDao As New LiquidacionDAO(sqlControl)
+        Try
+            sqlControl.OpenConexion()
+            sqlControl.BeginTransaction()
+            liquidacionDao.setDBcmd()
+
+            Dim dt As DataTable
+
+            dt = liquidacionDao.GetAllLiquidacion()
+            sqlControl.CommitTransaction()
+
+            With CbLiquidaciones
+                .DataSource = dt
+                .DisplayMember = "NUMERO LIQUIDACION"
+                .ValueMember = "CODIGO"
+                .DropDownStyle = ComboBoxStyle.Simple
+                .AutoCompleteMode = AutoCompleteMode.Suggest
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+                .SelectedIndex = -1
+            End With
+        Catch ex As SqlException
+            sqlControl.RollbackTransaccion()
+            MessageBox.Show("Error al cargar liquidaciones. " + ex.Message, "Cargar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar liquidaciones. " + ex.Message, "Cargar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Finally
+            Try
+                sqlControl.CloseConexion()
+            Catch ex As Exception
+                MessageBox.Show("Error al cerrar conexión. " + ex.Message, "Cargar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            End Try
+        End Try
+
+
+    End Sub
+
+    Private Sub BtnRelacionarLiq_Click(sender As Object, e As EventArgs) Handles BtnRelacionarLiq.Click
+        If CbLiquidaciones.SelectedIndex < 0 Then
+            MessageBox.Show("Seleccionar una Liquidación. ", "Relacionar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Return
+        End If
+
+        If CbLiquidaciones.SelectedValue = CInt(txtCodigoLiquidacion.Text) Then
+            MessageBox.Show("No se puede relacionar la liquidación a sí misma. ", "Relacionar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+        Else
+
+            Dim sqlControl As New SQLControl
+            sqlControl.SetConnection()
+
+            Dim liquidacionDao As New LiquidacionDAO(sqlControl)
+            Try
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
+                liquidacionDao.setDBcmd()
+
+                Dim dt As DataTable
+                Dim cod_rela As Integer
+                Dim cod_liq As Integer
+                Dim des_liq As String
+                'Dim seleccion As DataGridViewRow = DgvLiqRelacionadas.SelectedRows(0)
+                cod_liq = CbLiquidaciones.SelectedValue
+                dt = liquidacionDao.GetValidarLiquidacionRelacionada(cod_liq)
+
+                If dt.Rows.Count > 0 Then
+                    MessageBox.Show("La Liquidación ya se encuentra relacionada a otro Viaje", "Relacionar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information)
+                    Return
+                End If
+
+                If DgvLiqRelacionadas.Rows.Count = 0 Then
+                    dt = liquidacionDao.GetNextLiquidacionesRelacionadas()
+                    If dt.Rows.Count > 0 Then
+                        cod_rela = dt.Rows(0)(0)
+                    Else
+                        cod_rela = -1
+                    End If
+
+                    'Se ingresa primera relación
+                    cod_liq = CInt(txtCodigoLiquidacion.Text)
+                    des_liq = txtNroLiquidacion.Text
+                    'sqlControl.BeginTransaction()
+                    liquidacionDao.InsertLiquidacionRelacion(cod_rela, cod_liq, des_liq)
+                    sqlControl.CommitTransaction()
+
+                    sqlControl.BeginTransaction()
+                    'liquidacionDao.setDBcmd()
+                    'Se ingresa segunda relación
+                    cod_liq = CbLiquidaciones.SelectedValue
+                    des_liq = CbLiquidaciones.Text
+                    liquidacionDao.InsertLiquidacionRelacion(cod_rela, cod_liq, des_liq)
+                    sqlControl.CommitTransaction()
+                Else
+                    cod_rela = DgvLiqRelacionadas.CurrentRow.Cells(0).Value
+
+                    cod_liq = CbLiquidaciones.SelectedValue
+                    des_liq = CbLiquidaciones.Text
+
+                    liquidacionDao.InsertLiquidacionRelacion(cod_rela, cod_liq, des_liq)
+                    sqlControl.CommitTransaction()
+
+                End If
+
+            Catch ex As SqlException
+                sqlControl.RollbackTransaccion()
+                MessageBox.Show("Error Relacionar liquidación SQL. " + ex.Message, "Relacionar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("Error Relacionar liquidación. " + ex.Message, "Relacionar Liquidaciones",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Error)
+            Finally
+                If sqlControl.GetDBcon.State = ConnectionState.Open Then
+                    sqlControl.CloseConexion()
+                End If
+                CargarLiquidacionesRelacionadas(CInt(txtCodigoLiquidacion.Text))
+            End Try
+        End If
+    End Sub
+
+    Private Sub BtnRemoverLiq_Click(sender As Object, e As EventArgs) Handles BtnRemoverLiq.Click
+
+        If DgvLiqRelacionadas.RowCount <= 0 Then
+            MessageBox.Show("Ingresar una liquidación como mínimo.", "Remover Relación",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim seleccion As DataGridViewRow = DgvLiqRelacionadas.SelectedRows(0)
+        Dim cod_rela As Integer = seleccion.Cells(0).Value
+        Dim cod_liq As Integer = seleccion.Cells(1).Value
+
+        If seleccion.Index > -1 Then
+            Dim sqlControl As New SQLControl
+            sqlControl.SetConnection()
+
+            Dim liqDao As New LiquidacionDAO(sqlControl)
+            Try
+                sqlControl.OpenConexion()
+                sqlControl.BeginTransaction()
+                liqDao.setDBcmd()
+
+                liqDao.DeleteLiquidacionRelacion(cod_rela, cod_liq)
+
+                sqlControl.CommitTransaction()
+            Catch ex As Exception
+                sqlControl.RollbackTransaccion()
+                MessageBox.Show("Error al remover relación. " + ex.Message, "Remover Relación",
+                 MessageBoxButtons.OK,
+                 MessageBoxIcon.Error)
+            Finally
+                Try
+                    sqlControl.CloseConexion()
+                Catch ex As Exception
+                    MessageBox.Show("Error al remover relación SQL. " + ex.Message, "Remover Relación",
+                 MessageBoxButtons.OK,
+                 MessageBoxIcon.Error)
+                End Try
+                CargarLiquidacionesRelacionadas(CInt(txtCodigoLiquidacion.Text))
+            End Try
+        End If
     End Sub
 End Class

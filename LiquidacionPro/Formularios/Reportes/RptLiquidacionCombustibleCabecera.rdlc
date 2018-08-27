@@ -1381,7 +1381,9 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=100-(100*Sum(Fields!CONSUMO_VIRTUAL_LIQUIDACION.Value, "DataSet1")/Sum(Fields!CONSUMO_FISICO_LIQUIDACION.Value, "DataSet1"))</Value>
+                              <Value>= iif( (Fields!CONSUMO_FISICO_LIQUIDACION.Value = 0.000 Or Fields!CONSUMO_VIRTUAL_LIQUIDACION.Value = 0.000) , 
+0,
+100 - (100 * Fields!CONSUMO_VIRTUAL_LIQUIDACION.Value / iif(Fields!CONSUMO_FISICO_LIQUIDACION.Value=0,1,Fields!CONSUMO_FISICO_LIQUIDACION.Value)) )</Value>
                               <Style>
                                 <Format>0.00;(0.00)</Format>
                               </Style>
@@ -1402,6 +1404,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>

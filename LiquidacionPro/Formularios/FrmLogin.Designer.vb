@@ -107,6 +107,7 @@ Partial Class FrmLogin
         Me.Controls.Add(Me.txtPass)
         Me.Controls.Add(Me.txtUsuario)
         Me.Name = "FrmLogin"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
