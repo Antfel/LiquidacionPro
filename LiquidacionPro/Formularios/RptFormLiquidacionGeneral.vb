@@ -2,15 +2,15 @@
 
 Public Class RptFormLiquidacionGeneral
 
-    Dim codigo As Integer
+    Dim codigo As String
     Private Sub RptFormLiquidacionGeneral_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cargarReporteGeneral()
     End Sub
 
-    Public Sub setCodigo(codigo As Integer)
+    Public Sub setCodigo(codigo As String)
         Me.codigo = codigo
     End Sub
-    Function getiquidacionGeneral(codigo As Integer) As DataTable
+    Function getiquidacionGeneral(codigo As String) As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
         sqlControl.SetConnection()
@@ -47,7 +47,7 @@ Public Class RptFormLiquidacionGeneral
 
     End Function
 
-    Function getiquidacionGeneralDetalle(codigo As Integer) As DataTable
+    Function getiquidacionGeneralDetalle(codigo As String) As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
         sqlControl.SetConnection()
@@ -112,7 +112,7 @@ Public Class RptFormLiquidacionGeneral
     Public Sub subReporteGeneralDetalle(ByVal sender As Object,
      ByVal e As SubreportProcessingEventArgs)
 
-        Dim codigo As Integer = CInt(e.Parameters("CodigoLiquidacion").Values(0).ToString)
+        Dim codigo As String = e.Parameters("CodigoLiquidacion").Values(0).ToString
         Dim dt As New DataTable
         dt = getiquidacionGeneralDetalle(codigo)
         Dim rds As New ReportDataSource("DataSet1", dt)

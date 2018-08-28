@@ -1,16 +1,16 @@
 ﻿Imports Microsoft.Reporting.WinForms
 
 Public Class RptFormLiquidacionViaje
-    Dim codigo As Integer
+    Dim codigo As String
     Private Sub RptFormLiquidacionViaje_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         cargarReporteGeneral()
     End Sub
 
-    Public Sub setCodigo(codigo As Integer)
+    Public Sub setCodigo(codigo As String)
         Me.codigo = codigo
     End Sub
-    Function getiquidacionGeneral(codigo As Integer) As DataTable
+    Function getiquidacionGeneral(codigo As String) As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
         sqlControl.SetConnection()
@@ -47,7 +47,7 @@ Public Class RptFormLiquidacionViaje
 
     End Function
 
-    Function getiquidacionPeaje(codigo As Integer) As DataTable
+    Function getiquidacionPeaje(codigo As String) As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
         sqlControl.SetConnection()
@@ -84,7 +84,7 @@ Public Class RptFormLiquidacionViaje
 
     End Function
 
-    Function getiquidacionViatico(codigo As Integer) As DataTable
+    Function getiquidacionViatico(codigo As String) As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
         sqlControl.SetConnection()
@@ -121,7 +121,7 @@ Public Class RptFormLiquidacionViaje
 
     End Function
 
-    Function getiquidacionOtro(codigo As Integer) As DataTable
+    Function getiquidacionOtro(codigo As String) As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
         sqlControl.SetConnection()
@@ -175,7 +175,7 @@ Public Class RptFormLiquidacionViaje
     Public Sub subReporteViajePeaje(ByVal sender As Object,
      ByVal e As SubreportProcessingEventArgs)
 
-        Dim codigo As Integer = CInt(e.Parameters("CodigoLiquidacion").Values(0).ToString)
+        Dim codigo As String = e.Parameters("CodigoLiquidacion").Values(0).ToString
         Dim dt As New DataTable
         dt = getiquidacionPeaje(codigo)
         Dim rds As New ReportDataSource("DataSet1", dt)
@@ -185,7 +185,7 @@ Public Class RptFormLiquidacionViaje
 
     Public Sub subReporteViajeViatico(ByVal sender As Object, ByVal e As SubreportProcessingEventArgs)
 
-        Dim codigo As Integer = CInt(e.Parameters("CodigoLiquidacion").Values(0).ToString)
+        Dim codigo As String = e.Parameters("CodigoLiquidacion").Values(0).ToString
         Dim dt As New DataTable
         dt = getiquidacionViatico(codigo)
         Dim rds As New ReportDataSource("DataSet1_Viatico", dt)
@@ -195,7 +195,7 @@ Public Class RptFormLiquidacionViaje
 
     Public Sub subReporteViajeOtro(ByVal sender As Object, ByVal e As SubreportProcessingEventArgs)
 
-        Dim codigo As Integer = CInt(e.Parameters("CodigoLiquidacion").Values(0).ToString)
+        Dim codigo As String = e.Parameters("CodigoLiquidacion").Values(0).ToString
         Dim dt As New DataTable
         dt = getiquidacionOtro(codigo)
         Dim rds As New ReportDataSource("DataSet1_Otro", dt)

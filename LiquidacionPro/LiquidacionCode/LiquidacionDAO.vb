@@ -675,7 +675,7 @@ Public Class LiquidacionDAO
                                     order   by  NRO_LINEA asc", Nothing)
     End Function
 
-    Public Function getRptLiquidacionGeneral(codigo As Integer) As DataTable
+    Public Function getRptLiquidacionGeneral(codigo As String) As DataTable
 
         Return sqlControl.ExecQuery("select	a.CODIGO_LIQUIDACION,
 		                                    a.NUMERO_LIQUIDACION,
@@ -717,22 +717,22 @@ Public Class LiquidacionDAO
                                     left	join UNIDAD d on a.CODIGO_UNIDAD_TRACTO=d.CODIGO_UNIDAD 
                                     left	join UNIDAD e on a.CODIGO_UNIDAD_SEMITRAILER=e.CODIGO_UNIDAD 
                                     left	join ESTADO f on a.UNIDAD_MEDIDA=f.CODIGO_ESTADO and f.TIPO_ESTADO=8  
-                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
+                                    where	CODIGO_LIQUIDACION in (" + codigo + ") 
                         ", Nothing)
     End Function
 
-    Public Function getRptLiquidacionGeneralDetalle(codigo As Integer) As DataTable
+    Public Function getRptLiquidacionGeneralDetalle(codigo As String) As DataTable
 
         Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
 		                                    CODIGO_OTRO,
 		                                    DESCRIPCION,
 		                                    TOTAL 
                                     from	LIQUIDACION_OTRO
-                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
+                                    where	CODIGO_LIQUIDACION in (" + codigo + " )
                         ", Nothing)
     End Function
 
-    Public Function getRptLiquidacionViajePeaje(codigo As Integer) As DataTable
+    Public Function getRptLiquidacionViajePeaje(codigo As String) As DataTable
 
         Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
 		                                    CODIGO_PEAJE,
@@ -741,11 +741,11 @@ Public Class LiquidacionDAO
 		                                    EJES,
 		                                    TOTAL
                                     from	LIQUIDACION_PEAJE
-                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
+                                    where	CODIGO_LIQUIDACION in (" + codigo + ") 
                                     order by NRO_LINEA asc", Nothing)
     End Function
 
-    Public Function getRptLiquidacionViajeViatico(codigo As Integer) As DataTable
+    Public Function getRptLiquidacionViajeViatico(codigo As String) As DataTable
 
         Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
 		                                    CODIGO_VIATICO,
@@ -754,11 +754,11 @@ Public Class LiquidacionDAO
 		                                    DESCRIPCION,
 		                                    TOTAL
                                     from	LIQUIDACION_VIATICO
-                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
+                                    where	CODIGO_LIQUIDACION in (" + codigo + " )
                                     order by NRO_LINEA asc ", Nothing)
     End Function
 
-    Public Function getRptLiquidacionCombustible(codigo As Integer) As DataTable
+    Public Function getRptLiquidacionCombustible(codigo As String) As DataTable
 
         Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
 		                                    CODIGO_COMBUSTIBLE,
@@ -768,7 +768,7 @@ Public Class LiquidacionDAO
 		                                    PRECIO_GALON,
 		                                    TOTAL 
                                     from	LIQUIDACION_COMBUSTIBLE
-                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + " 
+                                    where	CODIGO_LIQUIDACION in (" + codigo + ") 
                                     ORDER BY NRO_LINEA ASC", Nothing)
     End Function
 
@@ -783,38 +783,38 @@ Public Class LiquidacionDAO
     '                    ", Nothing)
     'End Function
 
-    Public Function getRptLiquidacionViajeOtro(codigo As Integer) As DataTable
+    Public Function getRptLiquidacionViajeOtro(codigo As String) As DataTable
 
         Return sqlControl.ExecQuery("select	CODIGO_LIQUIDACION,
 		                                    CODIGO_OTRO,
 		                                    DESCRIPCION,
 		                                    TOTAL
                                     from	LIQUIDACION_OTRO
-                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + "
+                                    where	CODIGO_LIQUIDACION in (" + codigo + ")
                                     UNION ALL
                                     SELECT	CODIGO_LIQUIDACION,
 		                                    0 CODIGO_OTRO,
 		                                    'HOSPEDAJE' DESCRIPCION,
 		                                    HOSPEDAJE_LIQUIDACION TOTAL
                                     FROM	LIQUIDACION
-                                    WHERE	CODIGO_LIQUIDACION=" + CStr(codigo) + " AND HOSPEDAJE_LIQUIDACION<>0
+                                    WHERE	CODIGO_LIQUIDACION in (" + codigo + ") AND HOSPEDAJE_LIQUIDACION<>0
                                     UNION ALL
                                     SELECT	CODIGO_LIQUIDACION,
 		                                    0 CODIGO_OTRO,
 		                                    'GUARDIANÍA' DESCRIPCION,
 		                                    GUARDIANIA_LIQUIDACION TOTAL
                                     FROM	LIQUIDACION
-                                    WHERE	CODIGO_LIQUIDACION=" + CStr(codigo) + " AND GUARDIANIA_LIQUIDACION<>0
+                                    WHERE	CODIGO_LIQUIDACION in (" + codigo + ") AND GUARDIANIA_LIQUIDACION<>0
                                     UNION ALL
                                     SELECT	CODIGO_LIQUIDACION,
 		                                    0 CODIGO_OTRO,
 		                                    'BALANZA' DESCRIPCION,
 		                                    BALANZA_LIQUIDACION TOTAL
                                     FROM	LIQUIDACION
-                                    WHERE	CODIGO_LIQUIDACION=" + CStr(codigo) + " AND BALANZA_LIQUIDACION<>0", Nothing)
+                                    WHERE	CODIGO_LIQUIDACION in (" + codigo + ") AND BALANZA_LIQUIDACION<>0", Nothing)
     End Function
 
-    Public Function getRptLiquidacionCombustiblePrincipal(codigo As Integer) As DataTable
+    Public Function getRptLiquidacionCombustiblePrincipal(codigo As String) As DataTable
 
         Return sqlControl.ExecQuery("SELECT	a.CODIGO_LIQUIDACION,
 		                                    a.FECHA_SALIDA,
@@ -840,10 +840,10 @@ Public Class LiquidacionDAO
                                     LEFT	JOIN UNIDAD b on a.CODIGO_UNIDAD_TRACTO=b.CODIGO_UNIDAD
                                     LEFT	JOIN UNIDAD c on a.CODIGO_UNIDAD_SEMITRAILER=c.CODIGO_UNIDAD
                                     LEFT	join TRABAJADOR d on a.CODIGO_TRABAJADOR=d.CODIGO_TRABAJADOR
-                                    where	CODIGO_LIQUIDACION=" + CStr(codigo) + "", Nothing)
+                                    where	CODIGO_LIQUIDACION in (" + codigo + ")", Nothing)
     End Function
 
-    Public Function getRptLiquidacionCombustiblePrincipalDetalle(codigo As Integer) As DataTable
+    Public Function getRptLiquidacionCombustiblePrincipalDetalle(codigo As String) As DataTable
 
         Return sqlControl.ExecQuery("SELECT	CODIGO_LIQUIDACION,
 		                                    CODIGO_COMBUSTIBLE,
@@ -852,7 +852,7 @@ Public Class LiquidacionDAO
 		                                    GALONES,
 		                                    KM 
                                     FROM	LIQUIDACION_COMBUSTIBLE
-                                    WHERE	CODIGO_LIQUIDACION=" + CStr(codigo) + " ORDER BY NRO_LINEA ASC", Nothing)
+                                    WHERE	CODIGO_LIQUIDACION in (" + codigo + ") ORDER BY NRO_LINEA ASC", Nothing)
     End Function
 
     Public Function getRptLiquidacionByTrabajador(codigo As Integer, chbxInicio As Boolean, f_inicio As Date,

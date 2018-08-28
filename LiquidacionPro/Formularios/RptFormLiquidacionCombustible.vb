@@ -1,11 +1,11 @@
 ﻿Imports Microsoft.Reporting.WinForms
 
 Public Class RptFormLiquidacionCombustible
-    Dim codigo As Integer
+    Dim codigo As String
     Private Sub RptFormLiquidacionCombustible_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         cargarReporteGeneral()
     End Sub
-    Public Sub setCodigo(codigo As Integer)
+    Public Sub setCodigo(codigo As String)
         Me.codigo = codigo
     End Sub
 
@@ -23,7 +23,7 @@ Public Class RptFormLiquidacionCombustible
         ReportViewer1.RefreshReport()
     End Sub
 
-    Function getiquidacionGeneral(codigo As Integer) As DataTable
+    Function getiquidacionGeneral(codigo As String) As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
         sqlControl.SetConnection()
@@ -63,7 +63,7 @@ Public Class RptFormLiquidacionCombustible
     Public Sub subReporteCombustibleDetalle(ByVal sender As Object,
      ByVal e As SubreportProcessingEventArgs)
 
-        Dim codigo As Integer = CInt(e.Parameters("CodigoLiquidacion").Values(0).ToString)
+        Dim codigo As String = e.Parameters("CodigoLiquidacion").Values(0).ToString
         Dim dt As New DataTable
         dt = getiquidacionCombustibleDetalle(codigo)
         Dim rds As New ReportDataSource("DataSet1", dt)
@@ -71,7 +71,7 @@ Public Class RptFormLiquidacionCombustible
 
     End Sub
 
-    Function getiquidacionCombustibleDetalle(codigo As Integer) As DataTable
+    Function getiquidacionCombustibleDetalle(codigo As String) As DataTable
         Dim sqlControl As New SQLControl
         Dim dt As DataTable
         sqlControl.SetConnection()

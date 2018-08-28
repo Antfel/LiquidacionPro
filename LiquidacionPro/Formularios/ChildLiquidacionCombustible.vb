@@ -1010,7 +1010,7 @@ Public Class ChildLiquidacionCombustible
         End If
 
         Dim rptFormLiquidacionCombustiblePrincipal As New RptFormLiquidacionCombustiblePrincipal()
-        rptFormLiquidacionCombustiblePrincipal.setCodigo(CInt(txtCodigoLiquidacion.Text))
+        rptFormLiquidacionCombustiblePrincipal.setCodigo(txtCodigoLiquidacion.Text)
         rptFormLiquidacionCombustiblePrincipal.Show()
     End Sub
 

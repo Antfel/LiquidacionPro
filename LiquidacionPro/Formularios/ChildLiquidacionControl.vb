@@ -1679,7 +1679,7 @@ Public Class ChildLiquidacionControl
             Return
         End If
         Dim rptFormLiquidacionViaje As New RptFormLiquidacionViaje()
-        rptFormLiquidacionViaje.setCodigo(CInt(txtCodigoLiquidacion.Text))
+        rptFormLiquidacionViaje.setCodigo(txtCodigoLiquidacion.Text)
         rptFormLiquidacionViaje.Show()
     End Sub
 
@@ -1692,7 +1692,7 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim rptFormLiquidacionGeneral As New RptFormLiquidacionGeneral()
-        rptFormLiquidacionGeneral.setCodigo(CInt(txtCodigoLiquidacion.Text))
+        rptFormLiquidacionGeneral.setCodigo(txtCodigoLiquidacion.Text)
         rptFormLiquidacionGeneral.Show()
     End Sub
 
