@@ -1692,9 +1692,26 @@ Public Class ChildLiquidacionControl
         End If
 
         Dim rptFormLiquidacionGeneral As New RptFormLiquidacionGeneral()
-        rptFormLiquidacionGeneral.setCodigo(txtCodigoLiquidacion.Text)
+        rptFormLiquidacionGeneral.setCodigo(GetCodLiquidacionesRelacionadas())
         rptFormLiquidacionGeneral.Show()
     End Sub
+
+    Public Function GetCodLiquidacionesRelacionadas() As String
+
+        Dim codigo As String = ""
+
+        If DgvLiqRelacionadas.Rows.Count = 0 Then
+            codigo = txtCodigoLiquidacion.Text
+        Else
+            'dgvPeajes.Rows(seleccion.Index - 1).Cells(2).Value
+            For Each item As DataGridViewRow In DgvLiqRelacionadas.Rows
+                codigo += item.Cells(1).Value.ToString + ","
+            Next
+            codigo = codigo.Substring(0, codigo.Length - 1)
+        End If
+
+        Return codigo
+    End Function
 
     Private Sub btnRptLiquidacionCombustible_Click(sender As Object, e As EventArgs) Handles btnRptLiquidacionCombustible.Click
         If txtCodigoLiquidacion.Text = Nothing Then
